@@ -9,8 +9,6 @@ redirect_from:
 published: true
 ---
 
-# About me
-
 This fall I'll be starting my PhD in Computer Science at Rochester Institute of Technology (RIT). My previous work has been in preference modelling for multiagent systems, but who knows what the future holds :).
 
 I earned my bachelor's degree at New College of Florida from 2015-2019.
