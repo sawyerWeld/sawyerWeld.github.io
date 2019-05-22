@@ -1,13 +1,11 @@
-## WIP
 ---
-title: 'Comparing Goodness of Fit of Preference Models"
+title: "Comparing Goodness of Fit of Preference Models"
 collection: publications
-permalink: /publication/goodnessoffit
+permalink: /publication/2015-10-01-paper-title-number-3
 excerpt: ''
-date: 2019-04-19
-venue: 'Proceedings of the 32nd Florida AI Research Society Conference'
-paperurl: 'todo'
+date: 2017-12-11
+venue: 'Proceedings of the National Academy of Sciences'
+paperurl: 'http://dpananos.github.io/files/CriticalDynamics_2017.pdf'
 ---
 
-[Download paper here](todo)
-Enter text in [Markdown](http://daringfireball.net/projects/markdown/). Use the toolbar above, or click the **?** button for formatting help.
+[Download paper here](http://sawyerWeld.github.io/files/goodnessoffit.pdf)
