@@ -16,41 +16,36 @@
       place-items: center;
       padding: 2rem;
     }
-    .container { max-width: 600px; width: 100%; }
-    h1 { font-size: 2.5rem; margin-bottom: 0.25rem; }
-    .subtitle { color: #a1a1aa; font-size: 1.1rem; margin-bottom: 2rem; }
-    .links { display: flex; gap: 1rem; margin-bottom: 2.5rem; }
-    .links a {
-      color: #71717a; text-decoration: none; font-size: 0.9rem;
-      transition: color 0.2s;
+    .container { text-align: center; max-width: 500px; }
+    .construction { font-size: 4rem; margin-bottom: 1rem; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .subtitle { color: #a1a1aa; font-size: 1rem; margin-bottom: 2rem; }
+    .divider {
+      width: 80%; height: 1px; background: #27272a;
+      margin: 0 auto 2rem;
     }
-    .links a:hover { color: #fafafa; }
-    h2 { font-size: 1.1rem; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
-    .projects { display: flex; flex-direction: column; gap: 0.75rem; }
-    .project {
-      display: block; background: #18181b; border: 1px solid #27272a;
-      border-radius: 12px; padding: 1.25rem; text-decoration: none;
+    .meanwhile { color: #71717a; font-size: 0.9rem; margin-bottom: 1rem; }
+    a.project {
+      display: inline-block; background: #18181b; border: 1px solid #27272a;
+      border-radius: 12px; padding: 1rem 1.5rem; text-decoration: none;
       color: #fafafa; transition: border-color 0.2s;
     }
-    .project:hover { border-color: #22c55e; }
-    .project-name { font-weight: 600; font-size: 1.05rem; }
-    .project-desc { color: #a1a1aa; font-size: 0.85rem; margin-top: 0.25rem; }
+    a.project:hover { border-color: #22c55e; }
+    .project-name { font-weight: 600; }
+    .project-desc { color: #a1a1aa; font-size: 0.8rem; margin-top: 0.25rem; }
   </style>
 </head>
 <body>
   <div class="container">
+    <div class="construction">🚧</div>
     <h1>Sawyer Welden</h1>
-    <p class="subtitle">Programmer · Durham, NC</p>
-    <div class="links">
-      <a href="https://github.com/sawyerWeld">GitHub</a>
-    </div>
-    <h2>Projects</h2>
-    <div class="projects">
-      <a class="project" href="/L-System-Lab/">
-        <div class="project-name">🌿 L-System Lab</div>
-        <div class="project-desc">Interactive 3D L-system playground — define rules, watch trees grow.</div>
-      </a>
-    </div>
+    <p class="subtitle">Under construction — check back soon!</p>
+    <div class="divider"></div>
+    <p class="meanwhile">In the meantime:</p>
+    <a class="project" href="/L-System-Lab/">
+      <div class="project-name">🌿 L-System Lab</div>
+      <div class="project-desc">Interactive 3D L-system playground</div>
+    </a>
   </div>
 </body>
 </html>
