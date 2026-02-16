@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lindenmayer Systems and 3D Trees — Sawyer Welden</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      background: #09090b;
+      color: #fafafa;
+      line-height: 1.7;
+    }
+    a { color: #a1a1aa; }
+    a:hover { color: #fafafa; }
+    .back { display: inline-block; margin-bottom: 2rem; text-decoration: none; font-size: 0.9rem; }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.5rem; margin-top: 2.5rem; color: #e4e4e7; border-bottom: 1px solid #27272a; padding-bottom: 0.5rem; }
+    h3 { font-size: 1.2rem; margin-top: 1.5rem; color: #d4d4d8; }
+    h4 { font-size: 1.1rem; margin-top: 1.2rem; color: #d4d4d8; }
+    p { color: #a1a1aa; margin: 1rem 0; }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #27272a;
+      display: block;
+      margin: 1.5rem auto;
+    }
+    code {
+      background: #27272a;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #18181b;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid #27272a;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    blockquote {
+      border-left: 3px solid #3f3f46;
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      color: #a1a1aa;
+    }
+    ul, ol { color: #a1a1aa; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    th, td {
+      border: 1px solid #27272a;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      color: #a1a1aa;
+    }
+    th { background: #18181b; color: #e4e4e7; }
+    strong { color: #e4e4e7; }
+    em { color: #d4d4d8; }
+    hr { border: none; border-top: 1px solid #27272a; margin: 2rem 0; }
+  </style>
+</head>
+<body>
+  <a href="/" class="back">← Back to home</a>
+  <h1 id="lindenmayer-systems-and-3d-trees">Lindenmayer Systems and 3D Trees</h1>
+<hr />
+<p><strong>This post is a writeup of a presentation I gave for my college's Computer Science seminar. To jump to the git repository <a href="https://github.com/sawyerWeld/LSystemTrees">click here.</a></strong></p>
+<p><img alt="allexpansion" src="images/allexpansion1.gif" /></p>
+<h4 id="what-is-a-lindenmayer-system">What is a Lindenmayer System?</h4>
+<p>Lindenmayer Systems, or L systems are recursive rewriting systems which can be used to produce instruction sets for fractals or natural growth patterns. The easiest way to explain L systems is with an example. Start with an axiom (the starting point) and some rules:</p>
+<p>Axiom: A<br />
+ Rule 1: A is replaced with B.<br />
+ Rule 2: B is replaced with AC.</p>
+<p>How do we use these? Lindenmayer systems generate sucessive generations of strings. When we create a new generation we look at the previous generation and the rules. We read the string left to right, replacing characters as per the rules as we go. If there is no rule relating to the replacement of a character, that character persists. Here's what this looks like applied to the axiom and rules from before:</p>
+<p>Axiom: A<br />
+ Gen 1: B          -A is replaced with B as per rule 1<br />
+ Gen 2: AC       -B is replaced with AC as per rule 1<br />
+ Gen 3: BC        -A is replaced, C persists<br />
+ Gen 4: ACC<br />
+ etc. etc.</p>
+<p>This example doesn't produce anything interesting, but hopefully you can now see how the rewriting process works</p>
+<p>Here is a more interesting example:<br />
+ Axiom: A<br />
+ R1: A -&gt; AB<br />
+ R2: B -&gt; A</p>
+<p><img alt="Capture.PNG" src="images/capture1.png" /></p>
+<p>The reason this is more interesting may not be immediately apparent. First let us look at the line lengths: 1,2,3,5,8,13,... This is the Fibonacci sequence! Now let us look at the number of A's in each line compared to the total length of the line: 1:1, 1:2, 2:3, 3:5, 5:8, 8:13, 13:21, 21:34, ... The Fibonacci sequence is hidden in here because the L system grows from A's. If we invert this we have 34/21, which is ~1.619. The ratio of line length to A's converges to the golden ration, which is ~1.618.</p>
+<p>This L system is also interesting  <strong>visually</strong>.</p>
+<p>Consider the following L system: </p>
+<p>Axiom: A<br />
+ R1: A -&gt; ABA<br />
+ R2: B -&gt; BBB<br />
+ Lets take a look at what happens when we try a  all the A's with ⬛ and B's with ⬜</p>
+<p>0: ⬛<br />
+ 1: ⬛⬜⬛<br />
+ 2: ⬛⬜⬛⬜⬜⬜⬛⬜⬛<br />
+ 3: ⬛⬜⬛⬜⬜⬜⬛⬜⬛⬜⬜⬜⬜⬜⬜⬜⬜⬜⬛⬜⬛⬜⬜⬜⬛⬜⬛</p>
+<p>If we then refactor this we get:</p>
+<p><img alt="cantor.PNG" src="images/cantor1.png" /></p>
+<p>Which you may recognize as the <em>Cantor Set</em>, or <em>Cantor Dust</em>. The cantor set has a series of remarkable properties that you can read about <a href="https://en.wikipedia.org/wiki/Cantor_set">hre</a>. Already L systems are proving to be useful.</p>
+<h4 id="creating-visuals-with-turtle-graphics">Creating Visuals with Turtle Graphics</h4>
+<p>Turtle Graphics is a graphics system in which a cursor (often visualized as a turtle) moves in space and can leaves a trail as it moves (the distinction between leaving a line and not is often visualized as the turtle dragging a pen on the ground or holding the pen off the page).</p>
+<p><img alt="turtle.PNG" src="images/turtle.png" /></p>
+<p>The only commands we give the turtle are:</p>
+<p><strong>move(distance)</strong> - moves forward [distance] units<br />
+<strong>rotate(axis, degrees)</strong> - rotate [degrees] degrees along the [axis] axis, if no axis is given it will rotate around the Z axis (to benifit 2D drawing)<br />
+<strong>setDraw(boolean)</strong> - If set to true, causes the turtle to leave lines as it moves</p>
+<p>It is very easy to make the turtle follow a command when it encounters a certain character in an L-System. For instance, we used the following L-System:</p>
+<p>Axiom = A<br />
+Rule 1 = A → +B-A-B+<br />
+Rule 2 = B → -A+B+A-<br />
+And the following instruction set:<br />
+A | B = move()<br />
++ = turn(90)<br />
+- = turn(-90)<br />
+Our first three three generations look like this:<br />
+<img alt="sierpinski.PNG" src="images/sierpinski.png" /><br />
+I should now point out that this 3D visualization system is something I created for the purposes of this project. It uses Java, Processing, and OpenGL and can be found <a href="https://github.com/sawyerWeld/LSystemTrees">here.</a> The program makes it very simple to input axioms and rules for an L-system, as well as turtle graphic instruction sets. After the 3D viewer opens up, clicking the up or down arrow increments or decrements the generation of the L-system being displayed. If we do this for the above example we get the Sierpinski arrowhead:<br />
+<img alt="sierpinskiexpansion" src="images/sierpinskiexpansion.gif" /></p>
+<h4 id="creating-trees-with-l-systems">Creating Trees with L-Systems</h4>
+<p>Obviously L-systems and turtle graphics are pretty great at making self reflecting patterns, but how do we use them to make a visual for plants? The real question is how do we model plants as a self-reflective system? Also, how do we create a branching structure with turtle graphics? (in the Sierpinksi arrowhead example, the turtle travels one continuous path) The answers questions are the same: we use a stack of locations. For anybody reading this who isn't a computer scientist, a stack is a data structure where the first thing you put in it is the last thing you get out. You can think of this like a stack of plates, the first plate you put down in a stack is going to be on the bottom, so it's going to be the last plate you pick up when you're ready to use your plates again. It should be noted that putting something onto a stack is called 'pushing' and taking something from the top of the stack is called 'popping.'<br />
+In our case we're not using plates, we're using positions of turtles. In the following example I've labeled three turtles: A, B, and C. First we push them all onto the stack. A will be on the bottom because we pushed it first. C will be on top because it was pushed last. Then we pop the stack once. This removes C because it was on top. Then we pop the stack again. This removes B because it was on top.<br />
+<img alt="stacks" src="images/stacks.png" /><br />
+This system of popping and pushing turtle positions from a stack is how we create branches. Consider the following branching structure:<br />
+<img alt="pythagoras-still" src="images/pythagoras-still1.png" /><br />
+If our turtle starts at the bottom of this fractal, at the point labeled (A), continues forward to the fork in the road labeled (B), and goes on the path to the left towards (C), it has the unfortunate problem of having a hard time getting to (D). To get to (D) it would have to backtrack to (B) and go right instead. It would have to backtrack in a similar manner to cover all smaller and smaller branches as well. This is where stacks come into play. When the turtle gets to (B) and recognizes that it has a fork in the road, it pushes its location and rotation to stack, so our stack looks like [(B)]. It then continues to (C) and recognizes that it has another fork in the road and pushes (C) to the stack. Our stack looks like [(B), (C)] (the top of the stack is to the right). From here the turtle can go left, finish its business on that branch, pop the stack, which returns (C), and teleport to that location. Now the turtle is back at (C), finishes the branch to the right of (C), and can pop the stack again to return (B) and continue towards (D). This is much simpler and time efficient to program than having the turtle backtrack. It can also be represented as an L-system. The above example is the following L-system:<br />
+Axiom: A<br />
+ Rule 1: A → AA<br />
+ Rule 2: B → A[B]B<br />
+ Instruction 1: A | B → Move forward<br />
+ Instruction 2: [ → turn left and push stack<br />
+ Instruction 3: ] → turn right and pop stack<br />
+<img alt="pythagorasexpansion" src="images/pythagorasexpansion1.gif" /><br />
+This is known as the Pythagoras Tree. While it branches and is represented in 3D, the tree itself only occupies a 2D plane of the 3D space. Additionally, we would like to detect end nodes in the tree so that we can put leaves on them. Also, it doesn't really look like a tree, real plants have variation in them.<br />
+<img alt="pythagoras3d" src="images/pythagoras3d.gif" /><br />
+This tree solves a few of the issues we discussed: it takes up a 3D space and it has end node detection. The step to make this 3D is very simple: every time the turtle rotates to branch (which in 3D would be around the Z axis), it also rotates in the Y axis. The gif above has it rotate a fixed 30 degrees, but in more complicated examples this value maybe be randomized. To mark end nodes I used a rectangular prism in place of the standard line segment. This is the area in which leaves will be created on the tree. What this didn't solve is the problem of the tree not having any variation. For this we will use a different L-system.<br />
+<img alt="togethertrees" src="images/togethertrees1.gif" /><br />
+The first pane is the flat L-system, the second is the finished product minus branch thickness, and the final pane is the final product (pardon my camera work). The branch thickness is hard to get right, but involves the size of the stack and a logarithm.<br />
+<img alt="custtree1" src="images/custtree1.gif" /><br />
+Overall this was a fun project to work on in my free time. I'd never used processing or its Java libraries, and I'd never learned about L-systems before I underwent this project. I definitely recommend looking more into advanced L-systems if you're interested!</p>
+</body>
+</html>

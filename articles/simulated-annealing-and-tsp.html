@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulated Annealing and TSP — Sawyer Welden</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      background: #09090b;
+      color: #fafafa;
+      line-height: 1.7;
+    }
+    a { color: #a1a1aa; }
+    a:hover { color: #fafafa; }
+    .back { display: inline-block; margin-bottom: 2rem; text-decoration: none; font-size: 0.9rem; }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.5rem; margin-top: 2.5rem; color: #e4e4e7; border-bottom: 1px solid #27272a; padding-bottom: 0.5rem; }
+    h3 { font-size: 1.2rem; margin-top: 1.5rem; color: #d4d4d8; }
+    h4 { font-size: 1.1rem; margin-top: 1.2rem; color: #d4d4d8; }
+    p { color: #a1a1aa; margin: 1rem 0; }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #27272a;
+      display: block;
+      margin: 1.5rem auto;
+    }
+    code {
+      background: #27272a;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #18181b;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid #27272a;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    blockquote {
+      border-left: 3px solid #3f3f46;
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      color: #a1a1aa;
+    }
+    ul, ol { color: #a1a1aa; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    th, td {
+      border: 1px solid #27272a;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      color: #a1a1aa;
+    }
+    th { background: #18181b; color: #e4e4e7; }
+    strong { color: #e4e4e7; }
+    em { color: #d4d4d8; }
+    hr { border: none; border-top: 1px solid #27272a; margin: 2rem 0; }
+  </style>
+</head>
+<body>
+  <a href="/" class="back">← Back to home</a>
+  <h1 id="simulated-annealing-and-tsp">Simulated Annealing and TSP</h1>
+<hr />
+<p><strong>This project uses simulated annealing to efficiently solve the Travelling Salesman Problem. The original paper was written for my Graph Theory class and can be viewed</strong><a href="https://sawyerwelden.com/wp-content/uploads/2018/03/sawyer-weldengraphtheory.pdf">here.</a><strong>This version is altered to better fit the web.</strong></p>
+<h2 id="using-simulated-annealing-to-solve-the-traveling-salesman-problem">Using Simulated Annealing to Solve the Traveling Salesman Problem</h2>
+<p><img alt="gif.gif" src="images/gif1.gif" /></p>
+<h4 id="introduction">Introduction</h4>
+<p>The Traveling Salesman Problem is one of the most intensively studied problems in computational mathematics. It consists of a salesperson who must visit N cities and return to his starting city using the shortest path possible and without revisiting any cities. In the language of Graph Theory, the Traveling Salesman Problem is an undirected weighted graph and the goal of the problem is to find the Hamiltonian cycle with the lowest total weight along its edges. A solution of runtime complexity $latex \mathcal{O}(2^nn^2) &amp;bg=FFFFFF$ can be achieved with dynamic programming, but an approximation can be found faster using the probabilistic technique known as simulated annealing.</p>
+<h4 id="the-traveling-salesman-problem">The Traveling Salesman Problem</h4>
+<p>The Traveling Salesman Problem is considered by computer scientists to belong to the NP-Hard complexity class, meaning that if there were a way to reduce the problem into smaller components, those components would be at least as hard as the original problem. For this reason, and its practical applications, the Traveling Salesman Problem has been widely studied among mathematicians and computer scientists. It is a classic problem in optimization-focused computer science defined in the 1800s by Irish mathematician W. R. Hamilton and British mathematician Thomas Kirkman[1]. Hamilton had previously invented his ’Icosian Game,’ which is the specific case of the Traveling Salesman Problem in which a Hamiltonian cycle is found on the graph of an icosahedron.<br />
+In the 1930s the problem was given its general form in Vienna and Harvard, where Karl Menger studied the problem under the name ’messenger problem.’ They first considered the most obvious solution: the brute force solution. The brute force solution consists of calculating the lengths of every possible route and accepting the shortest route as the solution. The brute force is an unacceptable solution for any graph with more than a few vertices due to the factorial growth of the number of routes. The best achievable rate of growth for the brute force solution is<br />
+<img alt="eq1" src="images/eq1.png" /><br />
+which can be had by setting the first city as constant and using symmetry. Setting the first city as constant has no effect on the outcome as Hamiltonian cycles have no start or end, and symmetry can be exploited because the total weight of a Hamiltonian cycle is the same clockwise and counter clockwise. The former improvement is responsible for the subtraction of 1 and the later is responsible for the division by 2. They also considered the nearest-neighbor heuristic, which if correct would solve the problem in</p>
+<p><img alt="eq2.PNG" src="images/eq2.png" /></p>
+<p>Note: Θ(n) means the problem is solved in exactly n computations, whereas O(n) gives only an upper bound. The nearest-neighbor heuristic is used as follows:</p>
+<ol>
+<li>Choose any vertex as the starting vertex.</li>
+<li>Consider the distance from the current vertex to all of its neighbors that<br />
+    have not already been visited.</li>
+<li>Choose the neighbor with the shortest distance as the next vertex and<br />
+    repeat.</li>
+<li>If there are still unvisited vertices in the graph, repeat steps 2 and 3.</li>
+</ol>
+<p><img alt="figure1" src="images/figure1.png" /></p>
+<p>Figure 1: Nearest-Neighbor Heuristic</p>
+<p>It is simple to prove that the nearest-neighbor heuristic is not correct. Consider the graph in Figure 1. If we use vertex A as our starting vertex, we find the cycle A,B,C,D,A with total length 60 units. However, the route A,B,D,C,A has total length 52 units. A,B,C,D,A cannot be the shortest Hamiltonian cycle because it is longer than A,B,D,C,A, and the nearest-neighbor heuristic is therefore not correct [2].<br />
+The fastest known solution to the Traveling Salesman Problem comes from dynamic programming and is known as the Held-Karp algorithm. It was proposed in 1962 by Michael Held and Richard M. Karp, and Karp would go on to win the Turing prize. Although this algorithm is beyond the scope of this paper, it is important to know that it runs in $latex \mathcal{O}(2^nn^2) &amp;bg=FFFFFF$ time [3].</p>
+<h4 id="simulated-annealing">Simulated Annealing</h4>
+<p>Although we cannot guarantee a solution to the Traveling Salesman Problem any faster than $latex \mathcal{O}(2^nn^2) &amp;bg=FFFFFF$ time, we often times do not need to find the absolute best solution, we only need a solution that is ’good enough.’ For this we can use the probabilistic technique known as simulated annealing. The inspiration for simulated annealing comes from metallurgy, where cooling metal according to certain cooling schedules increases the size of crystals and reduces defects, making the metal easier to work with. As a probabilistic technique, the simulated annealing algorithm explores the solution space and slowly reduces the probability of accepting a worse solution as it runs. The algorithm, invented by M.N. Rosenbluth and published by N. Metropolis et. al. in 1953 [4], is applied to the Traveling Salesman Problem as follows:<br />
+<img alt="codeblock1" src="images/codeblock1.png" /><br />
+The algorithm stores 2 variables as it goes, state, which is the current Hamiltonian Cycle, and T, which is the temperature. Temperature is named as such due to parallelism to the metallurgical technique. The higher the temperature, the higher the chance of a worse solution being accepted. Temperature starts at 1.0 and is multiplied some constant between 0.0 and 1.0 every iteration, depending on how slowly you want the simulation to ’cool.’ The constant is usually between 0.90 and 0.999. A constant of 0.90 will cool much quicker than a constant of 0.999 but will be more likely to become stuck in a local minimum. Additionally, a larger search space often warrants a constant closer to 1.0 to avoid becoming too cool before much of the search space has been explored.<br />
+The probability of accepting a worse solution is defined according to the function P:<br />
+<img alt="codeblock2" src="images/codeblock2.png" /><br />
+The probability function P is equivalent mathematically to<br />
+<img alt="equationPequals1ore" src="images/equationpequals1ore.png" /></p>
+<h4 id="improvements-to-the-algorithm">Improvements to the Algorithm</h4>
+<p>There are a few practical improvements that we can add to the algorithm. The first of which is specific to Euclidean space, which most real-world applications take place in. Consider again the graph in Figure 1. The route A,B,C,D,A was found to be longer than the route A,B,D,C,A. In the former route, the Edges A,D and B,C overlap, whereas the later route forms a polygon. We can extend this to the general case and say that when solving the Traveling Salesman Problem in Euclidean space, the route from a vertex A to a vertex B should never be farther than the route from A to an intermediate vertex C to B.<br />
+<img alt="eqmissed" src="images/eqmissed.png" /><img alt="figure2" src="images/figure2.png" /><br />
+Improvements can also be made in how neighboring states are found and how route distances are calculated. Previously we have only considered finding a neighboring state by swapping 2 vertices in our current route. In some cases, swapping variable numbers of vertices is actually better. This technique, known as v-opt rather than 2-opt is regarded as more powerful than 2-opt when used correctly[5]. How and when to use v-opt is complicated, and may have some overlap with my ISP in preference generation models, where 2-opt is equivalent to Kendall-Tau distance. This is beyond the scope of this paper.<br />
+The last two improvements are the easiest to implement. While simulated annealing is designed to avoid local minima as it searches for the global minimum, it does sometimes get stuck. If the simulation is stuck in an unacceptable 4 state for a sufficiently long amount of time, it is advisable to revert to the previous best state. This can be done by storing the best tour and the temperature it was found at and updating both of these every time a new best tour is found.<br />
+The simplest improvement does not improve runtime complexity, but makes each computation faster. When computing the distance of a new tour, all but two vertices are in the same order as in the previous tour. Instead of computing all the distances again, only 4 distances need to be computed. To swap vertices C and D in the cycle shown in the graph in Figure 3, the only four distances needed are AC, AD, BC, and BD.<br />
+<img alt="figure3" src="images/figure3.png" /></p>
+<p>Figure 3: Swapping vertices C and D</p>
+<p><img alt="eq4" src="images/eq4.png" /></p>
+<h4 id="conclusion">Conclusion</h4>
+<p>In conclusion, simulated annealing can be used find solutions to Traveling Salesman Problems and many other NP-hard problems. It does not always find the best solution for the Traveling Salesman Problem as fast as the dynamic programming approach, but always returns a route that is at least close to the solution. It can be bettered by using techniques such as the triangle-inequality heuristic, v-opt, best-state restarts, and intelligent edge-weight calculations.</p>
+<h4 id="references">References</h4>
+<p>[1] Traveling salesman problem, Dec 2016.<br />
+ [2] Karolis Juodel (https://cs.stackexchange.com/users/5167/karolis<br />
+ juodel When does the nearest neighbor heuristic fail for the<br />
+ traveling salesperson? Computer Science Stack Exchange.<br />
+ URL:https://cs.stackexchange.com/q/13744 (version: 2013-08-30).<br />
+ [3] Michael Held and Richard M. Karp. A dynamic programming approach<br />
+ to sequencing problems. Journal of the Society for Industrial and Applied<br />
+ Mathematics, 10(1):196210, 1962.<br />
+ [4] Christian P. Robert. The metropolis-hastings algorithm, Jan 2016.<br />
+ [5] David S. Johnson. Local optimization and the traveling salesman problem.<br />
+ In Proceedings of the 17th International Colloquium on Automata,<br />
+ Languages and Programming, ICALP ’90, pages 446–461, London, UK, UK,<br />
+ 1990. Springer-Verlag.</p>
+</body>
+</html>
