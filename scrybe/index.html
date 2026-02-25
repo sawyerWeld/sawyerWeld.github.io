@@ -33,7 +33,6 @@
       flex-direction: column;
       overflow: hidden;
       user-select: none;
-      -webkit-text-size-adjust: 100%;
     }
 
     /* Top bar */
@@ -41,23 +40,23 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
+      padding: 12px 16px;
       border-bottom: 1px solid var(--border);
       flex-shrink: 0;
     }
 
     .session-stats {
       display: flex;
-      gap: 20px;
-      font-size: 20px;
+      gap: 16px;
+      font-size: 13px;
       color: var(--dim);
     }
 
     .session-stats .val { color: var(--gold); font-weight: 700; }
 
     .hamburger {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -122,19 +121,19 @@
     }
 
     .card-name {
-      font-size: 22px;
+      font-size: 14px;
       font-weight: 700;
     }
 
     .card-meta {
-      font-size: 16px;
+      font-size: 11px;
       color: var(--dim);
-      margin-top: 3px;
+      margin-top: 1px;
     }
 
     .card-price-below {
       color: var(--gold);
-      font-size: 22px;
+      font-size: 14px;
       font-weight: 700;
     }
 
@@ -179,8 +178,8 @@
       color: var(--dim);
     }
 
-    .empty-state .icon { font-size: 72px; margin-bottom: 20px; }
-    .empty-state p { font-size: 22px; line-height: 1.5; }
+    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; line-height: 1.5; }
 
     /* Action buttons */
     .action-row {
@@ -194,12 +193,12 @@
     .action-row.visible { display: flex; }
 
     .action-btn {
-      width: 56px;
-      height: 56px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: var(--surface);
       border: 2px solid;
-      font-size: 24px;
+      font-size: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -278,9 +277,9 @@
     }
 
     .mod-btn {
-      padding: 10px 16px;
-      border-radius: 20px;
-      font-size: 16px;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 11px;
       white-space: nowrap;
       flex-shrink: 0;
       font-weight: 600;
@@ -303,8 +302,8 @@
     }
 
     .record-btn {
-      width: 72px;
-      height: 72px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       background: var(--reject);
       border: 4px solid #333;
@@ -339,10 +338,10 @@
 
     .transcript {
       text-align: center;
-      font-size: 18px;
+      font-size: 12px;
       color: var(--dim);
-      min-height: 24px;
-      margin-top: 12px;
+      min-height: 18px;
+      margin-top: 8px;
       font-style: italic;
     }
 
@@ -439,7 +438,7 @@
     .accepted-strip:empty::before {
       content: 'Accepted cards appear here';
       color: #333;
-      font-size: 16px;
+      font-size: 12px;
     }
 
     .mini-card {
@@ -1160,15 +1159,12 @@
       }
     });
 
-    // Client-side exports — no server round-trip needed
     function exportLocal(format) {
       if (!localSessionCards.length) { alert('No cards to export'); return; }
       if (!confirm(`Export ${localSessionCards.length} cards as ${format.toUpperCase()}?`)) return;
       document.getElementById('menu-overlay').classList.remove('open');
-
-      let content, filename, type;
       const cards = localSessionCards;
-
+      let content, filename, type;
       if (format === 'archidekt') {
         content = cards.map(c => {
           const name = c.name.includes('//') ? c.name.split('//')[0].trim() : c.name;
@@ -1185,21 +1181,15 @@
         }).join('\n');
         filename = 'scrybe-collection.csv'; type = 'text/csv';
       } else if (format === 'mtgo') {
-        content = cards.map(c => {
-          const name = c.name.includes('//') ? c.name.split('//')[0].trim() : c.name;
-          return `1 ${name}`;
-        }).join('\n');
+        content = cards.map(c => `1 ${c.name.includes('//') ? c.name.split('//')[0].trim() : c.name}`).join('\n');
         filename = 'scrybe-mtgo.txt'; type = 'text/plain';
       } else {
         content = JSON.stringify(cards, null, 2);
         filename = 'scrybe-collection.json'; type = 'application/json';
       }
-
       const blob = new Blob([content], { type });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = filename;
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename;
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      URL.revokeObjectURL(url);
     }
 
     async function sendToCollection() {
