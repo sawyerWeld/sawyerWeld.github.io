@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Scrybe — Voice-Powered MTG Card Scanner</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #151515;
+      --border: #252525;
+      --text: #e0e0e0;
+      --dim: #666;
+      --gold: #f0c040;
+      --foil: #c0a0f0;
+      --reject: #d04040;
+      --accept: #40a060;
+      --mythic: #e06030;
+      --rare: #f0c040;
+      --uncommon: #8cc4d4;
+      --common: #aaa;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .session-stats {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--dim);
+    }
+
+    .session-stats .val { color: var(--gold); font-weight: 700; }
+
+    .hamburger {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      border-radius: 8px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--dim);
+      border-radius: 1px;
+      transition: 0.2s;
+    }
+
+    /* Card display area */
+    .card-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 16px;
+      position: relative;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .card-container {
+      position: relative;
+      width: 100%;
+      max-width: 240px;
+      transition: transform 0.3s ease-out, opacity 0.3s;
+    }
+
+    .card-container.dragging {
+      transition: none;
+    }
+
+    .card-img-wrapper {
+      position: relative;
+      display: block;
+    }
+
+    .card-img {
+      width: 100%;
+      max-height: 45vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      display: block;
+    }
+
+    .card-info-below {
+      text-align: center;
+      padding: 6px 0 2px;
+    }
+
+    .card-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 1px;
+    }
+
+    .card-price-below {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .card-container.foil .card-img {
+      filter: saturate(1.2) brightness(1.05);
+      box-shadow: 0 0 20px rgba(240,192,64,0.4), 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    .card-mod-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: linear-gradient(135deg, rgba(240,192,64,0.95), rgba(240,160,40,0.95));
+      color: #000;
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 5;
+      display: none;
+      letter-spacing: 0.5px;
+    }
+
+    .card-score {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.8);
+      color: var(--dim);
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 10px;
+      backdrop-filter: blur(8px);
+      z-index: 5;
+    }
+
+    .card-score.low { color: var(--reject); }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      color: var(--dim);
+    }
+
+    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; line-height: 1.5; }
+
+    /* Action buttons */
+    .action-row {
+      display: none;
+      justify-content: center;
+      gap: 40px;
+      padding: 4px 0;
+      flex-shrink: 0;
+    }
+
+    .action-row.visible { display: flex; }
+
+    .action-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .action-btn:active { transform: scale(0.9); }
+    .action-btn.reject { border-color: var(--reject); color: var(--reject); }
+    .action-btn.reject:active { background: var(--reject); color: white; }
+    .action-btn.accept { border-color: var(--accept); color: var(--accept); }
+    .action-btn.accept:active { background: var(--accept); color: white; }
+
+    /* Swipe feedback */
+    .card-container .swipe-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 900;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.1s;
+    }
+
+    .card-container .swipe-overlay.reject-hint {
+      background: rgba(208,64,64,0.2);
+      border: 3px solid var(--reject);
+      color: var(--reject);
+    }
+
+    .card-container .swipe-overlay.accept-hint {
+      background: rgba(64,160,96,0.2);
+      border: 3px solid var(--accept);
+      color: var(--accept);
+    }
+
+    /* Bottom controls */
+    .bottom-controls {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .modifier-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      justify-content: center;
+    }
+
+    #variant-pills {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      min-height: 36px;
+      align-items: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+
+    #variant-pills .skeleton {
+      width: 70px;
+      height: 32px;
+      border-radius: 16px;
+      background: var(--border);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    .mod-btn {
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 11px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--dim);
+      transition: all 0.15s;
+    }
+
+    .mod-btn:active { transform: scale(0.95); }
+    .mod-btn.active { border-color: var(--foil); color: var(--foil); background: rgba(192, 160, 240, 0.1); }
+    .mod-btn[data-mod="foil"].active { border-color: var(--gold); color: var(--gold); background: rgba(240, 192, 64, 0.1); }
+
+    .record-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .record-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--reject);
+      border: 4px solid #333;
+      cursor: pointer;
+      position: relative;
+      transition: 0.2s;
+    }
+
+    .record-btn::after {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+
+    .record-btn.recording {
+      border-color: var(--reject);
+      animation: pulse 1.5s infinite;
+    }
+
+    .record-btn.recording::after {
+      border-radius: 4px;
+      inset: 16px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(208, 64, 64, 0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(208, 64, 64, 0); }
+    }
+
+    .transcript {
+      text-align: center;
+      font-size: 12px;
+      color: var(--dim);
+      min-height: 18px;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* Queue indicator */
+    .queue-count {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      color: var(--dim);
+    }
+
+    /* Hamburger menu overlay */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      display: none;
+      backdrop-filter: blur(4px);
+    }
+
+    .menu-overlay.open { display: block; }
+
+    .menu-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 260px;
+      height: 100%;
+      background: var(--surface);
+      padding: 20px;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-panel h3 {
+      font-size: 14px;
+      color: var(--dim);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .menu-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .toggle-switch {
+      width: 44px;
+      height: 24px;
+      border-radius: 12px;
+      background: #333;
+      position: relative;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .toggle-switch.on { background: var(--foil); }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      top: 2px;
+      left: 2px;
+      transition: 0.2s;
+    }
+
+    .toggle-switch.on::after { left: 22px; }
+
+    /* Accepted cards strip */
+    .accepted-strip {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      padding: 8px 16px;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+      min-height: 52px;
+      align-items: center;
+    }
+
+    .accepted-strip:empty::before {
+      content: 'Accepted cards appear here';
+      color: #333;
+      font-size: 12px;
+    }
+
+    .mini-card {
+      width: 36px;
+      height: 50px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid var(--border);
+      opacity: 0;
+      animation: popIn 0.3s forwards;
+      cursor: pointer;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Accepted cards panel */
+    .accepted-panel {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 900;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .accepted-panel.open { display: flex; }
+
+    .accepted-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .accepted-panel-header h2 { font-size: 16px; }
+
+    .accepted-panel-close {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .accepted-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+
+    .accepted-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .accepted-item img {
+      width: 48px;
+      border-radius: 4px;
+    }
+
+    .accepted-item-info { flex: 1; }
+    .accepted-item-name { font-size: 14px; font-weight: 600; }
+    .accepted-item-meta { font-size: 11px; color: var(--dim); }
+    .accepted-item-mods { font-size: 11px; color: var(--foil); }
+    .accepted-item-price { color: var(--gold); font-size: 13px; font-weight: 600; }
+
+    .accepted-item-remove {
+      background: none;
+      border: 1px solid var(--reject);
+      color: var(--reject);
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .accepted-item-remove:active { background: var(--reject); color: white; }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #333;
+    }
+
+    .status-dot.connected { background: var(--accept); }
+    .status-dot.recording { background: var(--reject); animation: pulse 1.5s infinite; }
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="session-stats">
+      <span><span class="val" id="stat-cards">0</span> cards</span>
+      <span>$<span class="val" id="stat-value">0.00</span></span>
+      <span class="queue-count" id="queue-count" style="display:none">0 pending</span>
+    </div>
+    <button class="hamburger" id="menu-btn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Accepted cards strip -->
+  <div class="accepted-strip" id="accepted-strip"></div>
+
+  <!-- Card display -->
+  <div class="card-area" id="card-area">
+    <div class="empty-state" id="empty-state">
+      <div class="icon">🎤</div>
+      <p>Tap record and start<br>reading card names</p>
+    </div>
+
+    <div class="card-container" id="card-container" style="display:none">
+      <div class="card-img-wrapper">
+        <img class="card-img" id="card-img" src="">
+        <div class="card-mod-badge" id="card-mod-badge"></div>
+        <div class="card-score" id="card-score"></div>
+        <div class="swipe-overlay reject-hint" id="reject-hint">✕</div>
+        <div class="swipe-overlay accept-hint" id="accept-hint">✓</div>
+      </div>
+      <div class="card-info-below">
+        <div class="card-name" id="card-name"></div>
+        <div class="card-meta" id="card-meta"></div>
+        <div class="card-price-below" id="card-price"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="action-row" id="action-row">
+    <button class="action-btn reject" id="reject-btn">✕</button>
+    <button class="action-btn accept" id="accept-btn">✓</button>
+  </div>
+
+  <!-- Bottom controls -->
+  <div class="bottom-controls">
+    <div class="modifier-row">
+      <div id="variant-pills"></div>
+    </div>
+    <div class="record-row">
+      <div class="status-dot" id="status-dot"></div>
+      <button class="record-btn" id="record-btn"></button>
+      <div class="status-dot" id="status-dot2"></div>
+    </div>
+    <div class="transcript" id="transcript"></div>
+    <!-- save button moved to hamburger menu -->
+  </div>
+
+  <!-- Logs panel -->
+  <div class="accepted-panel" id="logs-panel">
+    <div class="accepted-panel-header">
+      <h2>Past Sessions</h2>
+      <button class="accepted-panel-close" onclick="document.getElementById('logs-panel').classList.remove('open')">✕</button>
+    </div>
+    <div class="accepted-list" id="logs-list" style="padding:16px"></div>
+  </div>
+
+  <!-- Accepted cards panel -->
+  <div class="accepted-panel" id="accepted-panel">
+    <div class="accepted-panel-header">
+      <h2>Accepted Cards (<span id="panel-count">0</span>)</h2>
+      <button class="accepted-panel-close" id="panel-close">✕</button>
+    </div>
+    <div class="accepted-list" id="accepted-list"></div>
+  </div>
+
+  <!-- Hamburger menu -->
+  <div class="menu-overlay" id="menu-overlay">
+    <div class="menu-panel">
+      <h3>Export</h3>
+      <div class="menu-toggle" style="cursor:pointer" onclick="exportLocal('archidekt')"><span>Archidekt</span></div>
+      <div class="menu-toggle" style="cursor:pointer" onclick="exportLocal('csv')"><span>CSV</span></div>
+      <div class="menu-toggle" style="cursor:pointer" onclick="exportLocal('mtgo')"><span>MTGO / Arena</span></div>
+      <div class="menu-toggle" style="cursor:pointer" onclick="exportLocal('json')"><span>JSON</span></div>
+      <div style="height:16px"></div>
+      <div class="menu-toggle" style="cursor:pointer" onclick="resetSession()"><span>Reset Session</span></div>
+      <div style="flex:1"></div>
+      <div style="text-align:center;padding:24px 0 8px;font-size:12px;color:var(--dim)">Made by <a href="https://sawyerwelden.com" target="_blank" style="color:var(--text);text-decoration:underline">Sawyer Welden</a></div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let ws = null;
+    let mediaRecorder = null;
+    let isRecording = false;
+    let cardQueue = [];
+    let currentCard = null;
+    let modifiers = { foil: false, full_art: false, extended_art: false, borderless: false, showcase: false, etched: false, retro_frame: false, textless: false };
+    let sessionAccepted = 0;
+    let sessionValue = 0;
+    let localSessionCards = [];
+
+    // Elements
+    const recordBtn = document.getElementById('record-btn');
+    const rejectBtn = document.getElementById('reject-btn');
+    const acceptBtn = document.getElementById('accept-btn');
+    const cardContainer = document.getElementById('card-container');
+    const cardImg = document.getElementById('card-img');
+    const cardName = document.getElementById('card-name');
+    const cardMeta = document.getElementById('card-meta');
+    const cardPrice = document.getElementById('card-price');
+    const cardScore = document.getElementById('card-score');
+    const emptyState = document.getElementById('empty-state');
+    const transcript = document.getElementById('transcript');
+    const queueCount = document.getElementById('queue-count');
+    const acceptedStrip = document.getElementById('accepted-strip');
+    const statusDot = document.getElementById('status-dot');
+    const statusDot2 = document.getElementById('status-dot2');
+
+    // API config
+    const API_BASE = 'https://scrybe-api.fly.dev';
+    const WS_URL = 'wss://scrybe-api.fly.dev';
+
+    // WebSocket
+    function connectWs() {
+      ws = new WebSocket(WS_URL);
+
+      ws.onopen = () => {
+        statusDot.classList.add('connected');
+        statusDot2.classList.add('connected');
+      };
+
+      ws.onclose = () => {
+        statusDot.classList.remove('connected');
+        statusDot2.classList.remove('connected');
+        setTimeout(connectWs, 2000);
+      };
+
+      ws.onmessage = (e) => {
+        const msg = JSON.parse(e.data);
+
+        if (msg.type === 'matches') {
+          transcript.textContent = msg.transcript || '';
+          for (const match of msg.matches) {
+            if (!match.miss) {
+              cardQueue.push(match);
+            }
+          }
+          updateQueue();
+          if (!currentCard) showNextCard();
+        }
+
+        if (msg.type === 'accepted') {
+          sessionAccepted = msg.sessionCards || sessionAccepted + 1;
+          sessionValue = msg.sessionValue || sessionValue;
+          updateStats();
+        }
+
+        if (msg.type === 'session_update') {
+          sessionAccepted = msg.sessionCount;
+          sessionValue = msg.sessionValue;
+          localSessionCards = msg.sessionCards || [];
+          updateStats();
+          renderAcceptedPanel(msg.sessionCards);
+
+          // If we're editing a card, set it up
+          if (editingIndex !== null) {
+            const card = msg.sessionCards.find(c => c.index === editingIndex);
+            if (card) {
+              // Set modifiers from the card's current state
+              Object.keys(modifiers).forEach(k => modifiers[k] = false);
+              if (card.finish === 'foil') modifiers.foil = true;
+              if (card.finish === 'etched') modifiers.etched = true;
+              if (card.variant) card.variant.forEach(v => { if (modifiers.hasOwnProperty(v)) modifiers[v] = true; });
+
+              // Push card to front of queue as if it just matched
+              cardQueue.unshift({
+                name: card.name,
+                score: 1.0,
+                rarity: card.rarity,
+                setName: card.setName,
+                typeLine: '',
+                priceUsd: card.priceUsd,
+                priceUsdFoil: card.priceUsdFoil,
+                imageNormal: card.imageNormal,
+                imageSmall: card.imageSmall,
+                scryfallId: card.scryfallId,
+                _editIndex: editingIndex,
+              });
+              showNextCard();
+            }
+            editingIndex = null;
+          }
+          // Rebuild mini strip
+          acceptedStrip.innerHTML = '';
+          for (const card of msg.sessionCards) {
+            if (card.imageSmall) {
+              const mini = document.createElement('div');
+              mini.className = 'mini-card';
+              mini.style.backgroundImage = `url(${card.imageSmall})`;
+              acceptedStrip.appendChild(mini);
+            }
+          }
+        }
+
+        if (msg.type === 'log_saved') {
+          transcript.textContent = msg.filename ? `✅ saved ${msg.filename}` : 'nothing to save';
+        }
+
+        if (msg.type === 'no_speech') {
+          transcript.textContent = '(no speech detected)';
+        }
+      };
+    }
+
+    function updateStats() {
+      document.getElementById('stat-cards').textContent = sessionAccepted;
+      document.getElementById('stat-value').textContent = sessionValue.toFixed(2);
+    }
+
+    function updateQueue() {
+      const count = cardQueue.length;
+      if (count > 0) {
+        queueCount.style.display = '';
+        queueCount.textContent = `${count} pending`;
+      } else {
+        queueCount.style.display = 'none';
+      }
+    }
+
+    function showNextCard() {
+      originalCardImage = null;
+      if (!cardQueue.length) {
+        currentCard = null;
+        cardContainer.style.display = 'none';
+        rejectBtn.classList.remove('visible');
+        acceptBtn.classList.remove('visible');
+        if (sessionAccepted === 0 && !isRecording) emptyState.style.display = '';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      currentCard = cardQueue.shift();
+      updateQueue();
+
+      // Animate in
+      cardContainer.classList.remove('slide-in', 'slide-out-left', 'slide-out-right');
+      cardContainer.style.display = '';
+      cardContainer.style.opacity = '0';
+      cardContainer.style.transform = 'translateX(60px)';
+
+      cardImg.src = currentCard.imageNormal || currentCard.imageSmall || '';
+      cardName.textContent = currentCard.name.includes('//') ? currentCard.name.split('//')[0].trim() : currentCard.name;
+      cardName.className = `card-name rarity-${currentCard.rarity}`;
+      cardMeta.textContent = `${currentCard.setName || ''} · ${currentCard.typeLine?.split('—')[0]?.trim() || ''}`;
+      cardPrice.textContent = currentCard.priceUsd ? `$${parseFloat(currentCard.priceUsd).toFixed(2)}` : '';
+      
+      if (currentCard.score < 0.8) {
+        cardScore.textContent = `${(currentCard.score * 100).toFixed(0)}% match`;
+        cardScore.className = currentCard.score < 0.7 ? 'card-score low' : 'card-score';
+        cardScore.style.display = '';
+      } else {
+        cardScore.style.display = 'none';
+      }
+
+      // Apply auto-detected modifiers from voice
+      if (currentCard.detectedFinish === 'foil' && !modifiers.foil) {
+        // Don't override manual toggles, but indicate detection
+      }
+
+      requestAnimationFrame(() => {
+        cardContainer.style.transition = 'transform 0.3s, opacity 0.3s';
+        cardContainer.style.opacity = '1';
+        cardContainer.style.transform = 'translateX(0)';
+      });
+
+      updateCardModifiers();
+      loadVariantPills(currentCard.name);
+      document.getElementById('action-row').classList.add('visible');
+    }
+
+    let originalCardImage = null;
+    const variantCache = {}; // client-side cache: "cardName|variant" → result
+
+    function updateCardModifiers() {
+      if (!cardContainer) return;
+      cardContainer.classList.toggle('foil', modifiers.foil);
+
+      // Badge
+      const badge = document.getElementById('card-mod-badge');
+      const mods = [];
+      if (modifiers.foil) mods.push('✨ FOIL');
+      if (modifiers.full_art) mods.push('🖼 FULL ART');
+      if (modifiers.showcase) mods.push('SHOWCASE');
+      if (modifiers.borderless) mods.push('BORDERLESS');
+      if (modifiers.etched) mods.push('⬡ ETCHED');
+      if (mods.length) {
+        badge.textContent = mods.join(' · ');
+        badge.style.display = '';
+      } else {
+        badge.style.display = 'none';
+      }
+
+      // Update price display for foil
+      if (currentCard) {
+        const price = modifiers.foil ? (currentCard.priceUsdFoil || currentCard.priceUsd) : currentCard.priceUsd;
+        cardPrice.textContent = price ? `$${parseFloat(price).toFixed(2)}` : '';
+      }
+
+    }
+
+    async function fetchVariantArt(cardName, variant) {
+      const name = cardName.includes('//') ? cardName.split('//')[0].trim() : cardName;
+      const cacheKey = `${name}|${variant}`;
+
+      if (variantCache[cacheKey]) {
+        applyVariantArt(variantCache[cacheKey]);
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/api/variant-art?name=${encodeURIComponent(name)}&variant=${variant}`);
+        const data = await res.json();
+        variantCache[cacheKey] = data;
+        applyVariantArt(data);
+      } catch (e) {
+        console.error('Variant art fetch failed:', e);
+      }
+    }
+
+    function applyVariantArt(data) {
+      if (data.found && data.image) {
+        if (!originalCardImage) originalCardImage = cardImg.src;
+        cardImg.src = data.image;
+        const price = modifiers.foil ? (data.priceFoil || data.price) : data.price;
+        cardPrice.textContent = price ? `$${parseFloat(price).toFixed(2)}` : '$???';
+      }
+    }
+
+    function acceptCard() {
+      if (!currentCard) return;
+
+      const finish = modifiers.etched ? 'etched' : modifiers.foil ? 'foil' : 'nonfoil';
+      const variant = Object.entries(modifiers)
+        .filter(([k, v]) => v && !['foil', 'etched'].includes(k))
+        .map(([k]) => k);
+
+      // If editing, update in place
+      if (currentCard._editIndex !== undefined) {
+        ws.send(JSON.stringify({
+          type: 'update_accepted',
+          index: currentCard._editIndex,
+          finish,
+          variant,
+        }));
+      } else {
+        ws.send(JSON.stringify({
+          type: 'accept',
+          cardName: currentCard.name,
+          finish,
+          variant,
+        }));
+      }
+
+      // Track locally for exports
+      localSessionCards.push({
+        name: currentCard.name, finish, variant,
+        setName: currentCard.setName, setCode: currentCard.setCode,
+        priceUsd: currentCard.priceUsd, priceUsdFoil: currentCard.priceUsdFoil,
+        rarity: currentCard.rarity, imageSmall: currentCard.imageSmall,
+      });
+
+      // Add to accepted strip
+      if (currentCard.imageSmall) {
+        const mini = document.createElement('div');
+        mini.className = 'mini-card';
+        mini.style.backgroundImage = `url(${currentCard.imageSmall})`;
+        acceptedStrip.appendChild(mini);
+        acceptedStrip.scrollLeft = acceptedStrip.scrollWidth;
+      }
+
+      // Clear modifiers
+      Object.keys(modifiers).forEach(k => modifiers[k] = false);
+      document.querySelectorAll('.mod-btn.active').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.toggle-switch.on').forEach(t => t.classList.remove('on'));
+      document.getElementById('variant-pills').innerHTML = '';
+
+      // Slide out right (accepted)
+      cardContainer.style.transform = 'translateX(120%) rotate(15deg)';
+      cardContainer.style.opacity = '0';
+      document.getElementById('action-row').classList.remove('visible');
+      setTimeout(() => showNextCard(), 300);
+    }
+
+    function rejectCard() {
+      if (!currentCard) return;
+
+      ws.send(JSON.stringify({ type: 'reject', cardName: currentCard.name }));
+
+      // Clear modifiers + pills
+      Object.keys(modifiers).forEach(k => modifiers[k] = false);
+      document.getElementById('variant-pills').innerHTML = '';
+
+      // Slide out left (rejected)
+      cardContainer.style.transform = 'translateX(-120%) rotate(-15deg)';
+      cardContainer.style.opacity = '0';
+      document.getElementById('action-row').classList.remove('visible');
+      setTimeout(() => showNextCard(), 300);
+    }
+
+    // Recording — streams raw PCM to server, Deepgram handles VAD
+    let audioContext = null;
+    let mediaStream = null;
+    let pcmWorker = null;
+
+    async function toggleRecording() {
+      if (isRecording) {
+        stopRecording();
+      } else {
+        await startRecording();
+      }
+    }
+
+    async function startRecording() {
+      try {
+        mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        isRecording = true;
+        recordBtn.classList.add('recording');
+        statusDot.classList.add('recording');
+        statusDot2.classList.add('recording');
+        emptyState.style.display = 'none';
+
+        // Tell server to open Deepgram connection
+        ws.send(JSON.stringify({ type: 'start_stream' }));
+
+        // Set up AudioContext to capture raw PCM at 16kHz
+        audioContext = new AudioContext({ sampleRate: 16000 });
+        const source = audioContext.createMediaStreamSource(mediaStream);
+
+        // Use ScriptProcessorNode to get raw samples (deprecated but universally supported)
+        const processor = audioContext.createScriptProcessor(4096, 1, 1);
+        processor.onaudioprocess = (e) => {
+          if (!isRecording || ws?.readyState !== WebSocket.OPEN) return;
+          const float32 = e.inputBuffer.getChannelData(0);
+          // Convert float32 → int16 PCM
+          const int16 = new Int16Array(float32.length);
+          for (let i = 0; i < float32.length; i++) {
+            const s = Math.max(-1, Math.min(1, float32[i]));
+            int16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+          }
+          ws.send(int16.buffer);
+        };
+
+        source.connect(processor);
+        processor.connect(audioContext.destination);
+        pcmWorker = processor;
+
+      } catch (err) {
+        console.error('Mic error:', err);
+        transcript.textContent = 'Microphone access denied';
+      }
+    }
+
+    function stopRecording() {
+      isRecording = false;
+      recordBtn.classList.remove('recording');
+      statusDot.classList.remove('recording');
+      statusDot2.classList.remove('recording');
+
+      // Tell server to close Deepgram connection
+      if (ws?.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'stop_stream' }));
+      }
+
+      if (pcmWorker) { pcmWorker.disconnect(); pcmWorker = null; }
+      if (audioContext) { audioContext.close(); audioContext = null; }
+      if (mediaStream) { mediaStream.getTracks().forEach(t => t.stop()); mediaStream = null; }
+    }
+
+    // Event listeners
+    recordBtn.addEventListener('click', toggleRecording);
+    rejectBtn.addEventListener('click', rejectCard);
+    acceptBtn.addEventListener('click', acceptCard);
+
+    // Swipe on card — drag with visual feedback
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isDragging = false;
+    const SWIPE_THRESHOLD = 80;
+
+    cardContainer.addEventListener('touchstart', (e) => {
+      if (!currentCard) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isDragging = true;
+      cardContainer.classList.add('dragging');
+    });
+
+    cardContainer.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+      // Only horizontal swipe
+      if (Math.abs(dx) > Math.abs(dy)) e.preventDefault();
+      const rotation = dx * 0.08;
+      cardContainer.style.transform = `translateX(${dx}px) rotate(${rotation}deg)`;
+
+      const rejectHint = document.getElementById('reject-hint');
+      const acceptHint = document.getElementById('accept-hint');
+      if (dx < -40) {
+        rejectHint.style.opacity = Math.min(1, (Math.abs(dx) - 40) / 60);
+        acceptHint.style.opacity = '0';
+      } else if (dx > 40) {
+        acceptHint.style.opacity = Math.min(1, (dx - 40) / 60);
+        rejectHint.style.opacity = '0';
+      } else {
+        rejectHint.style.opacity = '0';
+        acceptHint.style.opacity = '0';
+      }
+    }, { passive: false });
+
+    cardContainer.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      cardContainer.classList.remove('dragging');
+      document.getElementById('reject-hint').style.opacity = '0';
+      document.getElementById('accept-hint').style.opacity = '0';
+
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (dx < -SWIPE_THRESHOLD) {
+        rejectCard();
+      } else if (dx > SWIPE_THRESHOLD) {
+        acceptCard();
+      } else {
+        // Snap back
+        cardContainer.style.transform = 'translateX(0) rotate(0deg)';
+      }
+    });
+
+    // Modifier buttons
+    const variantLabels = {
+      foil: '✨ Foil',
+      full_art: '🖼 Full Art',
+      showcase: '🎨 Showcase',
+      borderless: '◻️ Borderless',
+      extended_art: '📐 Extended',
+      etched: '⬡ Etched',
+    };
+
+    const variantsCache = {};
+
+    async function loadVariantPills(cardName) {
+      const pillsContainer = document.getElementById('variant-pills');
+      // Show skeletons while loading
+      pillsContainer.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div>';
+
+      const name = cardName.includes('//') ? cardName.split('//')[0].trim() : cardName;
+      let variants = variantsCache[name];
+      if (!variants) {
+        try {
+          const res = await fetch(`${API_BASE}/api/card-variants?name=${encodeURIComponent(name)}`);
+          variants = await res.json();
+          variantsCache[name] = variants;
+        } catch (e) {
+          variants = { foil: true }; // fallback: at least show foil
+        }
+      }
+
+      pillsContainer.innerHTML = '';
+
+      function addPill(mod) {
+        const btn = document.createElement('button');
+        btn.className = 'mod-btn' + (modifiers[mod] ? ' active' : '');
+        btn.dataset.mod = mod;
+        btn.textContent = variantLabels[mod] || mod;
+        btn.addEventListener('click', () => {
+          modifiers[mod] = !modifiers[mod];
+          btn.classList.toggle('active');
+          updateCardModifiers();
+
+          if (['full_art', 'showcase', 'borderless', 'extended_art'].includes(mod)) {
+            if (modifiers[mod]) {
+              fetchVariantArt(currentCard.name, mod);
+            } else if (originalCardImage) {
+              cardImg.src = originalCardImage;
+              originalCardImage = null;
+            }
+          }
+        });
+        pillsContainer.appendChild(btn);
+      }
+
+      // Foil is always available
+      addPill('foil');
+
+      for (const [mod, available] of Object.entries(variants)) {
+        if (!available || mod === 'foil') continue;
+        addPill(mod);
+      }
+    }
+
+    // Menu
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('menu-overlay').classList.add('open');
+    });
+
+    document.getElementById('menu-overlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('menu-overlay')) {
+        document.getElementById('menu-overlay').classList.remove('open');
+      }
+    });
+
+    // Client-side exports — no server round-trip needed
+    function exportLocal(format) {
+      if (!localSessionCards.length) { alert('No cards to export'); return; }
+      if (!confirm(`Export ${localSessionCards.length} cards as ${format.toUpperCase()}?`)) return;
+      document.getElementById('menu-overlay').classList.remove('open');
+
+      let content, filename, type;
+      const cards = localSessionCards;
+
+      if (format === 'archidekt') {
+        content = cards.map(c => {
+          const name = c.name.includes('//') ? c.name.split('//')[0].trim() : c.name;
+          const set = c.setCode ? ` (${c.setCode.toUpperCase()})` : '';
+          const foil = c.finish === 'foil' ? ' *F*' : '';
+          return `1 ${name}${set}${foil}`;
+        }).join('\n');
+        filename = 'scrybe-archidekt.txt'; type = 'text/plain';
+      } else if (format === 'csv') {
+        content = 'Count,Name,Set,Finish,Price\n' + cards.map(c => {
+          const name = c.name.includes('//') ? c.name.split('//')[0].trim() : c.name;
+          const price = c.finish === 'foil' ? (c.priceUsdFoil || c.priceUsd || '') : (c.priceUsd || '');
+          return `1,"${name}","${c.setName || ''}","${c.finish}","${price}"`;
+        }).join('\n');
+        filename = 'scrybe-collection.csv'; type = 'text/csv';
+      } else if (format === 'mtgo') {
+        content = cards.map(c => {
+          const name = c.name.includes('//') ? c.name.split('//')[0].trim() : c.name;
+          return `1 ${name}`;
+        }).join('\n');
+        filename = 'scrybe-mtgo.txt'; type = 'text/plain';
+      } else {
+        content = JSON.stringify(cards, null, 2);
+        filename = 'scrybe-collection.json'; type = 'application/json';
+      }
+
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    async function sendToCollection() {
+      document.getElementById('menu-overlay').classList.remove('open');
+      try {
+        const res = await fetch(API_BASE + '/api/save-to-collection', { method: 'POST' });
+        const result = await res.json();
+        if (result.ok) {
+          alert(`Added ${result.added} cards to collection!`);
+        } else {
+          alert('Import failed: ' + (result.error || 'unknown'));
+        }
+      } catch (e) {
+        alert('Could not reach collection manager. Is it running on port 3088?');
+      }
+    }
+
+    function exportAs(format) {
+      if (!confirm(`Export session as ${format.toUpperCase()}?`)) return;
+      document.getElementById('menu-overlay').classList.remove('open');
+      window.open(`${API_BASE}/api/export/${format}`, '_blank');
+    }
+
+    function resetSession() {
+      if (!confirm('Reset current session? Accepted cards will be cleared from this session (collection is kept).')) return;
+      document.getElementById('menu-overlay').classList.remove('open');
+      ws.send(JSON.stringify({ type: 'clear' }));
+      localSessionCards = [];
+      document.getElementById('accepted-strip').innerHTML = '';
+      sessionCount.textContent = '0';
+      sessionValue.textContent = '$0.00';
+    }
+
+    // Accepted strip → open panel
+    acceptedStrip.addEventListener('click', () => {
+      ws.send(JSON.stringify({ type: 'get_session' }));
+      document.getElementById('accepted-panel').classList.add('open');
+    });
+
+    document.getElementById('panel-close').addEventListener('click', () => {
+      document.getElementById('accepted-panel').classList.remove('open');
+    });
+
+    function renderAcceptedPanel(cards) {
+      const list = document.getElementById('accepted-list');
+      document.getElementById('panel-count').textContent = cards.length;
+      list.innerHTML = cards.map(card => {
+        const mods = [];
+        if (card.finish === 'foil') mods.push('✨ Foil');
+        if (card.finish === 'etched') mods.push('⬡ Etched');
+        if (card.variant?.length) mods.push(...card.variant.map(v => '◈ ' + v.replace('_', ' ')));
+        const price = card.finish === 'foil' ? (card.priceUsdFoil || card.priceUsd) : card.priceUsd;
+        
+        return `
+          <div class="accepted-item" onclick="editAccepted(${card.index})" style="cursor:pointer">
+            <img src="${card.imageSmall || ''}" alt="">
+            <div class="accepted-item-info">
+              <div class="accepted-item-name">${card.name.includes('//') ? card.name.split('//')[0].trim() : card.name}</div>
+              <div class="accepted-item-meta">${card.setName || ''} · ${card.rarity || ''}</div>
+              ${mods.length ? `<div class="accepted-item-mods">${mods.join(' · ')}</div>` : ''}
+            </div>
+            <div class="accepted-item-price">${price ? '$' + parseFloat(price).toFixed(2) : ''}</div>
+            <button class="accepted-item-remove" onclick="event.stopPropagation(); removeAccepted(${card.index})">✕</button>
+          </div>`;
+      }).join('');
+    }
+
+    let editingIndex = null; // Track if we're editing an existing card
+
+    function editAccepted(index) {
+      // Close the panel
+      document.getElementById('accepted-panel').classList.remove('open');
+
+      // Request card data from server
+      ws.send(JSON.stringify({ type: 'get_session' }));
+
+      // Store index and wait for session data to set up the card
+      editingIndex = index;
+    }
+
+    function removeAccepted(index) {
+      ws.send(JSON.stringify({ type: 'remove_accepted', index }));
+    }
+
+    function saveLog() {
+      ws.send(JSON.stringify({ type: 'save_log' }));
+    }
+
+    // Logs
+    async function openLogs() {
+      document.getElementById('menu-overlay').classList.remove('open');
+      document.getElementById('logs-panel').classList.add('open');
+      try {
+        const res = await fetch(API_BASE + '/api/logs');
+        const logs = await res.json();
+        const list = document.getElementById('logs-list');
+        if (!logs.length) {
+          list.innerHTML = '<p style="color:var(--dim)">No sessions yet. Complete a scan to see logs here.</p>';
+          return;
+        }
+        list.innerHTML = logs.map(log => {
+          const date = new Date(log.date);
+          const dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+          return `
+            <div style="margin-bottom:16px;padding:12px;background:var(--surface);border-radius:8px;border:1px solid var(--border)">
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+                <span style="font-weight:600">${dateStr}</span>
+                <span style="color:var(--gold);font-weight:600">$${log.totalValue?.toFixed(2) || '0.00'}</span>
+              </div>
+              <div style="font-size:13px;color:var(--dim);margin-bottom:8px">${log.cardsAccepted} cards</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                ${(log.cards || []).map(c => {
+                  const mods = [];
+                  if (c.finish === 'foil') mods.push('✨');
+                  if (c.finish === 'etched') mods.push('⬡');
+                  return `<span style="font-size:11px;background:var(--bg);padding:3px 8px;border-radius:10px;color:var(--text)">${mods.join('')}${c.name?.includes('//')?c.name.split('//')[0].trim():c.name}</span>`;
+                }).join('')}
+              </div>
+            </div>`;
+        }).join('');
+      } catch (e) {
+        document.getElementById('logs-list').innerHTML = '<p style="color:var(--reject)">Failed to load logs</p>';
+      }
+    }
+
+    // Keyboard shortcuts (desktop)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); acceptCard(); }
+      if (e.key === 'Escape' || e.key === 'Backspace') { e.preventDefault(); rejectCard(); }
+      if (e.key === 'r') toggleRecording();
+      if (e.key === 'f') { modifiers.foil = !modifiers.foil; document.querySelector('[data-mod="foil"]').classList.toggle('active'); }
+    });
+
+    // Init
+    connectWs();
+  </script>
+</body>
+</html>
