@@ -553,6 +553,7 @@
       <span>$<span class="val" id="stat-value">0.00</span></span>
       <span class="queue-count" id="queue-count" style="display:none">0 pending</span>
     </div>
+    <button class="help-btn" id="help-btn" style="width:32px;height:32px;border-radius:50%;border:1.5px solid var(--dim);background:none;color:var(--dim);font-size:14px;font-weight:700;cursor:pointer;margin-right:8px">?</button>
     <button class="hamburger" id="menu-btn">
       <span></span><span></span><span></span>
     </button>
@@ -620,6 +621,48 @@
       <button class="accepted-panel-close" id="panel-close">✕</button>
     </div>
     <div class="accepted-list" id="accepted-list"></div>
+  </div>
+
+  <!-- Tutorial / Help overlay -->
+  <div class="menu-overlay" id="tutorial-overlay">
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;max-width:380px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 24px">
+        <div style="text-align:center;margin-bottom:20px">
+          <div style="font-size:36px;margin-bottom:8px">🎤</div>
+          <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">Scrybe</h2>
+          <p style="color:var(--dim);font-size:13px">Voice-powered MTG card scanner</p>
+        </div>
+
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px;font-weight:600;margin-bottom:8px;color:var(--gold)">How it works</h3>
+          <p style="font-size:13px;line-height:1.6;color:var(--dim)">
+            Tap the record button and say a card name. Scrybe transcribes your voice in real-time using AI speech recognition, then fuzzy-matches against every card in Magic: The Gathering.
+          </p>
+          <p style="font-size:13px;line-height:1.6;color:var(--dim);margin-top:8px">
+            Swipe right to accept a card, left to reject. Use the modifier pills to mark foils, showcases, and other variants.
+          </p>
+        </div>
+
+        <div style="margin-bottom:20px">
+          <h3 style="font-size:14px;font-weight:600;margin-bottom:8px;color:var(--gold)">Card recognition</h3>
+          <p style="font-size:13px;line-height:1.6;color:var(--dim)">
+            The voice model is currently seeded with <strong style="color:var(--text)">Lorwyn Eclipsed</strong> and <strong style="color:var(--text)">LE Commander</strong> card names for better accuracy with fantasy names. Set selection for other sets is coming soon.
+          </p>
+          <p style="font-size:13px;line-height:1.6;color:var(--dim);margin-top:8px">
+            All 27,000+ Magic cards are searchable — the seeding just helps with pronunciation accuracy.
+          </p>
+        </div>
+
+        <div style="margin-bottom:24px">
+          <h3 style="font-size:14px;font-weight:600;margin-bottom:8px;color:var(--gold)">Privacy</h3>
+          <p style="font-size:13px;line-height:1.6;color:var(--dim)">
+            Audio is streamed directly for transcription and <strong style="color:var(--text)">never stored</strong> on our servers. We don't save recordings, and transcripts only exist in your browser session. When you close the tab, it's gone.
+          </p>
+        </div>
+
+        <button id="tutorial-dismiss" style="width:100%;padding:14px;border-radius:12px;background:var(--gold);color:#000;font-weight:700;font-size:15px;border:none;cursor:pointer">Got it</button>
+      </div>
+    </div>
   </div>
 
   <!-- Hamburger menu -->
@@ -1321,6 +1364,31 @@
       if (e.key === 'Escape' || e.key === 'Backspace') { e.preventDefault(); rejectCard(); }
       if (e.key === 'r') toggleRecording();
       if (e.key === 'f') { modifiers.foil = !modifiers.foil; document.querySelector('[data-mod="foil"]').classList.toggle('active'); }
+    });
+
+    // Tutorial
+    const tutorialOverlay = document.getElementById('tutorial-overlay');
+    const tutorialDismiss = document.getElementById('tutorial-dismiss');
+    const helpBtn = document.getElementById('help-btn');
+
+    if (!localStorage.getItem('scrybe-tutorial-seen')) {
+      tutorialOverlay.classList.add('open');
+    }
+
+    tutorialDismiss.addEventListener('click', () => {
+      tutorialOverlay.classList.remove('open');
+      localStorage.setItem('scrybe-tutorial-seen', '1');
+    });
+
+    tutorialOverlay.addEventListener('click', (e) => {
+      if (e.target === tutorialOverlay) {
+        tutorialOverlay.classList.remove('open');
+        localStorage.setItem('scrybe-tutorial-seen', '1');
+      }
+    });
+
+    helpBtn.addEventListener('click', () => {
+      tutorialOverlay.classList.add('open');
     });
 
     // Init
