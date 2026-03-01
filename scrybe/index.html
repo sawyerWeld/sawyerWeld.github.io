@@ -1128,7 +1128,13 @@
 
       } catch (err) {
         console.error('Mic error:', err);
-        transcript.textContent = 'Microphone access denied';
+        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+          transcript.textContent = 'Microphone access denied';
+        } else if (!ws || ws.readyState !== WebSocket.OPEN) {
+          transcript.textContent = 'Server not connected — check the status dots';
+        } else {
+          transcript.textContent = `Error: ${err.message}`;
+        }
       }
     }
 
