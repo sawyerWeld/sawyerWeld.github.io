@@ -58,7 +58,7 @@ if (window.location.protocol === 'file:') {
     border-radius: 0;
   }
   #frame-slope { height: 560px; }
-  #frame-explorer { height: 700px; max-height: 750px; overflow: hidden; }
+  #frame-explorer { height: 700px; overflow: hidden; }
 
   #treemap-chart-shell {
     background: transparent;
@@ -181,7 +181,7 @@ if (window.location.protocol === 'file:') {
       <h2>The Funnel</h2>
       <p>How archetype representation shifts from Day 1 through Top 32.</p>
     </div>
-    <iframe id="frame-slope" src="paupergeddon-slope.html?v=20260324k&embed=1" loading="lazy" title="Paupergeddon Funnel"></iframe>
+    <iframe id="frame-slope" src="paupergeddon-slope.html?v=20260324l&embed=1" loading="lazy" scrolling="no" title="Paupergeddon Funnel"></iframe>
   </section>
 
   <hr class="divider">
@@ -193,7 +193,7 @@ if (window.location.protocol === 'file:') {
       </div>
       <div id="explorer-stage-host" class="stage-host" aria-label="Archetype Explorer stage selector"></div>
     </div>
-    <iframe id="frame-explorer" src="paupergeddon-explorer.html?v=20260324m&embed=1" loading="lazy" title="Paupergeddon Explorer"></iframe>
+    <iframe id="frame-explorer" src="paupergeddon-explorer.html?v=20260324n&embed=1" loading="lazy" scrolling="no" title="Paupergeddon Explorer"></iframe>
   </section>
 
   <hr class="divider">
@@ -371,8 +371,7 @@ if (window.location.protocol === 'file:') {
     function applyHeight(frame, name, rawHeight) {
       const h = Number(rawHeight || 0);
       if (!Number.isFinite(h) || h <= 0) return;
-      const maxH = name === 'explorer' ? 750 : 9999;
-      frame.style.height = Math.min(maxH, Math.max(minFor(name), Math.ceil(h))) + 'px';
+      frame.style.height = Math.max(minFor(name), Math.ceil(h)) + 'px';
     }
 
     window.addEventListener('message', (event) => {
