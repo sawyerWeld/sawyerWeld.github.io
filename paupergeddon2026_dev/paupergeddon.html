@@ -413,7 +413,7 @@ if (window.location.protocol === 'file:') {
       ]);
 
       const isMobile = window.innerWidth < 600;
-      const width = Math.min(1060, window.innerWidth - (isMobile ? 40 : 80));
+      const width = chartHost.clientWidth || Math.min(1060, window.innerWidth - (isMobile ? 40 : 80));
 
       const grouped = {};
       cards.forEach((c) => {
