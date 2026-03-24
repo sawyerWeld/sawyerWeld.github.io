@@ -381,7 +381,7 @@ if (window.location.protocol === 'file:') {
       ]);
 
       const width = Math.min(1000, window.innerWidth - 80);
-      const height = window.innerWidth < 600 ? 900 : 600;
+      const height = window.innerWidth < 600 ? 1200 : 600;
 
       const grouped = {};
       cards.forEach((c) => {
@@ -403,12 +403,15 @@ if (window.location.protocol === 'file:') {
 
       const root = d3.hierarchy(hierarchy).sum((d) => Number(d.copies || 0));
 
-      d3.treemap()
+      const isMobile = window.innerWidth < 600;
+      const tm = d3.treemap()
         .size([width, height])
-        .paddingOuter(6)
+        .paddingOuter(isMobile ? 4 : 6)
         .paddingTop(22)
-        .paddingInner(3)
-        .round(true)(root);
+        .paddingInner(isMobile ? 2 : 3)
+        .round(true);
+      if (isMobile) tm.tile(d3.treemapSlice);
+      tm(root);
 
       const svg = d3.select('#treemap-chart').append('svg')
         .attr('viewBox', '0 0 ' + width + ' ' + height)
