@@ -510,6 +510,17 @@ if (window.location.protocol === 'file:') {
           .attr('transform', (d) => 'translate(' + d.x0 + ',' + d.y0 + ')');
 
         attachLeafBehavior(leaf, tooltip, cardArchetypes);
+
+        // Auto-crop viewBox to content, but keep SVG at 100% width so it fills container
+        try {
+          const bbox = svg.node().getBBox();
+          const cropW = Math.ceil(bbox.x + bbox.width + 2);
+          const cropH = Math.ceil(bbox.y + bbox.height + 2);
+          svg.attr('viewBox', '0 0 ' + cropW + ' ' + cropH)
+             .attr('width', '100%')
+             .attr('height', null)
+             .style('max-width', '100%');
+        } catch(e) {}
       }
 
       function attachLeafBehavior(leaf, tooltip, cardArchetypes) {
