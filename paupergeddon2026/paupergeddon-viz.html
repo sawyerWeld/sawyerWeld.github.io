@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paupergeddon Spring 2026 - Conversion Scatter</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script>
+if (window.location.protocol === 'file:') {
+  document.write('<script src="paupergeddon-data.bundle.js?v=20260324d"><\\/script>');
+}
+</script>
+<script src="paupergeddon-data-access.js"></script>
+<style>
+  body { background: #0d1117; color: #e6edf3; font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 20px; }
+  h1 { text-align: center; color: #58a6ff; margin-bottom: 5px; }
+  .subtitle { text-align: center; color: #8b949e; margin-bottom: 20px; font-size: 0.9em; }
+  #chart { width: 100%; max-width: 1000px; margin: 0 auto; }
+  .legend { text-align: center; color: #8b949e; font-size: 0.8em; margin-top: 10px; }
+  .error { color: #f85149; text-align: center; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>Paupergeddon Spring 2026</h1>
+<div class="subtitle" id="subtitle">Loading conversion data...</div>
+<div id="chart"></div>
+<div class="legend">Bubble size = Day 2 count | Dashed line = average conversion | Hover for details</div>
+
+<script>
+(async function init() {
+  const subtitle = document.getElementById('subtitle');
+  const chart = document.getElementById('chart');
+  const loadData = window.__pgLoadData || (async function(name, path) {
+    if (window.__PG_DATA && Object.prototype.hasOwnProperty.call(window.__PG_DATA, name)) {
+      return window.__PG_DATA[name];
+    }
+    const resp = await fetch(path);
+    if (!resp.ok) throw new Error('Failed to load ' + path + ' (' + resp.status + ')');
+    return resp.json();
+  });
+
+  try {
+    const stages = await loadData('stages', 'paupergeddon-stages.json');
+    const day1 = stages.day1 || {};
+    const day2 = stages.day2 || {};
+
+    const totalDay1 = Object.values(day1).reduce((sum, d) => sum + Number(d.n || 0), 0);
+    const totalDay2 = Object.values(day2).reduce((sum, d) => sum + Number(d.n || 0), 0);
+
+    const data = Object.entries(day1)
+      .map(([name, d]) => {
+        const d1 = Number(d.n || 0);
+        const d2 = Number((day2[name] && day2[name].n) || 0);
+        return {
+          name,
+          d1,
+          d2,
+          conv: d1 > 0 ? (d2 / d1) * 100 : 0
+        };
+      })
+      .filter((d) => d.d1 > 0)
+      .sort((a, b) => b.d1 - a.d1);
+
+    const avgConv = totalDay1 > 0 ? (totalDay2 / totalDay1) * 100 : 0;
+
+    subtitle.textContent = totalDay1 + ' players - Day 1 to Day 2 conversion rates by archetype';
+
+    const colors = data.map((d) => {
+      if (d.conv >= 25) return '#3fb950';
+      if (d.conv >= avgConv) return '#58a6ff';
+      if (d.conv >= 8) return '#d29922';
+      return '#f85149';
+    });
+
+    const trace = {
+      x: data.map((d) => d.d1),
+      y: data.map((d) => d.conv),
+      text: data.map((d) => '<b>' + d.name + '</b><br>Day 1: ' + d.d1 + ' players<br>Day 2: ' + d.d2 + ' players<br>Conversion: ' + d.conv.toFixed(1) + '%'),
+      hoverinfo: 'text',
+      mode: 'markers+text',
+      textposition: data.map((d) => {
+        if (d.d1 > 80) return 'bottom center';
+        if (d.conv > 30) return 'top center';
+        return 'right';
+      }),
+      textfont: { size: 9, color: '#8b949e' },
+      marker: {
+        size: data.map((d) => Math.max(d.d2 * 3, 10)),
+        color: colors,
+        opacity: 0.85,
+        line: { width: 1, color: '#30363d' }
+      }
+    };
+
+    trace.text = data.map((d) => (d.d2 >= 3 ? d.name : ''));
+
+    const maxD1 = Math.max(...data.map((d) => d.d1), 100);
+
+    const layout = {
+      paper_bgcolor: '#0d1117',
+      plot_bgcolor: '#161b22',
+      font: { color: '#e6edf3' },
+      xaxis: {
+        title: 'Day 1 Players',
+        gridcolor: '#21262d',
+        zeroline: false,
+        range: [0, Math.ceil(maxD1 * 1.08)]
+      },
+      yaxis: {
+        title: 'Day 2 Conversion Rate (%)',
+        gridcolor: '#21262d',
+        zeroline: false
+      },
+      shapes: [{
+        type: 'line',
+        x0: 0,
+        x1: Math.ceil(maxD1 * 1.08),
+        y0: avgConv,
+        y1: avgConv,
+        line: { color: '#f0f6fc', width: 1, dash: 'dash' }
+      }],
+      annotations: [{
+        x: Math.ceil(maxD1 * 1.02),
+        y: avgConv + 1.2,
+        text: 'Avg ' + avgConv.toFixed(1) + '%',
+        showarrow: false,
+        font: { color: '#8b949e', size: 10 }
+      }],
+      margin: { t: 20, b: 60, l: 60, r: 20 },
+      hoverlabel: {
+        bgcolor: '#1c2333',
+        bordercolor: '#30363d',
+        font: { color: '#e6edf3' }
+      }
+    };
+
+    Plotly.newPlot('chart', [trace], layout, {
+      responsive: true,
+      displayModeBar: false
+    });
+  } catch (err) {
+    subtitle.textContent = '';
+    chart.innerHTML = '<div class="error">Failed to load conversion data: ' + String(err.message || err) + '</div>';
+  }
+})();
+</script>
+</body>
+</html>
