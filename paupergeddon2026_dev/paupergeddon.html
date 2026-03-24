@@ -58,7 +58,7 @@ if (window.location.protocol === 'file:') {
     border-radius: 0;
   }
   #frame-slope { height: 560px; }
-  #frame-explorer { height: 700px; }
+  #frame-explorer { height: 700px; max-height: 750px; overflow: hidden; }
 
   #treemap-chart-shell {
     background: transparent;
@@ -371,7 +371,8 @@ if (window.location.protocol === 'file:') {
     function applyHeight(frame, name, rawHeight) {
       const h = Number(rawHeight || 0);
       if (!Number.isFinite(h) || h <= 0) return;
-      frame.style.height = Math.max(minFor(name), Math.ceil(h)) + 'px';
+      const maxH = name === 'explorer' ? 750 : 9999;
+      frame.style.height = Math.min(maxH, Math.max(minFor(name), Math.ceil(h))) + 'px';
     }
 
     window.addEventListener('message', (event) => {
@@ -412,7 +413,7 @@ if (window.location.protocol === 'file:') {
       ]);
 
       const isMobile = window.innerWidth < 600;
-      const width = Math.min(1000, window.innerWidth - (isMobile ? 40 : 80));
+      const width = Math.min(1060, window.innerWidth - (isMobile ? 40 : 80));
 
       const grouped = {};
       cards.forEach((c) => {
