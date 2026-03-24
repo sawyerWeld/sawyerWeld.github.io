@@ -129,6 +129,32 @@ if (window.location.protocol === 'file:') {
   .tm-bar-bg { margin-top: 4px; height: 8px; border-radius: 999px; overflow: hidden; background: #ececec; }
   .tm-bar-fill { height: 100%; border-radius: 999px; background: #1a1a1a; }
 
+  .mobile-banner {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #e8f0fe;
+    color: #1a1a1a;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-bottom: 1px solid #d2e3fc;
+  }
+  .mobile-banner button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+  }
+  @media (max-width: 600px) {
+    .mobile-banner { display: flex; }
+    .stage-host-btn .count { display: none; }
+    .stage-host-btn { padding: 6px 12px; font-size: 0.82rem; }
+  }
   @media (max-width: 900px) {
     .page-header { padding: 44px 16px 28px; }
     .page-header h1 { font-size: 2em; }
@@ -140,6 +166,11 @@ if (window.location.protocol === 'file:') {
 </style>
 </head>
 <body>
+  <div class="mobile-banner" id="mobile-banner">
+    <span>📊 Best experienced on desktop — charts are interactive &amp; two-column</span>
+    <button onclick="this.parentElement.style.display='none'" aria-label="Dismiss">&times;</button>
+  </div>
+
   <div class="page-header">
     <h1>Paupergeddon Spring 2026</h1>
     <div class="byline">965 Players &middot; Luca, Italia &middot; <a href="https://paupergeddon.com/#event" target="_blank" rel="noopener noreferrer">Paupergeddon</a><br>Made By <a href="https://sawyerwelden.com" target="_blank" rel="noopener noreferrer">Sawyer Welden</a></div>
@@ -380,8 +411,8 @@ if (window.location.protocol === 'file:') {
         loadData('cardArchetypes', 'paupergeddon-card-archetypes.json?v=' + DATA_VER)
       ]);
 
-      const width = Math.min(1000, window.innerWidth - 80);
-      const height = 600;
+      const isMobile = window.innerWidth < 600;
+      const width = Math.min(1000, window.innerWidth - (isMobile ? 40 : 80));
 
       const grouped = {};
       cards.forEach((c) => {
@@ -391,128 +422,174 @@ if (window.location.protocol === 'file:') {
       });
       const typeOrder = ['Instant', 'Sorcery', 'Creature', 'Artifact', 'Other'];
 
-      const hierarchy = {
-        name: 'root',
-        children: typeOrder
-          .filter((type) => grouped[type] && grouped[type].length)
-          .map((type) => ({
-            name: type,
-            children: grouped[type].slice().sort((a, b) => Number(b.copies || 0) - Number(a.copies || 0))
-          }))
-      };
+      function renderTreemapBlock(container, typeName, typeCards, blockWidth) {
+        const totalCopies = typeCards.reduce((s, c) => s + Number(c.copies || 0), 0);
+        const blockHeight = Math.max(120, Math.round(totalCopies / 8));
 
-      const root = d3.hierarchy(hierarchy).sum((d) => Number(d.copies || 0));
+        const hierarchy = { name: typeName, children: typeCards.slice().sort((a, b) => Number(b.copies || 0) - Number(a.copies || 0)) };
+        const root = d3.hierarchy(hierarchy).sum((d) => Number(d.copies || 0));
 
-      d3.treemap()
-        .size([width, height])
-        .paddingOuter(6)
-        .paddingTop(22)
-        .paddingInner(3)
-        .round(true)(root);
+        d3.treemap()
+          .size([blockWidth, blockHeight])
+          .paddingOuter(4)
+          .paddingTop(22)
+          .paddingInner(2)
+          .round(true)(root);
 
-      const svg = d3.select('#treemap-chart').append('svg')
-        .attr('viewBox', '0 0 ' + width + ' ' + height)
-        .attr('preserveAspectRatio', 'xMinYMin meet')
-        .attr('width', '100%')
-        .attr('height', height)
-        .style('display', 'block');
+        const svg = container.append('svg')
+          .attr('viewBox', '0 0 ' + blockWidth + ' ' + blockHeight)
+          .attr('preserveAspectRatio', 'xMinYMin meet')
+          .attr('width', '100%')
+          .attr('height', blockHeight)
+          .style('display', 'block');
 
-      const typeGroups = svg.selectAll('.group')
-        .data(root.children)
-        .join('g')
-        .attr('class', 'group');
+        svg.append('text')
+          .attr('x', 6).attr('y', 15)
+          .text(typeName)
+          .attr('fill', '#888').attr('font-size', '11px').attr('font-weight', 600)
+          .style('letter-spacing', '0.5px');
 
-      typeGroups.append('text')
-        .attr('x', (d) => d.x0 + 6)
-        .attr('y', (d) => d.y0 + 15)
-        .text((d) => d.data.name)
-        .attr('fill', '#888')
-        .attr('font-size', '11px')
-        .attr('font-weight', 600)
-        .style('letter-spacing', '0.5px');
+        const leaves = root.leaves();
+        const leaf = svg.selectAll('.tile')
+          .data(leaves).join('g').attr('class', 'tile')
+          .attr('transform', (d) => 'translate(' + d.x0 + ',' + d.y0 + ')');
+        return { svg, leaf, leaves };
+      }
 
-      const leaf = svg.selectAll('.tile')
-        .data(root.leaves())
-        .join('g')
-        .attr('class', 'tile')
-        .attr('transform', (d) => 'translate(' + d.x0 + ',' + d.y0 + ')');
-
-      leaf.append('rect')
-        .attr('width', (d) => d.x1 - d.x0)
-        .attr('height', (d) => d.y1 - d.y0)
-        .attr('rx', 3)
-        .attr('fill', (d) => getColor(d.data.colors))
-        .attr('opacity', 0.88)
-        .on('mouseover', (e, d) => {
-          tooltip.style('opacity', 1).html(
-            '<b>' + d.data.name + '</b><br>'
-            + '<span class="stat">' + d.data.type + '</span><br>'
-            + '<b>' + d.data.copies + '</b> copies across <b>' + d.data.decks + '</b> decks<br>'
-            + '<span class="stat">In ' + d.data.pct + '% of Day 2 lists</span>'
-          );
-        })
-        .on('mousemove', (e) => {
-          tooltip.style('left', (e.pageX + 12) + 'px').style('top', (e.pageY - 10) + 'px');
-        })
-        .on('mouseout', () => tooltip.style('opacity', 0))
-        .on('click', (e, d) => {
-          const archetypes = cardArchetypes[d.data.name] || [];
-          openPanel(d.data, archetypes);
+      if (isMobile) {
+        const sel = d3.select('#treemap-chart');
+        typeOrder.filter((t) => grouped[t] && grouped[t].length).forEach((typeName) => {
+          const block = renderTreemapBlock(sel, typeName, grouped[typeName], width);
+          attachLeafBehavior(block.leaf, tooltip, cardArchetypes);
         });
+      } else {
+        const height = 600;
+        const hierarchy = {
+          name: 'root',
+          children: typeOrder
+            .filter((type) => grouped[type] && grouped[type].length)
+            .map((type) => ({
+              name: type,
+              children: grouped[type].slice().sort((a, b) => Number(b.copies || 0) - Number(a.copies || 0))
+            }))
+        };
+        const root = d3.hierarchy(hierarchy).sum((d) => Number(d.copies || 0));
 
-      leaf.append('text')
-        .attr('x', 4)
-        .attr('y', 13)
-        .attr('fill', '#fff')
-        .attr('font-size', (d) => {
-          const w = d.x1 - d.x0;
-          const h = d.y1 - d.y0;
-          if (w > 150 && h > 60) return '12px';
-          if (w > 100 && h > 40) return '10px';
-          return '9px';
-        })
-        .attr('font-weight', 600)
-        .each(function(d) {
-          const w = d.x1 - d.x0;
-          const h = d.y1 - d.y0;
-          if (w < 50 || h < 24) return;
-          const maxChars = w > 170 ? 19 : (w > 120 ? 14 : (w > 90 ? 11 : 8));
-          const maxLines = h > 65 ? 3 : (h > 42 ? 2 : 1);
-          const lines = wrapName(d.data.name, maxChars, maxLines);
-          d._labelLines = lines.length;
-          const t = d3.select(this);
-          lines.forEach((line, i) => {
-            t.append('tspan')
-              .attr('x', 4)
-              .attr('dy', i === 0 ? 0 : 11)
-              .text(line);
+        d3.treemap()
+          .size([width, height])
+          .paddingOuter(6)
+          .paddingTop(22)
+          .paddingInner(3)
+          .round(true)(root);
+
+        const svg = d3.select('#treemap-chart').append('svg')
+          .attr('viewBox', '0 0 ' + width + ' ' + height)
+          .attr('preserveAspectRatio', 'xMinYMin meet')
+          .attr('width', '100%')
+          .attr('height', height)
+          .style('display', 'block');
+
+        const typeGroups = svg.selectAll('.group')
+          .data(root.children)
+          .join('g')
+          .attr('class', 'group');
+
+        typeGroups.append('text')
+          .attr('x', (d) => d.x0 + 6)
+          .attr('y', (d) => d.y0 + 15)
+          .text((d) => d.data.name)
+          .attr('fill', '#888')
+          .attr('font-size', '11px')
+          .attr('font-weight', 600)
+          .style('letter-spacing', '0.5px');
+
+        const leaf = svg.selectAll('.tile')
+          .data(root.leaves())
+          .join('g')
+          .attr('class', 'tile')
+          .attr('transform', (d) => 'translate(' + d.x0 + ',' + d.y0 + ')');
+
+        attachLeafBehavior(leaf, tooltip, cardArchetypes);
+      }
+
+      function attachLeafBehavior(leaf, tooltip, cardArchetypes) {
+        leaf.append('rect')
+          .attr('width', (d) => d.x1 - d.x0)
+          .attr('height', (d) => d.y1 - d.y0)
+          .attr('rx', 3)
+          .attr('fill', (d) => getColor(d.data.colors))
+          .attr('opacity', 0.88)
+          .on('mouseover', (e, d) => {
+            tooltip.style('opacity', 1).html(
+              '<b>' + d.data.name + '</b><br>'
+              + '<span class="stat">' + d.data.type + '</span><br>'
+              + '<b>' + d.data.copies + '</b> copies across <b>' + d.data.decks + '</b> decks<br>'
+              + '<span class="stat">In ' + d.data.pct + '% of Day 2 lists</span>'
+            );
+          })
+          .on('mousemove', (e) => {
+            tooltip.style('left', (e.pageX + 12) + 'px').style('top', (e.pageY - 10) + 'px');
+          })
+          .on('mouseout', () => tooltip.style('opacity', 0))
+          .on('click', (e, d) => {
+            const archetypes = cardArchetypes[d.data.name] || [];
+            openPanel(d.data, archetypes);
           });
-        });
 
-      leaf.append('text')
-        .attr('x', 4)
-        .attr('y', (d) => {
-          const w = d.x1 - d.x0;
-          const h = d.y1 - d.y0;
-          const lines = d._labelLines || 1;
-          const yLabel = 14 + lines * 11;
-          const yBottom = h - 4;
-          if (w >= 36 && h >= 24 && (yBottom - yLabel) >= 8) return yBottom;
-          return yLabel;
-        })
-        .attr('fill', '#fff')
-        .attr('font-size', (d) => ((d.x1 - d.x0) < 62 ? '8px' : '9px'))
-        .attr('opacity', 0.9)
-        .text((d) => {
-          const w = d.x1 - d.x0;
-          const h = d.y1 - d.y0;
-          const lines = d._labelLines || 1;
-          const yLabel = 14 + lines * 11;
-          const yBottom = h - 4;
-          if (w < 36 || h < 24) return '';
-          if (yLabel > h - 4) return '';
-          return String(d.data.copies) + (w >= 62 ? ' copies' : '');
-        });
+        leaf.append('text')
+          .attr('x', 4)
+          .attr('y', 13)
+          .attr('fill', '#fff')
+          .attr('font-size', (d) => {
+            const w = d.x1 - d.x0;
+            const h = d.y1 - d.y0;
+            if (w > 150 && h > 60) return '12px';
+            if (w > 100 && h > 40) return '10px';
+            return '9px';
+          })
+          .attr('font-weight', 600)
+          .each(function(d) {
+            const w = d.x1 - d.x0;
+            const h = d.y1 - d.y0;
+            if (w < 50 || h < 24) return;
+            const maxChars = w > 170 ? 19 : (w > 120 ? 14 : (w > 90 ? 11 : 8));
+            const maxLines = h > 65 ? 3 : (h > 42 ? 2 : 1);
+            const lines = wrapName(d.data.name, maxChars, maxLines);
+            d._labelLines = lines.length;
+            const t = d3.select(this);
+            lines.forEach((line, i) => {
+              t.append('tspan')
+                .attr('x', 4)
+                .attr('dy', i === 0 ? 0 : 11)
+                .text(line);
+            });
+          });
+
+        leaf.append('text')
+          .attr('x', 4)
+          .attr('y', (d) => {
+            const w = d.x1 - d.x0;
+            const h = d.y1 - d.y0;
+            const lines = d._labelLines || 1;
+            const yLabel = 14 + lines * 11;
+            const yBottom = h - 4;
+            if (w >= 36 && h >= 24 && (yBottom - yLabel) >= 8) return yBottom;
+            return yLabel;
+          })
+          .attr('fill', '#fff')
+          .attr('font-size', (d) => ((d.x1 - d.x0) < 62 ? '8px' : '9px'))
+          .attr('opacity', 0.9)
+          .text((d) => {
+            const w = d.x1 - d.x0;
+            const h = d.y1 - d.y0;
+            const lines = d._labelLines || 1;
+            const yLabel = 14 + lines * 11;
+            const yBottom = h - 4;
+            if (w < 36 || h < 24) return '';
+            if (yLabel > h - 4) return '';
+            return String(d.data.copies) + (w >= 62 ? ' copies' : '');
+          });
+      }
 
       overlay.addEventListener('click', closePanel);
       panel.addEventListener('click', (e) => e.stopPropagation());

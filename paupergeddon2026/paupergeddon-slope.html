@@ -21,6 +21,10 @@ if (window.location.protocol === 'file:') {
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #f1f1f1; color: #1a1a1a; font-family: 'Manrope', sans-serif; padding: 20px 20px; }
   #chart { max-width: 1100px; margin: 0 auto; overflow: hidden; }
+  @media (max-width: 600px) {
+    #chart { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    #chart svg { min-width: 700px; }
+  }
   .deck-label { font-size: 11px; font-weight: 500; fill: #1a1a1a; }
   .deck-label-dim { font-size: 10px; font-weight: 400; fill: #999; }
   .pct-label { font-size: 10px; fill: #999; font-weight: 400; }
@@ -28,6 +32,10 @@ if (window.location.protocol === 'file:') {
   .col-sub { font-size: 10px; fill: #999; font-weight: 400; text-anchor: middle; }
   .error { max-width: 1100px; margin: 0 auto; color: #b00020; font-weight: 600; }
   .pg-embed body { padding: 0; background: transparent; }
+  @media (max-width: 600px) {
+    body { padding: 8px 0; }
+    #chart { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+  }
 </style>
 </head>
 <body>
@@ -105,10 +113,11 @@ if (window.location.protocol === 'file:') {
       return count + ' (' + pct.toFixed(1) + '%)';
     }
 
-    const W = 1060;
-    const H = 580;
-    const marginLeft = 230;
-    const marginRight = 80;
+    const isMobile = window.innerWidth < 600;
+    const W = isMobile ? 800 : 1060;
+    const H = isMobile ? 520 : 580;
+    const marginLeft = isMobile ? 140 : 230;
+    const marginRight = isMobile ? 60 : 80;
     const colSpacing = (W - marginLeft - marginRight) / (columns.length - 1);
     const topY = 55;
     const bottomY = H - 20;
@@ -120,6 +129,10 @@ if (window.location.protocol === 'file:') {
       .style('max-width', W + 'px')
       .style('display', 'block')
       .style('margin', '0 auto');
+
+    if (isMobile) {
+      svg.style('min-width', '700px');
+    }
 
     columns.forEach((col, i) => {
       const x = marginLeft + i * colSpacing;
@@ -217,8 +230,10 @@ if (window.location.protocol === 'file:') {
           const textX = pipStartX + colors.length * 14 + 4;
           const labelClass = Number(d.d1 || 0) >= 2 ? 'deck-label' : 'deck-label-dim';
           svg.append('text').attr('x', textX).attr('y', y + 4).attr('class', labelClass).text(d.name);
-          svg.append('text').attr('x', marginLeft - 18).attr('y', y + 4)
-            .attr('class', 'pct-label').attr('text-anchor', 'end').text(fmtLabel(d, 'd1', 0));
+          if (!isMobile) {
+            svg.append('text').attr('x', marginLeft - 18).attr('y', y + 4)
+              .attr('class', 'pct-label').attr('text-anchor', 'end').text(fmtLabel(d, 'd1', 0));
+          }
         }
 
         if (ci === columns.length - 1 && Number(d[col] || 0) > 0) {
