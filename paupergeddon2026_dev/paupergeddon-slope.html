@@ -152,6 +152,20 @@ if (window.location.protocol === 'file:') {
       });
     });
 
+    // --- Selection state ---
+    let selectedDeck = null;
+    const deckGroups = {};
+
+    // Build a group per deck so we can highlight the whole story
+    data.forEach((d) => {
+      const g = svg.append('g')
+        .attr('class', 'deck-group')
+        .attr('data-deck', d.name)
+        .style('cursor', 'pointer');
+      deckGroups[d.name] = g;
+    });
+
+    // Draw connector lines into each deck's group
     for (let ci = 0; ci < columns.length - 1; ci += 1) {
       const col1 = columns[ci];
       const col2 = columns[ci + 1];
@@ -168,7 +182,8 @@ if (window.location.protocol === 'file:') {
         if (change > 0.3) color = '#27ae60';
         if (change < -0.3) color = '#c0392b';
 
-        svg.append('line')
+        deckGroups[d.name].append('line')
+          .attr('class', 'deck-line')
           .attr('x1', x1 + 8).attr('y1', y1)
           .attr('x2', x2 - 8).attr('y2', y2)
           .attr('stroke', color)
@@ -177,11 +192,13 @@ if (window.location.protocol === 'file:') {
       });
     }
 
+    // Draw dots, labels, and X marks into each deck's group
     columns.forEach((col, ci) => {
       const x = marginLeft + ci * colSpacing;
       data.forEach((d) => {
         const y = positions[col][d.name];
         if (y === undefined) return;
+        const g = deckGroups[d.name];
 
         const change = ci > 0 ? Number(d[col] || 0) - Number(d[columns[ci - 1]] || 0) : 0;
         let color = '#bbb';
@@ -195,13 +212,13 @@ if (window.location.protocol === 'file:') {
         let dot;
         if (!survives && !isLast && Number(d[col] || 0) > 0) {
           const xSize = 4;
-          svg.append('line').attr('x1', x - xSize).attr('y1', y - xSize).attr('x2', x + xSize).attr('y2', y + xSize)
-            .attr('stroke', color).attr('stroke-width', 2).attr('opacity', 0.7);
-          svg.append('line').attr('x1', x - xSize).attr('y1', y + xSize).attr('x2', x + xSize).attr('y2', y - xSize)
-            .attr('stroke', color).attr('stroke-width', 2).attr('opacity', 0.7);
-          dot = svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 6).attr('fill', 'transparent');
+          g.append('line').attr('x1', x - xSize).attr('y1', y - xSize).attr('x2', x + xSize).attr('y2', y + xSize)
+            .attr('stroke', color).attr('stroke-width', 2).attr('opacity', 0.7).attr('class', 'deck-x');
+          g.append('line').attr('x1', x - xSize).attr('y1', y + xSize).attr('x2', x + xSize).attr('y2', y - xSize)
+            .attr('stroke', color).attr('stroke-width', 2).attr('opacity', 0.7).attr('class', 'deck-x');
+          dot = g.append('circle').attr('cx', x).attr('cy', y).attr('r', 6).attr('fill', 'transparent').attr('class', 'deck-dot');
         } else {
-          dot = svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 3.5).attr('fill', color).attr('opacity', 0.9);
+          dot = g.append('circle').attr('cx', x).attr('cy', y).attr('r', 3.5).attr('fill', color).attr('opacity', 0.9).attr('class', 'deck-dot');
         }
 
         dot.on('mouseover', function(event) {
@@ -213,37 +230,98 @@ if (window.location.protocol === 'file:') {
         }).on('mouseout', function() {
           slopeTooltip.style('opacity', 0);
           d3.select(this).attr('r', 3.5);
-        }).style('cursor', 'pointer');
+        });
 
         if (ci === 0) {
           const colors = deckColors[d.name] || [];
           const pipSize = 12;
           const pipStartX = 8;
           colors.forEach((c, pi) => {
-            svg.append('image')
+            g.append('image')
               .attr('href', manaMap[c] || ('mana/' + c + '.svg'))
               .attr('x', pipStartX + pi * 14)
               .attr('y', y - pipSize / 2)
-              .attr('width', pipSize).attr('height', pipSize);
+              .attr('width', pipSize).attr('height', pipSize)
+              .attr('class', 'deck-label-el');
           });
 
           const textX = pipStartX + colors.length * 14 + 4;
           const labelClass = Number(d.d1 || 0) >= 2 ? 'deck-label' : 'deck-label-dim';
-          svg.append('text').attr('x', textX).attr('y', y + 4).attr('class', labelClass).text(d.name);
+          g.append('text').attr('x', textX).attr('y', y + 4).attr('class', labelClass + ' deck-label-el').text(d.name);
           if (!isMobile) {
-            svg.append('text').attr('x', marginLeft - 18).attr('y', y + 4)
-              .attr('class', 'pct-label').attr('text-anchor', 'end').text(fmtLabel(d, 'd1', 0));
+            g.append('text').attr('x', marginLeft - 18).attr('y', y + 4)
+              .attr('class', 'pct-label deck-label-el').attr('text-anchor', 'end').text(fmtLabel(d, 'd1', 0));
           }
         }
 
         if (ci === columns.length - 1 && Number(d[col] || 0) > 0) {
-          svg.append('text')
+          g.append('text')
             .attr('x', x + 14).attr('y', y + 4)
-            .attr('class', 'pct-label')
+            .attr('class', 'pct-label deck-label-el')
             .text(fmtLabel(d, col, ci));
         }
       });
     });
+
+    // --- Click-to-select logic ---
+    function selectDeck(name) {
+      selectedDeck = name;
+      svg.selectAll('.deck-group').each(function() {
+        const g = d3.select(this);
+        const isDeck = g.attr('data-deck') === name;
+        g.transition().duration(200)
+          .style('opacity', isDeck ? 1 : 0.4);
+        if (isDeck) {
+          g.selectAll('.deck-line').attr('stroke-width', 5).attr('opacity', 0.9);
+          g.selectAll('.deck-dot').attr('r', 5);
+          g.raise();
+        } else {
+          g.selectAll('.deck-line').attr('stroke-width', 3).attr('opacity', 0.6);
+          g.selectAll('.deck-dot').attr('r', 3.5);
+        }
+      });
+
+      // Show pct labels at every stage for the selected deck
+      const d = data.find((dd) => dd.name === name);
+      if (d) {
+        svg.selectAll('.sel-label').remove();
+        columns.forEach((col, ci) => {
+          const y = positions[col][d.name];
+          if (y === undefined) return;
+          if (ci === 0 || ci === columns.length - 1) return; // already have labels
+          const x = marginLeft + ci * colSpacing;
+          svg.append('text')
+            .attr('x', x + 10).attr('y', y + 4)
+            .attr('class', 'pct-label sel-label')
+            .text(fmtLabel(d, col, ci));
+        });
+      }
+    }
+
+    function clearSelection() {
+      selectedDeck = null;
+      svg.selectAll('.sel-label').remove();
+      svg.selectAll('.deck-group').transition().duration(200)
+        .style('opacity', 1);
+      svg.selectAll('.deck-line').attr('stroke-width', 3).attr('opacity', 0.6);
+      svg.selectAll('.deck-dot').attr('r', 3.5);
+    }
+
+    svg.selectAll('.deck-group').on('click', function(event) {
+      event.stopPropagation();
+      const name = d3.select(this).attr('data-deck');
+      if (selectedDeck === name) {
+        clearSelection();
+      } else {
+        selectDeck(name);
+      }
+    });
+
+    // Click background to deselect
+    svg.on('click', function() {
+      if (selectedDeck) clearSelection();
+    });
+
     queuePostHeight();
   } catch (err) {
     chartEl.append('div').attr('class', 'error').text('Failed to load slope data: ' + String(err.message || err));
