@@ -514,6 +514,13 @@ if (window.location.protocol === 'file:') {
       }
 
       function attachLeafBehavior(leaf, tooltip, cardArchetypes) {
+        leaf.each(function(d) {
+          const id = 'clip-' + String(d.data.name || '').replace(/[^a-zA-Z0-9]/g, '-');
+          const clip = d3.select(this).append('clipPath').attr('id', id);
+          clip.append('rect').attr('width', d.x1 - d.x0).attr('height', d.y1 - d.y0).attr('rx', 3);
+          d3.select(this).attr('clip-path', 'url(#' + id + ')');
+        });
+
         leaf.append('rect')
           .attr('width', (d) => d.x1 - d.x0)
           .attr('height', (d) => d.y1 - d.y0)
