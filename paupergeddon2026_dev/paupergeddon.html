@@ -487,7 +487,8 @@ if (window.location.protocol === 'file:') {
           .attr('width', width)
           .attr('height', height)
           .style('display', 'block')
-          .style('max-width', '100%');
+          .style('max-width', '100%')
+          .style('margin', '0 auto');
 
         const typeGroups = svg.selectAll('.group')
           .data(root.children)
