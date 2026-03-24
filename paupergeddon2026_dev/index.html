@@ -129,7 +129,29 @@ if (window.location.protocol === 'file:') {
   .tm-bar-bg { margin-top: 4px; height: 8px; border-radius: 999px; overflow: hidden; background: #ececec; }
   .tm-bar-fill { height: 100%; border-radius: 999px; background: #1a1a1a; }
 
+  .mobile-banner {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #e8f0fe;
+    color: #1a1a1a;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-bottom: 1px solid #d2e3fc;
+  }
+  .mobile-banner button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+  }
   @media (max-width: 600px) {
+    .mobile-banner { display: flex; }
     .stage-host-btn .count { display: none; }
     .stage-host-btn { padding: 6px 12px; font-size: 0.82rem; }
   }
@@ -144,6 +166,11 @@ if (window.location.protocol === 'file:') {
 </style>
 </head>
 <body>
+  <div class="mobile-banner" id="mobile-banner">
+    <span>📊 Best experienced on desktop — charts are interactive &amp; two-column</span>
+    <button onclick="this.parentElement.style.display='none'" aria-label="Dismiss">&times;</button>
+  </div>
+
   <div class="page-header">
     <h1>Paupergeddon Spring 2026</h1>
     <div class="byline">965 Players &middot; Luca, Italia &middot; <a href="https://paupergeddon.com/#event" target="_blank" rel="noopener noreferrer">Paupergeddon</a><br>Made By <a href="https://sawyerwelden.com" target="_blank" rel="noopener noreferrer">Sawyer Welden</a></div>
