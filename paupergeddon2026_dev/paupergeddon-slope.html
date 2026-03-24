@@ -116,7 +116,7 @@ if (window.location.protocol === 'file:') {
     const isMobile = window.innerWidth < 600;
     const W = isMobile ? 800 : 1060;
     const H = isMobile ? 520 : 580;
-    const marginLeft = isMobile ? 170 : 230;
+    const marginLeft = isMobile ? 140 : 230;
     const marginRight = isMobile ? 60 : 80;
     const colSpacing = (W - marginLeft - marginRight) / (columns.length - 1);
     const topY = 55;
@@ -230,8 +230,10 @@ if (window.location.protocol === 'file:') {
           const textX = pipStartX + colors.length * 14 + 4;
           const labelClass = Number(d.d1 || 0) >= 2 ? 'deck-label' : 'deck-label-dim';
           svg.append('text').attr('x', textX).attr('y', y + 4).attr('class', labelClass).text(d.name);
-          svg.append('text').attr('x', marginLeft - 18).attr('y', y + 4)
-            .attr('class', 'pct-label').attr('text-anchor', 'end').text(fmtLabel(d, 'd1', 0));
+          if (!isMobile) {
+            svg.append('text').attr('x', marginLeft - 18).attr('y', y + 4)
+              .attr('class', 'pct-label').attr('text-anchor', 'end').text(fmtLabel(d, 'd1', 0));
+          }
         }
 
         if (ci === columns.length - 1 && Number(d[col] || 0) > 0) {

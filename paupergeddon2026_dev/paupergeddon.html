@@ -129,6 +129,10 @@ if (window.location.protocol === 'file:') {
   .tm-bar-bg { margin-top: 4px; height: 8px; border-radius: 999px; overflow: hidden; background: #ececec; }
   .tm-bar-fill { height: 100%; border-radius: 999px; background: #1a1a1a; }
 
+  @media (max-width: 600px) {
+    .stage-host-btn .count { display: none; }
+    .stage-host-btn { padding: 6px 12px; font-size: 0.82rem; }
+  }
   @media (max-width: 900px) {
     .page-header { padding: 44px 16px 28px; }
     .page-header h1 { font-size: 2em; }
