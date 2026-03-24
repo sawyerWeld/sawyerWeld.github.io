@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paupergeddon - Card Treemap</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+window.__PG_EMBED = new URLSearchParams(window.location.search).get('embed') === '1';
+if (window.__PG_EMBED) {
+  document.documentElement.classList.add('pg-embed');
+}
+if (window.location.protocol === 'file:') {
+  document.write('<script src="paupergeddon-data.bundle.js?v=20260324d"><\\/script>');
+}
+</script>
+<script src="paupergeddon-data-access.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f1f1f1; color: #1a1a1a; font-family: 'Manrope', sans-serif; padding: 24px 16px; }
+  .container { max-width: 1080px; margin: 0 auto; }
+  h1 { font-size: 1.45rem; margin-bottom: 6px; }
+  .sub { color: #666; margin-bottom: 16px; font-size: 0.92rem; }
+  #chart { background: #fff; border: 1px solid #e4e4e4; border-radius: 12px; padding: 10px; }
+  .tile text { pointer-events: none; }
+  .tile rect { transition: opacity 0.15s; cursor: pointer; }
+  .tile:hover rect { opacity: 0.84; }
+  .tooltip {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    max-width: 240px;
+    z-index: 10;
+  }
+  .tooltip .stat { color: #777; font-size: 0.9em; }
+  #overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+    z-index: 40;
+  }
+  #detail-panel {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.96);
+    width: min(560px, 92vw);
+    max-height: 80vh;
+    overflow: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.28);
+    border: 1px solid #e7e7e7;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s, transform 0.15s;
+    z-index: 50;
+  }
+  .meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #efefef;
+    color: #444;
+    border-radius: 8px;
+    padding: 4px 9px;
+    font-size: 0.78rem;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .bar-row { margin: 8px 0; }
+  .bar-head { display: flex; justify-content: space-between; gap: 12px; font-size: 0.86rem; }
+  .bar-bg { margin-top: 4px; height: 8px; border-radius: 999px; overflow: hidden; background: #ececec; }
+  .bar-fill { height: 100%; border-radius: 999px; background: #1a1a1a; }
+  .error { color: #b00020; font-weight: 600; }
+  .pg-embed body { padding: 0; background: transparent; }
+  .pg-embed .container { max-width: none; }
+  .pg-embed h1, .pg-embed .sub { display: none; }
+  .pg-embed #chart { background: transparent; border: 0; border-radius: 0; padding: 0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Most Played Cards</h1>
+  <div class="sub">Top Day 2 card usage by type. Click a card for archetype breakdown.</div>
+  <div id="chart"></div>
+</div>
+<div class="tooltip" id="tooltip"></div>
+<div id="overlay"></div>
+<div id="detail-panel"></div>
+
+<script>
+const colorMap = {
+  R: '#c0392b', U: '#2980b9', B: '#7b5ea7', G: '#27ae60', W: '#d4a017'
+};
+
+function getColor(colors) {
+  if (!colors || colors.length === 0) return '#95a5a6';
+  if (colors.length > 1) return '#b8860b';
+  return colorMap[colors[0]] || '#95a5a6';
+}
+
+function bucketType(rawType) {
+  const t = String(rawType || '').toLowerCase();
+  if (t.includes('creature')) return 'Creature';
+  if (t.includes('instant')) return 'Instant';
+  if (t.includes('sorcery')) return 'Sorcery';
+  if (t.includes('artifact')) return 'Artifact';
+  return 'Other';
+}
+
+function closePanel() {
+  document.getElementById('detail-panel').style.opacity = '0';
+  document.getElementById('detail-panel').style.pointerEvents = 'none';
+  document.getElementById('detail-panel').style.transform = 'translate(-50%, -50%) scale(0.96)';
+  document.getElementById('overlay').style.opacity = '0';
+  document.getElementById('overlay').style.pointerEvents = 'none';
+}
+
+function openPanel(card, archetypes) {
+  const panel = document.getElementById('detail-panel');
+  const chips = [
+    `<span class="meta-chip">${card.type || 'Unknown'}</span>`,
+    `<span class="meta-chip">${card.copies} copies</span>`,
+    `<span class="meta-chip">${card.decks} decks</span>`,
+    `<span class="meta-chip">${card.pct}% of Day 2</span>`
+  ].join('');
+
+  const bars = archetypes
+    .slice()
+    .sort((a, b) => b.copies - a.copies)
+    .map((a) => {
+      const w = Math.max(3, Number(a.pct || 0));
+      return `<div class="bar-row">
+        <div class="bar-head"><span>${a.archetype}</span><span>${a.copies} in ${a.decks}/${a.total} decks</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width:${w}%"></div></div>
+      </div>`;
+    })
+    .join('');
+
+  panel.innerHTML = `
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+      <div>
+        <h2 style="font-size:1.25rem;line-height:1.25">${card.name}</h2>
+        <div style="margin-top:8px">${chips}</div>
+      </div>
+      <button id="close-panel" style="border:0;background:transparent;font-size:1.6rem;line-height:1;cursor:pointer;color:#888">&times;</button>
+    </div>
+    <div style="margin-top:12px">
+      <h3 style="font-size:0.9rem;color:#666;margin-bottom:8px">Archetype breakdown</h3>
+      ${bars || '<div style="color:#888">No archetype breakdown available.</div>'}
+    </div>
+  `;
+
+  document.getElementById('close-panel').addEventListener('click', closePanel);
+  document.getElementById('overlay').addEventListener('click', closePanel, { once: true });
+
+  document.getElementById('overlay').style.opacity = '1';
+  document.getElementById('overlay').style.pointerEvents = 'auto';
+  panel.style.opacity = '1';
+  panel.style.pointerEvents = 'auto';
+  panel.style.transform = 'translate(-50%, -50%) scale(1)';
+}
+
+(async function init() {
+  const chart = document.getElementById('chart');
+  const DATA_VER = '20260324j';
+  const loadData = window.__pgLoadData || (async function(name, path) {
+    if (window.__PG_DATA && Object.prototype.hasOwnProperty.call(window.__PG_DATA, name)) {
+      return window.__PG_DATA[name];
+    }
+    const resp = await fetch(path);
+    if (!resp.ok) throw new Error('Failed to load ' + path + ' (' + resp.status + ')');
+    return resp.json();
+  });
+  try {
+    const [cards, cardArchetypes] = await Promise.all([
+      loadData('cards', 'paupergeddon-cards.json?v=' + DATA_VER),
+      loadData('cardArchetypes', 'paupergeddon-card-archetypes.json?v=' + DATA_VER)
+    ]);
+
+    const width = Math.min(1000, window.innerWidth - 52);
+    const height = 600;
+
+    const grouped = {};
+    cards.forEach((c) => {
+      const t = bucketType(c.type);
+      if (!grouped[t]) grouped[t] = [];
+      grouped[t].push(c);
+    });
+    const typeOrder = ['Instant', 'Sorcery', 'Creature', 'Artifact', 'Other'];
+
+    const hierarchy = {
+      name: 'root',
+      children: typeOrder
+        .filter((type) => grouped[type] && grouped[type].length)
+        .map((type) => ({
+          name: type,
+          children: grouped[type].slice().sort((a, b) => Number(b.copies || 0) - Number(a.copies || 0))
+        }))
+    };
+
+    const root = d3.hierarchy(hierarchy).sum((d) => d.copies || 0);
+
+    d3.treemap()
+      .size([width, height])
+      .paddingOuter(6)
+      .paddingTop(22)
+      .paddingInner(3)
+      .round(true)(root);
+
+    const svg = d3.select('#chart').append('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMinYMin meet')
+      .attr('width', '100%')
+      .attr('height', height);
+    const tooltip = d3.select('#tooltip');
+
+    const typeGroups = svg.selectAll('.group')
+      .data(root.children)
+      .join('g')
+      .attr('class', 'group');
+
+    typeGroups.append('rect')
+      .attr('x', (d) => d.x0)
+      .attr('y', (d) => d.y0)
+      .attr('width', (d) => d.x1 - d.x0)
+      .attr('height', (d) => d.y1 - d.y0)
+      .attr('fill', 'none')
+      .attr('stroke', '#ccc')
+      .attr('stroke-width', 1)
+      .attr('rx', 5);
+
+    typeGroups.append('text')
+      .attr('x', (d) => d.x0 + 6)
+      .attr('y', (d) => d.y0 + 15)
+      .text((d) => d.data.name)
+      .attr('fill', '#888')
+      .attr('font-size', '11px')
+      .attr('font-weight', 600)
+      .style('letter-spacing', '0.5px');
+
+    const leaf = svg.selectAll('.tile')
+      .data(root.leaves())
+      .join('g')
+      .attr('class', 'tile')
+      .attr('transform', (d) => `translate(${d.x0},${d.y0})`);
+
+    function wrapName(name, maxChars, maxLines) {
+      const words = String(name || '').split(/\s+/).filter(Boolean);
+      const lines = [];
+      let line = '';
+      words.forEach((word) => {
+        const next = line ? (line + ' ' + word) : word;
+        if (next.length <= maxChars || line.length === 0) {
+          line = next;
+        } else {
+          lines.push(line);
+          line = word;
+        }
+      });
+      if (line) lines.push(line);
+      if (lines.length <= maxLines) return lines;
+      const clipped = lines.slice(0, maxLines);
+      let last = clipped[maxLines - 1];
+      if (last.length > maxChars - 1) last = last.slice(0, maxChars - 1);
+      clipped[maxLines - 1] = last.replace(/\s+$/g, '') + '...';
+      return clipped;
+    }
+
+    leaf.append('rect')
+      .attr('width', (d) => d.x1 - d.x0)
+      .attr('height', (d) => d.y1 - d.y0)
+      .attr('rx', 3)
+      .attr('fill', (d) => getColor(d.data.colors))
+      .attr('opacity', 0.88)
+      .on('mouseover', (e, d) => {
+        tooltip.style('opacity', 1).html(
+          `<b>${d.data.name}</b><br>
+           <span class="stat">${d.data.type}</span><br>
+           <b>${d.data.copies}</b> copies across <b>${d.data.decks}</b> decks<br>
+           <span class="stat">In ${d.data.pct}% of Day 2 lists</span>`
+        );
+      })
+      .on('mousemove', (e) => {
+        tooltip.style('left', (e.pageX + 12) + 'px').style('top', (e.pageY - 10) + 'px');
+      })
+      .on('mouseout', () => tooltip.style('opacity', 0))
+      .on('click', (e, d) => {
+        const archetypes = cardArchetypes[d.data.name] || [];
+        openPanel(d.data, archetypes);
+      });
+
+    leaf.append('text')
+      .attr('x', 4)
+      .attr('y', 13)
+      .attr('fill', '#fff')
+      .attr('font-size', (d) => {
+        const w = d.x1 - d.x0;
+        const h = d.y1 - d.y0;
+        if (w > 150 && h > 60) return '12px';
+        if (w > 100 && h > 40) return '10px';
+        return '9px';
+      })
+      .attr('font-weight', 600)
+      .each(function(d) {
+        const w = d.x1 - d.x0;
+        const h = d.y1 - d.y0;
+        if (w < 50 || h < 24) return;
+        const maxChars = w > 170 ? 19 : (w > 120 ? 14 : (w > 90 ? 11 : 8));
+        const maxLines = h > 65 ? 3 : (h > 42 ? 2 : 1);
+        const lines = wrapName(d.data.name, maxChars, maxLines);
+        d._labelLines = lines.length;
+        const t = d3.select(this);
+        lines.forEach((line, i) => {
+          t.append('tspan')
+            .attr('x', 4)
+            .attr('dy', i === 0 ? 0 : 11)
+            .text(line);
+        });
+      });
+
+    leaf.append('text')
+      .attr('x', 4)
+      .attr('y', (d) => {
+        const w = d.x1 - d.x0;
+        const h = d.y1 - d.y0;
+        const lines = d._labelLines || 1;
+        const yLabel = 14 + lines * 11;
+        const yBottom = h - 4;
+        if (w >= 36 && h >= 24 && (yBottom - yLabel) >= 8) return yBottom;
+        return yLabel;
+      })
+      .attr('fill', '#fff')
+      .attr('font-size', (d) => ((d.x1 - d.x0) < 62 ? '8px' : '9px'))
+      .attr('opacity', 0.9)
+      .text((d) => {
+        const w = d.x1 - d.x0;
+        const h = d.y1 - d.y0;
+        const lines = d._labelLines || 1;
+        const yLabel = 14 + lines * 11;
+        const yBottom = h - 4;
+        if (w < 36 || h < 24) return '';
+        if (yLabel > h - 4) return '';
+        return String(d.data.copies) + (w >= 62 ? ' copies' : '');
+      });
+  } catch (err) {
+    chart.innerHTML = '<div class="error">Failed to load treemap data: ' + String(err.message || err) + '</div>';
+  }
+})();
+</script>
+</body>
+</html>

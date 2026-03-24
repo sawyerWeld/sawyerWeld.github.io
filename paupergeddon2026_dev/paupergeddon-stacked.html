@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paupergeddon - Meta Stacked</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+if (window.location.protocol === 'file:') {
+  document.write('<script src="paupergeddon-data.bundle.js?v=20260324d"><\\/script>');
+}
+</script>
+<script src="paupergeddon-data-access.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f1f1f1; color: #1a1a1a; font-family: 'Space Grotesk', sans-serif; padding: 40px 20px; }
+  #chart { max-width: 900px; margin: 0 auto; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 16px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.8em; color: #555; font-weight: 500; }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 2px; }
+  .area-tooltip {
+    position: absolute; background: #fff; border: 1px solid #ddd; border-radius: 8px;
+    padding: 8px 12px; font-size: 0.85em; pointer-events: none; opacity: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-family: 'Space Grotesk', sans-serif;
+  }
+  .error { max-width: 900px; margin: 0 auto; color: #b00020; font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="chart"></div>
+<div class="legend" id="legend"></div>
+<div class="area-tooltip" id="area-tooltip"></div>
+
+<script>
+const STAGES = ['d1', 'd2', 't64', 't32', 't16', 't8', 't1'];
+const STAGE_LABELS = ['Day 1', 'Day 2', 'Top 64', 'Top 32', 'Top 16', 'Top 8', 'Winner'];
+
+function colorForDeck(name, deckColors, pipColorMap) {
+  if (name === 'Others') return '#95a5a6';
+  const colors = deckColors[name] || [];
+  if (colors.length === 1) return pipColorMap[colors[0]] || '#888';
+  if (colors.length > 1) return '#b8860b';
+  return '#888';
+}
+
+(async function init() {
+  const chart = d3.select('#chart');
+  const legend = d3.select('#legend');
+  const tooltip = d3.select('#area-tooltip');
+  const loadData = window.__pgLoadData || (async function(name, path) {
+    if (window.__PG_DATA && Object.prototype.hasOwnProperty.call(window.__PG_DATA, name)) {
+      return window.__PG_DATA[name];
+    }
+    const resp = await fetch(path);
+    if (!resp.ok) throw new Error('Failed to load ' + path + ' (' + resp.status + ')');
+    return resp.json();
+  });
+
+  try {
+    const [slopeData, meta] = await Promise.all([
+      loadData('slopeData', 'paupergeddon-slope-data.json'),
+      loadData('meta', 'paupergeddon-meta.json')
+    ]);
+
+    const deckColors = meta.deckColors || {};
+    const pipColorMap = meta.pipColorMap || {};
+
+    const topDecks = [...slopeData]
+      .sort((a, b) => Number(b.d1 || 0) - Number(a.d1 || 0))
+      .slice(0, 12)
+      .map((d) => d.name);
+
+    const series = topDecks.map((name) => {
+      const row = slopeData.find((d) => d.name === name) || {};
+      return {
+        name,
+        values: STAGES.map((s) => Number(row[s] || 0))
+      };
+    });
+
+    const others = STAGES.map((stage, i) => {
+      const used = series.reduce((sum, s) => sum + Number(s.values[i] || 0), 0);
+      return Math.max(0, 100 - used);
+    });
+    series.push({ name: 'Others', values: others });
+
+    const margin = { top: 20, right: 30, bottom: 50, left: 50 };
+    const width = Math.min(880, window.innerWidth - 40) - margin.left - margin.right;
+    const height = 450 - margin.top - margin.bottom;
+
+    const svg = chart.append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    const x = d3.scalePoint().domain([0, 1, 2, 3, 4, 5, 6]).range([0, width]);
+    const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
+
+    const keys = series.map((s) => s.name);
+    const stackData = STAGES.map((_, ci) => {
+      const obj = { col: ci };
+      series.forEach((s) => { obj[s.name] = s.values[ci]; });
+      return obj;
+    });
+
+    const stack = d3.stack().keys(keys).order(d3.stackOrderReverse);
+    const stacked = stack(stackData);
+
+    const area = d3.area()
+      .x((d) => x(d.data.col))
+      .y0((d) => y(d[0]))
+      .y1((d) => y(d[1]))
+      .curve(d3.curveLinear);
+
+    svg.selectAll('.area')
+      .data(stacked)
+      .join('path')
+      .attr('class', 'area')
+      .attr('d', area)
+      .attr('fill', (d) => colorForDeck(d.key, deckColors, pipColorMap))
+      .attr('opacity', 0.85)
+      .attr('stroke', '#f1f1f1')
+      .attr('stroke-width', 1)
+      .style('cursor', 'pointer')
+      .on('mouseover', function(event) {
+        d3.select(this).attr('opacity', 1).attr('stroke-width', 2);
+        tooltip.style('opacity', 1);
+      })
+      .on('mousemove', function(event, d) {
+        const pointer = d3.pointer(event);
+        let ci = 0;
+        let minDist = Infinity;
+        [0, 1, 2, 3, 4, 5, 6].forEach((i) => {
+          const dist = Math.abs(x(i) - pointer[0]);
+          if (dist < minDist) {
+            minDist = dist;
+            ci = i;
+          }
+        });
+        const val = Number(d[ci].data[d.key] || 0);
+        tooltip.html('<b>' + d.key + '</b><br>' + val.toFixed(1) + '%')
+          .style('left', (event.pageX + 12) + 'px')
+          .style('top', (event.pageY - 10) + 'px');
+      })
+      .on('mouseout', function() {
+        d3.select(this).attr('opacity', 0.85).attr('stroke-width', 1);
+        tooltip.style('opacity', 0);
+      });
+
+    svg.append('g')
+      .attr('transform', 'translate(0,' + height + ')')
+      .call(d3.axisBottom(x).tickFormat((i) => STAGE_LABELS[i]))
+      .selectAll('text').style('font-family', 'Space Grotesk').style('font-size', '12px').style('font-weight', 500);
+
+    svg.selectAll('.domain, .tick line').attr('stroke', '#ccc');
+
+    svg.append('g')
+      .call(d3.axisLeft(y).tickFormat((d) => d + '%').ticks(5))
+      .selectAll('text').style('font-family', 'Space Grotesk').style('font-size', '11px').style('fill', '#888');
+
+    svg.selectAll('.domain').remove();
+    svg.selectAll('.tick line').attr('stroke', '#ddd').attr('x2', width).attr('opacity', 0.5);
+
+    [...keys].reverse().forEach((name) => {
+      const item = legend.append('div').attr('class', 'legend-item');
+      item.append('div').attr('class', 'legend-swatch').style('background', colorForDeck(name, deckColors, pipColorMap));
+      item.append('span').text(name);
+    });
+  } catch (err) {
+    chart.append('div').attr('class', 'error').text('Failed to load stacked data: ' + String(err.message || err));
+  }
+})();
+</script>
+</body>
+</html>

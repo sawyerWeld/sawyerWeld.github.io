@@ -1,0 +1,355 @@
+{
+  "groups": {
+    "Aggro": [
+      {
+        "name": "Mono Red Madness",
+        "colors": [
+          "R"
+        ]
+      },
+      {
+        "name": "Grixis Affinity",
+        "colors": [
+          "U",
+          "B",
+          "R"
+        ]
+      },
+      {
+        "name": "Mono Red Rally",
+        "colors": [
+          "R"
+        ]
+      },
+      {
+        "name": "Rakdos Burn",
+        "colors": [
+          "B",
+          "R"
+        ]
+      },
+      {
+        "name": "White weenie",
+        "colors": [
+          "W"
+        ]
+      },
+      {
+        "name": "Bogles",
+        "colors": [
+          "W",
+          "G"
+        ]
+      },
+      {
+        "name": "Mono White Heroic",
+        "colors": [
+          "W"
+        ]
+      }
+    ],
+    "Tempo": [
+      {
+        "name": "Dimir Terror",
+        "colors": [
+          "U",
+          "B"
+        ]
+      },
+      {
+        "name": "Mono Blue Terror",
+        "colors": [
+          "U"
+        ]
+      },
+      {
+        "name": "Mono Blue Faeries",
+        "colors": [
+          "U"
+        ]
+      },
+      {
+        "name": "Dimir Faeries",
+        "colors": [
+          "U",
+          "B"
+        ]
+      }
+    ],
+    "Combo": [
+      {
+        "name": "Elves",
+        "colors": [
+          "G"
+        ]
+      },
+      {
+        "name": "Spy Combo",
+        "colors": [
+          "B",
+          "G"
+        ]
+      },
+      {
+        "name": "Gardens",
+        "colors": [
+          "B",
+          "G"
+        ]
+      },
+      {
+        "name": "Gruul Storm",
+        "colors": [
+          "R",
+          "G"
+        ]
+      },
+      {
+        "name": "Jund Gardens",
+        "colors": [
+          "B",
+          "R",
+          "G"
+        ]
+      },
+      {
+        "name": "Cycling Storm",
+        "colors": [
+          "B",
+          "R"
+        ]
+      }
+    ],
+    "Control": [
+      {
+        "name": "Jund Wildfire",
+        "colors": [
+          "B",
+          "R",
+          "G"
+        ]
+      },
+      {
+        "name": "Azorius Familiars",
+        "colors": [
+          "W",
+          "U"
+        ]
+      },
+      {
+        "name": "Altar Tron",
+        "colors": [
+          "C"
+        ]
+      },
+      {
+        "name": "Gruul Ponza",
+        "colors": [
+          "R",
+          "G"
+        ]
+      }
+    ],
+    "Midrange": [
+      {
+        "name": "Cawgate",
+        "colors": [
+          "W",
+          "U"
+        ]
+      },
+      {
+        "name": "Gruul Monsters",
+        "colors": [
+          "R",
+          "G"
+        ]
+      }
+    ],
+    "Other": [
+      {
+        "name": "Esper Affinity",
+        "colors": [
+          "W",
+          "U",
+          "B"
+        ]
+      },
+      {
+        "name": "Orzhov Blade",
+        "colors": [
+          "W",
+          "B"
+        ]
+      },
+      {
+        "name": "Dimir Control",
+        "colors": [
+          "U",
+          "B"
+        ]
+      },
+      {
+        "name": "Mono Black Sacrifice",
+        "colors": [
+          "B"
+        ]
+      },
+      {
+        "name": "Black Turbofog",
+        "colors": [
+          "B"
+        ]
+      },
+      {
+        "name": "Boros Bully",
+        "colors": [
+          "W",
+          "R"
+        ]
+      },
+      {
+        "name": "Other Gates",
+        "colors": [
+          "W",
+          "U"
+        ]
+      },
+      {
+        "name": "Monster Tron",
+        "colors": [
+          "U",
+          "G"
+        ]
+      },
+      {
+        "name": "Walls",
+        "colors": [
+          "G"
+        ]
+      },
+      {
+        "name": "Others",
+        "colors": [
+          "C"
+        ]
+      }
+    ]
+  },
+  "deckColors": {
+    "Mono Red Madness": [
+      "R"
+    ],
+    "Grixis Affinity": [
+      "U",
+      "B",
+      "R"
+    ],
+    "Elves": [
+      "G"
+    ],
+    "Mono Blue Terror": [
+      "U"
+    ],
+    "Jund Wildfire": [
+      "B",
+      "R",
+      "G"
+    ],
+    "Spy Combo": [
+      "B",
+      "G"
+    ],
+    "Cawgate": [
+      "W",
+      "U"
+    ],
+    "Gruul Monsters": [
+      "R",
+      "G"
+    ],
+    "White Weenie": [
+      "W"
+    ],
+    "Azorius Familiars": [
+      "W",
+      "U"
+    ],
+    "Mono Red Rally": [
+      "R"
+    ],
+    "Gardens": [
+      "B",
+      "G"
+    ],
+    "Dimir Terror": [
+      "U",
+      "B"
+    ],
+    "Mono Blue Faeries": [
+      "U"
+    ],
+    "Dimir Faeries": [
+      "U",
+      "B"
+    ],
+    "Bogles": [
+      "W",
+      "G"
+    ],
+    "Esper Affinity": [
+      "W",
+      "U",
+      "B"
+    ],
+    "Altar Tron": [
+      "C"
+    ],
+    "Rakdos Burn": [
+      "B",
+      "R"
+    ],
+    "Gruul Storm": [
+      "R",
+      "G"
+    ],
+    "Gruul Ponza": [
+      "R",
+      "G"
+    ],
+    "Pizza Combo": [
+      "U",
+      "G"
+    ],
+    "Mono Black Sacrifice": [
+      "B"
+    ],
+    "Black Turbofog": [
+      "B"
+    ],
+    "Walls": [
+      "G"
+    ]
+  },
+  "pipColorMap": {
+    "W": "#d4a017",
+    "U": "#2980b9",
+    "B": "#7b5ea7",
+    "R": "#c0392b",
+    "G": "#27ae60",
+    "C": "#95a5a6"
+  },
+  "stageColumns": [
+    "d1",
+    "d2",
+    "t64",
+    "t32"
+  ],
+  "stageColumnLabels": [
+    "Day 1",
+    "Day 2",
+    "Top 64",
+    "Top 32"
+  ],
+  "defaultStage": "day2"
+}

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paupergeddon Spring 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+if (window.location.protocol === 'file:') {
+  document.write('<script src="paupergeddon-data.bundle.js?v=20260324d"><\\/script>');
+}
+</script>
+<script src="paupergeddon-data-access.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f1f1f1; color: #1a1a1a; font-family: 'Manrope', sans-serif; }
+  .page-header { text-align: center; padding: 60px 20px 40px; }
+  .page-header h1 { font-size: 2.4em; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .page-header .byline { font-size: 0.95em; color: #888; }
+  .section { max-width: 1100px; margin: 0 auto; padding: 28px 20px 30px; }
+  .section-head { margin-bottom: 12px; }
+  .section-head h2 { font-size: 1.3em; font-weight: 700; margin-bottom: 6px; }
+  .section-head p { margin-top: 4px; color: #888; font-size: 0.9em; }
+  .section-head-split {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .stage-host {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  .stage-host-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #555;
+    line-height: 1;
+  }
+  .stage-host-btn .count { font-size: 0.75rem; color: #999; margin-left: 6px; }
+  .stage-host-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .stage-host-btn.active .count { color: #bbb; }
+  .divider { max-width: 1100px; margin: 0 auto; border: none; border-top: 1px solid #ddd; }
+  iframe {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+  #frame-slope { height: 560px; }
+  #frame-explorer { height: 700px; }
+
+  #treemap-chart-shell {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+  }
+  #treemap-chart { width: 100%; }
+
+  .tm-tooltip {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    max-width: 240px;
+    z-index: 140;
+  }
+  .tm-tooltip .stat { color: #777; font-size: 0.9em; }
+
+  #tm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(52, 122, 204, 0.16);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+    z-index: 120;
+  }
+  #tm-detail-panel {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.96);
+    width: min(560px, 92vw);
+    max-height: 80vh;
+    overflow: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.2);
+    border: 1px solid #e7e7e7;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s, transform 0.15s;
+    z-index: 130;
+  }
+  .tm-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #efefef;
+    color: #444;
+    border-radius: 8px;
+    padding: 4px 9px;
+    font-size: 0.78rem;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .tm-bar-row { margin: 8px 0; }
+  .tm-bar-head { display: flex; justify-content: space-between; gap: 12px; font-size: 0.86rem; }
+  .tm-bar-bg { margin-top: 4px; height: 8px; border-radius: 999px; overflow: hidden; background: #ececec; }
+  .tm-bar-fill { height: 100%; border-radius: 999px; background: #1a1a1a; }
+
+  @media (max-width: 900px) {
+    .page-header { padding: 44px 16px 28px; }
+    .page-header h1 { font-size: 2em; }
+    .section-head-split { align-items: flex-start; flex-direction: column; }
+    .stage-host { justify-content: flex-start; }
+    #frame-slope { height: 520px; }
+    #frame-explorer { height: 640px; }
+  }
+</style>
+</head>
+<body>
+  <div class="page-header">
+    <h1>Paupergeddon Spring 2026</h1>
+    <div class="byline">965 Players &middot; Luca, Italia &middot; <a href="https://paupergeddon.com/#event" target="_blank" rel="noopener noreferrer">Paupergeddon</a><br>Made By <a href="https://sawyerwelden.com" target="_blank" rel="noopener noreferrer">Sawyer Welden</a></div>
+  </div>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>The Funnel</h2>
+      <p>How archetype representation shifts from Day 1 through Top 32.</p>
+    </div>
+    <iframe id="frame-slope" src="paupergeddon-slope.html?v=20260324k&embed=1" loading="lazy" title="Paupergeddon Funnel"></iframe>
+  </section>
+
+  <hr class="divider">
+  <section class="section">
+    <div class="section-head section-head-split">
+      <div>
+        <h2>Archetype Explorer</h2>
+        <p>Card-by-card consensus by tournament stage.</p>
+      </div>
+      <div id="explorer-stage-host" class="stage-host" aria-label="Archetype Explorer stage selector"></div>
+    </div>
+    <iframe id="frame-explorer" src="paupergeddon-explorer.html?v=20260324m&embed=1" loading="lazy" title="Paupergeddon Explorer"></iframe>
+  </section>
+
+  <hr class="divider">
+  <section class="section">
+    <div class="section-head">
+      <h2>Most Played Cards</h2>
+      <p>Top Day 2 card usage by type with archetype breakdown on click.</p>
+    </div>
+    <div id="treemap-chart-shell">
+      <div id="treemap-chart"></div>
+    </div>
+  </section>
+
+  <div class="tm-tooltip" id="tm-tooltip"></div>
+  <div id="tm-overlay"></div>
+  <div id="tm-detail-panel"></div>
+
+<script>
+(function() {
+  const DATA_VER = '20260324j';
+  const loadData = window.__pgLoadData || (async function(name, path) {
+    if (window.__PG_DATA && Object.prototype.hasOwnProperty.call(window.__PG_DATA, name)) {
+      return window.__PG_DATA[name];
+    }
+    const resp = await fetch(path);
+    if (!resp.ok) throw new Error('Failed to load ' + path + ' (' + resp.status + ')');
+    return resp.json();
+  });
+
+  function getColor(colors) {
+    const colorMap = { R: '#c0392b', U: '#2980b9', B: '#7b5ea7', G: '#27ae60', W: '#d4a017' };
+    if (!colors || colors.length === 0) return '#95a5a6';
+    if (colors.length > 1) return '#b8860b';
+    return colorMap[colors[0]] || '#95a5a6';
+  }
+
+  function bucketType(rawType) {
+    const t = String(rawType || '').toLowerCase();
+    if (t.includes('creature')) return 'Creature';
+    if (t.includes('instant')) return 'Instant';
+    if (t.includes('sorcery')) return 'Sorcery';
+    if (t.includes('artifact')) return 'Artifact';
+    return 'Other';
+  }
+
+  function closePanel() {
+    const panel = document.getElementById('tm-detail-panel');
+    const overlay = document.getElementById('tm-overlay');
+    panel.style.opacity = '0';
+    panel.style.pointerEvents = 'none';
+    panel.style.transform = 'translate(-50%, -50%) scale(0.96)';
+    overlay.style.opacity = '0';
+    overlay.style.pointerEvents = 'none';
+  }
+
+  function pctValue(pct) {
+    const v = parseFloat(String(pct == null ? '' : pct).replace('%', ''));
+    return Number.isFinite(v) ? v : 0;
+  }
+
+  function pctColor(pct) {
+    const v = pctValue(pct);
+    if (v >= 80) return '#27ae60';
+    if (v >= 50) return '#d4a017';
+    return '#c0392b';
+  }
+
+  function openPanel(card, archetypes) {
+    const panel = document.getElementById('tm-detail-panel');
+    const overlay = document.getElementById('tm-overlay');
+
+    const chips = [
+      '<span class="tm-chip">' + (card.type || 'Unknown') + '</span>',
+      '<span class="tm-chip">' + card.copies + ' copies</span>',
+      '<span class="tm-chip">' + card.decks + ' decks</span>',
+      '<span class="tm-chip">' + card.pct + '% of Day 2</span>'
+    ].join('');
+
+    const bars = archetypes
+      .slice()
+      .sort((a, b) => Number(b.copies || 0) - Number(a.copies || 0))
+      .map((a) => {
+        const pct = pctValue(a.pct);
+        const pctText = String(a.pct).trim().endsWith('%') ? String(a.pct).trim() : (Math.round(pct) + '%');
+        const w = Math.min(100, Math.max(3, pct));
+        const c = pctColor(pct);
+        return '<div class="tm-bar-row">'
+          + '<div class="tm-bar-head"><span>' + a.archetype + '</span><span>' + a.copies + ' in ' + a.decks + '/' + a.total + ' decks · <span style="color:' + c + ';font-weight:600">' + pctText + '</span></span></div>'
+          + '<div class="tm-bar-bg"><div class="tm-bar-fill" style="width:' + w + '%;background:' + c + '"></div></div>'
+          + '</div>';
+      })
+      .join('');
+
+    panel.innerHTML = ''
+      + '<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">'
+      + '<div><h2 style="font-size:1.25rem;line-height:1.25">' + card.name + '</h2><div style="margin-top:8px">' + chips + '</div></div>'
+      + '<button id="tm-close" style="border:0;background:transparent;font-size:1.6rem;line-height:1;cursor:pointer;color:#888">&times;</button>'
+      + '</div>'
+      + '<div style="margin-top:12px">'
+      + '<h3 style="font-size:0.9rem;color:#666;margin-bottom:8px">Archetype breakdown</h3>'
+      + (bars || '<div style="color:#888">No archetype breakdown available.</div>')
+      + '</div>';
+
+    document.getElementById('tm-close').addEventListener('click', closePanel);
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
+    panel.style.opacity = '1';
+    panel.style.pointerEvents = 'auto';
+    panel.style.transform = 'translate(-50%, -50%) scale(1)';
+  }
+
+  function wrapName(name, maxChars, maxLines) {
+    const words = String(name || '').split(/\s+/).filter(Boolean);
+    const lines = [];
+    let line = '';
+    words.forEach((word) => {
+      const next = line ? (line + ' ' + word) : word;
+      if (next.length <= maxChars || line.length === 0) {
+        line = next;
+      } else {
+        lines.push(line);
+        line = word;
+      }
+    });
+    if (line) lines.push(line);
+    if (lines.length <= maxLines) return lines;
+    const clipped = lines.slice(0, maxLines);
+    let last = clipped[maxLines - 1];
+    if (last.length > maxChars - 1) last = last.slice(0, maxChars - 1);
+    clipped[maxLines - 1] = last.replace(/\s+$/g, '') + '...';
+    return clipped;
+  }
+
+  function initExplorerStageBridge() {
+    const frame = document.getElementById('frame-explorer');
+    const host = document.getElementById('explorer-stage-host');
+    if (!frame || !host) return;
+
+    function renderHostButtons(stages, currentStage) {
+      host.innerHTML = '';
+      stages.forEach((s) => {
+        const btn = document.createElement('button');
+        btn.className = 'stage-host-btn' + (s.key === currentStage ? ' active' : '');
+        btn.innerHTML = s.label + '<span class="count">(' + s.count + ')</span>';
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('active')) return;
+          frame.contentWindow?.postMessage({ type: 'pg-set-stage', stage: s.key }, '*');
+        });
+        host.appendChild(btn);
+      });
+    }
+
+    window.addEventListener('message', (event) => {
+      if (event.source !== frame.contentWindow) return;
+      const msg = event.data || {};
+      if (!msg || msg.type !== 'pg-explorer-stages' || !Array.isArray(msg.stages)) return;
+      renderHostButtons(msg.stages, msg.currentStage);
+    });
+
+    frame.addEventListener('load', () => {
+      frame.contentWindow?.postMessage({ type: 'pg-request-stages' }, '*');
+    });
+  }
+
+  function initFrameAutoHeight() {
+    const frames = {
+      slope: document.getElementById('frame-slope'),
+      explorer: document.getElementById('frame-explorer')
+    };
+
+    function minFor(name) {
+      return name === 'slope' ? 420 : 420;
+    }
+
+    function applyHeight(frame, name, rawHeight) {
+      const h = Number(rawHeight || 0);
+      if (!Number.isFinite(h) || h <= 0) return;
+      frame.style.height = Math.max(minFor(name), Math.ceil(h)) + 'px';
+    }
+
+    window.addEventListener('message', (event) => {
+      const msg = event.data || {};
+      if (!msg || msg.type !== 'pg-frame-height') return;
+      const name = msg.frame;
+      const frame = frames[name];
+      if (!frame || event.source !== frame.contentWindow) return;
+      applyHeight(frame, name, msg.height);
+    });
+
+    Object.entries(frames).forEach(([name, frame]) => {
+      if (!frame) return;
+      frame.addEventListener('load', () => {
+        try {
+          const doc = frame.contentDocument;
+          const h = Math.max(
+            doc?.documentElement?.scrollHeight || 0,
+            doc?.body?.scrollHeight || 0
+          );
+          applyHeight(frame, name, h);
+        } catch (_) {}
+        frame.contentWindow?.postMessage({ type: 'pg-request-height' }, '*');
+      });
+    });
+  }
+
+  async function initTreemap() {
+    const chartHost = document.getElementById('treemap-chart');
+    const overlay = document.getElementById('tm-overlay');
+    const panel = document.getElementById('tm-detail-panel');
+    const tooltip = d3.select('#tm-tooltip');
+
+    try {
+      const [cards, cardArchetypes] = await Promise.all([
+        loadData('cards', 'paupergeddon-cards.json?v=' + DATA_VER),
+        loadData('cardArchetypes', 'paupergeddon-card-archetypes.json?v=' + DATA_VER)
+      ]);
+
+      const width = Math.min(1000, window.innerWidth - 80);
+      const height = 600;
+
+      const grouped = {};
+      cards.forEach((c) => {
+        const t = bucketType(c.type);
+        if (!grouped[t]) grouped[t] = [];
+        grouped[t].push(c);
+      });
+      const typeOrder = ['Instant', 'Sorcery', 'Creature', 'Artifact', 'Other'];
+
+      const hierarchy = {
+        name: 'root',
+        children: typeOrder
+          .filter((type) => grouped[type] && grouped[type].length)
+          .map((type) => ({
+            name: type,
+            children: grouped[type].slice().sort((a, b) => Number(b.copies || 0) - Number(a.copies || 0))
+          }))
+      };
+
+      const root = d3.hierarchy(hierarchy).sum((d) => Number(d.copies || 0));
+
+      d3.treemap()
+        .size([width, height])
+        .paddingOuter(6)
+        .paddingTop(22)
+        .paddingInner(3)
+        .round(true)(root);
+
+      const svg = d3.select('#treemap-chart').append('svg')
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .attr('width', '100%')
+        .attr('height', height)
+        .style('display', 'block');
+
+      const typeGroups = svg.selectAll('.group')
+        .data(root.children)
+        .join('g')
+        .attr('class', 'group');
+
+      typeGroups.append('text')
+        .attr('x', (d) => d.x0 + 6)
+        .attr('y', (d) => d.y0 + 15)
+        .text((d) => d.data.name)
+        .attr('fill', '#888')
+        .attr('font-size', '11px')
+        .attr('font-weight', 600)
+        .style('letter-spacing', '0.5px');
+
+      const leaf = svg.selectAll('.tile')
+        .data(root.leaves())
+        .join('g')
+        .attr('class', 'tile')
+        .attr('transform', (d) => 'translate(' + d.x0 + ',' + d.y0 + ')');
+
+      leaf.append('rect')
+        .attr('width', (d) => d.x1 - d.x0)
+        .attr('height', (d) => d.y1 - d.y0)
+        .attr('rx', 3)
+        .attr('fill', (d) => getColor(d.data.colors))
+        .attr('opacity', 0.88)
+        .on('mouseover', (e, d) => {
+          tooltip.style('opacity', 1).html(
+            '<b>' + d.data.name + '</b><br>'
+            + '<span class="stat">' + d.data.type + '</span><br>'
+            + '<b>' + d.data.copies + '</b> copies across <b>' + d.data.decks + '</b> decks<br>'
+            + '<span class="stat">In ' + d.data.pct + '% of Day 2 lists</span>'
+          );
+        })
+        .on('mousemove', (e) => {
+          tooltip.style('left', (e.pageX + 12) + 'px').style('top', (e.pageY - 10) + 'px');
+        })
+        .on('mouseout', () => tooltip.style('opacity', 0))
+        .on('click', (e, d) => {
+          const archetypes = cardArchetypes[d.data.name] || [];
+          openPanel(d.data, archetypes);
+        });
+
+      leaf.append('text')
+        .attr('x', 4)
+        .attr('y', 13)
+        .attr('fill', '#fff')
+        .attr('font-size', (d) => {
+          const w = d.x1 - d.x0;
+          const h = d.y1 - d.y0;
+          if (w > 150 && h > 60) return '12px';
+          if (w > 100 && h > 40) return '10px';
+          return '9px';
+        })
+        .attr('font-weight', 600)
+        .each(function(d) {
+          const w = d.x1 - d.x0;
+          const h = d.y1 - d.y0;
+          if (w < 50 || h < 24) return;
+          const maxChars = w > 170 ? 19 : (w > 120 ? 14 : (w > 90 ? 11 : 8));
+          const maxLines = h > 65 ? 3 : (h > 42 ? 2 : 1);
+          const lines = wrapName(d.data.name, maxChars, maxLines);
+          d._labelLines = lines.length;
+          const t = d3.select(this);
+          lines.forEach((line, i) => {
+            t.append('tspan')
+              .attr('x', 4)
+              .attr('dy', i === 0 ? 0 : 11)
+              .text(line);
+          });
+        });
+
+      leaf.append('text')
+        .attr('x', 4)
+        .attr('y', (d) => {
+          const w = d.x1 - d.x0;
+          const h = d.y1 - d.y0;
+          const lines = d._labelLines || 1;
+          const yLabel = 14 + lines * 11;
+          const yBottom = h - 4;
+          if (w >= 36 && h >= 24 && (yBottom - yLabel) >= 8) return yBottom;
+          return yLabel;
+        })
+        .attr('fill', '#fff')
+        .attr('font-size', (d) => ((d.x1 - d.x0) < 62 ? '8px' : '9px'))
+        .attr('opacity', 0.9)
+        .text((d) => {
+          const w = d.x1 - d.x0;
+          const h = d.y1 - d.y0;
+          const lines = d._labelLines || 1;
+          const yLabel = 14 + lines * 11;
+          const yBottom = h - 4;
+          if (w < 36 || h < 24) return '';
+          if (yLabel > h - 4) return '';
+          return String(d.data.copies) + (w >= 62 ? ' copies' : '');
+        });
+
+      overlay.addEventListener('click', closePanel);
+      panel.addEventListener('click', (e) => e.stopPropagation());
+      chartHost.addEventListener('click', function(e) {
+        if (e.target === chartHost) closePanel();
+      });
+    } catch (err) {
+      chartHost.innerHTML = '<div style="color:#b00020;font-weight:600">Failed to load treemap data: ' + String(err.message || err) + '</div>';
+    }
+  }
+
+  initExplorerStageBridge();
+  initFrameAutoHeight();
+  initTreemap();
+})();
+</script>
+</body>
+</html>

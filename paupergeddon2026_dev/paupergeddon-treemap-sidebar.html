@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paupergeddon - Most Played Cards (Sidebar)</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+if (window.location.protocol === 'file:') {
+  document.write('<script src="paupergeddon-data.bundle.js?v=20260324d"><\\/script>');
+}
+</script>
+<script src="paupergeddon-data-access.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f1f1f1; color: #1a1a1a; font-family: 'Space Grotesk', sans-serif; padding: 40px 20px; }
+  h1 { text-align: center; font-size: 2em; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; letter-spacing: -0.5px; }
+  .subtitle { text-align: center; color: #777; margin-bottom: 24px; font-size: 0.95em; font-weight: 400; }
+  #chart { width: 100%; max-width: 1000px; margin: 0 auto; }
+  .legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.85em; color: #555; font-weight: 500; }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 2px; }
+  .tile text { pointer-events: none; }
+  .tile rect { transition: opacity 0.15s; cursor: pointer; }
+  .tile:hover rect { opacity: 0.85; }
+  .tooltip {
+    position: absolute; background: #fff; border: 1px solid #ddd; border-radius: 8px;
+    padding: 10px 14px; font-size: 0.85em; pointer-events: none; opacity: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); line-height: 1.5; max-width: 220px;
+  }
+  .tooltip b { font-weight: 600; }
+  .tooltip .stat { color: #777; font-size: 0.9em; }
+
+  #detail-panel {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 360px;
+    height: 100vh;
+    background: #fff;
+    border-left: 1px solid #ddd;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+    padding: 24px;
+    overflow-y: auto;
+    transition: right 0.25s ease;
+    z-index: 100;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  #overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.24);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 90;
+  }
+  .error { max-width: 1000px; margin: 0 auto; color: #b00020; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>Paupergeddon Spring 2026</h1>
+<div class="subtitle">Most played nonland cards across Day 2 decklists - sized by copies, colored by mana</div>
+<div id="chart"></div>
+<div class="legend">
+  <div class="legend-item"><div class="legend-swatch" style="background:#c0392b"></div>Red</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#2980b9"></div>Blue</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#7b5ea7"></div>Black</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#27ae60"></div>Green</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#d4a017"></div>White</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#95a5a6"></div>Colorless</div>
+</div>
+<div class="tooltip" id="tooltip"></div>
+<div id="overlay"></div>
+<div id="detail-panel"></div>
+
+<script>
+const colorMap = {
+  R: '#c0392b', U: '#2980b9', B: '#7b5ea7',
+  G: '#27ae60', W: '#d4a017', '': '#95a5a6'
+};
+
+function getColor(colors) {
+  if (!colors || colors.length === 0) return '#95a5a6';
+  if (colors.length > 1) return '#b8860b';
+  return colorMap[colors[0]] || '#95a5a6';
+}
+
+function showPanel(cardData, cardArchetypes) {
+  const panel = d3.select('#detail-panel');
+  const overlay = d3.select('#overlay');
+  const name = cardData.name;
+  const archetypes = cardArchetypes[name] || [];
+  const color = getColor(cardData.colors);
+
+  let html = '';
+  html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">';
+  html += '<div style="font-size:1.3em;font-weight:700;color:#1a1a1a">' + name + '</div>';
+  html += '<div id="close-panel" style="cursor:pointer;font-size:1.5em;color:#999;line-height:1">&times;</div>';
+  html += '</div>';
+  html += '<div style="display:flex;gap:12px;margin-bottom:16px">';
+  html += '<div style="background:' + color + ';color:#fff;padding:6px 12px;border-radius:6px;font-weight:600;font-size:0.9em">' + cardData.copies + ' copies</div>';
+  html += '<div style="background:#eee;padding:6px 12px;border-radius:6px;font-size:0.9em;color:#555">' + cardData.decks + ' decks (' + cardData.pct + '%)</div>';
+  html += '</div>';
+  html += '<div style="color:#888;font-size:0.85em;margin-bottom:12px">' + cardData.type + '</div>';
+  html += '<div style="font-weight:600;font-size:0.9em;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Played in</div>';
+
+  archetypes.forEach((a) => {
+    const barWidth = Math.max(Number(a.pct || 0), 3);
+    html += '<div style="margin-bottom:8px">';
+    html += '<div style="display:flex;justify-content:space-between;font-size:0.85em;margin-bottom:2px">';
+    html += '<span style="font-weight:500">' + a.archetype + '</span>';
+    html += '<span style="color:#888">' + a.copies + ' in ' + a.decks + '/' + a.total + ' decks</span>';
+    html += '</div>';
+    html += '<div style="background:#eee;border-radius:3px;height:6px;overflow:hidden">';
+    html += '<div style="background:' + color + ';width:' + barWidth + '%;height:100%;border-radius:3px;opacity:0.8"></div>';
+    html += '</div>';
+    html += '<div style="text-align:right;font-size:0.75em;color:#aaa">' + a.pct + '%</div>';
+    html += '</div>';
+  });
+
+  if (archetypes.length === 0) {
+    html += '<div style="color:#888;font-size:0.9em">No archetype breakdown available.</div>';
+  }
+
+  panel.html(html);
+  panel.style('right', '0px');
+  overlay.style('opacity', 1).style('pointer-events', 'auto');
+
+  d3.select('#close-panel').on('click', hidePanel);
+}
+
+function hidePanel() {
+  d3.select('#detail-panel').style('right', '-400px');
+  d3.select('#overlay').style('opacity', 0).style('pointer-events', 'none');
+}
+
+(async function init() {
+  const chart = d3.select('#chart');
+  const tooltip = d3.select('#tooltip');
+  const loadData = window.__pgLoadData || (async function(name, path) {
+    if (window.__PG_DATA && Object.prototype.hasOwnProperty.call(window.__PG_DATA, name)) {
+      return window.__PG_DATA[name];
+    }
+    const resp = await fetch(path);
+    if (!resp.ok) throw new Error('Failed to load ' + path + ' (' + resp.status + ')');
+    return resp.json();
+  });
+
+  try {
+    const [cards, cardArchetypes] = await Promise.all([
+      loadData('cards', 'paupergeddon-cards.json'),
+      loadData('cardArchetypes', 'paupergeddon-card-archetypes.json')
+    ]);
+
+    const width = Math.min(1000, window.innerWidth - 40);
+    const height = 600;
+
+    const types = ['Instant', 'Creature', 'Sorcery', 'Artifact'];
+    const grouped = {};
+    cards.forEach((c) => {
+      const t = types.includes(c.type) ? c.type : 'Other';
+      if (!grouped[t]) grouped[t] = [];
+      grouped[t].push(c);
+    });
+
+    const hierarchy = {
+      name: 'root',
+      children: Object.entries(grouped).map(([type, cardList]) => ({ name: type, children: cardList }))
+    };
+
+    const root = d3.hierarchy(hierarchy)
+      .sum((d) => Number(d.copies || 0))
+      .sort((a, b) => b.value - a.value);
+
+    d3.treemap()
+      .size([width, height])
+      .paddingOuter(6)
+      .paddingTop(22)
+      .paddingInner(3)
+      .round(true)(root);
+
+    const svg = chart.append('svg').attr('width', width).attr('height', height);
+
+    const groups = svg.selectAll('.group')
+      .data(root.children)
+      .join('g')
+      .attr('class', 'group');
+
+    groups.append('rect')
+      .attr('x', (d) => d.x0)
+      .attr('y', (d) => d.y0)
+      .attr('width', (d) => d.x1 - d.x0)
+      .attr('height', (d) => d.y1 - d.y0)
+      .attr('fill', 'none')
+      .attr('stroke', '#ccc')
+      .attr('stroke-width', 1)
+      .attr('rx', 5);
+
+    groups.append('text')
+      .attr('x', (d) => d.x0 + 6)
+      .attr('y', (d) => d.y0 + 15)
+      .text((d) => d.data.name)
+      .attr('fill', '#888')
+      .attr('font-size', '11px')
+      .attr('font-weight', 600)
+      .style('letter-spacing', '0.5px');
+
+    const leaf = svg.selectAll('.tile')
+      .data(root.leaves())
+      .join('g')
+      .attr('class', 'tile')
+      .attr('transform', (d) => 'translate(' + d.x0 + ',' + d.y0 + ')');
+
+    leaf.append('rect')
+      .attr('width', (d) => d.x1 - d.x0)
+      .attr('height', (d) => d.y1 - d.y0)
+      .attr('rx', 3)
+      .attr('fill', (d) => getColor(d.data.colors))
+      .attr('opacity', 0.88)
+      .on('mouseover', (event, d) => {
+        tooltip.style('opacity', 1)
+          .html('<b>' + d.data.name + '</b><br><span class="stat">' + d.data.type + '</span><br><b>' + d.data.copies + '</b> copies across <b>' + d.data.decks + '</b> decks<br><span class="stat">In ' + d.data.pct + '% of Day 2 lists</span>');
+      })
+      .on('mousemove', (event) => {
+        tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 10) + 'px');
+      })
+      .on('mouseout', () => tooltip.style('opacity', 0))
+      .on('click', (event, d) => {
+        event.stopPropagation();
+        showPanel(d.data, cardArchetypes);
+      });
+
+    leaf.append('text')
+      .attr('x', 5)
+      .attr('y', 16)
+      .text((d) => {
+        const w = d.x1 - d.x0;
+        const h = d.y1 - d.y0;
+        if (w < 50 || h < 25) return '';
+        const name = d.data.name;
+        if (w < 80) return name.length > 10 ? name.slice(0, 9) + '...' : name;
+        if (w < 120) return name.length > 16 ? name.slice(0, 15) + '...' : name;
+        return name;
+      })
+      .attr('fill', '#fff')
+      .attr('font-size', (d) => {
+        const w = d.x1 - d.x0;
+        if (w > 140) return '12px';
+        if (w > 90) return '10px';
+        return '9px';
+      })
+      .attr('font-weight', 500)
+      .style('text-shadow', '0 1px 3px rgba(0,0,0,0.4)');
+
+    leaf.append('text')
+      .attr('x', 5)
+      .attr('y', (d) => Math.min(32, (d.y1 - d.y0) - 4))
+      .text((d) => {
+        const w = d.x1 - d.x0;
+        const h = d.y1 - d.y0;
+        if (w < 40 || h < 35) return '';
+        return d.data.copies;
+      })
+      .attr('fill', 'rgba(255,255,255,0.75)')
+      .attr('font-size', '10px')
+      .attr('font-weight', 400)
+      .style('text-shadow', '0 1px 2px rgba(0,0,0,0.3)');
+
+    d3.select('body').on('click', hidePanel);
+    d3.select('#overlay').on('click', hidePanel);
+    d3.select('#detail-panel').on('click', (event) => event.stopPropagation());
+  } catch (err) {
+    chart.append('div').attr('class', 'error').text('Failed to load treemap data: ' + String(err.message || err));
+  }
+})();
+</script>
+</body>
+</html>

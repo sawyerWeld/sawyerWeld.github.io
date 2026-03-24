@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paupergeddon - Archetype Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+window.__PG_EMBED = new URLSearchParams(window.location.search).get('embed') === '1';
+if (window.__PG_EMBED) {
+  document.documentElement.classList.add('pg-embed');
+}
+if (window.location.protocol === 'file:') {
+  document.write('<script src="paupergeddon-data.bundle.js?v=20260324d"><\\/script>');
+}
+</script>
+<script src="paupergeddon-mana.js"></script>
+<script src="paupergeddon-data-access.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f1f1f1; color: #1a1a1a; font-family: 'Manrope', sans-serif; padding: 28px 16px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .header { margin-bottom: 0; }
+  .header h1 { font-size: 1.4rem; }
+  .header p { color: #666; font-size: 0.92rem; margin-top: 4px; }
+  .stage-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .stage-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #555;
+  }
+  .stage-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .stage-btn .count { font-size: 0.75rem; color: #999; margin-left: 6px; }
+  .stage-btn.active .count { color: #999; }
+  .layout { display: grid; grid-template-columns: 340px 1fr; gap: 24px; }
+  .pane { background: #fff; border: 1px solid #e4e4e4; border-radius: 10px; }
+  #nav { max-height: 74vh; overflow: auto; padding: 10px; }
+  #explorer { max-height: 74vh; overflow: auto; padding: 14px; }
+  .group-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin: 12px 4px 6px;
+  }
+  .group-label:first-child { margin-top: 2px; }
+  .deck-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.1s;
+    font-size: 0.85rem;
+    color: #444;
+    font-weight: 500;
+  }
+  .deck-item:hover { background: #e8e8e8; }
+  .deck-item.active { background: #1a1a1a; color: #fff; }
+  .deck-item .deck-count { font-size: 0.8em; color: #aaa; margin-left: auto; }
+  .deck-item.active .deck-count { color: #bbb; }
+  .pips { display: inline-flex; gap: 3px; align-items: center; }
+  .pip {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    object-fit: contain;
+  }
+  .deck-header h2 { font-size: 1.2rem; margin-bottom: 4px; }
+  .deck-meta { color: #777; font-size: 0.9rem; margin-bottom: 10px; }
+  .section-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin: 18px 0 8px;
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 6px;
+  }
+  .card-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  .card-row:last-child { border-bottom: none; }
+  .card-name { font-size: 0.9rem; font-weight: 500; }
+  .stats { display: inline-flex; align-items: center; gap: 6px; }
+  .qty-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    background: #ececec;
+  }
+  .qty-pill .count { color: #666; font-weight: 500; }
+  .bar-bg { display: inline-block; width: 72px; height: 5px; background: #e9e9e9; border-radius: 999px; overflow: hidden; }
+  .bar-fill { display: block; height: 100%; border-radius: 999px; }
+  .pct-label { width: 36px; text-align: right; color: #777; font-size: 0.75rem; }
+  .empty { color: #999; font-size: 0.9rem; padding: 8px 0; }
+  .error { color: #b00020; font-weight: 600; }
+  @media (max-width: 900px) {
+    .topbar { flex-direction: column; align-items: stretch; }
+    .stage-row { justify-content: flex-start; }
+    .layout { grid-template-columns: 1fr; }
+    #nav, #explorer { max-height: none; }
+  }
+  @media (max-width: 600px) {
+    .bar-bg { width: 48px; }
+    .container { overflow-x: hidden; }
+  }
+  .pg-embed body { padding: 0; background: transparent; }
+  .pg-embed .topbar { display: none; }
+  .pg-embed .container { max-width: none; }
+  .pg-embed #nav, .pg-embed #explorer {
+    max-height: 1030px;
+    overflow: auto;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="header">
+        <h1>Paupergeddon Archetype Explorer</h1>
+        <p>Deck-by-deck card consensus by stage.</p>
+      </div>
+      <div class="stage-row" id="stage-row"></div>
+    </div>
+
+    <div class="layout">
+      <div class="pane" id="nav"></div>
+      <div class="pane" id="explorer"></div>
+    </div>
+  </div>
+
+<script>
+const pipColorMap = { W: '#d4a017', U: '#2980b9', B: '#7b5ea7', R: '#c0392b', G: '#27ae60', C: '#95a5a6' };
+
+function norm(name) {
+  return (name || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function getDeckColors(meta, deckName) {
+  const byExact = meta.deckColors?.[deckName];
+  if (byExact) return byExact;
+  const target = norm(deckName);
+  const groupMatch = Object.values(meta.groups || {})
+    .flat()
+    .find((d) => norm(d.name) === target);
+  return groupMatch?.colors || [];
+}
+
+function createPips(colors) {
+  const wrap = document.createElement('span');
+  wrap.className = 'pips';
+  const manaMap = window.__PG_MANA || {};
+  colors.forEach((c) => {
+    const pip = document.createElement('img');
+    pip.className = 'pip';
+    pip.alt = c;
+    pip.src = manaMap[c] || ('mana/' + c + '.svg');
+    wrap.appendChild(pip);
+  });
+  return wrap;
+}
+
+function sumStage(stageData) {
+  return Object.values(stageData || {}).reduce((sum, deck) => sum + (deck.n || 0), 0);
+}
+
+function distEntries(card, n) {
+  const dist = card.dist || {};
+  return Object.entries(dist)
+    .map(([qty, count]) => ({ qty: Number(qty), count: Number(count) }))
+    .filter((d) => Number.isFinite(d.qty) && Number.isFinite(d.count) && d.count > 0)
+    .sort((a, b) => b.qty - a.qty);
+}
+
+function playedPct(card, n) {
+  const dist = card.dist || {};
+  const zeros = Number(dist['0'] || 0);
+  if (zeros > 0) return Math.round((1 - zeros / n) * 100);
+  const playedDecks = distEntries(card, n)
+    .filter((d) => d.qty > 0)
+    .reduce((acc, d) => acc + d.count, 0);
+  return Math.round((playedDecks / n) * 100);
+}
+
+function renderSection(container, title, cards, n) {
+  const head = document.createElement('div');
+  head.className = 'section-title';
+  head.textContent = title;
+  container.appendChild(head);
+
+  if (!cards || cards.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.textContent = 'No card-level data for this stage.';
+    container.appendChild(empty);
+    return;
+  }
+
+  const sorted = [...cards]
+    .map((c) => ({ ...c, _playedPct: playedPct(c, n) }))
+    .sort((a, b) => b._playedPct - a._playedPct || a.name.localeCompare(b.name));
+
+  sorted.forEach((card) => {
+    if (card._playedPct === 0) return;
+
+    const row = document.createElement('div');
+    row.className = 'card-row';
+
+    const name = document.createElement('div');
+    name.className = 'card-name';
+    name.textContent = card.name;
+
+    const stats = document.createElement('div');
+    stats.className = 'stats';
+
+    let maxQty = 0;
+    let maxCount = 0;
+    distEntries(card, n).forEach((d) => {
+      if (d.qty > 0 && d.count > maxCount) {
+        maxCount = d.count;
+        maxQty = d.qty;
+      }
+    });
+
+    distEntries(card, n).forEach((d) => {
+      if (d.qty === 0) return;
+      const p = Math.round((d.count / n) * 100);
+      if (p < 5) return;
+      const pill = document.createElement('span');
+      pill.className = 'qty-pill';
+      pill.style.opacity = d.qty === maxQty ? 1 : 0.55;
+      pill.innerHTML = 'x' + d.qty + '<span class="count">' + p + '%</span>';
+      stats.appendChild(pill);
+    });
+
+    const bar = document.createElement('span');
+    bar.className = 'bar-bg';
+    const fill = document.createElement('span');
+    fill.className = 'bar-fill';
+    fill.style.width = Math.max(4, card._playedPct) + '%';
+    fill.style.background = card._playedPct >= 80 ? '#27ae60' : (card._playedPct >= 50 ? '#d4a017' : '#c0392b');
+    bar.appendChild(fill);
+    stats.appendChild(bar);
+
+    const pct = document.createElement('span');
+    pct.className = 'pct-label';
+    pct.textContent = card._playedPct + '%';
+    stats.appendChild(pct);
+
+    row.appendChild(name);
+    row.appendChild(stats);
+    container.appendChild(row);
+  });
+}
+
+(async function init() {
+  const nav = document.getElementById('nav');
+  const explorer = document.getElementById('explorer');
+  const stageRow = document.getElementById('stage-row');
+  const loadData = window.__pgLoadData || (async function(name, path) {
+    if (window.__PG_DATA && Object.prototype.hasOwnProperty.call(window.__PG_DATA, name)) {
+      return window.__PG_DATA[name];
+    }
+    const resp = await fetch(path);
+    if (!resp.ok) throw new Error('Failed to load ' + path + ' (' + resp.status + ')');
+    return resp.json();
+  });
+
+  try {
+    const [meta, allStages] = await Promise.all([
+      loadData('meta', 'paupergeddon-meta.json'),
+      loadData('stages', 'paupergeddon-stages.json')
+    ]);
+
+    const stageOrder = ['day1', 'day2', 'top64', 'top32'].filter((s) => allStages[s]);
+    let currentStage = meta.defaultStage && allStages[meta.defaultStage] ? meta.defaultStage : stageOrder[0];
+    let selectedDeck = null;
+
+    const stageTotals = Object.fromEntries(stageOrder.map((s) => [s, sumStage(allStages[s])]));
+
+    function stageLabel(stage) {
+      const labels = { day1: 'Day 1', day2: 'Day 2', top64: 'Top 64', top32: 'Top 32' };
+      return labels[stage] || stage;
+    }
+
+    let heightRaf = null;
+    function postHeight() {
+      if (!window.__PG_EMBED || !window.parent || window.parent === window) return;
+      const h = Math.max(
+        document.documentElement.scrollHeight || 0,
+        document.body.scrollHeight || 0
+      );
+      window.parent.postMessage({ type: 'pg-frame-height', frame: 'explorer', height: h }, '*');
+    }
+
+    function queuePostHeight() {
+      if (!window.__PG_EMBED) return;
+      if (heightRaf) cancelAnimationFrame(heightRaf);
+      heightRaf = requestAnimationFrame(() => {
+        heightRaf = null;
+        postHeight();
+      });
+    }
+
+    function postStageState() {
+      if (!window.__PG_EMBED || !window.parent || window.parent === window) return;
+      const payload = {
+        type: 'pg-explorer-stages',
+        currentStage,
+        stages: stageOrder.map((stage) => ({
+          key: stage,
+          label: stageLabel(stage),
+          count: stageTotals[stage]
+        }))
+      };
+      window.parent.postMessage(payload, '*');
+    }
+
+    function renderDeck(name, data) {
+      explorer.innerHTML = '';
+
+      const head = document.createElement('div');
+      head.className = 'deck-header';
+      const h2 = document.createElement('h2');
+      h2.textContent = name;
+      const metaLine = document.createElement('div');
+      metaLine.className = 'deck-meta';
+      metaLine.textContent = (data?.n || 0) + ' decklists in ' + stageLabel(currentStage);
+
+      head.appendChild(h2);
+      head.appendChild(metaLine);
+      explorer.appendChild(head);
+
+      renderSection(explorer, 'Mainboard', data?.main || [], data?.n || 1);
+      renderSection(explorer, 'Sideboard', data?.side || [], data?.n || 1);
+    }
+
+    function renderNav() {
+      nav.innerHTML = '';
+      const stageData = allStages[currentStage] || {};
+
+      Object.entries(meta.groups || {}).forEach(([groupName, decks]) => {
+        const available = decks.filter((deck) => stageData[deck.name]);
+        if (available.length === 0) return;
+
+        const label = document.createElement('div');
+        label.className = 'group-label';
+        label.textContent = groupName;
+        nav.appendChild(label);
+        available.forEach((deck) => {
+          const data = stageData[deck.name];
+          const item = document.createElement('div');
+          item.className = 'deck-item' + (selectedDeck === deck.name ? ' active' : '');
+
+          item.appendChild(createPips(getDeckColors(meta, deck.name)));
+
+          const name = document.createElement('span');
+          name.textContent = deck.name;
+          item.appendChild(name);
+
+          const count = document.createElement('span');
+          count.className = 'deck-count';
+          count.textContent = data.n;
+          item.appendChild(count);
+
+          item.addEventListener('click', () => {
+            selectedDeck = deck.name;
+            renderNav();
+            renderDeck(deck.name, data);
+            queuePostHeight();
+          });
+
+          nav.appendChild(item);
+        });
+      });
+
+      if (!selectedDeck) {
+        const first = nav.querySelector('.deck-item');
+        if (first) first.click();
+        return;
+      }
+
+      if (!stageData[selectedDeck]) {
+        selectedDeck = null;
+        const first = nav.querySelector('.deck-item');
+        if (first) first.click();
+        return;
+      }
+
+      renderDeck(selectedDeck, stageData[selectedDeck]);
+    }
+
+    function renderStageButtons() {
+      stageRow.innerHTML = '';
+      stageOrder.forEach((stage) => {
+        const btn = document.createElement('button');
+        btn.className = 'stage-btn' + (stage === currentStage ? ' active' : '');
+        btn.innerHTML = stageLabel(stage) + '<span class="count">(' + stageTotals[stage] + ')</span>';
+        btn.addEventListener('click', () => {
+          if (stage === currentStage) return;
+          currentStage = stage;
+          renderStageButtons();
+          renderNav();
+          postStageState();
+        });
+        stageRow.appendChild(btn);
+      });
+    }
+
+    window.addEventListener('message', (event) => {
+      const msg = event.data || {};
+      if (!msg || typeof msg !== 'object') return;
+
+      if (msg.type === 'pg-request-stages') {
+        postStageState();
+        return;
+      }
+
+      if (msg.type === 'pg-request-height') {
+        queuePostHeight();
+        return;
+      }
+
+      if (msg.type === 'pg-set-stage') {
+        const stage = msg.stage;
+        if (!stageOrder.includes(stage) || stage === currentStage) return;
+        currentStage = stage;
+        renderStageButtons();
+        renderNav();
+        postStageState();
+        queuePostHeight();
+      }
+    });
+
+    renderStageButtons();
+    renderNav();
+    postStageState();
+    queuePostHeight();
+    setTimeout(queuePostHeight, 0);
+    if (window.__PG_EMBED && window.ResizeObserver) {
+      new ResizeObserver(queuePostHeight).observe(document.body);
+    }
+    if (window.__PG_EMBED) {
+      window.addEventListener('resize', queuePostHeight);
+    }
+  } catch (err) {
+    nav.innerHTML = '<div class="error">Failed to load explorer data.</div>';
+    explorer.innerHTML = '<div class="error">' + String(err.message || err) + '</div>';
+  }
+})();
+</script>
+</body>
+</html>

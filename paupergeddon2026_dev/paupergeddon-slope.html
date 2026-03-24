@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paupergeddon - Meta Funnel</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+window.__PG_EMBED = new URLSearchParams(window.location.search).get('embed') === '1';
+if (window.__PG_EMBED) {
+  document.documentElement.classList.add('pg-embed');
+}
+if (window.location.protocol === 'file:') {
+  document.write('<script src="paupergeddon-data.bundle.js?v=20260324d"><\\/script>');
+}
+</script>
+<script src="paupergeddon-mana.js"></script>
+<script src="paupergeddon-data-access.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f1f1f1; color: #1a1a1a; font-family: 'Manrope', sans-serif; padding: 20px 20px; }
+  #chart { max-width: 1100px; margin: 0 auto; overflow: hidden; }
+  @media (max-width: 600px) {
+    #chart { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    #chart svg { min-width: 700px; }
+  }
+  .deck-label { font-size: 11px; font-weight: 500; fill: #1a1a1a; }
+  .deck-label-dim { font-size: 10px; font-weight: 400; fill: #999; }
+  .pct-label { font-size: 10px; fill: #999; font-weight: 400; }
+  .col-header { font-size: 12px; fill: #555; font-weight: 600; text-anchor: middle; letter-spacing: 0.5px; }
+  .col-sub { font-size: 10px; fill: #999; font-weight: 400; text-anchor: middle; }
+  .error { max-width: 1100px; margin: 0 auto; color: #b00020; font-weight: 600; }
+  .pg-embed body { padding: 0; background: transparent; }
+  @media (max-width: 600px) {
+    body { padding: 8px 0; }
+    #chart { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+  }
+</style>
+</head>
+<body>
+<div id="chart"></div>
+
+<script>
+(async function init() {
+  const chartEl = d3.select('#chart');
+  const loadData = window.__pgLoadData || (async function(name, path) {
+    if (window.__PG_DATA && Object.prototype.hasOwnProperty.call(window.__PG_DATA, name)) {
+      return window.__PG_DATA[name];
+    }
+    const resp = await fetch(path);
+    if (!resp.ok) throw new Error('Failed to load ' + path + ' (' + resp.status + ')');
+    return resp.json();
+  });
+  const slopeTooltip = d3.select('body').append('div')
+    .style('position', 'absolute')
+    .style('background', '#fff')
+    .style('border', '1px solid #ddd')
+    .style('border-radius', '6px')
+    .style('padding', '6px 10px')
+    .style('font-size', '0.8em')
+    .style('pointer-events', 'none')
+    .style('opacity', 0)
+    .style('box-shadow', '0 2px 8px rgba(0,0,0,0.1)')
+    .style('font-family', "'Manrope', sans-serif")
+    .style('z-index', 50);
+
+  let heightRaf = null;
+  function postHeight() {
+    if (!window.__PG_EMBED || !window.parent || window.parent === window) return;
+    const h = Math.max(
+      document.documentElement.scrollHeight || 0,
+      document.body.scrollHeight || 0
+    );
+    window.parent.postMessage({ type: 'pg-frame-height', frame: 'slope', height: h }, '*');
+  }
+
+  function queuePostHeight() {
+    if (!window.__PG_EMBED) return;
+    if (heightRaf) cancelAnimationFrame(heightRaf);
+    heightRaf = requestAnimationFrame(() => {
+      heightRaf = null;
+      postHeight();
+    });
+  }
+
+  if (window.__PG_EMBED) {
+    if (window.ResizeObserver) {
+      new ResizeObserver(queuePostHeight).observe(document.body);
+    }
+    window.addEventListener('resize', queuePostHeight);
+    window.addEventListener('message', (event) => {
+      const msg = event.data || {};
+      if (msg && msg.type === 'pg-request-height') queuePostHeight();
+    });
+  }
+
+  try {
+    const [data, meta] = await Promise.all([
+      loadData('slopeData', 'paupergeddon-slope-data.json'),
+      loadData('meta', 'paupergeddon-meta.json')
+    ]);
+
+    const deckColors = meta.deckColors || {};
+    const manaMap = window.__PG_MANA || {};
+    const columns = ['d1', 'd2', 't64', 't32'];
+    const colLabels = ['Day 1', 'Day 2', 'Top 64', 'Top 32'];
+    const colTotals = [965, 133, 64, 32];
+
+    function fmtLabel(d, col, ci) {
+      const pct = Number(d[col] || 0);
+      const count = Math.round((pct / 100) * colTotals[ci]);
+      return count + ' (' + pct.toFixed(1) + '%)';
+    }
+
+    const isMobile = window.innerWidth < 600;
+    const W = isMobile ? 800 : 1060;
+    const H = isMobile ? 520 : 580;
+    const marginLeft = isMobile ? 170 : 230;
+    const marginRight = isMobile ? 60 : 80;
+    const colSpacing = (W - marginLeft - marginRight) / (columns.length - 1);
+    const topY = 55;
+    const bottomY = H - 20;
+
+    const svg = chartEl.append('svg')
+      .attr('viewBox', '0 0 ' + W + ' ' + H)
+      .attr('width', '100%')
+      .attr('height', H)
+      .style('max-width', W + 'px')
+      .style('display', 'block')
+      .style('margin', '0 auto');
+
+    if (isMobile) {
+      svg.style('min-width', '700px');
+    }
+
+    columns.forEach((col, i) => {
+      const x = marginLeft + i * colSpacing;
+      svg.append('text').attr('x', x).attr('y', 20).attr('class', 'col-header').text(colLabels[i]);
+      svg.append('text').attr('x', x).attr('y', 34).attr('class', 'col-sub').text(colTotals[i] + ' players');
+    });
+
+    const positions = {};
+    columns.forEach((col) => {
+      const sorted = [...data].sort((a, b) => Number(b[col] || 0) - Number(a[col] || 0));
+      const active = sorted.filter((d) => Number(d[col] || 0) > 0);
+      const n = active.length;
+      const rowH = (bottomY - topY) / Math.max(n, 1);
+      positions[col] = {};
+      active.forEach((d, i) => {
+        positions[col][d.name] = topY + i * rowH + rowH / 2;
+      });
+    });
+
+    for (let ci = 0; ci < columns.length - 1; ci += 1) {
+      const col1 = columns[ci];
+      const col2 = columns[ci + 1];
+      const x1 = marginLeft + ci * colSpacing;
+      const x2 = marginLeft + (ci + 1) * colSpacing;
+
+      data.forEach((d) => {
+        const y1 = positions[col1][d.name];
+        const y2 = positions[col2][d.name];
+        if (y1 === undefined || y2 === undefined) return;
+
+        const change = Number(d[col2] || 0) - Number(d[col1] || 0);
+        let color = '#bbb';
+        if (change > 0.3) color = '#27ae60';
+        if (change < -0.3) color = '#c0392b';
+
+        svg.append('line')
+          .attr('x1', x1 + 8).attr('y1', y1)
+          .attr('x2', x2 - 8).attr('y2', y2)
+          .attr('stroke', color)
+          .attr('stroke-width', 3)
+          .attr('opacity', 0.6);
+      });
+    }
+
+    columns.forEach((col, ci) => {
+      const x = marginLeft + ci * colSpacing;
+      data.forEach((d) => {
+        const y = positions[col][d.name];
+        if (y === undefined) return;
+
+        const change = ci > 0 ? Number(d[col] || 0) - Number(d[columns[ci - 1]] || 0) : 0;
+        let color = '#bbb';
+        if (change > 0.3) color = '#27ae60';
+        if (change < -0.3) color = '#c0392b';
+
+        const nextCol = columns[ci + 1];
+        const survives = nextCol ? positions[nextCol][d.name] !== undefined : false;
+        const isLast = ci === columns.length - 1;
+
+        let dot;
+        if (!survives && !isLast && Number(d[col] || 0) > 0) {
+          const xSize = 4;
+          svg.append('line').attr('x1', x - xSize).attr('y1', y - xSize).attr('x2', x + xSize).attr('y2', y + xSize)
+            .attr('stroke', color).attr('stroke-width', 2).attr('opacity', 0.7);
+          svg.append('line').attr('x1', x - xSize).attr('y1', y + xSize).attr('x2', x + xSize).attr('y2', y - xSize)
+            .attr('stroke', color).attr('stroke-width', 2).attr('opacity', 0.7);
+          dot = svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 6).attr('fill', 'transparent');
+        } else {
+          dot = svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 3.5).attr('fill', color).attr('opacity', 0.9);
+        }
+
+        dot.on('mouseover', function(event) {
+          slopeTooltip.style('opacity', 1)
+            .html('<b>' + d.name + '</b><br>' + fmtLabel(d, col, ci))
+            .style('left', (event.pageX + 10) + 'px')
+            .style('top', (event.pageY - 10) + 'px');
+          d3.select(this).attr('r', 5);
+        }).on('mouseout', function() {
+          slopeTooltip.style('opacity', 0);
+          d3.select(this).attr('r', 3.5);
+        }).style('cursor', 'pointer');
+
+        if (ci === 0) {
+          const colors = deckColors[d.name] || [];
+          const pipSize = 12;
+          const pipStartX = 8;
+          colors.forEach((c, pi) => {
+            svg.append('image')
+              .attr('href', manaMap[c] || ('mana/' + c + '.svg'))
+              .attr('x', pipStartX + pi * 14)
+              .attr('y', y - pipSize / 2)
+              .attr('width', pipSize).attr('height', pipSize);
+          });
+
+          const textX = pipStartX + colors.length * 14 + 4;
+          const labelClass = Number(d.d1 || 0) >= 2 ? 'deck-label' : 'deck-label-dim';
+          svg.append('text').attr('x', textX).attr('y', y + 4).attr('class', labelClass).text(d.name);
+          svg.append('text').attr('x', marginLeft - 18).attr('y', y + 4)
+            .attr('class', 'pct-label').attr('text-anchor', 'end').text(fmtLabel(d, 'd1', 0));
+        }
+
+        if (ci === columns.length - 1 && Number(d[col] || 0) > 0) {
+          svg.append('text')
+            .attr('x', x + 14).attr('y', y + 4)
+            .attr('class', 'pct-label')
+            .text(fmtLabel(d, col, ci));
+        }
+      });
+    });
+    queuePostHeight();
+  } catch (err) {
+    chartEl.append('div').attr('class', 'error').text('Failed to load slope data: ' + String(err.message || err));
+    queuePostHeight();
+  }
+})();
+</script>
+</body>
+</html>
