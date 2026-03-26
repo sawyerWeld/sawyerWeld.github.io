@@ -93,6 +93,14 @@ if (window.location.protocol === 'file:') {
     border-bottom: 1px solid #ececec;
     padding-bottom: 6px;
   }
+  .subsection-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9b9b9b;
+    margin: 12px 0 4px;
+  }
   .card-row {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -127,9 +135,13 @@ if (window.location.protocol === 'file:') {
     .layout { grid-template-columns: 1fr; }
     #nav, #explorer { max-height: none; }
   }
-  .pg-embed body { padding: 0; background: transparent; }
+  @media (max-width: 600px) {
+    .bar-bg { width: 48px; }
+    .container { overflow-x: hidden; }
+  }
+  .pg-embed body { padding: 0; background: transparent; overflow: hidden; }
   .pg-embed .topbar { display: none; }
-  .pg-embed .container { max-width: none; }
+  .pg-embed .container { max-width: 1060px; margin: 0 auto; }
   .pg-embed #nav, .pg-embed #explorer {
     max-height: 1030px;
     overflow: auto;
@@ -205,7 +217,72 @@ function playedPct(card, n) {
   return Math.round((playedDecks / n) * 100);
 }
 
-function renderSection(container, title, cards, n) {
+const TYPE_ORDER = ['Creature', 'Sorcery', 'Instant', 'Artifact', 'Enchantment', 'Land', 'Planeswalker', 'Battle', 'Other'];
+
+function bucketCardType(typeLine) {
+  const text = String(typeLine || '');
+  if (/\bLand\b/i.test(text)) return 'Land';
+  if (/\bCreature\b/i.test(text)) return 'Creature';
+  if (/\bSorcery\b/i.test(text)) return 'Sorcery';
+  if (/\bInstant\b/i.test(text)) return 'Instant';
+  if (/\bArtifact\b/i.test(text)) return 'Artifact';
+  if (/\bEnchantment\b/i.test(text)) return 'Enchantment';
+  if (/\bPlaneswalker\b/i.test(text)) return 'Planeswalker';
+  if (/\bBattle\b/i.test(text)) return 'Battle';
+  return 'Other';
+}
+
+function renderCardRow(container, card, n) {
+  const row = document.createElement('div');
+  row.className = 'card-row';
+
+  const name = document.createElement('div');
+  name.className = 'card-name';
+  name.textContent = card.name;
+
+  const stats = document.createElement('div');
+  stats.className = 'stats';
+
+  let maxQty = 0;
+  let maxCount = 0;
+  distEntries(card, n).forEach((d) => {
+    if (d.qty > 0 && d.count > maxCount) {
+      maxCount = d.count;
+      maxQty = d.qty;
+    }
+  });
+
+  distEntries(card, n).forEach((d) => {
+    if (d.qty === 0) return;
+    const p = Math.round((d.count / n) * 100);
+    if (p < 5) return;
+    const pill = document.createElement('span');
+    pill.className = 'qty-pill';
+    pill.style.opacity = d.qty === maxQty ? 1 : 0.55;
+    pill.innerHTML = 'x' + d.qty + '<span class="count">' + p + '%</span>';
+    stats.appendChild(pill);
+  });
+
+  const bar = document.createElement('span');
+  bar.className = 'bar-bg';
+  const fill = document.createElement('span');
+  fill.className = 'bar-fill';
+  fill.style.width = Math.max(4, card._playedPct) + '%';
+  fill.style.background = card._playedPct >= 80 ? '#27ae60' : (card._playedPct >= 50 ? '#d4a017' : '#c0392b');
+  bar.appendChild(fill);
+  stats.appendChild(bar);
+
+  const pct = document.createElement('span');
+  pct.className = 'pct-label';
+  pct.textContent = card._playedPct + '%';
+  stats.appendChild(pct);
+
+  row.appendChild(name);
+  row.appendChild(stats);
+  container.appendChild(row);
+}
+
+function renderSection(container, title, cards, n, cardCatalog) {
   const head = document.createElement('div');
   head.className = 'section-title';
   head.textContent = title;
@@ -223,56 +300,32 @@ function renderSection(container, title, cards, n) {
     .map((c) => ({ ...c, _playedPct: playedPct(c, n) }))
     .sort((a, b) => b._playedPct - a._playedPct || a.name.localeCompare(b.name));
 
+  const grouped = new Map(TYPE_ORDER.map((type) => [type, []]));
   sorted.forEach((card) => {
     if (card._playedPct === 0) return;
+    const typeLine = cardCatalog.get(norm(card.name))?.type || card.type || '';
+    grouped.get(bucketCardType(typeLine)).push(card);
+  });
 
-    const row = document.createElement('div');
-    row.className = 'card-row';
+  const hasCards = TYPE_ORDER.some((type) => grouped.get(type).length > 0);
+  if (!hasCards) {
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.textContent = 'No card-level data for this stage.';
+    container.appendChild(empty);
+    return;
+  }
 
-    const name = document.createElement('div');
-    name.className = 'card-name';
-    name.textContent = card.name;
+  TYPE_ORDER.forEach((type) => {
+    const typeCards = grouped.get(type);
+    if (!typeCards || typeCards.length === 0) return;
 
-    const stats = document.createElement('div');
-    stats.className = 'stats';
+    const subhead = document.createElement('div');
+    subhead.className = 'subsection-title';
+    subhead.textContent = type;
+    container.appendChild(subhead);
 
-    let maxQty = 0;
-    let maxCount = 0;
-    distEntries(card, n).forEach((d) => {
-      if (d.qty > 0 && d.count > maxCount) {
-        maxCount = d.count;
-        maxQty = d.qty;
-      }
-    });
-
-    distEntries(card, n).forEach((d) => {
-      if (d.qty === 0) return;
-      const p = Math.round((d.count / n) * 100);
-      if (p < 5) return;
-      const pill = document.createElement('span');
-      pill.className = 'qty-pill';
-      pill.style.opacity = d.qty === maxQty ? 1 : 0.55;
-      pill.innerHTML = 'x' + d.qty + '<span class="count">' + p + '%</span>';
-      stats.appendChild(pill);
-    });
-
-    const bar = document.createElement('span');
-    bar.className = 'bar-bg';
-    const fill = document.createElement('span');
-    fill.className = 'bar-fill';
-    fill.style.width = Math.max(4, card._playedPct) + '%';
-    fill.style.background = card._playedPct >= 80 ? '#27ae60' : (card._playedPct >= 50 ? '#d4a017' : '#c0392b');
-    bar.appendChild(fill);
-    stats.appendChild(bar);
-
-    const pct = document.createElement('span');
-    pct.className = 'pct-label';
-    pct.textContent = card._playedPct + '%';
-    stats.appendChild(pct);
-
-    row.appendChild(name);
-    row.appendChild(stats);
-    container.appendChild(row);
+    typeCards.forEach((card) => renderCardRow(container, card, n));
   });
 }
 
@@ -290,10 +343,12 @@ function renderSection(container, title, cards, n) {
   });
 
   try {
-    const [meta, allStages] = await Promise.all([
+    const [meta, allStages, cardData] = await Promise.all([
       loadData('meta', 'paupergeddon-meta.json'),
-      loadData('stages', 'paupergeddon-stages.json')
+      loadData('stages', 'paupergeddon-stages.json'),
+      loadData('cards', 'paupergeddon-cards.json')
     ]);
+    const cardCatalog = new Map(Object.values(cardData || {}).map((card) => [norm(card.name), card]));
 
     const stageOrder = ['day1', 'day2', 'top64', 'top32'].filter((s) => allStages[s]);
     let currentStage = meta.defaultStage && allStages[meta.defaultStage] ? meta.defaultStage : stageOrder[0];
@@ -354,8 +409,8 @@ function renderSection(container, title, cards, n) {
       head.appendChild(metaLine);
       explorer.appendChild(head);
 
-      renderSection(explorer, 'Mainboard', data?.main || [], data?.n || 1);
-      renderSection(explorer, 'Sideboard', data?.side || [], data?.n || 1);
+      renderSection(explorer, 'Mainboard', data?.main || [], data?.n || 1, cardCatalog);
+      renderSection(explorer, 'Sideboard', data?.side || [], data?.n || 1, cardCatalog);
     }
 
     function renderNav() {
