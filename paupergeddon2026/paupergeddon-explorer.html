@@ -15,6 +15,7 @@ if (window.location.protocol === 'file:') {
 }
 </script>
 <script src="paupergeddon-mana.js"></script>
+<script src="paupergeddon-card-types.js?v=20260325b"></script>
 <script src="paupergeddon-data-access.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -303,7 +304,7 @@ function renderSection(container, title, cards, n, cardCatalog) {
   const grouped = new Map(TYPE_ORDER.map((type) => [type, []]));
   sorted.forEach((card) => {
     if (card._playedPct === 0) return;
-    const typeLine = cardCatalog.get(norm(card.name))?.type || card.type || '';
+    const typeLine = cardCatalog.get(norm(card.name))?.type_line || cardCatalog.get(norm(card.name))?.type || card.type || '';
     grouped.get(bucketCardType(typeLine)).push(card);
   });
 
@@ -343,12 +344,11 @@ function renderSection(container, title, cards, n, cardCatalog) {
   });
 
   try {
-    const [meta, allStages, cardData] = await Promise.all([
+    const [meta, allStages] = await Promise.all([
       loadData('meta', 'paupergeddon-meta.json'),
-      loadData('stages', 'paupergeddon-stages.json'),
-      loadData('cards', 'paupergeddon-cards.json')
+      loadData('stages', 'paupergeddon-stages.json')
     ]);
-    const cardCatalog = new Map(Object.values(cardData || {}).map((card) => [norm(card.name), card]));
+    const cardCatalog = new Map(Object.entries(window.__PG_CARD_TYPES || {}));
 
     const stageOrder = ['day1', 'day2', 'top64', 'top32'].filter((s) => allStages[s]);
     let currentStage = meta.defaultStage && allStages[meta.defaultStage] ? meta.defaultStage : stageOrder[0];
