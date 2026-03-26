@@ -1,9 +1,9 @@
 window.__PG_CARD_TYPES = {
-  "a-dawnbringer cleric": {
+  "a dawnbringer cleric": {
     "name": "A-Dawnbringer Cleric",
     "type_line": "Creature — Human Cleric"
   },
-  "a-moon-circuit hacker": {
+  "a moon circuit hacker": {
     "name": "A-Moon-Circuit Hacker",
     "type_line": "Enchantment Creature — Human Ninja"
   },
@@ -17,7 +17,7 @@ window.__PG_CARD_TYPES = {
   },
   "abrade": {
     "name": "Abrade",
-    "type_line": "Card"
+    "type_line": "Instant"
   },
   "abraded bluffs": {
     "name": "Abraded Bluffs",
@@ -67,7 +67,7 @@ window.__PG_CARD_TYPES = {
     "name": "Ancestral Mask",
     "type_line": "Enchantment — Aura"
   },
-  "anchovy & banana pizza": {
+  "anchovy banana pizza": {
     "name": "Anchovy & Banana Pizza",
     "type_line": "Artifact — Food"
   },
@@ -95,7 +95,7 @@ window.__PG_CARD_TYPES = {
     "name": "Annul",
     "type_line": "Instant"
   },
-  "apostle's blessing": {
+  "apostle s blessing": {
     "name": "Apostle's Blessing",
     "type_line": "Instant"
   },
@@ -155,9 +155,9 @@ window.__PG_CARD_TYPES = {
     "name": "Ashes to Ashes",
     "type_line": "Sorcery"
   },
-  "ashnod's altar": {
+  "ashnod s altar": {
     "name": "Ashnod's Altar",
-    "type_line": "Card"
+    "type_line": "Artifact"
   },
   "augur of bolas": {
     "name": "Augur of Bolas",
@@ -229,7 +229,7 @@ window.__PG_CARD_TYPES = {
   },
   "behold the multiverse": {
     "name": "Behold the Multiverse",
-    "type_line": "Card"
+    "type_line": "Instant"
   },
   "benevolent blessing": {
     "name": "Benevolent Blessing",
@@ -249,7 +249,7 @@ window.__PG_CARD_TYPES = {
   },
   "bind the monster": {
     "name": "Bind the Monster",
-    "type_line": "Card"
+    "type_line": "Enchantment — Aura"
   },
   "birchlore rangers": {
     "name": "Birchlore Rangers",
@@ -263,11 +263,11 @@ window.__PG_CARD_TYPES = {
     "name": "Black Dragon Gate",
     "type_line": "Land — Gate"
   },
-  "black mage's rod": {
+  "black mage s rod": {
     "name": "Black Mage's Rod",
     "type_line": "Artifact — Equipment"
   },
-  "blacksmith's skill": {
+  "blacksmith s skill": {
     "name": "Blacksmith's Skill",
     "type_line": "Instant"
   },
@@ -375,7 +375,7 @@ window.__PG_CARD_TYPES = {
     "name": "Burning Inquiry",
     "type_line": "Sorcery"
   },
-  "burning-tree emissary": {
+  "burning tree emissary": {
     "name": "Burning-Tree Emissary",
     "type_line": "Creature — Human Shaman"
   },
@@ -443,15 +443,15 @@ window.__PG_CARD_TYPES = {
     "name": "Chromatic Star",
     "type_line": "Artifact"
   },
-  "circle of protection: blue": {
+  "circle of protection blue": {
     "name": "Circle of Protection: Blue",
     "type_line": "Enchantment"
   },
-  "circle of protection: green": {
+  "circle of protection green": {
     "name": "Circle of Protection: Green",
     "type_line": "Enchantment"
   },
-  "circle of protection: red": {
+  "circle of protection red": {
     "name": "Circle of Protection: Red",
     "type_line": "Enchantment"
   },
@@ -481,7 +481,7 @@ window.__PG_CARD_TYPES = {
   },
   "clockwork fox": {
     "name": "Clockwork Fox",
-    "type_line": "Card"
+    "type_line": "Artifact Creature — Fox"
   },
   "clockwork percussionist": {
     "name": "Clockwork Percussionist",
@@ -499,7 +499,7 @@ window.__PG_CARD_TYPES = {
     "name": "Cogwork Wrestler",
     "type_line": "Artifact Creature — Gnome"
   },
-  "colossal badger // dig deep": {
+  "colossal badger dig deep": {
     "name": "Colossal Badger // Dig Deep",
     "type_line": "Creature — Badger // Sorcery — Adventure"
   },
@@ -513,7 +513,7 @@ window.__PG_CARD_TYPES = {
   },
   "commune with spirits": {
     "name": "Commune with Spirits",
-    "type_line": "Card"
+    "type_line": "Sorcery"
   },
   "compulsive research": {
     "name": "Compulsive Research",
@@ -601,7 +601,7 @@ window.__PG_CARD_TYPES = {
   },
   "crypt sliver": {
     "name": "Crypt Sliver",
-    "type_line": "Card"
+    "type_line": "Creature — Sliver"
   },
   "cryptic serpent": {
     "name": "Cryptic Serpent",
@@ -627,7 +627,7 @@ window.__PG_CARD_TYPES = {
     "name": "Dark Withering",
     "type_line": "Instant"
   },
-  "dark-dweller oracle": {
+  "dark dweller oracle": {
     "name": "Dark-Dweller Oracle",
     "type_line": "Creature — Goblin Shaman"
   },
@@ -675,7 +675,7 @@ window.__PG_CARD_TYPES = {
     "name": "Deglamer",
     "type_line": "Instant"
   },
-  "delver of secrets // insectile aberration": {
+  "delver of secrets insectile aberration": {
     "name": "Delver of Secrets // Insectile Aberration",
     "type_line": "Creature — Human Wizard // Creature — Human Insect"
   },
@@ -693,7 +693,7 @@ window.__PG_CARD_TYPES = {
   },
   "destroy evil": {
     "name": "Destroy Evil",
-    "type_line": "Card"
+    "type_line": "Instant"
   },
   "devoted druid": {
     "name": "Devoted Druid",
@@ -701,9 +701,9 @@ window.__PG_CARD_TYPES = {
   },
   "devoted duelist": {
     "name": "Devoted Duelist",
-    "type_line": "Card"
+    "type_line": "Creature — Goblin Monk"
   },
-  "dihada's ploy": {
+  "dihada s ploy": {
     "name": "Dihada's Ploy",
     "type_line": "Instant"
   },
@@ -743,7 +743,7 @@ window.__PG_CARD_TYPES = {
     "name": "Doom Blade",
     "type_line": "Instant"
   },
-  "drafna's restoration": {
+  "drafna s restoration": {
     "name": "Drafna's Restoration",
     "type_line": "Sorcery"
   },
@@ -799,7 +799,7 @@ window.__PG_CARD_TYPES = {
     "name": "Dust to Dust",
     "type_line": "Sorcery"
   },
-  "dwarven forge-chanter": {
+  "dwarven forge chanter": {
     "name": "Dwarven Forge-Chanter",
     "type_line": "Creature — Dwarf Wizard"
   },
@@ -863,7 +863,7 @@ window.__PG_CARD_TYPES = {
     "name": "Emerge Unscathed",
     "type_line": "Instant"
   },
-  "emrakul's hatcher": {
+  "emrakul s hatcher": {
     "name": "Emrakul's Hatcher",
     "type_line": "Creature — Eldrazi Drone"
   },
@@ -915,7 +915,7 @@ window.__PG_CARD_TYPES = {
     "name": "Evil Presence",
     "type_line": "Enchantment — Aura"
   },
-  "eviscerator's insight": {
+  "eviscerator s insight": {
     "name": "Eviscerator's Insight",
     "type_line": "Instant"
   },
@@ -929,7 +929,7 @@ window.__PG_CARD_TYPES = {
   },
   "exhume": {
     "name": "Exhume",
-    "type_line": "Card"
+    "type_line": "Sorcery"
   },
   "expedition map": {
     "name": "Expedition Map",
@@ -979,7 +979,7 @@ window.__PG_CARD_TYPES = {
     "name": "Fanatical Offering",
     "type_line": "Instant"
   },
-  "fang dragon // forktail sweep": {
+  "fang dragon forktail sweep": {
     "name": "Fang Dragon // Forktail Sweep",
     "type_line": "Creature — Dragon // Sorcery — Adventure"
   },
@@ -1003,7 +1003,7 @@ window.__PG_CARD_TYPES = {
     "name": "Feed the Clan",
     "type_line": "Instant"
   },
-  "ferocious werefox // guard change": {
+  "ferocious werefox guard change": {
     "name": "Ferocious Werefox // Guard Change",
     "type_line": "Creature — Elf Fox Warrior // Instant — Adventure"
   },
@@ -1019,7 +1019,7 @@ window.__PG_CARD_TYPES = {
     "name": "Fiery Temper",
     "type_line": "Instant"
   },
-  "fire // ice": {
+  "fire ice": {
     "name": "Fire // Ice",
     "type_line": "Instant // Instant"
   },
@@ -1133,7 +1133,7 @@ window.__PG_CARD_TYPES = {
   },
   "generous ent": {
     "name": "Generous Ent",
-    "type_line": "Card"
+    "type_line": "Creature — Treefolk"
   },
   "geothermal bog": {
     "name": "Geothermal Bog",
@@ -1223,7 +1223,7 @@ window.__PG_CARD_TYPES = {
     "name": "Goblin Arsonist",
     "type_line": "Creature — Goblin Shaman"
   },
-  "goblin blast-runner": {
+  "goblin blast runner": {
     "name": "Goblin Blast-Runner",
     "type_line": "Creature — Goblin"
   },
@@ -1255,7 +1255,7 @@ window.__PG_CARD_TYPES = {
     "name": "Goblin Tomb Raider",
     "type_line": "Creature — Goblin Pirate"
   },
-  "god-pharaoh's faithful": {
+  "god pharaoh s faithful": {
     "name": "God-Pharaoh's Faithful",
     "type_line": "Creature — Human Wizard"
   },
@@ -1269,7 +1269,7 @@ window.__PG_CARD_TYPES = {
   },
   "goldmire bridge": {
     "name": "Goldmire Bridge",
-    "type_line": "Card"
+    "type_line": "Artifact Land"
   },
   "golem foundry": {
     "name": "Golem Foundry",
@@ -1319,11 +1319,11 @@ window.__PG_CARD_TYPES = {
     "name": "Gruul Turf",
     "type_line": "Land"
   },
-  "guac & marshmallow pizza": {
+  "guac marshmallow pizza": {
     "name": "Guac & Marshmallow Pizza",
     "type_line": "Artifact — Food"
   },
-  "guardian naga // banishing coils": {
+  "guardian naga banishing coils": {
     "name": "Guardian Naga // Banishing Coils",
     "type_line": "Creature — Snake // Instant — Adventure"
   },
@@ -1331,7 +1331,7 @@ window.__PG_CARD_TYPES = {
     "name": "Guardian of the Guildpact",
     "type_line": "Creature — Spirit"
   },
-  "guardians' pledge": {
+  "guardians pledge": {
     "name": "Guardians' Pledge",
     "type_line": "Instant"
   },
@@ -1411,7 +1411,7 @@ window.__PG_CARD_TYPES = {
     "name": "Hearth Charm",
     "type_line": "Instant"
   },
-  "heliod's pilgrim": {
+  "heliod s pilgrim": {
     "name": "Heliod's Pilgrim",
     "type_line": "Creature — Human Cleric"
   },
@@ -1483,7 +1483,7 @@ window.__PG_CARD_TYPES = {
     "name": "Hunter Sliver",
     "type_line": "Creature — Sliver"
   },
-  "hunter's blowgun": {
+  "hunter s blowgun": {
     "name": "Hunter's Blowgun",
     "type_line": "Artifact — Equipment"
   },
@@ -1517,7 +1517,7 @@ window.__PG_CARD_TYPES = {
   },
   "illvoi galeblade": {
     "name": "Illvoi Galeblade",
-    "type_line": "Card"
+    "type_line": "Creature — Jellyfish Warrior"
   },
   "impact tremors": {
     "name": "Impact Tremors",
@@ -1565,11 +1565,11 @@ window.__PG_CARD_TYPES = {
   },
   "introduction to prophecy": {
     "name": "Introduction to Prophecy",
-    "type_line": "Card"
+    "type_line": "Sorcery — Lesson"
   },
   "island": {
     "name": "Island",
-    "type_line": "Card"
+    "type_line": "Basic Land — Island"
   },
   "ivy lane denizen": {
     "name": "Ivy Lane Denizen",
@@ -1579,11 +1579,11 @@ window.__PG_CARD_TYPES = {
     "name": "Izzet Boilerworks",
     "type_line": "Land"
   },
-  "jace's erasure": {
+  "jace s erasure": {
     "name": "Jace's Erasure",
     "type_line": "Enchantment"
   },
-  "jack-o'-lantern": {
+  "jack o lantern": {
     "name": "Jack-o'-Lantern",
     "type_line": "Artifact"
   },
@@ -1615,7 +1615,7 @@ window.__PG_CARD_TYPES = {
     "name": "Kabira Crossroads",
     "type_line": "Land"
   },
-  "kaervek's torch": {
+  "kaervek s torch": {
     "name": "Kaervek's Torch",
     "type_line": "Sorcery"
   },
@@ -1651,15 +1651,15 @@ window.__PG_CARD_TYPES = {
     "name": "Kor Skyfisher",
     "type_line": "Creature — Kor Soldier"
   },
-  "krark-clan shaman": {
+  "krark clan shaman": {
     "name": "Krark-Clan Shaman",
     "type_line": "Creature — Goblin Shaman"
   },
-  "kruphix's insight": {
+  "kruphix s insight": {
     "name": "Kruphix's Insight",
     "type_line": "Sorcery"
   },
-  "lagonna-band trailblazer": {
+  "lagonna band trailblazer": {
     "name": "Lagonna-Band Trailblazer",
     "type_line": "Creature — Centaur Scout"
   },
@@ -1695,7 +1695,7 @@ window.__PG_CARD_TYPES = {
     "name": "Lembas",
     "type_line": "Artifact — Food"
   },
-  "leonardo, big brother": {
+  "leonardo big brother": {
     "name": "Leonardo, Big Brother",
     "type_line": "Legendary Creature — Mutant Ninja Turtle"
   },
@@ -1709,13 +1709,13 @@ window.__PG_CARD_TYPES = {
   },
   "lightning bolt": {
     "name": "Lightning Bolt",
-    "type_line": "Card"
+    "type_line": "Instant"
   },
   "lignify": {
     "name": "Lignify",
     "type_line": "Kindred Enchantment — Treefolk Aura"
   },
-  "liliana's elite": {
+  "liliana s elite": {
     "name": "Liliana's Elite",
     "type_line": "Creature — Zombie"
   },
@@ -1739,11 +1739,11 @@ window.__PG_CARD_TYPES = {
     "name": "Lonely Sandbar",
     "type_line": "Land"
   },
-  "loran's escape": {
+  "loran s escape": {
     "name": "Loran's Escape",
     "type_line": "Instant"
   },
-  "lórien revealed": {
+  "l rien revealed": {
     "name": "Lórien Revealed",
     "type_line": "Sorcery"
   },
@@ -1763,7 +1763,7 @@ window.__PG_CARD_TYPES = {
     "name": "Loyal Sentry",
     "type_line": "Creature — Human Soldier"
   },
-  "lunarch veteran // luminous phantom": {
+  "lunarch veteran luminous phantom": {
     "name": "Lunarch Veteran // Luminous Phantom",
     "type_line": "Creature — Human Cleric // Creature — Spirit Cleric"
   },
@@ -1909,7 +1909,7 @@ window.__PG_CARD_TYPES = {
   },
   "molten gatekeeper": {
     "name": "Molten Gatekeeper",
-    "type_line": "Card"
+    "type_line": "Artifact Creature — Golem"
   },
   "molten rain": {
     "name": "Molten Rain",
@@ -1919,7 +1919,7 @@ window.__PG_CARD_TYPES = {
     "name": "Molten Tributary",
     "type_line": "Land — Island Mountain"
   },
-  "moment's peace": {
+  "moment s peace": {
     "name": "Moment's Peace",
     "type_line": "Instant"
   },
@@ -1935,7 +1935,7 @@ window.__PG_CARD_TYPES = {
     "name": "Monstrous Emergence",
     "type_line": "Sorcery"
   },
-  "moon-circuit hacker": {
+  "moon circuit hacker": {
     "name": "Moon-Circuit Hacker",
     "type_line": "Enchantment Creature — Human Ninja"
   },
@@ -1949,7 +1949,7 @@ window.__PG_CARD_TYPES = {
   },
   "mountain": {
     "name": "Mountain",
-    "type_line": "Card"
+    "type_line": "Basic Land — Mountain"
   },
   "mukotai ambusher": {
     "name": "Mukotai Ambusher",
@@ -1971,13 +1971,13 @@ window.__PG_CARD_TYPES = {
     "name": "Mutagenic Growth",
     "type_line": "Instant"
   },
-  "mwonvuli acid-moss": {
+  "mwonvuli acid moss": {
     "name": "Mwonvuli Acid-Moss",
     "type_line": "Sorcery"
   },
   "myconid spore tender": {
     "name": "Myconid Spore Tender",
-    "type_line": "Card"
+    "type_line": "Creature — Fungus"
   },
   "mycosynth wellspring": {
     "name": "Mycosynth Wellspring",
@@ -2011,17 +2011,17 @@ window.__PG_CARD_TYPES = {
     "name": "Naturalize",
     "type_line": "Instant"
   },
-  "nature's claim": {
+  "nature s claim": {
     "name": "Nature's Claim",
     "type_line": "Instant"
   },
-  "navigator's compass": {
+  "navigator s compass": {
     "name": "Navigator's Compass",
     "type_line": "Artifact"
   },
   "negate": {
     "name": "Negate",
-    "type_line": "Card"
+    "type_line": "Instant"
   },
   "nest invader": {
     "name": "Nest Invader",
@@ -2029,13 +2029,13 @@ window.__PG_CARD_TYPES = {
   },
   "nested shambler": {
     "name": "Nested Shambler",
-    "type_line": "Card"
+    "type_line": "Creature — Zombie"
   },
   "nezumi linkbreaker": {
     "name": "Nezumi Linkbreaker",
     "type_line": "Creature — Rat Warlock"
   },
-  "night's whisper": {
+  "night s whisper": {
     "name": "Night's Whisper",
     "type_line": "Sorcery"
   },
@@ -2047,7 +2047,7 @@ window.__PG_CARD_TYPES = {
     "name": "Ninja of the Deep Hours",
     "type_line": "Creature — Human Ninja"
   },
-  "nomads en-kor": {
+  "nomads en kor": {
     "name": "Nomads en-Kor",
     "type_line": "Creature — Kor Nomad Soldier"
   },
@@ -2059,7 +2059,7 @@ window.__PG_CARD_TYPES = {
     "name": "Nutrient Block",
     "type_line": "Artifact — Food"
   },
-  "nylea's disciple": {
+  "nylea s disciple": {
     "name": "Nylea's Disciple",
     "type_line": "Creature — Centaur Archer"
   },
@@ -2075,11 +2075,11 @@ window.__PG_CARD_TYPES = {
     "name": "Of One Mind",
     "type_line": "Sorcery"
   },
-  "okiba reckoner raid // nezumi road captain": {
+  "okiba reckoner raid nezumi road captain": {
     "name": "Okiba Reckoner Raid // Nezumi Road Captain",
     "type_line": "Enchantment — Saga // Enchantment Creature — Rat Rogue"
   },
-  "okiba-gang shinobi": {
+  "okiba gang shinobi": {
     "name": "Okiba-Gang Shinobi",
     "type_line": "Creature — Rat Ninja"
   },
@@ -2091,7 +2091,7 @@ window.__PG_CARD_TYPES = {
     "name": "Omen of the Dead",
     "type_line": "Enchantment"
   },
-  "omni-cheese pizza": {
+  "omni cheese pizza": {
     "name": "Omni-Cheese Pizza",
     "type_line": "Artifact — Food"
   },
@@ -2111,7 +2111,7 @@ window.__PG_CARD_TYPES = {
     "name": "Orochi Leafcaller",
     "type_line": "Creature — Snake Shaman"
   },
-  "oroku saki, shredder rising": {
+  "oroku saki shredder rising": {
     "name": "Oroku Saki, Shredder Rising",
     "type_line": "Legendary Creature — Human Ninja"
   },
@@ -2141,7 +2141,7 @@ window.__PG_CARD_TYPES = {
   },
   "pactdoll terror": {
     "name": "Pactdoll Terror",
-    "type_line": "Card"
+    "type_line": "Artifact Creature — Toy"
   },
   "palace sentinels": {
     "name": "Palace Sentinels",
@@ -2151,7 +2151,7 @@ window.__PG_CARD_TYPES = {
     "name": "Panic",
     "type_line": "Instant"
   },
-  "patrician's scorn": {
+  "patrician s scorn": {
     "name": "Patrician's Scorn",
     "type_line": "Instant"
   },
@@ -2183,7 +2183,7 @@ window.__PG_CARD_TYPES = {
     "name": "Pilfer",
     "type_line": "Sorcery"
   },
-  "pinnacle kill-ship": {
+  "pinnacle kill ship": {
     "name": "Pinnacle Kill-Ship",
     "type_line": "Artifact — Spacecraft"
   },
@@ -2191,7 +2191,7 @@ window.__PG_CARD_TYPES = {
     "name": "Piracy Charm",
     "type_line": "Instant"
   },
-  "pirate's pillage": {
+  "pirate s pillage": {
     "name": "Pirate's Pillage",
     "type_line": "Sorcery"
   },
@@ -2201,7 +2201,7 @@ window.__PG_CARD_TYPES = {
   },
   "plains": {
     "name": "Plains",
-    "type_line": "Card"
+    "type_line": "Basic Land — Plains"
   },
   "plated sliver": {
     "name": "Plated Sliver",
@@ -2211,7 +2211,7 @@ window.__PG_CARD_TYPES = {
     "name": "Ponder",
     "type_line": "Sorcery"
   },
-  "predator's rapport": {
+  "predator s rapport": {
     "name": "Predator's Rapport",
     "type_line": "Instant"
   },
@@ -2275,7 +2275,7 @@ window.__PG_CARD_TYPES = {
     "name": "Radiant Grove",
     "type_line": "Land — Forest Plains"
   },
-  "raffine's informant": {
+  "raffine s informant": {
     "name": "Raffine's Informant",
     "type_line": "Creature — Human Wizard"
   },
@@ -2311,7 +2311,7 @@ window.__PG_CARD_TYPES = {
     "name": "Rapacious One",
     "type_line": "Creature — Eldrazi Drone"
   },
-  "raphael, tough turtle": {
+  "raphael tough turtle": {
     "name": "Raphael, Tough Turtle",
     "type_line": "Legendary Creature — Mutant Ninja Turtle"
   },
@@ -2333,7 +2333,7 @@ window.__PG_CARD_TYPES = {
   },
   "razortide bridge": {
     "name": "Razortide Bridge",
-    "type_line": "Card"
+    "type_line": "Artifact Land"
   },
   "razortrap gorge": {
     "name": "Razortrap Gorge",
@@ -2359,7 +2359,7 @@ window.__PG_CARD_TYPES = {
     "name": "Reckless Impulse",
     "type_line": "Sorcery"
   },
-  "reckoner's bargain": {
+  "reckoner s bargain": {
     "name": "Reckoner's Bargain",
     "type_line": "Instant"
   },
@@ -2379,7 +2379,7 @@ window.__PG_CARD_TYPES = {
     "name": "Relic of Progenitus",
     "type_line": "Artifact"
   },
-  "relic's roar": {
+  "relic s roar": {
     "name": "Relic's Roar",
     "type_line": "Instant"
   },
@@ -2393,7 +2393,7 @@ window.__PG_CARD_TYPES = {
   },
   "repository skaab": {
     "name": "Repository Skaab",
-    "type_line": "Card"
+    "type_line": "Creature — Zombie"
   },
   "respite": {
     "name": "Respite",
@@ -2419,7 +2419,7 @@ window.__PG_CARD_TYPES = {
     "name": "Revoke Existence",
     "type_line": "Sorcery"
   },
-  "ride's end": {
+  "ride s end": {
     "name": "Ride's End",
     "type_line": "Instant"
   },
@@ -2455,9 +2455,9 @@ window.__PG_CARD_TYPES = {
     "name": "Rotten Reunion",
     "type_line": "Instant"
   },
-  "rowan's grim search": {
+  "rowan s grim search": {
     "name": "Rowan's Grim Search",
-    "type_line": "Card"
+    "type_line": "Instant"
   },
   "rubblebelt maverick": {
     "name": "Rubblebelt Maverick",
@@ -2467,7 +2467,7 @@ window.__PG_CARD_TYPES = {
     "name": "Rumble Arena",
     "type_line": "Land"
   },
-  "rune of protection: red": {
+  "rune of protection red": {
     "name": "Rune of Protection: Red",
     "type_line": "Enchantment"
   },
@@ -2481,7 +2481,7 @@ window.__PG_CARD_TYPES = {
   },
   "rustvale bridge": {
     "name": "Rustvale Bridge",
-    "type_line": "Card"
+    "type_line": "Artifact Land"
   },
   "sacred cat": {
     "name": "Sacred Cat",
@@ -2495,7 +2495,7 @@ window.__PG_CARD_TYPES = {
     "name": "Sadistic Glee",
     "type_line": "Enchantment — Aura"
   },
-  "sagu wildling // roost seek": {
+  "sagu wildling roost seek": {
     "name": "Sagu Wildling // Roost Seek",
     "type_line": "Creature — Dragon // Sorcery — Omen"
   },
@@ -2535,7 +2535,7 @@ window.__PG_CARD_TYPES = {
     "name": "Satyr Wayfinder",
     "type_line": "Creature — Satyr"
   },
-  "sazacap's brew": {
+  "sazacap s brew": {
     "name": "Sazacap's Brew",
     "type_line": "Instant"
   },
@@ -2619,7 +2619,7 @@ window.__PG_CARD_TYPES = {
     "name": "Sentinel Sliver",
     "type_line": "Creature — Sliver"
   },
-  "sentinel's eyes": {
+  "sentinel s eyes": {
     "name": "Sentinel's Eyes",
     "type_line": "Enchantment — Aura"
   },
@@ -2631,7 +2631,7 @@ window.__PG_CARD_TYPES = {
     "name": "Severed Strands",
     "type_line": "Sorcery"
   },
-  "sewer-veillance cam": {
+  "sewer veillance cam": {
     "name": "Sewer-veillance Cam",
     "type_line": "Artifact"
   },
@@ -2667,11 +2667,11 @@ window.__PG_CARD_TYPES = {
     "name": "Shield Wall",
     "type_line": "Instant"
   },
-  "shield-wall sentinel": {
+  "shield wall sentinel": {
     "name": "Shield-Wall Sentinel",
     "type_line": "Artifact Creature — Golem"
   },
-  "shinen of life's roar": {
+  "shinen of life s roar": {
     "name": "Shinen of Life's Roar",
     "type_line": "Creature — Spirit"
   },
@@ -2689,7 +2689,7 @@ window.__PG_CARD_TYPES = {
   },
   "sign in blood": {
     "name": "Sign in Blood",
-    "type_line": "Card"
+    "type_line": "Sorcery"
   },
   "silhana ledgewalker": {
     "name": "Silhana Ledgewalker",
@@ -2733,7 +2733,7 @@ window.__PG_CARD_TYPES = {
   },
   "slagwoods bridge": {
     "name": "Slagwoods Bridge",
-    "type_line": "Card"
+    "type_line": "Artifact Land"
   },
   "sleep of the dead": {
     "name": "Sleep of the Dead",
@@ -2757,7 +2757,7 @@ window.__PG_CARD_TYPES = {
   },
   "smoke shroud": {
     "name": "Smoke Shroud",
-    "type_line": "Card"
+    "type_line": "Enchantment — Aura"
   },
   "snakeskin veil": {
     "name": "Snakeskin Veil",
@@ -2775,23 +2775,23 @@ window.__PG_CARD_TYPES = {
     "name": "Sneaky Snacker",
     "type_line": "Creature — Faerie Rogue"
   },
-  "snow-covered forest": {
+  "snow covered forest": {
     "name": "Snow-Covered Forest",
     "type_line": "Basic Snow Land — Forest"
   },
-  "snow-covered island": {
+  "snow covered island": {
     "name": "Snow-Covered Island",
     "type_line": "Basic Snow Land — Island"
   },
-  "snow-covered mountain": {
+  "snow covered mountain": {
     "name": "Snow-Covered Mountain",
     "type_line": "Basic Snow Land — Mountain"
   },
-  "snow-covered plains": {
+  "snow covered plains": {
     "name": "Snow-Covered Plains",
     "type_line": "Basic Snow Land — Plains"
   },
-  "snow-covered swamp": {
+  "snow covered swamp": {
     "name": "Snow-Covered Swamp",
     "type_line": "Basic Snow Land — Swamp"
   },
@@ -2799,7 +2799,7 @@ window.__PG_CARD_TYPES = {
     "name": "Snuff Out",
     "type_line": "Instant"
   },
-  "sokka's sword training": {
+  "sokka s sword training": {
     "name": "Sokka's Sword Training",
     "type_line": "Instant — Lesson"
   },
@@ -2811,7 +2811,7 @@ window.__PG_CARD_TYPES = {
     "name": "Songs of the Damned",
     "type_line": "Instant"
   },
-  "sovereign's bite": {
+  "sovereign s bite": {
     "name": "Sovereign's Bite",
     "type_line": "Sorcery"
   },
@@ -2835,7 +2835,7 @@ window.__PG_CARD_TYPES = {
     "name": "Spider Umbra",
     "type_line": "Enchantment — Aura"
   },
-  "spider-man, web-slinger": {
+  "spider man web slinger": {
     "name": "Spider-Man, Web-Slinger",
     "type_line": "Legendary Creature — Spider Human Hero"
   },
@@ -2845,13 +2845,13 @@ window.__PG_CARD_TYPES = {
   },
   "spinewoods paladin": {
     "name": "Spinewoods Paladin",
-    "type_line": "Card"
+    "type_line": "Creature — Human Knight"
   },
   "spinning darkness": {
     "name": "Spinning Darkness",
     "type_line": "Instant"
   },
-  "spirit en-kor": {
+  "spirit en kor": {
     "name": "Spirit en-Kor",
     "type_line": "Creature — Kor Spirit"
   },
@@ -2911,7 +2911,7 @@ window.__PG_CARD_TYPES = {
     "name": "Stonehorn Dignitary",
     "type_line": "Creature — Rhino Soldier"
   },
-  "stormshriek feral // flush out": {
+  "stormshriek feral flush out": {
     "name": "Stormshriek Feral // Flush Out",
     "type_line": "Creature — Dragon // Sorcery — Omen"
   },
@@ -2935,11 +2935,11 @@ window.__PG_CARD_TYPES = {
     "name": "Sulfurous Mire",
     "type_line": "Snow Land — Swamp Mountain"
   },
-  "summon: choco/mog": {
+  "summon choco mog": {
     "name": "Summon: Choco/Mog",
     "type_line": "Enchantment Creature — Saga Bird Moogle"
   },
-  "summon: fat chocobo": {
+  "summon fat chocobo": {
     "name": "Summon: Fat Chocobo",
     "type_line": "Enchantment Creature — Saga Bird"
   },
@@ -2963,7 +2963,7 @@ window.__PG_CARD_TYPES = {
     "name": "Suplex",
     "type_line": "Sorcery"
   },
-  "survivors' encampment": {
+  "survivors encampment": {
     "name": "Survivors' Encampment",
     "type_line": "Land — Desert"
   },
@@ -2975,7 +2975,7 @@ window.__PG_CARD_TYPES = {
     "name": "Swamp",
     "type_line": "Basic Land — Swamp"
   },
-  "swarm, being of bees": {
+  "swarm being of bees": {
     "name": "Swarm, Being of Bees",
     "type_line": "Legendary Creature — Insect Villain"
   },
@@ -2991,7 +2991,7 @@ window.__PG_CARD_TYPES = {
     "name": "Sylvok Lifestaff",
     "type_line": "Artifact — Equipment"
   },
-  "tamiyo's safekeeping": {
+  "tamiyo s safekeeping": {
     "name": "Tamiyo's Safekeeping",
     "type_line": "Instant"
   },
@@ -3055,11 +3055,11 @@ window.__PG_CARD_TYPES = {
     "name": "The Modern Age",
     "type_line": "Enchantment — Saga"
   },
-  "the modern age // vector glider": {
+  "the modern age vector glider": {
     "name": "The Modern Age // Vector Glider",
     "type_line": "Enchantment — Saga // Enchantment Creature — Spirit"
   },
-  "thermo-alchemist": {
+  "thermo alchemist": {
     "name": "Thermo-Alchemist",
     "type_line": "Creature — Human Shaman"
   },
@@ -3135,19 +3135,19 @@ window.__PG_CARD_TYPES = {
     "name": "Tireless Tribe",
     "type_line": "Creature — Human Nomad"
   },
-  "tithing blade // consuming sepulcher": {
+  "tithing blade consuming sepulcher": {
     "name": "Tithing Blade // Consuming Sepulcher",
     "type_line": "Artifact // Artifact"
   },
   "tolarian terror": {
     "name": "Tolarian Terror",
-    "type_line": "Card"
+    "type_line": "Creature — Serpent"
   },
   "tolarian winds": {
     "name": "Tolarian Winds",
     "type_line": "Instant"
   },
-  "tooth of chiss-goria": {
+  "tooth of chiss goria": {
     "name": "Tooth of Chiss-Goria",
     "type_line": "Artifact"
   },
@@ -3155,7 +3155,7 @@ window.__PG_CARD_TYPES = {
     "name": "Torch the Tower",
     "type_line": "Instant"
   },
-  "tormod's crypt": {
+  "tormod s crypt": {
     "name": "Tormod's Crypt",
     "type_line": "Artifact"
   },
@@ -3187,11 +3187,11 @@ window.__PG_CARD_TYPES = {
     "name": "Treefolk Umbra",
     "type_line": "Enchantment — Aura"
   },
-  "trespasser's curse": {
+  "trespasser s curse": {
     "name": "Trespasser's Curse",
     "type_line": "Enchantment — Aura Curse"
   },
-  "troll of khazad-dûm": {
+  "troll of khazad d m": {
     "name": "Troll of Khazad-dûm",
     "type_line": "Creature — Troll"
   },
@@ -3219,7 +3219,7 @@ window.__PG_CARD_TYPES = {
     "name": "Twisted Landscape",
     "type_line": "Land"
   },
-  "ulamog's crusher": {
+  "ulamog s crusher": {
     "name": "Ulamog's Crusher",
     "type_line": "Creature — Eldrazi"
   },
@@ -3251,15 +3251,15 @@ window.__PG_CARD_TYPES = {
     "name": "Urborg Repossession",
     "type_line": "Sorcery"
   },
-  "urza's mine": {
+  "urza s mine": {
     "name": "Urza's Mine",
     "type_line": "Land — Urza's Mine"
   },
-  "urza's power plant": {
+  "urza s power plant": {
     "name": "Urza's Power Plant",
     "type_line": "Land — Urza's Power-Plant"
   },
-  "urza's tower": {
+  "urza s tower": {
     "name": "Urza's Tower",
     "type_line": "Land — Urza's Tower"
   },
@@ -3275,7 +3275,7 @@ window.__PG_CARD_TYPES = {
     "name": "Valakut Invoker",
     "type_line": "Creature — Human Shaman"
   },
-  "vampire's kiss": {
+  "vampire s kiss": {
     "name": "Vampire's Kiss",
     "type_line": "Sorcery"
   },
@@ -3319,11 +3319,11 @@ window.__PG_CARD_TYPES = {
     "name": "Vision Charm",
     "type_line": "Instant"
   },
-  "vitu-ghazi inspector": {
+  "vitu ghazi inspector": {
     "name": "Vitu-Ghazi Inspector",
     "type_line": "Creature — Elf Detective"
   },
-  "vivisurgeon's insight": {
+  "vivisurgeon s insight": {
     "name": "Vivisurgeon's Insight",
     "type_line": "Sorcery"
   },
@@ -3333,7 +3333,7 @@ window.__PG_CARD_TYPES = {
   },
   "voldaren epicure": {
     "name": "Voldaren Epicure",
-    "type_line": "Card"
+    "type_line": "Creature — Vampire"
   },
   "voracious varmint": {
     "name": "Voracious Varmint",
@@ -3369,7 +3369,7 @@ window.__PG_CARD_TYPES = {
   },
   "whispersilk cloak": {
     "name": "Whispersilk Cloak",
-    "type_line": "Card"
+    "type_line": "Artifact — Equipment"
   },
   "whitemane lion": {
     "name": "Whitemane Lion",
@@ -3387,7 +3387,7 @@ window.__PG_CARD_TYPES = {
     "name": "Winding Way",
     "type_line": "Sorcery"
   },
-  "witch's cottage": {
+  "witch s cottage": {
     "name": "Witch's Cottage",
     "type_line": "Land — Swamp"
   },
@@ -3411,7 +3411,7 @@ window.__PG_CARD_TYPES = {
     "name": "Wrap in Vigor",
     "type_line": "Instant"
   },
-  "wrenn's resolve": {
+  "wrenn s resolve": {
     "name": "Wrenn's Resolve",
     "type_line": "Sorcery"
   },
@@ -3427,7 +3427,7 @@ window.__PG_CARD_TYPES = {
     "name": "Writhing Necromass",
     "type_line": "Creature — Zombie Giant"
   },
-  "yip yip!": {
+  "yip yip": {
     "name": "Yip Yip!",
     "type_line": "Instant — Lesson"
   },
