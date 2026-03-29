@@ -212,6 +212,11 @@
       color: var(--link);
     }
 
+    /* Carousel — hidden on desktop */
+    .carousel {
+      display: none;
+    }
+
     @media (max-width: 640px) {
       body {
         gap: 2rem;
@@ -220,23 +225,53 @@
         padding-top: 2rem;
       }
 
-      header {
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem;
-      }
+      /* Hide grid, show carousel */
+      .cards { display: none; }
 
-      /* 2x2 card grid on mobile */
-      .cards {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+      .carousel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 1rem;
         width: 100%;
-        max-width: 340px;
       }
 
-      .card-wrap img {
+      .carousel-track-wrap {
         width: 100%;
+        overflow: hidden;
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+      }
+
+      .carousel-slide {
+        flex: 0 0 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem 0 1.5rem; /* room for shadow */
+      }
+
+      .carousel-slide .card-wrap img {
+        width: min(280px, 80vw);
+      }
+
+      .dots {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--toggle-border);
+        transition: background 0.2s, transform 0.2s;
+      }
+      .dot.active {
+        background: var(--text);
+        transform: scale(1.3);
       }
 
       .controls {
@@ -252,7 +287,6 @@
         min-width: 70px;
       }
 
-      /* 2x2 toggle grid on mobile */
       .toggle-group {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -270,6 +304,25 @@
     </div>
   </header>
 
+  <!-- Mobile carousel -->
+  <div class="carousel">
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="carousel-track">
+        <div class="carousel-slide"><div class="card-wrap" id="m1"><img src="https://cards.scryfall.io/normal/front/b/d/bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd.jpg" alt="Black Lotus"></div></div>
+        <div class="carousel-slide"><div class="card-wrap" id="m2"><img src="https://cards.scryfall.io/normal/front/2/3/2398892d-28e9-4009-81ec-0d544af79d2b.jpg" alt="Ancestral Recall"></div></div>
+        <div class="carousel-slide"><div class="card-wrap" id="m3"><img src="https://cards.scryfall.io/normal/front/7/0/70901356-3266-4bd9-aacc-f06c27271de5.jpg" alt="Time Walk"></div></div>
+        <div class="carousel-slide"><div class="card-wrap" id="m4"><img src="https://cards.scryfall.io/normal/front/e/a/ea1feac0-d3a7-45eb-9719-1cdaf51ea0b6.jpg" alt="Mox Sapphire"></div></div>
+      </div>
+    </div>
+    <div class="dots" id="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <!-- Desktop grid -->
   <div class="cards">
     <div class="card-wrap" id="c1">
       <img src="https://cards.scryfall.io/normal/front/b/d/bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd.jpg" alt="Black Lotus">
@@ -345,36 +398,64 @@
       })
     );
 
+    // Mobile carousel foils
+    const mobilefoils = ['m1', 'm2', 'm3', 'm4'].map((id, index) =>
+      new window.CardFoil(document.getElementById(id), {
+        finish: finishes[index],
+        shimmer: true,
+      })
+    );
+
+    // Carousel logic
+    const track = document.getElementById('carousel-track');
+    const dots = document.getElementById('dots').children;
+    let current = 0;
+    let startX = 0;
+
+    function goTo(i) {
+      current = Math.max(0, Math.min(3, i));
+      track.style.transform = `translateX(-${current * 100}%)`;
+      Array.from(dots).forEach((d, j) => d.classList.toggle('active', j === current));
+    }
+
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
     const slider = document.getElementById('intensity');
     const valDisplay = document.getElementById('intensity-val');
     const shimmerCheckbox = document.getElementById('chk-shimmer');
     const motionNote = document.getElementById('motion-note');
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+    const allFoils = [...foils, ...mobilefoils];
+
     function syncMotionUi() {
       const reducedMotion = reducedMotionQuery.matches;
       shimmerCheckbox.disabled = reducedMotion;
       shimmerCheckbox.checked = !reducedMotion;
       motionNote.hidden = !reducedMotion;
-      foils.forEach(f => f.setShimmer(!reducedMotion));
+      allFoils.forEach(f => f.setShimmer(!reducedMotion));
     }
 
     slider.addEventListener('input', e => {
       const v = +e.target.value;
       valDisplay.textContent = v.toFixed(2);
-      foils.forEach(f => f.setIntensity(v));
+      allFoils.forEach(f => f.setIntensity(v));
     });
 
     document.getElementById('chk-tilt').addEventListener('change', e => {
-      foils.forEach(f => f.setTilt(e.target.checked));
+      allFoils.forEach(f => f.setTilt(e.target.checked));
     });
 
     document.getElementById('chk-specular').addEventListener('change', e => {
-      foils.forEach(f => f.setSpecular(e.target.checked));
+      allFoils.forEach(f => f.setSpecular(e.target.checked));
     });
 
     document.getElementById('chk-shimmer').addEventListener('change', e => {
-      foils.forEach(f => f.setShimmer(e.target.checked));
+      allFoils.forEach(f => f.setShimmer(e.target.checked));
     });
 
     document.getElementById('theme-check').addEventListener('change', e => {
