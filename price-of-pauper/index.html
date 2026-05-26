@@ -106,7 +106,7 @@
   <div class="section-head">
     <div>
       <h2>The Money Cards</h2>
-      <p>Ranking cards by total field spend: Day 1 copies multiplied by current Scryfall USD price.</p>
+      <p>Ranking cards by total field spend: Day 1 copies multiplied by the cheapest tournament-playable paper price found in Scryfall bulk data.</p>
     </div>
     <div class="segmented" aria-label="Bar chart metric">
       <button class="active" data-metric="estimatedUsd">Spend</button>
@@ -447,7 +447,7 @@
       renderScatter(data.cards);
       renderSideboardList(data.cards);
       renderArchetypes(data.archetypes);
-      document.getElementById('footnote').innerHTML = '<b>Method:</b> ' + data.source.deckData + '. Prices fetched ' + new Date(data.generatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) + ' from Scryfall USD price fields. This estimates observed field value, not the cheapest possible way to assemble each deck. Rebuild with <code>node scripts/build-paupergeddon-prices.mjs</code>.';
+      document.getElementById('footnote').innerHTML = '<b>Method:</b> ' + data.source.deckData + '. Prices rebuilt ' + new Date(data.generatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) + ' from Scryfall bulk data using the cheapest listed tournament-playable paper printing for each observed card name. This estimates observed field value, not what each player personally paid. Rebuild with <code>node scripts/build-paupergeddon-prices.mjs</code>.';
 
       document.querySelectorAll('.segmented button').forEach((button) => {
         button.addEventListener('click', () => {
