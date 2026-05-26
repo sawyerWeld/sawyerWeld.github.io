@@ -62,6 +62,16 @@
   .mini-row strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .mini-row span { color: #777; font-size: 0.8rem; }
   .mini-row .value { font-weight: 800; text-align: right; }
+  .universe-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .universe-card { background: #fff; border: 1px solid #e2e2e2; border-radius: 8px; padding: 16px; min-width: 0; }
+  .universe-card h3 { font-size: 1rem; margin-bottom: 10px; }
+  .universe-stat { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 8px 0; border-top: 1px solid #eee; }
+  .universe-stat:first-of-type { border-top: 0; }
+  .universe-stat span { color: #777; font-size: 0.82rem; }
+  .universe-stat strong { font-size: 1rem; }
+  .meter { height: 10px; background: #ececec; border-radius: 999px; overflow: hidden; margin-top: 10px; }
+  .meter-fill { height: 100%; background: #1a1a1a; border-radius: 999px; }
+  .tag { display: inline-flex; align-items: center; border-radius: 999px; background: #efefef; color: #555; padding: 4px 9px; font-size: 0.76rem; font-weight: 800; }
   .footnote { max-width: 1120px; margin: 0 auto; padding: 24px 20px 46px; color: #777; font-size: 0.85rem; line-height: 1.6; }
   .error { color: #b00020; font-weight: 700; padding: 16px; background: #fff; border: 1px solid #e2b8b8; border-radius: 8px; }
   @media (max-width: 900px) {
@@ -69,6 +79,7 @@
     .section-head { align-items: flex-start; flex-direction: column; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .callout, .two-col { grid-template-columns: 1fr; }
+    .universe-grid { grid-template-columns: 1fr; }
     .chart { min-height: 360px; }
   }
   @media (max-width: 560px) {
@@ -139,6 +150,21 @@
   <div class="two-col">
     <div class="chart-shell"><div class="chart" id="scatter"></div></div>
     <div class="mini-list" id="sideboard-list"></div>
+  </div>
+</section>
+
+<hr class="divider">
+<section class="section">
+  <div class="section-head">
+    <div>
+      <h2>Universes Beyond Tax</h2>
+      <p>External-IP cards are a smaller slice of the field by copies, but they carry a higher average price per observed card.</p>
+    </div>
+  </div>
+  <div class="universe-grid" id="universe-summary"></div>
+  <div class="two-col" style="margin-top:18px">
+    <div class="chart-shell"><div class="chart" id="universe-franchises"></div></div>
+    <div class="mini-list" id="universe-top"></div>
   </div>
 </section>
 
@@ -400,6 +426,77 @@
         + '</div>').join('');
   }
 
+  function renderUniverse(data) {
+    const totalCopies = data.totalCopies || 1;
+    const totalUsd = data.totalEstimatedUsd || 1;
+    const breakdown = data.universeBreakdown || [];
+    const summary = document.getElementById('universe-summary');
+    summary.innerHTML = breakdown.map((row) => {
+      const copyShare = row.copies / totalCopies * 100;
+      const spendShare = row.estimatedUsd / totalUsd * 100;
+      return '<div class="universe-card">'
+        + '<div style="display:flex;justify-content:space-between;gap:12px;align-items:start"><h3>' + row.category + '</h3><span class="tag">' + row.uniqueCards + ' cards</span></div>'
+        + '<div class="universe-stat"><span>Total spend</span><strong>' + money.format(row.estimatedUsd) + '</strong></div>'
+        + '<div class="universe-stat"><span>Total copies</span><strong>' + number.format(row.copies) + '</strong></div>'
+        + '<div class="universe-stat"><span>Average per observed copy</span><strong>' + moneyCents.format(row.averageUsdPerCopy) + '</strong></div>'
+        + '<div class="universe-stat"><span>Spend share</span><strong>' + spendShare.toFixed(1) + '%</strong></div>'
+        + '<div class="meter" aria-hidden="true"><div class="meter-fill" style="width:' + Math.max(2, spendShare) + '%"></div></div>'
+        + '<div style="margin-top:7px;color:#777;font-size:0.78rem">' + copyShare.toFixed(1) + '% of copies · ' + spendShare.toFixed(1) + '% of spend</div>'
+        + '</div>';
+    }).join('');
+
+    renderUniverseFranchises(data.universeFranchises || []);
+    renderUniverseTop(data.cards || []);
+  }
+
+  function renderUniverseFranchises(franchises) {
+    clear('#universe-franchises');
+    const rows = franchises.slice(0, 10);
+    const width = 720;
+    const rowH = 38;
+    const margin = { top: 18, right: 110, bottom: 28, left: 190 };
+    const height = margin.top + margin.bottom + Math.max(1, rows.length) * rowH;
+    const svg = d3.select('#universe-franchises').append('svg')
+      .attr('viewBox', '0 0 ' + width + ' ' + height)
+      .attr('preserveAspectRatio', 'xMinYMin meet');
+    const x = d3.scaleLinear().domain([0, d3.max(rows, (d) => d.estimatedUsd) || 1]).range([margin.left, width - margin.right]);
+    const y = d3.scaleBand().domain(rows.map((d) => d.franchise)).range([margin.top, height - margin.bottom]).padding(0.28);
+
+    svg.selectAll('rect').data(rows).join('rect')
+      .attr('x', margin.left)
+      .attr('y', (d) => y(d.franchise))
+      .attr('width', (d) => Math.max(2, x(d.estimatedUsd) - margin.left))
+      .attr('height', y.bandwidth())
+      .attr('rx', 4)
+      .attr('fill', '#7b5ea7')
+      .attr('opacity', 0.9)
+      .on('mousemove', (event, d) => showTip(event, '<b>' + d.franchise + '</b><br>' + money.format(d.estimatedUsd) + ' aggregate spend<br><span class="muted">' + number.format(d.copies) + ' copies · ' + moneyCents.format(d.averageUsdPerCopy) + ' per copy</span>'))
+      .on('mouseout', hideTip);
+    svg.selectAll('.franchise-label').data(rows).join('text')
+      .attr('class', 'bar-label')
+      .attr('x', margin.left - 10)
+      .attr('y', (d) => y(d.franchise) + y.bandwidth() / 2 + 4)
+      .attr('text-anchor', 'end')
+      .text((d) => d.franchise);
+    svg.selectAll('.franchise-value').data(rows).join('text')
+      .attr('class', 'bar-sub')
+      .attr('x', (d) => x(d.estimatedUsd) + 8)
+      .attr('y', (d) => y(d.franchise) + y.bandwidth() / 2 + 4)
+      .text((d) => money.format(d.estimatedUsd));
+  }
+
+  function renderUniverseTop(cards) {
+    const rows = cards
+      .filter((card) => card.originCategory === 'Universes Beyond / external IP' && card.estimatedUsd > 0)
+      .sort((a, b) => b.estimatedUsd - a.estimatedUsd)
+      .slice(0, 12);
+    document.getElementById('universe-top').innerHTML = '<h3>Top external-IP money cards</h3>'
+      + rows.map((card) => '<div class="mini-row">'
+        + '<div><strong>' + card.name + '</strong><span>' + card.originFranchise + ' · ' + number.format(card.copies) + ' copies · ' + moneyCents.format(card.priceUsd) + ' each</span></div>'
+        + '<div class="value">' + money.format(card.estimatedUsd) + '</div>'
+        + '</div>').join('');
+  }
+
   function renderArchetypes(archetypes) {
     clear('#archetypes');
     const rows = archetypes.slice(0, 22);
@@ -446,6 +543,7 @@
       renderTreemap(data.cards);
       renderScatter(data.cards);
       renderSideboardList(data.cards);
+      renderUniverse(data);
       renderArchetypes(data.archetypes);
       document.getElementById('footnote').innerHTML = '<b>Method:</b> ' + data.source.deckData + '. Prices rebuilt ' + new Date(data.generatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) + ' from Scryfall bulk data using the cheapest listed tournament-playable paper printing for each observed card name. This estimates observed field value, not what each player personally paid. Rebuild with <code>node scripts/build-paupergeddon-prices.mjs</code>.';
 
