@@ -74,6 +74,7 @@
   .tag { display: inline-flex; align-items: center; border-radius: 999px; background: #efefef; color: #555; padding: 4px 9px; font-size: 0.76rem; font-weight: 800; }
   .footnote { max-width: 1120px; margin: 0 auto; padding: 24px 20px 46px; color: #777; font-size: 0.85rem; line-height: 1.6; }
   .error { color: #b00020; font-weight: 700; padding: 16px; background: #fff; border: 1px solid #e2b8b8; border-radius: 8px; }
+  .is-hidden { display: none !important; }
   @media (max-width: 900px) {
     .page-header { padding-top: 42px; }
     .section-head { align-items: flex-start; flex-direction: column; }
@@ -112,8 +113,8 @@
   <div id="summary"></div>
 </section>
 
-<hr class="divider">
-<section class="section">
+<hr class="divider is-hidden">
+<section class="section is-hidden">
   <div class="section-head">
     <div>
       <h2>The Money Cards</h2>
@@ -128,8 +129,8 @@
   <div class="chart-shell"><div class="chart" id="bar-chart"></div></div>
 </section>
 
-<hr class="divider">
-<section class="section">
+<hr class="divider is-hidden">
+<section class="section is-hidden">
   <div class="section-head">
     <div>
       <h2>Concentration Map</h2>
