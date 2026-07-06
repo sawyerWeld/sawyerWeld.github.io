@@ -74,7 +74,7 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   .source-links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 8px;
   }
 
@@ -122,6 +122,23 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     font-size: 0.76rem;
     font-weight: 700;
     text-transform: uppercase;
+  }
+
+  .intro-copy {
+    max-width: 860px;
+    margin: 18px auto 0;
+    color: #343a3f;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .intro-copy p {
+    margin: 0;
+  }
+
+  .intro-copy p + p {
+    margin-top: 9px;
   }
 
   nav {
@@ -718,9 +735,15 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   }
 
   footer {
-    padding: 24px 0 40px;
+    padding: 28px 0 42px;
+    border-top: 1px solid var(--line);
     color: var(--muted);
     font-size: 0.82rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: center;
   }
 
   .tooltip {
@@ -746,7 +769,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     .explorer-shell,
     .card-columns { grid-template-columns: minmax(0, 1fr); }
     .title-row { grid-template-columns: 1fr; }
-    .source-links { justify-content: flex-start; }
   }
 
   @media (max-width: 620px) {
@@ -756,8 +778,26 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       font-size: 1.45rem;
     }
     .subtitle { max-width: 330px; }
-    .stats { grid-template-columns: 1fr; }
-    .stat { min-height: 70px; }
+    .stats {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 16px;
+    }
+    .stat {
+      min-height: 56px;
+      padding: 8px 6px;
+    }
+    .stat b { font-size: 1.02rem; }
+    .stat span {
+      margin-top: 4px;
+      font-size: 0.56rem;
+      line-height: 1.1;
+    }
+    .intro-copy {
+      margin-top: 14px;
+      font-size: 0.87rem;
+      line-height: 1.45;
+      text-align: left;
+    }
     .section-head,
     .panel-head {
       align-items: flex-start;
@@ -788,13 +828,12 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
         <h1>Spanish Pauper Championship 2026</h1>
         <div class="subtitle">Main event metagame visuals from Ortuella, Bizkaia. Data published July 5, 2026.</div>
       </div>
-      <div class="source-links">
-        <a href="https://campeonatopauper.es/metagame-overview/" target="_blank" rel="noopener noreferrer">Event Data</a>
-        <a href="https://www.reddit.com/r/Pauper/comments/1uo0tyh/we_organized_the_first_spanish_pauper/" target="_blank" rel="noopener noreferrer">Reddit Post</a>
-        <a href="https://mtgdecks.net/Pauper/campeonato-de-espana-de-pauper-2026-main-event-tournament-255330" target="_blank" rel="noopener noreferrer">Decklists</a>
-      </div>
     </div>
     <div class="stats" id="top-stats"></div>
+    <div class="intro-copy">
+      <p>The first Spanish Pauper Championship brought 247 players to Ortuella, Bizkaia, making it the largest Pauper event played with Hawkeye's Bow + Seeker of Skybreak still legal. That makes the tournament a useful snapshot of the format right before the ban: Naya Bowseeker reached the finals, and combo decks in general performed well, with Ruby Storm and X Lands Spy converting strongly into Day 2.</p>
+      <p>The visuals below break down how the metagame shifted after the Day 1 cut, which matchups mattered, and what card choices defined the major archetypes.</p>
+    </div>
   </div>
 </header>
 
@@ -907,8 +946,14 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   </section>
 </main>
 
-<footer class="wrap">
-  Source: Campeonato de Espana de Pauper metagame JSON and Reddit event post. Local bundle generated from public data.
+<footer>
+  <div class="wrap footer-inner">
+    <div class="source-links">
+      <a href="https://campeonatopauper.es/metagame-overview/" target="_blank" rel="noopener noreferrer">Event Data</a>
+      <a href="https://www.reddit.com/r/Pauper/comments/1uo0tyh/we_organized_the_first_spanish_pauper/" target="_blank" rel="noopener noreferrer">Reddit Post</a>
+      <a href="https://mtgdecks.net/Pauper/campeonato-de-espana-de-pauper-2026-main-event-tournament-255330" target="_blank" rel="noopener noreferrer">Decklists</a>
+    </div>
+  </div>
 </footer>
 
 <div class="tooltip" id="tooltip"></div>
