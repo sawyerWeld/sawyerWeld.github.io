@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spanish Pauper Championship 2026 Visuals</title>
+<script src="spanish-pauper-data.js"></script>
+<style>
+  :root {
+    --bg: #f4f5f6;
+    --paper: #ffffff;
+    --ink: #171817;
+    --muted: #656b70;
+    --line: #d9dee2;
+    --soft: #e9edf0;
+    --blue: #386f9f;
+    --teal: #236c5f;
+    --gold: #c79834;
+    --red: #b64f4a;
+    --purple: #725a95;
+    --green: #4f8f5f;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.45;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    width: min(1180px, calc(100vw - 32px));
+    margin: 0 auto;
+  }
+
+  header {
+    padding: 28px 0 18px;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  .title-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 20px;
+    align-items: end;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2.05rem;
+    line-height: 1.05;
+    letter-spacing: 0;
+    overflow-wrap: break-word;
+  }
+
+  .subtitle {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.94rem;
+    overflow-wrap: break-word;
+  }
+
+  .source-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .source-links a,
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfc;
+    color: #323638;
+    font-size: 0.82rem;
+    font-weight: 650;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 22px;
+    border: 1px solid var(--line);
+    background: var(--line);
+  }
+
+  .stat {
+    min-height: 86px;
+    padding: 14px;
+    background: var(--paper);
+  }
+
+  .stat b {
+    display: block;
+    font-size: 1.45rem;
+    line-height: 1.1;
+  }
+
+  .stat span {
+    display: block;
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(244, 245, 246, 0.94);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-inner {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+
+  .nav-inner a {
+    flex: 0 0 auto;
+    padding: 7px 10px;
+    border-radius: 8px;
+    color: #3a4045;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .nav-inner a:hover { background: var(--soft); }
+
+  main { padding: 18px 0 46px; }
+
+  section {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  section:last-child { border-bottom: 0; }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.28rem;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .note {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap: 18px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .panel {
+    min-width: 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 44px;
+    padding: 11px 13px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .panel-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .panel-body { padding: 14px; }
+
+  .chart {
+    min-width: 0;
+    width: 100%;
+    min-height: 340px;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .axis-label,
+  .tick-label,
+  .chart-label {
+    fill: var(--muted);
+    font-size: 12px;
+  }
+
+  .chart-name {
+    fill: var(--ink);
+    font-size: 12px;
+    font-weight: 650;
+  }
+
+  .small {
+    color: var(--muted);
+    font-size: 0.79rem;
+  }
+
+  .segmented {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #f7f9fa;
+  }
+
+  .segmented button {
+    min-width: 76px;
+    height: 30px;
+    padding: 0 9px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #454b50;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 750;
+  }
+
+  .segmented button.active {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .table-wrap {
+    min-width: 0;
+    overflow: auto;
+    max-height: 540px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+  }
+
+  th,
+  td {
+    padding: 10px 11px;
+    border-bottom: 1px solid var(--soft);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  th:first-child,
+  td:first-child {
+    text-align: left;
+    position: sticky;
+    left: 0;
+    background: var(--paper);
+  }
+
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #eef2f4;
+    color: #40464b;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+  }
+
+  tr:hover td { background: #f8fafb; }
+  tr:hover td:first-child { background: #f8fafb; }
+
+  .bar-stack {
+    display: grid;
+    gap: 8px;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: minmax(110px, 1fr) minmax(140px, 2fr) 58px;
+    gap: 10px;
+    align-items: center;
+    min-height: 28px;
+  }
+
+  .bar-name {
+    overflow: hidden;
+    color: #2d3337;
+    font-size: 0.84rem;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bar-track {
+    position: relative;
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--soft);
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--blue);
+  }
+
+  .bar-val {
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-align: right;
+  }
+
+  .ladder {
+    display: grid;
+    gap: 8px;
+  }
+
+  .finish-row {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+    align-items: center;
+    min-height: 42px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--soft);
+  }
+
+  .finish-row:last-child { border-bottom: 0; }
+
+  .finish {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 28px;
+    border-radius: 8px;
+    background: #edf2f4;
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .player {
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .deck {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .matrix-wrap {
+    min-width: 0;
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  .matrix {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 900px;
+  }
+
+  .matrix th,
+  .matrix td {
+    width: 64px;
+    min-width: 64px;
+    height: 48px;
+    padding: 5px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .matrix th:first-child,
+  .matrix td:first-child {
+    width: 144px;
+    min-width: 144px;
+  }
+
+  .matrix .rotate {
+    height: 118px;
+    vertical-align: bottom;
+  }
+
+  .matrix .rotate span {
+    display: inline-block;
+    width: 104px;
+    transform: rotate(-52deg);
+    transform-origin: left bottom;
+    color: #3a4045;
+    font-size: 0.69rem;
+    font-weight: 800;
+    text-align: left;
+  }
+
+  .cell {
+    border-radius: 7px;
+    color: #111;
+    font-size: 0.72rem;
+    font-weight: 800;
+  }
+
+  .cell small {
+    display: block;
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 0.62rem;
+    font-weight: 700;
+  }
+
+  .muted-cell {
+    background: #f0f2f3;
+    color: #a0a6ab;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  select,
+  input {
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.86rem;
+  }
+
+  select { min-width: 220px; }
+
+  .explorer-layout {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .mini-metric {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--soft);
+  }
+
+  .mini-metric:last-child { border-bottom: 0; }
+
+  .mini-metric b {
+    display: block;
+    font-size: 1.2rem;
+  }
+
+  .mini-metric span {
+    color: var(--muted);
+    font-size: 0.77rem;
+    font-weight: 750;
+    text-transform: uppercase;
+  }
+
+  .card-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  footer {
+    padding: 24px 0 40px;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  .tooltip {
+    position: fixed;
+    z-index: 50;
+    max-width: 260px;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.14);
+    color: var(--ink);
+    font-size: 0.78rem;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-999px, -999px);
+  }
+
+  @media (max-width: 980px) {
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-2,
+    .grid-3,
+    .explorer-layout,
+    .card-columns { grid-template-columns: minmax(0, 1fr); }
+    .title-row { grid-template-columns: 1fr; }
+    .source-links { justify-content: flex-start; }
+  }
+
+  @media (max-width: 620px) {
+    .wrap { width: min(calc(100vw - 20px), 1180px); }
+    h1 {
+      max-width: 330px;
+      font-size: 1.45rem;
+    }
+    .subtitle { max-width: 330px; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { min-height: 70px; }
+    .section-head,
+    .panel-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .panel-head { min-height: 54px; }
+    .controls { justify-content: flex-start; }
+    .chart { min-height: 300px; overflow-x: auto; }
+    .chart svg { min-width: 720px; }
+    .bar-row {
+      grid-template-columns: minmax(0, 1.2fr) minmax(72px, 1fr) 36px;
+      gap: 8px;
+    }
+    .finish-row { grid-template-columns: 48px minmax(0, 1fr); }
+    .finish-row .deck { grid-column: 2; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="title-row">
+      <div>
+        <h1>Spanish Pauper Championship 2026</h1>
+        <div class="subtitle">Main event metagame visuals from Ortuella, Bizkaia. Data published July 5, 2026.</div>
+      </div>
+      <div class="source-links">
+        <a href="https://campeonatopauper.es/metagame-overview/" target="_blank" rel="noopener noreferrer">Event Data</a>
+        <a href="https://www.reddit.com/r/Pauper/comments/1uo0tyh/we_organized_the_first_spanish_pauper/" target="_blank" rel="noopener noreferrer">Reddit Post</a>
+        <a href="https://mtgdecks.net/Pauper/campeonato-de-espana-de-pauper-2026-main-event-tournament-255330" target="_blank" rel="noopener noreferrer">Decklists</a>
+      </div>
+    </div>
+    <div class="stats" id="top-stats"></div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#funnel">Funnel</a>
+    <a href="#matchups">Matchups</a>
+    <a href="#cards">Cards</a>
+    <a href="#explorer">Explorer</a>
+    <a href="#top8">Top 8</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="funnel">
+    <div class="section-head">
+      <div>
+        <h2>Day 1 To Day 2 Funnel</h2>
+        <p class="note">Archetype share before and after the Day 2 cut.</p>
+      </div>
+      <span class="chip" id="funnel-count"></span>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Metagame Shift</span>
+          <span class="small">Lines are colored by share change</span>
+        </div>
+        <div class="panel-body">
+          <div class="chart" id="funnel-chart"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Day 2 Representation</span>
+          <span class="small">Qualified decks</span>
+        </div>
+        <div class="panel-body">
+          <div class="bar-stack" id="day2-bars"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="matchups">
+    <div class="section-head">
+      <div>
+        <h2>Matchup Heatmap</h2>
+        <p class="note">Win rate by row archetype into column archetype. Mirrors excluded.</p>
+      </div>
+      <div class="controls">
+        <div class="segmented" id="matrix-tabs">
+          <button type="button" data-matrix="overall" class="active">Overall</button>
+          <button type="button" data-matrix="day1">Day 1</button>
+          <button type="button" data-matrix="day2">Day 2</button>
+        </div>
+      </div>
+    </div>
+    <div class="matrix-wrap" id="matrix"></div>
+  </section>
+
+  <section id="cards">
+    <div class="section-head">
+      <div>
+        <h2>Cards That Moved</h2>
+        <p class="note">Global card presence by Day 1 and Day 2 deck share.</p>
+      </div>
+      <div class="controls">
+        <div class="segmented" id="card-tabs">
+          <button type="button" data-board="mainboard" class="active">Mainboard</button>
+          <button type="button" data-board="sideboard">Sideboard</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Largest Positive Day 2 Shifts</span>
+          <span class="small">Percentage-point difference</span>
+        </div>
+        <div class="panel-body">
+          <div class="bar-stack" id="card-shift-bars"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Most Common Cards</span>
+          <span class="small">Sorted by Day 2 share</span>
+        </div>
+        <div class="table-wrap">
+          <table id="card-table"></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="explorer">
+    <div class="section-head">
+      <div>
+        <h2>Archetype Explorer</h2>
+        <p class="note">Performance, matchups, and card choices for each archetype.</p>
+      </div>
+      <div class="controls">
+        <select id="archetype-select" aria-label="Archetype"></select>
+      </div>
+    </div>
+    <div class="explorer-layout">
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title" id="explorer-title">Archetype</span>
+        </div>
+        <div class="panel-body" id="explorer-summary"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Card Consensus</span>
+          <span class="small">Day 2 share where available</span>
+        </div>
+        <div class="panel-body">
+          <div class="card-columns">
+            <div>
+              <div class="panel-title">Mainboard</div>
+              <div class="bar-stack" id="main-card-bars"></div>
+            </div>
+            <div>
+              <div class="panel-title">Sideboard</div>
+              <div class="bar-stack" id="side-card-bars"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="top8">
+    <div class="section-head">
+      <div>
+        <h2>Top 8</h2>
+        <p class="note">MonoU Terror won, while Naya Bowseeker reached the final.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Elimination Finish</span></div>
+      <div class="panel-body">
+        <div class="ladder" id="top8-list"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Source: Campeonato de Espana de Pauper metagame JSON and Reddit event post. Local bundle generated from public data.
+</footer>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+(function () {
+  const data = window.__SPC_DATA;
+  if (!data) {
+    document.body.innerHTML = '<main class="wrap"><p>Missing spanish-pauper-data.js.</p></main>';
+    return;
+  }
+
+  const overview = data.day2Comparison;
+  const eventSummary = data.eventSummary;
+  const cards = data.globalCards;
+  const archetypes = overview.archetypes;
+  const details = data.archetypeDetails;
+  const tooltip = document.getElementById('tooltip');
+  const palette = ['#386f9f', '#236c5f', '#c79834', '#b64f4a', '#725a95', '#4f8f5f'];
+
+  function pct(value, digits = 1) {
+    return (Number(value || 0) * 100).toFixed(digits) + '%';
+  }
+
+  function pp(value, digits = 1) {
+    const n = Number(value || 0) * 100;
+    return (n > 0 ? '+' : '') + n.toFixed(digits) + 'pp';
+  }
+
+  function num(value) {
+    return Number(value || 0).toLocaleString();
+  }
+
+  function esc(value) {
+    return String(value == null ? '' : value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function colorFor(name) {
+    let hash = 0;
+    for (let i = 0; i < name.length; i += 1) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
+    return palette[hash % palette.length];
+  }
+
+  function changeColor(diff) {
+    if (diff > 0.005) return '#4f8f5f';
+    if (diff < -0.005) return '#b64f4a';
+    return '#8f989f';
+  }
+
+  function heatColor(value) {
+    if (value == null || !Number.isFinite(Number(value))) return '#f0f2f3';
+    const v = Math.max(0, Math.min(1, Number(value)));
+    const a = v < 0.5
+      ? { r1: 182, g1: 79, b1: 74, r2: 229, g2: 204, b2: 120, t: v / 0.5 }
+      : { r1: 229, g1: 204, b1: 120, r2: 79, g2: 143, b2: 95, t: (v - 0.5) / 0.5 };
+    const r = Math.round(a.r1 + (a.r2 - a.r1) * a.t);
+    const g = Math.round(a.g1 + (a.g2 - a.g1) * a.t);
+    const b = Math.round(a.b1 + (a.b2 - a.b1) * a.t);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  function showTip(html, x, y) {
+    tooltip.innerHTML = html;
+    tooltip.style.opacity = 1;
+    const rect = tooltip.getBoundingClientRect();
+    let left = x + 14;
+    let top = y + 14;
+    if (left + rect.width > window.innerWidth - 8) left = x - rect.width - 14;
+    if (top + rect.height > window.innerHeight - 8) top = y - rect.height - 14;
+    tooltip.style.transform = `translate(${Math.max(8, left)}px, ${Math.max(8, top)}px)`;
+  }
+
+  function hideTip() {
+    tooltip.style.opacity = 0;
+    tooltip.style.transform = 'translate(-999px, -999px)';
+  }
+
+  function svgEl(tag, attrs = {}) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+    return el;
+  }
+
+  function renderStats() {
+    const topStats = [
+      [eventSummary.event.players, 'Day 1 Decks'],
+      [overview.summary.day_2_decks, 'Day 2 Decks'],
+      [eventSummary.event.archetypes, 'Archetypes'],
+      [eventSummary.event.matches, 'Matches']
+    ];
+    document.getElementById('top-stats').innerHTML = topStats.map(([value, label]) => `
+      <div class="stat"><b>${esc(value)}</b><span>${esc(label)}</span></div>
+    `).join('');
+    document.getElementById('funnel-count').textContent =
+      `${overview.summary.day_1_decks} Day 1 -> ${overview.summary.day_2_decks} Day 2`;
+  }
+
+  function renderBars(el, rows, options = {}) {
+    const max = Math.max(...rows.map((r) => Number(r.value || 0)), 1);
+    el.innerHTML = rows.map((row) => {
+      const width = Math.max(2, Number(row.value || 0) / max * 100);
+      const color = row.color || colorFor(row.name);
+      return `
+        <div class="bar-row" title="${esc(row.title || '')}">
+          <div class="bar-name">${esc(row.name)}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${width}%;background:${color};"></div></div>
+          <div class="bar-val">${esc(row.label)}</div>
+        </div>
+      `;
+    }).join('');
+    if (options.empty && rows.length === 0) el.innerHTML = `<div class="small">${esc(options.empty)}</div>`;
+  }
+
+  function renderDay2Bars() {
+    const rows = archetypes
+      .filter((a) => a.day_2_decks > 0)
+      .sort((a, b) => b.day_2_decks - a.day_2_decks || b.day_2_share - a.day_2_share)
+      .slice(0, 14)
+      .map((a) => ({
+        name: a.archetype,
+        value: a.day_2_decks,
+        label: String(a.day_2_decks),
+        color: colorFor(a.archetype),
+        title: `${a.archetype}: ${a.day_2_decks} Day 2 decks (${pct(a.day_2_share)})`
+      }));
+    renderBars(document.getElementById('day2-bars'), rows);
+  }
+
+  function renderFunnel() {
+    const top = archetypes
+      .filter((a) => a.day_1_decks >= 2 || a.day_2_decks > 0)
+      .sort((a, b) => b.day_2_decks - a.day_2_decks || b.day_1_decks - a.day_1_decks)
+      .slice(0, 22);
+    const W = 920;
+    const H = 640;
+    const margin = { top: 52, right: 148, bottom: 28, left: 160 };
+    const x1 = margin.left;
+    const x2 = W - margin.right;
+    const areaTop = margin.top + 20;
+    const areaBottom = H - margin.bottom;
+    const rowH = (areaBottom - areaTop) / Math.max(top.length - 1, 1);
+    const byD1 = [...top].sort((a, b) => b.day_1_share - a.day_1_share);
+    const byD2 = [...top].sort((a, b) => b.day_2_share - a.day_2_share);
+    const yD1 = new Map(byD1.map((a, i) => [a.archetype, areaTop + i * rowH]));
+    const yD2 = new Map(byD2.map((a, i) => [a.archetype, areaTop + i * rowH]));
+    const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Day 1 to Day 2 archetype funnel' });
+
+    svg.appendChild(svgEl('text', { x: x1, y: 28, class: 'axis-label', 'text-anchor': 'middle' })).textContent = 'Day 1';
+    svg.appendChild(svgEl('text', { x: x2, y: 28, class: 'axis-label', 'text-anchor': 'middle' })).textContent = 'Day 2';
+    svg.appendChild(svgEl('text', { x: x1, y: 44, class: 'tick-label', 'text-anchor': 'middle' })).textContent = `${overview.summary.day_1_decks} decks`;
+    svg.appendChild(svgEl('text', { x: x2, y: 44, class: 'tick-label', 'text-anchor': 'middle' })).textContent = `${overview.summary.day_2_decks} decks`;
+
+    top.forEach((a) => {
+      const y1 = yD1.get(a.archetype);
+      const y2 = yD2.get(a.archetype);
+      const line = svgEl('path', {
+        d: `M ${x1 + 10} ${y1} C ${x1 + 180} ${y1}, ${x2 - 180} ${y2}, ${x2 - 10} ${y2}`,
+        fill: 'none',
+        stroke: changeColor(a.difference),
+        'stroke-width': 3 + Math.sqrt(a.day_1_decks),
+        opacity: 0.58
+      });
+      line.addEventListener('mousemove', (ev) => showTip(`<b>${esc(a.archetype)}</b><br>D1 ${a.day_1_decks} (${pct(a.day_1_share)})<br>D2 ${a.day_2_decks} (${pct(a.day_2_share)})<br>Conversion ${pct(a.conversion_rate)}`, ev.clientX, ev.clientY));
+      line.addEventListener('mouseleave', hideTip);
+      svg.appendChild(line);
+    });
+
+    byD1.forEach((a) => {
+      const y = yD1.get(a.archetype);
+      svg.appendChild(svgEl('circle', { cx: x1, cy: y, r: 4.2, fill: colorFor(a.archetype) }));
+      const label = svgEl('text', { x: x1 - 12, y: y + 4, class: 'chart-name', 'text-anchor': 'end' });
+      label.textContent = `${a.archetype} ${pct(a.day_1_share)}`;
+      svg.appendChild(label);
+    });
+
+    byD2.forEach((a) => {
+      const y = yD2.get(a.archetype);
+      svg.appendChild(svgEl('circle', { cx: x2, cy: y, r: 4.2, fill: colorFor(a.archetype) }));
+      const label = svgEl('text', { x: x2 + 12, y: y + 4, class: 'chart-name' });
+      label.textContent = `${pct(a.day_2_share)} ${a.archetype}`;
+      svg.appendChild(label);
+    });
+
+    document.getElementById('funnel-chart').replaceChildren(svg);
+  }
+
+  function matrixData(key) {
+    if (key === 'day1') return data.matchupDay1;
+    if (key === 'day2') return data.matchupDay2;
+    return data.matchupOverall;
+  }
+
+  function renderMatrix(key = 'overall') {
+    const source = matrixData(key);
+    const names = source.archetypes
+      .filter((a) => a.decks >= (key === 'day2' ? 1 : 5) || a.total_matches >= (key === 'day2' ? 2 : 35))
+      .sort((a, b) => b.decks - a.decks || b.total_matches - a.total_matches)
+      .slice(0, key === 'day2' ? 14 : 16)
+      .map((a) => a.archetype);
+    const byName = new Map(source.archetypes.map((a) => [a.archetype, a]));
+    const html = `
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th></th>
+            ${names.map((n) => `<th class="rotate"><span>${esc(n)}</span></th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          ${names.map((rowName) => {
+            const row = byName.get(rowName);
+            const matchups = new Map((row.matchups || []).map((m) => [m.opponent, m]));
+            return `
+              <tr>
+                <th>${esc(rowName)}</th>
+                ${names.map((colName) => {
+                  if (rowName === colName) return '<td class="muted-cell">-</td>';
+                  const m = matchups.get(colName);
+                  if (!m) return '<td class="muted-cell">n/a</td>';
+                  return `<td><div class="cell" style="background:${heatColor(m.win_rate)};" title="${esc(rowName)} vs ${esc(colName)}">${pct(m.win_rate, 0)}<small>${m.matches}</small></div></td>`;
+                }).join('')}
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    `;
+    document.getElementById('matrix').innerHTML = html;
+  }
+
+  function renderCards(board = 'mainboard') {
+    const rows = cards[board] || [];
+    const shifted = [...rows]
+      .filter((c) => c.day_1_decks >= 2 || c.day_2_decks >= 2)
+      .sort((a, b) => b.difference - a.difference)
+      .slice(0, 12)
+      .map((c) => ({
+        name: c.card,
+        value: Math.max(0.001, c.difference),
+        label: pp(c.difference),
+        color: changeColor(c.difference),
+        title: `${c.card}: D1 ${pct(c.day_1_share)}, D2 ${pct(c.day_2_share)}`
+      }));
+    renderBars(document.getElementById('card-shift-bars'), shifted);
+
+    const tableRows = [...rows]
+      .sort((a, b) => b.day_2_share - a.day_2_share || b.day_1_share - a.day_1_share)
+      .slice(0, 38);
+    document.getElementById('card-table').innerHTML = `
+      <thead>
+        <tr><th>Card</th><th>D1</th><th>D2</th><th>Diff</th><th>D1 Avg</th><th>D2 Avg</th></tr>
+      </thead>
+      <tbody>
+        ${tableRows.map((c) => `
+          <tr>
+            <td>${esc(c.card)}</td>
+            <td>${pct(c.day_1_share)}</td>
+            <td>${pct(c.day_2_share)}</td>
+            <td style="color:${changeColor(c.difference)};font-weight:800;">${pp(c.difference)}</td>
+            <td>${Number(c.day_1_average || 0).toFixed(2)}</td>
+            <td>${Number(c.day_2_average || 0).toFixed(2)}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    `;
+  }
+
+  function renderTop8() {
+    document.getElementById('top8-list').innerHTML = eventSummary.top_8.map((entry) => `
+      <a class="finish-row" href="${esc(entry.deck_url)}" target="_blank" rel="noopener noreferrer">
+        <span class="finish">${esc(entry.finish)}</span>
+        <span class="player">${esc(entry.player).replace(/\s+/g, ' ')}</span>
+        <span class="deck">${esc(entry.archetype)}</span>
+      </a>
+    `).join('');
+  }
+
+  function initExplorer() {
+    const select = document.getElementById('archetype-select');
+    const sorted = [...archetypes].sort((a, b) => b.day_1_decks - a.day_1_decks || a.archetype.localeCompare(b.archetype));
+    select.innerHTML = sorted.map((a) => `<option value="${esc(a.archetype)}">${esc(a.archetype)} (${a.day_1_decks})</option>`).join('');
+    select.value = 'Ruby Storm';
+    select.addEventListener('change', () => renderExplorer(select.value));
+    renderExplorer(select.value);
+  }
+
+  function renderExplorer(name) {
+    const d = details[name];
+    const overviewRow = archetypes.find((a) => a.archetype === name);
+    if (!d || !overviewRow) return;
+    document.getElementById('explorer-title').textContent = name;
+    const perf = d.spotlight.performance;
+    const best = d.spotlight.best_matchup;
+    const worst = d.spotlight.worst_matchup;
+    document.getElementById('explorer-summary').innerHTML = `
+      <div class="mini-metric"><b>${perf.players}</b><span>Day 1 decks</span></div>
+      <div class="mini-metric"><b>${pct(perf.win_rate)}</b><span>Overall win rate</span></div>
+      <div class="mini-metric"><b>${perf.record}</b><span>Record</span></div>
+      <div class="mini-metric"><b>${perf.day_2_decks}</b><span>Day 2 decks</span></div>
+      <div class="mini-metric"><b>${pct(perf.conversion_rate)}</b><span>Conversion</span></div>
+      <div class="mini-metric"><b>${best.available ? esc(best.archetype) + ' ' + pct(best.win_rate) : 'n/a'}</b><span>Best matchup</span></div>
+      <div class="mini-metric"><b>${worst.available ? esc(worst.archetype) + ' ' + pct(worst.win_rate) : 'n/a'}</b><span>Worst matchup</span></div>
+    `;
+
+    function cardRows(cardsForBoard) {
+      return [...cardsForBoard]
+        .sort((a, b) => b.day_2_pct - a.day_2_pct || b.day_1_pct - a.day_1_pct || b.day_2_avg - a.day_2_avg)
+        .slice(0, 14)
+        .map((c) => ({
+          name: c.card,
+          value: Math.max(c.day_2_pct || 0, c.day_1_pct || 0),
+          label: `${pct(c.day_2_pct || c.day_1_pct, 0)} x${Number(c.day_2_avg || c.day_1_avg || 0).toFixed(1)}`,
+          color: changeColor(c.difference || 0),
+          title: `${c.card}: D1 ${pct(c.day_1_pct)}, D2 ${pct(c.day_2_pct)}`
+        }));
+    }
+
+    renderBars(document.getElementById('main-card-bars'), cardRows(d.analysis.mainboard || []), { empty: 'No mainboard data.' });
+    renderBars(document.getElementById('side-card-bars'), cardRows(d.analysis.sideboard || []), { empty: 'No sideboard data.' });
+  }
+
+  function initControls() {
+    document.getElementById('matrix-tabs').addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-matrix]');
+      if (!button) return;
+      document.querySelectorAll('#matrix-tabs button').forEach((b) => b.classList.toggle('active', b === button));
+      renderMatrix(button.dataset.matrix);
+    });
+    document.getElementById('card-tabs').addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-board]');
+      if (!button) return;
+      document.querySelectorAll('#card-tabs button').forEach((b) => b.classList.toggle('active', b === button));
+      renderCards(button.dataset.board);
+    });
+  }
+
+  renderStats();
+  renderFunnel();
+  renderDay2Bars();
+  renderMatrix();
+  renderCards();
+  renderTop8();
+  initExplorer();
+  initControls();
+})();
+</script>
+</body>
+</html>
