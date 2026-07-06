@@ -44,31 +44,34 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   }
 
   header {
-    padding: 28px 0 18px;
     border-bottom: 1px solid var(--line);
     background: var(--paper);
   }
 
-  .title-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(430px, 520px);
-    gap: 24px;
-    align-items: start;
+  .page-header {
+    padding: 58px 20px 38px;
+    text-align: center;
   }
 
-  h1 {
+  .page-header h1 {
     margin: 0;
-    font-size: 2.05rem;
+    font-size: 2.4rem;
+    font-weight: 800;
     line-height: 1.05;
     letter-spacing: 0;
     overflow-wrap: break-word;
   }
 
-  .subtitle {
+  .byline {
     margin-top: 8px;
     color: var(--muted);
     font-size: 0.94rem;
     overflow-wrap: break-word;
+  }
+
+  .byline a {
+    color: inherit;
+    font-weight: 700;
   }
 
   .source-links {
@@ -92,35 +95,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     font-weight: 650;
     text-decoration: none;
     white-space: nowrap;
-  }
-
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
-    border: 1px solid var(--line);
-    background: var(--line);
-  }
-
-  .stat {
-    min-height: 72px;
-    padding: 11px 12px;
-    background: var(--paper);
-  }
-
-  .stat b {
-    display: block;
-    font-size: 1.28rem;
-    line-height: 1.1;
-  }
-
-  .stat span {
-    display: block;
-    margin-top: 7px;
-    color: var(--muted);
-    font-size: 0.76rem;
-    font-weight: 700;
-    text-transform: uppercase;
   }
 
   .intro-copy {
@@ -774,32 +748,13 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     .grid-3,
     .explorer-shell,
     .card-columns { grid-template-columns: minmax(0, 1fr); }
-    .title-row {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
   }
 
   @media (max-width: 620px) {
     .wrap { width: min(calc(100vw - 20px), 1180px); }
-    h1 {
-      max-width: 330px;
-      font-size: 1.45rem;
-    }
-    .subtitle { max-width: 330px; }
-    .stats {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-    .stat {
-      min-height: 56px;
-      padding: 8px 6px;
-    }
-    .stat b { font-size: 1.02rem; }
-    .stat span {
-      margin-top: 4px;
-      font-size: 0.56rem;
-      line-height: 1.1;
-    }
+    .page-header { padding: 36px 12px 30px; }
+    .page-header h1 { font-size: 1.72rem; }
+    .byline { font-size: 0.86rem; }
     .intro-copy {
       margin-top: 14px;
       font-size: 0.87rem;
@@ -831,13 +786,11 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
 </head>
 <body>
 <header>
-  <div class="wrap">
-    <div class="title-row">
-      <div>
-        <h1>Spanish Pauper Championship 2026</h1>
-        <div class="subtitle">Main event metagame visuals from Ortuella, Bizkaia. Data published July 5, 2026.</div>
-      </div>
-      <div class="stats" id="top-stats"></div>
+  <div class="page-header">
+    <h1>Spanish Pauper Championship 2026</h1>
+    <div class="byline">
+      247 Players &middot; Ortuella, Bizkaia &middot; <a href="https://campeonatopauper.es/metagame-overview/" target="_blank" rel="noopener noreferrer">Spanish Pauper Championship</a><br>
+      Made By <a href="https://sawyerwelden.com" target="_blank" rel="noopener noreferrer">Sawyer Welden</a>
     </div>
   </div>
 </header>
@@ -949,7 +902,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   <div class="wrap footer-inner">
     <div class="intro-copy">
       <p>The first Spanish Pauper Championship brought 247 players to Ortuella, Bizkaia, making it the largest Pauper event played with Hawkeye's Bow + Seeker of Skybreak still legal. That makes the tournament a useful snapshot of the format right before the ban: Naya Bowseeker reached the finals, and combo decks in general performed well, with Ruby Storm and X Lands Spy converting strongly into Day 2.</p>
-      <p>The visuals above break down how the metagame shifted after the Day 1 cut, which matchups mattered, and what card choices defined the major archetypes.</p>
     </div>
     <div class="source-links">
       <a href="https://campeonatopauper.es/metagame-overview/" target="_blank" rel="noopener noreferrer">Event Data</a>
@@ -1216,15 +1168,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   }
 
   function renderStats() {
-    const topStats = [
-      [eventSummary.event.players, 'Day 1 Decks'],
-      [overview.summary.day_2_decks, 'Day 2 Decks'],
-      [eventSummary.event.archetypes, 'Archetypes'],
-      [eventSummary.event.matches, 'Matches']
-    ];
-    document.getElementById('top-stats').innerHTML = topStats.map(([value, label]) => `
-      <div class="stat"><b>${esc(value)}</b><span>${esc(label)}</span></div>
-    `).join('');
     document.getElementById('funnel-count').textContent =
       `${overview.summary.day_1_decks} Day 1 -> ${overview.summary.day_2_decks} Day 2`;
   }
