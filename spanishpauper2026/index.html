@@ -1072,6 +1072,13 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     return '#8f989f';
   }
 
+  function consensusColor(share) {
+    const value = Number(share || 0) * 100;
+    if (value >= 80) return '#27ae60';
+    if (value >= 50) return '#d4a017';
+    return '#c0392b';
+  }
+
   function heatColor(value) {
     if (value == null || !Number.isFinite(Number(value))) return '#f0f2f3';
     const v = Math.max(0, Math.min(1, Number(value)));
@@ -1315,7 +1322,7 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
           <div class="consensus-name">${esc(card.card)}</div>
           <div class="consensus-stats">
             <span class="copy-pill">x${Number(avg || 0).toFixed(1)}</span>
-            <span class="consensus-bar"><span class="consensus-fill" style="width:${width}%;background:${changeColor(card.difference || 0)};"></span></span>
+            <span class="consensus-bar"><span class="consensus-fill" style="width:${width}%;background:${consensusColor(share)};"></span></span>
             <span class="consensus-pct">${pct(share, 0)}</span>
           </div>
         </div>
