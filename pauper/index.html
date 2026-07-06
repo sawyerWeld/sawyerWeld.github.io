@@ -42,31 +42,12 @@
   }
 
   header {
-    padding: 10px 0 18px;
-  }
-
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    min-height: 34px;
-    color: #5e6367;
-    font-size: 0.86rem;
-    font-weight: 750;
-  }
-
-  .topbar a {
-    text-decoration: none;
-  }
-
-  .topbar a:hover {
-    color: var(--ink);
+    padding: 28px 0 18px;
   }
 
   h1 {
     max-width: 720px;
-    margin: 26px 0 0;
+    margin: 0;
     font-size: 1.18rem;
     font-weight: 800;
     line-height: 1.1;
@@ -283,11 +264,6 @@
     text-transform: uppercase;
   }
 
-  .badge.live {
-    border-color: rgba(79, 143, 95, 0.35);
-    color: #2f6f3e;
-  }
-
   .badge.next {
     border-color: rgba(56, 111, 159, 0.28);
     color: #315f87;
@@ -319,7 +295,6 @@
   @media (max-width: 780px) {
     .wrap { width: min(calc(100vw - 22px), 860px); }
     header { padding-bottom: 24px; }
-    h1 { margin-top: 20px; }
     .dek { font-size: 0.93rem; }
     .year-row {
       grid-template-columns: 1fr;
@@ -340,11 +315,6 @@
   }
 
   @media (max-width: 440px) {
-    .topbar {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 4px;
-    }
     .entry {
       grid-template-columns: 82px minmax(0, 1fr);
     }
@@ -363,10 +333,6 @@
 <body>
 <header>
   <div class="wrap">
-    <div class="topbar">
-      <a href="/">sawyerwelden.com</a>
-      <span>Pauper reports</span>
-    </div>
     <h1>Pauper Tournament Reports</h1>
     <p class="dek">A chronological archive of Pauper event reports, metagame visualizations, and tournament notes.</p>
   </div>
@@ -406,7 +372,6 @@
           <div class="entry-body">
             <div class="title-line">
               <h3 class="title">Spanish Pauper Championship</h3>
-              <span class="badge live">Live</span>
             </div>
             <div class="meta">247 players / Ortuella, Bizkaia / July 2026</div>
             <p class="summary">Largest BowSeeker-legal Pauper event before the ban.</p>
@@ -418,7 +383,6 @@
           <div class="entry-body">
             <div class="title-line">
               <h3 class="title">Paupergeddon Spring</h3>
-              <span class="badge live">Live</span>
             </div>
             <div class="meta">965 players / Luca, Italy / Spring 2026</div>
             <p class="summary">Large-field Paupergeddon report with metagame and archetype views.</p>
