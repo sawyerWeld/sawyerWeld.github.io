@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Pauper tournament reports and metagame visualizations by Sawyer Welden.">
+<title>Pauper Tournament Reports</title>
+<style>
+  :root {
+    --bg: #f4f5f6;
+    --paper: #ffffff;
+    --ink: #171817;
+    --muted: #656b70;
+    --line: #d9dee2;
+    --soft: #e9edf0;
+    --green: #4f8f5f;
+    --red: #b64f4a;
+    --blue: #386f9f;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.45;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    width: min(1020px, calc(100vw - 32px));
+    margin: 0 auto;
+  }
+
+  header {
+    padding: 34px 0 24px;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  .topline {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .home-link {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .home-link:hover { color: var(--ink); }
+
+  h1 {
+    margin: 0;
+    font-size: 2.05rem;
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .dek {
+    max-width: 760px;
+    margin: 12px 0 0;
+    color: #30363a;
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 24px 0 42px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 22px 0 10px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.02rem;
+    letter-spacing: 0;
+  }
+
+  .count {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 750;
+    text-transform: uppercase;
+  }
+
+  .report-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .report-card {
+    display: grid;
+    gap: 12px;
+    min-height: 188px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    text-decoration: none;
+  }
+
+  a.report-card:hover {
+    border-color: #b9c4ca;
+    background: #fbfcfc;
+  }
+
+  .report-card.upcoming {
+    background: #f9fafb;
+  }
+
+  .report-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.2;
+  }
+
+  .status {
+    flex: 0 0 auto;
+    padding: 3px 7px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fbfcfc;
+    color: #3a4045;
+    font-size: 0.7rem;
+    font-weight: 850;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .status.live {
+    border-color: rgba(79, 143, 95, 0.34);
+    background: rgba(79, 143, 95, 0.1);
+    color: #2f6f3e;
+  }
+
+  .status.next {
+    border-color: rgba(56, 111, 159, 0.28);
+    background: rgba(56, 111, 159, 0.09);
+    color: #315f87;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .meta span {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .meta span + span::before {
+    content: "/";
+    margin-right: 6px;
+    color: #a2a8ad;
+  }
+
+  .summary {
+    margin: 0;
+    color: #30363a;
+    font-size: 0.9rem;
+  }
+
+  .report-actions {
+    align-self: end;
+    color: var(--ink);
+    font-size: 0.82rem;
+    font-weight: 850;
+  }
+
+  .upcoming .report-actions {
+    color: var(--muted);
+  }
+
+  footer {
+    padding: 22px 0 34px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 720px) {
+    .wrap { width: min(calc(100vw - 20px), 1020px); }
+    header { padding-top: 26px; }
+    .topline {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+    }
+    h1 { font-size: 1.58rem; }
+    .dek { font-size: 0.92rem; }
+    .section-head {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .report-grid { grid-template-columns: minmax(0, 1fr); }
+    .report-card {
+      min-height: 0;
+      padding: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topline">
+      <h1>Pauper Tournament Reports</h1>
+      <a class="home-link" href="/">sawyerwelden.com</a>
+    </div>
+    <p class="dek">A running index of Pauper event reports, metagame visualizations, and tournament notes. The goal is to keep the reports easy to find as more large events come through.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <div class="section-head">
+      <h2>Published</h2>
+      <span class="count">2 reports</span>
+    </div>
+    <div class="report-grid">
+      <a class="report-card" href="/spanishpauper2026/">
+        <div class="report-top">
+          <h3>Spanish Pauper Championship 2026</h3>
+          <span class="status live">Live</span>
+        </div>
+        <div class="meta">
+          <span>247 players</span>
+          <span>Ortuella, Bizkaia</span>
+          <span>July 2026</span>
+        </div>
+        <p class="summary">The largest BowSeeker-legal Pauper event before the ban, with Day 2 conversion, matchup, archetype, and card-choice views.</p>
+        <span class="report-actions">Open report</span>
+      </a>
+
+      <a class="report-card" href="/paupergeddon2026/">
+        <div class="report-top">
+          <h3>Paupergeddon Spring 2026</h3>
+          <span class="status live">Live</span>
+        </div>
+        <div class="meta">
+          <span>965 players</span>
+          <span>Italy</span>
+          <span>Spring 2026</span>
+        </div>
+        <p class="summary">A large-field Paupergeddon report with metagame movement, archetype exploration, and card usage visualizations.</p>
+        <span class="report-actions">Open report</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Upcoming</h2>
+      <span class="count">Next two weeks</span>
+    </div>
+    <div class="report-grid">
+      <article class="report-card upcoming">
+        <div class="report-top">
+          <h3>Paupergenesis</h3>
+          <span class="status next">Upcoming</span>
+        </div>
+        <div class="meta">
+          <span>July 2026</span>
+          <span>Sawyer playing</span>
+        </div>
+        <p class="summary">Tournament report slot reserved for Paupergenesis results and notes once the event data is available.</p>
+        <span class="report-actions">Coming soon</span>
+      </article>
+
+      <article class="report-card upcoming">
+        <div class="report-top">
+          <h3>Paupergeddon Summer</h3>
+          <span class="status next">Upcoming</span>
+        </div>
+        <div class="meta">
+          <span>July 2026</span>
+          <span>Report planned</span>
+        </div>
+        <p class="summary">Tournament report slot reserved for Paupergeddon Summer, with the same directory structure ready for a full report.</p>
+        <span class="report-actions">Coming soon</span>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Reports and visualizations by Sawyer Welden.</div>
+</footer>
+</body>
+</html>

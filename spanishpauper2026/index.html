@@ -51,9 +51,9 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
 
   .title-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 20px;
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(430px, 520px);
+    gap: 24px;
+    align-items: start;
   }
 
   h1 {
@@ -98,20 +98,19 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1px;
-    margin-top: 22px;
     border: 1px solid var(--line);
     background: var(--line);
   }
 
   .stat {
-    min-height: 86px;
-    padding: 14px;
+    min-height: 72px;
+    padding: 11px 12px;
     background: var(--paper);
   }
 
   .stat b {
     display: block;
-    font-size: 1.45rem;
+    font-size: 1.28rem;
     line-height: 1.1;
   }
 
@@ -125,12 +124,12 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   }
 
   .intro-copy {
-    max-width: 860px;
-    margin: 18px auto 0;
-    color: #343a3f;
+    max-width: 900px;
+    margin: 18px 0 0;
+    color: var(--ink);
     font-size: 0.98rem;
     line-height: 1.55;
-    text-align: center;
+    text-align: left;
   }
 
   .intro-copy p {
@@ -743,7 +742,15 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
 
   .footer-inner {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 18px;
+  }
+
+  .footer-inner .intro-copy {
+    width: 100%;
+    margin: 0;
   }
 
   .tooltip {
@@ -763,12 +770,14 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   }
 
   @media (max-width: 980px) {
-    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-2,
     .grid-3,
     .explorer-shell,
     .card-columns { grid-template-columns: minmax(0, 1fr); }
-    .title-row { grid-template-columns: 1fr; }
+    .title-row {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
   }
 
   @media (max-width: 620px) {
@@ -780,7 +789,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     .subtitle { max-width: 330px; }
     .stats {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      margin-top: 16px;
     }
     .stat {
       min-height: 56px;
@@ -798,6 +806,7 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       line-height: 1.45;
       text-align: left;
     }
+    .footer-inner .intro-copy { margin-top: 0; }
     .section-head,
     .panel-head {
       align-items: flex-start;
@@ -828,11 +837,7 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
         <h1>Spanish Pauper Championship 2026</h1>
         <div class="subtitle">Main event metagame visuals from Ortuella, Bizkaia. Data published July 5, 2026.</div>
       </div>
-    </div>
-    <div class="stats" id="top-stats"></div>
-    <div class="intro-copy">
-      <p>The first Spanish Pauper Championship brought 247 players to Ortuella, Bizkaia, making it the largest Pauper event played with Hawkeye's Bow + Seeker of Skybreak still legal. That makes the tournament a useful snapshot of the format right before the ban: Naya Bowseeker reached the finals, and combo decks in general performed well, with Ruby Storm and X Lands Spy converting strongly into Day 2.</p>
-      <p>The visuals below break down how the metagame shifted after the Day 1 cut, which matchups mattered, and what card choices defined the major archetypes.</p>
+      <div class="stats" id="top-stats"></div>
     </div>
   </div>
 </header>
@@ -851,14 +856,12 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     <div class="section-head">
       <div>
         <h2>Day 1 To Day 2 Funnel</h2>
-        <p class="note">Archetype share before and after the Day 2 cut.</p>
       </div>
       <span class="chip" id="funnel-count"></span>
     </div>
     <div class="panel">
       <div class="panel-head">
         <span class="panel-title">Metagame Shift</span>
-        <span class="small">Day 2 labels include qualified decks</span>
       </div>
       <div class="panel-body">
         <div class="chart" id="funnel-chart"></div>
@@ -870,7 +873,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     <div class="section-head">
       <div>
         <h2>Matchup Heatmap</h2>
-        <p class="note">Win rate by row archetype into column archetype. Mirrors excluded.</p>
       </div>
       <div class="controls">
         <div class="segmented" id="matrix-tabs">
@@ -887,14 +889,12 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     <div class="section-head">
       <div>
         <h2>Archetype Explorer</h2>
-        <p class="note">Performance, matchups, and card choices for each archetype.</p>
       </div>
     </div>
     <div class="explorer-shell">
       <div class="panel">
         <div class="panel-head">
           <span class="panel-title">Archetypes</span>
-          <span class="small">Day 1 decks</span>
         </div>
         <div class="archetype-list" id="archetype-list"></div>
       </div>
@@ -934,7 +934,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     <div class="section-head">
       <div>
         <h2>Top 8</h2>
-        <p class="note">MonoU Terror won, while Naya Bowseeker reached the final.</p>
       </div>
     </div>
     <div class="panel">
@@ -948,6 +947,10 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
 
 <footer>
   <div class="wrap footer-inner">
+    <div class="intro-copy">
+      <p>The first Spanish Pauper Championship brought 247 players to Ortuella, Bizkaia, making it the largest Pauper event played with Hawkeye's Bow + Seeker of Skybreak still legal. That makes the tournament a useful snapshot of the format right before the ban: Naya Bowseeker reached the finals, and combo decks in general performed well, with Ruby Storm and X Lands Spy converting strongly into Day 2.</p>
+      <p>The visuals above break down how the metagame shifted after the Day 1 cut, which matchups mattered, and what card choices defined the major archetypes.</p>
+    </div>
     <div class="source-links">
       <a href="https://campeonatopauper.es/metagame-overview/" target="_blank" rel="noopener noreferrer">Event Data</a>
       <a href="https://www.reddit.com/r/Pauper/comments/1uo0tyh/we_organized_the_first_spanish_pauper/" target="_blank" rel="noopener noreferrer">Reddit Post</a>
