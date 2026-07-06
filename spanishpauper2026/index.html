@@ -490,27 +490,110 @@
 
   select { min-width: 220px; }
 
-  .explorer-layout {
+  .explorer-shell {
     display: grid;
-    grid-template-columns: 320px minmax(0, 1fr);
+    grid-template-columns: 300px minmax(0, 1fr);
     gap: 18px;
   }
 
-  .mini-metric {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--soft);
+  .archetype-list {
+    display: grid;
+    gap: 4px;
+    max-height: 620px;
+    overflow: auto;
+    padding: 10px;
   }
 
-  .mini-metric:last-child { border-bottom: 0; }
-
-  .mini-metric b {
-    display: block;
-    font-size: 1.2rem;
+  .archetype-item {
+    display: grid;
+    grid-template-columns: 10px minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+    min-height: 34px;
+    padding: 6px 8px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #343a3f;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
   }
 
-  .mini-metric span {
+  .archetype-item:hover { background: var(--soft); }
+
+  .archetype-item.active {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .archetype-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .archetype-name {
+    overflow: hidden;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .archetype-count {
     color: var(--muted);
-    font-size: 0.77rem;
+    font-size: 0.78rem;
+    font-weight: 750;
+  }
+
+  .archetype-item.active .archetype-count { color: #c7cdd1; }
+
+  .explorer-title-block {
+    min-width: 0;
+  }
+
+  .explorer-deck-title {
+    display: block;
+    overflow: hidden;
+    font-size: 1rem;
+    font-weight: 850;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .metric-strip {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    background: #fbfcfc;
+  }
+
+  .metric-card {
+    flex: 1 1 118px;
+    min-width: 118px;
+    min-height: 64px;
+    padding: 10px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: #fbfcfc;
+  }
+
+  .metric-card b {
+    display: block;
+    font-size: 0.98rem;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .metric-card span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.68rem;
     font-weight: 750;
     text-transform: uppercase;
   }
@@ -519,6 +602,78 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
+  }
+
+  .card-section-title {
+    margin-bottom: 8px;
+    color: #3a4045;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .consensus-list {
+    display: grid;
+    gap: 1px;
+    border-top: 1px solid var(--soft);
+  }
+
+  .consensus-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--soft);
+  }
+
+  .consensus-name {
+    overflow: hidden;
+    color: #2d3337;
+    font-size: 0.84rem;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .consensus-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .copy-pill {
+    min-width: 42px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: #edf2f4;
+    color: #2d3337;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .consensus-bar {
+    width: 70px;
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--soft);
+  }
+
+  .consensus-fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+  }
+
+  .consensus-pct {
+    width: 36px;
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-weight: 750;
+    text-align: right;
   }
 
   footer {
@@ -547,7 +702,7 @@
     .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-2,
     .grid-3,
-    .explorer-layout,
+    .explorer-shell,
     .card-columns { grid-template-columns: minmax(0, 1fr); }
     .title-row { grid-template-columns: 1fr; }
     .source-links { justify-content: flex-start; }
@@ -569,12 +724,20 @@
     }
     .panel-head { min-height: 54px; }
     .controls { justify-content: flex-start; }
+    .archetype-list { max-height: 320px; }
     .chart { min-height: 300px; overflow-x: auto; }
     .chart svg { min-width: 720px; }
     .bar-row {
       grid-template-columns: minmax(0, 1.2fr) minmax(72px, 1fr) 36px;
       gap: 8px;
     }
+    .metric-card {
+      flex-basis: calc(50% - 1px);
+      min-width: 0;
+    }
+    .consensus-row { grid-template-columns: minmax(0, 1fr); }
+    .consensus-stats { justify-content: space-between; }
+    .consensus-bar { flex: 1 1 auto; }
     .finish-row { grid-template-columns: 48px minmax(0, 1fr); }
     .finish-row .deck { grid-column: 2; }
   }
@@ -650,31 +813,32 @@
         <h2>Archetype Explorer</h2>
         <p class="note">Performance, matchups, and card choices for each archetype.</p>
       </div>
-      <div class="controls">
-        <select id="archetype-select" aria-label="Archetype"></select>
-      </div>
     </div>
-    <div class="explorer-layout">
+    <div class="explorer-shell">
       <div class="panel">
         <div class="panel-head">
-          <span class="panel-title" id="explorer-title">Archetype</span>
+          <span class="panel-title">Archetypes</span>
+          <span class="small">Day 1 decks</span>
         </div>
-        <div class="panel-body" id="explorer-summary"></div>
+        <div class="archetype-list" id="archetype-list"></div>
       </div>
       <div class="panel">
         <div class="panel-head">
-          <span class="panel-title">Card Consensus</span>
-          <span class="small">Day 2 share where available</span>
+          <div class="explorer-title-block">
+            <span class="explorer-deck-title" id="explorer-title">Archetype</span>
+            <span class="small" id="explorer-meta"></span>
+          </div>
         </div>
         <div class="panel-body">
+          <div class="metric-strip" id="explorer-summary"></div>
           <div class="card-columns">
             <div>
-              <div class="panel-title">Mainboard</div>
-              <div class="bar-stack" id="main-card-bars"></div>
+              <div class="card-section-title">Mainboard</div>
+              <div class="consensus-list" id="main-card-bars"></div>
             </div>
             <div>
-              <div class="panel-title">Sideboard</div>
-              <div class="bar-stack" id="side-card-bars"></div>
+              <div class="card-section-title">Sideboard</div>
+              <div class="consensus-list" id="side-card-bars"></div>
             </div>
           </div>
         </div>
@@ -792,22 +956,6 @@
       `${overview.summary.day_1_decks} Day 1 -> ${overview.summary.day_2_decks} Day 2`;
   }
 
-  function renderBars(el, rows, options = {}) {
-    const max = Math.max(...rows.map((r) => Number(r.value || 0)), 1);
-    el.innerHTML = rows.map((row) => {
-      const width = Math.max(2, Number(row.value || 0) / max * 100);
-      const color = row.color || colorFor(row.name);
-      return `
-        <div class="bar-row" title="${esc(row.title || '')}">
-          <div class="bar-name">${esc(row.name)}</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${width}%;background:${color};"></div></div>
-          <div class="bar-val">${esc(row.label)}</div>
-        </div>
-      `;
-    }).join('');
-    if (options.empty && rows.length === 0) el.innerHTML = `<div class="small">${esc(options.empty)}</div>`;
-  }
-
   function renderFunnel() {
     const top = archetypes
       .filter((a) => a.day_1_decks >= 2 || a.day_2_decks > 0)
@@ -921,47 +1069,89 @@
   }
 
   function initExplorer() {
-    const select = document.getElementById('archetype-select');
+    const list = document.getElementById('archetype-list');
     const sorted = [...archetypes].sort((a, b) => b.day_1_decks - a.day_1_decks || a.archetype.localeCompare(b.archetype));
-    select.innerHTML = sorted.map((a) => `<option value="${esc(a.archetype)}">${esc(a.archetype)} (${a.day_1_decks})</option>`).join('');
-    select.value = 'Ruby Storm';
-    select.addEventListener('change', () => renderExplorer(select.value));
-    renderExplorer(select.value);
+    list.innerHTML = sorted.map((a) => `
+      <button class="archetype-item" type="button" data-archetype="${esc(a.archetype)}">
+        <span class="archetype-dot" style="background:${colorFor(a.archetype)};"></span>
+        <span class="archetype-name">${esc(a.archetype)}</span>
+        <span class="archetype-count">${a.day_1_decks}</span>
+      </button>
+    `).join('');
+    list.addEventListener('click', (event) => {
+      const button = event.target.closest('.archetype-item');
+      if (!button) return;
+      renderExplorer(button.dataset.archetype);
+    });
+    const initial = sorted[0];
+    if (initial) renderExplorer(initial.archetype);
+  }
+
+  function metricCard(value, label) {
+    return `<div class="metric-card"><b>${esc(value)}</b><span>${esc(label)}</span></div>`;
+  }
+
+  function renderConsensusRows(el, cardsForBoard, useD2, emptyText) {
+    const rows = [...(cardsForBoard || [])]
+      .sort((a, b) => {
+        const aShare = useD2 ? (a.day_2_pct || 0) : (a.day_1_pct || 0);
+        const bShare = useD2 ? (b.day_2_pct || 0) : (b.day_1_pct || 0);
+        const aAvg = useD2 ? (a.day_2_avg || 0) : (a.day_1_avg || 0);
+        const bAvg = useD2 ? (b.day_2_avg || 0) : (b.day_1_avg || 0);
+        return bShare - aShare || bAvg - aAvg || a.card.localeCompare(b.card);
+      })
+      .slice(0, 18);
+
+    if (rows.length === 0) {
+      el.innerHTML = `<div class="small">${esc(emptyText)}</div>`;
+      return;
+    }
+
+    el.innerHTML = rows.map((card) => {
+      const share = useD2 ? (card.day_2_pct || 0) : (card.day_1_pct || 0);
+      const avg = useD2 ? (card.day_2_avg || 0) : (card.day_1_avg || 0);
+      const width = Math.max(4, share * 100);
+      const title = `${card.card}: D1 ${pct(card.day_1_pct, 0)} x${Number(card.day_1_avg || 0).toFixed(1)}, D2 ${pct(card.day_2_pct, 0)} x${Number(card.day_2_avg || 0).toFixed(1)}`;
+      return `
+        <div class="consensus-row" title="${esc(title)}">
+          <div class="consensus-name">${esc(card.card)}</div>
+          <div class="consensus-stats">
+            <span class="copy-pill">x${Number(avg || 0).toFixed(1)}</span>
+            <span class="consensus-bar"><span class="consensus-fill" style="width:${width}%;background:${changeColor(card.difference || 0)};"></span></span>
+            <span class="consensus-pct">${pct(share, 0)}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
   }
 
   function renderExplorer(name) {
     const d = details[name];
     const overviewRow = archetypes.find((a) => a.archetype === name);
     if (!d || !overviewRow) return;
+    document.querySelectorAll('.archetype-item').forEach((button) => {
+      button.classList.toggle('active', button.dataset.archetype === name);
+    });
     document.getElementById('explorer-title').textContent = name;
+    document.getElementById('explorer-meta').textContent =
+      `${overviewRow.day_1_decks} Day 1 decks | ${overviewRow.day_2_decks} Day 2 decks | ${pct(overviewRow.day_1_share)} field`;
     const perf = d.spotlight.performance;
     const best = d.spotlight.best_matchup;
     const worst = d.spotlight.worst_matchup;
+    const bestLabel = best.available ? `${best.archetype} ${pct(best.win_rate)}` : 'n/a';
+    const worstLabel = worst.available ? `${worst.archetype} ${pct(worst.win_rate)}` : 'n/a';
     document.getElementById('explorer-summary').innerHTML = `
-      <div class="mini-metric"><b>${perf.players}</b><span>Day 1 decks</span></div>
-      <div class="mini-metric"><b>${pct(perf.win_rate)}</b><span>Overall win rate</span></div>
-      <div class="mini-metric"><b>${perf.record}</b><span>Record</span></div>
-      <div class="mini-metric"><b>${perf.day_2_decks}</b><span>Day 2 decks</span></div>
-      <div class="mini-metric"><b>${pct(perf.conversion_rate)}</b><span>Conversion</span></div>
-      <div class="mini-metric"><b>${best.available ? esc(best.archetype) + ' ' + pct(best.win_rate) : 'n/a'}</b><span>Best matchup</span></div>
-      <div class="mini-metric"><b>${worst.available ? esc(worst.archetype) + ' ' + pct(worst.win_rate) : 'n/a'}</b><span>Worst matchup</span></div>
+      ${metricCard(perf.players, 'Day 1 decks')}
+      ${metricCard(pct(perf.win_rate), 'Overall win rate')}
+      ${metricCard(perf.record, 'Record')}
+      ${metricCard(perf.day_2_decks, 'Day 2 decks')}
+      ${metricCard(pct(perf.conversion_rate), 'Conversion')}
+      ${metricCard(bestLabel, 'Best matchup')}
+      ${metricCard(worstLabel, 'Worst matchup')}
     `;
-
-    function cardRows(cardsForBoard) {
-      return [...cardsForBoard]
-        .sort((a, b) => b.day_2_pct - a.day_2_pct || b.day_1_pct - a.day_1_pct || b.day_2_avg - a.day_2_avg)
-        .slice(0, 14)
-        .map((c) => ({
-          name: c.card,
-          value: Math.max(c.day_2_pct || 0, c.day_1_pct || 0),
-          label: `${pct(c.day_2_pct || c.day_1_pct, 0)} x${Number(c.day_2_avg || c.day_1_avg || 0).toFixed(1)}`,
-          color: changeColor(c.difference || 0),
-          title: `${c.card}: D1 ${pct(c.day_1_pct)}, D2 ${pct(c.day_2_pct)}`
-        }));
-    }
-
-    renderBars(document.getElementById('main-card-bars'), cardRows(d.analysis.mainboard || []), { empty: 'No mainboard data.' });
-    renderBars(document.getElementById('side-card-bars'), cardRows(d.analysis.sideboard || []), { empty: 'No sideboard data.' });
+    const useD2 = Number(perf.day_2_decks || 0) > 0;
+    renderConsensusRows(document.getElementById('main-card-bars'), d.analysis.mainboard, useD2, 'No mainboard data.');
+    renderConsensusRows(document.getElementById('side-card-bars'), d.analysis.sideboard, useD2, 'No sideboard data.');
   }
 
   function initControls() {
