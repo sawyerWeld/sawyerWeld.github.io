@@ -446,18 +446,20 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   }
 
   .matrix .rotate {
-    height: 118px;
+    height: 96px;
+    padding: 0 4px 8px;
     vertical-align: bottom;
   }
 
   .matrix .rotate span {
     display: inline-block;
-    width: 104px;
-    transform: rotate(-52deg);
+    width: 88px;
+    transform: translate(18px, 4px) rotate(-45deg);
     transform-origin: left bottom;
     color: #3a4045;
-    font-size: 0.69rem;
+    font-size: 0.67rem;
     font-weight: 800;
+    line-height: 1.05;
     text-align: left;
   }
 
@@ -598,6 +600,14 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     min-width: 0;
   }
 
+  .explorer-title-block .small {
+    display: block;
+    margin-top: 4px;
+    max-width: 920px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
   .explorer-deck-title {
     display: block;
     overflow: hidden;
@@ -605,41 +615,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     font-weight: 850;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  .metric-strip {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
-    background: #fbfcfc;
-  }
-
-  .metric-card {
-    flex: 1 1 118px;
-    min-width: 118px;
-    min-height: 64px;
-    padding: 10px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: #fbfcfc;
-  }
-
-  .metric-card b {
-    display: block;
-    font-size: 0.98rem;
-    line-height: 1.15;
-    overflow-wrap: anywhere;
-  }
-
-  .metric-card span {
-    display: block;
-    margin-top: 4px;
-    color: var(--muted);
-    font-size: 0.68rem;
-    font-weight: 750;
-    text-transform: uppercase;
   }
 
   .card-columns {
@@ -775,10 +750,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       grid-template-columns: minmax(0, 1.2fr) minmax(72px, 1fr) 36px;
       gap: 8px;
     }
-    .metric-card {
-      flex-basis: calc(50% - 1px);
-      min-width: 0;
-    }
     .consensus-row { grid-template-columns: minmax(0, 1fr); }
     .consensus-stats { justify-content: space-between; }
     .consensus-bar { flex: 1 1 auto; }
@@ -877,7 +848,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
           </div>
         </div>
         <div class="panel-body">
-          <div class="metric-strip" id="explorer-summary"></div>
           <div class="card-columns">
             <div>
               <div class="card-section-title">Mainboard</div>
@@ -979,6 +949,60 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     'Walls': ['G'],
     'X Lands Spy': ['B', 'G'],
   };
+  const landColorMap = {
+    'ancient den': ['W'],
+    'azorius chancery': ['W', 'U'],
+    'azorius guildgate': ['W', 'U'],
+    'boros garrison': ['W', 'R'],
+    'boros guildgate': ['W', 'R'],
+    'bountiful landscape': ['W', 'G'],
+    'contaminated aquifer': ['U', 'B'],
+    'darksteel citadel': ['C'],
+    'drossforge bridge': ['B', 'R'],
+    'forest': ['G'],
+    'geothermal crevice': ['R', 'G'],
+    'golgari rot farm': ['B', 'G'],
+    'great furnace': ['R'],
+    'gruul guildgate': ['R', 'G'],
+    'gruul turf': ['R', 'G'],
+    'haunted mire': ['B', 'G'],
+    'hickory woodlot': ['G'],
+    'highland forest': ['R', 'G'],
+    'ice tunnel': ['U', 'B'],
+    'idyllic beachfront': ['W', 'U'],
+    'island': ['U'],
+    'izzet boilerworks': ['U', 'R'],
+    'izzet guildgate': ['U', 'R'],
+    'mistvault bridge': ['U', 'B'],
+    'mountain': ['R'],
+    'orzhov basilica': ['W', 'B'],
+    'orzhov guildgate': ['W', 'B'],
+    'plains': ['W'],
+    'rakdos carnarium': ['B', 'R'],
+    'rakdos guildgate': ['B', 'R'],
+    'sandstone needle': ['R'],
+    'seat of the synod': ['U'],
+    'selesnya guildgate': ['W', 'G'],
+    'selesnya sanctuary': ['W', 'G'],
+    'silverbluff bridge': ['U', 'R'],
+    'slagwoods bridge': ['R', 'G'],
+    'snow covered forest': ['G'],
+    'snow covered island': ['U'],
+    'snow covered mountain': ['R'],
+    'snow covered plains': ['W'],
+    'snow covered swamp': ['B'],
+    'swamp': ['B'],
+    'tangled islet': ['U', 'G'],
+    'tanglepool bridge': ['U', 'G'],
+    'thornglint bridge': ['W', 'G'],
+    'tree of tales': ['G'],
+    'urza s mine': ['C'],
+    'urza s power plant': ['C'],
+    'urza s tower': ['C'],
+    'vault of whispers': ['B'],
+    'volatile fjord': ['U', 'R'],
+    'wooded ridgeline': ['R', 'G'],
+  };
 
   function pct(value, digits = 1) {
     return (Number(value || 0) * 100).toFixed(digits) + '%';
@@ -993,13 +1017,44 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       .replaceAll("'", '&#039;');
   }
 
+  function normName(value) {
+    if (mtgMana) return mtgMana.normalizeName(value);
+    return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+
+  function sortedColors(colors) {
+    if (mtgMana) return mtgMana.sortedColors(colors);
+    const order = ['W', 'U', 'B', 'R', 'G', 'C'];
+    const present = new Set(colors || []);
+    return order.filter((color) => present.has(color));
+  }
+
   function hashColor(name) {
     let hash = 0;
     for (let i = 0; i < name.length; i += 1) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
     return palette[hash % palette.length];
   }
 
+  function colorsFromLands(name) {
+    const mainboard = details[name]?.analysis?.mainboard || [];
+    const scores = new Map();
+    mainboard.forEach((card) => {
+      const colors = landColorMap[normName(card.card)] || [];
+      const share = Number(card.day_1_pct || 0);
+      const avg = Math.max(1, Number(card.day_1_avg || 1));
+      const score = share * avg;
+      colors.forEach((color) => scores.set(color, (scores.get(color) || 0) + score));
+    });
+    const colored = [...scores.entries()]
+      .filter(([color, score]) => color !== 'C' && score >= 0.35)
+      .map(([color]) => color);
+    if (colored.length) return sortedColors(colored);
+    return scores.has('C') ? ['C'] : [];
+  }
+
   function colorsForArchetype(name) {
+    const landColors = colorsFromLands(name);
+    if (landColors.length) return landColors;
     return mtgMana ? mtgMana.colorsForName(name, archetypeColorMap) : [];
   }
 
@@ -1059,6 +1114,29 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     return el;
   }
 
+  function renderSvgPips(svg, name, x, y, anchor = 'start') {
+    if (!mtgMana) return 0;
+    const colors = colorsForArchetype(name);
+    if (!colors.length) return 0;
+    const size = 11;
+    const gap = 2;
+    const width = colors.length * size + Math.max(0, colors.length - 1) * gap;
+    const startX = anchor === 'end' ? x - width : x;
+    colors.forEach((color, index) => {
+      const src = mtgMana.manaSymbolSrc(color);
+      const img = svgEl('image', {
+        href: src,
+        x: startX + index * (size + gap),
+        y: y - size + 4,
+        width: size,
+        height: size,
+      });
+      img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', src);
+      svg.appendChild(img);
+    });
+    return width;
+  }
+
   function renderStats() {
     const topStats = [
       [eventSummary.event.players, 'Day 1 Decks'],
@@ -1078,9 +1156,9 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       .filter((a) => a.day_1_decks >= 2 || a.day_2_decks > 0)
       .sort((a, b) => b.day_2_decks - a.day_2_decks || b.day_1_decks - a.day_1_decks)
       .slice(0, 22);
-    const W = 920;
+    const W = 1080;
     const H = 640;
-    const margin = { top: 52, right: 184, bottom: 28, left: 160 };
+    const margin = { top: 52, right: 250, bottom: 28, left: 265 };
     const x1 = margin.left;
     const x2 = W - margin.right;
     const areaTop = margin.top + 20;
@@ -1115,15 +1193,17 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     byD1.forEach((a) => {
       const y = yD1.get(a.archetype);
       svg.appendChild(svgEl('circle', { cx: x1, cy: y, r: 4.2, fill: colorFor(a.archetype) }));
-      const label = svgEl('text', { x: x1 - 12, y: y + 4, class: 'chart-name', 'text-anchor': 'end' });
-      label.textContent = `${a.archetype} ${pct(a.day_1_share)}`;
+      const pipWidth = renderSvgPips(svg, a.archetype, x1 - 12, y, 'end');
+      const label = svgEl('text', { x: x1 - 16 - pipWidth, y: y + 4, class: 'chart-name', 'text-anchor': 'end' });
+      label.textContent = `${a.archetype} ${pct(a.day_1_share)} (${a.day_1_decks})`;
       svg.appendChild(label);
     });
 
     byD2.forEach((a) => {
       const y = yD2.get(a.archetype);
       svg.appendChild(svgEl('circle', { cx: x2, cy: y, r: 4.2, fill: colorFor(a.archetype) }));
-      const label = svgEl('text', { x: x2 + 12, y: y + 4, class: 'chart-name' });
+      const pipWidth = renderSvgPips(svg, a.archetype, x2 + 12, y, 'start');
+      const label = svgEl('text', { x: x2 + 16 + pipWidth, y: y + 4, class: 'chart-name' });
       label.textContent = `${pct(a.day_2_share)} ${a.archetype} (${a.day_2_decks})`;
       svg.appendChild(label);
     });
@@ -1204,10 +1284,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     if (initial) renderExplorer(initial.archetype);
   }
 
-  function metricCard(value, label) {
-    return `<div class="metric-card"><b>${esc(value)}</b><span>${esc(label)}</span></div>`;
-  }
-
   function renderConsensusRows(el, cardsForBoard, useD2, emptyText) {
     const rows = [...(cardsForBoard || [])]
       .sort((a, b) => {
@@ -1251,22 +1327,21 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     });
     document.getElementById('explorer-title').textContent = name;
     document.getElementById('explorer-pips').innerHTML = archetypePips(name, 'explorer-pips');
-    document.getElementById('explorer-meta').textContent =
-      `${overviewRow.day_1_decks} Day 1 decks | ${overviewRow.day_2_decks} Day 2 decks | ${pct(overviewRow.day_1_share)} field`;
     const perf = d.spotlight.performance;
     const best = d.spotlight.best_matchup;
     const worst = d.spotlight.worst_matchup;
     const bestLabel = best.available ? `${best.archetype} ${pct(best.win_rate)}` : 'n/a';
     const worstLabel = worst.available ? `${worst.archetype} ${pct(worst.win_rate)}` : 'n/a';
-    document.getElementById('explorer-summary').innerHTML = `
-      ${metricCard(perf.players, 'Day 1 decks')}
-      ${metricCard(pct(perf.win_rate), 'Overall win rate')}
-      ${metricCard(perf.record, 'Record')}
-      ${metricCard(perf.day_2_decks, 'Day 2 decks')}
-      ${metricCard(pct(perf.conversion_rate), 'Conversion')}
-      ${metricCard(bestLabel, 'Best matchup')}
-      ${metricCard(worstLabel, 'Worst matchup')}
-    `;
+    document.getElementById('explorer-meta').textContent = [
+      `${perf.players} Day 1`,
+      `${perf.day_2_decks} Day 2`,
+      `${pct(overviewRow.day_1_share)} field`,
+      `${pct(perf.win_rate)} WR`,
+      perf.record,
+      `${pct(perf.conversion_rate)} conversion`,
+      `Best ${bestLabel}`,
+      `Worst ${worstLabel}`,
+    ].join(' | ');
     const useD2 = Number(perf.day_2_decks || 0) > 0;
     renderConsensusRows(document.getElementById('main-card-bars'), d.analysis.mainboard, useD2, 'No mainboard data.');
     renderConsensusRows(document.getElementById('side-card-bars'), d.analysis.sideboard, useD2, 'No sideboard data.');
