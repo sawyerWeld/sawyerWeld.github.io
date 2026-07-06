@@ -602,7 +602,6 @@
   <div class="wrap nav-inner">
     <a href="#funnel">Funnel</a>
     <a href="#matchups">Matchups</a>
-    <a href="#cards">Cards</a>
     <a href="#explorer">Explorer</a>
     <a href="#top8">Top 8</a>
   </div>
@@ -617,24 +616,13 @@
       </div>
       <span class="chip" id="funnel-count"></span>
     </div>
-    <div class="grid-2">
-      <div class="panel">
-        <div class="panel-head">
-          <span class="panel-title">Metagame Shift</span>
-          <span class="small">Lines are colored by share change</span>
-        </div>
-        <div class="panel-body">
-          <div class="chart" id="funnel-chart"></div>
-        </div>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="panel-title">Metagame Shift</span>
+        <span class="small">Day 2 labels include qualified decks</span>
       </div>
-      <div class="panel">
-        <div class="panel-head">
-          <span class="panel-title">Day 2 Representation</span>
-          <span class="small">Qualified decks</span>
-        </div>
-        <div class="panel-body">
-          <div class="bar-stack" id="day2-bars"></div>
-        </div>
+      <div class="panel-body">
+        <div class="chart" id="funnel-chart"></div>
       </div>
     </div>
   </section>
@@ -654,41 +642,6 @@
       </div>
     </div>
     <div class="matrix-wrap" id="matrix"></div>
-  </section>
-
-  <section id="cards">
-    <div class="section-head">
-      <div>
-        <h2>Cards That Moved</h2>
-        <p class="note">Global card presence by Day 1 and Day 2 deck share.</p>
-      </div>
-      <div class="controls">
-        <div class="segmented" id="card-tabs">
-          <button type="button" data-board="mainboard" class="active">Mainboard</button>
-          <button type="button" data-board="sideboard">Sideboard</button>
-        </div>
-      </div>
-    </div>
-    <div class="grid-2">
-      <div class="panel">
-        <div class="panel-head">
-          <span class="panel-title">Largest Positive Day 2 Shifts</span>
-          <span class="small">Percentage-point difference</span>
-        </div>
-        <div class="panel-body">
-          <div class="bar-stack" id="card-shift-bars"></div>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-head">
-          <span class="panel-title">Most Common Cards</span>
-          <span class="small">Sorted by Day 2 share</span>
-        </div>
-        <div class="table-wrap">
-          <table id="card-table"></table>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section id="explorer">
@@ -761,7 +714,6 @@
 
   const overview = data.day2Comparison;
   const eventSummary = data.eventSummary;
-  const cards = data.globalCards;
   const archetypes = overview.archetypes;
   const details = data.archetypeDetails;
   const tooltip = document.getElementById('tooltip');
@@ -769,15 +721,6 @@
 
   function pct(value, digits = 1) {
     return (Number(value || 0) * 100).toFixed(digits) + '%';
-  }
-
-  function pp(value, digits = 1) {
-    const n = Number(value || 0) * 100;
-    return (n > 0 ? '+' : '') + n.toFixed(digits) + 'pp';
-  }
-
-  function num(value) {
-    return Number(value || 0).toLocaleString();
   }
 
   function esc(value) {
@@ -865,21 +808,6 @@
     if (options.empty && rows.length === 0) el.innerHTML = `<div class="small">${esc(options.empty)}</div>`;
   }
 
-  function renderDay2Bars() {
-    const rows = archetypes
-      .filter((a) => a.day_2_decks > 0)
-      .sort((a, b) => b.day_2_decks - a.day_2_decks || b.day_2_share - a.day_2_share)
-      .slice(0, 14)
-      .map((a) => ({
-        name: a.archetype,
-        value: a.day_2_decks,
-        label: String(a.day_2_decks),
-        color: colorFor(a.archetype),
-        title: `${a.archetype}: ${a.day_2_decks} Day 2 decks (${pct(a.day_2_share)})`
-      }));
-    renderBars(document.getElementById('day2-bars'), rows);
-  }
-
   function renderFunnel() {
     const top = archetypes
       .filter((a) => a.day_1_decks >= 2 || a.day_2_decks > 0)
@@ -887,7 +815,7 @@
       .slice(0, 22);
     const W = 920;
     const H = 640;
-    const margin = { top: 52, right: 148, bottom: 28, left: 160 };
+    const margin = { top: 52, right: 184, bottom: 28, left: 160 };
     const x1 = margin.left;
     const x2 = W - margin.right;
     const areaTop = margin.top + 20;
@@ -931,7 +859,7 @@
       const y = yD2.get(a.archetype);
       svg.appendChild(svgEl('circle', { cx: x2, cy: y, r: 4.2, fill: colorFor(a.archetype) }));
       const label = svgEl('text', { x: x2 + 12, y: y + 4, class: 'chart-name' });
-      label.textContent = `${pct(a.day_2_share)} ${a.archetype}`;
+      label.textContent = `${pct(a.day_2_share)} ${a.archetype} (${a.day_2_decks})`;
       svg.appendChild(label);
     });
 
@@ -980,43 +908,6 @@
       </table>
     `;
     document.getElementById('matrix').innerHTML = html;
-  }
-
-  function renderCards(board = 'mainboard') {
-    const rows = cards[board] || [];
-    const shifted = [...rows]
-      .filter((c) => c.day_1_decks >= 2 || c.day_2_decks >= 2)
-      .sort((a, b) => b.difference - a.difference)
-      .slice(0, 12)
-      .map((c) => ({
-        name: c.card,
-        value: Math.max(0.001, c.difference),
-        label: pp(c.difference),
-        color: changeColor(c.difference),
-        title: `${c.card}: D1 ${pct(c.day_1_share)}, D2 ${pct(c.day_2_share)}`
-      }));
-    renderBars(document.getElementById('card-shift-bars'), shifted);
-
-    const tableRows = [...rows]
-      .sort((a, b) => b.day_2_share - a.day_2_share || b.day_1_share - a.day_1_share)
-      .slice(0, 38);
-    document.getElementById('card-table').innerHTML = `
-      <thead>
-        <tr><th>Card</th><th>D1</th><th>D2</th><th>Diff</th><th>D1 Avg</th><th>D2 Avg</th></tr>
-      </thead>
-      <tbody>
-        ${tableRows.map((c) => `
-          <tr>
-            <td>${esc(c.card)}</td>
-            <td>${pct(c.day_1_share)}</td>
-            <td>${pct(c.day_2_share)}</td>
-            <td style="color:${changeColor(c.difference)};font-weight:800;">${pp(c.difference)}</td>
-            <td>${Number(c.day_1_average || 0).toFixed(2)}</td>
-            <td>${Number(c.day_2_average || 0).toFixed(2)}</td>
-          </tr>
-        `).join('')}
-      </tbody>
-    `;
   }
 
   function renderTop8() {
@@ -1080,19 +971,11 @@
       document.querySelectorAll('#matrix-tabs button').forEach((b) => b.classList.toggle('active', b === button));
       renderMatrix(button.dataset.matrix);
     });
-    document.getElementById('card-tabs').addEventListener('click', (event) => {
-      const button = event.target.closest('button[data-board]');
-      if (!button) return;
-      document.querySelectorAll('#card-tabs button').forEach((b) => b.classList.toggle('active', b === button));
-      renderCards(button.dataset.board);
-    });
   }
 
   renderStats();
   renderFunnel();
-  renderDay2Bars();
   renderMatrix();
-  renderCards();
   renderTop8();
   initExplorer();
   initControls();
