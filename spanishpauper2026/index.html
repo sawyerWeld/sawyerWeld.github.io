@@ -624,6 +624,11 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   }
 
   .card-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 24px;
     margin-bottom: 8px;
     color: #3a4045;
     font-size: 0.78rem;
@@ -693,6 +698,23 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     font-size: 0.74rem;
     font-weight: 750;
     text-align: right;
+  }
+
+  .consensus-expand {
+    padding: 3px 7px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    color: #3a4045;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: none;
+    cursor: pointer;
+  }
+
+  .consensus-expand:hover {
+    background: var(--soft);
   }
 
   footer {
@@ -850,11 +872,17 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
         <div class="panel-body">
           <div class="card-columns">
             <div>
-              <div class="card-section-title">Mainboard</div>
+              <div class="card-section-title">
+                <span>Mainboard</span>
+                <span id="main-card-actions"></span>
+              </div>
               <div class="consensus-list" id="main-card-bars"></div>
             </div>
             <div>
-              <div class="card-section-title">Sideboard</div>
+              <div class="card-section-title">
+                <span>Sideboard</span>
+                <span id="side-card-actions"></span>
+              </div>
               <div class="consensus-list" id="side-card-bars"></div>
             </div>
           </div>
@@ -900,6 +928,8 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   const tooltip = document.getElementById('tooltip');
   const palette = ['#386f9f', '#236c5f', '#c79834', '#b64f4a', '#725a95', '#4f8f5f'];
   const mtgMana = window.MtgMana || null;
+  let currentExplorerName = '';
+  let expandedConsensusSections = new Set();
   const archetypeColorMap = {
     'Altar Tron': ['B', 'G'],
     'Boros Moxite': ['W', 'R'],
@@ -1179,7 +1209,7 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       const y1 = yD1.get(a.archetype);
       const y2 = yD2.get(a.archetype);
       const line = svgEl('path', {
-        d: `M ${x1 + 10} ${y1} C ${x1 + 180} ${y1}, ${x2 - 180} ${y2}, ${x2 - 10} ${y2}`,
+        d: `M ${x1 + 4} ${y1} C ${x1 + 180} ${y1}, ${x2 - 180} ${y2}, ${x2 - 4} ${y2}`,
         fill: 'none',
         stroke: changeColor(a.difference),
         'stroke-width': 3 + Math.sqrt(a.day_1_decks),
@@ -1192,7 +1222,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
 
     byD1.forEach((a) => {
       const y = yD1.get(a.archetype);
-      svg.appendChild(svgEl('circle', { cx: x1, cy: y, r: 4.2, fill: colorFor(a.archetype) }));
       const pipWidth = renderSvgPips(svg, a.archetype, x1 - 12, y, 'end');
       const label = svgEl('text', { x: x1 - 16 - pipWidth, y: y + 4, class: 'chart-name', 'text-anchor': 'end' });
       label.textContent = `${a.archetype} ${pct(a.day_1_share)} (${a.day_1_decks})`;
@@ -1201,7 +1230,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
 
     byD2.forEach((a) => {
       const y = yD2.get(a.archetype);
-      svg.appendChild(svgEl('circle', { cx: x2, cy: y, r: 4.2, fill: colorFor(a.archetype) }));
       const pipWidth = renderSvgPips(svg, a.archetype, x2 + 12, y, 'start');
       const label = svgEl('text', { x: x2 + 16 + pipWidth, y: y + 4, class: 'chart-name' });
       label.textContent = `${pct(a.day_2_share)} ${a.archetype} (${a.day_2_decks})`;
@@ -1284,25 +1312,47 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     if (initial) renderExplorer(initial.archetype);
   }
 
-  function renderConsensusRows(el, cardsForBoard, useD2, emptyText) {
-    const rows = [...(cardsForBoard || [])]
+  function renderConsensusRows(el, actionEl, cardsForBoard, useD2, emptyText, sectionKey) {
+    const shareFor = (card) => Number(useD2 ? (card.day_2_pct || 0) : (card.day_1_pct || 0));
+    const avgFor = (card) => Number(useD2 ? (card.day_2_avg || 0) : (card.day_1_avg || 0));
+    const sortedCards = [...(cardsForBoard || [])]
       .sort((a, b) => {
-        const aShare = useD2 ? (a.day_2_pct || 0) : (a.day_1_pct || 0);
-        const bShare = useD2 ? (b.day_2_pct || 0) : (b.day_1_pct || 0);
-        const aAvg = useD2 ? (a.day_2_avg || 0) : (a.day_1_avg || 0);
-        const bAvg = useD2 ? (b.day_2_avg || 0) : (b.day_1_avg || 0);
+        const aShare = shareFor(a);
+        const bShare = shareFor(b);
+        const aAvg = avgFor(a);
+        const bAvg = avgFor(b);
         return bShare - aShare || bAvg - aAvg || a.card.localeCompare(b.card);
-      })
-      .slice(0, 18);
+      });
 
-    if (rows.length === 0) {
+    if (sortedCards.length === 0) {
       el.innerHTML = `<div class="small">${esc(emptyText)}</div>`;
+      actionEl.innerHTML = '';
       return;
     }
 
+    const expanded = expandedConsensusSections.has(sectionKey);
+    const hiddenCards = sortedCards.filter((card) => shareFor(card) <= 0.1);
+    const rows = expanded ? sortedCards : sortedCards.filter((card) => shareFor(card) > 0.1);
+
+    actionEl.innerHTML = hiddenCards.length
+      ? `<button class="consensus-expand" type="button" data-consensus-section="${esc(sectionKey)}">${expanded ? 'Collapse' : `Expand ${hiddenCards.length}`}</button>`
+      : '';
+    actionEl.querySelectorAll('button[data-consensus-section]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const key = button.dataset.consensusSection;
+        if (expandedConsensusSections.has(key)) {
+          expandedConsensusSections.delete(key);
+        } else {
+          expandedConsensusSections.add(key);
+        }
+        renderExplorer(currentExplorerName);
+      });
+    });
+
+    const thresholdText = useD2 ? 'No Day 2 cards above 10%.' : 'No Day 1 cards above 10%.';
     el.innerHTML = rows.map((card) => {
-      const share = useD2 ? (card.day_2_pct || 0) : (card.day_1_pct || 0);
-      const avg = useD2 ? (card.day_2_avg || 0) : (card.day_1_avg || 0);
+      const share = shareFor(card);
+      const avg = avgFor(card);
       const width = Math.max(4, share * 100);
       const title = `${card.card}: D1 ${pct(card.day_1_pct, 0)} x${Number(card.day_1_avg || 0).toFixed(1)}, D2 ${pct(card.day_2_pct, 0)} x${Number(card.day_2_avg || 0).toFixed(1)}`;
       return `
@@ -1315,13 +1365,17 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
           </div>
         </div>
       `;
-    }).join('');
+    }).join('') || `<div class="small">${esc(thresholdText)}</div>`;
   }
 
   function renderExplorer(name) {
     const d = details[name];
     const overviewRow = archetypes.find((a) => a.archetype === name);
     if (!d || !overviewRow) return;
+    if (currentExplorerName !== name) {
+      currentExplorerName = name;
+      expandedConsensusSections = new Set();
+    }
     document.querySelectorAll('.archetype-item').forEach((button) => {
       button.classList.toggle('active', button.dataset.archetype === name);
     });
@@ -1343,8 +1397,8 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       `Worst ${worstLabel}`,
     ].join(' | ');
     const useD2 = Number(perf.day_2_decks || 0) > 0;
-    renderConsensusRows(document.getElementById('main-card-bars'), d.analysis.mainboard, useD2, 'No mainboard data.');
-    renderConsensusRows(document.getElementById('side-card-bars'), d.analysis.sideboard, useD2, 'No sideboard data.');
+    renderConsensusRows(document.getElementById('main-card-bars'), document.getElementById('main-card-actions'), d.analysis.mainboard, useD2, 'No mainboard data.', `${name}:mainboard`);
+    renderConsensusRows(document.getElementById('side-card-bars'), document.getElementById('side-card-actions'), d.analysis.sideboard, useD2, 'No sideboard data.', `${name}:sideboard`);
   }
 
   function initControls() {
