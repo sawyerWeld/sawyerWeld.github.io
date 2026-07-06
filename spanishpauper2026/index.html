@@ -1312,7 +1312,7 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     if (initial) renderExplorer(initial.archetype);
   }
 
-  function renderConsensusRows(el, actionEl, cardsForBoard, useD2, emptyText, sectionKey) {
+  function renderConsensusRows(el, actionEl, cardsForBoard, useD2, emptyText, sectionKey, totals = {}) {
     const shareFor = (card) => Number(useD2 ? (card.day_2_pct || 0) : (card.day_1_pct || 0));
     const avgFor = (card) => Number(useD2 ? (card.day_2_avg || 0) : (card.day_1_avg || 0));
     const sortedCards = [...(cardsForBoard || [])]
@@ -1354,7 +1354,9 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       const share = shareFor(card);
       const avg = avgFor(card);
       const width = Math.max(4, share * 100);
-      const title = `${card.card}: D1 ${pct(card.day_1_pct, 0)} x${Number(card.day_1_avg || 0).toFixed(1)}, D2 ${pct(card.day_2_pct, 0)} x${Number(card.day_2_avg || 0).toFixed(1)}`;
+      const d1Sample = totals.day_1_decks ? ` (${Number(card.day_1_decks || 0)}/${totals.day_1_decks})` : '';
+      const d2Sample = totals.day_2_decks ? ` (${Number(card.day_2_decks || 0)}/${totals.day_2_decks})` : '';
+      const title = `${card.card}: D1 ${pct(card.day_1_pct, 0)}${d1Sample} x${Number(card.day_1_avg || 0).toFixed(1)}, D2 ${pct(card.day_2_pct, 0)}${d2Sample} x${Number(card.day_2_avg || 0).toFixed(1)}`;
       return `
         <div class="consensus-row" title="${esc(title)}">
           <div class="consensus-name">${esc(card.card)}</div>
@@ -1396,9 +1398,8 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       `Best ${bestLabel}`,
       `Worst ${worstLabel}`,
     ].join(' | ');
-    const useD2 = Number(perf.day_2_decks || 0) > 0;
-    renderConsensusRows(document.getElementById('main-card-bars'), document.getElementById('main-card-actions'), d.analysis.mainboard, useD2, 'No mainboard data.', `${name}:mainboard`);
-    renderConsensusRows(document.getElementById('side-card-bars'), document.getElementById('side-card-actions'), d.analysis.sideboard, useD2, 'No sideboard data.', `${name}:sideboard`);
+    renderConsensusRows(document.getElementById('main-card-bars'), document.getElementById('main-card-actions'), d.analysis.mainboard, false, 'No mainboard data.', `${name}:mainboard`, d.analysis);
+    renderConsensusRows(document.getElementById('side-card-bars'), document.getElementById('side-card-actions'), d.analysis.sideboard, false, 'No sideboard data.', `${name}:sideboard`, d.analysis);
   }
 
   function initControls() {
