@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spanish Pauper Championship 2026 Visuals</title>
+<script src="/mtg-mana/mtg-mana.js"></script>
+<script>
+if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/script>');
+</script>
 <script src="spanish-pauper-data.js"></script>
 <style>
   :root {
@@ -396,10 +400,18 @@
   }
 
   .deck {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     min-width: 0;
     overflow: hidden;
     color: var(--muted);
     font-size: 0.82rem;
+  }
+
+  .deck-label {
+    min-width: 0;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -506,7 +518,7 @@
 
   .archetype-item {
     display: grid;
-    grid-template-columns: 10px minmax(0, 1fr) auto;
+    grid-template-columns: minmax(18px, auto) minmax(0, 1fr) auto;
     gap: 8px;
     align-items: center;
     min-height: 34px;
@@ -528,10 +540,42 @@
   }
 
   .archetype-dot {
+    display: block;
     width: 9px;
     height: 9px;
     border-radius: 50%;
     background: var(--blue);
+  }
+
+  .archetype-symbol {
+    display: inline-flex;
+    min-width: 18px;
+  }
+
+  .mana-pips {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .mana-pip {
+    display: block;
+    width: 14px;
+    height: 14px;
+  }
+
+  .archetype-item .mana-pip { width: 14px; height: 14px; }
+
+  .explorer-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .explorer-heading .mana-pip {
+    width: 16px;
+    height: 16px;
   }
 
   .archetype-name {
@@ -825,7 +869,10 @@
       <div class="panel">
         <div class="panel-head">
           <div class="explorer-title-block">
-            <span class="explorer-deck-title" id="explorer-title">Archetype</span>
+            <span class="explorer-heading">
+              <span id="explorer-pips"></span>
+              <span class="explorer-deck-title" id="explorer-title">Archetype</span>
+            </span>
             <span class="small" id="explorer-meta"></span>
           </div>
         </div>
@@ -882,6 +929,56 @@
   const details = data.archetypeDetails;
   const tooltip = document.getElementById('tooltip');
   const palette = ['#386f9f', '#236c5f', '#c79834', '#b64f4a', '#725a95', '#4f8f5f'];
+  const mtgMana = window.MtgMana || null;
+  const archetypeColorMap = {
+    'Altar Tron': ['B', 'G'],
+    'Boros Moxite': ['W', 'R'],
+    'Boros Synth': ['W', 'R'],
+    'CawGates': ['W', 'U'],
+    'Cycling Storm': ['B', 'R'],
+    'Dimir Bounce': ['U', 'B'],
+    'Dimir Control': ['U', 'B'],
+    'Dimir Faeries': ['U', 'B'],
+    'Dimir Terror': ['U', 'B'],
+    'Dredge': ['B', 'G'],
+    'Elves': ['G'],
+    'Esper Affinity': ['W', 'U', 'B'],
+    'Familiars': ['W', 'U'],
+    'Flicker Tron': ['W', 'U'],
+    'Golgari Foods': ['B', 'G'],
+    'Golgari Gardens': ['B', 'G'],
+    'Grixis Affinity': ['U', 'B', 'R'],
+    'Gruul Bowseeker': ['R', 'G'],
+    'Gruul Monsters': ['R', 'G'],
+    'Gruul Ponza': ['R', 'G'],
+    'Inside Out': ['W', 'U'],
+    'Izzet Affinity': ['U', 'R'],
+    'Izzet Skred': ['U', 'R'],
+    'Jeskai Ephemerate': ['W', 'U', 'R'],
+    'Jund Wildfire': ['B', 'R', 'G'],
+    'MonoB Sacrifice': ['B'],
+    'MonoG Stompy': ['G'],
+    'MonoR Burn': ['R'],
+    'MonoR Madness': ['R'],
+    'MonoR Rally': ['R'],
+    'MonoR Synth': ['R'],
+    'MonoU Faeries': ['U'],
+    'MonoU Terror': ['U'],
+    'MonoW Weenie': ['W'],
+    'Monster Tron': ['U', 'G'],
+    'Naya Bowseeker': ['W', 'R', 'G'],
+    'Orzhov Glintblade': ['W', 'B'],
+    'Orzhov Humans': ['W', 'B'],
+    'Rakdos Madness': ['B', 'R'],
+    'Ruby Storm': ['R'],
+    'Simic Mill': ['U', 'G'],
+    'Slivers': ['W', 'G'],
+    'Sultai Mill': ['U', 'B', 'G'],
+    'Temur Bowseeker': ['U', 'R', 'G'],
+    'Turbo Tron Fog': ['U', 'G'],
+    'Walls': ['G'],
+    'X Lands Spy': ['B', 'G'],
+  };
 
   function pct(value, digits = 1) {
     return (Number(value || 0) * 100).toFixed(digits) + '%';
@@ -896,10 +993,30 @@
       .replaceAll("'", '&#039;');
   }
 
-  function colorFor(name) {
+  function hashColor(name) {
     let hash = 0;
     for (let i = 0; i < name.length; i += 1) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
     return palette[hash % palette.length];
+  }
+
+  function colorsForArchetype(name) {
+    return mtgMana ? mtgMana.colorsForName(name, archetypeColorMap) : [];
+  }
+
+  function colorFor(name) {
+    const fallback = hashColor(name);
+    return mtgMana ? mtgMana.accentForColors(colorsForArchetype(name), fallback) : fallback;
+  }
+
+  function archetypePips(name, className = '') {
+    const colors = colorsForArchetype(name);
+    if (mtgMana && colors.length) {
+      return mtgMana.manaPipsHtml(colors, {
+        className,
+        label: `${name} colors ${colors.join('')}`,
+      });
+    }
+    return `<span class="archetype-dot" style="background:${colorFor(name)};"></span>`;
   }
 
   function changeColor(diff) {
@@ -1063,7 +1180,7 @@
       <a class="finish-row" href="${esc(entry.deck_url)}" target="_blank" rel="noopener noreferrer">
         <span class="finish">${esc(entry.finish)}</span>
         <span class="player">${esc(entry.player).replace(/\s+/g, ' ')}</span>
-        <span class="deck">${esc(entry.archetype)}</span>
+        <span class="deck">${archetypePips(entry.archetype, 'deck-pips')}<span class="deck-label">${esc(entry.archetype)}</span></span>
       </a>
     `).join('');
   }
@@ -1073,7 +1190,7 @@
     const sorted = [...archetypes].sort((a, b) => b.day_1_decks - a.day_1_decks || a.archetype.localeCompare(b.archetype));
     list.innerHTML = sorted.map((a) => `
       <button class="archetype-item" type="button" data-archetype="${esc(a.archetype)}">
-        <span class="archetype-dot" style="background:${colorFor(a.archetype)};"></span>
+        <span class="archetype-symbol">${archetypePips(a.archetype, 'archetype-pips')}</span>
         <span class="archetype-name">${esc(a.archetype)}</span>
         <span class="archetype-count">${a.day_1_decks}</span>
       </button>
@@ -1133,6 +1250,7 @@
       button.classList.toggle('active', button.dataset.archetype === name);
     });
     document.getElementById('explorer-title').textContent = name;
+    document.getElementById('explorer-pips').innerHTML = archetypePips(name, 'explorer-pips');
     document.getElementById('explorer-meta').textContent =
       `${overviewRow.day_1_decks} Day 1 decks | ${overviewRow.day_2_decks} Day 2 decks | ${pct(overviewRow.day_1_share)} field`;
     const perf = d.spotlight.performance;
