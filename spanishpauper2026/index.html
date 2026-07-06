@@ -743,8 +743,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     .archetype-list { max-height: 320px; }
     .chart { min-height: 300px; overflow-x: auto; }
     .chart svg { min-width: 720px; }
-    #funnel-chart { overflow-x: hidden; }
-    #funnel-chart svg { min-width: 0; }
     .bar-row {
       grid-template-columns: minmax(0, 1.2fr) minmax(72px, 1fr) 36px;
       gap: 8px;
@@ -1143,25 +1141,14 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       `${overview.summary.day_1_decks} Day 1 -> ${overview.summary.day_2_decks} Day 2`;
   }
 
-  function fitText(text, maxChars) {
-    const limit = Math.max(4, Math.floor(maxChars));
-    if (text.length <= limit) return text;
-    return `${text.slice(0, Math.max(1, limit - 3)).trim()}...`;
-  }
-
   function renderFunnel() {
-    const chartEl = document.getElementById('funnel-chart');
-    const compact = window.matchMedia('(max-width: 620px)').matches;
     const top = archetypes
       .filter((a) => a.day_1_decks >= 2 || a.day_2_decks > 0)
       .sort((a, b) => b.day_2_decks - a.day_2_decks || b.day_1_decks - a.day_1_decks)
       .slice(0, 22);
-    const availableWidth = Math.max(320, Math.floor(chartEl?.clientWidth || 360));
-    const W = compact ? availableWidth : 1080;
-    const H = compact ? 560 : 640;
-    const margin = compact
-      ? { top: 52, right: Math.round(W * 0.32), bottom: 22, left: Math.round(W * 0.35) }
-      : { top: 52, right: 250, bottom: 28, left: 265 };
+    const W = 1080;
+    const H = 640;
+    const margin = { top: 52, right: 250, bottom: 28, left: 265 };
     const x1 = margin.left;
     const x2 = W - margin.right;
     const areaTop = margin.top + 20;
@@ -1171,10 +1158,7 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     const byD2 = [...top].sort((a, b) => b.day_2_share - a.day_2_share);
     const yD1 = new Map(byD1.map((a, i) => [a.archetype, areaTop + i * rowH]));
     const yD2 = new Map(byD2.map((a, i) => [a.archetype, areaTop + i * rowH]));
-    const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Day 1 to Day 2 archetype funnel' });
-    const curve = compact ? Math.max(24, (x2 - x1) * 0.45) : 180;
-    const labelGap = compact ? 8 : 16;
-    const pipGap = compact ? 7 : 12;
+    const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Day 1 to Day 2 archetype funnel' });
 
     svg.appendChild(svgEl('text', { x: x1, y: 28, class: 'axis-label', 'text-anchor': 'middle' })).textContent = 'Day 1';
     svg.appendChild(svgEl('text', { x: x2, y: 28, class: 'axis-label', 'text-anchor': 'middle' })).textContent = 'Day 2';
@@ -1185,7 +1169,7 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
       const y1 = yD1.get(a.archetype);
       const y2 = yD2.get(a.archetype);
       const line = svgEl('path', {
-        d: `M ${x1 + 4} ${y1} C ${x1 + curve} ${y1}, ${x2 - curve} ${y2}, ${x2 - 4} ${y2}`,
+        d: `M ${x1 + 4} ${y1} C ${x1 + 180} ${y1}, ${x2 - 180} ${y2}, ${x2 - 4} ${y2}`,
         fill: 'none',
         stroke: changeColor(a.difference),
         'stroke-width': 3 + Math.sqrt(a.day_1_decks),
@@ -1198,25 +1182,21 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
 
     byD1.forEach((a) => {
       const y = yD1.get(a.archetype);
-      const pipWidth = renderSvgPips(svg, a.archetype, x1 - pipGap, y, 'end');
-      const labelX = x1 - labelGap - pipWidth;
-      const label = svgEl('text', { x: labelX, y: y + 4, class: 'chart-name', 'text-anchor': 'end' });
-      const text = compact ? `${a.day_1_decks} ${a.archetype}` : `${a.archetype} ${pct(a.day_1_share)} (${a.day_1_decks})`;
-      label.textContent = compact ? fitText(text, labelX / 6.5) : text;
+      const pipWidth = renderSvgPips(svg, a.archetype, x1 - 12, y, 'end');
+      const label = svgEl('text', { x: x1 - 16 - pipWidth, y: y + 4, class: 'chart-name', 'text-anchor': 'end' });
+      label.textContent = `${a.archetype} ${pct(a.day_1_share)} (${a.day_1_decks})`;
       svg.appendChild(label);
     });
 
     byD2.forEach((a) => {
       const y = yD2.get(a.archetype);
-      const pipWidth = renderSvgPips(svg, a.archetype, x2 + pipGap, y, 'start');
-      const labelX = x2 + labelGap + pipWidth;
-      const label = svgEl('text', { x: labelX, y: y + 4, class: 'chart-name' });
-      const text = compact ? `${a.day_2_decks} ${a.archetype}` : `${pct(a.day_2_share)} ${a.archetype} (${a.day_2_decks})`;
-      label.textContent = compact ? fitText(text, (W - labelX) / 6.5) : text;
+      const pipWidth = renderSvgPips(svg, a.archetype, x2 + 12, y, 'start');
+      const label = svgEl('text', { x: x2 + 16 + pipWidth, y: y + 4, class: 'chart-name' });
+      label.textContent = `${pct(a.day_2_share)} ${a.archetype} (${a.day_2_decks})`;
       svg.appendChild(label);
     });
 
-    chartEl.replaceChildren(svg);
+    document.getElementById('funnel-chart').replaceChildren(svg);
   }
 
   function matrixData(key) {
@@ -1397,15 +1377,6 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   renderTop8();
   initExplorer();
   initControls();
-
-  let funnelResizeFrame = null;
-  window.addEventListener('resize', () => {
-    if (funnelResizeFrame) cancelAnimationFrame(funnelResizeFrame);
-    funnelResizeFrame = requestAnimationFrame(() => {
-      funnelResizeFrame = null;
-      renderFunnel();
-    });
-  });
 })();
 </script>
 </body>
