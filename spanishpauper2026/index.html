@@ -10,6 +10,7 @@
 if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/script>');
 </script>
 <script src="spanish-pauper-data.js"></script>
+<script src="spanish-pauper-card-types.js"></script>
 <style>
   :root {
     --bg: #f4f5f6;
@@ -603,6 +604,20 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     border-top: 1px solid var(--soft);
   }
 
+  .consensus-type-title {
+    padding: 11px 0 5px;
+    border-bottom: 1px solid var(--soft);
+    color: #8b9297;
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .consensus-type-title:first-child {
+    padding-top: 8px;
+  }
+
   .consensus-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -890,8 +905,10 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
   const tooltip = document.getElementById('tooltip');
   const palette = ['#386f9f', '#236c5f', '#c79834', '#b64f4a', '#725a95', '#4f8f5f'];
   const mtgMana = window.MtgMana || null;
+  const cardTypeCatalog = window.__SPC_CARD_TYPES || {};
   let currentExplorerName = '';
   let expandedConsensusSections = new Set();
+  const TYPE_ORDER = ['Creature', 'Sorcery', 'Instant', 'Artifact', 'Enchantment', 'Land', 'Planeswalker', 'Battle', 'Other'];
   const archetypeColorMap = {
     'Altar Tron': ['B', 'G'],
     'Boros Moxite': ['W', 'R'],
@@ -1077,6 +1094,24 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     if (value >= 80) return '#27ae60';
     if (value >= 50) return '#d4a017';
     return '#c0392b';
+  }
+
+  function bucketCardType(typeLine) {
+    const text = String(typeLine || '');
+    if (/\bLand\b/i.test(text)) return 'Land';
+    if (/\bCreature\b/i.test(text)) return 'Creature';
+    if (/\bSorcery\b/i.test(text)) return 'Sorcery';
+    if (/\bInstant\b/i.test(text)) return 'Instant';
+    if (/\bArtifact\b/i.test(text)) return 'Artifact';
+    if (/\bEnchantment\b/i.test(text)) return 'Enchantment';
+    if (/\bPlaneswalker\b/i.test(text)) return 'Planeswalker';
+    if (/\bBattle\b/i.test(text)) return 'Battle';
+    return 'Other';
+  }
+
+  function cardTypeFor(name) {
+    const card = cardTypeCatalog[normName(name)];
+    return bucketCardType(card?.type_line);
   }
 
   function heatColor(value) {
@@ -1310,7 +1345,10 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
     });
 
     const thresholdText = useD2 ? 'No Day 2 cards above 10%.' : 'No Day 1 cards above 10%.';
-    el.innerHTML = rows.map((card) => {
+    const grouped = new Map(TYPE_ORDER.map((type) => [type, []]));
+    rows.forEach((card) => grouped.get(cardTypeFor(card.card)).push(card));
+
+    const renderRow = (card) => {
       const share = shareFor(card);
       const avg = avgFor(card);
       const width = Math.max(4, share * 100);
@@ -1327,6 +1365,12 @@ if (!window.MtgMana) document.write('<script src="mtg-mana/mtg-mana.js"><\\/scri
           </div>
         </div>
       `;
+    };
+
+    el.innerHTML = TYPE_ORDER.map((type) => {
+      const typeCards = grouped.get(type) || [];
+      if (!typeCards.length) return '';
+      return `<div class="consensus-type-title">${esc(type)}</div>${typeCards.map(renderRow).join('')}`;
     }).join('') || `<div class="small">${esc(thresholdText)}</div>`;
   }
 
