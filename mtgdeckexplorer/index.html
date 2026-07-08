@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A local-first MTGTop8 deck similarity explorer hosted temporarily for Pauper event testing.">
+<title>MTGTop8 Deck Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3f4f4;
+    --paper: #ffffff;
+    --ink: #171817;
+    --muted: #626970;
+    --line: #d8dde1;
+    --soft: #e9edf0;
+    --blue: #386f9f;
+  }
+
+  * { box-sizing: border-box; }
+
+  html,
+  body {
+    min-height: 100%;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    width: min(1380px, calc(100vw - 28px));
+    margin: 0 auto;
+  }
+
+  header {
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: end;
+    padding: 22px 0 18px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(1.35rem, 2vw, 2rem);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .dek {
+    max-width: 760px;
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 9px 13px;
+    border: 1px solid #202428;
+    border-radius: 8px;
+    background: #202428;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .button.secondary {
+    border-color: var(--line);
+    background: var(--paper);
+    color: #202428;
+  }
+
+  .note {
+    margin: 12px 0 0;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    color: #4d5660;
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  main {
+    flex: 1;
+    min-height: 0;
+    padding: 14px 0;
+  }
+
+  .frame-shell {
+    height: calc(100vh - 174px);
+    min-height: 620px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: var(--paper);
+  }
+
+  footer {
+    padding: 0 0 16px;
+    color: var(--muted);
+    font-size: 0.76rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 760px) {
+    .wrap { width: min(calc(100vw - 18px), 1380px); }
+    .topbar {
+      grid-template-columns: 1fr;
+      padding-top: 18px;
+    }
+    .actions { justify-content: flex-start; }
+    .frame-shell {
+      height: calc(100vh - 238px);
+      min-height: 560px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <h1>MTGTop8 Deck Explorer</h1>
+        <p class="dek">Temporary team-hosted deck similarity explorer for Pauper testing. It runs on Sawyer's Mac with local caching to keep repeat searches gentle.</p>
+        <p class="note">If the embedded app asks for a login, use the event credentials Sawyer shared. For the smoothest experience on mobile, open the app directly.</p>
+      </div>
+      <nav class="actions" aria-label="Deck explorer links">
+        <a class="button" href="https://sawyers-mac-mini.tail45397b.ts.net:10000/" target="_blank" rel="noopener">Open Full Screen</a>
+        <a class="button secondary" href="https://github.com/sawyerWeld/mtgdeckexplorer" target="_blank" rel="noopener">GitHub</a>
+        <a class="button secondary" href="/pauper/">Pauper Reports</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="frame-shell">
+    <iframe
+      title="MTGTop8 Deck Explorer"
+      src="https://sawyers-mac-mini.tail45397b.ts.net:10000/"
+      referrerpolicy="no-referrer"
+      allow="clipboard-read; clipboard-write"
+    ></iframe>
+  </div>
+</main>
+
+<footer class="wrap">
+  This is an unofficial fan research tool. Tournament and deck data comes from MTGTop8; card data and images come from Scryfall.
+</footer>
+</body>
+</html>
