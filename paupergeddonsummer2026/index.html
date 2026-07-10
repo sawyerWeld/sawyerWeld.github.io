@@ -125,6 +125,68 @@
     font-weight: 700;
     text-transform: uppercase;
   }
+  .pending-pill.live {
+    border-color: #a9c6b8;
+    background: #e4f0e9;
+    color: var(--green);
+  }
+  .view-controls {
+    display: inline-flex;
+    flex: 0 0 auto;
+    padding: 3px;
+    border: 1px solid #c9c9c9;
+    border-radius: 7px;
+    background: #e8e8e8;
+  }
+  .view-control {
+    min-width: 96px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .view-control.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+  .meta-shell {
+    margin-top: 22px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.38);
+  }
+  .meta-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-bottom: 1px solid var(--line);
+  }
+  .meta-summary-item { padding: 18px 20px; border-right: 1px solid var(--line); }
+  .meta-summary-item:last-child { border-right: 0; }
+  .meta-summary-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #888;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .meta-summary-value { font-size: 1.05rem; font-weight: 700; }
+  .meta-chart { padding: 24px 22px 26px; }
+  .meta-row {
+    display: grid;
+    grid-template-columns: minmax(132px, 210px) minmax(120px, 1fr) 58px 42px;
+    align-items: center;
+    gap: 12px;
+    min-height: 31px;
+    font-size: 0.78rem;
+  }
+  .meta-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+  .meta-track { height: 8px; background: #ddd; overflow: hidden; }
+  .meta-bar { height: 100%; background: var(--blue); transition: width 180ms ease; }
+  .meta-pct { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+  .meta-count { color: #888; text-align: right; font-variant-numeric: tabular-nums; }
+  .meta-note { margin: 18px 0 0; color: #777; font-size: 0.72rem; line-height: 1.6; }
   .chart-shell {
     min-height: 240px;
     margin-top: 22px;
@@ -163,6 +225,11 @@
     .event-stat:nth-child(n+3) { border-bottom: 0; }
     .section { width: min(100% - 28px, 1060px); padding: 32px 0; }
     .section-head { align-items: flex-start; }
+    .meta-summary { grid-template-columns: 1fr 1fr; }
+    .meta-summary-item:nth-child(2) { border-right: 0; }
+    .meta-summary-item:last-child { grid-column: 1 / -1; border-top: 1px solid var(--line); }
+    .meta-chart { padding: 19px 14px 22px; }
+    .meta-row { grid-template-columns: minmax(105px, 1.1fr) minmax(70px, 1fr) 52px 34px; gap: 8px; }
     .chart-shell { min-height: 220px; padding: 24px 18px; }
     .source-note { width: min(100% - 28px, 1060px); }
   }
@@ -171,6 +238,10 @@
     .page-header h1 { font-size: 2.55rem; }
     .section-head { display: block; }
     .pending-pill { display: inline-block; margin-top: 14px; }
+    .view-controls { display: flex; width: 100%; margin-top: 16px; }
+    .view-control { flex: 1 1 50%; }
+    .meta-row { grid-template-columns: minmax(94px, 1.15fr) minmax(60px, 1fr) 48px; }
+    .meta-count { display: none; }
   }
 </style>
 </head>
@@ -207,7 +278,29 @@
     <section class="section">
       <div class="section-head">
         <div>
-          <div class="section-kicker">01 / Metagame</div>
+          <div class="section-kicker">01 / Friday Preview</div>
+          <h2>Registered Metagames</h2>
+          <p>The Paupergeddon Trial and Top Pauper Player invitational fields.</p>
+        </div>
+        <div class="view-controls" role="group" aria-label="Choose metagame">
+          <button class="view-control active" type="button" data-meta-view="trial" aria-pressed="true">Trial</button>
+          <button class="view-control" type="button" data-meta-view="tpp" aria-pressed="false">TPP</button>
+        </div>
+      </div>
+      <div class="meta-shell">
+        <div class="meta-summary" aria-live="polite">
+          <div class="meta-summary-item"><span class="meta-summary-label">Submitted lists</span><span class="meta-summary-value" id="meta-size">160</span></div>
+          <div class="meta-summary-item"><span class="meta-summary-label">Most played</span><span class="meta-summary-value" id="meta-leader">Mono Red Madness</span></div>
+          <div class="meta-summary-item"><span class="meta-summary-label">Share</span><span class="meta-summary-value" id="meta-leader-share">10.62%</span></div>
+        </div>
+        <div class="meta-chart" id="meta-chart"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">02 / Main Event</div>
           <h2>The Funnel</h2>
           <p>Archetype representation from the full field through the final cut.</p>
         </div>
@@ -216,8 +309,8 @@
       <div class="chart-shell">
         <div class="pending-state">
           <div class="pending-rule" aria-hidden="true"><span></span><span></span><span></span></div>
-          <strong>The field is still assembling.</strong>
-          <p>Day 1 archetype counts will anchor the report when the organizer publishes tournament data.</p>
+          <strong>The main-event field is still assembling.</strong>
+          <p>The Friday fields offer a preview; tomorrow's Day 1 release will anchor the conversion funnel.</p>
         </div>
       </div>
     </section>
@@ -225,7 +318,7 @@
     <section class="section">
       <div class="section-head">
         <div>
-          <div class="section-kicker">02 / Deckbuilding</div>
+          <div class="section-kicker">03 / Deckbuilding</div>
           <h2>Archetype Explorer</h2>
           <p>Card-by-card consensus and sideboard choices by tournament stage.</p>
         </div>
@@ -243,7 +336,7 @@
     <section class="section">
       <div class="section-head">
         <div>
-          <div class="section-kicker">03 / Card Usage</div>
+          <div class="section-kicker">04 / Card Usage</div>
           <h2>Most Played Cards</h2>
           <p>Format staples, breakout cards, and their archetype distribution.</p>
         </div>
@@ -260,11 +353,76 @@
   </main>
 
   <div class="source-note">
-    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. This page will be updated as official Summer 2026 results and decklists are released.
+    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. Friday metagame data from the official <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_Trial.html" target="_blank" rel="noopener noreferrer">Trial</a> and <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_TPP.html" target="_blank" rel="noopener noreferrer">TPP</a> reports. The Trial table contains 160 submitted lists; the Summer hub describes the event as 168 players.
   </div>
 
 <script>
 (function () {
+  const metagames = {
+    trial: {
+      label: 'Paupergeddon Trial',
+      size: 160,
+      rows: [
+        ['Mono Red Madness', 10.62, 17], ['Mono Blue Terror', 9.38, 15], ['Grixis Affinity', 8.12, 13],
+        ['Spy Combo', 6.88, 11], ['Jeskai Ephemerate', 6.25, 10], ['Monster Tron', 5.62, 9],
+        ['Jund Wildfire', 5.00, 8], ['Elves', 5.00, 8], ['Dimir Faeries', 5.00, 8],
+        ['Dimir Terror', 3.75, 6], ['Naya Gates', 3.75, 6], ['Mono Red Rally', 3.12, 5],
+        ['Orzhov Blade', 2.50, 4], ['Others', 2.50, 4], ['Rakdos Burn', 1.88, 3],
+        ['Mono Blue Faeries', 1.88, 3], ['Izzet Control', 1.88, 3], ['White Weenie', 1.88, 3],
+        ['Gruul Storm', 1.88, 3], ['Flicker Tron', 1.88, 3], ['Gruul Monsters', 1.25, 2],
+        ['Mono White Heroic', 1.25, 2], ['Cycling Storm', 1.25, 2], ['Cawgate', 1.25, 2],
+        ['Boros Tribe', 1.25, 2], ['Blue Turbofog', 0.62, 1], ['Gruul Ponza', 0.62, 1],
+        ['Mono Red Burn', 0.62, 1], ['Golgari Gardens', 0.62, 1], ['Boros Synth', 0.62, 1],
+        ['Bogles', 0.62, 1], ['Walls', 0.62, 1], ['Black Turbofog', 0.62, 1]
+      ]
+    },
+    tpp: {
+      label: 'Top Pauper Player',
+      size: 112,
+      rows: [
+        ['Mono Red Madness', 12.50, 14], ['Grixis Affinity', 8.93, 10], ['Mono Blue Terror', 6.25, 7],
+        ['Jund Wildfire', 6.25, 7], ['Jeskai Ephemerate', 6.25, 7], ['Naya Gates', 5.36, 6],
+        ['Mono Red Rally', 4.46, 5], ['Spy Combo', 4.46, 5], ['Elves', 4.46, 5],
+        ['Mono Blue Faeries', 3.57, 4], ['Mono Red Burn', 2.68, 3], ['Azorius Familiars', 2.68, 3],
+        ['Gruul Storm', 2.68, 3], ['Dimir Faeries', 2.68, 3], ['Cawgate', 2.68, 3],
+        ['Flicker Tron', 2.68, 3], ['Others', 1.79, 2], ['Monster Tron', 1.79, 2],
+        ['Gruul Monsters', 1.79, 2], ['Rakdos Burn', 1.79, 2], ['Dimir Terror', 1.79, 2],
+        ['Boros Tribe', 1.79, 2], ['Blue Turbofog', 1.79, 2], ['Selesnya Gates', 0.89, 1],
+        ['Walls', 0.89, 1], ['Altar Tron', 0.89, 1], ['Izzet Control', 0.89, 1],
+        ['Golgari Gardens', 0.89, 1], ['Esper Affinity', 0.89, 1], ['Cycling Storm', 0.89, 1],
+        ['Boros Synth', 0.89, 1], ['Black Turbofog', 0.89, 1], ['White Weenie', 0.89, 1]
+      ]
+    }
+  };
+
+  function renderMetagame(key) {
+    const data = metagames[key];
+    const max = data.rows[0][1];
+    document.getElementById('meta-size').textContent = data.size.toLocaleString('en-US');
+    document.getElementById('meta-leader').textContent = data.rows[0][0];
+    document.getElementById('meta-leader-share').textContent = data.rows[0][1].toFixed(2) + '%';
+    document.getElementById('meta-chart').innerHTML = data.rows.map(function (row) {
+      const width = Math.max(3, (row[1] / max) * 100);
+      return '<div class="meta-row">'
+        + '<span class="meta-name" title="' + row[0] + '">' + row[0] + '</span>'
+        + '<span class="meta-track"><span class="meta-bar" style="display:block;width:' + width.toFixed(2) + '%"></span></span>'
+        + '<span class="meta-pct">' + row[1].toFixed(2) + '%</span>'
+        + '<span class="meta-count">' + row[2] + '</span>'
+        + '</div>';
+    }).join('') + '<p class="meta-note">Share of submitted lists. Final column is deck count. Source: official ' + data.label + ' metagame table.</p>';
+
+    document.querySelectorAll('[data-meta-view]').forEach(function (button) {
+      const active = button.dataset.metaView === key;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  document.querySelectorAll('[data-meta-view]').forEach(function (button) {
+    button.addEventListener('click', function () { renderMetagame(button.dataset.metaView); });
+  });
+  renderMetagame('trial');
+
   const now = new Date();
   const dayOne = new Date('2026-07-11T09:30:00+02:00');
   const dayTwo = new Date('2026-07-12T09:00:00+02:00');
@@ -273,7 +431,7 @@
   const next = document.getElementById('next-update');
 
   if (now < dayOne) {
-    status.textContent = 'Report desk open';
+    status.textContent = 'Friday metagames live';
     next.textContent = 'Day 1 begins July 11 at 09:30 CEST';
   } else if (now < dayTwo) {
     status.textContent = 'Day 1 underway';
