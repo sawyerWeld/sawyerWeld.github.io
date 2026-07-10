@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Live metagame analysis for Paupergeddon Summer 2026 in Lucca, Italy.">
+<title>Paupergeddon Summer 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #777;
+    --line: #d8d8d8;
+    --paper: #f1f1f1;
+    --white: #fff;
+    --blue: #2980b9;
+    --green: #277a53;
+    --amber: #b47712;
+  }
+
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+  }
+  a { color: inherit; text-decoration-color: #aaa; text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--ink); }
+
+  .status-strip {
+    border-bottom: 1px solid #d2e3fc;
+    background: #e8f0fe;
+    color: #234466;
+  }
+  .status-strip-inner {
+    width: min(1060px, calc(100% - 40px));
+    min-height: 42px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .live-mark { display: inline-flex; align-items: center; gap: 8px; }
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 4px rgba(41, 128, 185, 0.14);
+  }
+  #next-update { color: #58728c; text-align: right; }
+
+  .page-header {
+    min-height: 330px;
+    padding: 68px 20px 52px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .edition {
+    margin-bottom: 14px;
+    color: var(--amber);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .page-header h1 {
+    max-width: 900px;
+    margin: 0 0 14px;
+    font-size: clamp(2.35rem, 6vw, 4.9rem);
+    line-height: 0.98;
+    letter-spacing: 0;
+  }
+  .byline { color: var(--muted); font-size: 0.93rem; line-height: 1.7; }
+
+  .event-band { border-bottom: 1px solid var(--line); background: #e9e9e9; }
+  .event-grid {
+    width: min(1060px, calc(100% - 40px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .event-stat { min-height: 106px; padding: 24px 26px; border-left: 1px solid var(--line); }
+  .event-stat:last-child { border-right: 1px solid var(--line); }
+  .event-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #888;
+    font-size: 0.67rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .event-value { font-size: 0.98rem; font-weight: 600; line-height: 1.35; }
+
+  main { padding: 14px 0 50px; }
+  .section { width: min(1060px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0; }
+  .section + .section { border-top: 1px solid var(--line); }
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; }
+  .section-kicker {
+    margin-bottom: 8px;
+    color: var(--amber);
+    font-size: 0.69rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .section h2 { margin: 0 0 6px; font-size: 1.3rem; }
+  .section-head p { margin: 0; color: #888; font-size: 0.88rem; }
+  .pending-pill {
+    flex: 0 0 auto;
+    padding: 7px 11px;
+    border: 1px solid #c9c9c9;
+    border-radius: 6px;
+    background: #e8e8e8;
+    color: #666;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .chart-shell {
+    min-height: 240px;
+    margin-top: 22px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.38);
+    display: grid;
+    place-items: center;
+    padding: 28px;
+  }
+  .pending-state { width: min(520px, 100%); text-align: center; }
+  .pending-rule { display: flex; gap: 7px; justify-content: center; margin-bottom: 19px; }
+  .pending-rule span { width: 24px; height: 5px; background: #d0d0d0; }
+  .pending-rule span:nth-child(2) { background: #aebfcd; }
+  .pending-rule span:nth-child(3) { background: #d7c49e; }
+  .pending-state strong { display: block; margin-bottom: 8px; font-size: 1rem; }
+  .pending-state p { margin: 0; color: #7c7c7c; font-size: 0.84rem; line-height: 1.6; }
+
+  .source-note {
+    width: min(1060px, calc(100% - 40px));
+    margin: 0 auto 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: #777;
+    font-size: 0.76rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 760px) {
+    .status-strip-inner { width: min(100% - 28px, 1060px); }
+    #next-update { display: none; }
+    .page-header { min-height: 285px; padding: 54px 18px 42px; }
+    .event-grid { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .event-stat { min-height: 94px; padding: 19px 18px; border-bottom: 1px solid var(--line); }
+    .event-stat:nth-child(odd) { border-left: 0; }
+    .event-stat:nth-child(even) { border-right: 0; }
+    .event-stat:nth-child(n+3) { border-bottom: 0; }
+    .section { width: min(100% - 28px, 1060px); padding: 32px 0; }
+    .section-head { align-items: flex-start; }
+    .chart-shell { min-height: 220px; padding: 24px 18px; }
+    .source-note { width: min(100% - 28px, 1060px); }
+  }
+
+  @media (max-width: 430px) {
+    .page-header h1 { font-size: 2.55rem; }
+    .section-head { display: block; }
+    .pending-pill { display: inline-block; margin-top: 14px; }
+  }
+</style>
+</head>
+<body>
+  <div class="status-strip">
+    <div class="status-strip-inner">
+      <span class="live-mark"><span class="live-dot" aria-hidden="true"></span><span id="event-status">Report desk open</span></span>
+      <span id="next-update">Waiting for the Day 1 field</span>
+    </div>
+  </div>
+
+  <header class="page-header">
+    <div>
+      <div class="edition">Lucca / July 2026</div>
+      <h1>Paupergeddon Summer 2026</h1>
+      <div class="byline">
+        July 11-12 &middot; Lucca, Italia &middot;
+        <a href="https://paupergeddon.com/#event" target="_blank" rel="noopener noreferrer">Official event</a><br>
+        Analysis by <a href="https://sawyerwelden.com" target="_blank" rel="noopener noreferrer">Sawyer Welden</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="event-band" aria-label="Event format">
+    <div class="event-grid">
+      <div class="event-stat"><span class="event-label">Day 1</span><span class="event-value">8 Swiss rounds</span></div>
+      <div class="event-stat"><span class="event-label">Day 2 Cut</span><span class="event-value">18 match points</span></div>
+      <div class="event-stat"><span class="event-label">Day 2</span><span class="event-value">6 Swiss + Top 8</span></div>
+      <div class="event-stat"><span class="event-label">Capacity</span><span class="event-value">1,300 players</span></div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">01 / Metagame</div>
+          <h2>The Funnel</h2>
+          <p>Archetype representation from the full field through the final cut.</p>
+        </div>
+        <span class="pending-pill">Awaiting Day 1</span>
+      </div>
+      <div class="chart-shell">
+        <div class="pending-state">
+          <div class="pending-rule" aria-hidden="true"><span></span><span></span><span></span></div>
+          <strong>The field is still assembling.</strong>
+          <p>Day 1 archetype counts will anchor the report when the organizer publishes tournament data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">02 / Deckbuilding</div>
+          <h2>Archetype Explorer</h2>
+          <p>Card-by-card consensus and sideboard choices by tournament stage.</p>
+        </div>
+        <span class="pending-pill">Awaiting Decklists</span>
+      </div>
+      <div class="chart-shell">
+        <div class="pending-state">
+          <div class="pending-rule" aria-hidden="true"><span></span><span></span><span></span></div>
+          <strong>Decklists are not public yet.</strong>
+          <p>The explorer will open once lists can be matched to the tournament field and normalized by archetype.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">03 / Card Usage</div>
+          <h2>Most Played Cards</h2>
+          <p>Format staples, breakout cards, and their archetype distribution.</p>
+        </div>
+        <span class="pending-pill">Awaiting Decklists</span>
+      </div>
+      <div class="chart-shell">
+        <div class="pending-state">
+          <div class="pending-rule" aria-hidden="true"><span></span><span></span><span></span></div>
+          <strong>Card counts begin with the first data release.</strong>
+          <p>Usage will be separated by card type and tournament stage to keep field size from obscuring conversion.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="source-note">
+    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. This page will be updated as official Summer 2026 results and decklists are released.
+  </div>
+
+<script>
+(function () {
+  const now = new Date();
+  const dayOne = new Date('2026-07-11T09:30:00+02:00');
+  const dayTwo = new Date('2026-07-12T09:00:00+02:00');
+  const eventEnd = new Date('2026-07-12T20:00:00+02:00');
+  const status = document.getElementById('event-status');
+  const next = document.getElementById('next-update');
+
+  if (now < dayOne) {
+    status.textContent = 'Report desk open';
+    next.textContent = 'Day 1 begins July 11 at 09:30 CEST';
+  } else if (now < dayTwo) {
+    status.textContent = 'Day 1 underway';
+    next.textContent = 'Waiting for the first field release';
+  } else if (now < eventEnd) {
+    status.textContent = 'Day 2 underway';
+    next.textContent = 'Results will populate after publication';
+  } else {
+    status.textContent = 'Results watch';
+    next.textContent = 'Waiting for official data publication';
+  }
+}());
+</script>
+</body>
+</html>
