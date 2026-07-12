@@ -196,6 +196,36 @@
     place-items: center;
     padding: 28px;
   }
+  .chart-shell.funnel-shell { display: block; padding: 20px 16px 16px; }
+  .funnel-chart { width: 100%; overflow-x: auto; }
+  .funnel-chart svg { display: block; width: 100%; min-width: 680px; height: auto; }
+  .funnel-line { fill: none; stroke-width: 2; opacity: 0.58; transition: opacity 120ms ease, stroke-width 120ms ease; }
+  .funnel-group { cursor: default; }
+  .funnel-group:hover .funnel-line { opacity: 1; stroke-width: 4; }
+  .funnel-group:hover .funnel-dot { stroke-width: 3; }
+  .funnel-dot { stroke: var(--white); stroke-width: 2; transition: stroke-width 120ms ease; }
+  .funnel-label { fill: var(--ink); font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 600; }
+  .funnel-value { fill: #777; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; }
+  .funnel-heading { fill: var(--ink); font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 700; }
+  .funnel-subheading { fill: #888; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; }
+  .funnel-guide { stroke: #d0d0d0; stroke-width: 1; }
+  .funnel-tooltip {
+    position: fixed;
+    z-index: 20;
+    max-width: 260px;
+    padding: 9px 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    font-size: 0.74rem;
+    line-height: 1.55;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 80ms ease;
+  }
+  .funnel-tooltip strong { display: block; font-size: 0.82rem; }
+  .funnel-note { margin: 12px 4px 0; color: #777; font-size: 0.72rem; line-height: 1.6; }
   .pending-state { width: min(520px, 100%); text-align: center; }
   .pending-rule { display: flex; gap: 7px; justify-content: center; margin-bottom: 19px; }
   .pending-rule span { width: 24px; height: 5px; background: #d0d0d0; }
@@ -304,14 +334,11 @@
           <h2>The Funnel</h2>
           <p>Archetype representation from the full field through the final cut.</p>
         </div>
-        <span class="pending-pill">Awaiting Day 1</span>
+        <span class="pending-pill live">Day 2 field live</span>
       </div>
-      <div class="chart-shell">
-        <div class="pending-state">
-          <div class="pending-rule" aria-hidden="true"><span></span><span></span><span></span></div>
-          <strong>The main-event field is still assembling.</strong>
-          <p>The Friday fields offer a preview; tomorrow's Day 1 release will anchor the conversion funnel.</p>
-        </div>
+      <div class="chart-shell funnel-shell">
+        <div class="funnel-chart" id="funnel-chart" aria-label="Day 1 to Day 2 archetype representation chart"></div>
+        <p class="funnel-note">Lines show archetype share of each stage, so movement reflects over- or under-performance rather than the smaller Day 2 field. Hover a line for counts and conversion rate.</p>
       </div>
     </section>
 
@@ -353,7 +380,7 @@
   </main>
 
   <div class="source-note">
-    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. Friday metagame data from the official <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_Trial.html" target="_blank" rel="noopener noreferrer">Trial</a> and <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_TPP.html" target="_blank" rel="noopener noreferrer">TPP</a> reports. The Trial table contains 160 submitted lists; the Summer hub describes the event as 168 players.
+    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. Metagame data from the official <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_Trial.html" target="_blank" rel="noopener noreferrer">Trial</a>, <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_TPP.html" target="_blank" rel="noopener noreferrer">TPP</a>, and <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_Day2.html" target="_blank" rel="noopener noreferrer">Day 1 / Day 2 comparison</a> reports.
   </div>
 
 <script>
@@ -423,6 +450,95 @@
   });
   renderMetagame('trial');
 
+  const funnelRows = [
+    ['Mono Red Madness',132,12], ['Grixis Affinity',118,20], ['Jund Wildfire',68,8],
+    ['Naya Gates',51,8], ['Mono Blue Terror',50,12], ['Mono Red Rally',46,6],
+    ['Monster Tron',43,2], ['Elves',41,6], ['Dimir Faeries',38,2], ['Spy Combo',37,9],
+    ['Dimir Terror',32,2], ['White Weenie',31,5], ['Jeskai Ephemerate',30,3],
+    ['Azorius Familiars',23,6], ['Golgari Gardens',22,3], ['Rakdos Burn',19,1],
+    ['Gruul Monsters',19,2], ['Gruul Storm',17,4], ['Mono Blue Faeries',17,2],
+    ['Altar Tron',17,6], ['Gruul Ponza',16,2], ['Tireless Tribe',16,5],
+    ['Black Turbofog',13,1], ['Blue Turbofog',13,1], ['Flicker Tron',12,2],
+    ['Orzhov Blade',12,0], ['Selesnya Gates',11,2], ['Mono Black Sacrifice',11,2],
+    ['Walls',9,1], ['Izzet Control',7,0], ['Bogles',7,1], ['Cawgate',7,1],
+    ['Jund Gardens',6,3], ['Boros Synth',4,3], ['Cycling Storm',4,2],
+    ['Mono Red Synth',5,1], ['Dimir Affinity',3,1], ['Cauldron Food',1,1],
+    ['Others',24,2]
+  ];
+
+  function renderFunnel() {
+    const host = document.getElementById('funnel-chart');
+    const dayOneTotal = 1069;
+    const dayTwoTotal = 150;
+    const rows = funnelRows.map(function (row) {
+      return { name: row[0], d1: row[1], d2: row[2], p1: row[1] / dayOneTotal * 100, p2: row[2] / dayTwoTotal * 100 };
+    });
+    const visible = rows.filter(function (row) { return row.d1 >= 9 || row.d2 >= 2; });
+    const height = Math.max(610, visible.length * 23 + 92);
+    const top = 68;
+    const bottom = height - 22;
+    const leftX = 260;
+    const rightX = 780;
+    const leftOrder = visible.slice().sort(function (a, b) { return b.p1 - a.p1; });
+    const rightOrder = visible.slice().sort(function (a, b) { return b.p2 - a.p2; });
+    const leftY = {};
+    const rightY = {};
+    const step = (bottom - top) / Math.max(visible.length - 1, 1);
+    leftOrder.forEach(function (row, index) { leftY[row.name] = top + index * step; });
+    rightOrder.forEach(function (row, index) { rightY[row.name] = top + index * step; });
+    const palette = ['#2980b9', '#c0392b', '#277a53', '#7b5ea7', '#b47712', '#157f78'];
+    const escapeHtml = function (value) { return String(value).replace(/[&<>\"]/g, function (char) { return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[char]; }); };
+    let svg = '<svg viewBox="0 0 1040 ' + height + '" role="img" aria-labelledby="funnel-title">'
+      + '<title id="funnel-title">Paupergeddon Summer 2026 Day 1 to Day 2 metagame funnel</title>'
+      + '<line class="funnel-guide" x1="' + leftX + '" x2="' + leftX + '" y1="48" y2="' + bottom + '"></line>'
+      + '<line class="funnel-guide" x1="' + rightX + '" x2="' + rightX + '" y1="48" y2="' + bottom + '"></line>'
+      + '<text class="funnel-heading" x="' + leftX + '" y="19" text-anchor="middle">Day 1</text>'
+      + '<text class="funnel-subheading" x="' + leftX + '" y="35" text-anchor="middle">1,069 players</text>'
+      + '<text class="funnel-heading" x="' + rightX + '" y="19" text-anchor="middle">Day 2</text>'
+      + '<text class="funnel-subheading" x="' + rightX + '" y="35" text-anchor="middle">150 players</text>';
+    visible.forEach(function (row, index) {
+      const color = palette[index % palette.length];
+      const y1 = leftY[row.name];
+      const y2 = rightY[row.name];
+      const conversion = row.d1 ? row.d2 / row.d1 * 100 : 0;
+      svg += '<g class="funnel-group" data-name="' + escapeHtml(row.name) + '" data-d1="' + row.d1 + '" data-d2="' + row.d2 + '" data-p1="' + row.p1.toFixed(2) + '" data-p2="' + row.p2.toFixed(2) + '" data-conversion="' + conversion.toFixed(1) + '">'
+        + '<path class="funnel-line" stroke="' + color + '" d="M ' + leftX + ' ' + y1 + ' C 430 ' + y1 + ', 610 ' + y2 + ', ' + rightX + ' ' + y2 + '"></path>'
+        + '<circle class="funnel-dot" fill="' + color + '" cx="' + leftX + '" cy="' + y1 + '" r="5"></circle>'
+        + '<circle class="funnel-dot" fill="' + color + '" cx="' + rightX + '" cy="' + y2 + '" r="5"></circle>'
+        + '<text class="funnel-label" x="' + (leftX - 12) + '" y="' + (y1 + 4) + '" text-anchor="end">' + escapeHtml(row.name) + '</text>'
+        + '<text class="funnel-value" x="' + (leftX + 12) + '" y="' + (y1 + 4) + '">' + row.d1 + ' · ' + row.p1.toFixed(1) + '%</text>'
+        + '<text class="funnel-value" x="' + (rightX - 12) + '" y="' + (y2 + 4) + '" text-anchor="end">' + row.d2 + ' · ' + row.p2.toFixed(1) + '%</text>'
+        + '<text class="funnel-label" x="' + (rightX + 12) + '" y="' + (y2 + 4) + '">' + escapeHtml(row.name) + '</text>'
+        + '</g>';
+    });
+    host.innerHTML = svg + '</svg>';
+    let tooltip = document.querySelector('.funnel-tooltip');
+    if (!tooltip) {
+      tooltip = document.createElement('div');
+      tooltip.className = 'funnel-tooltip';
+      document.body.appendChild(tooltip);
+    }
+    host.querySelectorAll('.funnel-group').forEach(function (group) {
+      group.addEventListener('pointerenter', function (event) {
+        tooltip.innerHTML = '<strong>' + escapeHtml(group.dataset.name) + '</strong>'
+          + 'Day 1: ' + group.dataset.d1 + ' (' + group.dataset.p1 + '%)<br>'
+          + 'Day 2: ' + group.dataset.d2 + ' (' + group.dataset.p2 + '%)<br>'
+          + 'Conversion: ' + group.dataset.conversion + '%';
+        tooltip.style.opacity = '1';
+        positionTooltip(event);
+      });
+      group.addEventListener('pointermove', positionTooltip);
+      group.addEventListener('pointerleave', function () { tooltip.style.opacity = '0'; });
+    });
+    function positionTooltip(event) {
+      const x = Math.min(event.clientX + 14, window.innerWidth - tooltip.offsetWidth - 12);
+      const y = Math.min(event.clientY + 14, window.innerHeight - tooltip.offsetHeight - 12);
+      tooltip.style.left = Math.max(8, x) + 'px';
+      tooltip.style.top = Math.max(8, y) + 'px';
+    }
+  }
+  renderFunnel();
+
   const now = new Date();
   const dayOne = new Date('2026-07-11T09:30:00+02:00');
   const dayTwo = new Date('2026-07-12T09:00:00+02:00');
@@ -438,10 +554,10 @@
     next.textContent = 'Waiting for the first field release';
   } else if (now < eventEnd) {
     status.textContent = 'Day 2 underway';
-    next.textContent = 'Results will populate after publication';
+    next.textContent = 'Day 1 and Day 2 metagames live';
   } else {
-    status.textContent = 'Results watch';
-    next.textContent = 'Waiting for official data publication';
+    status.textContent = 'Day 2 metagame live';
+    next.textContent = '1,069 Day 1 players · 150 advanced';
   }
 }());
 </script>
