@@ -323,24 +323,53 @@
     'Monster Tron': 1
   };
 
+  const topSixtyFourCounts = {
+    'Grixis Affinity': 10, 'Jund Wildfire': 6, 'Spy Combo': 4, 'Mono Red Rally': 3,
+    'Mono Red Madness': 3, 'Tireless Tribe': 3, 'White Weenie': 2, 'Monster Tron': 2,
+    'Elves': 2, 'Dimir Terror': 2, 'Naya Gates': 2, 'Azorius Familiars': 2,
+    'Golgari Gardens': 2, 'Jund Gardens': 2, 'Gruul Storm': 2, 'Mono Blue Terror': 2,
+    'Gruul Monsters': 2, 'Pinger Tron': 1, 'Cycling Storm': 1, 'Altar Tron': 1,
+    'Bogles': 1, 'Blue Turbofog': 1, 'Cauldron Food': 1, 'Cawgate': 1,
+    'Jeskai Ephemerate': 1, 'Dimir Affinity': 1, 'Boros Synth': 1, 'Gruul Ponza': 1,
+    'Mono Red Synth': 1, 'Black Turbofog': 1
+  };
+
+  const topThirtyTwoCounts = {
+    'Mono Red Rally': 3, 'Grixis Affinity': 3, 'Mono Red Madness': 3, 'Tireless Tribe': 3,
+    'Spy Combo': 3, 'Jund Wildfire': 2, 'Naya Gates': 2, 'White Weenie': 1,
+    'Pinger Tron': 1, 'Cycling Storm': 1, 'Monster Tron': 1, 'Elves': 1,
+    'Altar Tron': 1, 'Bogles': 1, 'Blue Turbofog': 1, 'Dimir Terror': 1,
+    'Azorius Familiars': 1, 'Golgari Gardens': 1, 'Cauldron Food': 1, 'Cawgate': 1
+  };
+
   function renderFunnel() {
     const host = document.getElementById('funnel-chart');
-    const totals = { d1: 1069, d2: 150, t8: 8 };
+    const totals = { d1: 1069, d2: 150, t64: 64, t32: 32, t8: 8 };
     const rows = funnelRows.map(function (row) {
-      const item = { name: row[0], d1: row[1], d2: row[2], t8: topEightCounts[row[0]] || 0, colors: row[3].split('') };
+      const item = {
+        name: row[0], d1: row[1], d2: row[2],
+        t64: topSixtyFourCounts[row[0]] || 0,
+        t32: topThirtyTwoCounts[row[0]] || 0,
+        t8: topEightCounts[row[0]] || 0,
+        colors: row[3].split('')
+      };
       item.p1 = item.d1 === null ? null : item.d1 / totals.d1 * 100;
       item.p2 = item.d2 / totals.d2 * 100;
+      item.p64 = item.t64 / totals.t64 * 100;
+      item.p32 = item.t32 / totals.t32 * 100;
       item.p8 = item.t8 / totals.t8 * 100;
       return item;
     });
-    const visible = rows.filter(function (row) { return row.d1 >= 9 || row.d2 >= 2 || row.t8 > 0; });
+    const visible = rows.filter(function (row) { return row.d1 >= 9 || row.d2 >= 2 || row.t64 > 0 || row.t32 > 0 || row.t8 > 0; });
     const height = Math.max(610, visible.length * 23 + 92);
     const top = 68;
     const bottom = height - 22;
     const stages = [
-      { key: 'd1', pct: 'p1', x: 300, label: 'Day 1', sub: '1,069 players' },
-      { key: 'd2', pct: 'p2', x: 570, label: 'Day 2', sub: '150 players' },
-      { key: 't8', pct: 'p8', x: 800, label: 'Top 8', sub: '8 players' }
+      { key: 'd1', pct: 'p1', x: 280, label: 'Day 1', sub: '1,069 players' },
+      { key: 'd2', pct: 'p2', x: 420, label: 'Day 2', sub: '150 players' },
+      { key: 't64', pct: 'p64', x: 560, label: 'Top 64', sub: '64 players' },
+      { key: 't32', pct: 'p32', x: 700, label: 'Top 32', sub: '32 players' },
+      { key: 't8', pct: 'p8', x: 820, label: 'Top 8', sub: '8 players' }
     ];
     const positions = {};
     stages.forEach(function (stage) {
@@ -365,40 +394,44 @@
     });
     visible.forEach(function (row) {
       const y1 = positions.d1[row.name];
-      const y2 = positions.d2[row.name];
       const y8 = positions.t8[row.name];
-      const dayTwoColor = row.p1 === null ? '#777' : segmentColor(row.p1, row.p2);
-      const topEightColor = segmentColor(row.p2, row.p8);
       const pipSize = 13;
       const leftNameX = 12 + row.colors.length * 15;
-      const rightPipX = 874;
+      const rightPipX = 894;
       const rightNameX = rightPipX + row.colors.length * 15 + 4;
       const pips = function (startX, y) {
         return row.colors.map(function (mana, pipIndex) {
           return '<image href="' + manaMap[mana] + '" x="' + (startX + pipIndex * 15) + '" y="' + (y - pipSize / 2) + '" width="' + pipSize + '" height="' + pipSize + '"></image>';
         }).join('');
       };
-      svg += '<g class="funnel-group" data-name="' + escapeHtml(row.name) + '" data-d1="' + (row.d1 === null ? '' : row.d1) + '" data-d2="' + row.d2 + '" data-t8="' + row.t8 + '" data-p1="' + (row.p1 === null ? '' : row.p1.toFixed(2)) + '" data-p2="' + row.p2.toFixed(2) + '" data-p8="' + row.p8.toFixed(2) + '">';
-      if (y1 !== undefined && y2 !== undefined) {
-        svg += '<path class="funnel-line" stroke="' + dayTwoColor + '" d="M 300 ' + y1 + ' C 390 ' + y1 + ', 480 ' + y2 + ', 570 ' + y2 + '"></path>';
-      }
-      if (y2 !== undefined && y8 !== undefined) {
-        svg += '<path class="funnel-line" stroke="' + topEightColor + '" d="M 570 ' + y2 + ' C 646 ' + y2 + ', 724 ' + y8 + ', 800 ' + y8 + '"></path>';
+      svg += '<g class="funnel-group" data-name="' + escapeHtml(row.name) + '" data-d1="' + (row.d1 === null ? '' : row.d1) + '" data-d2="' + row.d2 + '" data-t64="' + row.t64 + '" data-t32="' + row.t32 + '" data-t8="' + row.t8 + '" data-p1="' + (row.p1 === null ? '' : row.p1.toFixed(2)) + '" data-p2="' + row.p2.toFixed(2) + '" data-p64="' + row.p64.toFixed(2) + '" data-p32="' + row.p32.toFixed(2) + '" data-p8="' + row.p8.toFixed(2) + '">';
+      for (let stageIndex = 0; stageIndex < stages.length - 1; stageIndex += 1) {
+        const from = stages[stageIndex];
+        const to = stages[stageIndex + 1];
+        const fromY = positions[from.key][row.name];
+        const toY = positions[to.key][row.name];
+        if (fromY === undefined || toY === undefined) continue;
+        const color = row[from.pct] === null ? '#777' : segmentColor(row[from.pct], row[to.pct]);
+        const curve = (to.x - from.x) / 3;
+        svg += '<path class="funnel-line" stroke="' + color + '" d="M ' + from.x + ' ' + fromY + ' C ' + (from.x + curve) + ' ' + fromY + ', ' + (to.x - curve) + ' ' + toY + ', ' + to.x + ' ' + toY + '"></path>';
       }
       if (y1 !== undefined) {
-        svg += '<circle class="funnel-dot" fill="' + dayTwoColor + '" cx="300" cy="' + y1 + '" r="5"></circle>'
+        const firstColor = row.p1 === null ? '#777' : segmentColor(row.p1, row.p2);
+        svg += '<circle class="funnel-dot" fill="' + firstColor + '" cx="280" cy="' + y1 + '" r="5"></circle>'
           + pips(8, y1)
           + '<text class="funnel-label" x="' + leftNameX + '" y="' + (y1 + 4) + '">' + escapeHtml(row.name) + '</text>'
-          + '<text class="funnel-value" x="288" y="' + (y1 + 4) + '" text-anchor="end">' + row.d1 + ' (' + row.p1.toFixed(1) + '%)</text>';
+          + '<text class="funnel-value" x="268" y="' + (y1 + 4) + '" text-anchor="end">' + row.d1 + ' (' + row.p1.toFixed(1) + '%)</text>';
       }
-      if (y2 !== undefined) {
-        svg += '<circle class="funnel-dot" fill="' + (y8 !== undefined ? topEightColor : dayTwoColor) + '" cx="570" cy="' + y2 + '" r="5"></circle>'
-          + '<text class="funnel-value" x="580" y="' + (y2 + 4) + '">' + row.d2 + ' (' + row.p2.toFixed(1) + '%)</text>';
-      }
+      stages.slice(1).forEach(function (stage, stageIndex) {
+        const y = positions[stage.key][row.name];
+        if (y === undefined) return;
+        const previous = stages[stageIndex];
+        const color = row[previous.pct] === null ? '#777' : segmentColor(row[previous.pct], row[stage.pct]);
+        svg += '<circle class="funnel-dot" fill="' + color + '" cx="' + stage.x + '" cy="' + y + '" r="5"></circle>'
+          + '<text class="funnel-value" x="' + (stage.x + 10) + '" y="' + (y + 4) + '">' + row[stage.key] + ' (' + row[stage.pct].toFixed(1) + '%)</text>';
+      });
       if (y8 !== undefined) {
-        svg += '<circle class="funnel-dot" fill="' + topEightColor + '" cx="800" cy="' + y8 + '" r="5"></circle>'
-          + '<text class="funnel-value" x="812" y="' + (y8 + 4) + '">' + row.t8 + ' (' + row.p8.toFixed(1) + '%)</text>'
-          + pips(rightPipX, y8)
+        svg += pips(rightPipX, y8)
           + '<text class="funnel-label" x="' + rightNameX + '" y="' + (y8 + 4) + '">' + escapeHtml(row.name) + '</text>';
       }
       svg += '</g>';
@@ -415,6 +448,8 @@
         tooltip.innerHTML = '<strong>' + escapeHtml(group.dataset.name) + '</strong>'
           + (group.dataset.d1 ? 'Day 1: ' + group.dataset.d1 + ' (' + group.dataset.p1 + '%)<br>' : 'Day 1: bundled into Others<br>')
           + 'Day 2: ' + group.dataset.d2 + ' (' + group.dataset.p2 + '%)<br>'
+          + 'Top 64: ' + group.dataset.t64 + ' (' + group.dataset.p64 + '%)<br>'
+          + 'Top 32: ' + group.dataset.t32 + ' (' + group.dataset.p32 + '%)<br>'
           + 'Top 8: ' + group.dataset.t8 + ' (' + group.dataset.p8 + '%)';
         tooltip.style.opacity = '1';
         positionTooltip(event);
