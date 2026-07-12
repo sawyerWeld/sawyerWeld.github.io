@@ -247,11 +247,11 @@
           <h2>The Funnel</h2>
           <p>Archetype representation from the full field through the final cut.</p>
         </div>
-        <span class="pending-pill live">Day 2 field live</span>
+        <span class="pending-pill live">Top 8 live</span>
       </div>
       <div class="chart-shell funnel-shell">
-        <div class="funnel-chart" id="funnel-chart" aria-label="Day 1 to Day 2 archetype representation chart"></div>
-        <p class="funnel-note">Lines show archetype share of each stage, so movement reflects over- or under-performance rather than the smaller Day 2 field. Hover a line for counts and conversion rate.</p>
+        <div class="funnel-chart" id="funnel-chart" aria-label="Day 1 through Top 8 archetype representation chart"></div>
+        <p class="funnel-note">Lines show archetype share of each stage, so movement reflects over- or under-performance rather than the smaller fields. Hover a line for counts and conversion rates.</p>
       </div>
     </section>
 
@@ -293,7 +293,7 @@
   </main>
 
   <div class="source-note">
-    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. Metagame data from the official <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_Day2.html" target="_blank" rel="noopener noreferrer">Day 1 / Day 2 comparison</a> report.
+    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. Metagame data from the official <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_Day2.html" target="_blank" rel="noopener noreferrer">Day 1 / Day 2 comparison</a> report and <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Top64.html" target="_blank" rel="noopener noreferrer">Top 64 decklists</a>.
   </div>
 
 <script>
@@ -311,68 +311,97 @@
     ['Walls',9,1,'G'], ['Izzet Control',7,0,'UR'], ['Bogles',7,1,'WG'], ['Cawgate',7,1,'WU'],
     ['Jund Gardens',6,3,'BRG'], ['Boros Synth',4,3,'WR'], ['Cycling Storm',4,2,'B'],
     ['Mono Red Synth',5,1,'R'], ['Dimir Affinity',3,1,'UB'], ['Cauldron Food',1,1,'BG'],
-    ['Others',24,2,'']
+    ['Others',24,1,''], ['Pinger Tron',null,1,'UBRG']
   ];
+
+  const topEightCounts = {
+    'Jund Wildfire': 2,
+    'White Weenie': 1,
+    'Mono Red Rally': 2,
+    'Pinger Tron': 1,
+    'Cycling Storm': 1,
+    'Monster Tron': 1
+  };
 
   function renderFunnel() {
     const host = document.getElementById('funnel-chart');
-    const dayOneTotal = 1069;
-    const dayTwoTotal = 150;
+    const totals = { d1: 1069, d2: 150, t8: 8 };
     const rows = funnelRows.map(function (row) {
-      return { name: row[0], d1: row[1], d2: row[2], colors: row[3].split(''), p1: row[1] / dayOneTotal * 100, p2: row[2] / dayTwoTotal * 100 };
+      const item = { name: row[0], d1: row[1], d2: row[2], t8: topEightCounts[row[0]] || 0, colors: row[3].split('') };
+      item.p1 = item.d1 === null ? null : item.d1 / totals.d1 * 100;
+      item.p2 = item.d2 / totals.d2 * 100;
+      item.p8 = item.t8 / totals.t8 * 100;
+      return item;
     });
-    const visible = rows.filter(function (row) { return row.d1 >= 9 || row.d2 >= 2; });
+    const visible = rows.filter(function (row) { return row.d1 >= 9 || row.d2 >= 2 || row.t8 > 0; });
     const height = Math.max(610, visible.length * 23 + 92);
     const top = 68;
     const bottom = height - 22;
-    const leftX = 310;
-    const rightX = 730;
-    const leftOrder = visible.slice().sort(function (a, b) { return b.p1 - a.p1; });
-    const rightOrder = visible.slice().sort(function (a, b) { return b.p2 - a.p2; });
-    const leftY = {};
-    const rightY = {};
-    const step = (bottom - top) / Math.max(visible.length - 1, 1);
-    leftOrder.forEach(function (row, index) { leftY[row.name] = top + index * step; });
-    rightOrder.forEach(function (row, index) { rightY[row.name] = top + index * step; });
+    const stages = [
+      { key: 'd1', pct: 'p1', x: 300, label: 'Day 1', sub: '1,069 players' },
+      { key: 'd2', pct: 'p2', x: 570, label: 'Day 2', sub: '150 players' },
+      { key: 't8', pct: 'p8', x: 800, label: 'Top 8', sub: '8 players' }
+    ];
+    const positions = {};
+    stages.forEach(function (stage) {
+      const active = visible.filter(function (row) { return row[stage.key] > 0; })
+        .sort(function (a, b) { return b[stage.pct] - a[stage.pct] || a.name.localeCompare(b.name); });
+      const step = (bottom - top) / Math.max(active.length - 1, 1);
+      positions[stage.key] = {};
+      active.forEach(function (row, index) { positions[stage.key][row.name] = top + index * step; });
+    });
     const manaMap = window.__PG_MANA || {};
     const escapeHtml = function (value) { return String(value).replace(/[&<>\"]/g, function (char) { return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[char]; }); };
+    const segmentColor = function (from, to) {
+      const change = to - from;
+      return change > 0.3 ? '#277a53' : change < -0.3 ? '#c0392b' : '#777';
+    };
     let svg = '<svg viewBox="0 0 1040 ' + height + '" role="img" aria-labelledby="funnel-title">'
-      + '<title id="funnel-title">Paupergeddon Summer 2026 Day 1 to Day 2 metagame funnel</title>'
-      + '<line class="funnel-guide" x1="' + leftX + '" x2="' + leftX + '" y1="48" y2="' + bottom + '"></line>'
-      + '<line class="funnel-guide" x1="' + rightX + '" x2="' + rightX + '" y1="48" y2="' + bottom + '"></line>'
-      + '<text class="funnel-heading" x="' + leftX + '" y="19" text-anchor="middle">Day 1</text>'
-      + '<text class="funnel-subheading" x="' + leftX + '" y="35" text-anchor="middle">1,069 players</text>'
-      + '<text class="funnel-heading" x="' + rightX + '" y="19" text-anchor="middle">Day 2</text>'
-      + '<text class="funnel-subheading" x="' + rightX + '" y="35" text-anchor="middle">150 players</text>';
-    visible.forEach(function (row, index) {
-      const change = row.p2 - row.p1;
-      const color = change > 0.3 ? '#277a53' : change < -0.3 ? '#c0392b' : '#777';
-      const y1 = leftY[row.name];
-      const y2 = rightY[row.name];
-      const conversion = row.d1 ? row.d2 / row.d1 * 100 : 0;
+      + '<title id="funnel-title">Paupergeddon Summer 2026 Day 1 through Top 8 metagame funnel</title>';
+    stages.forEach(function (stage) {
+      svg += '<line class="funnel-guide" x1="' + stage.x + '" x2="' + stage.x + '" y1="48" y2="' + bottom + '"></line>'
+        + '<text class="funnel-heading" x="' + stage.x + '" y="19" text-anchor="middle">' + stage.label + '</text>'
+        + '<text class="funnel-subheading" x="' + stage.x + '" y="35" text-anchor="middle">' + stage.sub + '</text>';
+    });
+    visible.forEach(function (row) {
+      const y1 = positions.d1[row.name];
+      const y2 = positions.d2[row.name];
+      const y8 = positions.t8[row.name];
+      const dayTwoColor = row.p1 === null ? '#777' : segmentColor(row.p1, row.p2);
+      const topEightColor = segmentColor(row.p2, row.p8);
       const pipSize = 13;
-      const leftPipX = 8;
-      const leftNameX = leftPipX + row.colors.length * 15 + 4;
-      const rightValueX = rightX + 12;
-      const rightPipX = 816;
+      const leftNameX = 12 + row.colors.length * 15;
+      const rightPipX = 874;
       const rightNameX = rightPipX + row.colors.length * 15 + 4;
-      const pipsLeft = row.colors.map(function (mana, pipIndex) {
-        return '<image href="' + manaMap[mana] + '" x="' + (leftPipX + pipIndex * 15) + '" y="' + (y1 - pipSize / 2) + '" width="' + pipSize + '" height="' + pipSize + '"></image>';
-      }).join('');
-      const pipsRight = row.colors.map(function (mana, pipIndex) {
-        return '<image href="' + manaMap[mana] + '" x="' + (rightPipX + pipIndex * 15) + '" y="' + (y2 - pipSize / 2) + '" width="' + pipSize + '" height="' + pipSize + '"></image>';
-      }).join('');
-      svg += '<g class="funnel-group" data-name="' + escapeHtml(row.name) + '" data-d1="' + row.d1 + '" data-d2="' + row.d2 + '" data-p1="' + row.p1.toFixed(2) + '" data-p2="' + row.p2.toFixed(2) + '" data-conversion="' + conversion.toFixed(1) + '">'
-        + '<path class="funnel-line" stroke="' + color + '" d="M ' + leftX + ' ' + y1 + ' C 430 ' + y1 + ', 610 ' + y2 + ', ' + rightX + ' ' + y2 + '"></path>'
-        + '<circle class="funnel-dot" fill="' + color + '" cx="' + leftX + '" cy="' + y1 + '" r="5"></circle>'
-        + '<circle class="funnel-dot" fill="' + color + '" cx="' + rightX + '" cy="' + y2 + '" r="5"></circle>'
-        + pipsLeft
-        + '<text class="funnel-label" x="' + leftNameX + '" y="' + (y1 + 4) + '">' + escapeHtml(row.name) + '</text>'
-        + '<text class="funnel-value" x="' + (leftX - 12) + '" y="' + (y1 + 4) + '" text-anchor="end">' + row.d1 + ' (' + row.p1.toFixed(1) + '%)</text>'
-        + '<text class="funnel-value" x="' + rightValueX + '" y="' + (y2 + 4) + '">' + row.d2 + ' (' + row.p2.toFixed(1) + '%)</text>'
-        + pipsRight
-        + '<text class="funnel-label" x="' + rightNameX + '" y="' + (y2 + 4) + '">' + escapeHtml(row.name) + '</text>'
-        + '</g>';
+      const pips = function (startX, y) {
+        return row.colors.map(function (mana, pipIndex) {
+          return '<image href="' + manaMap[mana] + '" x="' + (startX + pipIndex * 15) + '" y="' + (y - pipSize / 2) + '" width="' + pipSize + '" height="' + pipSize + '"></image>';
+        }).join('');
+      };
+      svg += '<g class="funnel-group" data-name="' + escapeHtml(row.name) + '" data-d1="' + (row.d1 === null ? '' : row.d1) + '" data-d2="' + row.d2 + '" data-t8="' + row.t8 + '" data-p1="' + (row.p1 === null ? '' : row.p1.toFixed(2)) + '" data-p2="' + row.p2.toFixed(2) + '" data-p8="' + row.p8.toFixed(2) + '">';
+      if (y1 !== undefined && y2 !== undefined) {
+        svg += '<path class="funnel-line" stroke="' + dayTwoColor + '" d="M 300 ' + y1 + ' C 390 ' + y1 + ', 480 ' + y2 + ', 570 ' + y2 + '"></path>';
+      }
+      if (y2 !== undefined && y8 !== undefined) {
+        svg += '<path class="funnel-line" stroke="' + topEightColor + '" d="M 570 ' + y2 + ' C 646 ' + y2 + ', 724 ' + y8 + ', 800 ' + y8 + '"></path>';
+      }
+      if (y1 !== undefined) {
+        svg += '<circle class="funnel-dot" fill="' + dayTwoColor + '" cx="300" cy="' + y1 + '" r="5"></circle>'
+          + pips(8, y1)
+          + '<text class="funnel-label" x="' + leftNameX + '" y="' + (y1 + 4) + '">' + escapeHtml(row.name) + '</text>'
+          + '<text class="funnel-value" x="288" y="' + (y1 + 4) + '" text-anchor="end">' + row.d1 + ' (' + row.p1.toFixed(1) + '%)</text>';
+      }
+      if (y2 !== undefined) {
+        svg += '<circle class="funnel-dot" fill="' + (y8 !== undefined ? topEightColor : dayTwoColor) + '" cx="570" cy="' + y2 + '" r="5"></circle>'
+          + '<text class="funnel-value" x="580" y="' + (y2 + 4) + '">' + row.d2 + ' (' + row.p2.toFixed(1) + '%)</text>';
+      }
+      if (y8 !== undefined) {
+        svg += '<circle class="funnel-dot" fill="' + topEightColor + '" cx="800" cy="' + y8 + '" r="5"></circle>'
+          + '<text class="funnel-value" x="812" y="' + (y8 + 4) + '">' + row.t8 + ' (' + row.p8.toFixed(1) + '%)</text>'
+          + pips(rightPipX, y8)
+          + '<text class="funnel-label" x="' + rightNameX + '" y="' + (y8 + 4) + '">' + escapeHtml(row.name) + '</text>';
+      }
+      svg += '</g>';
     });
     host.innerHTML = svg + '</svg>';
     let tooltip = document.querySelector('.funnel-tooltip');
@@ -384,9 +413,9 @@
     host.querySelectorAll('.funnel-group').forEach(function (group) {
       group.addEventListener('pointerenter', function (event) {
         tooltip.innerHTML = '<strong>' + escapeHtml(group.dataset.name) + '</strong>'
-          + 'Day 1: ' + group.dataset.d1 + ' (' + group.dataset.p1 + '%)<br>'
+          + (group.dataset.d1 ? 'Day 1: ' + group.dataset.d1 + ' (' + group.dataset.p1 + '%)<br>' : 'Day 1: bundled into Others<br>')
           + 'Day 2: ' + group.dataset.d2 + ' (' + group.dataset.p2 + '%)<br>'
-          + 'Conversion: ' + group.dataset.conversion + '%';
+          + 'Top 8: ' + group.dataset.t8 + ' (' + group.dataset.p8 + '%)';
         tooltip.style.opacity = '1';
         positionTooltip(event);
       });
@@ -419,8 +448,8 @@
     status.textContent = 'Day 2 underway';
     next.textContent = 'Day 1 and Day 2 metagames live';
   } else {
-    status.textContent = 'Day 2 metagame live';
-    next.textContent = '1,069 Day 1 players · 150 advanced';
+    status.textContent = 'Top 8 live';
+    next.textContent = '1,069 Day 1 players · 150 advanced · 8 remain';
   }
 }());
 </script>
