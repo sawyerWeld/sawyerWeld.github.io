@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Precompute the Deck Explorer's default UMAP for the static report."""
+"""Precompute an archetype-labeled UMAP for the static report."""
 
 from __future__ import annotations
 
 import argparse
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -42,27 +43,25 @@ def main() -> None:
     frame = pd.DataFrame(records)
     matrix = frame.pivot_table(index="deck", columns="card", values="copies", aggfunc="sum", fill_value=0)
     matrix = matrix.reindex(range(len(decks)), fill_value=0).astype(float)
-    weighted = deck_explorer.weighted_card_matrix(matrix, "sqrt")
+    weighted = deck_explorer.weighted_card_matrix(matrix, "counts_idf")
     present = (matrix > 0).sum(axis=0)
     features = weighted.loc[:, (present >= 2) & (weighted.var(axis=0) > 0)]
     coords, _, _, projection_meta = deck_explorer.projection_for_features(features.values, "umap_braycurtis")
     coords, duplicate_meta = deck_explorer.snap_duplicate_feature_coords(coords, features)
-    labels, silhouette, method, cluster_meta = deck_explorer.cluster_features(
-        coords,
-        distance_matrix=None,
-        cluster_method="auto",
-        cluster_k=2,
-        scale_clusters=True,
-        outlier_mode="keep",
-    )
-    labels = deck_explorer.labels_by_descending_size(labels)
+    archetype_counts = Counter(deck["archetype"] for deck in decks)
+    labeled_archetypes = [
+        {"name": name, "count": count, "colorIndex": color_index}
+        for color_index, (name, count) in enumerate(archetype_counts.most_common())
+        if count >= 5
+    ]
+    archetype_colors = {item["name"]: item["colorIndex"] for item in labeled_archetypes}
 
     points = []
     for index, deck in enumerate(decks):
         points.append({
             "x": round(float(coords[index, 0]), 5),
             "y": round(float(coords[index, 1]), 5),
-            "cluster": int(labels[index]) + 1 if int(labels[index]) >= 0 else 0,
+            "colorIndex": archetype_colors.get(deck["archetype"], -1),
             "rank": deck["rank"],
             "player": deck["player"],
             "archetype": deck["archetype"],
@@ -73,19 +72,18 @@ def main() -> None:
     output = {
         "meta": {
             "projection": projection_meta["projection_label"],
-            "weighting": "Sqrt Counts",
+            "weighting": "Counts + IDF",
             "scope": "Main deck",
             "features": int(features.shape[1]),
-            "clusters": len(set(int(label) for label in labels if int(label) >= 0)),
-            "clusterMethod": method,
-            "silhouette": round(float(silhouette), 4) if silhouette is not None else None,
+            "grouping": "Reported archetype",
+            "minimumLabelSize": 5,
+            "labeledArchetypes": labeled_archetypes,
             **duplicate_meta,
-            **cluster_meta,
         },
         "points": points,
     }
     (root / "paupergenesis-umap.json").write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")))
-    print(f"Wrote {len(points)} points, {output['meta']['clusters']} clusters, {features.shape[1]} features")
+    print(f"Wrote {len(points)} points, {len(labeled_archetypes)} labeled archetypes, {features.shape[1]} features")
 
 
 if __name__ == "__main__":

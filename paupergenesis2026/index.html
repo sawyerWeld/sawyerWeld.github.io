@@ -180,7 +180,7 @@
   </section>
   <section>
     <div class="section-head">
-      <div><div class="kicker">04 / Deck Space</div><h2>Deck Similarity</h2><p>Main deck &middot; sqrt counts &middot; Bray-Curtis UMAP &middot; plot-space auto hierarchical clusters.</p></div>
+      <div><div class="kicker">04 / Deck Space</div><h2>Deck Similarity</h2><p>Main deck &middot; count + IDF weights &middot; Bray-Curtis UMAP &middot; grouped by reported archetype.</p></div>
     </div>
     <div class="surface umap-shell" id="umap-shell">
       <canvas id="umap-canvas" role="img" aria-label="UMAP similarity plot of all Paupergenesis decklists"></canvas>
@@ -267,17 +267,18 @@
 
   function initUmap() {
     const shell=document.getElementById('umap-shell'),canvas=document.getElementById('umap-canvas'),ctx=canvas.getContext('2d'),tooltip=document.getElementById('umap-tooltip');
-    const points=umapPayload.points, clusterCount=umapPayload.meta.clusters;
-    const plotColors=['#386f9f','#ae5048','#347250','#71588f','#aa7a24','#287b78','#a14d72','#66767f'];
-    document.getElementById('plot-legend').innerHTML=Array.from({length:clusterCount},(_,i)=>'<span class="legend-item"><span class="legend-dot" style="background:'+plotColors[i%plotColors.length]+'"></span>Cluster '+(i+1)+'</span>').join('');
+    const points=umapPayload.points, labeledArchetypes=umapPayload.meta.labeledArchetypes;
+    const plotColors=['#2869a6','#c14b16','#168449','#7b3df0','#c70f43','#087d75','#a96400','#3e37c9','#2d75b8','#cb4310','#17883c','#7435e8','#be0d3e','#117f78','#a86500'];
+    document.getElementById('plot-legend').innerHTML='<span class="legend-item"><span class="legend-dot" style="background:#66767f"></span>Gray: archetypes with fewer than 5 decks</span>';
     const xs=points.map(p=>p.x),ys=points.map(p=>p.y),bounds={minX:Math.min(...xs),maxX:Math.max(...xs),minY:Math.min(...ys),maxY:Math.max(...ys)};
     let width=0,height=0,dpr=1,zoom=1,panX=0,panY=0,hovered=null,down=null,moved=false;
     function resize(){const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw();}
     function basePoint(p){const pad=42,innerW=width-pad*2,innerH=height-pad*2;return{x:pad+(p.x-bounds.minX)/Math.max(.001,bounds.maxX-bounds.minX)*innerW,y:height-pad-(p.y-bounds.minY)/Math.max(.001,bounds.maxY-bounds.minY)*innerH};}
     function screenPoint(p){const b=basePoint(p);return{x:width/2+(b.x-width/2)*zoom+panX,y:height/2+(b.y-height/2)*zoom+panY};}
-    function draw(){ctx.clearRect(0,0,width,height);ctx.strokeStyle='#dde1e3';ctx.lineWidth=1;for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(width*i/4,0);ctx.lineTo(width*i/4,height);ctx.stroke();ctx.beginPath();ctx.moveTo(0,height*i/4);ctx.lineTo(width,height*i/4);ctx.stroke();}points.forEach(p=>{const s=screenPoint(p),active=p===hovered;ctx.beginPath();ctx.arc(s.x,s.y,active?7:4.8,0,Math.PI*2);ctx.fillStyle=plotColors[(p.cluster-1)%plotColors.length]||'#98a2ad';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=active?2.5:1.5;ctx.stroke();});}
+    function draw(){ctx.clearRect(0,0,width,height);ctx.strokeStyle='#dde1e3';ctx.lineWidth=1;for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(width*i/4,0);ctx.lineTo(width*i/4,height);ctx.stroke();ctx.beginPath();ctx.moveTo(0,height*i/4);ctx.lineTo(width,height*i/4);ctx.stroke();}points.filter(p=>p.colorIndex<0).concat(points.filter(p=>p.colorIndex>=0)).forEach(p=>{const s=screenPoint(p),active=p===hovered;ctx.beginPath();ctx.arc(s.x,s.y,active?7:4.8,0,Math.PI*2);ctx.fillStyle=p.colorIndex>=0?plotColors[p.colorIndex%plotColors.length]:'#a2acb8';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=active?2.5:1.5;ctx.stroke();});drawLabels();}
+    function drawLabels(){ctx.font='600 11px system-ui, sans-serif';ctx.textBaseline='middle';const occupied=[];labeledArchetypes.forEach(group=>{const groupPoints=points.filter(p=>p.archetype===group.name).map(screenPoint);const center={x:groupPoints.reduce((s,p)=>s+p.x,0)/groupPoints.length,y:groupPoints.reduce((s,p)=>s+p.y,0)/groupPoints.length};const textWidth=ctx.measureText(group.name).width,box={x:Math.max(4,Math.min(width-textWidth-12,center.x+7)),y:Math.max(4,Math.min(height-20,center.y-18)),w:textWidth+8,h:17};for(let tries=0;tries<8&&occupied.some(o=>box.x<o.x+o.w&&box.x+box.w>o.x&&box.y<o.y+o.h&&box.y+box.h>o.y);tries++)box.y=Math.min(height-box.h-4,box.y+box.h+2);occupied.push(box);ctx.fillStyle='rgba(255,255,255,.84)';ctx.fillRect(box.x,box.y,box.w,box.h);ctx.fillStyle='#17212b';ctx.fillText(group.name,box.x+4,box.y+box.h/2);});}
     function hit(x,y){let best=null,bestD=11;points.forEach(p=>{const s=screenPoint(p),d=Math.hypot(s.x-x,s.y-y);if(d<bestD){best=p;bestD=d;}});return best;}
-    function showTooltip(p){if(!p){tooltip.style.opacity='0';return;}const s=screenPoint(p);tooltip.innerHTML='<strong>'+esc(p.player)+'</strong>'+esc(p.archetype)+'<br>Cluster '+p.cluster+' · Rank '+p.rank+' · '+esc(p.record);tooltip.style.opacity='1';const tw=tooltip.offsetWidth,th=tooltip.offsetHeight;tooltip.style.left=Math.max(8,Math.min(width-tw-8,s.x+12))+'px';tooltip.style.top=Math.max(8,Math.min(height-th-8,s.y+12))+'px';}
+    function showTooltip(p){if(!p){tooltip.style.opacity='0';return;}const s=screenPoint(p);tooltip.innerHTML='<strong>'+esc(p.player)+'</strong>'+esc(p.archetype)+'<br>Rank '+p.rank+' · '+esc(p.record);tooltip.style.opacity='1';const tw=tooltip.offsetWidth,th=tooltip.offsetHeight;tooltip.style.left=Math.max(8,Math.min(width-tw-8,s.x+12))+'px';tooltip.style.top=Math.max(8,Math.min(height-th-8,s.y+12))+'px';}
     function pointer(event){const r=canvas.getBoundingClientRect();return{x:event.clientX-r.left,y:event.clientY-r.top};}
     canvas.addEventListener('pointerdown',event=>{const p=pointer(event);down={...p,panX,panY};moved=false;canvas.setPointerCapture(event.pointerId);canvas.classList.add('dragging');});
     canvas.addEventListener('pointermove',event=>{const p=pointer(event);if(down){const dx=p.x-down.x,dy=p.y-down.y;if(Math.hypot(dx,dy)>3)moved=true;panX=down.panX+dx;panY=down.panY+dy;tooltip.style.opacity='0';draw();return;}const next=hit(p.x,p.y);if(next!==hovered){hovered=next;draw();showTooltip(next);}});
