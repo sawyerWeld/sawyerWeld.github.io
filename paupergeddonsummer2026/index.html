@@ -144,9 +144,13 @@
   .funnel-chart { width: 100%; overflow-x: auto; }
   .funnel-chart svg { display: block; width: 100%; min-width: 680px; height: auto; }
   .funnel-line { fill: none; stroke-width: 2; opacity: 0.58; transition: opacity 120ms ease, stroke-width 120ms ease; }
-  .funnel-group { cursor: default; }
+  .funnel-group { cursor: pointer; }
   .funnel-group:hover .funnel-line { opacity: 1; stroke-width: 4; }
   .funnel-group:hover .funnel-dot { stroke-width: 3; }
+  .funnel-group.selected .funnel-line { opacity: 1; stroke-width: 4; }
+  .funnel-group.selected .funnel-dot { stroke-width: 3; }
+  .middle-value { opacity: 0; transition: opacity 120ms ease; pointer-events: none; }
+  .funnel-group.selected .middle-value { opacity: 1; }
   .funnel-dot { stroke: var(--white); stroke-width: 2; transition: stroke-width 120ms ease; }
   .funnel-label { fill: var(--ink); font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 600; }
   .funnel-value { fill: #777; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; }
@@ -251,7 +255,7 @@
       </div>
       <div class="chart-shell funnel-shell">
         <div class="funnel-chart" id="funnel-chart" aria-label="Day 1 through Top 8 archetype representation chart"></div>
-        <p class="funnel-note">Lines show archetype share of each stage, so movement reflects over- or under-performance rather than the smaller fields. Hover a line for counts and conversion rates.</p>
+        <p class="funnel-note">Lines show archetype share of each stage, so movement reflects over- or under-performance rather than the smaller fields.</p>
       </div>
     </section>
 
@@ -342,14 +346,22 @@
     'Azorius Familiars': 1, 'Golgari Gardens': 1, 'Cauldron Food': 1, 'Cawgate': 1
   };
 
+  const topSixteenCounts = {
+    'Jund Wildfire': 2, 'Mono Red Rally': 2, 'Tireless Tribe': 2,
+    'White Weenie': 1, 'Pinger Tron': 1, 'Cycling Storm': 1, 'Monster Tron': 1,
+    'Grixis Affinity': 1, 'Elves': 1, 'Mono Red Madness': 1, 'Altar Tron': 1,
+    'Spy Combo': 1, 'Bogles': 1
+  };
+
   function renderFunnel() {
     const host = document.getElementById('funnel-chart');
-    const totals = { d1: 1069, d2: 150, t64: 64, t32: 32, t8: 8 };
+    const totals = { d1: 1069, d2: 150, t64: 64, t32: 32, t16: 16, t8: 8 };
     const rows = funnelRows.map(function (row) {
       const item = {
         name: row[0], d1: row[1], d2: row[2],
         t64: topSixtyFourCounts[row[0]] || 0,
         t32: topThirtyTwoCounts[row[0]] || 0,
+        t16: topSixteenCounts[row[0]] || 0,
         t8: topEightCounts[row[0]] || 0,
         colors: row[3].split('')
       };
@@ -357,18 +369,20 @@
       item.p2 = item.d2 / totals.d2 * 100;
       item.p64 = item.t64 / totals.t64 * 100;
       item.p32 = item.t32 / totals.t32 * 100;
+      item.p16 = item.t16 / totals.t16 * 100;
       item.p8 = item.t8 / totals.t8 * 100;
       return item;
     });
-    const visible = rows.filter(function (row) { return row.d1 >= 9 || row.d2 >= 2 || row.t64 > 0 || row.t32 > 0 || row.t8 > 0; });
+    const visible = rows.filter(function (row) { return row.d1 >= 9 || row.d2 >= 2 || row.t64 > 0 || row.t32 > 0 || row.t16 > 0 || row.t8 > 0; });
     const height = Math.max(610, visible.length * 23 + 92);
     const top = 68;
     const bottom = height - 22;
     const stages = [
-      { key: 'd1', pct: 'p1', x: 280, label: 'Day 1', sub: '1,069 players' },
-      { key: 'd2', pct: 'p2', x: 420, label: 'Day 2', sub: '150 players' },
-      { key: 't64', pct: 'p64', x: 560, label: 'Top 64', sub: '64 players' },
-      { key: 't32', pct: 'p32', x: 700, label: 'Top 32', sub: '32 players' },
+      { key: 'd1', pct: 'p1', x: 260, label: 'Day 1', sub: '1,069 players' },
+      { key: 'd2', pct: 'p2', x: 375, label: 'Day 2', sub: '150 players' },
+      { key: 't64', pct: 'p64', x: 490, label: 'Top 64', sub: '64 players' },
+      { key: 't32', pct: 'p32', x: 605, label: 'Top 32', sub: '32 players' },
+      { key: 't16', pct: 'p16', x: 720, label: 'Top 16', sub: '16 players' },
       { key: 't8', pct: 'p8', x: 820, label: 'Top 8', sub: '8 players' }
     ];
     const positions = {};
@@ -404,7 +418,7 @@
           return '<image href="' + manaMap[mana] + '" x="' + (startX + pipIndex * 15) + '" y="' + (y - pipSize / 2) + '" width="' + pipSize + '" height="' + pipSize + '"></image>';
         }).join('');
       };
-      svg += '<g class="funnel-group" data-name="' + escapeHtml(row.name) + '" data-d1="' + (row.d1 === null ? '' : row.d1) + '" data-d2="' + row.d2 + '" data-t64="' + row.t64 + '" data-t32="' + row.t32 + '" data-t8="' + row.t8 + '" data-p1="' + (row.p1 === null ? '' : row.p1.toFixed(2)) + '" data-p2="' + row.p2.toFixed(2) + '" data-p64="' + row.p64.toFixed(2) + '" data-p32="' + row.p32.toFixed(2) + '" data-p8="' + row.p8.toFixed(2) + '">';
+      svg += '<g class="funnel-group" tabindex="0" role="button" aria-label="Show ' + escapeHtml(row.name) + ' stage counts" data-name="' + escapeHtml(row.name) + '" data-d1="' + (row.d1 === null ? '' : row.d1) + '" data-d2="' + row.d2 + '" data-t64="' + row.t64 + '" data-t32="' + row.t32 + '" data-t16="' + row.t16 + '" data-t8="' + row.t8 + '" data-p1="' + (row.p1 === null ? '' : row.p1.toFixed(2)) + '" data-p2="' + row.p2.toFixed(2) + '" data-p64="' + row.p64.toFixed(2) + '" data-p32="' + row.p32.toFixed(2) + '" data-p16="' + row.p16.toFixed(2) + '" data-p8="' + row.p8.toFixed(2) + '">';
       for (let stageIndex = 0; stageIndex < stages.length - 1; stageIndex += 1) {
         const from = stages[stageIndex];
         const to = stages[stageIndex + 1];
@@ -417,18 +431,19 @@
       }
       if (y1 !== undefined) {
         const firstColor = row.p1 === null ? '#777' : segmentColor(row.p1, row.p2);
-        svg += '<circle class="funnel-dot" fill="' + firstColor + '" cx="280" cy="' + y1 + '" r="5"></circle>'
+        svg += '<circle class="funnel-dot" fill="' + firstColor + '" cx="260" cy="' + y1 + '" r="5"></circle>'
           + pips(8, y1)
           + '<text class="funnel-label" x="' + leftNameX + '" y="' + (y1 + 4) + '">' + escapeHtml(row.name) + '</text>'
-          + '<text class="funnel-value" x="268" y="' + (y1 + 4) + '" text-anchor="end">' + row.d1 + ' (' + row.p1.toFixed(1) + '%)</text>';
+          + '<text class="funnel-value" x="248" y="' + (y1 + 4) + '" text-anchor="end">' + row.d1 + ' (' + row.p1.toFixed(1) + '%)</text>';
       }
       stages.slice(1).forEach(function (stage, stageIndex) {
         const y = positions[stage.key][row.name];
         if (y === undefined) return;
         const previous = stages[stageIndex];
         const color = row[previous.pct] === null ? '#777' : segmentColor(row[previous.pct], row[stage.pct]);
+        const valueClass = stage.key === 't8' ? 'funnel-value' : 'funnel-value middle-value';
         svg += '<circle class="funnel-dot" fill="' + color + '" cx="' + stage.x + '" cy="' + y + '" r="5"></circle>'
-          + '<text class="funnel-value" x="' + (stage.x + 10) + '" y="' + (y + 4) + '">' + row[stage.key] + ' (' + row[stage.pct].toFixed(1) + '%)</text>';
+          + '<text class="' + valueClass + '" x="' + (stage.x + 10) + '" y="' + (y + 4) + '">' + row[stage.key] + ' (' + row[stage.pct].toFixed(1) + '%)</text>';
       });
       if (y8 !== undefined) {
         svg += pips(rightPipX, y8)
@@ -444,18 +459,46 @@
       document.body.appendChild(tooltip);
     }
     host.querySelectorAll('.funnel-group').forEach(function (group) {
+      const toggleSelection = function () {
+        const selecting = !group.classList.contains('selected');
+        host.querySelectorAll('.funnel-group').forEach(function (other) {
+          other.classList.remove('selected');
+          other.setAttribute('aria-pressed', 'false');
+        });
+        if (selecting) {
+          group.classList.add('selected');
+          group.setAttribute('aria-pressed', 'true');
+        }
+      };
+      group.setAttribute('aria-pressed', 'false');
+      group.addEventListener('click', function (event) {
+        event.stopPropagation();
+        toggleSelection();
+      });
+      group.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        toggleSelection();
+      });
       group.addEventListener('pointerenter', function (event) {
         tooltip.innerHTML = '<strong>' + escapeHtml(group.dataset.name) + '</strong>'
           + (group.dataset.d1 ? 'Day 1: ' + group.dataset.d1 + ' (' + group.dataset.p1 + '%)<br>' : 'Day 1: bundled into Others<br>')
           + 'Day 2: ' + group.dataset.d2 + ' (' + group.dataset.p2 + '%)<br>'
           + 'Top 64: ' + group.dataset.t64 + ' (' + group.dataset.p64 + '%)<br>'
           + 'Top 32: ' + group.dataset.t32 + ' (' + group.dataset.p32 + '%)<br>'
+          + 'Top 16: ' + group.dataset.t16 + ' (' + group.dataset.p16 + '%)<br>'
           + 'Top 8: ' + group.dataset.t8 + ' (' + group.dataset.p8 + '%)';
         tooltip.style.opacity = '1';
         positionTooltip(event);
       });
       group.addEventListener('pointermove', positionTooltip);
       group.addEventListener('pointerleave', function () { tooltip.style.opacity = '0'; });
+    });
+    host.querySelector('svg').addEventListener('click', function () {
+      host.querySelectorAll('.funnel-group').forEach(function (group) {
+        group.classList.remove('selected');
+        group.setAttribute('aria-pressed', 'false');
+      });
     });
     function positionTooltip(event) {
       const x = Math.min(event.clientX + 14, window.innerWidth - tooltip.offsetWidth - 12);
