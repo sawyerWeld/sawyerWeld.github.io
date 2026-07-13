@@ -75,6 +75,17 @@
   .card-row:last-child { border-bottom: 0; }
   .avg { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
   .prevalence { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .sideboard-column { min-width: 0; }
+  .view-lists-button { margin-top: 16px; padding: 7px 0; border: 0; background: transparent; color: var(--blue); cursor: pointer; font: inherit; font-size: .76rem; font-weight: 700; }
+  .view-lists-button::before { content: '\25B8'; display: inline-block; margin-right: 6px; transition: transform 120ms ease; }
+  .view-lists-button[aria-expanded="true"]::before { transform: rotate(90deg); }
+  .decklists-panel { grid-column: 1 / -1; padding-top: 14px; border-top: 1px solid var(--line); }
+  .decklists-panel[hidden] { display: none; }
+  .decklists-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  .decklists-head label { display: grid; gap: 5px; color: var(--muted); font-size: .68rem; font-weight: 700; text-transform: uppercase; }
+  .decklists-meta { color: var(--muted); font-size: .72rem; font-variant-numeric: tabular-nums; }
+  .decklist-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; }
+  .exact-card-row { display: grid; grid-template-columns: 42px minmax(0,1fr); gap: 8px; align-items: center; min-height: 27px; border-bottom: 1px solid #e3e6e7; font-size: .76rem; }
   .usage-list { padding: 18px; columns: 2; column-gap: 30px; }
   .usage-row { display: grid; grid-template-columns: minmax(0,1fr) 55px 52px; gap: 8px; break-inside: avoid; min-height: 29px; border-bottom: 1px solid #dfe3e4; font-size: .76rem; }
   .usage-copies, .usage-decks { text-align: right; font-variant-numeric: tabular-nums; }
@@ -86,6 +97,7 @@
     .wrap { width: min(100% - 28px, 1120px); }
     .section-head { align-items: flex-start; flex-direction: column; }
     #consensus { grid-template-columns: 1fr; }
+    .decklist-grid { grid-template-columns: 1fr; }
     .usage-list { columns: 1; }
   }
   @media (max-width: 480px) {
@@ -206,7 +218,10 @@
   const typeLabels={Land:'Lands',Creature:'Creatures',Artifact:'Artifacts',Enchantment:'Enchantments',Instant:'Instants',Sorcery:'Sorceries',Other:'Other'};
   function consensus(list,board){const map=new Map();list.forEach(d=>{const cards=new Map(d[board].map(c=>[c.name,c]));cards.forEach((card,name)=>{const x=map.get(name)||{sum:0,decks:0,type:card.type||'Other'};x.sum+=card.quantity;x.decks++;map.set(name,x);});});return [...map].map(([name,x])=>({name,type:x.type,avg:x.sum/list.length,pct:x.decks/list.length*100})).filter(x=>x.pct>10).sort((a,b)=>b.pct-a.pct||b.avg-a.avg||a.name.localeCompare(b.name));}
   function renderBoard(list,board){const cards=consensus(list,board);return '<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+typeOrder.map(type=>{const rows=cards.filter(card=>card.type===type);if(!rows.length)return '';const average=list.reduce((sum,deck)=>sum+deck[board].filter(card=>(card.type||'Other')===type).reduce((total,card)=>total+card.quantity,0),0)/list.length;return '<div class="card-type-group"><div class="card-type-head"><span>'+typeLabels[type]+'</span><span>'+average.toFixed(average<1?2:1)+'</span></div>'+rows.map(card=>'<div class="card-row"><span class="avg">'+card.avg.toFixed(card.avg<1?2:1)+'</span><span>'+esc(card.name)+'</span><span class="prevalence">'+Math.round(card.pct)+'%</span></div>').join('')+'</div>';}).join('')+'</div>';}
-  function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('consensus').innerHTML=['main','side'].map(board=>renderBoard(list,board)).join('');}
+  function exactBoard(deck,board){const cards=deck[board];return '<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+typeOrder.map(type=>{const rows=cards.filter(card=>(card.type||'Other')===type);if(!rows.length)return '';const total=rows.reduce((sum,card)=>sum+card.quantity,0);return '<div class="card-type-group"><div class="card-type-head"><span>'+typeLabels[type]+'</span><span>'+total+'</span></div>'+rows.map(card=>'<div class="exact-card-row"><span class="avg">'+card.quantity+'</span><span>'+esc(card.name)+'</span></div>').join('')+'</div>';}).join('')+'</div>';}
+  function listLabel(deck,index){return (deck.player||('List '+(index+1)))+(deck.record?' · '+deck.record:'');}
+  function renderExactList(list,index){const deck=list[index]||list[0],mainTotal=deck.main.reduce((sum,card)=>sum+card.quantity,0),sideTotal=deck.side.reduce((sum,card)=>sum+card.quantity,0);document.getElementById('decklists-meta').textContent=mainTotal+' main · '+sideTotal+' sideboard';document.getElementById('decklist-grid').innerHTML=['main','side'].map(board=>exactBoard(deck,board)).join('');}
+  function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('consensus').innerHTML=renderBoard(list,'main')+'<div class="sideboard-column">'+renderBoard(list,'side')+'<button class="view-lists-button" id="view-lists" aria-expanded="false">View lists ('+list.length+')</button></div><div class="decklists-panel" id="decklists-panel" hidden><div class="decklists-head"><label>Player list<select id="decklist-select">'+list.map((deck,index)=>'<option value="'+index+'">'+esc(listLabel(deck,index))+'</option>').join('')+'</select></label><span class="decklists-meta" id="decklists-meta"></span></div><div class="decklist-grid" id="decklist-grid"></div></div>';const button=document.getElementById('view-lists'),panel=document.getElementById('decklists-panel'),listSelect=document.getElementById('decklist-select');button.onclick=()=>{const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));button.textContent=(open?'Hide lists':'View lists')+' ('+list.length+')';panel.hidden=!open;if(open)renderExactList(list,Number(listSelect.value));};listSelect.onchange=()=>renderExactList(list,Number(listSelect.value));}
   select.onchange=renderExplorer;
 
   const usage=new Map();decks.forEach(d=>d.main.forEach(c=>{if(basicLands.has(c.name))return;const x=usage.get(c.name)||{copies:0,decks:0};x.copies+=c.quantity;x.decks++;usage.set(c.name,x);}));
