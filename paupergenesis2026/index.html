@@ -87,23 +87,17 @@
   .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
   .umap-tooltip { position: absolute; z-index: 4; max-width: 260px; padding: 9px 11px; border: 1px solid #c8ced1; border-radius: 6px; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.12); font-size: .73rem; line-height: 1.5; pointer-events: none; opacity: 0; }
   .umap-tooltip strong { display: block; font-size: .8rem; }
-  .grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr); gap: 18px; }
   .pane { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,.55); }
   .pane-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
   .pane-title { font-size: .78rem; font-weight: 700; text-transform: uppercase; }
   select { max-width: 250px; min-height: 34px; padding: 5px 32px 5px 9px; border: 1px solid #c8ced1; border-radius: 5px; background: white; color: var(--ink); }
   .pane-body { padding: 14px; }
-  .consensus-section + .consensus-section { margin-top: 18px; }
+  #consensus { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
   .consensus-section h3 { margin: 0 0 7px; font-size: .8rem; text-transform: uppercase; }
   .card-row { display: grid; grid-template-columns: 42px minmax(0,1fr) 50px; gap: 8px; align-items: center; min-height: 27px; border-bottom: 1px solid #e3e6e7; font-size: .76rem; }
   .card-row:last-child { border-bottom: 0; }
   .avg { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
   .prevalence { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
-  .deck-row { display: grid; grid-template-columns: 34px minmax(0,1fr) 68px; gap: 9px; align-items: center; min-height: 34px; border-bottom: 1px solid #e2e5e6; font-size: .76rem; }
-  .rank { color: var(--muted); text-align: right; }
-  .player-link { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 650; text-decoration: none; }
-  .player-link:hover { text-decoration: underline; }
-  .record { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
   .usage-list { padding: 18px; columns: 2; column-gap: 30px; }
   .usage-row { display: grid; grid-template-columns: minmax(0,1fr) 55px 52px; gap: 8px; break-inside: avoid; min-height: 29px; border-bottom: 1px solid #dfe3e4; font-size: .76rem; }
   .usage-copies, .usage-decks { text-align: right; font-variant-numeric: tabular-nums; }
@@ -118,7 +112,7 @@
     .stat { min-height: 82px; border-bottom: 1px solid var(--line); }
     .stat:nth-child(even) { border-right: 1px solid var(--line); }
     .section-head { align-items: flex-start; flex-direction: column; }
-    .grid { grid-template-columns: 1fr; }
+    #consensus { grid-template-columns: 1fr; }
     .usage-list { columns: 1; }
   }
   @media (max-width: 480px) {
@@ -165,17 +159,11 @@
   </section>
   <section>
     <div class="section-head">
-      <div><div class="kicker">03 / Deckbuilding</div><h2>Archetype Explorer</h2><p>Consensus card choices and every published list.</p></div>
+      <div><div class="kicker">03 / Deckbuilding</div><h2>Archetype Explorer</h2><p>Consensus card choices by archetype.</p></div>
     </div>
-    <div class="grid">
-      <div class="pane">
-        <div class="pane-head"><span class="pane-title">Consensus</span><select id="archetype-select" aria-label="Choose archetype"></select></div>
-        <div class="pane-body" id="consensus"></div>
-      </div>
-      <div class="pane">
-        <div class="pane-head"><span class="pane-title">Decklists</span><span class="small" id="deck-count"></span></div>
-        <div class="pane-body" id="decklists"></div>
-      </div>
+    <div class="pane">
+      <div class="pane-head"><span class="pane-title">Consensus</span><select id="archetype-select" aria-label="Choose archetype"></select></div>
+      <div class="pane-body" id="consensus"></div>
     </div>
   </section>
   <section>
@@ -262,7 +250,7 @@
   const archetypes=countsFor(248).map(d=>d.name);
   const select=document.getElementById('archetype-select'); select.innerHTML=archetypes.map(a=>'<option>'+esc(a)+'</option>').join('');
   function consensus(list,board){const map=new Map();list.forEach(d=>{const cards=new Map(d[board].map(c=>[c.name,c.quantity]));cards.forEach((q,name)=>{const x=map.get(name)||{sum:0,decks:0};x.sum+=q;x.decks++;map.set(name,x);});});return [...map].map(([name,x])=>({name,avg:x.sum/list.length,pct:x.decks/list.length*100})).filter(x=>x.pct>10).sort((a,b)=>b.pct-a.pct||b.avg-a.avg||a.name.localeCompare(b.name));}
-  function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('deck-count').textContent=list.length+' lists';document.getElementById('decklists').innerHTML=list.sort((a,b)=>a.rank-b.rank).map(d=>'<div class="deck-row"><span class="rank">'+d.rank+'</span>'+(d.decklistUrl?'<a class="player-link" href="'+d.decklistUrl+'" target="_blank" rel="noopener noreferrer">'+esc(d.player)+'</a>':'<span class="player-link">'+esc(d.player)+'</span>')+'<span class="record">'+esc(d.record)+'</span></div>').join('');document.getElementById('consensus').innerHTML=['main','side'].map(board=>'<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+consensus(list,board).map(c=>'<div class="card-row"><span class="avg">'+c.avg.toFixed(c.avg<1?2:1)+'</span><span>'+esc(c.name)+'</span><span class="prevalence">'+Math.round(c.pct)+'%</span></div>').join('')+'</div>').join('');}
+  function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('consensus').innerHTML=['main','side'].map(board=>'<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+consensus(list,board).map(c=>'<div class="card-row"><span class="avg">'+c.avg.toFixed(c.avg<1?2:1)+'</span><span>'+esc(c.name)+'</span><span class="prevalence">'+Math.round(c.pct)+'%</span></div>').join('')+'</div>').join('');}
   select.onchange=renderExplorer;
 
   function initUmap() {
