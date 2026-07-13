@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/pauper-report.css">
 <script src="../paupergeddon2026/paupergeddon-mana.js"></script>
-<script src="/assets/pauper-umap.js" defer></script>
 <style>
   :root {
     --ink: #1a1a1a;
@@ -75,6 +74,34 @@
   }
   .section h2 { margin: 0 0 6px; font-size: 1.3rem; }
   .section-head p { margin: 0; color: #888; font-size: 0.88rem; }
+  .segmented { display: inline-flex; padding: 3px; border: 1px solid #c8ced1; border-radius: 7px; background: #e7e9ea; }
+  .segmented button { min-width: 66px; padding: 7px 10px; border: 0; border-radius: 5px; background: transparent; color: #666d71; cursor: pointer; font: inherit; font-size: .72rem; font-weight: 700; }
+  .segmented button.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .surface { margin-top: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.55); }
+  .meta-list { padding: 20px; }
+  .meta-row { display: grid; grid-template-columns: minmax(145px,220px) 1fr 56px 32px; align-items: center; gap: 11px; min-height: 30px; font-size: .77rem; }
+  .meta-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+  .bar-track { height: 8px; overflow: hidden; background: #dcdfe1; }
+  .bar { height: 100%; background: var(--blue); }
+  .meta-pct, .meta-count { text-align: right; font-variant-numeric: tabular-nums; }
+  .meta-pct { font-weight: 700; }
+  .meta-count { color: var(--muted); }
+  .text-button { margin-top: 14px; padding: 4px 0; border: 0; background: transparent; color: var(--blue); cursor: pointer; font: inherit; font-weight: 700; }
+  .pane { min-width: 0; margin-top: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.55); }
+  .pane-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+  .pane-title { font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  select { max-width: 250px; min-height: 34px; padding: 5px 32px 5px 9px; border: 1px solid #c8ced1; border-radius: 5px; background: white; color: var(--ink); font: inherit; }
+  .pane-body { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; padding: 14px; }
+  .consensus-section h3 { margin: 0 0 7px; font-size: .8rem; text-transform: uppercase; }
+  .card-row { display: grid; grid-template-columns: 42px minmax(0,1fr) 50px; gap: 8px; align-items: center; min-height: 27px; border-bottom: 1px solid #e3e6e7; font-size: .76rem; }
+  .card-row:last-child { border-bottom: 0; }
+  .avg { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .prevalence { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .usage-list { padding: 18px; columns: 2; column-gap: 30px; }
+  .usage-row { display: grid; grid-template-columns: minmax(0,1fr) 55px 60px; gap: 8px; break-inside: avoid; min-height: 29px; border-bottom: 1px solid #dfe3e4; font-size: .76rem; }
+  .usage-copies, .usage-decks { text-align: right; font-variant-numeric: tabular-nums; }
+  .usage-copies { font-weight: 700; }
+  .usage-decks { color: var(--muted); }
   .pending-pill {
     flex: 0 0 auto;
     padding: 7px 11px;
@@ -101,7 +128,6 @@
     padding: 28px;
   }
   .chart-shell.funnel-shell { display: block; padding: 20px 16px 16px; }
-  .chart-shell.report-umap { display: block; padding: 0; }
   .funnel-chart { width: 100%; overflow-x: auto; }
   .funnel-chart svg { display: block; width: 100%; min-width: 680px; height: auto; }
   .funnel-line { fill: none; stroke-width: 2; opacity: 0.58; transition: opacity 120ms ease, stroke-width 120ms ease; }
@@ -157,7 +183,9 @@
     .status-strip-inner { width: min(100% - 28px, 1060px); }
     #next-update { display: none; }
     .section { width: min(100% - 28px, 1060px); padding: 32px 0; }
-    .section-head { align-items: flex-start; }
+    .section-head { align-items: flex-start; flex-direction: column; }
+    .pane-body { grid-template-columns: 1fr; }
+    .usage-list { columns: 1; }
     .chart-shell { min-height: 220px; padding: 24px 18px; }
     .source-note { width: min(100% - 28px, 1060px); }
   }
@@ -165,6 +193,11 @@
   @media (max-width: 430px) {
     .section-head { display: block; }
     .pending-pill { display: inline-block; margin-top: 14px; }
+    .meta-list { padding: 14px 10px; }
+    .meta-row { grid-template-columns: minmax(100px,1.2fr) minmax(70px,1fr) 48px; gap: 7px; }
+    .meta-count { display: none; }
+    .segmented { width: 100%; }
+    .segmented button { flex: 1; min-width: 0; }
   }
 </style>
 </head>
@@ -200,7 +233,19 @@
     <section class="section">
       <div class="section-head">
         <div>
-          <div class="section-kicker">01 / Main Event</div>
+          <div class="section-kicker">01 / Metagame</div>
+          <h2>The Field</h2>
+          <p>Official archetype classifications across each published tournament stage.</p>
+        </div>
+        <div class="segmented" id="meta-stage"></div>
+      </div>
+      <div class="surface" id="metagame"><div class="pending-state">Loading metagame…</div></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">02 / Performance</div>
           <h2>The Funnel</h2>
           <p>Archetype representation from the full field through the final cut.</p>
         </div>
@@ -215,13 +260,28 @@
     <section class="section">
       <div class="section-head">
         <div>
-          <div class="section-kicker">02 / Deck Space</div>
-          <h2>Deck Similarity</h2>
-          <p>All 1,069 Day 1 main decks &middot; count + IDF weights &middot; Bray-Curtis UMAP &middot; grouped by official archetype &middot; Generated with <a href="https://github.com/sawyerWeld/mtgdeckexplorer" target="_blank" rel="noopener noreferrer">MTG Deck Explorer</a>.</p>
+          <div class="section-kicker">03 / Deckbuilding</div>
+          <h2>Archetype Explorer</h2>
+          <p>Consensus card choices by archetype across all Day 1 lists.</p>
         </div>
       </div>
-      <div class="chart-shell report-umap" data-pauper-umap data-src="paupergeddon-umap.json" data-label="UMAP similarity plot of all Paupergeddon Summer 2026 Day 1 decklists"></div>
+      <div class="pane">
+        <div class="pane-head"><span class="pane-title">Consensus</span><select id="archetype-select" aria-label="Choose archetype"></select></div>
+        <div class="pane-body" id="consensus"></div>
+      </div>
     </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">04 / Card Usage</div>
+          <h2>Most Played Cards</h2>
+          <p>Nonbasic cards across all submitted Day 1 main decks.</p>
+        </div>
+      </div>
+      <div class="surface usage-list" id="usage"></div>
+    </section>
+
   </main>
 
   <div class="source-note">
@@ -229,7 +289,13 @@
   </div>
 
 <script>
-(function () {
+(async function () {
+  const dataResponse = await fetch('paupergeddon-data.json');
+  if (!dataResponse.ok) throw new Error('Could not load Paupergeddon deck data.');
+  const reportData = await dataResponse.json();
+  const decks = reportData.decks;
+  const basicLands = new Set(['Plains','Island','Swamp','Mountain','Forest','Snow-Covered Plains','Snow-Covered Island','Snow-Covered Swamp','Snow-Covered Mountain','Snow-Covered Forest']);
+  const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const funnelRows = [
     ['Mono Red Madness',132,12,'R'], ['Grixis Affinity',118,20,'UBR'], ['Jund Wildfire',68,8,'BRG'],
     ['Naya Gates',51,8,'WRG'], ['Mono Blue Terror',50,12,'U'], ['Mono Red Rally',46,6,'R'],
@@ -280,6 +346,49 @@
     'Grixis Affinity': 1, 'Elves': 1, 'Mono Red Madness': 1, 'Altar Tron': 1,
     'Spy Combo': 1, 'Bogles': 1
   };
+
+  const fieldCounts = {};
+  decks.forEach(deck => { fieldCounts[deck.archetype] = (fieldCounts[deck.archetype] || 0) + 1; });
+  const dayTwoCounts = Object.fromEntries(funnelRows.filter(row => row[2]).map(row => [row[0], row[2]]));
+  const metaStages = [
+    {label:'Field', total:1069, counts:fieldCounts},
+    {label:'Day 2', total:150, counts:dayTwoCounts},
+    {label:'Top 64', total:64, counts:topSixtyFourCounts},
+    {label:'Top 8', total:8, counts:topEightCounts}
+  ];
+  let metaStage = metaStages[0], metaExpanded = false;
+  const metaStageHost = document.getElementById('meta-stage');
+  metaStageHost.innerHTML = metaStages.map((stage,index) => '<button class="'+(index===0?'active':'')+'" data-index="'+index+'">'+stage.label+'</button>').join('');
+  metaStageHost.addEventListener('click', event => {
+    const button=event.target.closest('button'); if(!button)return;
+    metaStage=metaStages[Number(button.dataset.index)]; metaExpanded=false;
+    metaStageHost.querySelectorAll('button').forEach(item=>item.classList.toggle('active',item===button)); renderMeta();
+  });
+  function renderMeta() {
+    const rows=Object.entries(metaStage.counts).map(([name,count])=>({name,count,pct:count/metaStage.total*100})).filter(row=>row.count>0).sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name));
+    const shown=metaExpanded?rows:rows.slice(0,18), max=rows[0].count;
+    document.getElementById('metagame').innerHTML='<div class="meta-list">'+shown.map(row=>'<div class="meta-row"><span class="meta-name" title="'+esc(row.name)+'">'+esc(row.name)+'</span><span class="bar-track"><span class="bar" style="display:block;width:'+(row.count/max*100).toFixed(1)+'%"></span></span><span class="meta-pct">'+row.pct.toFixed(1)+'%</span><span class="meta-count">'+row.count+'</span></div>').join('')+(rows.length>18?'<button class="text-button" id="meta-expand">'+(metaExpanded?'Show less':'Show all '+rows.length)+'</button>':'')+'</div>';
+    const expand=document.getElementById('meta-expand'); if(expand)expand.onclick=()=>{metaExpanded=!metaExpanded;renderMeta();};
+  }
+
+  const archetypeCounts=Object.entries(fieldCounts).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+  const archetypeSelect=document.getElementById('archetype-select');
+  archetypeSelect.innerHTML=archetypeCounts.map(([name])=>'<option>'+esc(name)+'</option>').join('');
+  function consensus(list,board) {
+    const cards=new Map();
+    list.forEach(deck=>deck[board].forEach(card=>{const item=cards.get(card.name)||{sum:0,decks:0};item.sum+=card.quantity;item.decks++;cards.set(card.name,item);}));
+    return [...cards].map(([name,item])=>({name,avg:item.sum/list.length,pct:item.decks/list.length*100})).filter(card=>card.pct>10).sort((a,b)=>b.pct-a.pct||b.avg-a.avg||a.name.localeCompare(b.name));
+  }
+  function renderExplorer() {
+    const list=decks.filter(deck=>deck.archetype===archetypeSelect.value);
+    document.getElementById('consensus').innerHTML=['main','side'].map(board=>'<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+consensus(list,board).map(card=>'<div class="card-row"><span class="avg">'+card.avg.toFixed(card.avg<1?2:1)+'</span><span>'+esc(card.name)+'</span><span class="prevalence">'+Math.round(card.pct)+'%</span></div>').join('')+'</div>').join('');
+  }
+  archetypeSelect.onchange=renderExplorer;
+
+  const usage=new Map();
+  decks.forEach(deck=>deck.main.forEach(card=>{if(basicLands.has(card.name))return;const item=usage.get(card.name)||{copies:0,decks:0};item.copies+=card.quantity;item.decks++;usage.set(card.name,item);}));
+  document.getElementById('usage').innerHTML=[...usage].map(([name,item])=>({name,...item})).sort((a,b)=>b.copies-a.copies||b.decks-a.decks||a.name.localeCompare(b.name)).slice(0,40).map(card=>'<div class="usage-row"><span>'+esc(card.name)+'</span><span class="usage-copies">'+card.copies+'</span><span class="usage-decks">'+card.decks+' decks</span></div>').join('');
+  renderMeta(); renderExplorer();
 
   function renderFunnel() {
     const host = document.getElementById('funnel-chart');
@@ -457,7 +566,10 @@
     status.textContent = 'Event complete';
     next.textContent = 'Jund Wildfire wins Paupergeddon Summer 2026';
   }
-}());
+}()).catch(error => {
+  const host=document.querySelector('main');
+  host.innerHTML='<div class="pending-state">Could not load Paupergeddon report data: '+String(error.message||error)+'</div>';
+});
 </script>
 </body>
 </html>

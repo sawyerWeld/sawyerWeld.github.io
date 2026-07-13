@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/pauper-report.css">
 <script src="/mtg-mana/mtg-mana.js"></script>
-<script src="/assets/pauper-umap.js" defer></script>
 <style>
   :root {
     --ink: #171817;
@@ -137,13 +136,7 @@
   </section>
   <section>
     <div class="section-head">
-      <div><div class="kicker">04 / Deck Space</div><h2>Deck Similarity</h2><p>Main deck &middot; count + IDF weights &middot; Bray-Curtis UMAP &middot; grouped by reported archetype &middot; Generated with <a href="https://github.com/sawyerWeld/mtgdeckexplorer" target="_blank" rel="noopener noreferrer">MTG Deck Explorer</a>.</p></div>
-    </div>
-    <div class="surface report-umap" data-pauper-umap data-src="paupergenesis-umap.json" data-label="UMAP similarity plot of all Paupergenesis decklists"></div>
-  </section>
-  <section>
-    <div class="section-head">
-      <div><div class="kicker">05 / Card Usage</div><h2>Most Played Cards</h2><p>Nonbasic cards across all published main decks.</p></div>
+      <div><div class="kicker">04 / Card Usage</div><h2>Most Played Cards</h2><p>Nonbasic cards across all published main decks.</p></div>
     </div>
     <div class="surface usage-list" id="usage"></div>
     <p class="source">Source: public Paupergenesis standings and decklists on Melee, snapshotted locally after publication. Archetype names are player-entered and normalized only where labels are clearly synonymous. One player has no published list. Champion is marked from an attendee report while Melee's Finals table remains unpopulated.</p>
