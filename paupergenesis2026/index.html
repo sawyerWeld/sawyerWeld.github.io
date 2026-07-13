@@ -8,7 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pauper-report.css">
 <script src="/mtg-mana/mtg-mana.js"></script>
+<script src="/assets/pauper-umap.js" defer></script>
 <style>
   :root {
     --ink: #171817;
@@ -28,16 +30,6 @@
   a { color: inherit; text-underline-offset: 3px; }
   button, select { font: inherit; }
   .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
-  header { padding: 62px 0 44px; border-bottom: 1px solid var(--line); background: #fafafa; text-align: center; }
-  .eyebrow { margin-bottom: 12px; color: var(--gold); font-size: .72rem; font-weight: 700; text-transform: uppercase; }
-  h1 { margin: 0 0 12px; font-size: clamp(2.5rem, 7vw, 5rem); line-height: .98; letter-spacing: 0; }
-  .byline { color: var(--muted); font-size: .9rem; line-height: 1.7; }
-  .stat-band { border-bottom: 1px solid var(--line); background: #e9ebeb; }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); }
-  .stat { min-height: 94px; padding: 22px 24px; border-left: 1px solid var(--line); }
-  .stat:last-child { border-right: 1px solid var(--line); }
-  .stat-label { display: block; margin-bottom: 6px; color: #7f8589; font-size: .65rem; font-weight: 700; text-transform: uppercase; }
-  .stat-value { font-size: 1rem; font-weight: 700; }
   main { padding-bottom: 54px; }
   section { padding: 38px 0; border-bottom: 1px solid var(--line); }
   section:last-child { border-bottom: 0; }
@@ -76,17 +68,6 @@
   .stage-value { fill: var(--muted); font-size: 9px; font-weight: 650; }
   .middle-value { opacity: 0; }
   .funnel-group.selected .middle-value { opacity: 1; }
-  .umap-shell { position: relative; min-height: 500px; overflow: hidden; }
-  #umap-canvas { display: block; width: 100%; height: 500px; cursor: grab; touch-action: none; }
-  #umap-canvas.dragging { cursor: grabbing; }
-  .plot-controls { position: absolute; z-index: 3; top: 10px; right: 10px; display: flex; gap: 5px; padding: 4px; border: 1px solid #c8ced1; border-radius: 6px; background: rgba(255,255,255,.92); }
-  .plot-controls button { min-width: 34px; height: 32px; padding: 0 9px; border: 1px solid #cbd0d3; border-radius: 4px; background: #f6f7f7; color: var(--ink); cursor: pointer; font-weight: 700; }
-  .plot-controls button:hover { background: #e8ebec; }
-  .plot-legend { position: absolute; z-index: 2; top: 10px; left: 10px; display: grid; grid-template-columns: repeat(2, auto); gap: 5px 14px; padding: 8px 10px; border: 1px solid #d1d6d8; border-radius: 6px; background: rgba(255,255,255,.9); font-size: .7rem; font-weight: 650; pointer-events: none; }
-  .legend-item { display: flex; align-items: center; gap: 6px; }
-  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
-  .umap-tooltip { position: absolute; z-index: 4; max-width: 260px; padding: 9px 11px; border: 1px solid #c8ced1; border-radius: 6px; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.12); font-size: .73rem; line-height: 1.5; pointer-events: none; opacity: 0; }
-  .umap-tooltip strong { display: block; font-size: .8rem; }
   .pane { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,.55); }
   .pane-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
   .pane-title { font-size: .78rem; font-weight: 700; text-transform: uppercase; }
@@ -107,10 +88,6 @@
   .loading { padding: 36px; color: var(--muted); text-align: center; }
   @media (max-width: 780px) {
     .wrap { width: min(100% - 28px, 1120px); }
-    header { padding: 48px 0 36px; }
-    .stats { grid-template-columns: 1fr 1fr; }
-    .stat { min-height: 82px; border-bottom: 1px solid var(--line); }
-    .stat:nth-child(even) { border-right: 1px solid var(--line); }
     .section-head { align-items: flex-start; flex-direction: column; }
     #consensus { grid-template-columns: 1fr; }
     .usage-list { columns: 1; }
@@ -128,19 +105,19 @@
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <div class="eyebrow">Tournament Report</div>
-    <h1>Paupergenesis</h1>
-    <div class="byline"><a href="https://melee.gg/Tournament/View/409325" target="_blank" rel="noopener noreferrer">Melee event</a> &middot; Analysis by <a href="https://sawyerwelden.com">Sawyer Welden</a></div>
+<header class="report-header">
+  <div class="report-header-inner">
+    <div class="report-eyebrow">Tournament Report</div>
+    <h1 class="report-title">Paupergenesis</h1>
+    <div class="report-byline"><a href="https://melee.gg/Tournament/View/409325" target="_blank" rel="noopener noreferrer">Melee event</a> &middot; Analysis by <a href="https://sawyerwelden.com">Sawyer Welden</a></div>
   </div>
 </header>
-<div class="stat-band">
-  <div class="wrap stats">
-    <div class="stat"><span class="stat-label">Date</span><span class="stat-value">July 12, 2026</span></div>
-    <div class="stat"><span class="stat-label">Players</span><span class="stat-value" id="stat-players">248</span></div>
-    <div class="stat"><span class="stat-label">Location</span><span class="stat-value">Pikesville, Maryland</span></div>
-    <div class="stat"><span class="stat-label">Winning deck</span><span class="stat-value">Dimir Terror</span></div>
+<div class="report-stat-band">
+  <div class="report-stats">
+    <div class="report-stat"><span class="report-stat-label">Date</span><span class="report-stat-value">July 12, 2026</span></div>
+    <div class="report-stat"><span class="report-stat-label">Players</span><span class="report-stat-value" id="stat-players">248</span></div>
+    <div class="report-stat"><span class="report-stat-label">Location</span><span class="report-stat-value">Pikesville, Maryland</span></div>
+    <div class="report-stat"><span class="report-stat-label">Winning deck</span><span class="report-stat-value">Dimir Terror</span></div>
   </div>
 </div>
 <main class="wrap">
@@ -170,12 +147,7 @@
     <div class="section-head">
       <div><div class="kicker">04 / Deck Space</div><h2>Deck Similarity</h2><p>Main deck &middot; count + IDF weights &middot; Bray-Curtis UMAP &middot; grouped by reported archetype.</p></div>
     </div>
-    <div class="surface umap-shell" id="umap-shell">
-      <canvas id="umap-canvas" role="img" aria-label="UMAP similarity plot of all Paupergenesis decklists"></canvas>
-      <div class="plot-legend" id="plot-legend"></div>
-      <div class="plot-controls" aria-label="Plot zoom controls"><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-out" aria-label="Zoom out">−</button><button type="button" id="zoom-reset">Reset</button></div>
-      <div class="umap-tooltip" id="umap-tooltip"></div>
-    </div>
+    <div class="surface report-umap" data-pauper-umap data-src="paupergenesis-umap.json" data-label="UMAP similarity plot of all Paupergenesis decklists"></div>
   </section>
   <section>
     <div class="section-head">
@@ -187,9 +159,8 @@
 </main>
 <script>
 (async function () {
-  const [response, umapResponse] = await Promise.all([fetch('paupergenesis-data.json'), fetch('paupergenesis-umap.json')]);
+  const response = await fetch('paupergenesis-data.json');
   const payload = await response.json();
-  const umapPayload = await umapResponse.json();
   const decks = payload.decks;
   const basicLands = new Set(['Plains','Island','Swamp','Mountain','Forest','Snow-Covered Plains','Snow-Covered Island','Snow-Covered Swamp','Snow-Covered Mountain','Snow-Covered Forest']);
   const colors = ['#386f9f','#ae5048','#347250','#71588f','#aa7a24','#287b78','#a14d72','#66767f'];
@@ -252,33 +223,9 @@
   function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('consensus').innerHTML=['main','side'].map(board=>'<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+consensus(list,board).map(c=>'<div class="card-row"><span class="avg">'+c.avg.toFixed(c.avg<1?2:1)+'</span><span>'+esc(c.name)+'</span><span class="prevalence">'+Math.round(c.pct)+'%</span></div>').join('')+'</div>').join('');}
   select.onchange=renderExplorer;
 
-  function initUmap() {
-    const shell=document.getElementById('umap-shell'),canvas=document.getElementById('umap-canvas'),ctx=canvas.getContext('2d'),tooltip=document.getElementById('umap-tooltip');
-    const points=umapPayload.points, labeledArchetypes=umapPayload.meta.labeledArchetypes;
-    const plotColors=['#2869a6','#c14b16','#168449','#7b3df0','#c70f43','#087d75','#a96400','#3e37c9','#2d75b8','#cb4310','#17883c','#7435e8','#be0d3e','#117f78','#a86500'];
-    document.getElementById('plot-legend').innerHTML='<span class="legend-item"><span class="legend-dot" style="background:#66767f"></span>Gray: archetypes with fewer than 5 decks</span>';
-    const xs=points.map(p=>p.x),ys=points.map(p=>p.y),bounds={minX:Math.min(...xs),maxX:Math.max(...xs),minY:Math.min(...ys),maxY:Math.max(...ys)};
-    let width=0,height=0,dpr=1,zoom=1,panX=0,panY=0,hovered=null,down=null,moved=false;
-    function resize(){const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw();}
-    function basePoint(p){const pad=42,innerW=width-pad*2,innerH=height-pad*2;return{x:pad+(p.x-bounds.minX)/Math.max(.001,bounds.maxX-bounds.minX)*innerW,y:height-pad-(p.y-bounds.minY)/Math.max(.001,bounds.maxY-bounds.minY)*innerH};}
-    function screenPoint(p){const b=basePoint(p);return{x:width/2+(b.x-width/2)*zoom+panX,y:height/2+(b.y-height/2)*zoom+panY};}
-    function draw(){ctx.clearRect(0,0,width,height);ctx.strokeStyle='#dde1e3';ctx.lineWidth=1;for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(width*i/4,0);ctx.lineTo(width*i/4,height);ctx.stroke();ctx.beginPath();ctx.moveTo(0,height*i/4);ctx.lineTo(width,height*i/4);ctx.stroke();}points.filter(p=>p.colorIndex<0).concat(points.filter(p=>p.colorIndex>=0)).forEach(p=>{const s=screenPoint(p),active=p===hovered;ctx.beginPath();ctx.arc(s.x,s.y,active?7:4.8,0,Math.PI*2);ctx.fillStyle=p.colorIndex>=0?plotColors[p.colorIndex%plotColors.length]:'#a2acb8';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=active?2.5:1.5;ctx.stroke();});drawLabels();}
-    function drawLabels(){ctx.font='600 11px system-ui, sans-serif';ctx.textBaseline='middle';const occupied=[];labeledArchetypes.forEach(group=>{const groupPoints=points.filter(p=>p.archetype===group.name).map(screenPoint);const center={x:groupPoints.reduce((s,p)=>s+p.x,0)/groupPoints.length,y:groupPoints.reduce((s,p)=>s+p.y,0)/groupPoints.length};const textWidth=ctx.measureText(group.name).width,box={x:Math.max(4,Math.min(width-textWidth-12,center.x+7)),y:Math.max(4,Math.min(height-20,center.y-18)),w:textWidth+8,h:17};for(let tries=0;tries<8&&occupied.some(o=>box.x<o.x+o.w&&box.x+box.w>o.x&&box.y<o.y+o.h&&box.y+box.h>o.y);tries++)box.y=Math.min(height-box.h-4,box.y+box.h+2);occupied.push(box);ctx.fillStyle='rgba(255,255,255,.84)';ctx.fillRect(box.x,box.y,box.w,box.h);ctx.fillStyle='#17212b';ctx.fillText(group.name,box.x+4,box.y+box.h/2);});}
-    function hit(x,y){let best=null,bestD=11;points.forEach(p=>{const s=screenPoint(p),d=Math.hypot(s.x-x,s.y-y);if(d<bestD){best=p;bestD=d;}});return best;}
-    function showTooltip(p){if(!p){tooltip.style.opacity='0';return;}const s=screenPoint(p);tooltip.innerHTML='<strong>'+esc(p.player)+'</strong>'+esc(p.archetype)+'<br>Rank '+p.rank+' · '+esc(p.record);tooltip.style.opacity='1';const tw=tooltip.offsetWidth,th=tooltip.offsetHeight;tooltip.style.left=Math.max(8,Math.min(width-tw-8,s.x+12))+'px';tooltip.style.top=Math.max(8,Math.min(height-th-8,s.y+12))+'px';}
-    function pointer(event){const r=canvas.getBoundingClientRect();return{x:event.clientX-r.left,y:event.clientY-r.top};}
-    canvas.addEventListener('pointerdown',event=>{const p=pointer(event);down={...p,panX,panY};moved=false;canvas.setPointerCapture(event.pointerId);canvas.classList.add('dragging');});
-    canvas.addEventListener('pointermove',event=>{const p=pointer(event);if(down){const dx=p.x-down.x,dy=p.y-down.y;if(Math.hypot(dx,dy)>3)moved=true;panX=down.panX+dx;panY=down.panY+dy;tooltip.style.opacity='0';draw();return;}const next=hit(p.x,p.y);if(next!==hovered){hovered=next;draw();showTooltip(next);}});
-    canvas.addEventListener('pointerup',event=>{canvas.releasePointerCapture(event.pointerId);canvas.classList.remove('dragging');if(!moved){const p=pointer(event),point=hit(p.x,p.y);if(point&&point.url)window.open(point.url,'_blank','noopener');}down=null;});
-    canvas.addEventListener('pointerleave',()=>{if(!down){hovered=null;draw();showTooltip(null);}});
-    canvas.addEventListener('wheel',event=>{event.preventDefault();const p=pointer(event),old=zoom,factor=event.deltaY<0?1.18:.85;zoom=Math.max(.55,Math.min(8,zoom*factor));panX=p.x-width/2-(p.x-width/2-panX)*(zoom/old);panY=p.y-height/2-(p.y-height/2-panY)*(zoom/old);draw();},{passive:false});
-    function setZoom(next){zoom=Math.max(.55,Math.min(8,next));draw();}
-    document.getElementById('zoom-in').onclick=()=>setZoom(zoom*1.25);document.getElementById('zoom-out').onclick=()=>setZoom(zoom*.8);document.getElementById('zoom-reset').onclick=()=>{zoom=1;panX=0;panY=0;draw();};
-    new ResizeObserver(resize).observe(shell);resize();
-  }
   const usage=new Map();decks.forEach(d=>d.main.forEach(c=>{if(basicLands.has(c.name))return;const x=usage.get(c.name)||{copies:0,decks:0};x.copies+=c.quantity;x.decks++;usage.set(c.name,x);}));
   document.getElementById('usage').innerHTML=[...usage].map(([name,x])=>({name,...x})).sort((a,b)=>b.copies-a.copies||b.decks-a.decks).slice(0,40).map(x=>'<div class="usage-row"><span>'+esc(x.name)+'</span><span class="usage-copies">'+x.copies+'</span><span class="usage-decks">'+x.decks+' decks</span></div>').join('');
-  renderMeta(); renderFunnel(); renderExplorer(); initUmap();
+  renderMeta(); renderFunnel(); renderExplorer();
 }()).catch(error=>{document.querySelector('main').innerHTML='<div class="loading">Could not load Paupergenesis data: '+String(error.message||error)+'</div>';});
 </script>
 </body>

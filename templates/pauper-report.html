@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="TOURNAMENT_NAME metagame and deck analysis.">
+<title>TOURNAMENT_NAME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pauper-report.css">
+<script src="/assets/pauper-umap.js" defer></script>
+<style>
+  :root {
+    --ink: #171817;
+    --muted: #6d7478;
+    --line: #d7dcdf;
+    --paper: #f3f4f4;
+    --report-accent: #aa7a24;
+    --report-width: 1120px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Manrope', sans-serif; }
+  a { color: inherit; text-underline-offset: 3px; }
+  main { width: min(var(--report-width), calc(100% - 40px)); margin: 0 auto; padding-bottom: 54px; }
+  section { padding: 38px 0; border-bottom: 1px solid var(--line); }
+  .section-head { margin-bottom: 20px; }
+  .section-kicker { margin-bottom: 7px; color: var(--report-accent); font-size: .68rem; font-weight: 700; text-transform: uppercase; }
+  h2 { margin: 0 0 5px; font-size: 1.35rem; }
+  .section-head p { margin: 0; color: var(--muted); font-size: .86rem; }
+  .surface { border: 1px solid var(--line); background: rgba(255,255,255,.55); }
+  .source-note { color: var(--muted); font-size: .72rem; line-height: 1.6; }
+  @media (max-width: 780px) { main { width: min(100% - 28px, var(--report-width)); } }
+</style>
+</head>
+<body>
+<header class="report-header">
+  <div class="report-header-inner">
+    <div class="report-eyebrow">Tournament Report</div>
+    <h1 class="report-title">TOURNAMENT_NAME</h1>
+    <div class="report-byline"><a href="EVENT_URL" target="_blank" rel="noopener noreferrer">Official event</a> &middot; Analysis by <a href="https://sawyerwelden.com">Sawyer Welden</a></div>
+  </div>
+</header>
+<div class="report-stat-band" aria-label="Event details">
+  <div class="report-stats">
+    <div class="report-stat"><span class="report-stat-label">Date</span><span class="report-stat-value">EVENT_DATE</span></div>
+    <div class="report-stat"><span class="report-stat-label">Players</span><span class="report-stat-value">PLAYER_COUNT</span></div>
+    <div class="report-stat"><span class="report-stat-label">Location</span><span class="report-stat-value">EVENT_LOCATION</span></div>
+    <div class="report-stat"><span class="report-stat-label">Winning deck</span><span class="report-stat-value">WINNING_DECK</span></div>
+  </div>
+</div>
+<main>
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">01 / Analysis</div>
+      <h2>SECTION_TITLE</h2>
+      <p>SECTION_DESCRIPTION</p>
+    </div>
+    <div class="surface">SECTION_CONTENT</div>
+  </section>
+
+  <!-- Add after generating a compatible static UMAP payload.
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">02 / Deck Space</div>
+      <h2>Deck Similarity</h2>
+      <p>Main deck &middot; count + IDF weights &middot; Bray-Curtis UMAP &middot; grouped by reported archetype.</p>
+    </div>
+    <div class="surface report-umap" data-pauper-umap data-src="deck-umap.json" data-label="Deck similarity map"></div>
+  </section>
+  -->
+
+  <p class="source-note">SOURCE_NOTE</p>
+</main>
+</body>
+</html>

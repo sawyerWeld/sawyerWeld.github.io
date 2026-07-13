@@ -8,7 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pauper-report.css">
 <script src="../paupergeddon2026/paupergeddon-mana.js"></script>
+<script src="/assets/pauper-umap.js" defer></script>
 <style>
   :root {
     --ink: #1a1a1a;
@@ -19,6 +21,7 @@
     --blue: #2980b9;
     --green: #277a53;
     --amber: #b47712;
+    --report-width: 1060px;
   }
 
   * { box-sizing: border-box; }
@@ -59,49 +62,6 @@
   }
   #next-update { color: #58728c; text-align: right; }
 
-  .page-header {
-    min-height: 330px;
-    padding: 68px 20px 52px;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    border-bottom: 1px solid var(--line);
-  }
-  .edition {
-    margin-bottom: 14px;
-    color: var(--amber);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-  .page-header h1 {
-    max-width: 900px;
-    margin: 0 0 14px;
-    font-size: clamp(2.35rem, 6vw, 4.9rem);
-    line-height: 0.98;
-    letter-spacing: 0;
-  }
-  .byline { color: var(--muted); font-size: 0.93rem; line-height: 1.7; }
-
-  .event-band { border-bottom: 1px solid var(--line); background: #e9e9e9; }
-  .event-grid {
-    width: min(1060px, calc(100% - 40px));
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-  .event-stat { min-height: 106px; padding: 24px 26px; border-left: 1px solid var(--line); }
-  .event-stat:last-child { border-right: 1px solid var(--line); }
-  .event-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #888;
-    font-size: 0.67rem;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-  .event-value { font-size: 0.98rem; font-weight: 600; line-height: 1.35; }
-
   main { padding: 14px 0 50px; }
   .section { width: min(1060px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0; }
   .section + .section { border-top: 1px solid var(--line); }
@@ -141,6 +101,7 @@
     padding: 28px;
   }
   .chart-shell.funnel-shell { display: block; padding: 20px 16px 16px; }
+  .chart-shell.report-umap { display: block; padding: 0; }
   .funnel-chart { width: 100%; overflow-x: auto; }
   .funnel-chart svg { display: block; width: 100%; min-width: 680px; height: auto; }
   .funnel-line { fill: none; stroke-width: 2; opacity: 0.58; transition: opacity 120ms ease, stroke-width 120ms ease; }
@@ -195,12 +156,6 @@
   @media (max-width: 760px) {
     .status-strip-inner { width: min(100% - 28px, 1060px); }
     #next-update { display: none; }
-    .page-header { min-height: 285px; padding: 54px 18px 42px; }
-    .event-grid { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .event-stat { min-height: 94px; padding: 19px 18px; border-bottom: 1px solid var(--line); }
-    .event-stat:nth-child(odd) { border-left: 0; }
-    .event-stat:nth-child(even) { border-right: 0; }
-    .event-stat:nth-child(n+3) { border-bottom: 0; }
     .section { width: min(100% - 28px, 1060px); padding: 32px 0; }
     .section-head { align-items: flex-start; }
     .chart-shell { min-height: 220px; padding: 24px 18px; }
@@ -208,7 +163,6 @@
   }
 
   @media (max-width: 430px) {
-    .page-header h1 { font-size: 2.55rem; }
     .section-head { display: block; }
     .pending-pill { display: inline-block; margin-top: 14px; }
   }
@@ -222,23 +176,23 @@
     </div>
   </div>
 
-  <header class="page-header">
-    <div>
-      <div class="edition">Tournament Report</div>
-      <h1>Paupergeddon Summer 2026</h1>
-      <div class="byline">
+  <header class="report-header">
+    <div class="report-header-inner">
+      <div class="report-eyebrow">Tournament Report</div>
+      <h1 class="report-title">Paupergeddon Summer 2026</h1>
+      <div class="report-byline">
         <a href="https://paupergeddon.com/#event" target="_blank" rel="noopener noreferrer">Official event</a> &middot;
         Analysis by <a href="https://sawyerwelden.com" target="_blank" rel="noopener noreferrer">Sawyer Welden</a>
       </div>
     </div>
   </header>
 
-  <div class="event-band" aria-label="Event details">
-    <div class="event-grid">
-      <div class="event-stat"><span class="event-label">Date</span><span class="event-value">July 11-12, 2026</span></div>
-      <div class="event-stat"><span class="event-label">Players</span><span class="event-value">1,069</span></div>
-      <div class="event-stat"><span class="event-label">Location</span><span class="event-value">Lucca, Italy</span></div>
-      <div class="event-stat"><span class="event-label">Winning deck</span><span class="event-value">Jund Wildfire</span></div>
+  <div class="report-stat-band" aria-label="Event details">
+    <div class="report-stats">
+      <div class="report-stat"><span class="report-stat-label">Date</span><span class="report-stat-value">July 11-12, 2026</span></div>
+      <div class="report-stat"><span class="report-stat-label">Players</span><span class="report-stat-value">1,069</span></div>
+      <div class="report-stat"><span class="report-stat-label">Location</span><span class="report-stat-value">Lucca, Italy</span></div>
+      <div class="report-stat"><span class="report-stat-label">Winning deck</span><span class="report-stat-value">Jund Wildfire</span></div>
     </div>
   </div>
 
@@ -261,42 +215,17 @@
     <section class="section">
       <div class="section-head">
         <div>
-          <div class="section-kicker">02 / Deckbuilding</div>
-          <h2>Archetype Explorer</h2>
-          <p>Card-by-card consensus and sideboard choices by tournament stage.</p>
-        </div>
-        <span class="pending-pill">Awaiting Decklists</span>
-      </div>
-      <div class="chart-shell">
-        <div class="pending-state">
-          <div class="pending-rule" aria-hidden="true"><span></span><span></span><span></span></div>
-          <strong>Decklists are not public yet.</strong>
-          <p>The explorer will open once lists can be matched to the tournament field and normalized by archetype.</p>
+          <div class="section-kicker">02 / Deck Space</div>
+          <h2>Deck Similarity</h2>
+          <p>All 1,069 Day 1 main decks &middot; count + IDF weights &middot; Bray-Curtis UMAP &middot; grouped by official archetype.</p>
         </div>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <div class="section-kicker">03 / Card Usage</div>
-          <h2>Most Played Cards</h2>
-          <p>Format staples, breakout cards, and their archetype distribution.</p>
-        </div>
-        <span class="pending-pill">Awaiting Decklists</span>
-      </div>
-      <div class="chart-shell">
-        <div class="pending-state">
-          <div class="pending-rule" aria-hidden="true"><span></span><span></span><span></span></div>
-          <strong>Card counts begin with the first data release.</strong>
-          <p>Usage will be separated by card type and tournament stage to keep field size from obscuring conversion.</p>
-        </div>
-      </div>
+      <div class="chart-shell report-umap" data-pauper-umap data-src="paupergeddon-umap.json" data-label="UMAP similarity plot of all Paupergeddon Summer 2026 Day 1 decklists"></div>
     </section>
   </main>
 
   <div class="source-note">
-    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. Metagame data from the official <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_Day2.html" target="_blank" rel="noopener noreferrer">Day 1 / Day 2 comparison</a> report and <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Top64.html" target="_blank" rel="noopener noreferrer">Top 64 decklists</a>.
+    Tournament format and schedule from <a href="https://paupergeddon.com/" target="_blank" rel="noopener noreferrer">Paupergeddon</a>. Metagame and deck data come from the official <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Metagame_Day2.html" target="_blank" rel="noopener noreferrer">Day 1 / Day 2 comparison</a>, <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon%20Summer2026%20-%20Decklists%20-%20Day1.zip" target="_blank" rel="noopener noreferrer">Day 1 decklist archive</a>, and <a href="https://paupergeddon.com/Stats/Paupergeddon_0726/Paupergeddon_Summer2026_Top64.html" target="_blank" rel="noopener noreferrer">Top 64 decklists</a>.
   </div>
 
 <script>

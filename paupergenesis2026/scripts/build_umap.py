@@ -49,10 +49,10 @@ def main() -> None:
     coords, _, _, projection_meta = deck_explorer.projection_for_features(features.values, "umap_braycurtis")
     coords, duplicate_meta = deck_explorer.snap_duplicate_feature_coords(coords, features)
     archetype_counts = Counter(deck["archetype"] for deck in decks)
+    label_candidates = [(name, count) for name, count in archetype_counts.most_common() if count >= 5]
     labeled_archetypes = [
         {"name": name, "count": count, "colorIndex": color_index}
-        for color_index, (name, count) in enumerate(archetype_counts.most_common())
-        if count >= 5
+        for color_index, (name, count) in enumerate(label_candidates)
     ]
     archetype_colors = {item["name"]: item["colorIndex"] for item in labeled_archetypes}
 
