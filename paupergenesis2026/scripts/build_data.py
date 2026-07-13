@@ -39,6 +39,10 @@ ALIASES = {
     "Golgari Altar Tron": "Altar Tron",
     "U-B-R-G Altar Tron": "Altar Tron",
 }
+DECK_OVERRIDES = {
+    # The submitted label says Walls Combo, but the list is Dimir Terror.
+    "d56e2929-07bf-49da-a6c1-b485001dbfdc": "Dimir Terror",
+}
 NEW_CARD_TYPES = {
     "ant-man's army": "Creature", "call damage control": "Sorcery",
     "crossover collaboration": "Instant", "go nuts!": "Sorcery",
@@ -219,7 +223,7 @@ def main() -> None:
             "player": player["DisplayName"],
             "record": row["MatchRecord"],
             "points": row["Points"],
-            "archetype": normalize(raw_name),
+            "archetype": DECK_OVERRIDES.get(deck_id, normalize(raw_name)),
             "rawArchetype": raw_name,
             "decklistId": deck_id,
             "decklistUrl": f"https://melee.gg/Decklist/View/{deck_id}" if deck_id else None,
