@@ -137,10 +137,10 @@
 </header>
 <div class="stat-band">
   <div class="wrap stats">
+    <div class="stat"><span class="stat-label">Date</span><span class="stat-value">July 12, 2026</span></div>
     <div class="stat"><span class="stat-label">Players</span><span class="stat-value" id="stat-players">248</span></div>
-    <div class="stat"><span class="stat-label">Published lists</span><span class="stat-value" id="stat-lists">247</span></div>
-    <div class="stat"><span class="stat-label">Swiss rounds</span><span class="stat-value">8</span></div>
-    <div class="stat"><span class="stat-label">Reported champion</span><span class="stat-value">Dimir Terror</span></div>
+    <div class="stat"><span class="stat-label">Location</span><span class="stat-value">Pikesville, Maryland</span></div>
+    <div class="stat"><span class="stat-label">Winning deck</span><span class="stat-value">Dimir Terror</span></div>
   </div>
 </div>
 <main class="wrap">
@@ -197,7 +197,6 @@
   let metaStage = stages[0];
   let expanded = false;
   document.getElementById('stat-players').textContent = payload.event.players;
-  document.getElementById('stat-lists').textContent = payload.event.decklists;
 
   function subset(n) { return decks.filter(d => d.rank <= n); }
   function countsFor(n) {
