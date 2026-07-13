@@ -69,6 +69,8 @@
   .pane-body { padding: 14px; }
   #consensus { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
   .consensus-section h3 { margin: 0 0 7px; font-size: .8rem; text-transform: uppercase; }
+  .card-type-group + .card-type-group { margin-top: 12px; }
+  .card-type-head { display: flex; justify-content: space-between; gap: 12px; padding: 6px 8px; background: #e6e9eb; font-size: .72rem; font-weight: 700; }
   .card-row { display: grid; grid-template-columns: 42px minmax(0,1fr) 50px; gap: 8px; align-items: center; min-height: 27px; border-bottom: 1px solid #e3e6e7; font-size: .76rem; }
   .card-row:last-child { border-bottom: 0; }
   .avg { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
@@ -200,8 +202,11 @@
 
   const archetypes=countsFor(248).map(d=>d.name);
   const select=document.getElementById('archetype-select'); select.innerHTML=archetypes.map(a=>'<option>'+esc(a)+'</option>').join('');
-  function consensus(list,board){const map=new Map();list.forEach(d=>{const cards=new Map(d[board].map(c=>[c.name,c.quantity]));cards.forEach((q,name)=>{const x=map.get(name)||{sum:0,decks:0};x.sum+=q;x.decks++;map.set(name,x);});});return [...map].map(([name,x])=>({name,avg:x.sum/list.length,pct:x.decks/list.length*100})).filter(x=>x.pct>10).sort((a,b)=>b.pct-a.pct||b.avg-a.avg||a.name.localeCompare(b.name));}
-  function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('consensus').innerHTML=['main','side'].map(board=>'<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+consensus(list,board).map(c=>'<div class="card-row"><span class="avg">'+c.avg.toFixed(c.avg<1?2:1)+'</span><span>'+esc(c.name)+'</span><span class="prevalence">'+Math.round(c.pct)+'%</span></div>').join('')+'</div>').join('');}
+  const typeOrder=['Land','Creature','Sorcery','Instant','Artifact','Enchantment','Other'];
+  const typeLabels={Land:'Lands',Creature:'Creatures',Artifact:'Artifacts',Enchantment:'Enchantments',Instant:'Instants',Sorcery:'Sorceries',Other:'Other'};
+  function consensus(list,board){const map=new Map();list.forEach(d=>{const cards=new Map(d[board].map(c=>[c.name,c]));cards.forEach((card,name)=>{const x=map.get(name)||{sum:0,decks:0,type:card.type||'Other'};x.sum+=card.quantity;x.decks++;map.set(name,x);});});return [...map].map(([name,x])=>({name,type:x.type,avg:x.sum/list.length,pct:x.decks/list.length*100})).filter(x=>x.pct>10).sort((a,b)=>b.pct-a.pct||b.avg-a.avg||a.name.localeCompare(b.name));}
+  function renderBoard(list,board){const cards=consensus(list,board);return '<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+typeOrder.map(type=>{const rows=cards.filter(card=>card.type===type);if(!rows.length)return '';const average=list.reduce((sum,deck)=>sum+deck[board].filter(card=>(card.type||'Other')===type).reduce((total,card)=>total+card.quantity,0),0)/list.length;return '<div class="card-type-group"><div class="card-type-head"><span>'+typeLabels[type]+'</span><span>'+average.toFixed(average<1?2:1)+'</span></div>'+rows.map(card=>'<div class="card-row"><span class="avg">'+card.avg.toFixed(card.avg<1?2:1)+'</span><span>'+esc(card.name)+'</span><span class="prevalence">'+Math.round(card.pct)+'%</span></div>').join('')+'</div>';}).join('')+'</div>';}
+  function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('consensus').innerHTML=['main','side'].map(board=>renderBoard(list,board)).join('');}
   select.onchange=renderExplorer;
 
   const usage=new Map();decks.forEach(d=>d.main.forEach(c=>{if(basicLands.has(c.name))return;const x=usage.get(c.name)||{copies:0,decks:0};x.copies+=c.quantity;x.decks++;usage.set(c.name,x);}));

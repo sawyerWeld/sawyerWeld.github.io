@@ -39,6 +39,15 @@ ALIASES = {
     "Golgari Altar Tron": "Altar Tron",
     "U-B-R-G Altar Tron": "Altar Tron",
 }
+NEW_CARD_TYPES = {
+    "ant-man's army": "Creature", "call damage control": "Sorcery",
+    "crossover collaboration": "Instant", "go nuts!": "Sorcery",
+    "guerrilla gorilla": "Creature", "hydra assault robot": "Creature",
+    "hawkeye's bow": "Artifact", "minion missile": "Sorcery",
+    "songbird, sonic screamer": "Creature", "spider-man, web-spinner": "Creature",
+    "ultimate alliance": "Instant", "undercover skrull": "Creature",
+    "vision of love": "Instant", "wall off": "Instant",
+}
 
 
 class DeckParser(HTMLParser):
@@ -154,6 +163,33 @@ def normalize(name: str) -> str:
     return ALIASES.get(name, name.replace("-", " "))
 
 
+def classify_type(type_line: str) -> str:
+    for card_type in ("Land", "Creature", "Artifact", "Enchantment", "Instant", "Sorcery"):
+        if card_type in type_line:
+            return card_type
+    return "Other"
+
+
+def card_types(root: Path) -> dict[str, str]:
+    oracle_path = root.parents[1] / "mtg" / "collection" / "oracle-cards.json"
+    if not oracle_path.exists():
+        return {}
+    cards = json.loads(oracle_path.read_text())
+    types = {
+        str(card["name"]).casefold(): classify_type(str(card.get("type_line") or ""))
+        for card in cards if card.get("name")
+    }
+    types.update(NEW_CARD_TYPES)
+    return types
+
+
+def add_card_types(cards: dict[str, list[dict]], types: dict[str, str]) -> dict[str, list[dict]]:
+    for board in ("main", "side"):
+        for card in cards[board]:
+            card["type"] = types.get(str(card["name"]).casefold(), "Other")
+    return cards
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--refresh", action="store_true")
@@ -161,6 +197,7 @@ def main() -> None:
     args = parser.parse_args()
 
     root = Path(__file__).resolve().parents[1]
+    types = card_types(root)
     cache = root / ".cache"
     cache.mkdir(exist_ok=True)
     snapshot = fetch_standings(cache, args.refresh)
@@ -176,7 +213,7 @@ def main() -> None:
         decklist = row.get("Decklists", [])
         raw_name = decklist[0]["DecklistName"] if decklist else "Unreported"
         deck_id = decklist[0]["DecklistId"] if decklist else None
-        cards = cards_by_id.get(deck_id, {"main": [], "side": []})
+        cards = add_card_types(cards_by_id.get(deck_id, {"main": [], "side": []}), types)
         decks.append({
             "rank": row["Rank"],
             "player": player["DisplayName"],

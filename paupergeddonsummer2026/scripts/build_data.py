@@ -12,6 +12,15 @@ from pathlib import Path
 
 ARCHIVE_NAME = "Paupergeddon Summer2026 - Decklists - Day1.zip"
 CARD_LINE = re.compile(r"^(\d+)\s+(.+?)\s*$")
+NEW_CARD_TYPES = {
+    "ant-man's army": "Creature", "call damage control": "Sorcery",
+    "crossover collaboration": "Instant", "go nuts!": "Sorcery",
+    "guerrilla gorilla": "Creature", "hydra assault robot": "Creature",
+    "hawkeye's bow": "Artifact", "minion missile": "Sorcery",
+    "songbird, sonic screamer": "Creature", "spider-man, web-spinner": "Creature",
+    "ultimate alliance": "Instant", "undercover skrull": "Creature",
+    "vision of love": "Instant", "wall off": "Instant",
+}
 
 
 def display_archetype(folder: str) -> str:
@@ -32,27 +41,41 @@ def parse_cards(text: str) -> tuple[list[dict], list[dict]]:
     return parse_section(sections[0]), parse_section(sections[1]) if len(sections) > 1 else []
 
 
-def canonical_names(root: Path) -> dict[str, str]:
+def card_metadata(root: Path) -> dict[str, tuple[str, str]]:
     oracle_path = root.parents[1] / "mtg" / "collection" / "oracle-cards.json"
     if not oracle_path.exists():
         return {}
     cards = json.loads(oracle_path.read_text())
-    return {str(card["name"]).casefold(): str(card["name"]) for card in cards if card.get("name")}
+    metadata = {
+        str(card["name"]).casefold(): (str(card["name"]), classify_type(str(card.get("type_line") or "")))
+        for card in cards if card.get("name")
+    }
+    metadata.update({name: ("", card_type) for name, card_type in NEW_CARD_TYPES.items()})
+    return metadata
 
 
-def normalize_cards(cards: list[dict], names: dict[str, str]) -> list[dict]:
-    combined: dict[str, int] = {}
+def classify_type(type_line: str) -> str:
+    for card_type in ("Land", "Creature", "Artifact", "Enchantment", "Instant", "Sorcery"):
+        if card_type in type_line:
+            return card_type
+    return "Other"
+
+
+def normalize_cards(cards: list[dict], metadata: dict[str, tuple[str, str]]) -> list[dict]:
+    combined: dict[str, dict] = {}
     for card in cards:
         raw_name = str(card["name"]).strip()
-        name = names.get(raw_name.casefold(), raw_name)
-        combined[name] = combined.get(name, 0) + int(card["quantity"])
-    return [{"name": name, "quantity": quantity} for name, quantity in combined.items()]
+        canonical_name, card_type = metadata.get(raw_name.casefold(), (raw_name, "Other"))
+        name = canonical_name or raw_name
+        item = combined.setdefault(name, {"name": name, "quantity": 0, "type": card_type})
+        item["quantity"] += int(card["quantity"])
+    return list(combined.values())
 
 
 def main() -> None:
     root = Path(__file__).resolve().parents[1]
     archive = root / ".cache" / ARCHIVE_NAME
-    names = canonical_names(root)
+    metadata = card_metadata(root)
     decks = []
     with zipfile.ZipFile(io.BytesIO(archive.read_bytes())) as source:
         for member in sorted(name for name in source.namelist() if name.endswith(".txt")):
@@ -61,8 +84,8 @@ def main() -> None:
             decks.append({
                 "source": Path(member).stem,
                 "archetype": display_archetype(parts[-2]),
-                "main": normalize_cards(main, names),
-                "side": normalize_cards(side, names),
+                "main": normalize_cards(main, metadata),
+                "side": normalize_cards(side, metadata),
             })
 
     output = {"event": {"players": len(decks), "decklists": len(decks)}, "decks": decks}
