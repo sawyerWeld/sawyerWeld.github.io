@@ -76,6 +76,17 @@
   .stage-value { fill: var(--muted); font-size: 9px; font-weight: 650; }
   .middle-value { opacity: 0; }
   .funnel-group.selected .middle-value { opacity: 1; }
+  .umap-shell { position: relative; min-height: 500px; overflow: hidden; }
+  #umap-canvas { display: block; width: 100%; height: 500px; cursor: grab; touch-action: none; }
+  #umap-canvas.dragging { cursor: grabbing; }
+  .plot-controls { position: absolute; z-index: 3; top: 10px; right: 10px; display: flex; gap: 5px; padding: 4px; border: 1px solid #c8ced1; border-radius: 6px; background: rgba(255,255,255,.92); }
+  .plot-controls button { min-width: 34px; height: 32px; padding: 0 9px; border: 1px solid #cbd0d3; border-radius: 4px; background: #f6f7f7; color: var(--ink); cursor: pointer; font-weight: 700; }
+  .plot-controls button:hover { background: #e8ebec; }
+  .plot-legend { position: absolute; z-index: 2; top: 10px; left: 10px; display: grid; grid-template-columns: repeat(2, auto); gap: 5px 14px; padding: 8px 10px; border: 1px solid #d1d6d8; border-radius: 6px; background: rgba(255,255,255,.9); font-size: .7rem; font-weight: 650; pointer-events: none; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+  .umap-tooltip { position: absolute; z-index: 4; max-width: 260px; padding: 9px 11px; border: 1px solid #c8ced1; border-radius: 6px; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.12); font-size: .73rem; line-height: 1.5; pointer-events: none; opacity: 0; }
+  .umap-tooltip strong { display: block; font-size: .8rem; }
   .grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr); gap: 18px; }
   .pane { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,.55); }
   .pane-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
@@ -169,7 +180,18 @@
   </section>
   <section>
     <div class="section-head">
-      <div><div class="kicker">04 / Card Usage</div><h2>Most Played Cards</h2><p>Nonbasic cards across all published main decks.</p></div>
+      <div><div class="kicker">04 / Deck Space</div><h2>Deck Similarity</h2><p>Main deck &middot; sqrt counts &middot; Bray-Curtis UMAP &middot; plot-space auto hierarchical clusters.</p></div>
+    </div>
+    <div class="surface umap-shell" id="umap-shell">
+      <canvas id="umap-canvas" role="img" aria-label="UMAP similarity plot of all Paupergenesis decklists"></canvas>
+      <div class="plot-legend" id="plot-legend"></div>
+      <div class="plot-controls" aria-label="Plot zoom controls"><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-out" aria-label="Zoom out">−</button><button type="button" id="zoom-reset">Reset</button></div>
+      <div class="umap-tooltip" id="umap-tooltip"></div>
+    </div>
+  </section>
+  <section>
+    <div class="section-head">
+      <div><div class="kicker">05 / Card Usage</div><h2>Most Played Cards</h2><p>Nonbasic cards across all published main decks.</p></div>
     </div>
     <div class="surface usage-list" id="usage"></div>
     <p class="source">Source: public Paupergenesis standings and decklists on Melee, snapshotted locally after publication. Archetype names are player-entered and normalized only where labels are clearly synonymous. One player has no published list. Champion is marked from an attendee report while Melee's Finals table remains unpopulated.</p>
@@ -177,8 +199,9 @@
 </main>
 <script>
 (async function () {
-  const response = await fetch('paupergenesis-data.json');
+  const [response, umapResponse] = await Promise.all([fetch('paupergenesis-data.json'), fetch('paupergenesis-umap.json')]);
   const payload = await response.json();
+  const umapPayload = await umapResponse.json();
   const decks = payload.decks;
   const basicLands = new Set(['Plains','Island','Swamp','Mountain','Forest','Snow-Covered Plains','Snow-Covered Island','Snow-Covered Swamp','Snow-Covered Mountain','Snow-Covered Forest']);
   const colors = ['#386f9f','#ae5048','#347250','#71588f','#aa7a24','#287b78','#a14d72','#66767f'];
@@ -241,9 +264,33 @@
   function consensus(list,board){const map=new Map();list.forEach(d=>{const cards=new Map(d[board].map(c=>[c.name,c.quantity]));cards.forEach((q,name)=>{const x=map.get(name)||{sum:0,decks:0};x.sum+=q;x.decks++;map.set(name,x);});});return [...map].map(([name,x])=>({name,avg:x.sum/list.length,pct:x.decks/list.length*100})).filter(x=>x.pct>10).sort((a,b)=>b.pct-a.pct||b.avg-a.avg||a.name.localeCompare(b.name));}
   function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('deck-count').textContent=list.length+' lists';document.getElementById('decklists').innerHTML=list.sort((a,b)=>a.rank-b.rank).map(d=>'<div class="deck-row"><span class="rank">'+d.rank+'</span>'+(d.decklistUrl?'<a class="player-link" href="'+d.decklistUrl+'" target="_blank" rel="noopener noreferrer">'+esc(d.player)+'</a>':'<span class="player-link">'+esc(d.player)+'</span>')+'<span class="record">'+esc(d.record)+'</span></div>').join('');document.getElementById('consensus').innerHTML=['main','side'].map(board=>'<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+consensus(list,board).map(c=>'<div class="card-row"><span class="avg">'+c.avg.toFixed(c.avg<1?2:1)+'</span><span>'+esc(c.name)+'</span><span class="prevalence">'+Math.round(c.pct)+'%</span></div>').join('')+'</div>').join('');}
   select.onchange=renderExplorer;
+
+  function initUmap() {
+    const shell=document.getElementById('umap-shell'),canvas=document.getElementById('umap-canvas'),ctx=canvas.getContext('2d'),tooltip=document.getElementById('umap-tooltip');
+    const points=umapPayload.points, clusterCount=umapPayload.meta.clusters;
+    const plotColors=['#386f9f','#ae5048','#347250','#71588f','#aa7a24','#287b78','#a14d72','#66767f'];
+    document.getElementById('plot-legend').innerHTML=Array.from({length:clusterCount},(_,i)=>'<span class="legend-item"><span class="legend-dot" style="background:'+plotColors[i%plotColors.length]+'"></span>Cluster '+(i+1)+'</span>').join('');
+    const xs=points.map(p=>p.x),ys=points.map(p=>p.y),bounds={minX:Math.min(...xs),maxX:Math.max(...xs),minY:Math.min(...ys),maxY:Math.max(...ys)};
+    let width=0,height=0,dpr=1,zoom=1,panX=0,panY=0,hovered=null,down=null,moved=false;
+    function resize(){const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw();}
+    function basePoint(p){const pad=42,innerW=width-pad*2,innerH=height-pad*2;return{x:pad+(p.x-bounds.minX)/Math.max(.001,bounds.maxX-bounds.minX)*innerW,y:height-pad-(p.y-bounds.minY)/Math.max(.001,bounds.maxY-bounds.minY)*innerH};}
+    function screenPoint(p){const b=basePoint(p);return{x:width/2+(b.x-width/2)*zoom+panX,y:height/2+(b.y-height/2)*zoom+panY};}
+    function draw(){ctx.clearRect(0,0,width,height);ctx.strokeStyle='#dde1e3';ctx.lineWidth=1;for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(width*i/4,0);ctx.lineTo(width*i/4,height);ctx.stroke();ctx.beginPath();ctx.moveTo(0,height*i/4);ctx.lineTo(width,height*i/4);ctx.stroke();}points.forEach(p=>{const s=screenPoint(p),active=p===hovered;ctx.beginPath();ctx.arc(s.x,s.y,active?7:4.8,0,Math.PI*2);ctx.fillStyle=plotColors[(p.cluster-1)%plotColors.length]||'#98a2ad';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=active?2.5:1.5;ctx.stroke();});}
+    function hit(x,y){let best=null,bestD=11;points.forEach(p=>{const s=screenPoint(p),d=Math.hypot(s.x-x,s.y-y);if(d<bestD){best=p;bestD=d;}});return best;}
+    function showTooltip(p){if(!p){tooltip.style.opacity='0';return;}const s=screenPoint(p);tooltip.innerHTML='<strong>'+esc(p.player)+'</strong>'+esc(p.archetype)+'<br>Cluster '+p.cluster+' · Rank '+p.rank+' · '+esc(p.record);tooltip.style.opacity='1';const tw=tooltip.offsetWidth,th=tooltip.offsetHeight;tooltip.style.left=Math.max(8,Math.min(width-tw-8,s.x+12))+'px';tooltip.style.top=Math.max(8,Math.min(height-th-8,s.y+12))+'px';}
+    function pointer(event){const r=canvas.getBoundingClientRect();return{x:event.clientX-r.left,y:event.clientY-r.top};}
+    canvas.addEventListener('pointerdown',event=>{const p=pointer(event);down={...p,panX,panY};moved=false;canvas.setPointerCapture(event.pointerId);canvas.classList.add('dragging');});
+    canvas.addEventListener('pointermove',event=>{const p=pointer(event);if(down){const dx=p.x-down.x,dy=p.y-down.y;if(Math.hypot(dx,dy)>3)moved=true;panX=down.panX+dx;panY=down.panY+dy;tooltip.style.opacity='0';draw();return;}const next=hit(p.x,p.y);if(next!==hovered){hovered=next;draw();showTooltip(next);}});
+    canvas.addEventListener('pointerup',event=>{canvas.releasePointerCapture(event.pointerId);canvas.classList.remove('dragging');if(!moved){const p=pointer(event),point=hit(p.x,p.y);if(point&&point.url)window.open(point.url,'_blank','noopener');}down=null;});
+    canvas.addEventListener('pointerleave',()=>{if(!down){hovered=null;draw();showTooltip(null);}});
+    canvas.addEventListener('wheel',event=>{event.preventDefault();const p=pointer(event),old=zoom,factor=event.deltaY<0?1.18:.85;zoom=Math.max(.55,Math.min(8,zoom*factor));panX=p.x-width/2-(p.x-width/2-panX)*(zoom/old);panY=p.y-height/2-(p.y-height/2-panY)*(zoom/old);draw();},{passive:false});
+    function setZoom(next){zoom=Math.max(.55,Math.min(8,next));draw();}
+    document.getElementById('zoom-in').onclick=()=>setZoom(zoom*1.25);document.getElementById('zoom-out').onclick=()=>setZoom(zoom*.8);document.getElementById('zoom-reset').onclick=()=>{zoom=1;panX=0;panY=0;draw();};
+    new ResizeObserver(resize).observe(shell);resize();
+  }
   const usage=new Map();decks.forEach(d=>d.main.forEach(c=>{if(basicLands.has(c.name))return;const x=usage.get(c.name)||{copies:0,decks:0};x.copies+=c.quantity;x.decks++;usage.set(c.name,x);}));
   document.getElementById('usage').innerHTML=[...usage].map(([name,x])=>({name,...x})).sort((a,b)=>b.copies-a.copies||b.decks-a.decks).slice(0,40).map(x=>'<div class="usage-row"><span>'+esc(x.name)+'</span><span class="usage-copies">'+x.copies+'</span><span class="usage-decks">'+x.decks+' decks</span></div>').join('');
-  renderMeta(); renderFunnel(); renderExplorer();
+  renderMeta(); renderFunnel(); renderExplorer(); initUmap();
 }()).catch(error=>{document.querySelector('main').innerHTML='<div class="loading">Could not load Paupergenesis data: '+String(error.message||error)+'</div>';});
 </script>
 </body>
