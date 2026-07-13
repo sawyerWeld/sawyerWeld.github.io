@@ -34,33 +34,6 @@
   a { color: inherit; text-decoration-color: #aaa; text-underline-offset: 3px; }
   a:hover { text-decoration-color: var(--ink); }
 
-  .status-strip {
-    border-bottom: 1px solid #d2e3fc;
-    background: #e8f0fe;
-    color: #234466;
-  }
-  .status-strip-inner {
-    width: min(1060px, calc(100% - 40px));
-    min-height: 42px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-  .live-mark { display: inline-flex; align-items: center; gap: 8px; }
-  .live-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--blue);
-    box-shadow: 0 0 0 4px rgba(41, 128, 185, 0.14);
-  }
-  #next-update { color: #58728c; text-align: right; }
-
   main { padding: 14px 0 50px; }
   .section { width: min(1060px, calc(100% - 40px)); margin: 0 auto; padding: 38px 0; }
   .section + .section { border-top: 1px solid var(--line); }
@@ -180,8 +153,6 @@
   }
 
   @media (max-width: 760px) {
-    .status-strip-inner { width: min(100% - 28px, 1060px); }
-    #next-update { display: none; }
     .section { width: min(100% - 28px, 1060px); padding: 32px 0; }
     .section-head { align-items: flex-start; flex-direction: column; }
     .pane-body { grid-template-columns: 1fr; }
@@ -202,13 +173,6 @@
 </style>
 </head>
 <body>
-  <div class="status-strip">
-    <div class="status-strip-inner">
-      <span class="live-mark"><span class="live-dot" aria-hidden="true"></span><span id="event-status">Report desk open</span></span>
-      <span id="next-update">Waiting for the Day 1 field</span>
-    </div>
-  </div>
-
   <header class="report-header">
     <div class="report-header-inner">
       <div class="report-eyebrow">Tournament Report</div>
@@ -546,26 +510,6 @@
   }
   renderFunnel();
 
-  const now = new Date();
-  const dayOne = new Date('2026-07-11T09:30:00+02:00');
-  const dayTwo = new Date('2026-07-12T09:00:00+02:00');
-  const eventEnd = new Date('2026-07-12T20:00:00+02:00');
-  const status = document.getElementById('event-status');
-  const next = document.getElementById('next-update');
-
-  if (now < dayOne) {
-    status.textContent = 'Friday metagames live';
-    next.textContent = 'Day 1 begins July 11 at 09:30 CEST';
-  } else if (now < dayTwo) {
-    status.textContent = 'Day 1 underway';
-    next.textContent = 'Waiting for the first field release';
-  } else if (now < eventEnd) {
-    status.textContent = 'Day 2 underway';
-    next.textContent = 'Day 1 and Day 2 metagames live';
-  } else {
-    status.textContent = 'Event complete';
-    next.textContent = 'Jund Wildfire wins Paupergeddon Summer 2026';
-  }
 }()).catch(error => {
   const host=document.querySelector('main');
   host.innerHTML='<div class="pending-state">Could not load Paupergeddon report data: '+String(error.message||error)+'</div>';
