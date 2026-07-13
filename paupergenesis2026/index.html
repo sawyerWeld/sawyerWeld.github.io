@@ -41,11 +41,6 @@
   .segmented button { min-width: 66px; padding: 7px 10px; border: 0; border-radius: 5px; background: transparent; color: #666d71; cursor: pointer; font-size: .72rem; font-weight: 700; }
   .segmented button.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
   .surface { border: 1px solid var(--line); background: rgba(255,255,255,.55); }
-  .meta-summary { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
-  .summary-cell { padding: 16px 18px; border-right: 1px solid var(--line); }
-  .summary-cell:last-child { border-right: 0; }
-  .summary-label { display: block; margin-bottom: 4px; color: #858b8f; font-size: .64rem; font-weight: 700; text-transform: uppercase; }
-  .summary-value { font-weight: 700; }
   .meta-list { padding: 20px; }
   .meta-row { display: grid; grid-template-columns: minmax(145px, 220px) 1fr 56px 32px; align-items: center; gap: 11px; min-height: 30px; font-size: .77rem; }
   .meta-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
@@ -93,9 +88,6 @@
     .usage-list { columns: 1; }
   }
   @media (max-width: 480px) {
-    .meta-summary { grid-template-columns: 1fr; }
-    .summary-cell { border-right: 0; border-bottom: 1px solid var(--line); }
-    .summary-cell:last-child { border-bottom: 0; }
     .meta-list { padding: 14px 10px; }
     .meta-row { grid-template-columns: minmax(100px,1.2fr) minmax(70px,1fr) 48px; gap: 7px; }
     .meta-count { display: none; }
@@ -187,11 +179,7 @@
   });
   function renderMeta() {
     const rows = countsFor(metaStage.n); const shown = expanded ? rows : rows.slice(0,18); const max = rows[0].count;
-    document.getElementById('metagame').innerHTML = '<div class="meta-summary">'
-      + '<div class="summary-cell"><span class="summary-label">Players</span><span class="summary-value">'+metaStage.n+'</span></div>'
-      + '<div class="summary-cell"><span class="summary-label">Most played</span><span class="summary-value">'+esc(rows[0].name)+'</span></div>'
-      + '<div class="summary-cell"><span class="summary-label">Share</span><span class="summary-value">'+rows[0].pct.toFixed(1)+'%</span></div></div>'
-      + '<div class="meta-list">'+shown.map(row => '<div class="meta-row"><span class="meta-name" title="'+esc(row.name)+'">'+esc(row.name)+'</span><span class="bar-track"><span class="bar" style="display:block;width:'+(row.count/max*100).toFixed(1)+'%"></span></span><span class="meta-pct">'+row.pct.toFixed(1)+'%</span><span class="meta-count">'+row.count+'</span></div>').join('')
+    document.getElementById('metagame').innerHTML = '<div class="meta-list">'+shown.map(row => '<div class="meta-row"><span class="meta-name" title="'+esc(row.name)+'">'+esc(row.name)+'</span><span class="bar-track"><span class="bar" style="display:block;width:'+(row.count/max*100).toFixed(1)+'%"></span></span><span class="meta-pct">'+row.pct.toFixed(1)+'%</span><span class="meta-count">'+row.count+'</span></div>').join('')
       + (rows.length>18?'<button class="text-button" id="meta-expand">'+(expanded?'Show less':'Show all '+rows.length)+'</button>':'')+'</div>';
     const expand = document.getElementById('meta-expand'); if (expand) expand.onclick = () => { expanded=!expanded; renderMeta(); };
   }
