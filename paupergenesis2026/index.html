@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Metagame and decklist analysis for Paupergenesis 2026 in Baltimore.">
+<title>Paupergenesis 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="/mtg-mana/mtg-mana.js"></script>
+<style>
+  :root {
+    --ink: #171817;
+    --muted: #6d7478;
+    --line: #d7dcdf;
+    --paper: #f3f4f4;
+    --white: #fff;
+    --blue: #386f9f;
+    --green: #347250;
+    --red: #ae5048;
+    --gold: #aa7a24;
+    --purple: #71588f;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Manrope', sans-serif; }
+  a { color: inherit; text-underline-offset: 3px; }
+  button, select { font: inherit; }
+  .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+  header { padding: 62px 0 44px; border-bottom: 1px solid var(--line); background: #fafafa; text-align: center; }
+  .eyebrow { margin-bottom: 12px; color: var(--gold); font-size: .72rem; font-weight: 700; text-transform: uppercase; }
+  h1 { margin: 0 0 12px; font-size: clamp(2.5rem, 7vw, 5rem); line-height: .98; letter-spacing: 0; }
+  .byline { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+  .stat-band { border-bottom: 1px solid var(--line); background: #e9ebeb; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { min-height: 94px; padding: 22px 24px; border-left: 1px solid var(--line); }
+  .stat:last-child { border-right: 1px solid var(--line); }
+  .stat-label { display: block; margin-bottom: 6px; color: #7f8589; font-size: .65rem; font-weight: 700; text-transform: uppercase; }
+  .stat-value { font-size: 1rem; font-weight: 700; }
+  main { padding-bottom: 54px; }
+  section { padding: 38px 0; border-bottom: 1px solid var(--line); }
+  section:last-child { border-bottom: 0; }
+  .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+  .kicker { margin-bottom: 7px; color: var(--gold); font-size: .68rem; font-weight: 700; text-transform: uppercase; }
+  h2 { margin: 0 0 5px; font-size: 1.35rem; }
+  .section-head p { margin: 0; color: var(--muted); font-size: .86rem; }
+  .segmented { display: inline-flex; padding: 3px; border: 1px solid #c8ced1; border-radius: 7px; background: #e7e9ea; }
+  .segmented button { min-width: 66px; padding: 7px 10px; border: 0; border-radius: 5px; background: transparent; color: #666d71; cursor: pointer; font-size: .72rem; font-weight: 700; }
+  .segmented button.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .surface { border: 1px solid var(--line); background: rgba(255,255,255,.55); }
+  .meta-summary { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+  .summary-cell { padding: 16px 18px; border-right: 1px solid var(--line); }
+  .summary-cell:last-child { border-right: 0; }
+  .summary-label { display: block; margin-bottom: 4px; color: #858b8f; font-size: .64rem; font-weight: 700; text-transform: uppercase; }
+  .summary-value { font-weight: 700; }
+  .meta-list { padding: 20px; }
+  .meta-row { display: grid; grid-template-columns: minmax(145px, 220px) 1fr 56px 32px; align-items: center; gap: 11px; min-height: 30px; font-size: .77rem; }
+  .meta-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+  .bar-track { height: 8px; overflow: hidden; background: #dcdfe1; }
+  .bar { height: 100%; background: var(--blue); }
+  .meta-pct, .meta-count { text-align: right; font-variant-numeric: tabular-nums; }
+  .meta-pct { font-weight: 700; }
+  .meta-count { color: var(--muted); }
+  .text-button { margin-top: 14px; padding: 4px 0; border: 0; background: transparent; color: var(--blue); cursor: pointer; font-weight: 700; }
+  .funnel-wrap { overflow-x: auto; padding: 18px 12px 12px; }
+  #funnel svg { display: block; width: 100%; min-width: 760px; height: auto; }
+  .guide { stroke: #cbd0d3; stroke-width: 1; }
+  .stage-title { fill: var(--ink); font-size: 14px; font-weight: 700; }
+  .stage-sub { fill: var(--muted); font-size: 10px; font-weight: 600; }
+  .funnel-path { fill: none; stroke-width: 2; opacity: .52; transition: opacity .12s, stroke-width .12s; }
+  .funnel-group { cursor: pointer; }
+  .funnel-group:hover .funnel-path, .funnel-group.selected .funnel-path { opacity: 1; stroke-width: 4; }
+  .funnel-dot { stroke: white; stroke-width: 2; }
+  .edge-name { fill: var(--ink); font-size: 11px; font-weight: 650; }
+  .stage-value { fill: var(--muted); font-size: 9px; font-weight: 650; }
+  .middle-value { opacity: 0; }
+  .funnel-group.selected .middle-value { opacity: 1; }
+  .grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr); gap: 18px; }
+  .pane { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,.55); }
+  .pane-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+  .pane-title { font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+  select { max-width: 250px; min-height: 34px; padding: 5px 32px 5px 9px; border: 1px solid #c8ced1; border-radius: 5px; background: white; color: var(--ink); }
+  .pane-body { padding: 14px; }
+  .consensus-section + .consensus-section { margin-top: 18px; }
+  .consensus-section h3 { margin: 0 0 7px; font-size: .8rem; text-transform: uppercase; }
+  .card-row { display: grid; grid-template-columns: 42px minmax(0,1fr) 50px; gap: 8px; align-items: center; min-height: 27px; border-bottom: 1px solid #e3e6e7; font-size: .76rem; }
+  .card-row:last-child { border-bottom: 0; }
+  .avg { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .prevalence { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .deck-row { display: grid; grid-template-columns: 34px minmax(0,1fr) 68px; gap: 9px; align-items: center; min-height: 34px; border-bottom: 1px solid #e2e5e6; font-size: .76rem; }
+  .rank { color: var(--muted); text-align: right; }
+  .player-link { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 650; text-decoration: none; }
+  .player-link:hover { text-decoration: underline; }
+  .record { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .usage-list { padding: 18px; columns: 2; column-gap: 30px; }
+  .usage-row { display: grid; grid-template-columns: minmax(0,1fr) 55px 52px; gap: 8px; break-inside: avoid; min-height: 29px; border-bottom: 1px solid #dfe3e4; font-size: .76rem; }
+  .usage-copies, .usage-decks { text-align: right; font-variant-numeric: tabular-nums; }
+  .usage-copies { font-weight: 700; }
+  .usage-decks { color: var(--muted); }
+  .source { margin: 20px 0 0; color: var(--muted); font-size: .72rem; line-height: 1.6; }
+  .loading { padding: 36px; color: var(--muted); text-align: center; }
+  @media (max-width: 780px) {
+    .wrap { width: min(100% - 28px, 1120px); }
+    header { padding: 48px 0 36px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat { min-height: 82px; border-bottom: 1px solid var(--line); }
+    .stat:nth-child(even) { border-right: 1px solid var(--line); }
+    .section-head { align-items: flex-start; flex-direction: column; }
+    .grid { grid-template-columns: 1fr; }
+    .usage-list { columns: 1; }
+  }
+  @media (max-width: 480px) {
+    .meta-summary { grid-template-columns: 1fr; }
+    .summary-cell { border-right: 0; border-bottom: 1px solid var(--line); }
+    .summary-cell:last-child { border-bottom: 0; }
+    .meta-list { padding: 14px 10px; }
+    .meta-row { grid-template-columns: minmax(100px,1.2fr) minmax(70px,1fr) 48px; gap: 7px; }
+    .meta-count { display: none; }
+    .segmented { width: 100%; }
+    .segmented button { flex: 1; min-width: 0; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Baltimore / July 2026</div>
+    <h1>Paupergenesis</h1>
+    <div class="byline">July 12, 2026 &middot; Pikesville, Maryland &middot; <a href="https://melee.gg/Tournament/View/409325" target="_blank" rel="noopener noreferrer">Melee event</a><br>Analysis by <a href="https://sawyerwelden.com">Sawyer Welden</a></div>
+  </div>
+</header>
+<div class="stat-band">
+  <div class="wrap stats">
+    <div class="stat"><span class="stat-label">Players</span><span class="stat-value" id="stat-players">248</span></div>
+    <div class="stat"><span class="stat-label">Published lists</span><span class="stat-value" id="stat-lists">247</span></div>
+    <div class="stat"><span class="stat-label">Swiss rounds</span><span class="stat-value">8</span></div>
+    <div class="stat"><span class="stat-label">Reported champion</span><span class="stat-value">Dimir Terror</span></div>
+  </div>
+</div>
+<main class="wrap">
+  <section>
+    <div class="section-head">
+      <div><div class="kicker">01 / Metagame</div><h2>The Field</h2><p>Submitted archetypes, conservatively normalized from player-entered labels.</p></div>
+      <div class="segmented" id="meta-stage"></div>
+    </div>
+    <div class="surface" id="metagame"><div class="loading">Loading metagame…</div></div>
+  </section>
+  <section>
+    <div class="section-head">
+      <div><div class="kicker">02 / Performance</div><h2>The Funnel</h2><p>Archetype share from the full field through the Swiss standings cutoffs.</p></div>
+    </div>
+    <div class="surface funnel-wrap"><div id="funnel"></div></div>
+  </section>
+  <section>
+    <div class="section-head">
+      <div><div class="kicker">03 / Deckbuilding</div><h2>Archetype Explorer</h2><p>Consensus card choices and every published list.</p></div>
+    </div>
+    <div class="grid">
+      <div class="pane">
+        <div class="pane-head"><span class="pane-title">Consensus</span><select id="archetype-select" aria-label="Choose archetype"></select></div>
+        <div class="pane-body" id="consensus"></div>
+      </div>
+      <div class="pane">
+        <div class="pane-head"><span class="pane-title">Decklists</span><span class="small" id="deck-count"></span></div>
+        <div class="pane-body" id="decklists"></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="section-head">
+      <div><div class="kicker">04 / Card Usage</div><h2>Most Played Cards</h2><p>Nonbasic cards across all published main decks.</p></div>
+    </div>
+    <div class="surface usage-list" id="usage"></div>
+    <p class="source">Source: public Paupergenesis standings and decklists on Melee, snapshotted locally after publication. Archetype names are player-entered and normalized only where labels are clearly synonymous. One player has no published list. Champion is marked from an attendee report while Melee's Finals table remains unpopulated.</p>
+  </section>
+</main>
+<script>
+(async function () {
+  const response = await fetch('paupergenesis-data.json');
+  const payload = await response.json();
+  const decks = payload.decks;
+  const basicLands = new Set(['Plains','Island','Swamp','Mountain','Forest','Snow-Covered Plains','Snow-Covered Island','Snow-Covered Swamp','Snow-Covered Mountain','Snow-Covered Forest']);
+  const colors = ['#386f9f','#ae5048','#347250','#71588f','#aa7a24','#287b78','#a14d72','#66767f'];
+  const stages = [{label:'Field',n:248},{label:'Top 64',n:64},{label:'Top 32',n:32},{label:'Top 16',n:16}];
+  let metaStage = stages[0];
+  let expanded = false;
+  document.getElementById('stat-players').textContent = payload.event.players;
+  document.getElementById('stat-lists').textContent = payload.event.decklists;
+
+  function subset(n) { return decks.filter(d => d.rank <= n); }
+  function countsFor(n) {
+    const counts = new Map();
+    subset(n).forEach(d => counts.set(d.archetype, (counts.get(d.archetype) || 0) + 1));
+    return [...counts].map(([name,count]) => ({name,count,pct:count/n*100})).sort((a,b) => b.count-a.count || a.name.localeCompare(b.name));
+  }
+  function esc(value) { return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  const stageHost = document.getElementById('meta-stage');
+  stageHost.innerHTML = stages.map((s,i) => '<button class="'+(i===0?'active':'')+'" data-n="'+s.n+'">'+s.label+'</button>').join('');
+  stageHost.addEventListener('click', event => {
+    const button = event.target.closest('button'); if (!button) return;
+    metaStage = stages.find(s => s.n === Number(button.dataset.n));
+    stageHost.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === button));
+    expanded = false; renderMeta();
+  });
+  function renderMeta() {
+    const rows = countsFor(metaStage.n); const shown = expanded ? rows : rows.slice(0,18); const max = rows[0].count;
+    document.getElementById('metagame').innerHTML = '<div class="meta-summary">'
+      + '<div class="summary-cell"><span class="summary-label">Players</span><span class="summary-value">'+metaStage.n+'</span></div>'
+      + '<div class="summary-cell"><span class="summary-label">Most played</span><span class="summary-value">'+esc(rows[0].name)+'</span></div>'
+      + '<div class="summary-cell"><span class="summary-label">Share</span><span class="summary-value">'+rows[0].pct.toFixed(1)+'%</span></div></div>'
+      + '<div class="meta-list">'+shown.map(row => '<div class="meta-row"><span class="meta-name" title="'+esc(row.name)+'">'+esc(row.name)+'</span><span class="bar-track"><span class="bar" style="display:block;width:'+(row.count/max*100).toFixed(1)+'%"></span></span><span class="meta-pct">'+row.pct.toFixed(1)+'%</span><span class="meta-count">'+row.count+'</span></div>').join('')
+      + (rows.length>18?'<button class="text-button" id="meta-expand">'+(expanded?'Show less':'Show all '+rows.length)+'</button>':'')+'</div>';
+    const expand = document.getElementById('meta-expand'); if (expand) expand.onclick = () => { expanded=!expanded; renderMeta(); };
+  }
+
+  function lineColor(from,to) { const diff=to-from; return diff>.35?'#347250':diff<-.35?'#ae5048':'#777'; }
+  function renderFunnel() {
+    const stageDefs = [{key:'field',n:248,x:250},{key:'t64',n:64,x:460},{key:'t32',n:32,x:650},{key:'t16',n:16,x:820}];
+    const names = countsFor(248).filter(d => d.count>=3 || subset(16).some(x=>x.archetype===d.name)).map(d=>d.name);
+    const values={}; const positions={}; const H=Math.max(620,names.length*23+90), top=66,bottom=H-20;
+    stageDefs.forEach(stage => {
+      const list=countsFor(stage.n).filter(d=>names.includes(d.name)); values[stage.key]=Object.fromEntries(list.map(d=>[d.name,d]));
+      const active=list.filter(d=>d.count>0); const step=(bottom-top)/Math.max(active.length-1,1); positions[stage.key]={}; active.forEach((d,i)=>positions[stage.key][d.name]=top+i*step);
+    });
+    let svg='<svg viewBox="0 0 1040 '+H+'" role="img"><title>Paupergenesis archetype conversion funnel</title>';
+    stageDefs.forEach(s=>{svg+='<line class="guide" x1="'+s.x+'" x2="'+s.x+'" y1="45" y2="'+bottom+'"></line><text class="stage-title" x="'+s.x+'" y="18" text-anchor="middle">'+(s.key==='field'?'Field':'Top '+s.n)+'</text><text class="stage-sub" x="'+s.x+'" y="34" text-anchor="middle">'+s.n+' players</text>';});
+    names.forEach((name,index)=>{
+      svg+='<g class="funnel-group" tabindex="0" data-name="'+esc(name)+'">';
+      for(let i=0;i<stageDefs.length-1;i++){const a=stageDefs[i],b=stageDefs[i+1],ya=positions[a.key][name],yb=positions[b.key][name];if(ya===undefined||yb===undefined)continue;const pa=values[a.key][name].pct,pb=values[b.key][name].pct,c=(b.x-a.x)/3;svg+='<path class="funnel-path" stroke="'+lineColor(pa,pb)+'" d="M '+a.x+' '+ya+' C '+(a.x+c)+' '+ya+', '+(b.x-c)+' '+yb+', '+b.x+' '+yb+'"></path>';}
+      stageDefs.forEach((s,si)=>{const y=positions[s.key][name];if(y===undefined)return;const v=values[s.key][name], prev=stageDefs[Math.max(0,si-1)],color=si?lineColor(values[prev.key][name]?.pct||0,v.pct):colors[index%colors.length],middle=si>0&&si<stageDefs.length-1?' middle-value':'';svg+='<circle class="funnel-dot" fill="'+color+'" cx="'+s.x+'" cy="'+y+'" r="5"></circle><text class="stage-value'+middle+'" x="'+(si===0?s.x-11:s.x+10)+'" y="'+(y+3)+'" text-anchor="'+(si===0?'end':'start')+'">'+v.count+' ('+v.pct.toFixed(1)+'%)</text>';if(si===0)svg+='<text class="edge-name" x="8" y="'+(y+4)+'">'+esc(name)+'</text>';if(si===stageDefs.length-1)svg+='<text class="edge-name" x="900" y="'+(y+4)+'">'+esc(name)+'</text>';});
+      svg+='</g>';});
+    document.getElementById('funnel').innerHTML=svg+'</svg>';
+    document.querySelectorAll('.funnel-group').forEach(g=>{const toggle=()=>{const on=!g.classList.contains('selected');document.querySelectorAll('.funnel-group').forEach(x=>x.classList.remove('selected'));if(on)g.classList.add('selected');};g.onclick=e=>{e.stopPropagation();toggle();};g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}};});
+    document.querySelector('#funnel svg').onclick=()=>document.querySelectorAll('.funnel-group').forEach(x=>x.classList.remove('selected'));
+  }
+
+  const archetypes=countsFor(248).map(d=>d.name);
+  const select=document.getElementById('archetype-select'); select.innerHTML=archetypes.map(a=>'<option>'+esc(a)+'</option>').join('');
+  function consensus(list,board){const map=new Map();list.forEach(d=>{const cards=new Map(d[board].map(c=>[c.name,c.quantity]));cards.forEach((q,name)=>{const x=map.get(name)||{sum:0,decks:0};x.sum+=q;x.decks++;map.set(name,x);});});return [...map].map(([name,x])=>({name,avg:x.sum/list.length,pct:x.decks/list.length*100})).filter(x=>x.pct>10).sort((a,b)=>b.pct-a.pct||b.avg-a.avg||a.name.localeCompare(b.name));}
+  function renderExplorer(){const name=select.value,list=decks.filter(d=>d.archetype===name);document.getElementById('deck-count').textContent=list.length+' lists';document.getElementById('decklists').innerHTML=list.sort((a,b)=>a.rank-b.rank).map(d=>'<div class="deck-row"><span class="rank">'+d.rank+'</span>'+(d.decklistUrl?'<a class="player-link" href="'+d.decklistUrl+'" target="_blank" rel="noopener noreferrer">'+esc(d.player)+'</a>':'<span class="player-link">'+esc(d.player)+'</span>')+'<span class="record">'+esc(d.record)+'</span></div>').join('');document.getElementById('consensus').innerHTML=['main','side'].map(board=>'<div class="consensus-section"><h3>'+(board==='main'?'Main deck':'Sideboard')+'</h3>'+consensus(list,board).map(c=>'<div class="card-row"><span class="avg">'+c.avg.toFixed(c.avg<1?2:1)+'</span><span>'+esc(c.name)+'</span><span class="prevalence">'+Math.round(c.pct)+'%</span></div>').join('')+'</div>').join('');}
+  select.onchange=renderExplorer;
+  const usage=new Map();decks.forEach(d=>d.main.forEach(c=>{if(basicLands.has(c.name))return;const x=usage.get(c.name)||{copies:0,decks:0};x.copies+=c.quantity;x.decks++;usage.set(c.name,x);}));
+  document.getElementById('usage').innerHTML=[...usage].map(([name,x])=>({name,...x})).sort((a,b)=>b.copies-a.copies||b.decks-a.decks).slice(0,40).map(x=>'<div class="usage-row"><span>'+esc(x.name)+'</span><span class="usage-copies">'+x.copies+'</span><span class="usage-decks">'+x.decks+' decks</span></div>').join('');
+  renderMeta(); renderFunnel(); renderExplorer();
+}()).catch(error=>{document.querySelector('main').innerHTML='<div class="loading">Could not load Paupergenesis data: '+String(error.message||error)+'</div>';});
+</script>
+</body>
+</html>
