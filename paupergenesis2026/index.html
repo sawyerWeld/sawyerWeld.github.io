@@ -163,6 +163,15 @@
   const decks = payload.decks;
   const basicLands = new Set(['Plains','Island','Swamp','Mountain','Forest','Snow-Covered Plains','Snow-Covered Island','Snow-Covered Swamp','Snow-Covered Mountain','Snow-Covered Forest']);
   const colors = ['#386f9f','#ae5048','#347250','#71588f','#aa7a24','#287b78','#a14d72','#66767f'];
+  const archetypeColors = {
+    'Mono Red Madness':['R'],'Grixis Affinity':['U','B','R'],'Mono Blue Terror':['U'],'Dimir Faeries':['U','B'],
+    'Mono Red Rally':['R'],Elves:['G'],'Rakdos Madness Burn':['B','R'],'Spy Combo':['B','G'],
+    'Jund Wildfire':['B','R','G'],'Jeskai Ephemerate':['W','U','R'],'Dimir Terror':['U','B'],'White Weenie':['W'],
+    'Monster Tron':['U','G'],'Golgari Gardens':['B','G'],'Azorius Familiars':['W','U'],'Pizza Combo':['U','R','G'],
+    'Tireless Tribe':['W','U'],'Gruul Ponza':['R','G'],'Naya Gates':['W','R','G'],'Cawgate':['W','U'],
+    'Gruul Elves':['R','G'],'Gruul Storm':['R','G'],'Mono Black Sacrifice':['B'],'Golgari Pestilence':['B','G'],
+    'Boros Synthesizer':['W','R'],'Gruul Tokens':['R','G'],'Mardu Synthesizer':['W','B','R']
+  };
   const stages = [{label:'Field',n:248},{label:'Top 64',n:64},{label:'Top 32',n:32},{label:'Top 16',n:16}];
   let metaStage = stages[0];
   let expanded = false;
@@ -202,10 +211,16 @@
     });
     let svg='<svg viewBox="0 0 1040 '+H+'" role="img"><title>Paupergenesis archetype conversion funnel</title>';
     stageDefs.forEach(s=>{svg+='<line class="guide" x1="'+s.x+'" x2="'+s.x+'" y1="45" y2="'+bottom+'"></line><text class="stage-title" x="'+s.x+'" y="18" text-anchor="middle">'+(s.key==='field'?'Field':'Top '+s.n)+'</text><text class="stage-sub" x="'+s.x+'" y="34" text-anchor="middle">'+s.n+' players</text>';});
+    const mana = window.MtgMana;
+    const pips = (name,startX,y) => (mana ? mana.colorsForName(name,archetypeColors) : (archetypeColors[name] || [])).map((symbol,pipIndex) => '<image href="'+(mana ? mana.manaSymbolSrc(symbol) : '')+'" x="'+(startX+pipIndex*15)+'" y="'+(y-6.5)+'" width="13" height="13"></image>').join('');
     names.forEach((name,index)=>{
+      const deckColors = mana ? mana.colorsForName(name,archetypeColors) : (archetypeColors[name] || []);
+      const leftNameX = 8 + deckColors.length * 15 + (deckColors.length ? 4 : 0);
+      const rightPipX = 884;
+      const rightNameX = rightPipX + deckColors.length * 15 + (deckColors.length ? 4 : 0);
       svg+='<g class="funnel-group" tabindex="0" data-name="'+esc(name)+'">';
       for(let i=0;i<stageDefs.length-1;i++){const a=stageDefs[i],b=stageDefs[i+1],ya=positions[a.key][name],yb=positions[b.key][name];if(ya===undefined||yb===undefined)continue;const pa=values[a.key][name].pct,pb=values[b.key][name].pct,c=(b.x-a.x)/3;svg+='<path class="funnel-path" stroke="'+lineColor(pa,pb)+'" d="M '+a.x+' '+ya+' C '+(a.x+c)+' '+ya+', '+(b.x-c)+' '+yb+', '+b.x+' '+yb+'"></path>';}
-      stageDefs.forEach((s,si)=>{const y=positions[s.key][name];if(y===undefined)return;const v=values[s.key][name], prev=stageDefs[Math.max(0,si-1)],color=si?lineColor(values[prev.key][name]?.pct||0,v.pct):colors[index%colors.length],middle=si>0&&si<stageDefs.length-1?' middle-value':'';svg+='<circle class="funnel-dot" fill="'+color+'" cx="'+s.x+'" cy="'+y+'" r="5"></circle><text class="stage-value'+middle+'" x="'+(si===0?s.x-11:s.x+10)+'" y="'+(y+3)+'" text-anchor="'+(si===0?'end':'start')+'">'+v.count+' ('+v.pct.toFixed(1)+'%)</text>';if(si===0)svg+='<text class="edge-name" x="8" y="'+(y+4)+'">'+esc(name)+'</text>';if(si===stageDefs.length-1)svg+='<text class="edge-name" x="900" y="'+(y+4)+'">'+esc(name)+'</text>';});
+      stageDefs.forEach((s,si)=>{const y=positions[s.key][name];if(y===undefined)return;const v=values[s.key][name], prev=stageDefs[Math.max(0,si-1)],color=si?lineColor(values[prev.key][name]?.pct||0,v.pct):colors[index%colors.length],middle=si>0&&si<stageDefs.length-1?' middle-value':'';svg+='<circle class="funnel-dot" fill="'+color+'" cx="'+s.x+'" cy="'+y+'" r="5"></circle><text class="stage-value'+middle+'" x="'+(si===0?s.x-11:s.x+10)+'" y="'+(y+3)+'" text-anchor="'+(si===0?'end':'start')+'">'+v.count+' ('+v.pct.toFixed(1)+'%)</text>';if(si===0)svg+=pips(name,8,y)+'<text class="edge-name" x="'+leftNameX+'" y="'+(y+4)+'">'+esc(name)+'</text>';if(si===stageDefs.length-1)svg+=pips(name,rightPipX,y)+'<text class="edge-name" x="'+rightNameX+'" y="'+(y+4)+'">'+esc(name)+'</text>';});
       svg+='</g>';});
     document.getElementById('funnel').innerHTML=svg+'</svg>';
     document.querySelectorAll('.funnel-group').forEach(g=>{const toggle=()=>{const on=!g.classList.contains('selected');document.querySelectorAll('.funnel-group').forEach(x=>x.classList.remove('selected'));if(on)g.classList.add('selected');};g.onclick=e=>{e.stopPropagation();toggle();};g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}};});
