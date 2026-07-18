@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paupergenesis 2026 Survivorship</title>
+  <link rel="stylesheet" href="survivorship.css?v=20">
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <div>
+        <p class="eyebrow">Paupergenesis 2026</p>
+        <h1>Surviving metagame</h1>
+        <p class="subtitle">A round-by-round view of the metagame among players with an X-1-1 record or better.</p>
+      </div>
+    </header>
+
+    <section class="chart-panel" aria-labelledby="chart-title">
+      <div class="chart-heading">
+        <div>
+          <h2 id="chart-title">Archetype share among players still alive</h2>
+          <p>&ldquo;Alive&rdquo; means X-1-1 or better after that round. Each vertical slice adds up to 100%.</p>
+        </div>
+        <div class="hover-readout" id="hover-readout" aria-live="polite">
+          <strong>Explore the field</strong>
+          <span>Hover a region for its round-by-round share.</span>
+        </div>
+      </div>
+      <div class="chart-scroll">
+        <svg id="survival-chart" viewBox="0 0 1500 840" role="img" aria-label="Continuous stacked area chart of archetype share among surviving players"></svg>
+      </div>
+      <section class="alive-panel" id="alive-panel" aria-live="polite">
+        <div class="alive-empty">
+          <strong>Decks alive here</strong>
+          <span>Click an archetype at any round to inspect its surviving decklists.</span>
+        </div>
+      </section>
+    </section>
+
+    <section class="comparison-panel" aria-labelledby="comparison-title">
+      <div class="comparison-heading">
+        <div>
+          <p class="eyebrow">Survivorship vs. funnel</p>
+          <h2 id="comparison-title">Does the selection rule change the metagame?</h2>
+        </div>
+      </div>
+      <div class="comparison-essay">
+        <h3>Why look at the tournament this way?</h3>
+        <p>A survivorship view follows the tournament forward, one round at a time, and asks who remains in contention after each result. I use X-1-1 or better as a simple, consistent proxy for still having a realistic path to prizing. In this model, those players are &ldquo;alive.&rdquo; As soon as someone falls below that threshold, they leave the population in every later round, even if they keep playing and improve their final standing. The chart above recalculates the archetype shares using only those still-alive players.</p>
+        <p>I started thinking about this after hearing a discussion on the <a href="https://linktr.ee/commongroundmtg" target="_blank" rel="noopener"><em>Common Ground Pauper Podcast</em></a> about the three phases of a large tournament. There is the opening field, where everyone and every registered deck is still present; the middle rounds, where players who are still alive increasingly play against other successful decks; and the closing stretch, where only a small group remains in realistic contention. Those phases can feel like different metagames from the player&rsquo;s seat. A deck that is common at the bottom tables may disappear from the matches that decide prizes, while a strategy with a modest registration share can become a recurring feature of the contending brackets.</p>
+        <p>I had a fairly personal reason to wonder about it. I won my first three rounds at Paupergenesis, then got snuffed out. The final standings preserve where I landed, but they flatten the part I actually experienced: three rounds of being undefeated, the opponents and decks around me while I was alive, and the point where that version of the tournament ended. A tournament path has a shape that a final rank does not.</p>
+        <p>This analysis was possible because <a href="https://melee.gg/Tournament/View/409325" target="_blank" rel="noopener">Paupergenesis was hosted on Melee.gg</a> with public individual match results, round-by-round standings, and decklists. That level of transparency let me reconstruct who each player faced, what their record was after every round, and exactly when they crossed a chosen threshold. Most published tournament data offers only a field and a finish. Here, I can watch the field change while the event is still happening.</p>
+        <p><a href="https://sawyerwelden.com/paupergenesis2026/">The funnel I published in my first Paupergenesis report</a> measures one familiar version of that story by taking the final standings and asking which archetypes occupy the Top 64, Top 32, and Top 16. That is useful, but it reads the tournament backward from its final result. Survivorship asks a different question: what did the metagame look like among the players who were still alive at that moment? It is deliberately a rough model of continued contention rather than an attempt to reproduce the tournament organizer&rsquo;s exact prize math.</p>
+        <p>Some drift between the two views is intuitive. They begin with the same full field and, in this event, end with the same Top 16, so the middle rounds are where the populations have room to separate. What interests me is not simply whether they drift, but how far. The distance grows from 7.3% after Round 2 to 12.6% after Round 4, then jumps to 23.1% after Round 5 and peaks at 32.3% after Round 6. That Round 6 population contains 31 players, almost exactly the funnel&rsquo;s Top 32 checkpoint, yet the two groups are at their most different; matching headcount does not mean matching membership. The distance falls to 15.8% after Round 7 before returning to zero after Round 8.</p>
+        <p>To measure that distance, I ask how much of one archetype mix would have to change before it matched the other. A 32.3% difference in a 31-player group means replacing roughly 10 of those 31 deck slots with different archetypes. At the Round 6 snapshot, for example, Mono Blue Terror occupies three seats in the final Top 31 but none in the X-1-1 population, while Mono Red Rally has three players alive compared with one in the final Top 31.</p>
+        <p>That middle-round gap sounds dramatic, but groups this small can look very different just through ordinary variation. To check whether 32.3% was genuinely unusual, I randomly reassigned the archetype labels among the same players 10,000 times while leaving membership in the two groups unchanged. Those random versions averaged a 29.9% difference, and a gap at least as large as the real one appeared about 44% of the time. No round produced a difference rare enough to separate it clearly from chance. So this event does not show strong evidence of a distinct hidden metagame. What survivorship does give me is a different and, arguably, more player-shaped description of the tournament: which decks were still in the room around me while the event was being decided. Repeating the analysis across more large events would tell me whether the apparent three-phase pattern is durable or simply the normal volatility of small late-round fields.</p>
+      </div>
+      <div class="comparison-grid">
+        <div>
+          <h3>Composition distance by round</h3>
+          <p class="metric-note">The share of deck slots that would need a different archetype for the two groups to match. The dark tick shows the average after randomly shuffling archetypes among players.</p>
+          <div class="round-comparison" id="round-comparison"></div>
+        </div>
+        <div class="comparison-detail" id="comparison-detail"></div>
+      </div>
+    </section>
+
+    <section class="variance-panel" aria-labelledby="variance-title">
+      <div class="variance-heading">
+        <p class="eyebrow">Chapter two · Genesis vs. Geddon</p>
+        <h2 id="variance-title">Was Paupergeddon more settled?</h2>
+      </div>
+      <div class="comparison-essay variance-essay">
+        <p>While exploring the Paupergeddon Summer 2026 lists, I had the impression that decks carrying the same archetype label were packed more tightly together. The feeling was especially strong in Mono Red Madness. My Paupergenesis list used two <em>Sazacap&rsquo;s Brew</em> and two <em>Thermo-Alchemist</em>, but those choices seemed to vanish in the much larger Italian field. That raised a second question: two tournaments can have similar archetype shares, but did one of them leave less room for invention inside those archetypes?</p>
+        <p>I measured every pair of main decks within each shared archetype using Bray-Curtis distance on the card counts. Because these are effectively 60-card lists, I can translate the result into a more intuitive number: roughly how many card slots differ between two randomly chosen lists. I included the 15 archetypes with at least five decks at both events, treated snow-covered basics as their ordinary counterparts, and combined the same functional Pauper cards used by <a href="https://github.com/sawyerWeld/mtgdeckexplorer" target="_blank" rel="noopener">my deck explorer</a>.</p>
+        <p>The first impression is directionally right, but not universal. Paupergeddon was tighter in nine of the 15 shared archetypes, and the typical archetype moved only 0.2 card slots closer together. Some changes were substantial: White Weenie lists averaged 13.4 slots apart at Genesis and 7.3 at Geddon, while Dimir Terror fell from 10.1 to 5.7. Other decks moved the opposite way. Jeskai Ephemerate rose from 6.5 to 10.1 slots apart, and Spy Combo from 5.4 to 9.0. This looks less like one event being uniformly more solved and more like individual archetypes reaching different stages of convergence.</p>
+        <p>Mono Red Madness tells the quieter version of the story. Its average pair moved from 3.2 slots apart at Genesis to 2.9 at Geddon, and 76% of Geddon lists landed within two slots of the event&rsquo;s central list, compared with 69% at Genesis. <em>Sazacap&rsquo;s Brew</em> appeared in four of 26 Genesis lists (15.4%) but only three of 132 Geddon lists (2.3%). <em>Thermo-Alchemist</em> appeared twice at Genesis and not once at Geddon. At the same time, Geddon developed a different branch: <em>Melded Moxite</em> appeared in 27 lists after being absent from Genesis. Convergence did not mean perfect agreement; it meant a denser stock shell with a few organized departures.</p>
+        <p>The UMAP below uses the explorer&rsquo;s count-plus-IDF weighting, so rare card choices have enough influence to pull genuine variants away from a copied core. I use that projection as a map, not as the measurement itself: UMAP is excellent at showing neighborhoods, but the card-slot distances in the comparison chart are calculated directly from the full decklists. Select an archetype to see where the two tournament populations overlap and which cards changed most often.</p>
+      </div>
+
+      <div class="variance-overview-block">
+        <div class="variance-chart-heading">
+          <div>
+            <h3>Average main-deck distance</h3>
+            <p>Approximate card slots separating two lists from the same event and archetype.</p>
+          </div>
+          <div class="event-key" aria-label="Event symbols">
+            <span><i class="genesis-symbol"></i>Genesis</span>
+            <span><i class="geddon-symbol"></i>Paupergeddon</span>
+          </div>
+        </div>
+        <div class="variance-overview" id="variance-overview"></div>
+      </div>
+
+      <div class="archetype-explorer">
+        <div class="variance-select-row">
+          <label for="variance-archetype">Explore an archetype</label>
+          <select id="variance-archetype"></select>
+          <p id="variance-summary"></p>
+        </div>
+        <div class="variance-detail-grid">
+          <div class="umap-column">
+            <div class="detail-title-row">
+              <div>
+                <h3>Decklist neighborhoods</h3>
+                <p>UMAP · main deck · counts + IDF</p>
+              </div>
+              <div class="umap-readout" id="umap-readout" aria-live="polite">
+                <strong>Hover a point</strong>
+                <span>Repeated identical lists are drawn larger.</span>
+              </div>
+            </div>
+            <svg id="variance-umap" viewBox="0 0 720 460" role="img" aria-label="UMAP comparison of Genesis and Paupergeddon decklists"></svg>
+          </div>
+          <div class="card-shift-column">
+            <div class="detail-title-row">
+              <div>
+                <h3>Cards that moved</h3>
+                <p>Share of decks playing at least one copy.</p>
+              </div>
+            </div>
+            <div id="card-shifts"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="survivorship.js?v=27"></script>
+</body>
+</html>
