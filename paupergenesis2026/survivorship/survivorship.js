@@ -525,6 +525,63 @@ function renderVariance(data) {
     readout.innerHTML = "<strong>Hover a point</strong><span>Repeated identical lists are drawn larger.</span>";
   };
 
+  const renderStockSuccess = (analysis) => {
+    const chart = document.querySelector("#stock-survival-chart");
+    const stockKey = document.querySelector("#stock-key");
+    const stockReadout = document.querySelector("#stock-readout");
+    const styles = [
+      { color: "#2167ae", shape: "circle", className: "most" },
+      { color: "#758395", shape: "square", className: "middle" },
+      { color: "#d65b32", shape: "diamond", className: "least" },
+    ];
+    const width = 1120;
+    const height = 420;
+    const margin = { left: 62, right: 28, top: 20, bottom: 52 };
+    const plotWidth = width - margin.left - margin.right;
+    const plotHeight = height - margin.top - margin.bottom;
+    const x = (index) => margin.left + index * plotWidth / (analysis.rounds.length - 1);
+    const y = (value) => margin.top + (100 - value) * plotHeight / 100;
+    const horizontalGrid = [0, 50, 100].map((value) => `<line class="stock-grid" x1="${margin.left}" x2="${width - margin.right}" y1="${y(value)}" y2="${y(value)}" />
+      <text class="stock-axis-label" x="${margin.left - 10}" y="${y(value) + 4}" text-anchor="end">${value}%</text>`).join("");
+    const verticalGrid = analysis.rounds.map((round, index) => `<line class="stock-grid" x1="${x(index)}" x2="${x(index)}" y1="${margin.top}" y2="${height - margin.bottom}" />
+      <text class="stock-axis-label" x="${x(index)}" y="${height - 20}" text-anchor="middle">${round ? `R${round}` : "Field"}</text>`).join("");
+    const lines = analysis.groups.map((group, groupIndex) => {
+      const style = styles[groupIndex];
+      const points = group.alivePctByRound.map((value, index) => [x(index), y(value)]);
+      const marks = points.map(([cx, cy]) => {
+        if (style.shape === "circle") {
+          return `<circle class="stock-point" cx="${cx}" cy="${cy}" r="5" fill="${style.color}" />`;
+        }
+        if (style.shape === "diamond") {
+          return `<rect class="stock-point" x="${cx - 4.5}" y="${cy - 4.5}" width="9" height="9" fill="${style.color}" transform="rotate(45 ${cx} ${cy})" />`;
+        }
+        return `<rect class="stock-point" x="${cx - 4.5}" y="${cy - 4.5}" width="9" height="9" fill="${style.color}" />`;
+      }).join("");
+      return `<path class="stock-line ${style.className}" stroke="${style.color}" d="M${points.map((point) => point.join(",")).join(" L")}" />${marks}`;
+    }).join("");
+    stockKey.innerHTML = analysis.groups.map((group, index) => `<span><i class="${styles[index].shape}" style="--series-color:${styles[index].color}"></i>${esc(group.name)} <small>(${group.decks})</small></span>`).join("");
+    chart.innerHTML = `${horizontalGrid}${verticalGrid}${lines}<line class="stock-hover-rule" x1="0" x2="0" y1="${margin.top}" y2="${height - margin.bottom}" />
+      <rect class="stock-chart-hit" x="${margin.left}" y="${margin.top}" width="${plotWidth}" height="${plotHeight}" />`;
+    const rule = chart.querySelector(".stock-hover-rule");
+    const showRound = (index) => {
+      const round = analysis.rounds[index];
+      rule.setAttribute("x1", x(index));
+      rule.setAttribute("x2", x(index));
+      rule.classList.add("visible");
+      stockReadout.innerHTML = `<strong>${round ? `After Round ${round}` : "Starting field"}</strong><span class="stock-readout-values">${analysis.groups.map((group) => `<span><b>${esc(group.name)}:</b> ${group.alivePctByRound[index].toFixed(1)}%</span>`).join("")}</span>`;
+    };
+    chart.addEventListener("pointermove", (event) => {
+      const bounds = chart.getBoundingClientRect();
+      const svgX = (event.clientX - bounds.left) / bounds.width * width;
+      const index = Math.max(0, Math.min(analysis.rounds.length - 1, Math.round((svgX - margin.left) / plotWidth * (analysis.rounds.length - 1))));
+      showRound(index);
+    });
+    chart.addEventListener("pointerleave", () => {
+      rule.classList.remove("visible");
+      stockReadout.innerHTML = "<strong>Compare the curves</strong><span>Hover a round for the surviving share of each group.</span>";
+    });
+  };
+
   const showArchetype = (name) => {
     const archetype = byName.get(name);
     if (!archetype) return;
@@ -568,6 +625,7 @@ function renderVariance(data) {
   });
 
   showArchetype(byName.has("Mono Red Madness") ? "Mono Red Madness" : archetypes[0].name);
+  renderStockSuccess(data.stockSuccess);
 }
 
 Promise.all([DATA_URL, EVENT_DATA_URL, COMPARISON_DATA_URL].map((url) => fetch(url).then((response) => {
