@@ -228,6 +228,7 @@ function render(data, eventData, comparisonData) {
     survivorBands.set(round, band);
   });
   let selectedIndex = null;
+  let selectedItem = null;
   const recordAt = (player, round) => {
     if (!round) return "0-0-0";
     return player.rounds.find((item) => item.round === round)?.standing?.matchRecord || "-";
@@ -366,8 +367,10 @@ function render(data, eventData, comparisonData) {
       alivePanel.classList.remove("visible");
       svg.querySelectorAll(".area-band.selected").forEach((band) => band.classList.remove("selected"));
       selectedIndex = null;
+      selectedItem = null;
       rule.classList.remove("selected");
       rule.classList.remove("visible");
+      clearHover();
     });
   };
   const showValue = (item, index) => {
@@ -383,13 +386,12 @@ function render(data, eventData, comparisonData) {
   };
   const clearHover = () => {
     svg.querySelectorAll(".area-band.highlighted").forEach((band) => band.classList.remove("highlighted"));
-    readout.classList.remove("active");
-    readout.innerHTML = "<strong>Explore the field</strong><span>Hover a region for its round-by-round share.</span>";
     if (selectedIndex == null) {
+      readout.classList.remove("active");
+      readout.innerHTML = "<strong>Explore the field</strong><span>Hover or tap a region for its round-by-round share.</span>";
       rule.classList.remove("visible");
     } else {
-      rule.setAttribute("x1", x(selectedIndex));
-      rule.setAttribute("x2", x(selectedIndex));
+      showValue(selectedItem, selectedIndex);
       rule.classList.add("visible", "selected");
     }
     svg.classList.remove("chart-hovering");
@@ -431,9 +433,11 @@ function render(data, eventData, comparisonData) {
     svg.querySelectorAll(".area-band.selected").forEach((selected) => selected.classList.remove("selected"));
     svg.querySelector(`.area-band[data-archetype="${CSS.escape(item.name)}"]`)?.classList.add("selected");
     selectedIndex = index;
+    selectedItem = item;
     rule.setAttribute("x1", x(index));
     rule.setAttribute("x2", x(index));
     rule.classList.add("visible", "selected");
+    showValue(item, index);
     renderAlive(item, index);
   });
   renderComparison();
@@ -446,6 +450,7 @@ function renderVariance(data) {
   const svg = document.querySelector("#variance-umap");
   const readout = document.querySelector("#umap-readout");
   const cardShifts = document.querySelector("#card-shifts");
+  let selectedUmapPoint = null;
   const archetypes = data.archetypes;
   const byName = new Map(archetypes.map((archetype) => [archetype.name, archetype]));
   const manaPips = (name) => (MANA_BY_ARCHETYPE[name] || []).map((mana) =>
@@ -493,6 +498,7 @@ function renderVariance(data) {
   };
 
   const renderUmap = (archetype) => {
+    selectedUmapPoint = null;
     const width = 720;
     const height = 460;
     const margin = 30;
@@ -522,7 +528,7 @@ function renderVariance(data) {
     }).join("");
     svg.innerHTML = `${grid}${points}<text class="umap-axis-note" x="${width - margin}" y="${height - 9}" text-anchor="end">Nearer points use more similar cards</text>`;
     readout.classList.remove("active");
-    readout.innerHTML = "<strong>Hover a point</strong><span>Repeated identical lists are drawn larger.</span>";
+    readout.innerHTML = "<strong>Hover or tap a point</strong><span>Repeated identical lists are drawn larger.</span>";
   };
 
   const renderStockSuccess = (analysis) => {
@@ -563,6 +569,12 @@ function renderVariance(data) {
     chart.innerHTML = `${horizontalGrid}${verticalGrid}${lines}<line class="stock-hover-rule" x1="0" x2="0" y1="${margin.top}" y2="${height - margin.bottom}" />
       <rect class="stock-chart-hit" x="${margin.left}" y="${margin.top}" width="${plotWidth}" height="${plotHeight}" />`;
     const rule = chart.querySelector(".stock-hover-rule");
+    let selectedRoundIndex = null;
+    const roundIndexForEvent = (event) => {
+      const bounds = chart.getBoundingClientRect();
+      const svgX = (event.clientX - bounds.left) / bounds.width * width;
+      return Math.max(0, Math.min(analysis.rounds.length - 1, Math.round((svgX - margin.left) / plotWidth * (analysis.rounds.length - 1))));
+    };
     const showRound = (index) => {
       const round = analysis.rounds[index];
       rule.setAttribute("x1", x(index));
@@ -571,14 +583,21 @@ function renderVariance(data) {
       stockReadout.innerHTML = `<strong>${round ? `After Round ${round}` : "Starting field"}</strong><span class="stock-readout-values">${analysis.groups.map((group) => `<span><b>${esc(group.name)}:</b> ${group.alivePctByRound[index].toFixed(1)}%</span>`).join("")}</span>`;
     };
     chart.addEventListener("pointermove", (event) => {
-      const bounds = chart.getBoundingClientRect();
-      const svgX = (event.clientX - bounds.left) / bounds.width * width;
-      const index = Math.max(0, Math.min(analysis.rounds.length - 1, Math.round((svgX - margin.left) / plotWidth * (analysis.rounds.length - 1))));
-      showRound(index);
+      showRound(roundIndexForEvent(event));
     });
+    const selectRound = (event) => {
+      selectedRoundIndex = roundIndexForEvent(event);
+      showRound(selectedRoundIndex);
+    };
+    chart.addEventListener("pointerdown", selectRound);
+    chart.addEventListener("click", selectRound);
     chart.addEventListener("pointerleave", () => {
-      rule.classList.remove("visible");
-      stockReadout.innerHTML = "<strong>Compare the curves</strong><span>Hover a round for the surviving share of each group.</span>";
+      if (selectedRoundIndex != null) {
+        showRound(selectedRoundIndex);
+      } else {
+        rule.classList.remove("visible");
+        stockReadout.innerHTML = "<strong>Compare the curves</strong><span>Hover or tap a round for the surviving share of each group.</span>";
+      }
     });
   };
 
@@ -605,23 +624,46 @@ function renderVariance(data) {
     if (row) showArchetype(row.dataset.archetype);
   });
   select.addEventListener("change", () => showArchetype(select.value));
-  svg.addEventListener("pointermove", (event) => {
-    const point = event.target.closest(".umap-point");
-    if (!point) return;
+  const showUmapPoint = (point, persist = false) => {
     svg.querySelectorAll(".umap-point.active").forEach((item) => item.classList.remove("active"));
     point.classList.add("active");
-    svg.classList.add("umap-hovering");
+    if (persist) selectedUmapPoint = point;
     const eventName = point.dataset.event === "Genesis" ? "Paupergenesis" : "Paupergeddon";
     const personal = point.dataset.player.toLowerCase() === "swelden" ? " · my list" : "";
     readout.style.setProperty("--readout-color", point.dataset.event === "Genesis" ? "#2167ae" : "#d65b32");
     readout.classList.add("active");
     readout.innerHTML = `<strong>${esc(point.dataset.label)}</strong><span>${eventName}${personal}${Number(point.dataset.count) > 1 ? ` · ${point.dataset.count} exact copies` : ""}</span>`;
+  };
+  svg.addEventListener("pointermove", (event) => {
+    const point = event.target.closest(".umap-point");
+    if (!point) return;
+    svg.classList.add("umap-hovering");
+    showUmapPoint(point);
+  });
+  svg.addEventListener("pointerdown", (event) => {
+    const point = event.target.closest(".umap-point");
+    if (point) showUmapPoint(point, true);
+  });
+  svg.addEventListener("click", (event) => {
+    const point = event.target.closest(".umap-point");
+    if (point) {
+      showUmapPoint(point, true);
+      return;
+    }
+    selectedUmapPoint = null;
+    svg.querySelectorAll(".umap-point.active").forEach((item) => item.classList.remove("active"));
+    readout.classList.remove("active");
+    readout.innerHTML = "<strong>Hover or tap a point</strong><span>Repeated identical lists are drawn larger.</span>";
   });
   svg.addEventListener("pointerleave", () => {
-    svg.querySelectorAll(".umap-point.active").forEach((point) => point.classList.remove("active"));
     svg.classList.remove("umap-hovering");
-    readout.classList.remove("active");
-    readout.innerHTML = "<strong>Hover a point</strong><span>Repeated identical lists are drawn larger.</span>";
+    if (selectedUmapPoint) {
+      showUmapPoint(selectedUmapPoint);
+    } else {
+      svg.querySelectorAll(".umap-point.active").forEach((point) => point.classList.remove("active"));
+      readout.classList.remove("active");
+      readout.innerHTML = "<strong>Hover or tap a point</strong><span>Repeated identical lists are drawn larger.</span>";
+    }
   });
 
   showArchetype(byName.has("Mono Red Madness") ? "Mono Red Madness" : archetypes[0].name);
