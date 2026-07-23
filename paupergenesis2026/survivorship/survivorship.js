@@ -363,13 +363,17 @@ function render(data, eventData, comparisonData) {
     </div>
     <p class="rank-note">Survivor rank is grouped by each player&rsquo;s last round alive; the range shows where that round falls in the 248-player survival order. OMW, GW, and OGW are Melee&rsquo;s tiebreakers at the player&rsquo;s last alive standing. Matches after crossing the X-1-1 threshold do not count.</p>`;
     alivePanel.classList.add("visible");
-    alivePanel.querySelector(".alive-close").addEventListener("click", () => {
+    alivePanel.querySelector(".alive-close").addEventListener("click", (event) => {
+      event.stopPropagation();
       alivePanel.classList.remove("visible");
+      alivePanel.innerHTML = `<div class="alive-empty">
+        <strong>Decks alive here</strong>
+        <span>Click an archetype at any round to inspect its surviving decklists.</span>
+      </div>`;
       svg.querySelectorAll(".area-band.selected").forEach((band) => band.classList.remove("selected"));
       selectedIndex = null;
       selectedItem = null;
-      rule.classList.remove("selected");
-      rule.classList.remove("visible");
+      rule.classList.remove("selected", "visible");
       clearHover();
     });
   };
