@@ -357,7 +357,7 @@ function render(data, eventData, comparisonData) {
     </div>
     <div class="alive-table-wrap">
       <table class="alive-table">
-        <thead><tr><th>Player</th>${archetypeHeader}<th>Survivor rank</th><th>Tourney rank</th><th title="Opponent match-win percentage">OMW</th><th title="Game-win percentage">GW</th><th title="Opponent game-win percentage">OGW</th><th>${snapshot.round ? `Record after R${snapshot.round}` : "Record"}</th><th>Final record</th><th>Decklist</th></tr></thead>
+        <thead><tr><th>Player</th>${archetypeHeader}<th>Survivor rank</th><th>Tourney rank</th><th title="Opponent match-win percentage">OMW</th><th title="Game-win percentage">GW</th><th title="Opponent game-win percentage">OGW</th><th>${snapshot.round ? `Record after R${snapshot.round}` : "Record"}</th><th>Final Swiss record</th><th>Decklist</th></tr></thead>
         <tbody>${rows || `<tr><td colspan="${isOther ? 10 : 9}" class="no-decks">No decks remained alive in this slice.</td></tr>`}</tbody>
       </table>
     </div>
