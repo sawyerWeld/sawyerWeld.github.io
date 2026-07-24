@@ -1,7 +1,7 @@
 const DATA_URL = "data/paupergenesis-2026-survivorship.json";
 const EVENT_DATA_URL = "data/paupergenesis-2026.json";
 const COMPARISON_DATA_URL = "data/paupergenesis-2026-comparison.json";
-const VARIANCE_DATA_URL = "data/genesis-geddon-variance.json?v=2";
+const VARIANCE_DATA_URL = "data/genesis-geddon-variance.json?v=3";
 const COLORS = [
   "#2f6fb0", "#d14a24", "#18864b", "#7a3fe3", "#bf2044", "#137f78", "#ad6500",
   "#3d3abf", "#df478d", "#5d6d82", "#8a5a44", "#2f91bd", "#789d27", "#e07b39",
