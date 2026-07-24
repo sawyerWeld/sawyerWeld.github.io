@@ -168,7 +168,9 @@ h1 { margin-top: 4px; font-size: 34px; line-height: 1.1; }
 .variance-select-row label { color: #455468; font-size: 11px; font-weight: 850; text-transform: uppercase; }
 .variance-select-row select { width: 100%; min-height: 36px; padding: 7px 32px 7px 10px; border: 1px solid #cfd8e2; border-radius: 5px; color: var(--ink); background: var(--panel); font: inherit; font-size: 13px; }
 .variance-select-row p { color: var(--muted); font-size: 11px; line-height: 1.45; }
-.variance-detail-grid { display: grid; grid-template-columns: minmax(430px, 1.35fr) minmax(380px, 1fr); gap: 24px; margin-top: 16px; }
+.variance-detail-grid { display: grid; grid-template-columns: minmax(430px, 1.35fr) minmax(380px, 1fr); grid-template-areas: "umap shifts" "deck deck"; gap: 24px; margin-top: 16px; }
+.umap-column { grid-area: umap; }
+.card-shift-column { grid-area: shifts; }
 .detail-title-row { min-height: 48px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
 .umap-readout { max-width: 260px; min-height: 42px; padding-left: 10px; border-left: 3px solid var(--line); display: grid; align-content: center; gap: 1px; font-size: 11px; }
 .umap-readout.active { border-color: var(--readout-color, var(--blue)); }
@@ -182,6 +184,32 @@ h1 { margin-top: 4px; font-size: 34px; line-height: 1.1; }
 .umap-point:hover, .umap-point.active { stroke: #192638; stroke-width: 3; }
 .umap-hovering .umap-point:not(:hover):not(.active) { opacity: .28; }
 .umap-axis-note { fill: var(--muted); font-size: 10px; }
+.umap-point:focus-visible { outline: none; stroke: #192638; stroke-width: 4; }
+.umap-deck-panel[hidden] { display: none; }
+.umap-deck-panel { grid-area: deck; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+.umap-deck-heading { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 13px 14px; border-left: 4px solid var(--selected-deck-color, var(--blue)); background: #f6f8fa; }
+.umap-deck-identity { min-width: 0; }
+.umap-deck-title { display: flex; align-items: center; gap: 4px; }
+.umap-deck-title img { display: block; width: 14px; height: 14px; }
+.umap-deck-title h3 { margin: 0 0 0 3px; overflow: hidden; font-size: 16px; text-overflow: ellipsis; white-space: nowrap; }
+.umap-deck-identity p { margin-top: 3px; color: var(--muted); font-size: 11px; }
+.umap-deck-actions { display: flex; align-items: flex-end; justify-content: flex-end; gap: 10px; }
+.umap-deck-list-control { display: grid; gap: 3px; color: var(--muted); font-size: 9px; font-weight: 850; text-transform: uppercase; }
+.umap-deck-list-control select { width: min(320px, 36vw); min-height: 34px; padding: 6px 30px 6px 8px; border: 1px solid #cbd5df; border-radius: 5px; color: var(--ink); background: var(--panel); font: inherit; font-size: 11px; font-weight: 650; text-transform: none; }
+.umap-deck-source { min-height: 34px; display: inline-flex; align-items: center; color: #205f9d; font-size: 11px; font-weight: 800; text-underline-offset: 3px; white-space: nowrap; }
+.umap-deck-close { width: 34px; height: 34px; flex: 0 0 auto; padding: 0; border: 1px solid #cbd5df; border-radius: 5px; color: var(--muted); background: var(--panel); font-size: 22px; line-height: 1; cursor: pointer; }
+.umap-deck-close:hover { color: var(--ink); border-color: #9facba; }
+.umap-deck-note { padding: 9px 14px; border-top: 1px solid #e4e9ef; color: var(--muted); background: #fbfcfd; font-size: 11px; }
+.umap-deck-columns { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); gap: 22px; padding: 15px; }
+.umap-deck-board + .umap-deck-board { padding-left: 22px; border-left: 1px solid var(--line); }
+.umap-deck-board-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 9px; }
+.umap-deck-board-title h4 { margin: 0; font-size: 13px; }
+.umap-deck-board-title span { color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
+.umap-deck-card-group + .umap-deck-card-group { margin-top: 10px; }
+.umap-deck-card-head { min-height: 27px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 5px 8px; color: #3d4b5d; background: #e9edf1; font-size: 10px; font-weight: 850; }
+.umap-deck-card-row { min-height: 27px; display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: center; gap: 8px; border-bottom: 1px solid #e6ebf0; font-size: 11px; }
+.umap-deck-card-row strong { text-align: right; font-variant-numeric: tabular-nums; }
+.umap-deck-empty { padding: 12px 0; color: var(--muted); font-size: 11px; }
 .card-shift-head, .card-shift-row { display: grid; grid-template-columns: minmax(150px, 1.35fr) .72fr .72fr 58px; align-items: center; gap: 9px; }
 .card-shift-head { min-height: 29px; padding: 4px 8px; color: var(--muted); background: #f6f8fa; font-size: 9px; font-weight: 850; text-transform: uppercase; }
 .card-shift-head span:not(:first-child) { text-align: right; }
@@ -240,9 +268,16 @@ h1 { margin-top: 4px; font-size: 34px; line-height: 1.1; }
   .variance-overview { min-width: 720px; }
   .variance-select-row { grid-template-columns: 1fr; gap: 7px; }
   .variance-select-row select { max-width: none; }
-  .variance-detail-grid { grid-template-columns: 1fr; }
+  .variance-detail-grid { grid-template-columns: 1fr; grid-template-areas: "umap" "deck" "shifts"; }
   .detail-title-row { min-height: 0; flex-direction: column; }
   .umap-readout { width: 100%; max-width: none; }
+  .umap-deck-heading { align-items: flex-start; flex-direction: column; padding-right: 54px; }
+  .umap-deck-actions { width: 100%; align-items: flex-end; justify-content: flex-start; flex-wrap: wrap; }
+  .umap-deck-list-control { min-width: 0; flex: 1 1 220px; }
+  .umap-deck-list-control select { width: 100%; }
+  .umap-deck-close { position: absolute; top: 12px; right: 12px; }
+  .umap-deck-columns { grid-template-columns: 1fr; gap: 16px; padding: 13px; }
+  .umap-deck-board + .umap-deck-board { padding: 16px 0 0; border-top: 1px solid var(--line); border-left: 0; }
   .card-shift-head, .card-shift-row { grid-template-columns: minmax(112px, 1.2fr) .66fr .66fr 50px; gap: 5px; }
   .stock-chart-heading { align-items: flex-start; flex-direction: column; }
   .stock-key { align-items: flex-start; flex-wrap: wrap; gap: 8px 13px; }

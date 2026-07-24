@@ -1,7 +1,7 @@
 const DATA_URL = "data/paupergenesis-2026-survivorship.json";
 const EVENT_DATA_URL = "data/paupergenesis-2026.json";
 const COMPARISON_DATA_URL = "data/paupergenesis-2026-comparison.json";
-const VARIANCE_DATA_URL = "data/genesis-geddon-variance.json";
+const VARIANCE_DATA_URL = "data/genesis-geddon-variance.json?v=2";
 const COLORS = [
   "#2f6fb0", "#d14a24", "#18864b", "#7a3fe3", "#bf2044", "#137f78", "#ad6500",
   "#3d3abf", "#df478d", "#5d6d82", "#8a5a44", "#2f91bd", "#789d27", "#e07b39",
@@ -454,12 +454,100 @@ function renderVariance(data) {
   const svg = document.querySelector("#variance-umap");
   const readout = document.querySelector("#umap-readout");
   const cardShifts = document.querySelector("#card-shifts");
+  const deckPanel = document.querySelector("#umap-deck-panel");
   let selectedUmapPoint = null;
+  let currentUmapPoints = [];
+  let currentUmapArchetype = null;
   const archetypes = data.archetypes;
   const byName = new Map(archetypes.map((archetype) => [archetype.name, archetype]));
   const manaPips = (name) => (MANA_BY_ARCHETYPE[name] || []).map((mana) =>
     `<img src="mana/${mana}.svg" alt="${mana}" width="14" height="14">`
   ).join("");
+  const cardTypeOrder = ["Land", "Creature", "Sorcery", "Instant", "Artifact", "Enchantment", "Planeswalker", "Other"];
+  const cardTypeLabels = {
+    Land: "Lands",
+    Creature: "Creatures",
+    Sorcery: "Sorceries",
+    Instant: "Instants",
+    Artifact: "Artifacts",
+    Enchantment: "Enchantments",
+    Planeswalker: "Planeswalkers",
+    Other: "Other",
+  };
+  const renderDeckBoard = (cards, title) => {
+    const total = cards.reduce((sum, card) => sum + Number(card.quantity || 0), 0);
+    const groups = cardTypeOrder.map((type) => {
+      const rows = cards.filter((card) => (card.type || "Other") === type);
+      if (!rows.length) return "";
+      const typeTotal = rows.reduce((sum, card) => sum + Number(card.quantity || 0), 0);
+      return `<div class="umap-deck-card-group">
+        <div class="umap-deck-card-head"><span>${cardTypeLabels[type]}</span><span>${typeTotal}</span></div>
+        ${rows.map((card) => `<div class="umap-deck-card-row"><strong>${card.quantity}</strong><span>${esc(card.name)}</span></div>`).join("")}
+      </div>`;
+    }).join("");
+    return `<section class="umap-deck-board">
+      <div class="umap-deck-board-title"><h4>${title}</h4><span>${total} cards</span></div>
+      ${groups || `<p class="umap-deck-empty">No ${title.toLowerCase()} cards recorded.</p>`}
+    </section>`;
+  };
+  const resetUmapReadout = () => {
+    readout.classList.remove("active");
+    readout.innerHTML = "<strong>Hover or tap a point</strong><span>Repeated identical lists are drawn larger.</span>";
+  };
+  const closeUmapDeck = () => {
+    deckPanel.hidden = true;
+    deckPanel.innerHTML = "";
+    selectedUmapPoint = null;
+    svg.querySelectorAll(".umap-point.active").forEach((point) => point.classList.remove("active"));
+    resetUmapReadout();
+  };
+  const renderUmapDeck = (point, deckIndex = 0) => {
+    const decks = point.decks || [];
+    const deck = decks[deckIndex];
+    if (!deck) return;
+    const eventName = point.event === "Genesis" ? "Paupergenesis" : "Paupergeddon";
+    const meta = [eventName, currentUmapArchetype?.name];
+    if (deck.rank) meta.push(`#${deck.rank}`);
+    if (deck.record) meta.push(`${deck.record} Swiss`);
+    const optionLabel = (item) => [
+      item.label,
+      item.rank ? `#${item.rank}` : "",
+      item.record || "",
+    ].filter(Boolean).join(" · ");
+    const selector = decks.length > 1
+      ? `<label class="umap-deck-list-control"><span>Matching list</span><select id="umap-deck-list-select">${decks.map((item, index) =>
+        `<option value="${index}"${index === deckIndex ? " selected" : ""}>${esc(optionLabel(item))}</option>`
+      ).join("")}</select></label>`
+      : "";
+    const source = deck.url
+      ? `<a class="umap-deck-source" href="${esc(deck.url)}" target="_blank" rel="noopener">View on Melee</a>`
+      : "";
+    const duplicateNote = decks.length > 1
+      ? `<p class="umap-deck-note">${decks.length} lists share this main deck. Select a player to inspect that list&rsquo;s sideboard.</p>`
+      : "";
+    const color = point.event === "Genesis" ? "#2167ae" : "#d65b32";
+    deckPanel.innerHTML = `<div class="umap-deck-heading" style="--selected-deck-color:${color}">
+      <div class="umap-deck-identity">
+        <div class="umap-deck-title">${manaPips(currentUmapArchetype?.name || "")}<h3>${esc(deck.label)}</h3></div>
+        <p>${meta.filter(Boolean).map(esc).join(" · ")}</p>
+      </div>
+      <div class="umap-deck-actions">
+        ${selector}
+        ${source}
+        <button class="umap-deck-close" type="button" aria-label="Close selected deck" title="Close">&times;</button>
+      </div>
+    </div>
+    ${duplicateNote}
+    <div class="umap-deck-columns">
+      ${renderDeckBoard(deck.main, "Main deck")}
+      ${renderDeckBoard(deck.side, "Sideboard")}
+    </div>`;
+    deckPanel.hidden = false;
+    deckPanel.querySelector("#umap-deck-list-select")?.addEventListener("change", (event) => {
+      renderUmapDeck(point, Number(event.target.value));
+    });
+    deckPanel.querySelector(".umap-deck-close").addEventListener("click", closeUmapDeck);
+  };
   const maxDistance = Math.max(15, Math.ceil(Math.max(...archetypes.flatMap((archetype) => [
     archetype.events.Genesis.meanPairSlots,
     archetype.events.Geddon.meanPairSlots,
@@ -503,6 +591,9 @@ function renderVariance(data) {
 
   const renderUmap = (archetype) => {
     selectedUmapPoint = null;
+    currentUmapArchetype = archetype;
+    deckPanel.hidden = true;
+    deckPanel.innerHTML = "";
     const width = 720;
     const height = 460;
     const margin = 30;
@@ -516,14 +607,14 @@ function renderVariance(data) {
     const y = (value) => height - margin - (value - minY) / yRange * (height - margin * 2);
     const grid = [0.25, 0.5, 0.75].map((share) => `<line class="umap-grid" x1="${margin + share * (width - margin * 2)}" x2="${margin + share * (width - margin * 2)}" y1="${margin}" y2="${height - margin}" />
       <line class="umap-grid" x1="${margin}" x2="${width - margin}" y1="${margin + share * (height - margin * 2)}" y2="${margin + share * (height - margin * 2)}" />`).join("");
-    const ordered = [...archetype.points].sort((a, b) => (a.event === "Geddon" ? -1 : 1) - (b.event === "Geddon" ? -1 : 1) || b.count - a.count);
-    const points = ordered.map((point) => {
+    currentUmapPoints = [...archetype.points].sort((a, b) => (a.event === "Geddon" ? -1 : 1) - (b.event === "Geddon" ? -1 : 1) || b.count - a.count);
+    const points = currentUmapPoints.map((point, pointIndex) => {
       const offset = point.event === "Genesis" ? -3 : 3;
       const cx = x(point.x) + offset;
       const cy = y(point.y);
       const radius = Math.min(16, 5 + Math.sqrt(point.count) * 1.55);
       const personal = point.player?.toLowerCase() === "swelden" ? " personal" : "";
-      const common = `class="umap-point ${point.event.toLowerCase()}${personal}" data-event="${point.event}" data-label="${esc(point.label)}" data-count="${point.count}" data-player="${esc(point.player || "")}"`;
+      const common = `class="umap-point ${point.event.toLowerCase()}${personal}" tabindex="0" role="button" aria-label="${esc(`${point.label}, ${point.event}`)}" data-point-index="${pointIndex}" data-event="${point.event}" data-label="${esc(point.label)}" data-count="${point.count}" data-player="${esc(point.player || "")}"`;
       if (point.event === "Genesis") {
         return `<circle ${common} cx="${cx}" cy="${cy}" r="${radius}" />`;
       }
@@ -531,8 +622,7 @@ function renderVariance(data) {
       return `<rect ${common} x="${cx - side / 2}" y="${cy - side / 2}" width="${side}" height="${side}" rx="1" transform="rotate(45 ${cx} ${cy})" />`;
     }).join("");
     svg.innerHTML = `${grid}${points}<text class="umap-axis-note" x="${width - margin}" y="${height - 9}" text-anchor="end">Nearer points use more similar cards</text>`;
-    readout.classList.remove("active");
-    readout.innerHTML = "<strong>Hover or tap a point</strong><span>Repeated identical lists are drawn larger.</span>";
+    resetUmapReadout();
   };
 
   const renderStockSuccess = (analysis) => {
@@ -629,14 +719,19 @@ function renderVariance(data) {
   });
   select.addEventListener("change", () => showArchetype(select.value));
   const showUmapPoint = (point, persist = false) => {
+    const pointData = currentUmapPoints[Number(point.dataset.pointIndex)];
+    if (!pointData) return;
     svg.querySelectorAll(".umap-point.active").forEach((item) => item.classList.remove("active"));
     point.classList.add("active");
-    if (persist) selectedUmapPoint = point;
+    if (persist) {
+      selectedUmapPoint = point;
+      renderUmapDeck(pointData);
+    }
     const eventName = point.dataset.event === "Genesis" ? "Paupergenesis" : "Paupergeddon";
     const personal = point.dataset.player.toLowerCase() === "swelden" ? " · my list" : "";
     readout.style.setProperty("--readout-color", point.dataset.event === "Genesis" ? "#2167ae" : "#d65b32");
     readout.classList.add("active");
-    readout.innerHTML = `<strong>${esc(point.dataset.label)}</strong><span>${eventName}${personal}${Number(point.dataset.count) > 1 ? ` · ${point.dataset.count} exact copies` : ""}</span>`;
+    readout.innerHTML = `<strong>${esc(point.dataset.label)}</strong><span>${eventName}${personal}</span>`;
   };
   svg.addEventListener("pointermove", (event) => {
     const point = event.target.closest(".umap-point");
@@ -654,10 +749,14 @@ function renderVariance(data) {
       showUmapPoint(point, true);
       return;
     }
-    selectedUmapPoint = null;
-    svg.querySelectorAll(".umap-point.active").forEach((item) => item.classList.remove("active"));
-    readout.classList.remove("active");
-    readout.innerHTML = "<strong>Hover or tap a point</strong><span>Repeated identical lists are drawn larger.</span>";
+    closeUmapDeck();
+  });
+  svg.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const point = event.target.closest(".umap-point");
+    if (!point) return;
+    event.preventDefault();
+    showUmapPoint(point, true);
   });
   svg.addEventListener("pointerleave", () => {
     svg.classList.remove("umap-hovering");
@@ -665,8 +764,7 @@ function renderVariance(data) {
       showUmapPoint(selectedUmapPoint);
     } else {
       svg.querySelectorAll(".umap-point.active").forEach((point) => point.classList.remove("active"));
-      readout.classList.remove("active");
-      readout.innerHTML = "<strong>Hover or tap a point</strong><span>Repeated identical lists are drawn larger.</span>";
+      resetUmapReadout();
     }
   });
 
