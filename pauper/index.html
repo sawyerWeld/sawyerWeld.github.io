@@ -71,25 +71,58 @@
     gap: 8px;
   }
 
-  .year-row {
-    display: grid;
-    grid-template-columns: 74px minmax(0, 1fr);
-    gap: 32px;
-    padding: 26px 0 46px;
+  .year-section {
+    padding: 18px 0 46px;
   }
 
   .year {
-    padding-top: 18px;
+    margin: 0 0 18px;
     color: #33383c;
     font-size: 0.86rem;
     font-weight: 800;
   }
 
-  .entries {
+  .months {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 54px;
-    row-gap: 18px;
+    gap: 30px;
+  }
+
+  .month-row {
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .month-row + .month-row {
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  .month {
+    margin: 0;
+    padding-top: 17px;
+    color: #33383c;
+    font-size: 0.86rem;
+    font-weight: 800;
+  }
+
+  .month-entries {
+    display: grid;
+    gap: 12px;
+  }
+
+  .entry-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pair-connector {
+    display: grid;
+    place-items: center;
+    color: #7c858b;
+    font-size: 1.1rem;
   }
 
   .entry {
@@ -313,16 +346,13 @@
     .wrap { width: min(calc(100vw - 22px), 860px); }
     header { padding-bottom: 24px; }
     .dek { font-size: 0.93rem; }
-    .year-row {
-      grid-template-columns: 1fr;
-      gap: 8px;
-      padding: 22px 0 32px;
-    }
-    .year { padding-top: 0; }
-    .entries {
-      grid-template-columns: minmax(0, 1fr);
-      row-gap: 10px;
-    }
+    .year-section { padding: 12px 0 32px; }
+    .year { margin-bottom: 20px; }
+    .month-row { grid-template-columns: 1fr; gap: 7px; }
+    .month { padding-top: 0; }
+    .month-entries { gap: 10px; }
+    .entry-pair { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .pair-connector { height: 16px; transform: rotate(90deg); }
     .entry {
       grid-template-columns: 96px minmax(0, 1fr);
       gap: 12px;
@@ -357,63 +387,77 @@
 
 <main class="wrap">
   <div class="timeline" aria-label="Pauper report timeline">
-    <section class="year-row" aria-labelledby="year-2026">
+    <section class="year-section" aria-labelledby="year-2026">
       <h2 class="year" id="year-2026">2026</h2>
-      <div class="entries">
-        <a class="entry" href="/paupergeddonsummer2026/">
-          <span class="thumb summer" aria-hidden="true"></span>
-          <div class="entry-body">
-            <div class="title-line">
-              <h3 class="title">Paupergeddon Summer</h3>
-            </div>
-            <div class="meta">Lucca, Italy / July 11-12, 2026</div>
-            <p class="summary">Metagame funnel, archetype consensus, and card usage across 1,069 decklists.</p>
-          </div>
-        </a>
+      <div class="months">
+        <section class="month-row" aria-labelledby="month-july-2026">
+          <h3 class="month" id="month-july-2026">July</h3>
+          <div class="month-entries">
+            <a class="entry" href="/paupergeddonsummer2026/">
+              <span class="thumb summer" aria-hidden="true"></span>
+              <div class="entry-body">
+                <div class="title-line">
+                  <h4 class="title">Paupergeddon Summer</h4>
+                </div>
+                <div class="meta">Lucca, Italy / July 11-12, 2026</div>
+                <p class="summary">Metagame funnel, archetype consensus, and card usage across 1,069 decklists.</p>
+              </div>
+            </a>
 
-        <a class="entry" href="/paupergenesis2026/">
-          <span class="thumb genesis" aria-hidden="true"></span>
-          <div class="entry-body">
-            <div class="title-line">
-              <h3 class="title">Paupergenesis</h3>
-            </div>
-            <div class="meta">248 players / Baltimore, Maryland / July 2026</div>
-            <p class="summary">Metagame, conversion funnel, consensus cards, and all published decklists.</p>
-          </div>
-        </a>
+            <div class="entry-pair" aria-label="Paupergenesis report and follow-up">
+              <a class="entry" href="/paupergenesis2026/">
+                <span class="thumb genesis" aria-hidden="true"></span>
+                <div class="entry-body">
+                  <div class="title-line">
+                    <h4 class="title">Paupergenesis</h4>
+                  </div>
+                  <div class="meta">248 players / Baltimore, Maryland / July 12, 2026</div>
+                  <p class="summary">Metagame, conversion funnel, consensus cards, and all published decklists.</p>
+                </div>
+              </a>
 
-        <a class="entry" href="/paupergenesis2026/survivorship/">
-          <span class="thumb survivorship" aria-hidden="true"></span>
-          <div class="entry-body">
-            <div class="title-line">
-              <h3 class="title">Paupergenesis: Survivorship</h3>
-            </div>
-            <div class="meta">Round-by-round analysis / July 2026</div>
-            <p class="summary">How the contender metagame changed by round, plus decklist variation and stock-list survival.</p>
-          </div>
-        </a>
+              <span class="pair-connector" aria-hidden="true">&rarr;</span>
 
-        <a class="entry" href="/spanishpauper2026/">
-          <span class="thumb spanish" aria-hidden="true"></span>
-          <div class="entry-body">
-            <div class="title-line">
-              <h3 class="title">Spanish Pauper Championship</h3>
+              <a class="entry" href="/paupergenesis2026/survivorship/">
+                <span class="thumb survivorship" aria-hidden="true"></span>
+                <div class="entry-body">
+                  <div class="title-line">
+                    <h4 class="title">Paupergenesis: Survivorship</h4>
+                  </div>
+                  <div class="meta">Follow-up analysis / July 2026</div>
+                  <p class="summary">How the contender metagame changed by round, plus decklist variation and stock-list survival.</p>
+                </div>
+              </a>
             </div>
-            <div class="meta">247 players / Ortuella, Bizkaia / July 2026</div>
-            <p class="summary">Largest BowSeeker-legal Pauper event before the ban.</p>
-          </div>
-        </a>
 
-        <a class="entry" href="/paupergeddon2026/">
-          <span class="thumb geddon" aria-hidden="true"></span>
-          <div class="entry-body">
-            <div class="title-line">
-              <h3 class="title">Paupergeddon Spring</h3>
-            </div>
-            <div class="meta">965 players / Luca, Italy / Spring 2026</div>
-            <p class="summary">Large-field Paupergeddon report with metagame and archetype views.</p>
+            <a class="entry" href="/spanishpauper2026/">
+              <span class="thumb spanish" aria-hidden="true"></span>
+              <div class="entry-body">
+                <div class="title-line">
+                  <h4 class="title">Spanish Pauper Championship</h4>
+                </div>
+                <div class="meta">247 players / Ortuella, Bizkaia / July 2026</div>
+                <p class="summary">Largest BowSeeker-legal Pauper event before the ban.</p>
+              </div>
+            </a>
           </div>
-        </a>
+        </section>
+
+        <section class="month-row" aria-labelledby="month-march-2026">
+          <h3 class="month" id="month-march-2026">March</h3>
+          <div class="month-entries">
+            <a class="entry" href="/paupergeddon2026/">
+              <span class="thumb geddon" aria-hidden="true"></span>
+              <div class="entry-body">
+                <div class="title-line">
+                  <h4 class="title">Paupergeddon Spring</h4>
+                </div>
+                <div class="meta">965 players / Luca, Italy / March 2026</div>
+                <p class="summary">Large-field Paupergeddon report with metagame and archetype views.</p>
+              </div>
+            </a>
+          </div>
+        </section>
       </div>
     </section>
   </div>
