@@ -222,6 +222,25 @@
     transform: skewX(-14deg);
   }
 
+  .thumb.survivorship {
+    background:
+      linear-gradient(90deg, rgba(23, 24, 23, 0.08) 1px, transparent 1px) 0 0 / 25% 100%,
+      linear-gradient(180deg, rgba(23, 24, 23, 0.08) 1px, transparent 1px) 0 0 / 100% 25%,
+      #fbfcfc;
+  }
+
+  .thumb.survivorship::before {
+    inset: 11px 9px 8px;
+    background: rgba(56, 111, 159, 0.72);
+    clip-path: polygon(0 65%, 18% 56%, 36% 61%, 54% 39%, 72% 47%, 100% 22%, 100% 100%, 0 100%);
+  }
+
+  .thumb.survivorship::after {
+    inset: 22px 9px 8px;
+    background: rgba(182, 79, 74, 0.72);
+    clip-path: polygon(0 72%, 18% 61%, 36% 67%, 54% 50%, 72% 58%, 100% 38%, 100% 100%, 0 100%);
+  }
+
   .thumb.summer::after {
     right: 11px;
     bottom: 11px;
@@ -362,6 +381,17 @@
             </div>
             <div class="meta">248 players / Baltimore, Maryland / July 2026</div>
             <p class="summary">Metagame, conversion funnel, consensus cards, and all published decklists.</p>
+          </div>
+        </a>
+
+        <a class="entry" href="/paupergenesis2026/survivorship/">
+          <span class="thumb survivorship" aria-hidden="true"></span>
+          <div class="entry-body">
+            <div class="title-line">
+              <h3 class="title">Paupergenesis: Survivorship</h3>
+            </div>
+            <div class="meta">Round-by-round analysis / July 2026</div>
+            <p class="summary">How the contender metagame changed by round, plus decklist variation and stock-list survival.</p>
           </div>
         </a>
 

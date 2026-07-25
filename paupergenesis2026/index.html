@@ -49,6 +49,10 @@
   .meta-pct { font-weight: 700; }
   .meta-count { color: var(--muted); }
   .text-button { margin-top: 14px; padding: 4px 0; border: 0; background: transparent; color: var(--blue); cursor: pointer; font-weight: 700; }
+  .report-follow-up { border-bottom: 1px solid var(--line); background: #fafafa; }
+  .report-follow-up .wrap { min-height: 54px; display: flex; align-items: center; gap: 18px; }
+  .report-follow-up-label { flex: 0 0 auto; color: var(--gold); font-size: .64rem; font-weight: 700; text-transform: uppercase; }
+  .report-follow-up a { color: var(--blue); font-size: .82rem; font-weight: 700; text-decoration-thickness: 1px; }
   .funnel-wrap { overflow-x: auto; padding: 18px 12px 12px; }
   #funnel svg { display: block; width: 100%; min-width: 760px; height: auto; }
   .guide { stroke: #cbd0d3; stroke-width: 1; }
@@ -101,6 +105,7 @@
     .usage-list { columns: 1; }
   }
   @media (max-width: 480px) {
+    .report-follow-up .wrap { align-items: flex-start; flex-direction: column; gap: 4px; padding: 12px 0; }
     .meta-list { padding: 14px 10px; }
     .meta-row { grid-template-columns: minmax(100px,1.2fr) minmax(70px,1fr) 48px; gap: 7px; }
     .meta-count { display: none; }
@@ -125,6 +130,12 @@
     <div class="report-stat"><span class="report-stat-label">Winning deck</span><span class="report-stat-value">Dimir Terror</span></div>
   </div>
 </div>
+<nav class="report-follow-up" aria-label="Related analysis">
+  <div class="wrap">
+    <span class="report-follow-up-label">Follow-up analysis</span>
+    <a href="/paupergenesis2026/survivorship/">How the metagame changed while players were still alive &rarr;</a>
+  </div>
+</nav>
 <main class="wrap">
   <section>
     <div class="section-head">
