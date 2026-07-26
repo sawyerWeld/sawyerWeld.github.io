@@ -7,6 +7,7 @@ import json
 import math
 import re
 import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -57,14 +58,28 @@ def fetch_json(url: str) -> dict:
 
 
 def topdeck_mainboard(raw: str | None) -> dict[str, int]:
+    mainboard, _ = topdeck_boards(raw)
+    return {card["name"]: card["quantity"] for card in mainboard}
+
+
+def topdeck_boards(raw: str | None) -> tuple[list[dict], list[dict]]:
     text = (raw or "").replace("\\n", "\n").replace("\\'", "'")
-    mainboard = text.split("~~Sideboard~~", 1)[0]
-    cards: dict[str, int] = {}
-    for line in mainboard.splitlines():
+    board = "main"
+    cards = {"main": [], "side": []}
+    for line in text.splitlines():
+        if line == "~~Mainboard~~":
+            board = "main"
+            continue
+        if line == "~~Sideboard~~":
+            board = "side"
+            continue
         match = re.fullmatch(r"(\d+)\s+(.+?)\s*", line)
         if match:
-            cards[match.group(2)] = int(match.group(1))
-    return cards
+            cards[board].append({
+                "name": match.group(2),
+                "quantity": int(match.group(1)),
+            })
+    return cards["main"], cards["side"]
 
 
 def genesis_mainboard(deck: dict) -> dict[str, int]:
@@ -80,10 +95,41 @@ def cosine_similarity(left: dict[str, int], right: dict[str, int]) -> float:
     return dot_product / (left_length * right_length)
 
 
+def card_type(type_line: str) -> str:
+    for name in ("Land", "Creature", "Sorcery", "Instant", "Artifact", "Enchantment"):
+        if re.search(rf"\b{name}\b", type_line):
+            return name
+    return "Other"
+
+
+def fetch_card_types(names: set[str]) -> dict[str, str]:
+    result: dict[str, str] = {}
+    ordered = sorted(names)
+    for offset in range(0, len(ordered), 75):
+        payload = json.dumps({
+            "identifiers": [{"name": name} for name in ordered[offset:offset + 75]]
+        }).encode()
+        request = urllib.request.Request(
+            "https://api.scryfall.com/cards/collection",
+            data=payload,
+            headers={
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "User-Agent": "sawyerwelden.com tournament report",
+            },
+        )
+        with urllib.request.urlopen(request, timeout=30) as response:
+            collection = json.load(response)
+        for card in collection.get("data", []):
+            result[card["name"]] = card_type(card.get("type_line", ""))
+    return result
+
+
 def main() -> None:
     root = Path(__file__).resolve().parents[1]
     genesis_path = root.parent / "paupergenesis2026" / "paupergenesis-data.json"
     output_path = root / "archetypes.json"
+    deck_output_path = root / "survivorship" / "data" / "common-ground-cup-4-decks.json"
 
     public_players = fetch_json(PLAYERS_URL)
     genesis_decks = json.loads(genesis_path.read_text())["decks"]
@@ -95,9 +141,11 @@ def main() -> None:
 
     by_uid: dict[str, str] = {}
     by_name: dict[str, str] = {}
+    parsed_decks: list[dict] = []
     for uid, player in public_players.items():
         name = player.get("name") or uid
-        mainboard = topdeck_mainboard(player.get("decklist"))
+        main_cards, side_cards = topdeck_boards(player.get("decklist"))
+        mainboard = {card["name"]: card["quantity"] for card in main_cards}
         if not mainboard:
             continue
         nearest_label, _ = max(
@@ -110,6 +158,13 @@ def main() -> None:
         label = MANUAL_LABELS.get(name, nearest_label)
         by_uid[uid] = label
         by_name[name] = label
+        parsed_decks.append({
+            "id": uid,
+            "player": name,
+            "archetype": label,
+            "main": main_cards,
+            "side": side_cards,
+        })
 
     # TopDeck contains a second, matchless Parker Daniels record. Applying the
     # submitted Parker list's label by name keeps that duplicate from appearing
@@ -121,7 +176,37 @@ def main() -> None:
 
     output = {"byUid": by_uid, "byName": by_name, "topCut": TOP_CUT}
     output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n")
-    print(f"Wrote {len(by_uid)} player labels across {len(set(by_uid.values()))} archetypes.")
+
+    known_types = {
+        card["name"]: card.get("type") or "Other"
+        for deck in genesis_decks
+        for board in ("main", "side")
+        for card in deck[board]
+    }
+    known_types["Fire // Ice"] = "Instant"
+    current_names = {
+        card["name"]
+        for deck in parsed_decks
+        for board in ("main", "side")
+        for card in deck[board]
+    }
+    known_types.update(fetch_card_types(current_names - known_types.keys()))
+    for deck in parsed_decks:
+        for board in ("main", "side"):
+            for card in deck[board]:
+                card["type"] = known_types.get(card["name"], "Other")
+
+    deck_output = {
+        "decks": sorted(parsed_decks, key=lambda deck: deck["player"].casefold()),
+        "generatedAt": datetime.now(timezone.utc).isoformat(),
+    }
+    deck_output_path.write_text(
+        json.dumps(deck_output, ensure_ascii=False, separators=(",", ":"))
+    )
+    print(
+        f"Wrote {len(by_uid)} player labels across {len(set(by_uid.values()))} archetypes "
+        f"and {len(parsed_decks)} published decklists."
+    )
 
 
 if __name__ == "__main__":

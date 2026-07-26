@@ -15,15 +15,12 @@ a { color: inherit; text-underline-offset: 3px; }
 .report-shell { width: min(1420px, calc(100% - 40px)); margin: 0 auto; padding: 36px 0 54px; }
 .report-header { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
 .eyebrow { color: #8a5e19; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.header-meta { display: flex; align-items: center; gap: 10px; }
+.header-meta span + span { padding-left: 10px; border-left: 1px solid #cdbf9f; color: var(--muted); letter-spacing: .04em; }
 h1 { margin-top: 5px; font-size: clamp(32px, 5vw, 58px); letter-spacing: -.045em; }
 h2 { font-size: 19px; }
 .source-links { display: flex; gap: 16px; }
 .source-link { color: var(--blue); font-size: 12px; font-weight: 800; }
-.event-summary { display: grid; grid-template-columns: 1.35fr 1fr 1.15fr 1fr; margin-bottom: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); overflow: hidden; }
-.event-summary > div { display: grid; gap: 4px; padding: 14px 16px; border-left: 1px solid var(--line); }
-.event-summary > div:first-child { border-left: 4px solid #d14a24; }
-.event-summary span { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.event-summary strong { font-size: 13px; }
 .chart-panel, .method-panel { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
 .chart-panel { padding: 19px; }
 .chart-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
@@ -64,17 +61,49 @@ h2 { font-size: 19px; }
 .method-panel { margin-top: 14px; padding: 19px; }
 .method-panel h2 { margin-top: 4px; }
 .method-panel p { max-width: 960px; margin-top: 9px; font-size: 13px; }
+.analysis-panel { margin-top: 14px; padding: 19px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.analysis-heading h2 { margin-top: 4px; }
+.analysis-heading > div > p:last-child { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.deck-pane { min-width: 0; margin-top: 18px; border: 1px solid var(--line); background: #f9fafb; }
+.deck-pane-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+.deck-pane-title { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+select { max-width: 280px; min-height: 34px; padding: 5px 32px 5px 9px; border: 1px solid #c8ced1; border-radius: 5px; background: #fff; color: var(--ink); font: inherit; font-size: 12px; }
+.deck-pane-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; padding: 14px; }
+.consensus-section h3 { margin: 0 0 7px; font-size: 11px; text-transform: uppercase; }
+.card-type-group + .card-type-group { margin-top: 12px; }
+.card-type-head { display: flex; justify-content: space-between; gap: 12px; padding: 6px 8px; background: #e6e9eb; font-size: 10px; font-weight: 800; }
+.card-row { display: grid; grid-template-columns: 42px minmax(0, 1fr) 50px; gap: 8px; align-items: center; min-height: 27px; border-bottom: 1px solid #e3e6e7; font-size: 11px; }
+.card-row:last-child, .exact-card-row:last-child { border-bottom: 0; }
+.avg { text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
+.prevalence { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.sideboard-column { min-width: 0; }
+.view-lists-button { margin-top: 16px; padding: 7px 0; border: 0; background: transparent; color: var(--blue); cursor: pointer; font: inherit; font-size: 11px; font-weight: 800; }
+.view-lists-button::before { content: "\25B8"; display: inline-block; margin-right: 6px; transition: transform 120ms ease; }
+.view-lists-button[aria-expanded="true"]::before { transform: rotate(90deg); }
+.decklists-panel { grid-column: 1 / -1; padding-top: 14px; border-top: 1px solid var(--line); }
+.decklists-panel[hidden] { display: none; }
+.decklists-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.decklists-head label { display: grid; gap: 5px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; }
+.decklists-meta { color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
+.decklist-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.exact-card-row { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 8px; align-items: center; min-height: 27px; border-bottom: 1px solid #e3e6e7; font-size: 11px; }
+.usage-list { margin-top: 18px; padding: 18px; border: 1px solid var(--line); background: #f9fafb; columns: 2; column-gap: 30px; }
+.usage-row { display: grid; grid-template-columns: minmax(0, 1fr) 55px 60px; gap: 8px; break-inside: avoid; min-height: 29px; border-bottom: 1px solid #dfe3e4; font-size: 11px; }
+.usage-copies, .usage-decks { text-align: right; font-variant-numeric: tabular-nums; }
+.usage-copies { font-weight: 800; }
+.usage-decks { color: var(--muted); }
+.loading-note { grid-column: 1 / -1; padding: 28px; color: var(--muted); font-size: 12px; text-align: center; }
 .error { padding: 60px 20px; color: #a62f27; font-weight: 800; text-align: center; }
 
 @media (max-width: 720px) {
   .report-shell { width: min(100% - 24px, 1420px); padding-top: 22px; }
   .report-header, .chart-heading { align-items: stretch; flex-direction: column; }
+  .header-meta { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .header-meta span + span { padding-left: 0; border-left: 0; }
   .source-links { justify-content: space-between; }
-  .event-summary { grid-template-columns: 1fr 1fr; }
-  .event-summary > div:nth-child(odd) { border-left: 4px solid var(--line); }
-  .event-summary > div:first-child { border-left-color: #d14a24; }
-  .event-summary > div:nth-child(n+3) { border-top: 1px solid var(--line); }
   .hover-readout { min-width: 0; }
   .chart-panel { padding: 14px 10px 12px; }
   .alive-table { min-width: 680px; }
+  .deck-pane-body, .decklist-grid { grid-template-columns: 1fr; }
+  .usage-list { columns: 1; }
 }
