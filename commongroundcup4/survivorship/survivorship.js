@@ -5,6 +5,80 @@ const COLORS = [
   "#ad6500", "#3d3abf", "#df478d", "#5d6d82", "#8a5a44", "#2f91bd",
   "#789d27", "#e07b39", "#006d77", "#9b5de5", "#c44536", "#457b9d",
 ];
+const MANA_FILL = {
+  W: "#d9c466",
+  U: "#2f80b7",
+  B: "#5d4a72",
+  R: "#c74a3a",
+  G: "#3f8c5a",
+  C: "#8d99a5",
+};
+const IDENTITY_FILL = {
+  WU: "#7899ad",
+  UB: "#53628a",
+  BR: "#8e4d52",
+  RG: "#71834f",
+  BG: "#496b59",
+  WR: "#b47749",
+  WG: "#82985d",
+  UR: "#68699a",
+  UG: "#438080",
+  WB: "#78677d",
+  WUB: "#6d6f83",
+  UBR: "#66576f",
+  BRG: "#6d6849",
+  WUR: "#81728a",
+  URG: "#50766e",
+  WRG: "#8b8050",
+  WBR: "#806161",
+  WBG: "#737458",
+  WUG: "#668477",
+  UBRG: "#5f695d",
+};
+const MANA_BY_ARCHETYPE = {
+  "White Weenie": ["W"],
+  "Mono Red Rally": ["R"],
+  "Dimir Faeries": ["U", "B"],
+  "Grixis Affinity": ["U", "B", "R"],
+  "Jund Wildfire": ["B", "R", "G"],
+  "Elves": ["G"],
+  "Spy Combo": ["B", "G"],
+  "Dimir Terror": ["U", "B"],
+  "Jeskai Ephemerate": ["W", "U", "R"],
+  "Mono Blue Terror": ["U"],
+  "Mono Red Madness": ["R"],
+  "Monster Tron": ["U", "G"],
+  "Bogles": ["W", "G"],
+  "Dimir Affinity": ["U", "B"],
+  "Esper Affinity": ["W", "U", "B"],
+  "Gruul Ponza": ["R", "G"],
+  "Izzet Terror": ["U", "R"],
+  "Mono Blue Faeries": ["U"],
+  "Mono Green Infect": ["G"],
+  "Naya Gates": ["W", "R", "G"],
+  "Simic Turbofog": ["U", "G"],
+  "Azorius Ephemerate": ["W", "U"],
+  "Dimir Enchantments": ["U", "B"],
+  "Dimir Teachings": ["U", "B"],
+  "Flicker Tron": ["U", "B", "R"],
+  "Golgari Pestilence": ["B", "G"],
+  "Gruul Monsters": ["R", "G"],
+  "Gruul Tokens": ["R", "G"],
+  "Jund Reanimator": ["B", "R", "G"],
+  "Mardu Synthesizer": ["W", "B", "R"],
+  "Mono Black Poison": ["B"],
+  "Mono Blue Tempo": ["U"],
+  "Mono White Heroic": ["W"],
+  "Rakdos Allies": ["B", "R"],
+  "Rakdos Madness Burn": ["B", "R"],
+  "Spiritualist Combo": ["W", "B", "G"],
+  "Temur Tokens": ["U", "R", "G"],
+  "Tireless Tribe": ["W", "R"],
+  "Turbofog": ["B", "G"],
+  "Turbofog Tron": ["W", "U", "G"],
+  "Walls": ["U", "B", "R", "G"],
+};
+const MANA_ASSET_PATH = "/paupergenesis2026/survivorship/mana";
 const esc = (value) => String(value ?? "").replace(/[&<>'"]/g, (char) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;",
 }[char]));
@@ -30,7 +104,8 @@ function render(data) {
   const hiddenCount = archetypes.length - visibleNames.length;
   const series = visibleNames.map((name, index) => ({
     name,
-    color: name === "Unclassified" ? "#9aa5ae" : COLORS[index % COLORS.length],
+    mana: MANA_BY_ARCHETYPE[name] || [],
+    color: COLORS[index % COLORS.length],
     values: snapshots.map((snapshot) => ({
       count: countFor(snapshot, name),
       share: shareFor(snapshot, name),
@@ -39,6 +114,7 @@ function render(data) {
   if (hiddenCount) {
     series.unshift({
       name: `${hiddenCount} other archetypes`,
+      mana: [],
       color: "#a5afb8",
       values: snapshots.map((snapshot) => {
         const count = snapshot.survivors - visibleNames.reduce((sum, name) => sum + countFor(snapshot, name), 0);
@@ -46,6 +122,10 @@ function render(data) {
       }),
     });
   }
+  series.forEach((item) => {
+    const identity = item.mana.join("");
+    item.color = IDENTITY_FILL[identity] || MANA_FILL[item.mana[0]] || item.color;
+  });
 
   const width = 1500;
   const height = 840;
@@ -72,6 +152,10 @@ function render(data) {
     return `<path class="area-band" data-archetype="${esc(item.name)}" fill="${item.color}" d="M${points.join(" L")} Z"><title>${esc(item.name)}</title></path>`;
   }).join("");
 
+  const pipImages = (item, startX, labelY) => item.mana.map((mana, index) =>
+    `<image class="edge-pip" href="${MANA_ASSET_PATH}/${mana}.svg" x="${startX + index * 16}" y="${labelY - 7}" width="14" height="14"/>`
+  ).join("");
+
   function edgeLabels(stageIndex, side) {
     const active = series.map((item) => {
       const itemBounds = bounds.get(item.name);
@@ -81,28 +165,40 @@ function render(data) {
         share: item.values[stageIndex].share,
       };
     }).filter((entry) => entry.share > 0).sort((a, b) => a.desired - b.desired);
-    const gap = 25;
+    const gap = 27;
+    const minY = margin.top + 8;
+    const maxY = height - margin.bottom - 8;
     active.forEach((entry, index) => {
-      entry.labelY = Math.max(entry.desired, index ? active[index - 1].labelY + gap : margin.top + 8);
+      entry.labelY = Math.max(entry.desired, index ? active[index - 1].labelY + gap : minY);
     });
     for (let index = active.length - 1; index >= 0; index -= 1) {
-      const ceiling = index === active.length - 1 ? height - margin.bottom - 8 : active[index + 1].labelY - gap;
+      const ceiling = index === active.length - 1 ? maxY : active[index + 1].labelY - gap;
       active[index].labelY = Math.min(active[index].labelY, ceiling);
     }
+    if (active[0]?.labelY < minY) {
+      const shift = minY - active[0].labelY;
+      active.forEach((entry) => { entry.labelY += shift; });
+    }
     return active.map(({ item, desired, labelY }, index) => {
+      const pips = item.mana;
       const hitTop = index ? (active[index - 1].labelY + labelY) / 2 : margin.top;
       const hitBottom = index < active.length - 1 ? (labelY + active[index + 1].labelY) / 2 : height - margin.bottom;
       if (side === "left") {
-        const labelRight = Math.min(238, 14 + item.name.length * 6.4);
+        const pipX = 10;
+        const nameX = pipX + pips.length * 16 + (pips.length ? 4 : 0);
+        const labelRight = nameX + item.name.length * 6.2 + 6;
         return `<g class="edge-label-group" data-archetype="${esc(item.name)}" data-stage-index="${stageIndex}">
-          <rect class="edge-hit" x="8" y="${hitTop}" width="${labelRight}" height="${hitBottom - hitTop}"/>
+          <rect class="edge-hit" x="8" y="${hitTop}" width="${labelRight - 8}" height="${hitBottom - hitTop}"/>
           <path class="edge-leader" d="M${margin.left},${desired} L${margin.left - 12},${desired} L${labelRight},${labelY}"/>
-          <text class="edge-label" x="10" y="${labelY + 4}">${esc(item.name)}</text></g>`;
+          ${pipImages(item, pipX, labelY)}<text class="edge-label" x="${nameX}" y="${labelY + 4}">${esc(item.name)}</text></g>`;
       }
+      const pipX = width - margin.right + 22;
+      const nameX = pipX + pips.length * 16 + (pips.length ? 4 : 0);
+      const labelWidth = pips.length * 16 + (pips.length ? 4 : 0) + item.name.length * 6.2 + 8;
       return `<g class="edge-label-group" data-archetype="${esc(item.name)}" data-stage-index="${stageIndex}">
-        <rect class="edge-hit" x="${width - margin.right + 12}" y="${hitTop}" width="238" height="${hitBottom - hitTop}"/>
+        <rect class="edge-hit" x="${pipX - 2}" y="${hitTop}" width="${labelWidth}" height="${hitBottom - hitTop}"/>
         <path class="edge-leader" d="M${width - margin.right},${desired} L${width - margin.right + 12},${desired} L${width - margin.right + 20},${labelY}"/>
-        <text class="edge-label" x="${width - margin.right + 24}" y="${labelY + 4}">${esc(item.name)}</text></g>`;
+        ${pipImages(item, pipX, labelY)}<text class="edge-label" x="${nameX}" y="${labelY + 4}">${esc(item.name)}</text></g>`;
     }).join("");
   }
 
@@ -160,8 +256,9 @@ function render(data) {
         <td>${player.topCut ? "Top 8" : "—"}</td></tr>`;
     }).join("");
     const panel = document.querySelector("#alive-panel");
+    const titlePips = item.mana.map((mana) => `<img src="${MANA_ASSET_PATH}/${mana}.svg" alt="${mana}" width="16" height="16">`).join("");
     panel.innerHTML = `<div class="alive-heading" style="--active-color:${item.color}">
-      <div><h3>${esc(item.name)}</h3><p>${snapshot.round ? `After round ${snapshot.round}` : "Starting field"} · ${players.length} players alive</p></div>
+      <div><div class="alive-title-pips">${titlePips}<h3>${esc(item.name)}</h3></div><p>${snapshot.round ? `After round ${snapshot.round}` : "Starting field"} · ${players.length} players alive</p></div>
       <button class="alive-close" type="button" aria-label="Close">&times;</button></div>
       <div class="alive-table-wrap"><table class="alive-table">
         <thead><tr><th>Player</th>${isOther ? "<th>Archetype</th>" : ""}<th>Record here</th><th>Provisional rank</th><th>Latest record</th><th>Cut</th></tr></thead>
