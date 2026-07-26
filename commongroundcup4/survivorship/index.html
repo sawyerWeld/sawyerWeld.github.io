@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="survivorship.css?v=3">
+  <link rel="stylesheet" href="survivorship.css?v=4">
 </head>
 <body>
   <main class="report-shell">
@@ -20,6 +20,7 @@
       <div class="source-links">
         <a class="source-link" href="https://topdeck.gg/bracket/the-4th-common-ground-cup-presented-by-the-common-ground" target="_blank" rel="noopener">TopDeck standings</a>
         <a class="source-link" href="https://topdeck.gg/event/the-4th-common-ground-cup-presented-by-the-common-ground" target="_blank" rel="noopener">Decklists</a>
+        <a class="source-link" href="/pauper/">My Pauper Index</a>
       </div>
     </header>
 
@@ -28,10 +29,6 @@
         <div>
           <h2 id="chart-title">Archetype share among players still alive</h2>
           <p>&ldquo;Alive&rdquo; means X-1-1 or better after that round. Each vertical slice adds up to 100%.</p>
-        </div>
-        <div class="hover-readout" id="hover-readout" aria-live="polite">
-          <strong>Preparing the field</strong>
-          <span>Loading the latest completed round.</span>
         </div>
       </div>
 
@@ -75,13 +72,7 @@
       <div class="usage-list" id="usage"><div class="loading-note">Loading card totals…</div></div>
     </section>
 
-    <section class="method-panel">
-      <p class="eyebrow">Method</p>
-      <h2>Seven Swiss rounds, then a Top 8</h2>
-      <p>The chart follows the 100-player field through the seven Swiss rounds. A player remains alive while their record is X-1-1 or better: each loss adds three points of deficit from perfect and each draw adds two, with five points allowed. The Top 8 marker uses the organizer&rsquo;s actual cut after Round 7.</p>
-      <p>Pairings, results, and decklists come from TopDeck. Archetypes are normalized from the published mainboards so closely related lists stay in a single readable band; distinctive brews retain their own names.</p>
-    </section>
   </main>
-  <script src="survivorship.js?v=3"></script>
+  <script src="survivorship.js?v=4"></script>
 </body>
 </html>

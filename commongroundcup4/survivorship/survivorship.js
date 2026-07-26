@@ -18,10 +18,6 @@ function render(data) {
       ${data.labels.classified} of ${data.labels.total} players are labeled. The chart will separate into archetype bands as decklists or organizer labels are added.`;
   }
 
-  const readout = document.querySelector("#hover-readout");
-  readout.innerHTML = `<strong>${data.event.status === "live" ? `Through Round ${data.event.completedRounds}` : "Swiss complete"}</strong>
-    <span>${data.event.players} players · seven Swiss rounds · Top ${data.event.topCut} cut</span>`;
-
   const archetypes = snapshots[0].archetypes.map((item) => item.name);
   const countFor = (snapshot, name) => snapshot.archetypes.find((item) => item.name === name)?.count ?? 0;
   const shareFor = (snapshot, name) => snapshot.archetypes.find((item) => item.name === name)?.share ?? 0;
@@ -129,10 +125,6 @@ function render(data) {
   let selected = null;
 
   function showValue(item, index) {
-    const value = item.values[index];
-    const snapshot = snapshots[index];
-    readout.style.setProperty("--active-color", item.color);
-    readout.innerHTML = `<strong>${esc(item.name)}</strong><span>${snapshot.round ? `Round ${snapshot.round}` : "Starting field"} · ${value.count} of ${snapshot.survivors} alive · ${value.share.toFixed(1)}%</span>`;
     rule.setAttribute("x1", x(index));
     rule.setAttribute("x2", x(index));
     rule.classList.add("visible");
@@ -142,12 +134,7 @@ function render(data) {
     svg.querySelectorAll(".highlighted").forEach((node) => node.classList.remove("highlighted"));
     svg.classList.remove("chart-hovering");
     if (selected) showValue(selected.item, selected.index);
-    else {
-      readout.style.removeProperty("--active-color");
-      readout.innerHTML = `<strong>${data.event.status === "live" ? `Through Round ${data.event.completedRounds}` : "Swiss complete"}</strong>
-        <span>${data.event.players} players · seven Swiss rounds · Top ${data.event.topCut} cut</span>`;
-      rule.classList.remove("visible");
-    }
+    else rule.classList.remove("visible");
   }
 
   function isAlive(player, round) {

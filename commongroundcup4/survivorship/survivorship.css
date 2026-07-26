@@ -21,12 +21,10 @@ h1 { margin-top: 5px; font-size: clamp(32px, 5vw, 58px); letter-spacing: -.045em
 h2 { font-size: 19px; }
 .source-links { display: flex; gap: 16px; }
 .source-link { color: var(--blue); font-size: 12px; font-weight: 800; }
-.chart-panel, .method-panel { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.chart-panel { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
 .chart-panel { padding: 19px; }
 .chart-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
-.chart-heading p, .method-panel p { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.55; }
-.hover-readout { min-width: 300px; min-height: 48px; display: grid; align-content: center; gap: 2px; padding-left: 12px; border-left: 4px solid var(--active-color, var(--line)); font-size: 12px; }
-.hover-readout span { color: var(--muted); }
+.chart-heading p { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.55; }
 .data-status { margin-top: 16px; padding: 11px 13px; border: 1px solid #e6d7ad; border-radius: 5px; color: #67501d; background: #fff9e8; font-size: 12px; line-height: 1.5; }
 .chart-scroll { margin-top: 15px; overflow-x: auto; }
 #survival-chart { display: block; width: 100%; min-width: 1100px; height: auto; }
@@ -58,9 +56,6 @@ h2 { font-size: 19px; }
 .alive-table td { padding: 9px 11px; border-top: 1px solid #e8edf2; }
 .alive-table td:not(:first-child) { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .player-name { font-weight: 800; }
-.method-panel { margin-top: 14px; padding: 19px; }
-.method-panel h2 { margin-top: 4px; }
-.method-panel p { max-width: 960px; margin-top: 9px; font-size: 13px; }
 .analysis-panel { margin-top: 14px; padding: 19px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
 .analysis-heading h2 { margin-top: 4px; }
 .analysis-heading > div > p:last-child { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.55; }
@@ -101,7 +96,6 @@ select { max-width: 280px; min-height: 34px; padding: 5px 32px 5px 9px; border: 
   .header-meta { align-items: flex-start; flex-direction: column; gap: 4px; }
   .header-meta span + span { padding-left: 0; border-left: 0; }
   .source-links { justify-content: space-between; }
-  .hover-readout { min-width: 0; }
   .chart-panel { padding: 14px 10px 12px; }
   .alive-table { min-width: 680px; }
   .deck-pane-body, .decklist-grid { grid-template-columns: 1fr; }
