@@ -48,18 +48,31 @@ h2 { font-size: 19px; }
 .alive-empty { min-height: 66px; display: grid; align-content: center; gap: 2px; padding: 13px 8px 0; }
 .alive-empty span { color: var(--muted); font-size: 12px; }
 .alive-panel.visible { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-.alive-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 12px 14px; border-left: 4px solid var(--active-color); background: #f7f9fb; }
+.alive-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 13px 15px; border-left: 4px solid var(--active-color); background: #f7f9fb; }
 .alive-heading h3 { margin: 0; font-size: 16px; }
-.alive-heading p { margin-top: 3px; color: var(--muted); font-size: 11px; }
+.alive-heading p { margin-top: 3px; color: var(--muted); font-size: 12px; }
 .alive-title-pips { display: flex; align-items: center; gap: 4px; }
 .alive-title-pips h3 { margin-left: 3px; }
-.alive-close { width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); background: #fff; font-size: 21px; cursor: pointer; }
+.alive-close { width: 32px; height: 32px; padding: 0; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); background: #fff; font-size: 22px; line-height: 1; cursor: pointer; }
+.alive-close:hover { color: var(--ink); border-color: #aeb9c5; }
 .alive-table-wrap { overflow-x: auto; }
-.alive-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.alive-table th { padding: 8px 11px; color: var(--muted); background: #fbfcfd; font-size: 9px; text-align: left; text-transform: uppercase; }
-.alive-table td { padding: 9px 11px; border-top: 1px solid #e8edf2; }
-.alive-table td:not(:first-child) { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.alive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.alive-table th { padding: 9px 12px; color: var(--muted); background: #fbfcfd; font-size: 10px; font-weight: 800; text-align: left; text-transform: uppercase; }
+.alive-table td { padding: 9px 12px; border-top: 1px solid #e8edf2; }
+.alive-table tbody tr:hover { background: #f7f9fb; }
 .player-name { font-weight: 800; }
+.archetype-cell { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.archetype-cell > span { margin-left: 3px; }
+.survivor-band-cell, .rank-cell, .tiebreak-cell, .record-cell, .final-cell { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.survivor-band-cell, .rank-cell { font-weight: 800; }
+.survivor-band-cell small { color: var(--muted); font-size: 11px; font-weight: 700; }
+.tiebreak-cell { color: #536274; }
+.alive-table th:last-child, .deck-cell { text-align: center; }
+.deck-cell { white-space: nowrap; }
+.deck-link { padding: 0; border: 0; color: var(--blue); background: transparent; cursor: pointer; font: inherit; font-weight: 800; }
+.deck-link:hover { text-decoration: underline; }
+.no-decks { padding: 24px !important; color: var(--muted); text-align: center; }
+.rank-note { margin: 0; padding: 10px 13px; border-top: 1px solid var(--line); color: var(--muted); background: #fbfcfd; font-size: 11px; line-height: 1.45; }
 .analysis-panel { margin-top: 14px; padding: 19px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
 .analysis-heading h2 { margin-top: 4px; }
 .analysis-heading > div > p:last-child { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.55; }
@@ -101,7 +114,7 @@ select { max-width: 280px; min-height: 34px; padding: 5px 32px 5px 9px; border: 
   .header-meta span + span { padding-left: 0; border-left: 0; }
   .source-links { justify-content: space-between; }
   .chart-panel { padding: 14px 10px 12px; }
-  .alive-table { min-width: 680px; }
+  .alive-table { min-width: 1050px; }
   .deck-pane-body, .decklist-grid { grid-template-columns: 1fr; }
   .usage-list { columns: 1; }
 }

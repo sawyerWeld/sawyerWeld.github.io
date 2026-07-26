@@ -219,6 +219,39 @@ function render(data) {
   const rule = svg.querySelector(".hover-rule");
   const byName = new Map(series.map((item) => [item.name, item]));
   let selected = null;
+  const lastLiveRound = (player) => {
+    if (player.failureRound != null) return Math.max(0, player.failureRound - 1);
+    if (player.censoredRound != null) return Math.max(0, player.censoredRound);
+    return data.event.swissRounds;
+  };
+  const lastLiveStanding = (player) =>
+    player.rounds.find((round) => round.round === lastLiveRound(player))?.standing;
+  const survivorOrder = [...data.players].sort((left, right) =>
+    lastLiveRound(right) - lastLiveRound(left)
+    || (lastLiveStanding(right)?.points ?? 0) - (lastLiveStanding(left)?.points ?? 0)
+    || (lastLiveStanding(left)?.rank ?? left.final?.rank ?? 9999)
+      - (lastLiveStanding(right)?.rank ?? right.final?.rank ?? 9999)
+    || left.name.localeCompare(right.name));
+  const survivorRanks = new Map(
+    survivorOrder.map((player, index) => [player.id, index + 1])
+  );
+  const survivorBands = new Map();
+  survivorOrder.forEach((player, index) => {
+    const round = lastLiveRound(player);
+    const rank = index + 1;
+    const band = survivorBands.get(round) || { round, start: rank, end: rank };
+    band.end = rank;
+    survivorBands.set(round, band);
+  });
+  const recordAt = (player, round) => {
+    if (!round) return "0-0-0";
+    return player.rounds.find((item) => item.round === round)?.standing?.matchRecord || "—";
+  };
+  const formatTiebreak = (value) =>
+    Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : "—";
+  const manaPipsHtml = (name) => (MANA_BY_ARCHETYPE[name] || [])
+    .map((mana) => `<img src="${MANA_ASSET_PATH}/${mana}.svg" alt="${mana}" width="16" height="16">`)
+    .join("");
 
   function showValue(item, index) {
     rule.setAttribute("x1", x(index));
@@ -245,29 +278,52 @@ function render(data) {
     const players = data.players.filter((player) => {
       const archetypeMatches = isOther ? !visibleNameSet.has(player.archetype) : player.archetype === item.name;
       return archetypeMatches && isAlive(player, snapshot.round);
-    });
+    }).sort((left, right) =>
+      (survivorRanks.get(left.id) ?? 9999) - (survivorRanks.get(right.id) ?? 9999)
+      || (left.final?.rank ?? 9999) - (right.final?.rank ?? 9999)
+      || left.name.localeCompare(right.name));
     const rows = players.map((player) => {
-      const current = player.rounds.find((round) => round.round === snapshot.round);
-      return `<tr><td class="player-name">${esc(player.name)}</td>
-        ${isOther ? `<td>${esc(player.archetype)}</td>` : ""}
-        <td>${esc(current?.record || "0-0-0")}</td>
-        <td>${player.final?.rank ? `#${player.final.rank}` : "—"}</td>
-        <td>${esc(player.final?.record || "—")}</td>
-        <td>${player.topCut ? "Top 8" : "—"}</td></tr>`;
+      const lastStanding = lastLiveStanding(player);
+      const survivorBand = survivorBands.get(lastLiveRound(player));
+      return `<tr>
+        <td class="player-name">${esc(player.name)}</td>
+        ${isOther ? `<td><span class="archetype-cell">${manaPipsHtml(player.archetype)}<span>${esc(player.archetype)}</span></span></td>` : ""}
+        <td class="survivor-band-cell">R${survivorBand.round} <small>(${survivorBand.start}&ndash;${survivorBand.end})</small></td>
+        <td class="rank-cell">${player.final?.rank ? `#${player.final.rank}` : "—"}</td>
+        <td class="tiebreak-cell">${formatTiebreak(lastStanding?.omw)}</td>
+        <td class="tiebreak-cell">${formatTiebreak(lastStanding?.gw)}</td>
+        <td class="tiebreak-cell">${formatTiebreak(lastStanding?.ogw)}</td>
+        <td class="record-cell">${esc(recordAt(player, snapshot.round))}</td>
+        <td class="final-cell">${esc(player.final?.matchRecord || "—")}</td>
+        <td class="deck-cell"><button class="deck-link" type="button" data-player="${esc(player.name)}">View deck</button></td>
+      </tr>`;
     }).join("");
     const panel = document.querySelector("#alive-panel");
-    const titlePips = item.mana.map((mana) => `<img src="${MANA_ASSET_PATH}/${mana}.svg" alt="${mana}" width="16" height="16">`).join("");
+    const titlePips = isOther ? "" : manaPipsHtml(item.name);
     panel.innerHTML = `<div class="alive-heading" style="--active-color:${item.color}">
-      <div><div class="alive-title-pips">${titlePips}<h3>${esc(item.name)}</h3></div><p>${snapshot.round ? `After round ${snapshot.round}` : "Starting field"} · ${players.length} players alive</p></div>
-      <button class="alive-close" type="button" aria-label="Close">&times;</button></div>
-      <div class="alive-table-wrap"><table class="alive-table">
-        <thead><tr><th>Player</th>${isOther ? "<th>Archetype</th>" : ""}<th>Record here</th><th>Provisional rank</th><th>Latest record</th><th>Cut</th></tr></thead>
-        <tbody>${rows || `<tr><td colspan="${isOther ? 6 : 5}">No players in this slice.</td></tr>`}</tbody>
-      </table></div>`;
+      <div>
+        <div class="alive-title-pips">${titlePips}<h3>${esc(item.name)}</h3></div>
+        <p>${snapshot.round ? `After round ${snapshot.round}` : "Starting field"} · ${players.length} ${players.length === 1 ? "deck" : "decks"} still alive</p>
+      </div>
+      <button class="alive-close" type="button" aria-label="Close deck list" title="Close">&times;</button>
+    </div>
+    <div class="alive-table-wrap">
+      <table class="alive-table">
+        <thead><tr><th>Player</th>${isOther ? "<th>Archetype</th>" : ""}<th>Survivor rank</th><th>Tourney rank</th><th title="Opponent match-win percentage">OMW</th><th title="Game-win percentage">GW</th><th title="Opponent game-win percentage">OGW</th><th>${snapshot.round ? `Record after R${snapshot.round}` : "Record"}</th><th>Final Swiss record</th><th>Decklist</th></tr></thead>
+        <tbody>${rows || `<tr><td colspan="${isOther ? 10 : 9}" class="no-decks">No decks remained alive in this slice.</td></tr>`}</tbody>
+      </table>
+    </div>
+    <p class="rank-note">Survivor rank groups players by their last round at X-1-1 or better; the range shows that round&rsquo;s place in the 100-player survival order. OMW, GW, and OGW are calculated from TopDeck&rsquo;s public match results at the player&rsquo;s last alive standing.</p>`;
     panel.classList.add("visible");
+    panel.querySelectorAll(".deck-link").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        window.openCommonGroundDeck?.(button.dataset.player);
+      });
+    });
     panel.querySelector(".alive-close").addEventListener("click", () => {
       panel.classList.remove("visible");
-      panel.innerHTML = `<div class="alive-empty"><strong>Decks alive here</strong><span>Click an archetype at any round to inspect its surviving players.</span></div>`;
+      panel.innerHTML = `<div class="alive-empty"><strong>Decks alive here</strong><span>Click an archetype at any round to inspect its surviving decklists.</span></div>`;
       selected = null;
       svg.querySelectorAll(".selected").forEach((node) => node.classList.remove("selected"));
       clearHover();
@@ -383,15 +439,16 @@ function renderDeckAnalysis(payload) {
     document.querySelector("#decklist-grid").innerHTML = ["main", "side"].map((board) => exactBoard(deck, board)).join("");
   }
 
-  function renderExplorer() {
+  function renderExplorer(preferredPlayer = null) {
     const list = decks.filter((deck) => deck.archetype === select.value);
+    const preferredIndex = Math.max(0, list.findIndex((deck) => deck.player === preferredPlayer));
     document.querySelector("#consensus").innerHTML = `${renderBoard(list, "main")}
       <div class="sideboard-column">${renderBoard(list, "side")}
-        <button class="view-lists-button" id="view-lists" type="button" aria-expanded="false">View lists (${list.length})</button>
+        <button class="view-lists-button" id="view-lists" type="button" aria-expanded="${preferredPlayer ? "true" : "false"}">${preferredPlayer ? "Hide lists" : "View lists"} (${list.length})</button>
       </div>
-      <div class="decklists-panel" id="decklists-panel" hidden>
+      <div class="decklists-panel" id="decklists-panel" ${preferredPlayer ? "" : "hidden"}>
         <div class="decklists-head">
-          <label>Registered list<select id="decklist-select">${list.map((deck, index) => `<option value="${index}">${esc(deck.player)}</option>`).join("")}</select></label>
+          <label>Registered list<select id="decklist-select">${list.map((deck, index) => `<option value="${index}" ${index === preferredIndex ? "selected" : ""}>${esc(deck.player)}</option>`).join("")}</select></label>
           <span class="decklists-meta" id="decklists-meta"></span>
         </div>
         <div class="decklist-grid" id="decklist-grid"></div>
@@ -407,8 +464,16 @@ function renderDeckAnalysis(payload) {
       if (open) renderExactList(list, Number(listSelect.value));
     });
     listSelect.addEventListener("change", () => renderExactList(list, Number(listSelect.value)));
+    if (preferredPlayer) renderExactList(list, preferredIndex);
   }
-  select.addEventListener("change", renderExplorer);
+  select.addEventListener("change", () => renderExplorer());
+  window.openCommonGroundDeck = (playerName) => {
+    const deck = decks.find((item) => item.player === playerName);
+    if (!deck) return;
+    select.value = deck.archetype;
+    renderExplorer(playerName);
+    document.querySelector("#explorer-title").scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const usage = new Map();
   decks.forEach((deck) => deck.main.forEach((card) => {

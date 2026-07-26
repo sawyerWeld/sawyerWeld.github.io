@@ -91,8 +91,75 @@ def record_text(record: dict[str, int]) -> str:
     return f"{record['wins']}-{record['losses']}-{record['draws']}"
 
 
+def game_record_text(record: dict[str, int]) -> str:
+    return f"{record['gameWins']}-{record['gameLosses']}-{record['gameDraws']}"
+
+
 def point_deficit(record: dict[str, int]) -> int:
     return record["losses"] * 3 + record["draws"] * 2
+
+
+def match_win_percentage(record: dict[str, int]) -> float:
+    matches = record["wins"] + record["losses"] + record["draws"]
+    return (record["wins"] * 3 + record["draws"]) / (matches * 3) if matches else 0
+
+
+def game_win_percentage(record: dict[str, int]) -> float:
+    games = record["gameWins"] + record["gameLosses"] + record["gameDraws"]
+    return (record["gameWins"] * 3 + record["gameDraws"]) / (games * 3) if games else 0
+
+
+def opponent_average(
+    uid: str,
+    round_number: int,
+    players: dict[str, dict],
+    records: dict[str, dict],
+    percentage,
+) -> float:
+    opponent_ids = [
+        item["opponentId"]
+        for item in players[uid]["rounds"]
+        if item["round"] <= round_number and item.get("opponentId") in records
+    ]
+    if not opponent_ids:
+        return 0
+    return sum(max(1 / 3, percentage(records[opponent_id])) for opponent_id in opponent_ids) / len(opponent_ids)
+
+
+def standing_rows(
+    round_number: int,
+    players: dict[str, dict],
+    records: dict[str, dict],
+) -> dict[str, dict]:
+    rows = {}
+    for uid, record in records.items():
+        rows[uid] = {
+            "points": record["wins"] * 3 + record["draws"],
+            "matchRecord": record_text(record),
+            "gameRecord": game_record_text(record),
+            "omw": opponent_average(
+                uid, round_number, players, records, match_win_percentage
+            ),
+            "gw": max(1 / 3, game_win_percentage(record)) if (
+                record["gameWins"] + record["gameLosses"] + record["gameDraws"]
+            ) else 0,
+            "ogw": opponent_average(
+                uid, round_number, players, records, game_win_percentage
+            ),
+        }
+    ordered = sorted(
+        rows,
+        key=lambda uid: (
+            -rows[uid]["points"],
+            -rows[uid]["omw"],
+            -rows[uid]["gw"],
+            -rows[uid]["ogw"],
+            players[uid]["name"].casefold(),
+        ),
+    )
+    for rank, uid in enumerate(ordered, 1):
+        rows[uid]["rank"] = rank
+    return rows
 
 
 def archetype_rows(uids: set[str], players: dict[str, dict]) -> list[dict]:
@@ -139,7 +206,17 @@ def main() -> None:
         for uid, row in public_players.items()
         if row.get("CheckedIn", True)
     }
-    records = {uid: {"wins": 0, "losses": 0, "draws": 0} for uid in players}
+    records = {
+        uid: {
+            "wins": 0,
+            "losses": 0,
+            "draws": 0,
+            "gameWins": 0,
+            "gameLosses": 0,
+            "gameDraws": 0,
+        }
+        for uid in players
+    }
     active = set(players)
     completed_rounds = [
         round_number
@@ -194,9 +271,19 @@ def main() -> None:
         for uid, entry in round_entries.items():
             result_key = {"W": "wins", "L": "losses", "D": "draws"}[entry["result"]]
             records[uid][result_key] += 1
+            own_games, opponent_games, game_draws = (
+                int(value) for value in entry["games"].split("-")
+            )
+            records[uid]["gameWins"] += own_games
+            records[uid]["gameLosses"] += opponent_games
+            records[uid]["gameDraws"] += game_draws
             entry["record"] = record_text(records[uid])
             entry["points"] = records[uid]["wins"] * 3 + records[uid]["draws"]
             players[uid]["rounds"].append(entry)
+
+        round_standings = standing_rows(round_number, players, records)
+        for uid, entry in round_entries.items():
+            entry["standing"] = round_standings[uid]
 
         at_risk = len(active)
         failures = 0
@@ -220,14 +307,11 @@ def main() -> None:
             "archetypes": archetype_rows(active, players),
         })
 
+    final_standings = standing_rows(SWISS_ROUNDS, players, records)
     standings = sorted(
         players.values(),
-        key=lambda player: (
-            -(player["rounds"][-1]["points"] if player["rounds"] else 0),
-            player["name"].casefold(),
-        ),
+        key=lambda player: final_standings[player["id"]]["rank"],
     )
-    rank_by_uid = {player["id"]: index + 1 for index, player in enumerate(standings)}
     top_cut_names = set(labels["topCut"])
 
     output = {
@@ -259,9 +343,7 @@ def main() -> None:
             {
                 **player,
                 "final": {
-                    "rank": rank_by_uid[player["id"]],
-                    "record": record_text(records[player["id"]]),
-                    "points": records[player["id"]]["wins"] * 3 + records[player["id"]]["draws"],
+                    **final_standings[player["id"]],
                 },
                 "topCut": player["name"] in top_cut_names or player["id"] in top_cut_names,
             }
