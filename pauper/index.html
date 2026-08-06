@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Pauper tournament reports and metagame visualizations by Sawyer Welden.">
-<title>Pauper Tournament Reports</title>
+<meta name="description" content="Pauper tools, tournament reports, and metagame visualizations by Sawyer Welden.">
+<title>Pauper Reports and Tools</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -69,6 +69,15 @@
   .timeline {
     display: grid;
     gap: 8px;
+  }
+
+  .tools-section {
+    padding: 18px 0 28px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tools-section .entry {
+    max-width: 520px;
   }
 
   .year-section {
@@ -162,6 +171,31 @@
     position: absolute;
     content: "";
     display: block;
+  }
+
+  .thumb.tron {
+    background: linear-gradient(180deg, #fbfcfc, #e9eef1);
+  }
+
+  .thumb.tron::before {
+    left: 50%;
+    top: 50%;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: #202b38;
+    transform: translate(-50%, -50%);
+  }
+
+  .thumb.tron::after {
+    left: 50%;
+    top: 50%;
+    width: 3px;
+    height: 20px;
+    border-radius: 3px;
+    background: #ffffff;
+    box-shadow: 9px 0 #ffffff, 18px 0 #ffffff;
+    transform: translate(-11px, -10px);
   }
 
   .thumb.spanish {
@@ -380,12 +414,26 @@
 <body>
 <header>
   <div class="wrap">
-    <h1>Pauper Tournament Reports</h1>
-    <p class="dek">A chronological archive of Pauper event reports, metagame visualizations, and tournament notes.</p>
+    <h1>Pauper</h1>
+    <p class="dek">Tournament reports, metagame visualizations, and tools.</p>
   </div>
 </header>
 
 <main class="wrap">
+  <section class="tools-section" aria-labelledby="pauper-tools">
+    <h2 class="year" id="pauper-tools">Tools</h2>
+    <a class="entry" href="/Tronclock/">
+      <span class="thumb tron" aria-hidden="true"></span>
+      <div class="entry-body">
+        <div class="title-line">
+          <h3 class="title">Tron Clock</h3>
+        </div>
+        <div class="meta">Turn-by-turn assembly odds / deck presets / mulligan plans</div>
+        <p class="summary">Estimate when Pauper Tron comes together across configurable tutors, selection, draw, and fixing.</p>
+      </div>
+    </a>
+  </section>
+
   <div class="timeline" aria-label="Pauper report timeline">
     <section class="year-section" aria-labelledby="year-2026">
       <h2 class="year" id="year-2026">2026</h2>
