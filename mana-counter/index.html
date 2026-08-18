@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#100f0e" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Mana Counter" />
+    <meta name="description" content="A quick, configurable Magic: The Gathering mana and storm counter." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icon-192.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Mana Counter</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <button class="icon-button" id="undoButton" type="button" aria-label="Undo last change" disabled>
+          <span aria-hidden="true">&#8630;</span>
+        </button>
+        <div class="title-lockup">
+          <span class="eyebrow">Table counter</span>
+          <h1>Mana <span aria-hidden="true">//</span> Storm</h1>
+        </div>
+        <button class="icon-button" id="settingsButton" type="button" aria-label="Choose counters">
+          <span class="gear" aria-hidden="true">&#9881;</span>
+        </button>
+      </header>
+
+      <main class="counter-list" id="counterList" aria-label="Counters"></main>
+
+      <footer class="action-bar">
+        <button class="new-turn-button" id="newTurnButton" type="button">
+          <span>New turn</span>
+          <small>clear mana + storm</small>
+        </button>
+      </footer>
+    </div>
+
+    <dialog class="settings-sheet" id="settingsDialog" aria-labelledby="settingsTitle">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="sheet-heading">
+        <div>
+          <span class="eyebrow">Display</span>
+          <h2 id="settingsTitle">Choose counters</h2>
+        </div>
+        <button class="close-button" id="closeSettingsButton" type="button" aria-label="Close settings">Done</button>
+      </div>
+
+      <p class="settings-note">Tap counters to show or hide them. Hidden values are remembered.</p>
+      <div class="counter-options" id="counterOptions"></div>
+
+      <label class="setting-row" for="wakeLockToggle">
+        <span>
+          <strong>Keep screen awake</strong>
+          <small>while the counter is open</small>
+        </span>
+        <span class="switch">
+          <input id="wakeLockToggle" type="checkbox" checked />
+          <span class="switch-track" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <button class="reset-button" id="resetButton" type="button">Reset for a new game</button>
+    </dialog>
+
+    <div class="announcement" id="announcement" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
