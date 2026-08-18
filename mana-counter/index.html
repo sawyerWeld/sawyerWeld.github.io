@@ -10,7 +10,7 @@
     <meta name="description" content="A quick, configurable Magic: The Gathering mana and storm counter." />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./icon-192.png" />
-    <link rel="stylesheet" href="./styles.css?v=5" />
+    <link rel="stylesheet" href="./styles.css?v=6" />
     <title>Mana Counter</title>
   </head>
   <body>
@@ -31,13 +31,9 @@
       </footer>
     </div>
 
-    <dialog class="settings-sheet" id="settingsDialog" aria-labelledby="settingsTitle">
+    <dialog class="settings-sheet" id="settingsDialog" aria-label="Counter settings">
       <div class="sheet-handle" aria-hidden="true"></div>
       <div class="sheet-heading">
-        <div>
-          <span class="eyebrow">Display</span>
-          <h2 id="settingsTitle">Choose counters</h2>
-        </div>
         <button class="close-button" id="closeSettingsButton" type="button" aria-label="Close settings">Done</button>
       </div>
 
@@ -58,6 +54,6 @@
     </dialog>
 
     <div class="announcement" id="announcement" role="status" aria-live="polite"></div>
-    <script src="./app.js?v=5"></script>
+    <script src="./app.js?v=6"></script>
   </body>
 </html>

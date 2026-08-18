@@ -61,21 +61,6 @@ button {
   background: rgba(255, 255, 255, 0.96);
 }
 
-.eyebrow {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--blue);
-  font-size: 0.62rem;
-  font-weight: 750;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-h2 {
-  margin: 0;
-  font-weight: 800;
-}
-
 .icon-button,
 .close-button {
   border: 0;
@@ -119,13 +104,8 @@ h2 {
   gap: 8px;
   padding: 9px;
   min-height: 0;
-  overflow-y: auto;
-  scrollbar-width: none;
+  overflow: hidden;
   background: var(--page);
-}
-
-.counter-list::-webkit-scrollbar {
-  display: none;
 }
 
 .counter {
@@ -134,8 +114,8 @@ h2 {
   display: grid;
   grid-template-columns: minmax(82px, 1fr) minmax(118px, 1.25fr) minmax(82px, 1fr);
   align-items: stretch;
-  flex: 1 0 116px;
-  min-height: 116px;
+  flex: 1 1 0;
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 7px;
@@ -243,6 +223,68 @@ h2 {
   color: var(--ink);
 }
 
+.counter-list[data-density="compact"] {
+  gap: 6px;
+  padding: 7px;
+}
+
+.counter-list[data-density="compact"] .mana-pip {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 2px;
+}
+
+.counter-list[data-density="compact"] .counter-glyph {
+  width: 22px;
+  height: 22px;
+}
+
+.counter-list[data-density="compact"] .counter-name {
+  gap: 6px;
+  margin-bottom: 2px;
+  font-size: 0.68rem;
+}
+
+.counter-list[data-density="compact"] .counter-value {
+  font-size: clamp(2.5rem, 10vw, 4rem);
+}
+
+.counter-list[data-density="tight"] {
+  gap: 4px;
+  padding: 6px;
+}
+
+.counter-list[data-density="tight"] .counter {
+  border-radius: 5px;
+}
+
+.counter-list[data-density="tight"] .step-button {
+  font-size: clamp(1.8rem, 8vw, 2.5rem);
+}
+
+.counter-list[data-density="tight"] .mana-pip {
+  width: 18px;
+  height: 18px;
+  margin-bottom: 1px;
+}
+
+.counter-list[data-density="tight"] .counter-glyph {
+  width: 18px;
+  height: 18px;
+  font-size: 0.64rem;
+}
+
+.counter-list[data-density="tight"] .counter-name {
+  gap: 4px;
+  margin-bottom: 1px;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+}
+
+.counter-list[data-density="tight"] .counter-value {
+  font-size: clamp(1.85rem, 8vw, 2.8rem);
+}
+
 .action-bar {
   padding: 8px 9px calc(8px + var(--safe-bottom));
   border-top: 1px solid var(--line);
@@ -305,12 +347,7 @@ h2 {
 .sheet-heading {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.sheet-heading h2 {
-  font-size: 1.75rem;
+  justify-content: flex-end;
 }
 
 .close-button {
@@ -324,7 +361,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 9px;
-  margin: 16px 0 20px;
+  margin: 4px 0 20px;
 }
 
 .counter-option {
@@ -481,8 +518,7 @@ input:focus-visible + .switch-track,
   }
 
   .counter {
-    flex-basis: 96px;
-    min-height: 96px;
+    min-height: 0;
   }
 
   .action-bar {

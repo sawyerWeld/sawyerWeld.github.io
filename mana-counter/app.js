@@ -70,6 +70,9 @@
 
   function renderCounters() {
     counterList.replaceChildren()
+    counterList.dataset.density = state.selected.length >= 7
+      ? 'tight'
+      : state.selected.length >= 5 ? 'compact' : 'normal'
 
     state.selected.forEach((id) => {
       const definition = definitionsById[id]
