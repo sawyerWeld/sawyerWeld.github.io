@@ -287,6 +287,11 @@
   renderOptions()
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(() => {}))
+    window.addEventListener('load', async () => {
+      try {
+        const registration = await navigator.serviceWorker.register('./service-worker.js', { updateViaCache: 'none' })
+        registration.update()
+      } catch (_) { /* Offline use continues with the installed worker. */ }
+    })
   }
 })()
