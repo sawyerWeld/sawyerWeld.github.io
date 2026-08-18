@@ -320,18 +320,11 @@ h2 {
   font-weight: 760;
 }
 
-.settings-note {
-  margin: 14px 0 16px;
-  color: var(--muted);
-  font-size: 0.86rem;
-  line-height: 1.45;
-}
-
 .counter-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 9px;
-  margin-bottom: 20px;
+  margin: 16px 0 20px;
 }
 
 .counter-option {

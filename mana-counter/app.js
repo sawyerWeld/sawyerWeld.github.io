@@ -6,16 +6,17 @@
   const counterDefinitions = [
     { id: 'life', label: 'Life', mark: '\u2665', initial: 20, min: -99, color: '#b83f62' },
     { id: 'poison', label: 'Poison', mark: '\u2620', initial: 0, min: 0, color: '#5f7b2f' },
-    { id: 'colorless', label: 'Colorless', optionLabel: 'Colorless mana', mark: '\u25C7', pip: 'C', initial: 0, min: 0, color: '#77716b' },
     { id: 'white', label: 'White', optionLabel: 'White mana', mark: 'W', pip: 'W', initial: 0, min: 0, color: '#a28a3e' },
     { id: 'blue', label: 'Blue', optionLabel: 'Blue mana', mark: 'U', pip: 'U', initial: 0, min: 0, color: '#3577a8' },
     { id: 'black', label: 'Black', optionLabel: 'Black mana', mark: 'B', pip: 'B', initial: 0, min: 0, color: '#6c6570' },
     { id: 'red', label: 'Red', optionLabel: 'Red mana', mark: 'R', pip: 'R', initial: 0, min: 0, color: '#c65a38' },
     { id: 'green', label: 'Green', optionLabel: 'Green mana', mark: 'G', pip: 'G', initial: 0, min: 0, color: '#4f7a50' },
+    { id: 'colorless', label: 'Colorless', optionLabel: 'Colorless mana', mark: '\u25C7', pip: 'C', initial: 0, min: 0, color: '#77716b' },
     { id: 'storm', label: 'Storm', optionLabel: 'Storm count', mark: '\u26A1', initial: 0, min: 0, color: '#70499b' }
   ]
 
   const definitionsById = Object.fromEntries(counterDefinitions.map((counter) => [counter.id, counter]))
+  const displayRank = Object.fromEntries(counterDefinitions.map((counter, index) => [counter.id, index]))
   const counterList = document.getElementById('counterList')
   const counterOptions = document.getElementById('counterOptions')
   const settingsDialog = document.getElementById('settingsDialog')
@@ -32,6 +33,10 @@
   let history = []
   let wakeLock = null
 
+  function sortSelected(ids) {
+    return [...ids].sort((a, b) => displayRank[a] - displayRank[b])
+  }
+
   function loadState() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY))
@@ -39,12 +44,12 @@
         ? saved.selected.filter((id) => definitionsById[id])
         : DEFAULT_SELECTED
       return {
-        selected: selected.length ? selected : DEFAULT_SELECTED,
+        selected: sortSelected(selected.length ? selected : DEFAULT_SELECTED),
         values: { ...initialValues, ...(saved.values || {}) },
         keepAwake: saved.keepAwake !== false
       }
     } catch (_) {
-      return { selected: DEFAULT_SELECTED, values: { ...initialValues }, keepAwake: true }
+      return { selected: sortSelected(DEFAULT_SELECTED), values: { ...initialValues }, keepAwake: true }
     }
   }
 
@@ -139,6 +144,7 @@
   function updateSelection(id, selected, checkbox) {
     if (selected && !state.selected.includes(id)) {
       state.selected.push(id)
+      state.selected = sortSelected(state.selected)
     } else if (!selected) {
       if (state.selected.length === 1) {
         checkbox.checked = true
