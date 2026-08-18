@@ -4,15 +4,15 @@
   const STORAGE_KEY = 'mana-counter-state-v1'
   const DEFAULT_SELECTED = ['red', 'green', 'colorless', 'storm']
   const counterDefinitions = [
-    { id: 'life', label: 'Life', mark: '\u2665', initial: 20, min: -99, color: '#ff7f9c' },
-    { id: 'poison', label: 'Poison', mark: '\u2620', initial: 0, min: 0, color: '#b9e260' },
-    { id: 'colorless', label: 'Colorless', optionLabel: 'Colorless mana', mark: '\u25C7', initial: 0, min: 0, color: '#d7ddde' },
-    { id: 'white', label: 'White', optionLabel: 'White mana', mark: 'W', initial: 0, min: 0, color: '#fff4c8' },
-    { id: 'blue', label: 'Blue', optionLabel: 'Blue mana', mark: 'U', initial: 0, min: 0, color: '#71bff2' },
-    { id: 'black', label: 'Black', optionLabel: 'Black mana', mark: 'B', initial: 0, min: 0, color: '#bda6ce' },
-    { id: 'red', label: 'Red', optionLabel: 'Red mana', mark: 'R', initial: 0, min: 0, color: '#ff7568' },
-    { id: 'green', label: 'Green', optionLabel: 'Green mana', mark: 'G', initial: 0, min: 0, color: '#77d99c' },
-    { id: 'storm', label: 'Storm', optionLabel: 'Storm count', mark: '\u26A1', initial: 0, min: 0, color: '#cf9bff' }
+    { id: 'life', label: 'Life', mark: '\u2665', initial: 20, min: -99, color: '#b83f62' },
+    { id: 'poison', label: 'Poison', mark: '\u2620', initial: 0, min: 0, color: '#5f7b2f' },
+    { id: 'colorless', label: 'Colorless', optionLabel: 'Colorless mana', mark: '\u25C7', pip: 'C', initial: 0, min: 0, color: '#77716b' },
+    { id: 'white', label: 'White', optionLabel: 'White mana', mark: 'W', pip: 'W', initial: 0, min: 0, color: '#a28a3e' },
+    { id: 'blue', label: 'Blue', optionLabel: 'Blue mana', mark: 'U', pip: 'U', initial: 0, min: 0, color: '#3577a8' },
+    { id: 'black', label: 'Black', optionLabel: 'Black mana', mark: 'B', pip: 'B', initial: 0, min: 0, color: '#6c6570' },
+    { id: 'red', label: 'Red', optionLabel: 'Red mana', mark: 'R', pip: 'R', initial: 0, min: 0, color: '#c65a38' },
+    { id: 'green', label: 'Green', optionLabel: 'Green mana', mark: 'G', pip: 'G', initial: 0, min: 0, color: '#4f7a50' },
+    { id: 'storm', label: 'Storm', optionLabel: 'Storm count', mark: '\u26A1', initial: 0, min: 0, color: '#70499b' }
   ]
 
   const definitionsById = Object.fromEntries(counterDefinitions.map((counter) => [counter.id, counter]))
@@ -83,9 +83,12 @@
 
       const readout = document.createElement('div')
       readout.className = 'counter-readout'
+      const mark = definition.pip
+        ? `<img class="mana-pip" src="../paupergenesis2026/survivorship/mana/${definition.pip}.svg" alt="">`
+        : `<span class="counter-glyph" aria-hidden="true">${definition.mark}</span>`
       readout.innerHTML = `
         <div class="counter-copy">
-          <div class="counter-name"><span class="mana-mark">${definition.mark}</span>${definition.label}</div>
+          <div class="counter-name">${mark}${definition.label}</div>
           <output class="counter-value" data-value-for="${definition.id}" aria-label="${definition.label}: ${state.values[id]}">${state.values[id]}</output>
         </div>`
 
@@ -116,7 +119,19 @@
 
       const text = document.createElement('span')
       text.textContent = definition.optionLabel || definition.label
-      label.append(checkbox, text)
+      if (definition.pip) {
+        const pip = document.createElement('img')
+        pip.className = 'option-pip'
+        pip.src = `../paupergenesis2026/survivorship/mana/${definition.pip}.svg`
+        pip.alt = ''
+        label.append(checkbox, pip, text)
+      } else {
+        const glyph = document.createElement('span')
+        glyph.className = 'option-glyph'
+        glyph.textContent = definition.mark
+        glyph.setAttribute('aria-hidden', 'true')
+        label.append(checkbox, glyph, text)
+      }
       counterOptions.append(label)
     })
   }

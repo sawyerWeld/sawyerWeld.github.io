@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mana-counter-v1'
+const CACHE_NAME = 'mana-counter-v2'
 const APP_SHELL = [
   './',
   './index.html',
@@ -6,7 +6,13 @@ const APP_SHELL = [
   './app.js',
   './manifest.webmanifest',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  '../paupergenesis2026/survivorship/mana/W.svg',
+  '../paupergenesis2026/survivorship/mana/U.svg',
+  '../paupergenesis2026/survivorship/mana/B.svg',
+  '../paupergenesis2026/survivorship/mana/R.svg',
+  '../paupergenesis2026/survivorship/mana/G.svg',
+  '../paupergenesis2026/survivorship/mana/C.svg'
 ]
 
 self.addEventListener('install', (event) => {
