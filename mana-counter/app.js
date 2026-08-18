@@ -83,12 +83,12 @@
 
       const readout = document.createElement('div')
       readout.className = 'counter-readout'
-      const mark = definition.pip
+      const identity = definition.pip
         ? `<img class="mana-pip" src="../paupergenesis2026/survivorship/mana/${definition.pip}.svg" alt="">`
-        : `<span class="counter-glyph" aria-hidden="true">${definition.mark}</span>`
+        : `<div class="counter-name"><span class="counter-glyph" aria-hidden="true">${definition.mark}</span>${definition.label}</div>`
       readout.innerHTML = `
         <div class="counter-copy">
-          <div class="counter-name">${mark}${definition.label}</div>
+          ${identity}
           <output class="counter-value" data-value-for="${definition.id}" aria-label="${definition.label}: ${state.values[id]}">${state.values[id]}</output>
         </div>`
 

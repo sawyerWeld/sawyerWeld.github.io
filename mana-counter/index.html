@@ -10,7 +10,7 @@
     <meta name="description" content="A quick, configurable Magic: The Gathering mana and storm counter." />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./icon-192.png" />
-    <link rel="stylesheet" href="./styles.css?v=3" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
     <title>Mana Counter</title>
   </head>
   <body>
@@ -19,10 +19,6 @@
         <button class="icon-button" id="undoButton" type="button" aria-label="Undo last change" disabled>
           <span aria-hidden="true">&#8630;</span>
         </button>
-        <div class="title-lockup">
-          <span class="eyebrow">Table counter</span>
-          <h1>Mana <span aria-hidden="true">//</span> Storm</h1>
-        </div>
         <button class="icon-button" id="settingsButton" type="button" aria-label="Choose counters">
           <span class="gear" aria-hidden="true">&#9881;</span>
         </button>
@@ -31,10 +27,7 @@
       <main class="counter-list" id="counterList" aria-label="Counters"></main>
 
       <footer class="action-bar">
-        <button class="new-turn-button" id="newTurnButton" type="button">
-          <span>New turn</span>
-          <small>clear mana + storm</small>
-        </button>
+        <button class="new-turn-button" id="newTurnButton" type="button" aria-label="Start a new turn and clear mana and storm">New turn</button>
       </footer>
     </div>
 
@@ -66,6 +59,6 @@
     </dialog>
 
     <div class="announcement" id="announcement" role="status" aria-live="polite"></div>
-    <script src="./app.js?v=3"></script>
+    <script src="./app.js?v=4"></script>
   </body>
 </html>
