@@ -213,6 +213,63 @@
     line-height: 1;
   }
 
+  .thumb.mana-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: linear-gradient(180deg, #fbfcfd, #edf2f5);
+  }
+
+  .thumb.mana-counter::before,
+  .thumb.mana-counter::after {
+    content: none;
+  }
+
+  .thumb.mana-counter img {
+    display: block;
+    width: 23px;
+    height: 23px;
+  }
+
+  .thumb.deck-explorer {
+    background: #f8fafb;
+  }
+
+  .thumb.deck-explorer::before {
+    inset: 8px;
+    border-bottom: 1px solid #c6d0d8;
+    border-left: 1px solid #c6d0d8;
+    background:
+      linear-gradient(rgba(215, 220, 223, 0.55) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(215, 220, 223, 0.55) 1px, transparent 1px);
+    background-size: 15px 15px;
+  }
+
+  .thumb.deck-explorer::after {
+    content: none;
+  }
+
+  .thumb.deck-explorer i {
+    position: absolute;
+    z-index: 1;
+    width: 7px;
+    height: 7px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 1px rgba(23, 24, 23, 0.12);
+  }
+
+  .thumb.deck-explorer i:nth-child(1) { left: 18%; top: 57%; }
+  .thumb.deck-explorer i:nth-child(2) { left: 27%; top: 36%; }
+  .thumb.deck-explorer i:nth-child(3) { left: 35%; top: 48%; }
+  .thumb.deck-explorer i:nth-child(4) { left: 52%; top: 26%; background: var(--green); }
+  .thumb.deck-explorer i:nth-child(5) { left: 59%; top: 42%; background: var(--green); }
+  .thumb.deck-explorer i:nth-child(6) { left: 67%; top: 31%; background: var(--green); }
+  .thumb.deck-explorer i:nth-child(7) { left: 73%; top: 63%; background: var(--red); }
+  .thumb.deck-explorer i:nth-child(8) { left: 82%; top: 51%; background: var(--red); }
+
   .thumb.spanish {
     background:
       linear-gradient(90deg, transparent 0 18%, rgba(56, 111, 159, 0.14) 18% 19%, transparent 19% 100%),
@@ -439,6 +496,32 @@
 <main class="wrap">
   <section class="tools-section" aria-labelledby="pauper-tools">
     <h2 class="year" id="pauper-tools">Tools</h2>
+    <a class="entry" href="/mana-counter/">
+      <span class="thumb mana-counter" aria-hidden="true">
+        <img src="/paupergenesis2026/survivorship/mana/R.svg" alt="">
+        <img src="/paupergenesis2026/survivorship/mana/G.svg" alt="">
+        <img src="/paupergenesis2026/survivorship/mana/C.svg" alt="">
+      </span>
+      <div class="entry-body">
+        <div class="title-line">
+          <h3 class="title">Mana Counter</h3>
+        </div>
+        <div class="meta">Mana/life/storm counter meant for mobile phones</div>
+      </div>
+    </a>
+
+    <a class="entry" href="https://github.com/sawyerWeld/mtgdeckexplorer" target="_blank" rel="noopener">
+      <span class="thumb deck-explorer" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </span>
+      <div class="entry-body">
+        <div class="title-line">
+          <h3 class="title">MTGTop8 Deck Explorer</h3>
+        </div>
+        <div class="meta">Deck similarity maps / clustering / card comparisons</div>
+      </div>
+    </a>
+
     <a class="entry" href="/Tronclock/">
       <span class="thumb tron" aria-hidden="true">
         <span class="tron-column"><i>&#9671;</i><i>&#9671;</i></span>
