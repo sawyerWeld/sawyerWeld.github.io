@@ -1,0 +1,827 @@
+{
+  "generatedAt": "2026-09-01T14:36:04.868Z",
+  "methodology": {
+    "price": "Cheapest recorded normal nonfoil tournament-playable paper printing on the event date; MTGGoldfish daily TCGplayer Mid history; ordinary basics are $0.",
+    "constantBasket": "The index holds the quantities of 575 cards found in the Spring 2026 field and available at every event date constant. 2015 = 100.",
+    "coverage": "Older event markers describe source quality, not the quality of the constant-basket price index. Historical field averages are withheld where complete field decklists are unavailable."
+  },
+  "headline": {
+    "events": 29,
+    "entrants": 11822,
+    "firstAttendance": 40,
+    "lastAttendance": 1069,
+    "springDecks": 965,
+    "summerDecks": 1069,
+    "constantCardCount": 575,
+    "constantIndexStart": 100,
+    "constantIndexSpring": 359.2,
+    "constantIndexSummer": 380.2,
+    "pricedSpringCopyShare": 97
+  },
+  "timeline": [
+    {
+      "id": "2015-fucecchio",
+      "date": "2015-07-19",
+      "edition": "Spring",
+      "city": "Fucecchio",
+      "attendance": 40,
+      "evidence": "competitive_sample",
+      "index": 100,
+      "springBasketFloorUsd": 19.87,
+      "pricedCopies": 41765
+    },
+    {
+      "id": "2015-torino",
+      "date": "2015-10-25",
+      "edition": "Torino (aborted)",
+      "city": "Torino",
+      "attendance": 42,
+      "evidence": "competitive_sample",
+      "index": 98.1,
+      "springBasketFloorUsd": 19.51,
+      "pricedCopies": 41828
+    },
+    {
+      "id": "2016-milano",
+      "date": "2016-01-31",
+      "edition": "Winter",
+      "city": "Milano",
+      "attendance": 112,
+      "evidence": "competitive_sample",
+      "index": 118.4,
+      "springBasketFloorUsd": 23.57,
+      "pricedCopies": 42004
+    },
+    {
+      "id": "2016-firenze",
+      "date": "2016-05-22",
+      "edition": "Spring",
+      "city": "Firenze",
+      "attendance": 118,
+      "evidence": "competitive_sample",
+      "index": 131.9,
+      "springBasketFloorUsd": 26.29,
+      "pricedCopies": 42272
+    },
+    {
+      "id": "2017-milano",
+      "date": "2017-02-12",
+      "edition": "Winter",
+      "city": "Milano",
+      "attendance": 213,
+      "evidence": "competitive_sample",
+      "index": 123.2,
+      "springBasketFloorUsd": 24.8,
+      "pricedCopies": 42598
+    },
+    {
+      "id": "2017-firenze",
+      "date": "2017-06-18",
+      "edition": "Spring",
+      "city": "Firenze",
+      "attendance": 161,
+      "evidence": "competitive_sample",
+      "index": 130.3,
+      "springBasketFloorUsd": 26.55,
+      "pricedCopies": 43253
+    },
+    {
+      "id": "2017-roma",
+      "date": "2017-09-17",
+      "edition": "Autumn",
+      "city": "Roma",
+      "attendance": 132,
+      "evidence": "competitive_sample",
+      "index": 130.8,
+      "springBasketFloorUsd": 26.78,
+      "pricedCopies": 43575
+    },
+    {
+      "id": "2018-milano",
+      "date": "2018-01-21",
+      "edition": "Winter",
+      "city": "Milano",
+      "attendance": 200,
+      "evidence": "competitive_sample",
+      "index": 150.4,
+      "springBasketFloorUsd": 30.93,
+      "pricedCopies": 43604
+    },
+    {
+      "id": "2018-firenze",
+      "date": "2018-06-24",
+      "edition": "Spring",
+      "city": "Firenze",
+      "attendance": 192,
+      "evidence": "competitive_sample",
+      "index": 184.5,
+      "springBasketFloorUsd": 38.16,
+      "pricedCopies": 44433
+    },
+    {
+      "id": "2018-roma",
+      "date": "2018-09-23",
+      "edition": "Autumn",
+      "city": "Roma",
+      "attendance": 148,
+      "evidence": "competitive_sample",
+      "index": 188.9,
+      "springBasketFloorUsd": 39.12,
+      "pricedCopies": 44792
+    },
+    {
+      "id": "2019-milano",
+      "date": "2019-02-10",
+      "edition": "Winter",
+      "city": "Milano",
+      "attendance": 224,
+      "evidence": "competitive_sample",
+      "index": 178.7,
+      "springBasketFloorUsd": 37.23,
+      "pricedCopies": 45003
+    },
+    {
+      "id": "2019-pisa",
+      "date": "2019-06-23",
+      "edition": "Spring",
+      "city": "Pisa",
+      "attendance": 214,
+      "evidence": "competitive_sample",
+      "index": 182.3,
+      "springBasketFloorUsd": 37.92,
+      "pricedCopies": 46573
+    },
+    {
+      "id": "2019-roma",
+      "date": "2019-11-03",
+      "edition": "Autumn",
+      "city": "Roma",
+      "attendance": 152,
+      "evidence": "competitive_sample",
+      "index": 172.2,
+      "springBasketFloorUsd": 35.8,
+      "pricedCopies": 46854
+    },
+    {
+      "id": "2020-milano",
+      "date": "2020-02-16",
+      "edition": "Winter",
+      "city": "Milano",
+      "attendance": 246,
+      "evidence": "competitive_sample",
+      "index": 155.7,
+      "springBasketFloorUsd": 32.63,
+      "pricedCopies": 47035
+    },
+    {
+      "id": "2021-roma",
+      "date": "2021-10-24",
+      "edition": "Autumn",
+      "city": "Roma",
+      "attendance": 186,
+      "evidence": "competitive_sample",
+      "index": 189.4,
+      "springBasketFloorUsd": 40.67,
+      "pricedCopies": 51298
+    },
+    {
+      "id": "2022-milano",
+      "date": "2022-04-06",
+      "edition": "Winter",
+      "city": "Milano",
+      "attendance": 226,
+      "evidence": "competitive_sample",
+      "index": 216.6,
+      "springBasketFloorUsd": 47.02,
+      "pricedCopies": 54119
+    },
+    {
+      "id": "2022-pisa",
+      "date": "2022-07-03",
+      "edition": "Spring",
+      "city": "Pisa",
+      "attendance": 324,
+      "evidence": "field_reconstruction",
+      "index": 207.4,
+      "springBasketFloorUsd": 45.71,
+      "pricedCopies": 56849
+    },
+    {
+      "id": "2022-roma",
+      "date": "2022-11-06",
+      "edition": "Autumn",
+      "city": "Roma",
+      "attendance": 406,
+      "evidence": "competitive_sample",
+      "index": 226.1,
+      "springBasketFloorUsd": 50.84,
+      "pricedCopies": 57835
+    },
+    {
+      "id": "2023-lecco",
+      "date": "2023-03-26",
+      "edition": "Winter",
+      "city": "Lecco",
+      "attendance": 614,
+      "evidence": "field_reconstruction",
+      "index": 244,
+      "springBasketFloorUsd": 55.12,
+      "pricedCopies": 57880
+    },
+    {
+      "id": "2023-pisa",
+      "date": "2023-06-17",
+      "edition": "Spring",
+      "city": "Pisa",
+      "attendance": 481,
+      "evidence": "field_reconstruction",
+      "index": 221.5,
+      "springBasketFloorUsd": 50.28,
+      "pricedCopies": 59632
+    },
+    {
+      "id": "2023-roma",
+      "date": "2023-11-18",
+      "edition": "Autumn",
+      "city": "Roma",
+      "attendance": 502,
+      "evidence": "field_reconstruction",
+      "index": 209.3,
+      "springBasketFloorUsd": 48.41,
+      "pricedCopies": 60696
+    },
+    {
+      "id": "2024-lecco",
+      "date": "2024-03-23",
+      "edition": "Winter",
+      "city": "Lecco",
+      "attendance": 688,
+      "evidence": "field_reconstruction",
+      "index": 247.2,
+      "springBasketFloorUsd": 56.76,
+      "pricedCopies": 61660
+    },
+    {
+      "id": "2024-pisa",
+      "date": "2024-06-22",
+      "edition": "Spring",
+      "city": "S. Giuliano Terme",
+      "attendance": 638,
+      "evidence": "field_reconstruction",
+      "index": 240.5,
+      "springBasketFloorUsd": 56.37,
+      "pricedCopies": 67342
+    },
+    {
+      "id": "2024-roma",
+      "date": "2024-11-23",
+      "edition": "Autumn",
+      "city": "Roma",
+      "attendance": 690,
+      "evidence": "field_reconstruction",
+      "index": 221.5,
+      "springBasketFloorUsd": 53.58,
+      "pricedCopies": 68446
+    },
+    {
+      "id": "2025-lecco",
+      "date": "2025-03-22",
+      "edition": "Winter",
+      "city": "Lecco",
+      "attendance": 751,
+      "evidence": "field_reconstruction",
+      "index": 239.5,
+      "springBasketFloorUsd": 58.3,
+      "pricedCopies": 68662
+    },
+    {
+      "id": "2025-lucca-summer",
+      "date": "2025-07-05",
+      "edition": "Summer",
+      "city": "Lucca",
+      "attendance": 1076,
+      "evidence": "full_field",
+      "index": 241.5,
+      "springBasketFloorUsd": 59.48,
+      "pricedCopies": 68930
+    },
+    {
+      "id": "2025-lucca-autumn",
+      "date": "2025-11-28",
+      "edition": "Autumn",
+      "city": "Lucca",
+      "attendance": 1012,
+      "evidence": "full_field",
+      "index": 278,
+      "springBasketFloorUsd": 68.23,
+      "pricedCopies": 69525
+    },
+    {
+      "id": "2026-lucca-spring",
+      "date": "2026-03-21",
+      "edition": "Spring",
+      "city": "Lucca",
+      "attendance": 965,
+      "evidence": "full_field",
+      "index": 359.2,
+      "springBasketFloorUsd": 94.63,
+      "pricedCopies": 70262
+    },
+    {
+      "id": "2026-lucca-summer",
+      "date": "2026-07-11",
+      "edition": "Summer",
+      "city": "Lucca",
+      "attendance": 1069,
+      "evidence": "full_field",
+      "index": 380.2,
+      "springBasketFloorUsd": 102.7,
+      "pricedCopies": 70262
+    }
+  ],
+  "exactFields": [
+    {
+      "id": "2026-lucca-spring",
+      "date": "2026-03-21",
+      "decks": 965,
+      "averageUsd": 94.63,
+      "medianUsd": null,
+      "p25Usd": null,
+      "p75Usd": null,
+      "pricedCopyShare": 97,
+      "note": "Exact aggregate field; individual deck distribution unavailable."
+    },
+    {
+      "id": "2026-lucca-summer",
+      "date": "2026-07-11",
+      "decks": 1069,
+      "averageUsd": 102.43,
+      "medianUsd": 96.76,
+      "p25Usd": 82.79,
+      "p75Usd": 111.42,
+      "pricedCopyShare": 97.6,
+      "note": "All individual Day 1 decklists."
+    }
+  ],
+  "drivers": [
+    {
+      "name": "Pyroblast",
+      "copies": 1012,
+      "startPrice": 1.09,
+      "endPrice": 8.43,
+      "increaseUsd": 7428.08,
+      "selectedPrinting": "Pyroblast [ICE]"
+    },
+    {
+      "name": "Lotus Petal",
+      "copies": 105,
+      "startPrice": 4.04,
+      "endPrice": 49.9,
+      "increaseUsd": 4815.3,
+      "selectedPrinting": "Lotus Petal [MB1]"
+    },
+    {
+      "name": "Hydroblast",
+      "copies": 932,
+      "startPrice": 0.26,
+      "endPrice": 4.04,
+      "increaseUsd": 3522.96,
+      "selectedPrinting": "Hydroblast [5ED]"
+    },
+    {
+      "name": "Dust to Dust",
+      "copies": 397,
+      "startPrice": 0.2,
+      "endPrice": 8.59,
+      "increaseUsd": 3330.83,
+      "selectedPrinting": "Dust to Dust [DRK]"
+    },
+    {
+      "name": "Red Elemental Blast",
+      "copies": 733,
+      "startPrice": 0.25,
+      "endPrice": 4.52,
+      "increaseUsd": 3129.91,
+      "selectedPrinting": "Red Elemental Blast [4ED]"
+    },
+    {
+      "name": "Mental Note",
+      "copies": 311,
+      "startPrice": 0.18,
+      "endPrice": 9.57,
+      "increaseUsd": 2920.29,
+      "selectedPrinting": "Mental Note [JUD]"
+    },
+    {
+      "name": "Krark-clan Shaman",
+      "copies": 511,
+      "startPrice": 0.15,
+      "endPrice": 5.56,
+      "increaseUsd": 2764.51,
+      "selectedPrinting": "Krark-Clan Shaman [MRD]"
+    },
+    {
+      "name": "Relic of Progenitus",
+      "copies": 690,
+      "startPrice": 1.17,
+      "endPrice": 5.16,
+      "increaseUsd": 2753.1,
+      "selectedPrinting": "Relic of Progenitus [ALA]"
+    },
+    {
+      "name": "Faerie Macabre",
+      "copies": 421,
+      "startPrice": 0.24,
+      "endPrice": 5.5,
+      "increaseUsd": 2214.46,
+      "selectedPrinting": "Faerie Macabre [MMA]"
+    },
+    {
+      "name": "Vault of Whispers",
+      "copies": 593,
+      "startPrice": 0.44,
+      "endPrice": 3.3,
+      "increaseUsd": 1695.98,
+      "selectedPrinting": "Vault of Whispers [J25]"
+    },
+    {
+      "name": "Prismatic Strands",
+      "copies": 313,
+      "startPrice": 0.21,
+      "endPrice": 5.5,
+      "increaseUsd": 1655.77,
+      "selectedPrinting": "Prismatic Strands [JUD]"
+    },
+    {
+      "name": "Nihil Spellbomb",
+      "copies": 755,
+      "startPrice": 0.2,
+      "endPrice": 2.02,
+      "increaseUsd": 1374.1,
+      "selectedPrinting": "Nihil Spellbomb [C13]"
+    },
+    {
+      "name": "Snuff Out",
+      "copies": 283,
+      "startPrice": 0.3,
+      "endPrice": 4.99,
+      "increaseUsd": 1327.27,
+      "selectedPrinting": "Snuff Out [FIC]"
+    },
+    {
+      "name": "Spellstutter Sprite",
+      "copies": 184,
+      "startPrice": 0.47,
+      "endPrice": 6.39,
+      "increaseUsd": 1089.28,
+      "selectedPrinting": "Spellstutter Sprite [LRW]"
+    },
+    {
+      "name": "Counterspell",
+      "copies": 745,
+      "startPrice": 0.83,
+      "endPrice": 2,
+      "increaseUsd": 871.65,
+      "selectedPrinting": "Counterspell [6ED]"
+    }
+  ],
+  "springSpend": [
+    {
+      "name": "Pyroblast",
+      "copies": 1012,
+      "decks": 316,
+      "priceUsd": 8.43,
+      "spendUsd": 8531.16,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Lotus Petal",
+      "copies": 105,
+      "decks": 45,
+      "priceUsd": 49.9,
+      "spendUsd": 5239.5,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Hydroblast",
+      "copies": 932,
+      "decks": 284,
+      "priceUsd": 4.04,
+      "spendUsd": 3765.28,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Relic of Progenitus",
+      "copies": 690,
+      "decks": 259,
+      "priceUsd": 5.16,
+      "spendUsd": 3560.4,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Dust to Dust",
+      "copies": 397,
+      "decks": 125,
+      "priceUsd": 8.59,
+      "spendUsd": 3410.23,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Red Elemental Blast",
+      "copies": 733,
+      "decks": 273,
+      "priceUsd": 4.52,
+      "spendUsd": 3313.16,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Utrom Monitor",
+      "copies": 406,
+      "decks": 107,
+      "priceUsd": 8.08,
+      "spendUsd": 3280.48,
+      "universe": "Universes Beyond / external IP",
+      "franchise": "Teenage Mutant Ninja Turtles"
+    },
+    {
+      "name": "Mental Note",
+      "copies": 311,
+      "decks": 83,
+      "priceUsd": 9.57,
+      "spendUsd": 2976.27,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Krark-clan Shaman",
+      "copies": 511,
+      "decks": 201,
+      "priceUsd": 5.56,
+      "spendUsd": 2841.16,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Avenging Hunter",
+      "copies": 642,
+      "decks": 222,
+      "priceUsd": 3.99,
+      "spendUsd": 2561.58,
+      "universe": "Universes Beyond / external IP",
+      "franchise": "Dungeons & Dragons"
+    },
+    {
+      "name": "Faerie Macabre",
+      "copies": 421,
+      "decks": 185,
+      "priceUsd": 5.5,
+      "spendUsd": 2315.5,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Vault of Whispers",
+      "copies": 593,
+      "decks": 202,
+      "priceUsd": 3.3,
+      "spendUsd": 1956.9,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Prismatic Strands",
+      "copies": 313,
+      "decks": 106,
+      "priceUsd": 5.5,
+      "spendUsd": 1721.5,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Breath Weapon",
+      "copies": 620,
+      "decks": 301,
+      "priceUsd": 2.69,
+      "spendUsd": 1667.8,
+      "universe": "Universes Beyond / external IP",
+      "franchise": "Dungeons & Dragons"
+    },
+    {
+      "name": "Nihil Spellbomb",
+      "copies": 755,
+      "decks": 335,
+      "priceUsd": 2.02,
+      "spendUsd": 1525.1,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Counterspell",
+      "copies": 745,
+      "decks": 189,
+      "priceUsd": 2,
+      "spendUsd": 1490,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Snuff Out",
+      "copies": 283,
+      "decks": 102,
+      "priceUsd": 4.99,
+      "spendUsd": 1412.17,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Kessig Flamebreather",
+      "copies": 491,
+      "decks": 125,
+      "priceUsd": 2.77,
+      "spendUsd": 1360.07,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Spellstutter Sprite",
+      "copies": 184,
+      "decks": 46,
+      "priceUsd": 6.39,
+      "spendUsd": 1175.76,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Galvanic Blast",
+      "copies": 599,
+      "decks": 153,
+      "priceUsd": 1.8,
+      "spendUsd": 1078.2,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Generous Ent",
+      "copies": 646,
+      "decks": 175,
+      "priceUsd": 1.52,
+      "spendUsd": 981.92,
+      "universe": "Universes Beyond / external IP",
+      "franchise": "The Lord of the Rings"
+    },
+    {
+      "name": "Masked Vandal",
+      "copies": 547,
+      "decks": 171,
+      "priceUsd": 1.75,
+      "spendUsd": 957.25,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Great Furnace",
+      "copies": 434,
+      "decks": 152,
+      "priceUsd": 2.12,
+      "spendUsd": 920.08,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Envelop",
+      "copies": 258,
+      "decks": 136,
+      "priceUsd": 3.48,
+      "spendUsd": 897.84,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Brainstorm",
+      "copies": 619,
+      "decks": 159,
+      "priceUsd": 1.39,
+      "spendUsd": 860.41,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Gut Shot",
+      "copies": 181,
+      "decks": 59,
+      "priceUsd": 4.68,
+      "spendUsd": 847.08,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Thoughtcast",
+      "copies": 481,
+      "decks": 121,
+      "priceUsd": 1.75,
+      "spendUsd": 841.75,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Quirion Ranger",
+      "copies": 396,
+      "decks": 119,
+      "priceUsd": 1.97,
+      "spendUsd": 780.12,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Blue Elemental Blast",
+      "copies": 732,
+      "decks": 252,
+      "priceUsd": 1,
+      "spendUsd": 732,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    },
+    {
+      "name": "Ashnod's Altar",
+      "copies": 54,
+      "decks": 18,
+      "priceUsd": 12.98,
+      "spendUsd": 700.92,
+      "universe": "Magic in-universe",
+      "franchise": "Magic"
+    }
+  ],
+  "universe": [
+    {
+      "category": "Magic in-universe",
+      "copies": 65675,
+      "spendUsd": 81314.37,
+      "cards": 776,
+      "pricePerCopyUsd": 1.24
+    },
+    {
+      "category": "Universes Beyond / external IP",
+      "copies": 4587,
+      "spendUsd": 10006.46,
+      "cards": 65,
+      "pricePerCopyUsd": 2.18
+    }
+  ],
+  "universeFranchises": [
+    {
+      "franchise": "Dungeons & Dragons",
+      "copies": 2482,
+      "uniqueCards": 25,
+      "estimatedUsd": 6436.82,
+      "averageUsdPerCopy": 2.59
+    },
+    {
+      "franchise": "The Lord of the Rings",
+      "copies": 1993,
+      "uniqueCards": 9,
+      "estimatedUsd": 4589,
+      "averageUsdPerCopy": 2.3
+    },
+    {
+      "franchise": "Teenage Mutant Ninja Turtles",
+      "copies": 691,
+      "uniqueCards": 9,
+      "estimatedUsd": 2892.46,
+      "averageUsdPerCopy": 4.19
+    },
+    {
+      "franchise": "Final Fantasy",
+      "copies": 217,
+      "uniqueCards": 9,
+      "estimatedUsd": 43.37,
+      "averageUsdPerCopy": 0.2
+    },
+    {
+      "franchise": "Avatar: The Last Airbender",
+      "copies": 153,
+      "uniqueCards": 12,
+      "estimatedUsd": 38.72,
+      "averageUsdPerCopy": 0.25
+    },
+    {
+      "franchise": "Marvel Spider-Man",
+      "copies": 63,
+      "uniqueCards": 6,
+      "estimatedUsd": 13.4,
+      "averageUsdPerCopy": 0.21
+    }
+  ],
+  "sources": {
+    "chronology": "https://docs.google.com/spreadsheets/d/1APfWcAQbTlBuNb5f9_yG8HQ7fRzvAyZy0wLm6py8NuQ/edit",
+    "prices": "https://www.mtggoldfish.com/prices/paper/legacy-staples",
+    "springDecks": "/paupergeddon2026/",
+    "summerDecks": "/paupergeddonsummer2026/",
+    "ledger": "paupergeddon-events.json"
+  }
+}

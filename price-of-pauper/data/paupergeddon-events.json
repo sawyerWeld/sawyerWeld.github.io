@@ -1,0 +1,42 @@
+{
+  "title": "Paupergeddon event and evidence ledger",
+  "updated": "2026-09-01",
+  "attendanceTotal": 11822,
+  "coverageDefinitions": {
+    "competitive_sample": "Published Top 8, Top 16, or Top 32 decklists. Useful for the competitive edge of the format, not a field average.",
+    "field_reconstruction": "Full-field archetype counts paired with published representative lists. An estimated field average.",
+    "full_field": "Every submitted decklist, or exact aggregate card-count distributions for every submitted decklist."
+  },
+  "primaryChronologySource": "https://docs.google.com/spreadsheets/d/1APfWcAQbTlBuNb5f9_yG8HQ7fRzvAyZy0wLm6py8NuQ/edit",
+  "events": [
+    {"id":"2015-fucecchio","date":"2015-07-19","edition":"Spring","city":"Fucecchio","attendance":40,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/2373-pauper-top-8-paupergeddon-1-fucecchio-fi.html"},
+    {"id":"2015-torino","date":"2015-10-25","edition":"Torino (aborted)","city":"Torino","attendance":42,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/2502-pauper-top-16-paupergeddon-2-torino.html"},
+    {"id":"2016-milano","date":"2016-01-31","edition":"Winter","city":"Milano","attendance":112,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/2624-pauper-top-16-paupergeddon-Winter.html"},
+    {"id":"2016-firenze","date":"2016-05-22","edition":"Spring","city":"Firenze","attendance":118,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/2739-pauper-top8-paupergeddon-firenze-2016.html"},
+    {"id":"2017-milano","date":"2017-02-12","edition":"Winter","city":"Milano","attendance":213,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/2994-pauper-top-16-paupergeddon-v-milano.html"},
+    {"id":"2017-firenze","date":"2017-06-18","edition":"Spring","city":"Firenze","attendance":161,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/3124-pauper-top-16-paupergeddon-firenze.html"},
+    {"id":"2017-roma","date":"2017-09-17","edition":"Autumn","city":"Roma","attendance":132,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/3176-pauper-top-16-paupergeddon-roma.html"},
+    {"id":"2018-milano","date":"2018-01-21","edition":"Winter","city":"Milano","attendance":200,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/3277-pauper-top-16-paupergeddon-viii-milano-2018.html"},
+    {"id":"2018-firenze","date":"2018-06-24","edition":"Spring","city":"Firenze","attendance":192,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/3404-pauper-top-8-paupergeddon-firenze-2018.html"},
+    {"id":"2018-roma","date":"2018-09-23","edition":"Autumn","city":"Roma","attendance":148,"coverage":"competitive_sample","publishedDecks":8,"source":"https://www.mtgtop8.com/event?e=20173&f=PAU"},
+    {"id":"2019-milano","date":"2019-02-10","edition":"Winter","city":"Milano","attendance":224,"coverage":"competitive_sample","publishedDecks":8,"source":"http://www.metagame.it/liste-mazzi-pauper/3513-pauper-top-16-paupergeddon-milano-2019.html"},
+    {"id":"2019-pisa","date":"2019-06-23","edition":"Spring","city":"Pisa","attendance":214,"coverage":"competitive_sample","publishedDecks":8,"source":"https://www.pauperwave.com/paupergeddon-pisa-2019-top8/"},
+    {"id":"2019-roma","date":"2019-11-03","edition":"Autumn","city":"Roma","attendance":152,"coverage":"competitive_sample","publishedDecks":8,"source":"https://www.mtgtop8.com/event?e=23631&f=PAU"},
+    {"id":"2020-milano","date":"2020-02-16","edition":"Winter","city":"Milano","attendance":246,"coverage":"competitive_sample","publishedDecks":8,"source":"https://www.pauperwave.com/paupergeddon-milano-2020-top8-metagame/"},
+    {"id":"2021-roma","date":"2021-10-24","edition":"Autumn","city":"Roma","attendance":186,"coverage":"competitive_sample","publishedDecks":8,"source":"https://www.mtgtop8.com/event?e=32955&f=PAU"},
+    {"id":"2022-milano","date":"2022-04-06","edition":"Winter","city":"Milano","attendance":226,"coverage":"competitive_sample","publishedDecks":16,"source":"https://www.pauperwave.com/paupergeddon-milano-2022-top-16-metagame/"},
+    {"id":"2022-pisa","date":"2022-07-03","edition":"Spring","city":"Pisa","attendance":324,"coverage":"field_reconstruction","publishedDecks":16,"source":"https://www.pauperwave.com/paupergeddon-pisa-2022-top-metagame/"},
+    {"id":"2022-roma","date":"2022-11-06","edition":"Autumn","city":"Roma","attendance":406,"coverage":"competitive_sample","publishedDecks":32,"source":"https://www.pauperwave.com/top-32-paupergeddon-roma-2022/"},
+    {"id":"2023-lecco","date":"2023-03-26","edition":"Winter","city":"Lecco","attendance":614,"coverage":"field_reconstruction","publishedDecks":16,"source":"https://www.pauperwave.com/top8-paupergeddon-winter-edition-2023/","source2":"https://www.pauperwave.com/top16-paupergeddon-2023-winter-edition/"},
+    {"id":"2023-pisa","date":"2023-06-17","edition":"Spring","city":"Pisa","attendance":481,"coverage":"field_reconstruction","publishedDecks":16,"source":"https://www.pauperwave.com/paupergeddon-pisa-2023-top8-metagame/","source2":"https://www.pauperwave.com/paupergeddon-pisa-2023-top16/"},
+    {"id":"2023-roma","date":"2023-11-18","edition":"Autumn","city":"Roma","attendance":502,"coverage":"field_reconstruction","publishedDecks":32,"source":"https://www.pauperwave.com/top-32-metashare-paupergeddon-roma-2023/"},
+    {"id":"2024-lecco","date":"2024-03-23","edition":"Winter","city":"Lecco","attendance":688,"coverage":"field_reconstruction","publishedDecks":32,"source":"https://www.pauperwave.com/top-8-top-16-paupergeddon-lecco-2024/","source2":"https://www.pauperwave.com/top-32-paupergeddon-lecco-2024/"},
+    {"id":"2024-pisa","date":"2024-06-22","edition":"Spring","city":"S. Giuliano Terme","attendance":638,"coverage":"field_reconstruction","publishedDecks":32,"source":"https://www.pauperwave.com/top-8-paupergeddon-pisa-2024/","source2":"https://www.pauperwave.com/top-16-top-32-paupergeddon-pisa-2024/"},
+    {"id":"2024-roma","date":"2024-11-23","edition":"Autumn","city":"Roma","attendance":690,"coverage":"field_reconstruction","publishedDecks":32,"source":"https://www.pauperwave.com/top-8-paupergeddon-roma-2024/","source2":"https://www.pauperwave.com/top-16-32-paupergeddon-roma-2024/"},
+    {"id":"2025-lecco","date":"2025-03-22","edition":"Winter","city":"Lecco","attendance":751,"coverage":"field_reconstruction","publishedDecks":16,"source":"https://www.pauperwave.com/top-8-16-paupergeddon-lecco-2025/"},
+    {"id":"2025-lucca-summer","date":"2025-07-05","edition":"Summer","city":"Lucca","attendance":1076,"coverage":"full_field","publishedDecks":1076,"source":"https://mtgdecks.net/Pauper/paupergeddon-summer-edition-lucca-2025-all-decks-tournament-203323"},
+    {"id":"2025-lucca-autumn","date":"2025-11-28","edition":"Autumn","city":"Lucca","attendance":1012,"coverage":"full_field","publishedDecks":1012,"source":"https://mtgdecks.net/Pauper/paupergeddon-lucca-eternal-edition-2025-tournament-224873"},
+    {"id":"2026-lucca-spring","date":"2026-03-21","edition":"Spring","city":"Lucca","attendance":965,"coverage":"full_field","publishedDecks":965,"source":"../paupergeddon-stages.json"},
+    {"id":"2026-lucca-summer","date":"2026-07-11","edition":"Summer","city":"Lucca","attendance":1069,"coverage":"full_field","publishedDecks":1069,"source":"../sawyerwelden.com/paupergeddonsummer2026/paupergeddon-data.json","source2":"https://www.mtggoldfish.com/tournament/paupergeddon-summer-2026-main-event"}
+  ]
+}
