@@ -30,21 +30,22 @@
   .masthead-inner { min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .masthead a { color: var(--ink); font-size: .76rem; font-weight: 750; text-decoration: none; }
   .draft { padding: 4px 7px; border: 1px solid #d5c49e; border-radius: 4px; color: var(--amber); background: #fbf7ee; font-size: .63rem; font-weight: 800; text-transform: uppercase; }
-  .hero { padding: 64px 0 50px; }
+  .hero { padding: 52px 0 42px; }
   .kicker { margin: 0 0 12px; color: var(--blue); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
-  h1 { max-width: 900px; margin: 0; font-size: clamp(2.5rem, 6vw, 5.35rem); line-height: .98; font-weight: 820; letter-spacing: 0; }
-  .dek { max-width: 770px; margin: 24px 0 0; color: #344356; font-size: clamp(1.03rem, 2vw, 1.3rem); line-height: 1.58; }
-  .byline { margin: 20px 0 0; color: var(--muted); font-size: .76rem; line-height: 1.5; }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 40px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); }
+  h1 { max-width: 760px; margin: 0; font-size: clamp(2.35rem, 5vw, 4.2rem); line-height: 1.02; font-weight: 820; letter-spacing: 0; }
+  .dek { max-width: 690px; margin: 19px 0 0; color: #344356; font-size: clamp(1rem, 2vw, 1.16rem); line-height: 1.55; }
+  .byline { margin: 16px 0 0; color: var(--muted); font-size: .7rem; line-height: 1.5; }
+  .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 600px; margin-top: 30px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); }
   .stat { min-width: 0; padding: 17px 18px 18px 0; }
   .stat + .stat { padding-left: 18px; border-left: 1px solid var(--line); }
   .stat strong { display: block; font-size: clamp(1.45rem, 3vw, 2.35rem); line-height: 1.08; font-variant-numeric: tabular-nums; }
   .stat span { display: block; margin-top: 6px; color: var(--muted); font-size: .7rem; line-height: 1.4; }
   .section { padding: 52px 0; border-top: 1px solid var(--line); }
-  .section-grid { display: grid; grid-template-columns: minmax(185px, 260px) minmax(0, 1fr); gap: 58px; }
-  .section-label { position: sticky; top: 24px; align-self: start; }
-  .section-number { display: block; margin-bottom: 10px; color: var(--blue); font-size: .68rem; font-weight: 800; }
-  h2 { margin: 0; font-size: 1.28rem; line-height: 1.22; }
+  .section[hidden] { display: none; }
+  .section-grid { max-width: 920px; }
+  .section-label { margin-bottom: 20px; }
+  .section-number, .section-label p { display: none; }
+  h2 { margin: 0; font-size: 1.42rem; line-height: 1.22; }
   .section-label p, .intro, .note { color: var(--muted); line-height: 1.62; }
   .section-label p { margin: 11px 0 0; font-size: .8rem; }
   .intro { max-width: 700px; margin: 0 0 22px; font-size: .84rem; }
@@ -73,10 +74,10 @@
   .metric-copy { margin-top: 8px; color: var(--muted); font-size: .72rem; line-height: 1.5; }
   .controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .search { width: min(260px, 100%); min-height: 34px; padding: 7px 9px; border: 1px solid #c7d1dc; border-radius: 5px; background: white; color: var(--ink); font-size: .72rem; }
-  .definition { margin-bottom: 18px; padding: 18px; border: 1px solid var(--line); border-left: 3px solid var(--blue); background: white; }
-  .definition h3 { margin: 0 0 8px; font-size: .82rem; }
-  .definition p { margin: 0; color: #435269; font-size: .75rem; line-height: 1.7; }
-  .definition p + p { margin-top: 9px; }
+  .definition { margin-bottom: 17px; padding: 16px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); }
+  .definition h3 { margin: 0 0 6px; font-size: .76rem; }
+  .definition p { max-width: 820px; margin: 0; color: #435269; font-size: .73rem; line-height: 1.62; }
+  .definition p + h3 { margin-top: 14px; }
   .card-groups { display: grid; gap: 8px; }
   .card-group { border: 1px solid var(--line); border-radius: 6px; background: white; overflow: hidden; }
   .card-group summary { display: grid; grid-template-columns: minmax(120px, 1fr) auto auto; align-items: center; gap: 18px; min-height: 51px; padding: 12px 15px; cursor: pointer; list-style-position: inside; }
@@ -128,12 +129,8 @@
   @media (max-width: 760px) {
     .masthead-inner, .hero, .section, .footer-inner { width: min(100% - 28px, var(--measure)); }
     .hero { padding: 45px 0 37px; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .stat:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
-    .stat:nth-child(4) { border-top: 1px solid var(--line); }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .section { padding: 39px 0; }
-    .section-grid { grid-template-columns: 1fr; gap: 23px; }
-    .section-label { position: static; }
     .panel-head, .controls, .case-controls { align-items: stretch; flex-direction: column; }
     .chart-wrap svg { min-width: 720px; }
     .split-metric, .bars-grid, .case-panel, .change-lists, .methods { grid-template-columns: 1fr; }
@@ -149,26 +146,24 @@
 <header class="masthead"><div class="masthead-inner"><a href="/pauper/">Sawyer Welden</a><span class="draft">Private draft</span></div></header>
 <main>
   <article class="hero">
-    <p class="kicker">A paper-price benchmark for competitive Pauper</p>
     <h1>The Pauper Staples Index</h1>
-    <p class="dek">One copy of every card that competitive Pauper actually uses. The basket changes as the format changes; the index moves only when card prices do.</p>
-    <p class="byline">MTGTop8 usage · MTGGoldfish historical paper prices · Annual reconstitution · January 2017 = 100</p>
+    <p class="dek">The price of one copy of every card that sees meaningful competitive play, adjusted as the format changes.</p>
+    <p class="byline">59,827 MTGTop8 decklists · MTGGoldfish paper prices · January 2017 = 100</p>
     <div class="stats" id="stats"></div>
   </article>
 
   <section class="section"><div class="section-grid">
-    <header class="section-label"><span class="section-number">01</span><h2>The price level</h2><p>A chain-linked index follows price movement without pretending the format’s card pool stood still.</p></header>
+    <header class="section-label"><span class="section-number">01</span><h2>Prices since 2017</h2></header>
     <div>
-      <p class="intro">Each January, cards enter or leave based on the prior year’s competitive usage. The rebalance is neutral to the index on that date. A newly adopted card affects the benchmark only through price movement after it joins.</p>
       <div class="panel">
-        <div class="panel-head"><div><div class="panel-title" id="chart-title">Pauper Staples Index</div><div class="panel-subtitle" id="chart-subtitle">January 2017 = 100 · monthly observations</div></div><div class="segmented" id="chart-mode"><button class="active" data-mode="index">Index</button><button data-mode="cost">Basket cost</button></div></div>
+        <div class="panel-head"><div><div class="panel-title" id="chart-title">Pauper Staples Index</div><div class="panel-subtitle" id="chart-subtitle">January 2017 = 100</div></div><div class="segmented" id="chart-mode" hidden><button class="active" data-mode="index">Index</button><button data-mode="cost">Basket cost</button></div></div>
         <div class="chart-wrap" id="main-chart"></div>
       </div>
       <p class="finding" id="index-finding"></p>
     </div>
   </div></section>
 
-  <section class="section"><div class="section-grid">
+  <section class="section" hidden><div class="section-grid">
     <header class="section-label"><span class="section-number">02</span><h2>Two honest numbers</h2><p>The index and the shopping bill measure different things.</p></header>
     <div>
       <div class="split-metric" id="split-metric"></div>
@@ -177,24 +172,25 @@
   </div></section>
 
   <section class="section"><div class="section-grid">
-    <header class="section-label"><span class="section-number">03</span><h2>What is in it</h2><p>The complete current basket, grouped by color identity.</p></header>
+    <header class="section-label"><span class="section-number">02</span><h2>The 2026 basket</h2></header>
     <div>
       <div class="definition">
-        <h3>Precisely what qualifies</h3>
-        <p>The 2026 basket is fixed from 18,772 Pauper decklists recorded by MTGTop8 during 2025, across all listed competition levels. Main decks and sideboards both count. A nonbasic card qualifies when it appears in at least 20 decks and at least 1.00% of the year’s decks. It enters the index the following January, and every qualifying card receives exactly one unit.</p>
-        <p><b>Price definition:</b> for each monthly observation, we inspect MTGGoldfish’s paper TCGplayer Mid history for every exact-name, normal nonfoil printing. Promotional collector sets and World Championship editions are excluded. We take the cheapest printing with an observation on the date, within the preceding 14 days, or within the following seven days when no earlier observation exists. This is a reproducible replacement-cost benchmark, not TCGplayer Market, a live listing, foil price, or what a player originally paid.</p>
+        <h3>Membership</h3>
+        <p>The 2026 basket uses 18,772 MTGTop8 Pauper decklists from 2025. A nonbasic qualifies at 20 decks and 1.00% prevalence. Main deck and sideboard appearances both count; each card receives one unit. Membership updates each January from the prior year.</p>
+        <h3>Price</h3>
+        <p>For each month, we take the cheapest exact-name normal nonfoil printing in MTGGoldfish’s paper TCGplayer Mid history. Collector and World Championship editions are excluded. We use an observation on the date, up to 14 days earlier, or up to seven days later when necessary.</p>
       </div>
-      <p class="intro">The score is prevalence divided by the 1% admission floor. A 6.4× card appeared in 6.4% of 2025 decks. It reports how decisively a card qualified; it does not change the one-copy weight used in the index.</p>
+      <p class="intro"><b>Score</b> is prevalence divided by the 1% floor. It shows how decisively a card qualified, but does not change its one-copy weight.</p>
       <div class="card-groups" id="card-groups"></div>
     </div>
   </div></section>
 
-  <section class="section"><div class="section-grid">
+  <section class="section" hidden><div class="section-grid">
     <header class="section-label"><span class="section-number">04</span><h2>What moved it</h2><p>Inflation has drivers; reprints create visible relief.</p></header>
     <div class="bars-grid"><div><h3 class="bars-title">Largest cumulative increases while indexed</h3><div id="up-bars"></div></div><div><h3 class="bars-title">Largest cumulative declines while indexed</h3><div id="down-bars"></div></div></div>
   </div></section>
 
-  <section class="section"><div class="section-grid">
+  <section class="section" hidden><div class="section-grid">
     <header class="section-label"><span class="section-number">05</span><h2>New cards enter the room</h2><p>Avenging Hunter is not backfilled into a format that did not contain it.</p></header>
     <div>
       <div class="case-controls"><p class="intro" style="margin:0">A card joins in January after clearing the usage rule. Its earlier price history remains context, but only post-entry movement contributes to the index.</p><label>Card<select id="case-select"></select></label></div>
@@ -202,7 +198,7 @@
     </div>
   </div></section>
 
-  <section class="section"><div class="section-grid">
+  <section class="section" hidden><div class="section-grid">
     <header class="section-label"><span class="section-number">06</span><h2>Annual reconstitution</h2><p>Membership changes are published rather than hidden inside the calculation.</p></header>
     <div>
       <div class="case-controls"><p class="intro" style="margin:0">Choose a basket year to inspect the prior-year sample and every addition or removal.</p><label>Basket<select id="year-select"></select></label></div>
@@ -211,7 +207,7 @@
     </div>
   </div></section>
 
-  <section class="section"><div class="section-grid">
+  <section class="section" hidden><div class="section-grid">
     <header class="section-label"><span class="section-number">07</span><h2>Index rules</h2><p>Simple enough to reproduce, strict enough to update.</p></header>
     <div class="methods">
       <div class="method"><h3>Eligibility</h3><p>A nonbasic card must appear in at least 1% and at least 20 of the previous calendar year’s recorded Pauper decks. Main decks and sideboards both count.</p></div>
@@ -220,7 +216,7 @@
     </div>
   </div></section>
 </main>
-<footer class="footer"><div class="footer-inner">Draft methodology based on 59,827 MTGTop8 Pauper decklists from 2016–2025 and MTGGoldfish historical price observations. This benchmark estimates replacement cost, not what players paid. It is unaffiliated with MTGTop8, MTGGoldfish, Wizards of the Coast, or Hasbro.</div></footer>
+<footer class="footer"><div class="footer-inner">Replacement-cost estimate, not player spending. Sources: MTGTop8 usage and MTGGoldfish historical paper prices.</div></footer>
 <div class="tooltip" id="tooltip" role="status"></div>
 <script>
 (() => {
@@ -241,10 +237,8 @@
 
   function renderStats() {
     const h=data.headline, values=[
-      [h.index.toFixed(2), `index · +${h.changePct.toFixed(1)}% since 2017`],
-      [money(h.basketCostUsd), 'one copy of every current staple'],
-      [number(h.basketCards), 'cards in the 2026 basket'],
-      [number(h.sourceDecks), 'decklists behind membership']
+      [`+${h.changePct.toFixed(1)}%`, 'staple-price change since 2017'],
+      [money(h.basketCostUsd), `${number(h.basketCards)} cards in today’s basket`]
     ];
     document.getElementById('stats').innerHTML=values.map(([v,l])=>`<div class="stat"><strong>${v}</strong><span>${l}</span></div>`).join('');
   }
@@ -267,13 +261,13 @@
     const host=document.getElementById('main-chart');host.innerHTML=svg;
     host.querySelectorAll('.point').forEach(node=>{node.addEventListener('pointermove',event=>{const d=points[+node.dataset.i];showTip(event,`<strong>${month(d.date)}</strong><div>${mode==='index'?'Index':'Basket cost'}: <b>${mode==='index'?d.index.toFixed(2):money(d.basketCostUsd)}</b></div><div>${d.basketCards} cards · ${d.additions} added · ${d.removals} removed</div>`)});node.addEventListener('pointerleave',hideTip)});
     document.getElementById('chart-title').textContent=mode==='index'?'Pauper Staples Index':'Literal one-copy basket cost';
-    document.getElementById('chart-subtitle').textContent=mode==='index'?'January 2017 = 100 · composition-neutral monthly observations':'Current membership at each date · annual additions and removals create real jumps';
+    document.getElementById('chart-subtitle').textContent=mode==='index'?'January 2017 = 100':'Current membership at each date';
   }
 
   function renderSplit() {
     const h=data.headline;
     document.getElementById('split-metric').innerHTML=`<div class="metric"><div class="metric-label">Composition-neutral index</div><div class="metric-value">${h.index.toFixed(2)}</div><div class="metric-copy">Prices increased ${h.changePct.toFixed(1)}% after neutralizing annual membership changes.</div></div><div class="metric"><div class="metric-label">Literal current basket</div><div class="metric-value">${money(h.basketCostUsd)}</div><div class="metric-copy">One copy each of ${h.basketCards} cards selected from ${number(data.reconstitutions.at(-1).sourceDecks)} decks.</div></div>`;
-    document.getElementById('index-finding').textContent=`Pauper staple prices are ${h.changePct.toFixed(1)}% higher than the January 2017 baseline. The raw one-of basket costs much more than the old basket because it also contains ${h.basketCards-h.baseBasketCards} additional cards and a different mix.`;
+    document.getElementById('index-finding').textContent=`The same competitive-staple budget buys ${h.changePct.toFixed(1)}% less than it did at the January 2017 baseline.`;
   }
 
   function renderGroups() {
@@ -281,8 +275,8 @@
     document.getElementById('card-groups').innerHTML=groups.map(([key,label])=>{
       const cards=data.currentCards.filter(card=>card.colorGroup===key).sort((a,b)=>b.priceUsd-a.priceUsd||a.name.localeCompare(b.name));
       const subtotal=cards.reduce((sum,card)=>sum+card.priceUsd,0);
-      const rows=cards.map(card=>`<tr><td><b>${card.name}</b></td><td>${money(card.priceUsd)}</td><td>${percent(card.deckShare)}</td><td>${number(card.decks)}</td><td><b>${card.qualificationMultiple.toFixed(1)}×</b></td><td>${card.selectedPrinting}</td></tr>`).join('');
-      return `<details class="card-group"><summary><span class="group-name"><span class="color-mark color-${key}"></span>${label}</span><span class="group-meta">${cards.length} cards</span><span class="group-total">${money(subtotal)}</span></summary><div class="table-scroll"><table><thead><tr><th>Card</th><th>Price now</th><th>2025 share</th><th>Decks</th><th>Score</th><th>Cheapest printing</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+      const rows=cards.map(card=>`<tr><td><b>${card.name}</b></td><td>${money(card.priceUsd)}</td><td>${percent(card.deckShare)} · ${number(card.decks)}</td><td><b>${card.qualificationMultiple.toFixed(1)}×</b></td><td>${card.selectedPrinting}</td></tr>`).join('');
+      return `<details class="card-group"><summary><span class="group-name"><span class="color-mark color-${key}"></span>${label}</span><span class="group-meta">${cards.length} cards</span><span class="group-total">${money(subtotal)}</span></summary><div class="table-scroll"><table><thead><tr><th>Card</th><th>Price</th><th>Share · decks</th><th>Score</th><th>Printing</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
     }).join('');
   }
 
