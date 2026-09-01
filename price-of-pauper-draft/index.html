@@ -72,7 +72,8 @@
   .metric-label { color: var(--muted); font-size: .68rem; font-weight: 750; text-transform: uppercase; }
   .metric-value { margin-top: 8px; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 820; line-height: 1; font-variant-numeric: tabular-nums; }
   .metric-copy { margin-top: 8px; color: var(--muted); font-size: .72rem; line-height: 1.5; }
-  .controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 17px; }
+  .controls .intro { margin: 0; }
   .search { width: min(260px, 100%); min-height: 34px; padding: 7px 9px; border: 1px solid #c7d1dc; border-radius: 5px; background: white; color: var(--ink); font-size: .72rem; }
   .definition { margin-bottom: 17px; padding: 16px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); }
   .definition h3 { margin: 0 0 6px; font-size: .76rem; }
@@ -163,7 +164,7 @@
         <div class="chart-wrap" id="main-chart"></div>
       </div>
       <p class="finding" id="index-finding"></p>
-      <p class="note"><b>2018 caveat:</b> Mid can rise sharply when inventory is thin or sellers relist after a buyout. Read the peak as a listings-price event, not proof that typical players paid those prices.</p>
+      <p class="note">Each monthly return uses the same cards on both dates, so January additions and removals cannot move the line. <b>2018 caveat:</b> Mid can rise sharply when inventory is thin or sellers relist after a buyout. Comparable historical Low data was not available.</p>
     </div>
   </div></section>
 
@@ -180,13 +181,13 @@
     <div>
       <div class="definition">
         <h3>Membership</h3>
-        <p>The 2026 basket uses 18,772 MTGTop8 Pauper decklists from 2025. A nonbasic qualifies at 20 decks and 1.00% prevalence. Main deck and sideboard appearances both count; each card receives one unit. Membership updates each January from the prior year.</p>
+        <p>The 2026 basket uses 18,772 MTGTop8 Pauper decklists from 2025. A nonbasic qualifies at 20 decks and 2.00% prevalence. Main deck and sideboard appearances both count; each card receives one unit. Membership updates each January from the prior year.</p>
         <h3>Historical series</h3>
         <p>Each month uses the cheapest exact-name normal nonfoil printing in MTGGoldfish’s paper history, which predominantly reflects TCGplayer Mid. Collector and World Championship editions are excluded.</p>
         <h3>Current Low</h3>
         <p>Today’s check uses the cheapest active English normal nonfoil TCGplayer listing at any condition, excluding shipping. It is a price floor, not a one-cart purchase total.</p>
       </div>
-      <p class="intro"><b>Score</b> is prevalence divided by the 1% floor. It shows how decisively a card qualified, but does not change its one-copy weight.</p>
+      <div class="controls"><p class="intro"><b>Score</b> is prevalence divided by the 2% floor. It does not change a card’s one-copy weight.</p><div class="segmented" id="price-mode" aria-label="Current basket price source"><button class="active" data-mode="low">TCG Low</button><button data-mode="historical">Goldfish series</button></div></div>
       <div class="card-groups" id="card-groups"></div>
     </div>
   </div></section>
@@ -232,6 +233,7 @@
   const month = value => new Intl.DateTimeFormat('en-US', { month:'short', year:'numeric' }).format(new Date(value + 'T00:00:00Z'));
   const tooltip = document.getElementById('tooltip');
   let data;
+  let currentPriceMode='low';
 
   function showTip(event, html) {
     tooltip.innerHTML = html;
@@ -244,7 +246,7 @@
   function renderStats() {
     const h=data.headline, values=[
       [`+${h.changePct.toFixed(1)}%`, 'MTGGoldfish historical series since 2017'],
-      [money(h.lowBasketUsd), `current TCG Low floor · ${number(h.basketCards)} cards`]
+      [money(currentPriceMode==='low'?h.lowBasketUsd:h.basketCostUsd), `current ${currentPriceMode==='low'?'TCG Low floor':'Goldfish-series basket'} · ${number(h.basketCards)} cards`]
     ];
     document.getElementById('stats').innerHTML=values.map(([v,l])=>`<div class="stat"><strong>${v}</strong><span>${l}</span></div>`).join('');
   }
@@ -279,10 +281,12 @@
   function renderGroups() {
     const groups=[['W','White'],['U','Blue'],['B','Black'],['R','Red'],['G','Green'],['Colorless','Colorless'],['Land','Land'],['Multicolor','Multicolor']];
     document.getElementById('card-groups').innerHTML=groups.map(([key,label])=>{
-      const cards=data.currentCards.filter(card=>card.colorGroup===key).sort((a,b)=>b.lowPriceUsd-a.lowPriceUsd||a.name.localeCompare(b.name));
+      const priceKey=currentPriceMode==='low'?'lowPriceUsd':'priceUsd', printingKey=currentPriceMode==='low'?'lowSelectedPrinting':'selectedPrinting';
+      const cards=data.currentCards.filter(card=>card.colorGroup===key).sort((a,b)=>b[priceKey]-a[priceKey]||a.name.localeCompare(b.name));
       const lowSubtotal=cards.reduce((sum,card)=>sum+card.lowPriceUsd,0), historicalSubtotal=cards.reduce((sum,card)=>sum+card.priceUsd,0);
-      const rows=cards.map(card=>`<tr><td><b>${card.name}</b></td><td class="price-pair"><b>${money(card.lowPriceUsd)}</b><small>${money(card.priceUsd)} Goldfish</small></td><td>${percent(card.deckShare)} · ${number(card.decks)}</td><td><b>${card.qualificationMultiple.toFixed(1)}×</b></td><td class="printing-note">${card.lowSelectedPrinting}<small>${card.lowCondition}</small></td></tr>`).join('');
-      return `<details class="card-group"><summary><span class="group-name"><span class="color-mark color-${key}"></span>${label}</span><span class="group-meta">${cards.length} cards · Goldfish ${money(historicalSubtotal)}</span><span class="group-total">Low ${money(lowSubtotal)}</span></summary><div class="table-scroll"><table><thead><tr><th>Card</th><th>Current prices</th><th>Share · decks</th><th>Score</th><th>Low printing</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+      const rows=cards.map(card=>`<tr><td><b>${card.name}</b></td><td><b>${money(card[priceKey])}</b></td><td>${percent(card.deckShare)} · ${number(card.decks)}</td><td><b>${card.qualificationMultiple.toFixed(1)}×</b></td><td class="printing-note">${card[printingKey]}${currentPriceMode==='low'?`<small>${card.lowCondition}</small>`:''}</td></tr>`).join('');
+      const subtotal=currentPriceMode==='low'?lowSubtotal:historicalSubtotal, source=currentPriceMode==='low'?'Low':'Goldfish';
+      return `<details class="card-group"><summary><span class="group-name"><span class="color-mark color-${key}"></span>${label}</span><span class="group-meta">${cards.length} cards</span><span class="group-total">${source} ${money(subtotal)}</span></summary><div class="table-scroll"><table><thead><tr><th>Card</th><th>Price</th><th>Share · decks</th><th>Score</th><th>Printing</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
     }).join('');
   }
 
@@ -307,11 +311,12 @@
 
   async function init() {
     try {
-      const response=await fetch('pauper-staples-story.json?v=20260901');if(!response.ok)throw new Error(`Data request failed (${response.status})`);data=await response.json();
+      const response=await fetch('pauper-staples-story.json?v=20260901b');if(!response.ok)throw new Error(`Data request failed (${response.status})`);data=await response.json();
       renderStats();renderChart();renderSplit();renderGroups();renderBars();
       const caseSelect=document.getElementById('case-select');caseSelect.innerHTML=data.featuredCards.map(d=>`<option>${d.name}</option>`).join('');caseSelect.value='Avenging Hunter';renderCase(caseSelect.value);caseSelect.addEventListener('change',()=>renderCase(caseSelect.value));
       const yearSelect=document.getElementById('year-select');yearSelect.innerHTML=data.reconstitutions.map(d=>`<option value="${d.year}">${d.year} basket</option>`).join('');yearSelect.value=data.reconstitutions.at(-1).year;renderRebalance(yearSelect.value);yearSelect.addEventListener('change',()=>renderRebalance(yearSelect.value));
       document.getElementById('chart-mode').addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;document.querySelectorAll('#chart-mode button').forEach(node=>node.classList.toggle('active',node===button));renderChart(button.dataset.mode)});
+      document.getElementById('price-mode').addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;currentPriceMode=button.dataset.mode;document.querySelectorAll('#price-mode button').forEach(node=>node.classList.toggle('active',node===button));renderStats();renderGroups()});
     } catch(error) { document.getElementById('stats').innerHTML=`<div class="error">${error.message}</div>`; }
   }
   init();
