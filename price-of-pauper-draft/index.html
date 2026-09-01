@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="A chain-linked index tracking the paper price of competitive Pauper staples.">
+<meta name="description" content="A chain-linked price index and current TCGplayer Low basket for competitive Pauper staples.">
 <title>The Pauper Staples Index</title>
 <style>
   :root {
@@ -94,6 +94,9 @@
   th { padding: 10px 8px; border-bottom: 1px solid var(--ink); color: var(--muted); font-size: .62rem; text-align: right; text-transform: uppercase; }
   td { padding: 9px 8px; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; }
   th:first-child, td:first-child { text-align: left; }
+  .price-pair, .printing-note { white-space: nowrap; }
+  .price-pair b, .price-pair small, .printing-note small { display: block; }
+  .price-pair small, .printing-note small { margin-top: 2px; color: var(--muted); font-size: .61rem; }
   .rank { display: inline-block; width: 24px; color: var(--muted); }
   .bars-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
   .bars-title { margin: 0 0 10px; font-size: .76rem; }
@@ -148,7 +151,7 @@
   <article class="hero">
     <h1>The Pauper Staples Index</h1>
     <p class="dek">The price of one copy of every card that sees meaningful competitive play, adjusted as the format changes.</p>
-    <p class="byline">59,827 MTGTop8 decklists · MTGGoldfish paper prices · January 2017 = 100</p>
+    <p class="byline">59,827 MTGTop8 decklists · MTGGoldfish historical paper series · January 2017 = 100</p>
     <div class="stats" id="stats"></div>
   </article>
 
@@ -156,10 +159,11 @@
     <header class="section-label"><span class="section-number">01</span><h2>Prices since 2017</h2></header>
     <div>
       <div class="panel">
-        <div class="panel-head"><div><div class="panel-title" id="chart-title">Pauper Staples Index</div><div class="panel-subtitle" id="chart-subtitle">January 2017 = 100</div></div><div class="segmented" id="chart-mode" hidden><button class="active" data-mode="index">Index</button><button data-mode="cost">Basket cost</button></div></div>
+        <div class="panel-head"><div><div class="panel-title" id="chart-title">MTGGoldfish historical price index</div><div class="panel-subtitle" id="chart-subtitle">Predominantly TCGplayer Mid · January 2017 = 100</div></div><div class="segmented" id="chart-mode" hidden><button class="active" data-mode="index">Index</button><button data-mode="cost">Basket cost</button></div></div>
         <div class="chart-wrap" id="main-chart"></div>
       </div>
       <p class="finding" id="index-finding"></p>
+      <p class="note"><b>2018 caveat:</b> Mid can rise sharply when inventory is thin or sellers relist after a buyout. Read the peak as a listings-price event, not proof that typical players paid those prices.</p>
     </div>
   </div></section>
 
@@ -177,8 +181,10 @@
       <div class="definition">
         <h3>Membership</h3>
         <p>The 2026 basket uses 18,772 MTGTop8 Pauper decklists from 2025. A nonbasic qualifies at 20 decks and 1.00% prevalence. Main deck and sideboard appearances both count; each card receives one unit. Membership updates each January from the prior year.</p>
-        <h3>Price</h3>
-        <p>For each month, we take the cheapest exact-name normal nonfoil printing in MTGGoldfish’s paper TCGplayer Mid history. Collector and World Championship editions are excluded. We use an observation on the date, up to 14 days earlier, or up to seven days later when necessary.</p>
+        <h3>Historical series</h3>
+        <p>Each month uses the cheapest exact-name normal nonfoil printing in MTGGoldfish’s paper history, which predominantly reflects TCGplayer Mid. Collector and World Championship editions are excluded.</p>
+        <h3>Current Low</h3>
+        <p>Today’s check uses the cheapest active English normal nonfoil TCGplayer listing at any condition, excluding shipping. It is a price floor, not a one-cart purchase total.</p>
       </div>
       <p class="intro"><b>Score</b> is prevalence divided by the 1% floor. It shows how decisively a card qualified, but does not change its one-copy weight.</p>
       <div class="card-groups" id="card-groups"></div>
@@ -216,7 +222,7 @@
     </div>
   </div></section>
 </main>
-<footer class="footer"><div class="footer-inner">Replacement-cost estimate, not player spending. Sources: MTGTop8 usage and MTGGoldfish historical paper prices.</div></footer>
+<footer class="footer"><div class="footer-inner">Historical source: MTGGoldfish paper price history. Current Low: live TCGplayer listings. Replacement-cost benchmarks, not player spending.</div></footer>
 <div class="tooltip" id="tooltip" role="status"></div>
 <script>
 (() => {
@@ -237,8 +243,8 @@
 
   function renderStats() {
     const h=data.headline, values=[
-      [`+${h.changePct.toFixed(1)}%`, 'staple-price change since 2017'],
-      [money(h.basketCostUsd), `${number(h.basketCards)} cards in today’s basket`]
+      [`+${h.changePct.toFixed(1)}%`, 'MTGGoldfish historical series since 2017'],
+      [money(h.lowBasketUsd), `current TCG Low floor · ${number(h.basketCards)} cards`]
     ];
     document.getElementById('stats').innerHTML=values.map(([v,l])=>`<div class="stat"><strong>${v}</strong><span>${l}</span></div>`).join('');
   }
@@ -260,23 +266,23 @@
     </svg>`;
     const host=document.getElementById('main-chart');host.innerHTML=svg;
     host.querySelectorAll('.point').forEach(node=>{node.addEventListener('pointermove',event=>{const d=points[+node.dataset.i];showTip(event,`<strong>${month(d.date)}</strong><div>${mode==='index'?'Index':'Basket cost'}: <b>${mode==='index'?d.index.toFixed(2):money(d.basketCostUsd)}</b></div><div>${d.basketCards} cards · ${d.additions} added · ${d.removals} removed</div>`)});node.addEventListener('pointerleave',hideTip)});
-    document.getElementById('chart-title').textContent=mode==='index'?'Pauper Staples Index':'Literal one-copy basket cost';
-    document.getElementById('chart-subtitle').textContent=mode==='index'?'January 2017 = 100':'Current membership at each date';
+    document.getElementById('chart-title').textContent=mode==='index'?'MTGGoldfish historical price index':'Literal one-copy basket cost';
+    document.getElementById('chart-subtitle').textContent=mode==='index'?'Predominantly TCGplayer Mid · January 2017 = 100':'Current membership at each date';
   }
 
   function renderSplit() {
     const h=data.headline;
     document.getElementById('split-metric').innerHTML=`<div class="metric"><div class="metric-label">Composition-neutral index</div><div class="metric-value">${h.index.toFixed(2)}</div><div class="metric-copy">Prices increased ${h.changePct.toFixed(1)}% after neutralizing annual membership changes.</div></div><div class="metric"><div class="metric-label">Literal current basket</div><div class="metric-value">${money(h.basketCostUsd)}</div><div class="metric-copy">One copy each of ${h.basketCards} cards selected from ${number(data.reconstitutions.at(-1).sourceDecks)} decks.</div></div>`;
-    document.getElementById('index-finding').textContent=`The same competitive-staple budget buys ${h.changePct.toFixed(1)}% less than it did at the January 2017 baseline.`;
+    document.getElementById('index-finding').textContent=`The indexed staple price level is ${h.changePct.toFixed(1)}% above its January 2017 baseline.`;
   }
 
   function renderGroups() {
     const groups=[['W','White'],['U','Blue'],['B','Black'],['R','Red'],['G','Green'],['Colorless','Colorless'],['Land','Land'],['Multicolor','Multicolor']];
     document.getElementById('card-groups').innerHTML=groups.map(([key,label])=>{
-      const cards=data.currentCards.filter(card=>card.colorGroup===key).sort((a,b)=>b.priceUsd-a.priceUsd||a.name.localeCompare(b.name));
-      const subtotal=cards.reduce((sum,card)=>sum+card.priceUsd,0);
-      const rows=cards.map(card=>`<tr><td><b>${card.name}</b></td><td>${money(card.priceUsd)}</td><td>${percent(card.deckShare)} · ${number(card.decks)}</td><td><b>${card.qualificationMultiple.toFixed(1)}×</b></td><td>${card.selectedPrinting}</td></tr>`).join('');
-      return `<details class="card-group"><summary><span class="group-name"><span class="color-mark color-${key}"></span>${label}</span><span class="group-meta">${cards.length} cards</span><span class="group-total">${money(subtotal)}</span></summary><div class="table-scroll"><table><thead><tr><th>Card</th><th>Price</th><th>Share · decks</th><th>Score</th><th>Printing</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+      const cards=data.currentCards.filter(card=>card.colorGroup===key).sort((a,b)=>b.lowPriceUsd-a.lowPriceUsd||a.name.localeCompare(b.name));
+      const lowSubtotal=cards.reduce((sum,card)=>sum+card.lowPriceUsd,0), historicalSubtotal=cards.reduce((sum,card)=>sum+card.priceUsd,0);
+      const rows=cards.map(card=>`<tr><td><b>${card.name}</b></td><td class="price-pair"><b>${money(card.lowPriceUsd)}</b><small>${money(card.priceUsd)} Goldfish</small></td><td>${percent(card.deckShare)} · ${number(card.decks)}</td><td><b>${card.qualificationMultiple.toFixed(1)}×</b></td><td class="printing-note">${card.lowSelectedPrinting}<small>${card.lowCondition}</small></td></tr>`).join('');
+      return `<details class="card-group"><summary><span class="group-name"><span class="color-mark color-${key}"></span>${label}</span><span class="group-meta">${cards.length} cards · Goldfish ${money(historicalSubtotal)}</span><span class="group-total">Low ${money(lowSubtotal)}</span></summary><div class="table-scroll"><table><thead><tr><th>Card</th><th>Current prices</th><th>Share · decks</th><th>Score</th><th>Low printing</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
     }).join('');
   }
 

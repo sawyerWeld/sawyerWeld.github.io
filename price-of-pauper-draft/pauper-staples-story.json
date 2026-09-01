@@ -18,7 +18,10 @@
     "sourceDecks": 59827,
     "uniqueHistoricalCards": 828,
     "baseBasketCostUsd": 189.11,
-    "baseBasketCards": 323
+    "baseBasketCards": 323,
+    "lowBasketUsd": 169.44,
+    "lowPricedCards": 373,
+    "lowGeneratedAt": "2026-09-01T18:29:45Z"
   },
   "timeline": [
     {
@@ -2840,7 +2843,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 2.2
+      "qualificationMultiple": 2.2,
+      "lowPriceUsd": 23.09,
+      "lowSelectedPrinting": "PLST #TMP-294 · TCGplayer 203001",
+      "lowCondition": "Damaged",
+      "lowListingCount": 89
     },
     {
       "name": "Ashnod's Altar",
@@ -2853,7 +2860,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 8.69,
+      "lowSelectedPrinting": "CHR #92 · TCGplayer 3360",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 298
     },
     {
       "name": "Dust to Dust",
@@ -2868,7 +2879,11 @@
         "W"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 8.9
+      "qualificationMultiple": 8.9,
+      "lowPriceUsd": 5.59,
+      "lowSelectedPrinting": "DRK #5 · TCGplayer 3504",
+      "lowCondition": "Damaged",
+      "lowListingCount": 142
     },
     {
       "name": "Pyroblast",
@@ -2883,7 +2898,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 28.9
+      "qualificationMultiple": 28.9,
+      "lowPriceUsd": 5.7,
+      "lowSelectedPrinting": "ICE #213 · TCGplayer 4848",
+      "lowCondition": "Damaged",
+      "lowListingCount": 195
     },
     {
       "name": "Thermokarst",
@@ -2898,7 +2917,11 @@
         "G"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 2.99,
+      "lowSelectedPrinting": "ICE #268 · TCGplayer 4914",
+      "lowCondition": "Damaged",
+      "lowListingCount": 102
     },
     {
       "name": "Mental Note",
@@ -2913,7 +2936,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 7.7
+      "qualificationMultiple": 7.7,
+      "lowPriceUsd": 5.99,
+      "lowSelectedPrinting": "JUD #46 · TCGplayer 10206",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 177
     },
     {
       "name": "Freed from the Real",
@@ -2928,7 +2955,11 @@
         "U"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 5,
+      "lowSelectedPrinting": "A25 #58 · TCGplayer 161812",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 195
     },
     {
       "name": "Krark-Clan Shaman",
@@ -2943,7 +2974,11 @@
         "R"
       ],
       "typeLine": "Creature — Goblin Shaman",
-      "qualificationMultiple": 16
+      "qualificationMultiple": 16,
+      "lowPriceUsd": 4.1,
+      "lowSelectedPrinting": "MRD #98 · TCGplayer 11418",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 188
     },
     {
       "name": "Breath Weapon",
@@ -2958,7 +2993,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 24.3
+      "qualificationMultiple": 24.3,
+      "lowPriceUsd": 3.53,
+      "lowSelectedPrinting": "CLB #165 · TCGplayer 273294",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 72
     },
     {
       "name": "Relic of Progenitus",
@@ -2971,7 +3010,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 24.1
+      "qualificationMultiple": 24.1,
+      "lowPriceUsd": 4,
+      "lowSelectedPrinting": "ALA #218 · TCGplayer 27769",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 133
     },
     {
       "name": "Faerie Macabre",
@@ -2986,7 +3029,11 @@
         "B"
       ],
       "typeLine": "Creature — Faerie Rogue",
-      "qualificationMultiple": 11.1
+      "qualificationMultiple": 11.1,
+      "lowPriceUsd": 2.99,
+      "lowSelectedPrinting": "MB2 #42 · TCGplayer 563099",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 49
     },
     {
       "name": "Prismatic Strands",
@@ -3001,7 +3048,11 @@
         "W"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 6
+      "qualificationMultiple": 6,
+      "lowPriceUsd": 4.19,
+      "lowSelectedPrinting": "JUD #18 · TCGplayer 10170",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 126
     },
     {
       "name": "Snuff Out",
@@ -3016,7 +3067,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 14.1
+      "qualificationMultiple": 14.1,
+      "lowPriceUsd": 3.74,
+      "lowSelectedPrinting": "DDD #53 · TCGplayer 37691",
+      "lowCondition": "Damaged",
+      "lowListingCount": 46
     },
     {
       "name": "Avenging Hunter",
@@ -3031,7 +3086,11 @@
         "G"
       ],
       "typeLine": "Creature — Dragon Ranger",
-      "qualificationMultiple": 11
+      "qualificationMultiple": 11,
+      "lowPriceUsd": 3.6,
+      "lowSelectedPrinting": "CLB #215 · TCGplayer 272747",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 117
     },
     {
       "name": "Tamiyo's Safekeeping",
@@ -3046,7 +3105,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 5.1
+      "qualificationMultiple": 5.1,
+      "lowPriceUsd": 3.99,
+      "lowSelectedPrinting": "NEO #211 · TCGplayer 262765",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 275
     },
     {
       "name": "Merchant Scroll",
@@ -3061,7 +3124,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 1.5,
+      "lowSelectedPrinting": "HML #33 · TCGplayer 4527",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 363
     },
     {
       "name": "Gut Shot",
@@ -3076,7 +3143,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 5.8
+      "qualificationMultiple": 5.8,
+      "lowPriceUsd": 3.33,
+      "lowSelectedPrinting": "NPH #86 · TCGplayer 39528",
+      "lowCondition": "Damaged",
+      "lowListingCount": 153
     },
     {
       "name": "Ephemerate",
@@ -3091,7 +3162,11 @@
         "W"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 3.7
+      "qualificationMultiple": 3.7,
+      "lowPriceUsd": 3.5,
+      "lowSelectedPrinting": "MH1 #7 · TCGplayer 191568",
+      "lowCondition": "Damaged",
+      "lowListingCount": 321
     },
     {
       "name": "Hydroblast",
@@ -3106,7 +3181,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 25.4
+      "qualificationMultiple": 25.4,
+      "lowPriceUsd": 2.5,
+      "lowSelectedPrinting": "ICE #72 · TCGplayer 4727",
+      "lowCondition": "Damaged",
+      "lowListingCount": 174
     },
     {
       "name": "Lórien Revealed",
@@ -3121,7 +3200,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 20.6
+      "qualificationMultiple": 20.6,
+      "lowPriceUsd": 2.8,
+      "lowSelectedPrinting": "LTR #60 · TCGplayer 499960",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 244
     },
     {
       "name": "Moment's Peace",
@@ -3136,7 +3219,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 2.7,
+      "lowSelectedPrinting": "ODY #251 · TCGplayer 9526",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 115
     },
     {
       "name": "Spellstutter Sprite",
@@ -3151,7 +3238,11 @@
         "U"
       ],
       "typeLine": "Creature — Faerie Wizard",
-      "qualificationMultiple": 9.3
+      "qualificationMultiple": 9.3,
+      "lowPriceUsd": 2.9,
+      "lowSelectedPrinting": "LRW #89 · TCGplayer 15633",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 183
     },
     {
       "name": "Vault of Whispers",
@@ -3166,7 +3257,11 @@
         "B"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 21.6
+      "qualificationMultiple": 21.6,
+      "lowPriceUsd": 0.75,
+      "lowSelectedPrinting": "MRD #286 · TCGplayer 11311",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 322
     },
     {
       "name": "Carrion Feeder",
@@ -3181,7 +3276,11 @@
         "B"
       ],
       "typeLine": "Creature — Zombie",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 2,
+      "lowSelectedPrinting": "SCG #59 · TCGplayer 10885",
+      "lowCondition": "Damaged",
+      "lowListingCount": 241
     },
     {
       "name": "Red Elemental Blast",
@@ -3196,7 +3295,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 24.4
+      "qualificationMultiple": 24.4,
+      "lowPriceUsd": 1.86,
+      "lowSelectedPrinting": "3ED #171 · TCGplayer 1537",
+      "lowCondition": "Damaged",
+      "lowListingCount": 312
     },
     {
       "name": "Exhume",
@@ -3211,7 +3314,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 2
+      "qualificationMultiple": 2,
+      "lowPriceUsd": 1.5,
+      "lowSelectedPrinting": "USG #134 · TCGplayer 6864",
+      "lowCondition": "Damaged",
+      "lowListingCount": 322
     },
     {
       "name": "Crop Rotation",
@@ -3226,7 +3333,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.3
+      "qualificationMultiple": 2.3,
+      "lowPriceUsd": 2,
+      "lowSelectedPrinting": "ULG #98 · TCGplayer 6295",
+      "lowCondition": "Damaged",
+      "lowListingCount": 331
     },
     {
       "name": "Snap",
@@ -3241,7 +3352,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 9.3
+      "qualificationMultiple": 9.3,
+      "lowPriceUsd": 1.25,
+      "lowSelectedPrinting": "DMR #66 · TCGplayer 458224",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 268
     },
     {
       "name": "Kessig Flamebreather",
@@ -3256,7 +3371,11 @@
         "R"
       ],
       "typeLine": "Creature — Human Shaman",
-      "qualificationMultiple": 7.9
+      "qualificationMultiple": 7.9,
+      "lowPriceUsd": 2,
+      "lowSelectedPrinting": "VOW #164 · TCGplayer 253555",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 203
     },
     {
       "name": "Envelop",
@@ -3271,7 +3390,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 5.1
+      "qualificationMultiple": 5.1,
+      "lowPriceUsd": 1,
+      "lowSelectedPrinting": "JUD #39 · TCGplayer 10199",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 188
     },
     {
       "name": "Rite of Consumption",
@@ -3286,7 +3409,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 2.35,
+      "lowSelectedPrinting": "PLST #SHM-76 · TCGplayer 582835",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 64
     },
     {
       "name": "Generous Ent",
@@ -3301,7 +3428,11 @@
         "G"
       ],
       "typeLine": "Creature — Treefolk",
-      "qualificationMultiple": 11.9
+      "qualificationMultiple": 11.9,
+      "lowPriceUsd": 0.62,
+      "lowSelectedPrinting": "LTR #169 · TCGplayer 498328",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 310
     },
     {
       "name": "Great Furnace",
@@ -3316,7 +3447,11 @@
         "R"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 19.4
+      "qualificationMultiple": 19.4,
+      "lowPriceUsd": 1.37,
+      "lowSelectedPrinting": "MRD #282 · TCGplayer 11312",
+      "lowCondition": "Damaged",
+      "lowListingCount": 271
     },
     {
       "name": "Skred",
@@ -3331,7 +3466,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.8
+      "qualificationMultiple": 2.8,
+      "lowPriceUsd": 1,
+      "lowSelectedPrinting": "CSP #97 · TCGplayer 14113",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 130
     },
     {
       "name": "Fyndhorn Elves",
@@ -3346,7 +3485,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Druid",
-      "qualificationMultiple": 3.2
+      "qualificationMultiple": 3.2,
+      "lowPriceUsd": 0.85,
+      "lowSelectedPrinting": "ICE #244 · TCGplayer 4694",
+      "lowCondition": "Damaged",
+      "lowListingCount": 274
     },
     {
       "name": "Wellwisher",
@@ -3361,7 +3504,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf",
-      "qualificationMultiple": 3.6
+      "qualificationMultiple": 3.6,
+      "lowPriceUsd": 0.7,
+      "lowSelectedPrinting": "ONS #300 · TCGplayer 10363",
+      "lowCondition": "Damaged",
+      "lowListingCount": 333
     },
     {
       "name": "Nihil Spellbomb",
@@ -3376,7 +3523,11 @@
         "B"
       ],
       "typeLine": "Artifact",
-      "qualificationMultiple": 30.1
+      "qualificationMultiple": 30.1,
+      "lowPriceUsd": 1.19,
+      "lowSelectedPrinting": "A25 #226 · TCGplayer 161909",
+      "lowCondition": "Damaged",
+      "lowListingCount": 72
     },
     {
       "name": "Counterspell",
@@ -3391,7 +3542,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 21.5
+      "qualificationMultiple": 21.5,
+      "lowPriceUsd": 0.88,
+      "lowSelectedPrinting": "TMP #57 · TCGplayer 5503",
+      "lowCondition": "Damaged",
+      "lowListingCount": 296
     },
     {
       "name": "Ponder",
@@ -3406,7 +3561,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 9.3
+      "qualificationMultiple": 9.3,
+      "lowPriceUsd": 0.5,
+      "lowSelectedPrinting": "MB2 #34 · TCGplayer 563206",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 90
     },
     {
       "name": "Timberwatch Elf",
@@ -3421,7 +3580,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf",
-      "qualificationMultiple": 4.1
+      "qualificationMultiple": 4.1,
+      "lowPriceUsd": 0.81,
+      "lowSelectedPrinting": "LGN #140 · TCGplayer 10812",
+      "lowCondition": "Damaged",
+      "lowListingCount": 173
     },
     {
       "name": "Citadel Gate",
@@ -3436,7 +3599,11 @@
         "W"
       ],
       "typeLine": "Land — Gate",
-      "qualificationMultiple": 2
+      "qualificationMultiple": 2,
+      "lowPriceUsd": 0.78,
+      "lowSelectedPrinting": "CLB #349 · TCGplayer 273084",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 107
     },
     {
       "name": "Galvanic Blast",
@@ -3451,7 +3618,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 21.2
+      "qualificationMultiple": 21.2,
+      "lowPriceUsd": 0.71,
+      "lowSelectedPrinting": "DDU #45 · TCGplayer 162807",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 127
     },
     {
       "name": "Myr Retriever",
@@ -3464,7 +3635,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact Creature — Myr",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.5,
+      "lowSelectedPrinting": "MRD #215 · TCGplayer 11526",
+      "lowCondition": "Damaged",
+      "lowListingCount": 224
     },
     {
       "name": "Thoughtcast",
@@ -3479,7 +3654,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 7.9
+      "qualificationMultiple": 7.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #374 · TCGplayer 590214",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 114
     },
     {
       "name": "Muddle the Mixture",
@@ -3494,7 +3673,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.99,
+      "lowSelectedPrinting": "PLST #RAV-60 · TCGplayer 275349",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 199
     },
     {
       "name": "Ancestral Mask",
@@ -3509,7 +3692,11 @@
         "G"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.7,
+      "lowSelectedPrinting": "MMQ #229 · TCGplayer 6425",
+      "lowCondition": "Damaged",
+      "lowListingCount": 410
     },
     {
       "name": "Holy Light",
@@ -3524,7 +3711,11 @@
         "W"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.18,
+      "lowSelectedPrinting": "DRK #10 · TCGplayer 3532",
+      "lowCondition": "Damaged",
+      "lowListingCount": 113
     },
     {
       "name": "Land Grant",
@@ -3539,7 +3730,11 @@
         "G"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 3.6
+      "qualificationMultiple": 3.6,
+      "lowPriceUsd": 1,
+      "lowSelectedPrinting": "MMQ #255 · TCGplayer 6589",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 165
     },
     {
       "name": "Fanatical Offering",
@@ -3554,7 +3749,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 15.5
+      "qualificationMultiple": 15.5,
+      "lowPriceUsd": 0.91,
+      "lowSelectedPrinting": "LCI #105 · TCGplayer 526191",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 245
     },
     {
       "name": "Lembas",
@@ -3567,7 +3766,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact — Food",
-      "qualificationMultiple": 13.1
+      "qualificationMultiple": 13.1,
+      "lowPriceUsd": 0.75,
+      "lowSelectedPrinting": "LTR #243 · TCGplayer 499443",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 296
     },
     {
       "name": "Sadistic Glee",
@@ -3582,7 +3785,11 @@
         "B"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 3.2
+      "qualificationMultiple": 3.2,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "TMP #153 · TCGplayer 5703",
+      "lowCondition": "Damaged",
+      "lowListingCount": 450
     },
     {
       "name": "Masked Vandal",
@@ -3597,7 +3804,11 @@
         "G"
       ],
       "typeLine": "Creature — Shapeshifter",
-      "qualificationMultiple": 8.9
+      "qualificationMultiple": 8.9,
+      "lowPriceUsd": 0.9,
+      "lowSelectedPrinting": "PLST #KHM-184 · TCGplayer 533993",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 101
     },
     {
       "name": "Mortician Beetle",
@@ -3612,7 +3823,11 @@
         "B"
       ],
       "typeLine": "Creature — Insect",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "MM3 #78 · TCGplayer 128593",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 168
     },
     {
       "name": "Expedition Map",
@@ -3625,7 +3840,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 2.9
+      "qualificationMultiple": 2.9,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "2XM #255 · TCGplayer 218259",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 211
     },
     {
       "name": "Wrenn's Resolve",
@@ -3640,7 +3859,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 5
+      "qualificationMultiple": 5,
+      "lowPriceUsd": 0.76,
+      "lowSelectedPrinting": "MOM #173 · TCGplayer 491759",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 281
     },
     {
       "name": "Brainstorm",
@@ -3655,7 +3878,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 17.2
+      "qualificationMultiple": 17.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TLE #155 · TCGplayer 662458",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 56
     },
     {
       "name": "Manor Gate",
@@ -3670,7 +3897,11 @@
         "G"
       ],
       "typeLine": "Land — Gate",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.23,
+      "lowSelectedPrinting": "CLB #356 · TCGplayer 273083",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 92
     },
     {
       "name": "Quirion Ranger",
@@ -3685,7 +3916,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Ranger",
-      "qualificationMultiple": 7.7
+      "qualificationMultiple": 7.7,
+      "lowPriceUsd": 0.58,
+      "lowSelectedPrinting": "VIS #117 · TCGplayer 5906",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 223
     },
     {
       "name": "Mutagenic Growth",
@@ -3700,7 +3935,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.86,
+      "lowSelectedPrinting": "NPH #116 · TCGplayer 39449",
+      "lowCondition": "Damaged",
+      "lowListingCount": 327
     },
     {
       "name": "Defile",
@@ -3715,7 +3954,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.5,
+      "lowSelectedPrinting": "MH1 #86 · TCGplayer 191582",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 316
     },
     {
       "name": "Ninja of the Deep Hours",
@@ -3730,7 +3973,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Ninja",
-      "qualificationMultiple": 7.6
+      "qualificationMultiple": 7.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #108 · TCGplayer 590562",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 103
     },
     {
       "name": "Scattershot Archer",
@@ -3745,7 +3992,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Archer",
-      "qualificationMultiple": 5.9
+      "qualificationMultiple": 5.9,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "CON #90 · TCGplayer 28598",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 298
     },
     {
       "name": "Sunscape Familiar",
@@ -3760,7 +4011,11 @@
         "W"
       ],
       "typeLine": "Creature — Wall",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.19,
+      "lowSelectedPrinting": "PLS #17 · TCGplayer 7891",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 346
     },
     {
       "name": "Bojuka Bog",
@@ -3775,7 +4030,11 @@
         "B"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 19.5
+      "qualificationMultiple": 19.5,
+      "lowPriceUsd": 0.75,
+      "lowSelectedPrinting": "MB2 #105 · TCGplayer 563063",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 116
     },
     {
       "name": "Sea Gate",
@@ -3790,7 +4049,11 @@
         "U"
       ],
       "typeLine": "Land — Gate",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.83,
+      "lowSelectedPrinting": "CLB #359 · TCGplayer 273082",
+      "lowCondition": "Damaged",
+      "lowListingCount": 245
     },
     {
       "name": "End the Festivities",
@@ -3805,7 +4068,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 12.7
+      "qualificationMultiple": 12.7,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "VOW #155 · TCGplayer 253770",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 308
     },
     {
       "name": "Drossforge Bridge",
@@ -3821,7 +4088,11 @@
         "R"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 17.6
+      "qualificationMultiple": 17.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH2 #246 · TCGplayer 239716",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 220
     },
     {
       "name": "Utopia Sprawl",
@@ -3836,7 +4107,11 @@
         "G"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 7.5
+      "qualificationMultiple": 7.5,
+      "lowPriceUsd": 0.5,
+      "lowSelectedPrinting": "DIS #99 · TCGplayer 13976",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 228
     },
     {
       "name": "Weather the Storm",
@@ -3851,7 +4126,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 22
+      "qualificationMultiple": 22,
+      "lowPriceUsd": 0.75,
+      "lowSelectedPrinting": "MH1 #191 · TCGplayer 191064",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 195
     },
     {
       "name": "Troll of Khazad-dûm",
@@ -3866,7 +4145,11 @@
         "B"
       ],
       "typeLine": "Creature — Troll",
-      "qualificationMultiple": 6.9
+      "qualificationMultiple": 6.9,
+      "lowPriceUsd": 0.35,
+      "lowSelectedPrinting": "LTR #111 · TCGplayer 498752",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 410
     },
     {
       "name": "Ancient Den",
@@ -3881,7 +4164,11 @@
         "W"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 3.8
+      "qualificationMultiple": 3.8,
+      "lowPriceUsd": 0.49,
+      "lowSelectedPrinting": "MRD #278 · TCGplayer 11308",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 365
     },
     {
       "name": "Tree of Tales",
@@ -3896,7 +4183,11 @@
         "G"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 1.1
+      "qualificationMultiple": 1.1,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MRD #285 · TCGplayer 11309",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 329
     },
     {
       "name": "Goblin Bushwhacker",
@@ -3911,7 +4202,11 @@
         "R"
       ],
       "typeLine": "Creature — Goblin Warrior",
-      "qualificationMultiple": 6.4
+      "qualificationMultiple": 6.4,
+      "lowPriceUsd": 0.49,
+      "lowSelectedPrinting": "ZEN #125 · TCGplayer 33304",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 243
     },
     {
       "name": "Unwind",
@@ -3926,7 +4221,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.1
+      "qualificationMultiple": 1.1,
+      "lowPriceUsd": 0.5,
+      "lowSelectedPrinting": "DOM #72 · TCGplayer 164359",
+      "lowCondition": "Damaged",
+      "lowListingCount": 252
     },
     {
       "name": "Acorn Harvest",
@@ -3941,7 +4240,11 @@
         "G"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 2.3
+      "qualificationMultiple": 2.3,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "TOR #118 · TCGplayer 9641",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 316
     },
     {
       "name": "Candy Trail",
@@ -3954,7 +4257,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact — Food Clue",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "WOE #243 · TCGplayer 513362",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 203
     },
     {
       "name": "Ghostly Flicker",
@@ -3969,7 +4276,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.9
+      "qualificationMultiple": 2.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #98 · TCGplayer 507400",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 248
     },
     {
       "name": "Priest of Titania",
@@ -3984,7 +4295,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Druid",
-      "qualificationMultiple": 4.3
+      "qualificationMultiple": 4.3,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MH3 #428 · TCGplayer 541287",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 123
     },
     {
       "name": "Blue Elemental Blast",
@@ -3999,7 +4314,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 26.2
+      "qualificationMultiple": 26.2,
+      "lowPriceUsd": 0.39,
+      "lowSelectedPrinting": "3ED #49 · TCGplayer 1349",
+      "lowCondition": "Damaged",
+      "lowListingCount": 309
     },
     {
       "name": "Okiba-Gang Shinobi",
@@ -4014,7 +4333,11 @@
         "B"
       ],
       "typeLine": "Creature — Rat Ninja",
-      "qualificationMultiple": 3.3
+      "qualificationMultiple": 3.3,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "BOK #76 · TCGplayer 12319",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 388
     },
     {
       "name": "Stinkweed Imp",
@@ -4029,7 +4352,11 @@
         "B"
       ],
       "typeLine": "Creature — Imp",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "RAV #107 · TCGplayer 13428",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 446
     },
     {
       "name": "Flaring Pain",
@@ -4044,7 +4371,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 7.2
+      "qualificationMultiple": 7.2,
+      "lowPriceUsd": 0.66,
+      "lowSelectedPrinting": "PLST #JUD-89 · TCGplayer 583284",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 51
     },
     {
       "name": "Mask of Law and Grace",
@@ -4059,7 +4390,11 @@
         "W"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "UDS #11 · TCGplayer 6205",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 188
     },
     {
       "name": "Guardian of the Guildpact",
@@ -4074,7 +4409,11 @@
         "W"
       ],
       "typeLine": "Creature — Spirit",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "DIS #10 · TCGplayer 13872",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 257
     },
     {
       "name": "Rancor",
@@ -4089,7 +4428,11 @@
         "G"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 2.8
+      "qualificationMultiple": 2.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PIP #205 · TCGplayer 539574",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 205
     },
     {
       "name": "Reckoner's Bargain",
@@ -4104,7 +4447,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 9.3
+      "qualificationMultiple": 9.3,
+      "lowPriceUsd": 0.3,
+      "lowSelectedPrinting": "NEO #120 · TCGplayer 262771",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 288
     },
     {
       "name": "Mistvault Bridge",
@@ -4120,7 +4467,11 @@
         "U"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 8
+      "qualificationMultiple": 8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH2 #249 · TCGplayer 239718",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 289
     },
     {
       "name": "Armadillo Cloak",
@@ -4136,7 +4487,11 @@
         "W"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "INV #229 · TCGplayer 7421",
+      "lowCondition": "Damaged",
+      "lowListingCount": 228
     },
     {
       "name": "Campfire",
@@ -4149,7 +4504,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 4.9
+      "qualificationMultiple": 4.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #374 · TCGplayer 507225",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 83
     },
     {
       "name": "Tinder Wall",
@@ -4165,7 +4524,11 @@
         "R"
       ],
       "typeLine": "Creature — Plant Wall",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "ICE #270 · TCGplayer 4919",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 452
     },
     {
       "name": "Seat of the Synod",
@@ -4180,7 +4543,11 @@
         "U"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 8.1
+      "qualificationMultiple": 8.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #773 · TCGplayer 590309",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 132
     },
     {
       "name": "Witch's Cottage",
@@ -4195,7 +4562,11 @@
         "B"
       ],
       "typeLine": "Land — Swamp",
-      "qualificationMultiple": 2
+      "qualificationMultiple": 2,
+      "lowPriceUsd": 0.27,
+      "lowSelectedPrinting": "ELD #249 · TCGplayer 198390",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 349
     },
     {
       "name": "Lava Dart",
@@ -4210,7 +4581,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 7.8
+      "qualificationMultiple": 7.8,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "PLST #JUD-94 · TCGplayer 583381",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 41
     },
     {
       "name": "Guardians' Pledge",
@@ -4225,7 +4600,11 @@
         "W"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.7
+      "qualificationMultiple": 2.7,
+      "lowPriceUsd": 0.47,
+      "lowSelectedPrinting": "M12 #22 · TCGplayer 47632",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 125
     },
     {
       "name": "Force Spike",
@@ -4240,7 +4619,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.7
+      "qualificationMultiple": 2.7,
+      "lowPriceUsd": 0.27,
+      "lowSelectedPrinting": "5ED #88 · TCGplayer 2157",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 148
     },
     {
       "name": "Reckless Impulse",
@@ -4255,7 +4638,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 4.2
+      "qualificationMultiple": 4.2,
+      "lowPriceUsd": 0.33,
+      "lowSelectedPrinting": "VOW #174 · TCGplayer 253542",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 333
     },
     {
       "name": "Khalni Garden",
@@ -4270,7 +4657,11 @@
         "G"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 6.1
+      "qualificationMultiple": 6.1,
+      "lowPriceUsd": 0.5,
+      "lowSelectedPrinting": "WWK #138 · TCGplayer 34391",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 214
     },
     {
       "name": "Urza's Tower",
@@ -4283,7 +4674,11 @@
       "colorGroup": "Land",
       "colorIdentity": [],
       "typeLine": "Land — Urza's Tower",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #1053 · TCGplayer 506724",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 90
     },
     {
       "name": "Cast into the Fire",
@@ -4298,7 +4693,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 23.2
+      "qualificationMultiple": 23.2,
+      "lowPriceUsd": 0.39,
+      "lowSelectedPrinting": "LTR #118 · TCGplayer 498308",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 307
     },
     {
       "name": "Mesmeric Fiend",
@@ -4313,7 +4712,11 @@
         "B"
       ],
       "typeLine": "Creature — Nightmare Horror",
-      "qualificationMultiple": 6.3
+      "qualificationMultiple": 6.3,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "TOR #69 · TCGplayer 9618",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 276
     },
     {
       "name": "Glint Hawk",
@@ -4328,7 +4731,11 @@
         "W"
       ],
       "typeLine": "Creature — Bird",
-      "qualificationMultiple": 4.3
+      "qualificationMultiple": 4.3,
+      "lowPriceUsd": 0.44,
+      "lowSelectedPrinting": "SOM #10 · TCGplayer 36362",
+      "lowCondition": "Damaged",
+      "lowListingCount": 270
     },
     {
       "name": "Lightning Bolt",
@@ -4343,7 +4750,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 25.3
+      "qualificationMultiple": 25.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MSC #806 · TCGplayer 697344",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 114
     },
     {
       "name": "Volatile Fjord",
@@ -4359,7 +4770,11 @@
         "U"
       ],
       "typeLine": "Snow Land — Island Mountain",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.35,
+      "lowSelectedPrinting": "KHM #273 · TCGplayer 230112",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 176
     },
     {
       "name": "Crashing Drawbridge",
@@ -4372,7 +4787,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact Creature — Wall",
-      "qualificationMultiple": 1
+      "qualificationMultiple": 1,
+      "lowPriceUsd": 0.27,
+      "lowSelectedPrinting": "ELD #217 · TCGplayer 199543",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 257
     },
     {
       "name": "Preordain",
@@ -4387,7 +4806,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 7.4
+      "qualificationMultiple": 7.4,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "CMR #84 · TCGplayer 226646",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 511
     },
     {
       "name": "High Tide",
@@ -4402,7 +4825,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 0.15,
+      "lowSelectedPrinting": "FEM #18b · TCGplayer 18211",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 415
     },
     {
       "name": "Spinning Darkness",
@@ -4417,7 +4844,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "WTH #81 · TCGplayer 6103",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 261
     },
     {
       "name": "Raze",
@@ -4432,7 +4863,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 2.5
+      "qualificationMultiple": 2.5,
+      "lowPriceUsd": 0.29,
+      "lowSelectedPrinting": "USG #207 · TCGplayer 6995",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 212
     },
     {
       "name": "Vines of Vastwood",
@@ -4447,7 +4882,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 3.3
+      "qualificationMultiple": 3.3,
+      "lowPriceUsd": 0.5,
+      "lowSelectedPrinting": "MM2 #168 · TCGplayer 98856",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 275
     },
     {
       "name": "Winding Way",
@@ -4462,7 +4901,11 @@
         "G"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 8.8
+      "qualificationMultiple": 8.8,
+      "lowPriceUsd": 0.27,
+      "lowSelectedPrinting": "MH1 #193 · TCGplayer 191774",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 190
     },
     {
       "name": "Cryptic Serpent",
@@ -4477,7 +4920,11 @@
         "U"
       ],
       "typeLine": "Creature — Serpent",
-      "qualificationMultiple": 7
+      "qualificationMultiple": 7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #83 · TCGplayer 507071",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 143
     },
     {
       "name": "Fireblast",
@@ -4492,7 +4939,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 11.6
+      "qualificationMultiple": 11.6,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "DMR #319 · TCGplayer 465221",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 97
     },
     {
       "name": "Ichor Wellspring",
@@ -4505,7 +4956,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 22.4
+      "qualificationMultiple": 22.4,
+      "lowPriceUsd": 0.15,
+      "lowSelectedPrinting": "MBS #110 · TCGplayer 39104",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 215
     },
     {
       "name": "Birchlore Rangers",
@@ -4520,7 +4975,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Druid Ranger",
-      "qualificationMultiple": 2.3
+      "qualificationMultiple": 2.3,
+      "lowPriceUsd": 0.15,
+      "lowSelectedPrinting": "ONS #248 · TCGplayer 10635",
+      "lowCondition": "Damaged",
+      "lowListingCount": 456
     },
     {
       "name": "Searing Blaze",
@@ -4535,7 +4994,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 4.4
+      "qualificationMultiple": 4.4,
+      "lowPriceUsd": 0.46,
+      "lowSelectedPrinting": "PLST #WWK-90 · TCGplayer 583436",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 60
     },
     {
       "name": "Standard Bearer",
@@ -4550,7 +5013,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Flagbearer",
-      "qualificationMultiple": 5.3
+      "qualificationMultiple": 5.3,
+      "lowPriceUsd": 0.19,
+      "lowSelectedPrinting": "APC #18 · TCGplayer 8032",
+      "lowCondition": "Damaged",
+      "lowListingCount": 171
     },
     {
       "name": "Cleansing Wildfire",
@@ -4565,7 +5032,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 9.8
+      "qualificationMultiple": 9.8,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "ZNR #137 · TCGplayer 221913",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 241
     },
     {
       "name": "Urza's Mine",
@@ -4578,7 +5049,11 @@
       "colorGroup": "Land",
       "colorIdentity": [],
       "typeLine": "Land — Urza's Mine",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #1051 · TCGplayer 506722",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 96
     },
     {
       "name": "Urza's Power Plant",
@@ -4591,7 +5066,11 @@
       "colorGroup": "Land",
       "colorIdentity": [],
       "typeLine": "Land — Urza's Power-Plant",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "CHR #115c · TCGplayer 18175",
+      "lowCondition": "Damaged",
+      "lowListingCount": 328
     },
     {
       "name": "Deglamer",
@@ -4606,7 +5085,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 5.4
+      "qualificationMultiple": 5.4,
+      "lowPriceUsd": 0.42,
+      "lowSelectedPrinting": "PLST #MOR-118 · TCGplayer 582917",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 143
     },
     {
       "name": "Myr Enforcer",
@@ -4619,7 +5102,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact Creature — Myr",
-      "qualificationMultiple": 7.9
+      "qualificationMultiple": 7.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #756 · TCGplayer 590103",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 122
     },
     {
       "name": "Slippery Bogle",
@@ -4635,7 +5122,11 @@
         "U"
       ],
       "typeLine": "Creature — Beast",
-      "qualificationMultiple": 2
+      "qualificationMultiple": 2,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "EVE #160 · TCGplayer 27202",
+      "lowCondition": "Damaged",
+      "lowListingCount": 277
     },
     {
       "name": "Cast Down",
@@ -4650,7 +5141,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 22.6
+      "qualificationMultiple": 22.6,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "CLB #119 · TCGplayer 273128",
+      "lowCondition": "Damaged",
+      "lowListingCount": 128
     },
     {
       "name": "Dread Return",
@@ -4665,7 +5160,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 4.9
+      "qualificationMultiple": 4.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #637 · TCGplayer 507190",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 232
     },
     {
       "name": "Elvish Vanguard",
@@ -4680,7 +5179,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Warrior",
-      "qualificationMultiple": 1
+      "qualificationMultiple": 1,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "EMA #164 · TCGplayer 118685",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 186
     },
     {
       "name": "Artful Dodge",
@@ -4695,7 +5198,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "DKA #27 · TCGplayer 57854",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 314
     },
     {
       "name": "Black Dragon Gate",
@@ -4710,7 +5217,11 @@
         "B"
       ],
       "typeLine": "Land — Gate",
-      "qualificationMultiple": 1.1
+      "qualificationMultiple": 1.1,
+      "lowPriceUsd": 0.22,
+      "lowSelectedPrinting": "CLB #347 · TCGplayer 273086",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 211
     },
     {
       "name": "Crypt Rats",
@@ -4725,7 +5236,11 @@
         "B"
       ],
       "typeLine": "Creature — Rat",
-      "qualificationMultiple": 3.2
+      "qualificationMultiple": 3.2,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "MH1 #84 · TCGplayer 190879",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 246
     },
     {
       "name": "Elvish Mystic",
@@ -4740,7 +5255,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Druid",
-      "qualificationMultiple": 3.3
+      "qualificationMultiple": 3.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #648 · TCGplayer 507178",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 199
     },
     {
       "name": "Grab the Prize",
@@ -4755,7 +5274,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 10.2
+      "qualificationMultiple": 10.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DSK #138 · TCGplayer 576881",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 326
     },
     {
       "name": "Hallow",
@@ -4770,7 +5293,11 @@
         "W"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.1
+      "qualificationMultiple": 1.1,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "DST #4 · TCGplayer 11741",
+      "lowCondition": "Damaged",
+      "lowListingCount": 260
     },
     {
       "name": "Ice Tunnel",
@@ -4786,7 +5313,11 @@
         "U"
       ],
       "typeLine": "Snow Land — Island Swamp",
-      "qualificationMultiple": 2.5
+      "qualificationMultiple": 2.5,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "KHM #262 · TCGplayer 230110",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 276
     },
     {
       "name": "Jagged Barrens",
@@ -4802,7 +5333,11 @@
         "R"
       ],
       "typeLine": "Land — Desert",
-      "qualificationMultiple": 5.6
+      "qualificationMultiple": 5.6,
+      "lowPriceUsd": 0.15,
+      "lowSelectedPrinting": "OTJ #259 · TCGplayer 544236",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 228
     },
     {
       "name": "Mwonvuli Acid-Moss",
@@ -4817,7 +5352,11 @@
         "G"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.12,
+      "lowSelectedPrinting": "PLST #TSP-207 · TCGplayer 583087",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 126
     },
     {
       "name": "Sacred Cat",
@@ -4832,7 +5371,11 @@
         "W"
       ],
       "typeLine": "Creature — Cat",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.2,
+      "lowSelectedPrinting": "PLST #AKH-27 · TCGplayer 203288",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 72
     },
     {
       "name": "Thought Scour",
@@ -4847,7 +5390,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 8.2
+      "qualificationMultiple": 8.2,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "DKA #52 · TCGplayer 57678",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 427
     },
     {
       "name": "Unearth",
@@ -4862,7 +5409,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "MH1 #113 · TCGplayer 191138",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 402
     },
     {
       "name": "Fangren Marauder",
@@ -4877,7 +5428,11 @@
         "G"
       ],
       "typeLine": "Creature — Beast",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "MBS #79 · TCGplayer 39064",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 331
     },
     {
       "name": "Malevolent Rumble",
@@ -4892,7 +5447,11 @@
         "G"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 12.7
+      "qualificationMultiple": 12.7,
+      "lowPriceUsd": 0.25,
+      "lowSelectedPrinting": "MH3 #161 · TCGplayer 553328",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 378
     },
     {
       "name": "Tormod's Crypt",
@@ -4905,7 +5464,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 4.3
+      "qualificationMultiple": 4.3,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "M13 #219 · TCGplayer 60041",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 288
     },
     {
       "name": "Arms of Hadar",
@@ -4920,7 +5483,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 6.3
+      "qualificationMultiple": 6.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CLB #113 · TCGplayer 273393",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 177
     },
     {
       "name": "Kor Skyfisher",
@@ -4935,7 +5502,11 @@
         "W"
       ],
       "typeLine": "Creature — Kor Soldier",
-      "qualificationMultiple": 7.5
+      "qualificationMultiple": 7.5,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "PLST #DDO-16 · TCGplayer 203159",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 81
     },
     {
       "name": "Tithing Blade",
@@ -4950,7 +5521,11 @@
         "B"
       ],
       "typeLine": "Artifact // Artifact",
-      "qualificationMultiple": 5.2
+      "qualificationMultiple": 5.2,
+      "lowPriceUsd": 0.2,
+      "lowSelectedPrinting": "LCI #128 · TCGplayer 526379",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 427
     },
     {
       "name": "Heap Gate",
@@ -4963,7 +5538,11 @@
       "colorGroup": "Land",
       "colorIdentity": [],
       "typeLine": "Land — Gate",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "CLB #354 · TCGplayer 273081",
+      "lowCondition": "Damaged",
+      "lowListingCount": 263
     },
     {
       "name": "Highway Robbery",
@@ -4978,7 +5557,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 9.2
+      "qualificationMultiple": 9.2,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "OTJ #129 · TCGplayer 544664",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 359
     },
     {
       "name": "Vampire's Kiss",
@@ -4993,7 +5576,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 5.6
+      "qualificationMultiple": 5.6,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "VOW #136 · TCGplayer 254799",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 282
     },
     {
       "name": "Faithless Looting",
@@ -5008,7 +5595,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 10.7
+      "qualificationMultiple": 10.7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #642 · TCGplayer 507166",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 249
     },
     {
       "name": "Corrupted Conviction",
@@ -5023,7 +5614,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "OTJ #84 · TCGplayer 544718",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 498
     },
     {
       "name": "Arbor Elf",
@@ -5038,7 +5633,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Druid",
-      "qualificationMultiple": 5.7
+      "qualificationMultiple": 5.7,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "M13 #160 · TCGplayer 60009",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 579
     },
     {
       "name": "Glacial Floodplain",
@@ -5054,7 +5653,11 @@
         "W"
       ],
       "typeLine": "Snow Land — Plains Island",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "KHM #257 · TCGplayer 230108",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 440
     },
     {
       "name": "Trespasser's Curse",
@@ -5069,7 +5672,11 @@
         "B"
       ],
       "typeLine": "Enchantment — Aura Curse",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.2,
+      "lowSelectedPrinting": "AKH #112 · TCGplayer 130292",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 467
     },
     {
       "name": "Alms of the Vein",
@@ -5084,7 +5691,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 5.6
+      "qualificationMultiple": 5.6,
+      "lowPriceUsd": 0.02,
+      "lowSelectedPrinting": "SOI #98 · TCGplayer 116358",
+      "lowCondition": "Damaged",
+      "lowListingCount": 326
     },
     {
       "name": "Crimson Acolyte",
@@ -5099,7 +5710,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Cleric",
-      "qualificationMultiple": 1
+      "qualificationMultiple": 1,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "INV #11 · TCGplayer 7460",
+      "lowCondition": "Damaged",
+      "lowListingCount": 455
     },
     {
       "name": "Distant Melody",
@@ -5114,7 +5729,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1
+      "qualificationMultiple": 1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "LCC #154 · TCGplayer 525812",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 166
     },
     {
       "name": "Ethereal Armor",
@@ -5129,7 +5748,11 @@
         "W"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 2.6
+      "qualificationMultiple": 2.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DSK #7 · TCGplayer 575288",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 455
     },
     {
       "name": "Ideas Unbound",
@@ -5144,7 +5767,11 @@
         "U"
       ],
       "typeLine": "Sorcery — Arcane",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.06,
+      "lowSelectedPrinting": "PLST #SOK-40 · TCGplayer 581336",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 189
     },
     {
       "name": "Obsidian Acolyte",
@@ -5159,7 +5786,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Cleric",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.02,
+      "lowSelectedPrinting": "INV #22 · TCGplayer 7571",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 380
     },
     {
       "name": "Rakdos Carnarium",
@@ -5175,7 +5806,11 @@
         "R"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 5.2
+      "qualificationMultiple": 5.2,
+      "lowPriceUsd": 0.13,
+      "lowSelectedPrinting": "IMA #245 · TCGplayer 145393",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 198
     },
     {
       "name": "Ram Through",
@@ -5190,7 +5825,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 5
+      "qualificationMultiple": 5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #314 · TCGplayer 507130",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 200
     },
     {
       "name": "Shambling Ghast",
@@ -5205,7 +5844,11 @@
         "B"
       ],
       "typeLine": "Creature — Zombie",
-      "qualificationMultiple": 4.2
+      "qualificationMultiple": 4.2,
+      "lowPriceUsd": 0.18,
+      "lowSelectedPrinting": "PLST #AFR-119 · TCGplayer 582850",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 116
     },
     {
       "name": "Thraben Charm",
@@ -5220,7 +5863,11 @@
         "W"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 12
+      "qualificationMultiple": 12,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH3 #45 · TCGplayer 552284",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 513
     },
     {
       "name": "Troublemaker Ouphe",
@@ -5235,7 +5882,11 @@
         "G"
       ],
       "typeLine": "Creature — Ouphe",
-      "qualificationMultiple": 10.9
+      "qualificationMultiple": 10.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "WOE #194 · TCGplayer 512310",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 560
     },
     {
       "name": "Wild Growth",
@@ -5250,7 +5901,11 @@
         "G"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 5.4
+      "qualificationMultiple": 5.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PIP #208 · TCGplayer 539576",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 134
     },
     {
       "name": "Blood Fountain",
@@ -5265,7 +5920,11 @@
         "B"
       ],
       "typeLine": "Artifact",
-      "qualificationMultiple": 19.3
+      "qualificationMultiple": 19.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #407 · TCGplayer 589825",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 258
     },
     {
       "name": "Kuldotha Rebirth",
@@ -5280,7 +5939,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 2.9
+      "qualificationMultiple": 2.9,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "PLST #SOM-96 · TCGplayer 533172",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 241
     },
     {
       "name": "Llanowar Elves",
@@ -5295,7 +5958,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Druid",
-      "qualificationMultiple": 4.3
+      "qualificationMultiple": 4.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #149 · TCGplayer 590519",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 195
     },
     {
       "name": "Psychic Puppetry",
@@ -5310,7 +5977,11 @@
         "U"
       ],
       "typeLine": "Instant — Arcane",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.14,
+      "lowSelectedPrinting": "CHK #80 · TCGplayer 12137",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 392
     },
     {
       "name": "Reaping the Graves",
@@ -5325,7 +5996,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.3
+      "qualificationMultiple": 2.3,
+      "lowPriceUsd": 0.15,
+      "lowSelectedPrinting": "SCG #72 · TCGplayer 10898",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 303
     },
     {
       "name": "Experimental Synthesizer",
@@ -5340,7 +6015,11 @@
         "R"
       ],
       "typeLine": "Artifact",
-      "qualificationMultiple": 10.9
+      "qualificationMultiple": 10.9,
+      "lowPriceUsd": 0.14,
+      "lowSelectedPrinting": "NEO #138 · TCGplayer 262794",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 436
     },
     {
       "name": "Greatsword of Tyr",
@@ -5355,7 +6034,11 @@
         "W"
       ],
       "typeLine": "Artifact — Equipment",
-      "qualificationMultiple": 1.1
+      "qualificationMultiple": 1.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CLB #22 · TCGplayer 272908",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 487
     },
     {
       "name": "Hidden Strings",
@@ -5370,7 +6053,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.1,
+      "lowSelectedPrinting": "DGM #12 · TCGplayer 67963",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 492
     },
     {
       "name": "Of One Mind",
@@ -5385,7 +6072,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 5.7
+      "qualificationMultiple": 5.7,
+      "lowPriceUsd": 0.07,
+      "lowSelectedPrinting": "IKO #60 · TCGplayer 212617",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 520
     },
     {
       "name": "Faerie Seer",
@@ -5400,7 +6091,11 @@
         "U"
       ],
       "typeLine": "Creature — Faerie Wizard",
-      "qualificationMultiple": 7.6
+      "qualificationMultiple": 7.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #106 · TCGplayer 590537",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 182
     },
     {
       "name": "Mortuary Mire",
@@ -5415,7 +6110,11 @@
         "B"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "C19 #260 · TCGplayer 196759",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 160
     },
     {
       "name": "Tectonic Hazard",
@@ -5430,7 +6129,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 2.2
+      "qualificationMultiple": 2.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "LCI #169 · TCGplayer 526294",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 638
     },
     {
       "name": "Basilisk Gate",
@@ -5443,7 +6146,11 @@
       "colorGroup": "Land",
       "colorIdentity": [],
       "typeLine": "Land — Gate",
-      "qualificationMultiple": 2.3
+      "qualificationMultiple": 2.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MB2 #104 · TCGplayer 563062",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 204
     },
     {
       "name": "Chromatic Star",
@@ -5456,7 +6163,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 2.6
+      "qualificationMultiple": 2.6,
+      "lowPriceUsd": 0.07,
+      "lowSelectedPrinting": "BRR #11 · TCGplayer 452387",
+      "lowCondition": "Damaged",
+      "lowListingCount": 655
     },
     {
       "name": "Evolution Witness",
@@ -5471,7 +6182,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Shaman Mutant",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.11,
+      "lowSelectedPrinting": "MH3 #151 · TCGplayer 552324",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 790
     },
     {
       "name": "Accursed Marauder",
@@ -5486,7 +6201,11 @@
         "B"
       ],
       "typeLine": "Creature — Zombie Warrior",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "MH3 #80 · TCGplayer 553204",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 776
     },
     {
       "name": "Chain Lightning",
@@ -5501,7 +6220,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 11.4
+      "qualificationMultiple": 11.4,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "DMR #113 · TCGplayer 460351",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 442
     },
     {
       "name": "Dimir Aqueduct",
@@ -5517,7 +6240,11 @@
         "U"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "OTC #288 · TCGplayer 545252",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 142
     },
     {
       "name": "Dispel",
@@ -5532,7 +6259,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 21.7
+      "qualificationMultiple": 21.7,
+      "lowPriceUsd": 0.2,
+      "lowSelectedPrinting": "BFZ #76 · TCGplayer 105594",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 555
     },
     {
       "name": "Lead the Stampede",
@@ -5547,7 +6278,11 @@
         "G"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 9.4
+      "qualificationMultiple": 9.4,
+      "lowPriceUsd": 0.08,
+      "lowSelectedPrinting": "IMA #173 · TCGplayer 145519",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 210
     },
     {
       "name": "Mulldrifter",
@@ -5562,7 +6297,11 @@
         "U"
       ],
       "typeLine": "Creature — Elemental",
-      "qualificationMultiple": 3.4
+      "qualificationMultiple": 3.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MKC #111 · TCGplayer 535745",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 169
     },
     {
       "name": "Murmuring Mystic",
@@ -5577,7 +6316,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Wizard",
-      "qualificationMultiple": 12.9
+      "qualificationMultiple": 12.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #107 · TCGplayer 507191",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 159
     },
     {
       "name": "Orochi Leafcaller",
@@ -5592,7 +6335,11 @@
         "G"
       ],
       "typeLine": "Creature — Snake Shaman",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "CHK #234 · TCGplayer 12125",
+      "lowCondition": "Damaged",
+      "lowListingCount": 381
     },
     {
       "name": "Overgrown Battlement",
@@ -5607,7 +6354,11 @@
         "G"
       ],
       "typeLine": "Creature — Wall",
-      "qualificationMultiple": 3.9
+      "qualificationMultiple": 3.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TDC #264 · TCGplayer 624622",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 304
     },
     {
       "name": "Rally at the Hornburg",
@@ -5622,7 +6373,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "LTR #142 · TCGplayer 499412",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 641
     },
     {
       "name": "Refurbished Familiar",
@@ -5637,7 +6392,11 @@
         "B"
       ],
       "typeLine": "Artifact Creature — Zombie Rat",
-      "qualificationMultiple": 18.9
+      "qualificationMultiple": 18.9,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MH3 #105 · TCGplayer 553237",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 699
     },
     {
       "name": "Scattershot",
@@ -5652,7 +6411,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "SCG #102 · TCGplayer 10922",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 463
     },
     {
       "name": "Shield-Wall Sentinel",
@@ -5665,7 +6428,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact Creature — Golem",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DMU #238 · TCGplayer 283492",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 560
     },
     {
       "name": "Slagwoods Bridge",
@@ -5681,7 +6448,11 @@
         "R"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 8
+      "qualificationMultiple": 8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DRC #171 · TCGplayer 615223",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 300
     },
     {
       "name": "Sneaky Snacker",
@@ -5697,7 +6468,11 @@
         "U"
       ],
       "typeLine": "Creature — Faerie Rogue",
-      "qualificationMultiple": 13.3
+      "qualificationMultiple": 13.3,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MH3 #205 · TCGplayer 553311",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 506
     },
     {
       "name": "Village Rites",
@@ -5712,7 +6487,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #508 · TCGplayer 590673",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 206
     },
     {
       "name": "Conduit Pylons",
@@ -5725,7 +6504,11 @@
       "colorGroup": "Land",
       "colorIdentity": [],
       "typeLine": "Land — Desert",
-      "qualificationMultiple": 3.4
+      "qualificationMultiple": 3.4,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "OTJ #254 · TCGplayer 544694",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 874
     },
     {
       "name": "Crypt Incursion",
@@ -5740,7 +6523,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 4.3
+      "qualificationMultiple": 4.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "LTC #198 · TCGplayer 499540",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 230
     },
     {
       "name": "Goldmire Bridge",
@@ -5756,7 +6543,11 @@
         "W"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "MOC #407 · TCGplayer 491361",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 118
     },
     {
       "name": "Heritage Reclamation",
@@ -5771,7 +6562,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.3
+      "qualificationMultiple": 2.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TDM #145 · TCGplayer 624376",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 816
     },
     {
       "name": "Writhing Chrysalis",
@@ -5787,7 +6582,11 @@
         "R"
       ],
       "typeLine": "Creature — Eldrazi Drone",
-      "qualificationMultiple": 16
+      "qualificationMultiple": 16,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH3 #208 · TCGplayer 551669",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 687
     },
     {
       "name": "Archaeomancer",
@@ -5802,7 +6601,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Wizard",
-      "qualificationMultiple": 2.6
+      "qualificationMultiple": 2.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #285 · TCGplayer 590375",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 145
     },
     {
       "name": "Contaminated Aquifer",
@@ -5818,7 +6621,11 @@
         "U"
       ],
       "typeLine": "Land — Island Swamp",
-      "qualificationMultiple": 4.2
+      "qualificationMultiple": 4.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TDC #353 · TCGplayer 624451",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 286
     },
     {
       "name": "Cryogen Relic",
@@ -5833,7 +6640,11 @@
         "U"
       ],
       "typeLine": "Artifact",
-      "qualificationMultiple": 4.1
+      "qualificationMultiple": 4.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "EOE #52 · TCGplayer 643478",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 901
     },
     {
       "name": "Smash to Smithereens",
@@ -5848,7 +6659,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 8.2
+      "qualificationMultiple": 8.2,
+      "lowPriceUsd": 0.02,
+      "lowSelectedPrinting": "ORI #163 · TCGplayer 100330",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 564
     },
     {
       "name": "Deadly Dispute",
@@ -5863,7 +6678,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 9.3
+      "qualificationMultiple": 9.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MSC #794 · TCGplayer 697280",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 167
     },
     {
       "name": "Eviscerator's Insight",
@@ -5878,7 +6697,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 17.2
+      "qualificationMultiple": 17.2,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MH3 #93 · TCGplayer 552853",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 801
     },
     {
       "name": "Golgari Rot Farm",
@@ -5894,7 +6717,11 @@
         "G"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TDC #368 · TCGplayer 624463",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 319
     },
     {
       "name": "Guttersnipe",
@@ -5909,7 +6736,11 @@
         "R"
       ],
       "typeLine": "Creature — Goblin Shaman",
-      "qualificationMultiple": 4.6
+      "qualificationMultiple": 4.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #138 · TCGplayer 590698",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 195
     },
     {
       "name": "Idyllic Grange",
@@ -5924,7 +6755,11 @@
         "W"
       ],
       "typeLine": "Land — Plains",
-      "qualificationMultiple": 2.8
+      "qualificationMultiple": 2.8,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "ELD #246 · TCGplayer 199256",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 612
     },
     {
       "name": "Nyxborn Hydra",
@@ -5939,7 +6774,11 @@
         "G"
       ],
       "typeLine": "Enchantment Creature — Hydra",
-      "qualificationMultiple": 14.4
+      "qualificationMultiple": 14.4,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MH3 #164 · TCGplayer 552872",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 703
     },
     {
       "name": "Spell Pierce",
@@ -5954,7 +6793,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 15.3
+      "qualificationMultiple": 15.3,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "SOA #23 · TCGplayer 688961",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 979
     },
     {
       "name": "Drift of Phantasms",
@@ -5969,7 +6812,11 @@
         "U"
       ],
       "typeLine": "Creature — Spirit",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "RVR #42 · TCGplayer 531162",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 260
     },
     {
       "name": "Gatecreeper Vine",
@@ -5984,7 +6831,11 @@
         "G"
       ],
       "typeLine": "Creature — Plant",
-      "qualificationMultiple": 2.9
+      "qualificationMultiple": 2.9,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "RTR #124 · TCGplayer 66390",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 545
     },
     {
       "name": "Lunarch Veteran",
@@ -5999,7 +6850,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Cleric // Creature — Spirit Cleric",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "MID #27 · TCGplayer 248261",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 564
     },
     {
       "name": "Reckless Lackey",
@@ -6014,7 +6869,11 @@
         "R"
       ],
       "typeLine": "Creature — Goblin Pirate",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "OTJ #140 · TCGplayer 544426",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 944
     },
     {
       "name": "Ancient Grudge",
@@ -6030,7 +6889,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 3.7
+      "qualificationMultiple": 3.7,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "TSP #143 · TCGplayer 14156",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 463
     },
     {
       "name": "Cartouche of Solidarity",
@@ -6045,7 +6908,11 @@
         "W"
       ],
       "typeLine": "Enchantment — Aura Cartouche",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "AKH #7 · TCGplayer 129725",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 787
     },
     {
       "name": "Delver of Secrets",
@@ -6060,7 +6927,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Wizard // Creature — Human Insect",
-      "qualificationMultiple": 6.4
+      "qualificationMultiple": 6.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "INR #60 · TCGplayer 609611",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 415
     },
     {
       "name": "Electrickery",
@@ -6075,7 +6946,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 5.7
+      "qualificationMultiple": 5.7,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "RTR #93 · TCGplayer 66558",
+      "lowCondition": "Damaged",
+      "lowListingCount": 704
     },
     {
       "name": "Fang Dragon",
@@ -6090,7 +6965,11 @@
         "R"
       ],
       "typeLine": "Creature — Dragon // Sorcery — Adventure",
-      "qualificationMultiple": 1.3
+      "qualificationMultiple": 1.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CLB #173 · TCGplayer 272594",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 620
     },
     {
       "name": "Geothermal Bog",
@@ -6106,7 +6985,11 @@
         "R"
       ],
       "typeLine": "Land — Swamp Mountain",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "FIC #399 · TCGplayer 631190",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 514
     },
     {
       "name": "Gingerbrute",
@@ -6119,7 +7002,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact Creature — Food Golem",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "WOE #246 · TCGplayer 513348",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 682
     },
     {
       "name": "Gixian Infiltrator",
@@ -6134,7 +7021,11 @@
         "B"
       ],
       "typeLine": "Creature — Phyrexian Human",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "BRO #98 · TCGplayer 453104",
+      "lowCondition": "Damaged",
+      "lowListingCount": 437
     },
     {
       "name": "Gorilla Shaman",
@@ -6149,7 +7040,11 @@
         "R"
       ],
       "typeLine": "Creature — Ape Shaman",
-      "qualificationMultiple": 11.8
+      "qualificationMultiple": 11.8,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "ALL #72b · TCGplayer 81826",
+      "lowCondition": "Damaged",
+      "lowListingCount": 432
     },
     {
       "name": "Lifelink",
@@ -6164,7 +7059,11 @@
         "W"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "M12 #24 · TCGplayer 47205",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 480
     },
     {
       "name": "Moon-Circuit Hacker",
@@ -6179,7 +7078,11 @@
         "U"
       ],
       "typeLine": "Enchantment Creature — Human Ninja",
-      "qualificationMultiple": 6.6
+      "qualificationMultiple": 6.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #NEO-67 · TCGplayer 581598",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 172
     },
     {
       "name": "Radiant Fountain",
@@ -6192,7 +7095,11 @@
       "colorGroup": "Land",
       "colorIdentity": [],
       "typeLine": "Land",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "M21 #248 · TCGplayer 215512",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 564
     },
     {
       "name": "Razortide Bridge",
@@ -6208,7 +7115,11 @@
         "W"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 1.1
+      "qualificationMultiple": 1.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "EOC #171 · TCGplayer 642859",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 398
     },
     {
       "name": "Silverbluff Bridge",
@@ -6224,7 +7135,11 @@
         "U"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 7.8
+      "qualificationMultiple": 7.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH2 #255 · TCGplayer 239712",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 599
     },
     {
       "name": "Stonehorn Dignitary",
@@ -6239,7 +7154,11 @@
         "W"
       ],
       "typeLine": "Creature — Rhino Soldier",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.11,
+      "lowSelectedPrinting": "PLST #M12-37 · TCGplayer 582488",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 155
     },
     {
       "name": "Unable to Scream",
@@ -6254,7 +7173,11 @@
         "U"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DSK #78 · TCGplayer 577663",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 926
     },
     {
       "name": "Basking Broodscale",
@@ -6269,7 +7192,11 @@
         "G"
       ],
       "typeLine": "Creature — Eldrazi Lizard",
-      "qualificationMultiple": 2.8
+      "qualificationMultiple": 2.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH3 #145 · TCGplayer 552176",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 1000
     },
     {
       "name": "Eagles of the North",
@@ -6284,7 +7211,11 @@
         "W"
       ],
       "typeLine": "Creature — Bird Soldier",
-      "qualificationMultiple": 2.7
+      "qualificationMultiple": 2.7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "LTR #7 · TCGplayer 499404",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1039
     },
     {
       "name": "Extract a Confession",
@@ -6299,7 +7230,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 11
+      "qualificationMultiple": 11,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MKM #84 · TCGplayer 532879",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 839
     },
     {
       "name": "Gnaw to the Bone",
@@ -6314,7 +7249,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "ISD #183 · TCGplayer 56313",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 469
     },
     {
       "name": "Hunter's Blowgun",
@@ -6327,7 +7266,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact — Equipment",
-      "qualificationMultiple": 4.2
+      "qualificationMultiple": 4.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "LCI #255 · TCGplayer 526300",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 960
     },
     {
       "name": "Metallic Rebuke",
@@ -6342,7 +7285,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "AER #39 · TCGplayer 126433",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 680
     },
     {
       "name": "Novice Inspector",
@@ -6357,7 +7304,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Detective",
-      "qualificationMultiple": 5.1
+      "qualificationMultiple": 5.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MKM #29 · TCGplayer 530008",
+      "lowCondition": "Damaged",
+      "lowListingCount": 858
     },
     {
       "name": "Pactdoll Terror",
@@ -6372,7 +7323,11 @@
         "B"
       ],
       "typeLine": "Artifact Creature — Toy",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DFT #99 · TCGplayer 615627",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 964
     },
     {
       "name": "Rustvale Bridge",
@@ -6388,7 +7343,11 @@
         "W"
       ],
       "typeLine": "Artifact Land",
-      "qualificationMultiple": 2.9
+      "qualificationMultiple": 2.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH2 #253 · TCGplayer 239713",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 709
     },
     {
       "name": "Spirit Link",
@@ -6403,7 +7362,11 @@
         "W"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.09,
+      "lowSelectedPrinting": "DMR #29 · TCGplayer 457215",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 379
     },
     {
       "name": "Steel Sabotage",
@@ -6418,7 +7381,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 8.1
+      "qualificationMultiple": 8.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "2XM #70 · TCGplayer 219590",
+      "lowCondition": "Damaged",
+      "lowListingCount": 252
     },
     {
       "name": "Twisted Landscape",
@@ -6435,7 +7402,11 @@
         "R"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 10.4
+      "qualificationMultiple": 10.4,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "MH3 #232 · TCGplayer 553297",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1204
     },
     {
       "name": "Black Mage's Rod",
@@ -6450,7 +7421,11 @@
         "B"
       ],
       "typeLine": "Artifact — Equipment",
-      "qualificationMultiple": 3.4
+      "qualificationMultiple": 3.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "FIN #90 · TCGplayer 630932",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1465
     },
     {
       "name": "Boarding Party",
@@ -6465,7 +7440,11 @@
         "R"
       ],
       "typeLine": "Creature — Human Pirate",
-      "qualificationMultiple": 3.5
+      "qualificationMultiple": 3.5,
+      "lowPriceUsd": 0.08,
+      "lowSelectedPrinting": "CMR #163 · TCGplayer 227232",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 496
     },
     {
       "name": "Boros Garrison",
@@ -6481,7 +7460,11 @@
         "W"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 1.3
+      "qualificationMultiple": 1.3,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "MKC #251 · TCGplayer 535623",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 314
     },
     {
       "name": "Golem Foundry",
@@ -6494,7 +7477,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "EOC #138 · TCGplayer 642834",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 480
     },
     {
       "name": "Grim Bauble",
@@ -6509,7 +7496,11 @@
         "B"
       ],
       "typeLine": "Artifact",
-      "qualificationMultiple": 2.2
+      "qualificationMultiple": 2.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DFT #88 · TCGplayer 616080",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 1020
     },
     {
       "name": "Haunted Mire",
@@ -6525,7 +7516,11 @@
         "G"
       ],
       "typeLine": "Land — Swamp Forest",
-      "qualificationMultiple": 3.6
+      "qualificationMultiple": 3.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DMU #248 · TCGplayer 283639",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 594
     },
     {
       "name": "Last Rites",
@@ -6540,7 +7535,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 4
+      "qualificationMultiple": 4,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "ODY #146 · TCGplayer 9421",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 363
     },
     {
       "name": "Mirrorshell Crab",
@@ -6555,7 +7554,11 @@
         "U"
       ],
       "typeLine": "Artifact Creature — Crab",
-      "qualificationMultiple": 1.3
+      "qualificationMultiple": 1.3,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "NEO #63 · TCGplayer 262787",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 879
     },
     {
       "name": "Nadier's Nightblade",
@@ -6570,7 +7573,11 @@
         "B"
       ],
       "typeLine": "Creature — Elf Warrior",
-      "qualificationMultiple": 2.3
+      "qualificationMultiple": 2.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH3 #275 · TCGplayer 553230",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 937
     },
     {
       "name": "Saruli Caretaker",
@@ -6585,7 +7592,11 @@
         "G"
       ],
       "typeLine": "Creature — Dryad",
-      "qualificationMultiple": 3.8
+      "qualificationMultiple": 3.8,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "RNA #139 · TCGplayer 183430",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 521
     },
     {
       "name": "Azorius Chancery",
@@ -6601,7 +7612,11 @@
         "W"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MKC #249 · TCGplayer 535783",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 216
     },
     {
       "name": "Gurmag Angler",
@@ -6616,7 +7631,11 @@
         "B"
       ],
       "typeLine": "Creature — Zombie Fish",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #UMA-102 · TCGplayer 204269",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 193
     },
     {
       "name": "Peer Through Depths",
@@ -6631,7 +7650,11 @@
         "U"
       ],
       "typeLine": "Instant — Arcane",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "CHK #78 · TCGplayer 12132",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 514
     },
     {
       "name": "Razortrap Gorge",
@@ -6647,7 +7670,11 @@
         "R"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 3.3
+      "qualificationMultiple": 3.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DSK #267 · TCGplayer 575108",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 738
     },
     {
       "name": "Sagu Wildling",
@@ -6662,7 +7689,11 @@
         "G"
       ],
       "typeLine": "Creature — Dragon // Sorcery — Omen",
-      "qualificationMultiple": 5.6
+      "qualificationMultiple": 5.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TDM #306 · TCGplayer 624251",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 611
     },
     {
       "name": "Sentinel's Eyes",
@@ -6677,7 +7708,11 @@
         "W"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 2.3
+      "qualificationMultiple": 2.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "SOC #168 · TCGplayer 687512",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 376
     },
     {
       "name": "Suffocating Fumes",
@@ -6692,7 +7727,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 5.8
+      "qualificationMultiple": 5.8,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "IKO #100 · TCGplayer 212763",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 481
     },
     {
       "name": "Tragic Slip",
@@ -6707,7 +7746,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #192 · TCGplayer 507495",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 434
     },
     {
       "name": "Voldaren Epicure",
@@ -6722,7 +7765,11 @@
         "R"
       ],
       "typeLine": "Creature — Vampire",
-      "qualificationMultiple": 18.9
+      "qualificationMultiple": 18.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #613 · TCGplayer 590621",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 247
     },
     {
       "name": "Goblin Tomb Raider",
@@ -6737,7 +7784,11 @@
         "R"
       ],
       "typeLine": "Creature — Goblin Pirate",
-      "qualificationMultiple": 9.1
+      "qualificationMultiple": 9.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "LCI #151 · TCGplayer 526337",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 768
     },
     {
       "name": "Idyllic Beachfront",
@@ -6753,7 +7804,11 @@
         "W"
       ],
       "typeLine": "Land — Plains Island",
-      "qualificationMultiple": 2
+      "qualificationMultiple": 2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "FIC #404 · TCGplayer 631322",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 687
     },
     {
       "name": "Infestation Sage",
@@ -6768,7 +7823,11 @@
         "B"
       ],
       "typeLine": "Creature — Elf Warlock",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "FDN #64 · TCGplayer 591764",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 1316
     },
     {
       "name": "Nested Shambler",
@@ -6783,7 +7842,11 @@
         "B"
       ],
       "typeLine": "Creature — Zombie",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH2 #95 · TCGplayer 240395",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 767
     },
     {
       "name": "Orzhov Basilica",
@@ -6799,7 +7862,11 @@
         "W"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 1
+      "qualificationMultiple": 1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DSC #292 · TCGplayer 579329",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 261
     },
     {
       "name": "Perilous Landscape",
@@ -6816,7 +7883,11 @@
         "W"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH3 #223 · TCGplayer 553288",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1176
     },
     {
       "name": "Petals of Insight",
@@ -6831,7 +7902,11 @@
         "U"
       ],
       "typeLine": "Sorcery — Arcane",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "CHK #79 · TCGplayer 12133",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 371
     },
     {
       "name": "Pieces of the Puzzle",
@@ -6846,7 +7921,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "SOI #78 · TCGplayer 115911",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1021
     },
     {
       "name": "Seething Landscape",
@@ -6863,7 +7942,11 @@
         "U"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 2.5
+      "qualificationMultiple": 2.5,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MH3 #225 · TCGplayer 553290",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1060
     },
     {
       "name": "Sleep of the Dead",
@@ -6878,7 +7961,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 6.3
+      "qualificationMultiple": 6.3,
+      "lowPriceUsd": 0.07,
+      "lowSelectedPrinting": "THB #66 · TCGplayer 207173",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 598
     },
     {
       "name": "Squadron Hawk",
@@ -6893,7 +7980,11 @@
         "W"
       ],
       "typeLine": "Creature — Bird",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "A25 #34 · TCGplayer 161898",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 367
     },
     {
       "name": "Toxin Analysis",
@@ -6908,7 +7999,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 13
+      "qualificationMultiple": 13,
+      "lowPriceUsd": 0.03,
+      "lowSelectedPrinting": "MKM #107 · TCGplayer 535516",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 795
     },
     {
       "name": "Abundant Growth",
@@ -6923,7 +8018,11 @@
         "G"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "AFC #150 · TCGplayer 244017",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 285
     },
     {
       "name": "Annul",
@@ -6938,7 +8037,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 17.2
+      "qualificationMultiple": 17.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "EOE #46 · TCGplayer 642435",
+      "lowCondition": "Damaged",
+      "lowListingCount": 1002
     },
     {
       "name": "Ash Barrens",
@@ -6951,7 +8054,11 @@
       "colorGroup": "Land",
       "colorIdentity": [],
       "typeLine": "Land",
-      "qualificationMultiple": 2.5
+      "qualificationMultiple": 2.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DRC #147 · TCGplayer 615057",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 385
     },
     {
       "name": "Augur of Bolas",
@@ -6966,7 +8073,11 @@
         "U"
       ],
       "typeLine": "Creature — Merfolk Wizard",
-      "qualificationMultiple": 4.1
+      "qualificationMultiple": 4.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #286 · TCGplayer 590380",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 387
     },
     {
       "name": "Axebane Guardian",
@@ -6981,7 +8092,11 @@
         "G"
       ],
       "typeLine": "Creature — Human Druid",
-      "qualificationMultiple": 2.5
+      "qualificationMultiple": 2.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "RTR #115 · TCGplayer 66388",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 803
     },
     {
       "name": "Azure Fleet Admiral",
@@ -6996,7 +8111,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Pirate",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMR #58 · TCGplayer 227194",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 912
     },
     {
       "name": "Battle Screech",
@@ -7011,7 +8130,11 @@
         "W"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #17 · TCGplayer 503602",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 464
     },
     {
       "name": "Bind the Monster",
@@ -7026,7 +8149,11 @@
         "U"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 4.6
+      "qualificationMultiple": 4.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "KHM #48 · TCGplayer 230938",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 825
     },
     {
       "name": "Boomerang",
@@ -7041,7 +8168,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #MIR-56 · TCGplayer 581228",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 208
     },
     {
       "name": "Burning-Tree Emissary",
@@ -7057,7 +8188,11 @@
         "R"
       ],
       "typeLine": "Creature — Human Shaman",
-      "qualificationMultiple": 3.2
+      "qualificationMultiple": 3.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #GK2-88 · TCGplayer 582817",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 219
     },
     {
       "name": "Clockwork Percussionist",
@@ -7072,7 +8207,11 @@
         "R"
       ],
       "typeLine": "Artifact Creature — Monkey Toy",
-      "qualificationMultiple": 9.2
+      "qualificationMultiple": 9.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DSK #295 · TCGplayer 575170",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 639
     },
     {
       "name": "Coalition Honor Guard",
@@ -7087,7 +8226,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Flagbearer",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.02,
+      "lowSelectedPrinting": "EMA #6 · TCGplayer 118612",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 402
     },
     {
       "name": "Contaminated Landscape",
@@ -7104,7 +8247,11 @@
         "W"
       ],
       "typeLine": "Land",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MH3 #218 · TCGplayer 553276",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1121
     },
     {
       "name": "Dawnbringer Cleric",
@@ -7119,7 +8266,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Cleric",
-      "qualificationMultiple": 2.6
+      "qualificationMultiple": 2.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CLB #15 · TCGplayer 273310",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 696
     },
     {
       "name": "Deem Inferior",
@@ -7134,7 +8285,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 4.7
+      "qualificationMultiple": 4.7,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MH3 #57 · TCGplayer 553172",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1327
     },
     {
       "name": "Destroy Evil",
@@ -7149,7 +8304,11 @@
         "W"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 4.5
+      "qualificationMultiple": 4.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #189 · TCGplayer 590213",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 257
     },
     {
       "name": "Drown in Sorrow",
@@ -7164,7 +8323,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 5.9
+      "qualificationMultiple": 5.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #154 · TCGplayer 507175",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 411
     },
     {
       "name": "Echoing Truth",
@@ -7179,7 +8342,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "DST #21 · TCGplayer 11722",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 667
     },
     {
       "name": "Eldrazi Repurposer",
@@ -7194,7 +8361,11 @@
         "G"
       ],
       "typeLine": "Creature — Eldrazi Drone",
-      "qualificationMultiple": 4.9
+      "qualificationMultiple": 4.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH3 #150 · TCGplayer 553314",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 1288
     },
     {
       "name": "Energy Refractor",
@@ -7207,7 +8378,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "BRO #234 · TCGplayer 453106",
+      "lowCondition": "Damaged",
+      "lowListingCount": 588
     },
     {
       "name": "Faerie Miscreant",
@@ -7222,7 +8397,11 @@
         "U"
       ],
       "typeLine": "Creature — Faerie Rogue",
-      "qualificationMultiple": 5.6
+      "qualificationMultiple": 5.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "ORI #57 · TCGplayer 100186",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 733
     },
     {
       "name": "Fiery Cannonade",
@@ -7237,7 +8416,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.03,
+      "lowSelectedPrinting": "XLN #143 · TCGplayer 145808",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 648
     },
     {
       "name": "Fiery Temper",
@@ -7252,7 +8435,11 @@
         "R"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 10.2
+      "qualificationMultiple": 10.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "SOI #156 · TCGplayer 115275",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 530
     },
     {
       "name": "Gigadrowse",
@@ -7267,7 +8454,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.2
+      "qualificationMultiple": 2.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #GPT-26 · TCGplayer 581319",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 197
     },
     {
       "name": "Gladecover Scout",
@@ -7282,7 +8473,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Scout",
-      "qualificationMultiple": 2
+      "qualificationMultiple": 2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "M14 #176 · TCGplayer 69929",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 711
     },
     {
       "name": "God-Pharaoh's Faithful",
@@ -7297,7 +8492,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Wizard",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "HOU #14 · TCGplayer 136608",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 726
     },
     {
       "name": "Harrier Strix",
@@ -7312,7 +8511,11 @@
         "U"
       ],
       "typeLine": "Creature — Bird",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "OTJ #52 · TCGplayer 544705",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1008
     },
     {
       "name": "Healer of the Glade",
@@ -7327,7 +8530,11 @@
         "G"
       ],
       "typeLine": "Creature — Elemental",
-      "qualificationMultiple": 2.2
+      "qualificationMultiple": 2.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "M20 #176 · TCGplayer 192910",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 682
     },
     {
       "name": "Illvoi Galeblade",
@@ -7342,7 +8549,11 @@
         "U"
       ],
       "typeLine": "Creature — Jellyfish Warrior",
-      "qualificationMultiple": 1.3
+      "qualificationMultiple": 1.3,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "EOE #58 · TCGplayer 642111",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1511
     },
     {
       "name": "Impulse",
@@ -7357,7 +8568,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DMR #287 · TCGplayer 458955",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 504
     },
     {
       "name": "Jaspera Sentinel",
@@ -7372,7 +8587,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Rogue",
-      "qualificationMultiple": 3.3
+      "qualificationMultiple": 3.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #KHM-178 · TCGplayer 583036",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 221
     },
     {
       "name": "Jewel Thief",
@@ -7387,7 +8606,11 @@
         "G"
       ],
       "typeLine": "Creature — Cat Rogue",
-      "qualificationMultiple": 4.2
+      "qualificationMultiple": 4.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #SNC-151 · TCGplayer 583039",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 190
     },
     {
       "name": "Journey to Nowhere",
@@ -7402,7 +8625,11 @@
         "W"
       ],
       "typeLine": "Enchantment",
-      "qualificationMultiple": 4.9
+      "qualificationMultiple": 4.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "ZEN #14 · TCGplayer 33334",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 463
     },
     {
       "name": "Kenku Artificer",
@@ -7417,7 +8644,11 @@
         "U"
       ],
       "typeLine": "Creature — Bird Artificer",
-      "qualificationMultiple": 3.3
+      "qualificationMultiple": 3.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CLB #80 · TCGplayer 273361",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 610
     },
     {
       "name": "Kitchen Imp",
@@ -7432,7 +8663,11 @@
         "B"
       ],
       "typeLine": "Creature — Imp",
-      "qualificationMultiple": 5.5
+      "qualificationMultiple": 5.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH2 #89 · TCGplayer 239631",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 677
     },
     {
       "name": "Lone Missionary",
@@ -7447,7 +8682,11 @@
         "W"
       ],
       "typeLine": "Creature — Kor Monk",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MM3 #14 · TCGplayer 128897",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 383
     },
     {
       "name": "Lose Focus",
@@ -7462,7 +8701,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2
+      "qualificationMultiple": 2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH2 #49 · TCGplayer 240145",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 796
     },
     {
       "name": "Makeshift Munitions",
@@ -7477,7 +8720,11 @@
         "R"
       ],
       "typeLine": "Enchantment",
-      "qualificationMultiple": 16.2
+      "qualificationMultiple": 16.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMR #191 · TCGplayer 226636",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 812
     },
     {
       "name": "Militia Bugler",
@@ -7492,7 +8739,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Soldier",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "M19 #29 · TCGplayer 168606",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 729
     },
     {
       "name": "Mnemonic Wall",
@@ -7507,7 +8758,11 @@
         "U"
       ],
       "typeLine": "Creature — Wall",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "IMA #67 · TCGplayer 145422",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 492
     },
     {
       "name": "Mukotai Ambusher",
@@ -7522,7 +8777,11 @@
         "B"
       ],
       "typeLine": "Artifact Creature — Rat Ninja",
-      "qualificationMultiple": 2.2
+      "qualificationMultiple": 2.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "NEO #342 · TCGplayer 262860",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 911
     },
     {
       "name": "Mystical Teachings",
@@ -7538,7 +8797,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.3
+      "qualificationMultiple": 1.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "FDN #594 · TCGplayer 589355",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 322
     },
     {
       "name": "Navigator's Compass",
@@ -7551,7 +8814,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 2.5
+      "qualificationMultiple": 2.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DOM #225 · TCGplayer 162127",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 784
     },
     {
       "name": "Negate",
@@ -7566,7 +8833,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 4.9
+      "qualificationMultiple": 4.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "OGW #59 · TCGplayer 111057",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 810
     },
     {
       "name": "Nezumi Linkbreaker",
@@ -7581,7 +8852,11 @@
         "B"
       ],
       "typeLine": "Creature — Rat Warlock",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "OTJ #96 · TCGplayer 544673",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1087
     },
     {
       "name": "Oliphaunt",
@@ -7596,7 +8871,11 @@
         "R"
       ],
       "typeLine": "Creature — Elephant",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.02,
+      "lowSelectedPrinting": "LTR #139 · TCGplayer 498365",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 805
     },
     {
       "name": "Omen of the Dead",
@@ -7611,7 +8890,11 @@
         "B"
       ],
       "typeLine": "Enchantment",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.03,
+      "lowSelectedPrinting": "THB #110 · TCGplayer 207057",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 811
     },
     {
       "name": "Pulse of Murasa",
@@ -7626,7 +8909,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 9.2
+      "qualificationMultiple": 9.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "OGW #141 · TCGplayer 111064",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 798
     },
     {
       "name": "Raffine's Informant",
@@ -7641,7 +8928,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Wizard",
-      "qualificationMultiple": 2.9
+      "qualificationMultiple": 2.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "SNC #26 · TCGplayer 268648",
+      "lowCondition": "Damaged",
+      "lowListingCount": 548
     },
     {
       "name": "Ramosian Rally",
@@ -7656,7 +8947,11 @@
         "W"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.1
+      "qualificationMultiple": 1.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #MMQ-38 · TCGplayer 582449",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 146
     },
     {
       "name": "Reach Through Mists",
@@ -7671,7 +8966,11 @@
         "U"
       ],
       "typeLine": "Instant — Arcane",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CHK #81 · TCGplayer 12142",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 512
     },
     {
       "name": "Rotten Reunion",
@@ -7686,7 +8985,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.4
+      "qualificationMultiple": 2.4,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "MID #119 · TCGplayer 248326",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 690
     },
     {
       "name": "Scrapwork Mutt",
@@ -7701,7 +9004,11 @@
         "R"
       ],
       "typeLine": "Artifact Creature — Dog",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "BRO #164 · TCGplayer 453018",
+      "lowCondition": "Damaged",
+      "lowListingCount": 535
     },
     {
       "name": "Silhana Ledgewalker",
@@ -7716,7 +9023,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Rogue",
-      "qualificationMultiple": 2.1
+      "qualificationMultiple": 2.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "OTC #206 · TCGplayer 545200",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 240
     },
     {
       "name": "Snaremaster Sprite",
@@ -7731,7 +9042,11 @@
         "U"
       ],
       "typeLine": "Creature — Faerie Wizard",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "WOE #68 · TCGplayer 513341",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 891
     },
     {
       "name": "Stream of Thought",
@@ -7746,7 +9061,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "MH1 #71 · TCGplayer 190643",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 774
     },
     {
       "name": "Suplex",
@@ -7761,7 +9080,11 @@
         "R"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1
+      "qualificationMultiple": 1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "FIN #164 · TCGplayer 632694",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 1962
     },
     {
       "name": "Sylvok Lifestaff",
@@ -7774,7 +9097,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact — Equipment",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "SOM #209 · TCGplayer 36528",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 557
     },
     {
       "name": "Tangled Islet",
@@ -7790,7 +9117,11 @@
         "U"
       ],
       "typeLine": "Land — Forest Island",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "SOC #411 · TCGplayer 687553",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 356
     },
     {
       "name": "The Modern Age",
@@ -7805,7 +9136,11 @@
         "U"
       ],
       "typeLine": "Enchantment — Saga // Enchantment Creature — Spirit",
-      "qualificationMultiple": 2.8
+      "qualificationMultiple": 2.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "NEO #66 · TCGplayer 261985",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1005
     },
     {
       "name": "Thorn of the Black Rose",
@@ -7820,7 +9155,11 @@
         "B"
       ],
       "typeLine": "Creature — Human Assassin",
-      "qualificationMultiple": 6.8
+      "qualificationMultiple": 6.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #190 · TCGplayer 507510",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 522
     },
     {
       "name": "Thraben Inspector",
@@ -7835,7 +9174,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Soldier",
-      "qualificationMultiple": 5.6
+      "qualificationMultiple": 5.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "INR #45 · TCGplayer 600431",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 483
     },
     {
       "name": "Tolarian Terror",
@@ -7850,7 +9193,11 @@
         "U"
       ],
       "typeLine": "Creature — Serpent",
-      "qualificationMultiple": 9.9
+      "qualificationMultiple": 9.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #DMU-72 · TCGplayer 582712",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 241
     },
     {
       "name": "Tuktuk Rubblefort",
@@ -7865,7 +9212,11 @@
         "R"
       ],
       "typeLine": "Creature — Wall",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "ZNR #173 · TCGplayer 222173",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 881
     },
     {
       "name": "Unexpected Fangs",
@@ -7880,7 +9231,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 6.5
+      "qualificationMultiple": 6.5,
+      "lowPriceUsd": 0.05,
+      "lowSelectedPrinting": "IKO #102 · TCGplayer 212769",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 473
     },
     {
       "name": "Wall of Roots",
@@ -7895,7 +9250,11 @@
         "G"
       ],
       "typeLine": "Creature — Plant Wall",
-      "qualificationMultiple": 3.2
+      "qualificationMultiple": 3.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TDC #278 · TCGplayer 624619",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 378
     },
     {
       "name": "Wooded Ridgeline",
@@ -7911,7 +9270,11 @@
         "R"
       ],
       "typeLine": "Land — Mountain Forest",
-      "qualificationMultiple": 3.3
+      "qualificationMultiple": 3.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "BLC #353 · TCGplayer 559961",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 376
     },
     {
       "name": "You Meet in a Tavern",
@@ -7926,7 +9289,11 @@
         "G"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CLB #263 · TCGplayer 273359",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 778
     },
     {
       "name": "Galvanic Alchemist",
@@ -7941,7 +9308,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Wizard",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.04,
+      "lowSelectedPrinting": "AVR #54 · TCGplayer 58880",
+      "lowCondition": "Heavily Played",
+      "lowListingCount": 650
     },
     {
       "name": "Lotleth Giant",
@@ -7956,7 +9327,11 @@
         "B"
       ],
       "typeLine": "Creature — Zombie Giant",
-      "qualificationMultiple": 4.9
+      "qualificationMultiple": 4.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "SCD #89 · TCGplayer 456858",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 215
     },
     {
       "name": "Nylea's Disciple",
@@ -7971,7 +9346,11 @@
         "G"
       ],
       "typeLine": "Creature — Centaur Archer",
-      "qualificationMultiple": 4.4
+      "qualificationMultiple": 4.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "THS #167 · TCGplayer 71382",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 785
     },
     {
       "name": "Outlaw Medic",
@@ -7986,7 +9365,11 @@
         "W"
       ],
       "typeLine": "Creature — Human Rogue",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "OTJ #23 · TCGplayer 544627",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 1070
     },
     {
       "name": "Satyr Wayfinder",
@@ -8001,7 +9384,11 @@
         "G"
       ],
       "typeLine": "Creature — Satyr",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "BNG #136 · TCGplayer 79176",
+      "lowCondition": "Moderately Played",
+      "lowListingCount": 994
     },
     {
       "name": "Secret Door",
@@ -8016,7 +9403,11 @@
         "U"
       ],
       "typeLine": "Artifact Creature — Wall",
-      "qualificationMultiple": 1.3
+      "qualificationMultiple": 1.3,
+      "lowPriceUsd": 0.03,
+      "lowSelectedPrinting": "AFR #71 · TCGplayer 243223",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 952
     },
     {
       "name": "Annoyed Altisaur",
@@ -8031,7 +9422,11 @@
         "G"
       ],
       "typeLine": "Creature — Dinosaur",
-      "qualificationMultiple": 2.5
+      "qualificationMultiple": 2.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "2X2 #134 · TCGplayer 276276",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 557
     },
     {
       "name": "Bannerhide Krushok",
@@ -8046,7 +9441,11 @@
         "G"
       ],
       "typeLine": "Creature — Beast",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MH2 #149 · TCGplayer 240465",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 987
     },
     {
       "name": "Bloodthrone Vampire",
@@ -8061,7 +9460,11 @@
         "B"
       ],
       "typeLine": "Creature — Vampire",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "M13 #83 · TCGplayer 59959",
+      "lowCondition": "Damaged",
+      "lowListingCount": 601
     },
     {
       "name": "Duress",
@@ -8076,7 +9479,11 @@
         "B"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 22.8
+      "qualificationMultiple": 22.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "M21 #96 · TCGplayer 215662",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 990
     },
     {
       "name": "Supernatural Stamina",
@@ -8091,7 +9498,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMR #151 · TCGplayer 227180",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 780
     },
     {
       "name": "Vitu-Ghazi Inspector",
@@ -8106,7 +9517,11 @@
         "G"
       ],
       "typeLine": "Creature — Elf Detective",
-      "qualificationMultiple": 3.2
+      "qualificationMultiple": 3.2,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "MKM #183 · TCGplayer 532926",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1102
     },
     {
       "name": "Circle of Protection: Blue",
@@ -8121,7 +9536,11 @@
         "W"
       ],
       "typeLine": "Enchantment",
-      "qualificationMultiple": 1.1
+      "qualificationMultiple": 1.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "ICE #13 · TCGplayer 4627",
+      "lowCondition": "Damaged",
+      "lowListingCount": 704
     },
     {
       "name": "Deep Analysis",
@@ -8136,7 +9555,11 @@
         "U"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 10.3
+      "qualificationMultiple": 10.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MSC #149 · TCGplayer 697556",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 321
     },
     {
       "name": "Prohibit",
@@ -8151,7 +9574,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.9
+      "qualificationMultiple": 2.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DDM #25 · TCGplayer 79986",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 235
     },
     {
       "name": "Stormshriek Feral",
@@ -8166,7 +9593,11 @@
         "R"
       ],
       "typeLine": "Creature — Dragon // Sorcery — Omen",
-      "qualificationMultiple": 1.6
+      "qualificationMultiple": 1.6,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TDM #304 · TCGplayer 624737",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 766
     },
     {
       "name": "Brinebarrow Intruder",
@@ -8181,7 +9612,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Rogue",
-      "qualificationMultiple": 4.7
+      "qualificationMultiple": 4.7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "KHM #49 · TCGplayer 230875",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 732
     },
     {
       "name": "Dark Withering",
@@ -8196,7 +9631,11 @@
         "B"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1
+      "qualificationMultiple": 1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TSP #101 · TCGplayer 14196",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 404
     },
     {
       "name": "Thermo-Alchemist",
@@ -8211,7 +9650,11 @@
         "R"
       ],
       "typeLine": "Creature — Human Shaman",
-      "qualificationMultiple": 2.8
+      "qualificationMultiple": 2.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "PLST #EMN-147 · TCGplayer 583460",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 208
     },
     {
       "name": "Agony Warp",
@@ -8227,7 +9670,11 @@
         "U"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "MM3 #150 · TCGplayer 128832",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 535
     },
     {
       "name": "Azorius Guildgate",
@@ -8243,7 +9690,11 @@
         "W"
       ],
       "typeLine": "Land — Gate",
-      "qualificationMultiple": 1.4
+      "qualificationMultiple": 1.4,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "RNA #244 · TCGplayer 182822",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 896
     },
     {
       "name": "Balustrade Spy",
@@ -8258,7 +9709,11 @@
         "B"
       ],
       "typeLine": "Creature — Vampire Rogue",
-      "qualificationMultiple": 3.1
+      "qualificationMultiple": 3.1,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "J25 #402 · TCGplayer 589820",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 291
     },
     {
       "name": "Cogwork Wrestler",
@@ -8273,7 +9728,11 @@
         "U"
       ],
       "typeLine": "Artifact Creature — Gnome",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.4,
+      "lowSelectedPrinting": "LCI #49 · TCGplayer 525356",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1306
     },
     {
       "name": "Contaminated Ground",
@@ -8288,7 +9747,11 @@
         "B"
       ],
       "typeLine": "Enchantment — Aura",
-      "qualificationMultiple": 1.5
+      "qualificationMultiple": 1.5,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "GTC #59 · TCGplayer 67534",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 700
     },
     {
       "name": "Crimson Fleet Commodore",
@@ -8303,7 +9766,11 @@
         "R"
       ],
       "typeLine": "Creature — Ogre Pirate",
-      "qualificationMultiple": 1.9
+      "qualificationMultiple": 1.9,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMM #211 · TCGplayer 507126",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 630
     },
     {
       "name": "Humbling Elder",
@@ -8318,7 +9785,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Monk",
-      "qualificationMultiple": 1.8
+      "qualificationMultiple": 1.8,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "TDM #48 · TCGplayer 625120",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 1442
     },
     {
       "name": "Prophetic Prism",
@@ -8331,7 +9802,11 @@
       "colorGroup": "Colorless",
       "colorIdentity": [],
       "typeLine": "Artifact",
-      "qualificationMultiple": 3.3
+      "qualificationMultiple": 3.3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "JMP #478 · TCGplayer 215950",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 230
     },
     {
       "name": "Revoke Existence",
@@ -8346,7 +9821,11 @@
         "W"
       ],
       "typeLine": "Sorcery",
-      "qualificationMultiple": 3
+      "qualificationMultiple": 3,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "THB #34 · TCGplayer 206202",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 943
     },
     {
       "name": "Sandstorm",
@@ -8361,7 +9840,11 @@
         "G"
       ],
       "typeLine": "Instant",
-      "qualificationMultiple": 2.2
+      "qualificationMultiple": 2.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "DMR #174 · TCGplayer 457267",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 802
     },
     {
       "name": "Sea Gate Oracle",
@@ -8376,7 +9859,11 @@
         "U"
       ],
       "typeLine": "Creature — Human Wizard",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "KHC #43 · TCGplayer 231275",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 240
     },
     {
       "name": "Summon: Choco/Mog",
@@ -8391,7 +9878,11 @@
         "W"
       ],
       "typeLine": "Enchantment Creature — Saga Bird Moogle",
-      "qualificationMultiple": 1.2
+      "qualificationMultiple": 1.2,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "FIN #35 · TCGplayer 634384",
+      "lowCondition": "Lightly Played",
+      "lowListingCount": 2071
     },
     {
       "name": "Valakut Invoker",
@@ -8406,7 +9897,11 @@
         "R"
       ],
       "typeLine": "Creature — Human Shaman",
-      "qualificationMultiple": 1.7
+      "qualificationMultiple": 1.7,
+      "lowPriceUsd": 0.01,
+      "lowSelectedPrinting": "CMR #206 · TCGplayer 226629",
+      "lowCondition": "Near Mint",
+      "lowListingCount": 967
     }
   ],
   "topContributors": [
