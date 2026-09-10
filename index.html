@@ -146,6 +146,29 @@
     background: var(--muted);
   }
 
+  .resume-mark {
+    display: grid;
+    align-content: center;
+    gap: 5px;
+    padding: 11px 14px;
+    background: var(--paper);
+  }
+
+  .resume-mark span {
+    display: block;
+    height: 3px;
+    background: var(--line);
+  }
+
+  .resume-mark span:first-child {
+    width: 48%;
+    height: 5px;
+    background: var(--blue);
+  }
+
+  .resume-mark span:nth-child(3) { width: 82%; }
+  .resume-mark span:nth-child(4) { width: 68%; }
+
   .pauper-mark {
     display: flex;
     align-items: flex-end;
@@ -258,6 +281,20 @@
           <span class="meta">Code, research, and experiments</span>
         </span>
         <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+
+      <a class="entry" href="/resume.pdf">
+        <span class="thumb resume-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span class="entry-body">
+          <span class="title-line">
+            <span class="title">Resume</span>
+            <span class="badge">PDF</span>
+          </span>
+          <span class="meta">Software engineering, statistics, and research</span>
+        </span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
 
       <a class="entry" href="/pauper/">
