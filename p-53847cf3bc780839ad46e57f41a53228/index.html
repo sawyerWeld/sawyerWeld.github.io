@@ -13,37 +13,26 @@
 <body>
   <a class="skip" href="#elo">Skip to Elo explorer</a>
   <main class="shell">
-    <header class="page-head">
-      <div><p class="eyebrow">League stats</p><h1>Piedmont Pauper</h1></div>
-      <nav aria-label="Page sections"><a href="#elo">Elo explorer <span aria-hidden="true">↗</span></a><a href="#trophies">Trophies <span aria-hidden="true">↗</span></a></nav>
-    </header>
-    <div class="summary" id="summary" aria-live="polite">Loading league results…</div>
     <noscript><p>This explorer needs JavaScript to display the league results.</p></noscript>
-    <section id="elo" aria-labelledby="elo-title">
-      <div class="section-head"><div><h2 id="elo-title">Elo explorer</h2><p>All tracked events · FNM + Win-a-Box</p></div><button id="share" type="button">Copy comparison link</button></div>
-      <div class="explorer panel">
-        <div class="plot-area">
-          <div class="plot-tools"><div class="segmented" role="group" aria-label="Chart detail"><button id="event-view" aria-pressed="true">By event</button><button id="round-view" aria-pressed="false">By round</button></div><label class="background-toggle"><input id="background" type="checkbox"> Show league</label></div>
-          <div id="chart-wrap"><svg id="chart" role="group" aria-label="Interactive Elo history"></svg></div>
-          <div id="legend" class="legend" aria-label="Selected players"></div>
-          <div id="inspection" class="inspection" aria-live="polite"><p>Select a point for event results. Use arrow keys to move along a player’s history.</p></div>
-        </div>
-        <aside class="players" aria-label="Choose players">
-          <div class="picker-head"><label for="player-search">Compare players <span id="selected-count"></span></label><input id="player-search" type="search" placeholder="Find a player" autocomplete="off"><div class="picker-actions"><button id="top-three">Top 3</button><button id="trophy-preset">Trophy leaders</button><button id="clear">Clear</button></div></div>
-          <div id="player-list" class="player-list"></div>
-          <div class="picker-foot">Current Elo <span>Δ last event played</span></div>
-        </aside>
-      </div>
-      <details class="method"><summary>How Elo works</summary><p>Players start at 1200. Match results update ratings with K = 32; a draw counts as half a win. All matches in a round use the ratings at the start of that round. Byes do not affect Elo. Lines begin at a player’s first event; dashed sections carry their rating through events they missed.</p><p>The August 29 Win-a-Box includes Swiss and recorded quarterfinals. Later playoff rounds are not recorded. Event spacing is equal in the event view; the round view gives each recorded round equal space. Ratings are carried forward, with no inactivity penalty.</p></details>
-    </section>
     <section id="trophies" aria-labelledby="trophy-title">
       <div class="section-head"><div><h2 id="trophy-title">Trophy leaderboard</h2><p>FNM finishes of 3–0 or better. No losses. No draws.</p></div><div id="trophy-total" class="total"></div></div>
       <div class="panel trophy-panel">
-        <div class="trophy-tools"><label class="sr-only" for="trophy-search">Find a player in the trophy leaderboard</label><input type="search" id="trophy-search" placeholder="Find a player" autocomplete="off"><label class="background-toggle"><input type="checkbox" id="show-zero"> Include players without trophies</label></div>
+
         <div class="table-scroll"><table><caption class="sr-only">FNM trophy counts and qualifying finishes</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player / finishes</th><th scope="col">Trophies</th><th scope="col">FNMs</th><th scope="col">Trophy rate</th></tr></thead><tbody id="trophy-rows"></tbody></table></div>
         <div class="trophy-foot">Tied counts share a rank. Trophy rate = trophies ÷ FNMs played.</div>
       </div>
       <details class="method"><summary>What counts as a trophy?</summary><p>One trophy for each completed FNM with at least three wins, zero losses, and zero draws. Official standings determine the record, including bye wins. Multiple players can trophy on the same night, regardless of tiebreakers. A 2–0 finish or any finish with a draw does not count. The Win-a-Box is outside this FNM trophy leaderboard.</p></details>
+    </section>
+    <section id="elo" aria-labelledby="elo-title">
+      <div class="section-head"><div><h2 id="elo-title">Elo explorer</h2><p>All tracked events · FNM + Win-a-Box</p></div></div>
+      <div class="explorer panel">
+        <div class="plot-area">
+          <div class="plot-tools"><div class="segmented" role="group" aria-label="Chart detail"><button id="event-view" aria-pressed="false">By event</button><button id="round-view" aria-pressed="true">By round</button></div><div class="segmented" role="group" aria-label="Player visibility"><button data-top="5" aria-pressed="true">Top 5</button><button data-top="10" aria-pressed="false">Top 10</button><button data-top="15" aria-pressed="false">Top 15</button></div></div>
+          <div id="chart-wrap"><svg id="chart" role="group" aria-label="Interactive Elo history"></svg></div>
+          <div id="legend" class="legend" aria-label="Selected players"></div>
+          <div id="inspection" class="inspection" aria-live="polite" hidden></div>
+        </div>
+      </div>
     </section>
     <footer><span id="coverage"></span><span>Data snapshot · <span id="snapshot"></span></span></footer>
     <div class="sr-only" id="status" role="status"></div>

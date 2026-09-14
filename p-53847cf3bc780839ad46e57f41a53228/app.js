@@ -1,14 +1,14 @@
 'use strict';
 const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
-const COLORS = ['#2167ae', '#2f855a', '#b45309', '#7c57a6', '#b54f69', '#087e8b', '#8b6b32', '#52627f'];
+const COLORS = ['#2167ae', '#2f855a', '#b45309', '#7c57a6', '#b54f69', '#087e8b', '#8b6b32', '#52627f', '#a83f89', '#67933d', '#c34e36', '#397d99', '#7570b3', '#8d5642', '#4a7263'];
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = n => Number(n).toFixed(1);
 const delta = n => `${n > 0 ? '+' : ''}${fmt(n)}`;
 const date = value => new Date(`${value}T12:00:00`).toLocaleDateString('en-US', {month:'short', day:'numeric'});
 const signedClass = value => value > 0 ? 'positive' : value < 0 ? 'negative' : '';
 const cup = '<svg class="cup" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3h8v5a4 4 0 0 1-8 0V3Zm0 1H3v2a4 4 0 0 0 4 4m7-6h3v2a4 4 0 0 1-4 4m-3 2v4m-3 1h6"/></svg>';
-let data, selected = new Set(), mode = 'event', inspected = null, chartFrame;
+let data, selected = new Set(), mode = 'round', inspected = null, chartFrame;
 let matchIndex, eventIndex, trophyPlayers;
 const playerByName = new Map();
 const color = name => COLORS[data.players.findIndex(p => p.player === name) % COLORS.length];
@@ -19,7 +19,7 @@ const s = (tag, attrs = {}, text = '') => {
   return node;
 };
 function save() {
-  try { localStorage.setItem('piedmont-stats-v1', JSON.stringify({players:[...selected], mode})); } catch {}
+  try { localStorage.setItem('piedmont-stats-v2', JSON.stringify({players:[...selected], mode})); } catch {}
   const url = new URL(location.href);
   url.searchParams.set('players', JSON.stringify([...selected]));
   url.searchParams.set('view', mode);
@@ -34,30 +34,6 @@ function toggle(name) {
   const names = new Set(selected);
   names.has(name) ? names.delete(name) : names.add(name);
   setSelection([...names]);
-}
-function renderPlayers() {
-  const query = $('player-search').value.trim().toLocaleLowerCase();
-  const list = $('player-list');
-  list.replaceChildren();
-  const players = data.players.filter(p => p.player.toLocaleLowerCase().includes(query));
-  if (!players.length) list.innerHTML = '<p class="empty">No matching players.</p>';
-  for (const p of players) {
-    const row = document.createElement('label');
-    row.className = `player-option${selected.has(p.player) ? ' selected' : ''}`;
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox'; checkbox.checked = selected.has(p.player);
-    checkbox.setAttribute('aria-label', `Compare ${p.player}`);
-    checkbox.addEventListener('change', () => {
-      toggle(p.player);
-      // Restore keyboard focus after rebuilding the selectable list.
-      [...list.querySelectorAll('input')].find(input => input.getAttribute('aria-label') === `Compare ${p.player}`)?.focus({preventScroll:true});
-    });
-    const name = document.createElement('span'); name.className = 'player-name'; name.textContent = p.player;
-    const rating = document.createElement('span'); rating.className = 'player-rating';
-    rating.innerHTML = `${fmt(p.elo)}<small class="${signedClass(p.changeLastEvent)}">${delta(p.changeLastEvent)}</small>`;
-    row.append(checkbox, name, rating); list.append(row);
-  }
-  $('selected-count').textContent = `${selected.size} selected`;
 }
 function renderLegend() {
   $('legend').replaceChildren();
@@ -88,6 +64,7 @@ function inspect(p, index) {
   else if (!entries.length) detail = '<span class="result-note">No rated match at this point. Rating unchanged.</span>';
   else detail = entries.map(row => `<span class="match-detail"><strong>${esc(row.result)}</strong> vs ${esc(row.opponent)} <span class="${signedClass(row.ratingChange)}">${delta(row.ratingChange)}</span></span>`).join('');
   if (mode === 'event' && record) detail += `<div class="result-note">Official finish: ${record.wins}–${record.losses}${record.draws ? `–${record.draws}` : ''}${record.trophy ? ' · Trophy' : ''}${record.deck ? ` · ${esc(record.deck)}` : ''}</div>`;
+  $('inspection').hidden = false;
   $('inspection').innerHTML = `<div class="inspection-head"><strong>${esc(p.player)}</strong><span>${date(t.eventDate)} · ${eventName} · ${step}</span></div><div class="rating">${fmt(p.points[index])} <span class="${signedClass(change)}">${t.round && entries.length ? `(${delta(change)})` : ''}</span><span class="result-note">${peakNote}</span></div><div>${detail}</div>`;
 }
 function renderChart() {
@@ -100,7 +77,7 @@ function renderChart() {
   const margin = {left:43, right:endpoints ? 115 : 22, top:47, bottom:51};
   const plotW = width - margin.left - margin.right, plotH = height - margin.top - margin.bottom;
   const indexes = mode === 'round' ? data.timeline.map((_,i) => i) : data.timeline.map((t,i) => i).filter(i => i === 0 || !data.timeline[i+1] || data.timeline[i+1].eventId !== data.timeline[i].eventId);
-  const scalePlayers = $('background').checked ? data.players : chosen;
+  const scalePlayers = chosen;
   const ratings = [1200, ...scalePlayers.flatMap(p => p.points.filter(v => v != null))];
   const min = Math.floor((Math.min(...ratings)-15)/25)*25;
   const max = Math.ceil((Math.max(...ratings)+15)/25)*25;
@@ -135,10 +112,6 @@ function renderChart() {
     svg.append(s('text',{x:x(pos),y:labelY,'text-anchor':'middle',class:'axis-label'},date(t.eventDate)));
     if (mode==='round') svg.append(s('line',{x1:x(positions[0]),x2:x(positions[0]),y1:margin.top,y2:height-margin.bottom,stroke:'#d9e1ea','stroke-dasharray':'2 5'}));
   });
-  if ($('background').checked) for(const p of data.players) {
-    let d=''; indexes.forEach((idx,pos) => {if(p.points[idx]!=null)d+=`${d?'L':'M'}${x(pos)},${y(p.points[idx])} `;});
-    svg.append(s('path',{d,class:'league-line'}));
-  }
   const labels=[];
   for(const p of chosen) {
     let previous=null; const points=[];
@@ -178,9 +151,7 @@ function renderChart() {
   if(!chosen.length)svg.append(s('text',{x:width/2,y:height/2,'text-anchor':'middle',class:'axis-label'},'Choose players to explore their ratings.'));
 }
 function renderTrophies() {
-  const query=$('trophy-search').value.trim().toLocaleLowerCase();
-  const all=$('show-zero').checked;
-  const players=trophyPlayers.filter(p=>(all||p.trophies.length)&&p.player.toLocaleLowerCase().includes(query));
+  const players=trophyPlayers.filter(p=>p.trophies.length>0 && trophyPlayers.findIndex(other=>other.trophies.length===p.trophies.length)+1<=5);
   $('trophy-rows').replaceChildren();
   for(const p of players){
     const rank=trophyPlayers.findIndex(other=>other.trophies.length===p.trophies.length)+1;
@@ -200,9 +171,13 @@ function renderTrophies() {
 function render(){
   $('event-view').setAttribute('aria-pressed',String(mode==='event'));
   $('round-view').setAttribute('aria-pressed',String(mode==='round'));
-  renderPlayers();renderLegend();renderChart();
+  document.querySelectorAll('[data-top]').forEach(button=>{
+    const names=data.players.slice(0,Number(button.dataset.top)).map(p=>p.player);
+    button.setAttribute('aria-pressed',String(selected.size===names.length&&names.every(name=>selected.has(name))));
+  });
+  renderLegend();renderChart();
   if(inspected&&selected.has(inspected.name))inspect(playerByName.get(inspected.name),inspected.index);
-  else $('inspection').innerHTML='<p>Select a point for event results. Use arrow keys to move along a player’s history.</p>';
+  else { $('inspection').replaceChildren(); $('inspection').hidden=true; }
 }
 async function init(){
   const response=await fetch('data.json');if(!response.ok)throw new Error('Could not load league results');data=await response.json();
@@ -215,26 +190,18 @@ async function init(){
   }
   trophyPlayers=data.players.filter(p=>p.fnmEvents).sort((a,b)=>b.trophies.length-a.trophies.length||a.player.localeCompare(b.player));
   const url=new URL(location.href);let saved;
-  try{saved=JSON.parse(localStorage.getItem('piedmont-stats-v1'));}catch{}
+  try{saved=JSON.parse(localStorage.getItem('piedmont-stats-v2'));}catch{}
   let names=saved?.players;
   if(url.searchParams.has('players'))try{names=JSON.parse(url.searchParams.get('players'));}catch{names=null;}
-  selected=new Set((Array.isArray(names)?names:data.players.slice(0,3).map(p=>p.player)).filter(name=>playerByName.has(name)));
-  mode=(url.searchParams.get('view')||saved?.mode)==='round'?'round':'event';
+  selected=new Set((Array.isArray(names)?names:data.players.slice(0,5).map(p=>p.player)).filter(name=>playerByName.has(name)));
+  mode=(url.searchParams.get('view')||saved?.mode)==='event'?'event':'round';
   const trophies=data.results.filter(r=>r.trophy).length;
-  const fnms=new Set(data.results.map(r=>r.eventId)).size;
-  $('summary').innerHTML=`<span><strong>${data.meta.players}</strong> rated players</span><span><strong>${data.meta.matches}</strong> rated matches</span><span><strong>${fnms}</strong> FNMs</span><span><strong>${trophies}</strong> trophies</span><span class="through">Results through <strong style="font-size:12px">${date(data.through)}, ${data.through.slice(0,4)}</strong></span>`;
   $('trophy-total').innerHTML=`<strong>${trophies}</strong> trophies · ${trophyPlayers.filter(p=>p.trophies.length).length} players`;
   $('coverage').textContent=`${date(data.results[0].date)} – ${date(data.through)}, ${data.through.slice(0,4)} · Dragon’s Hoard`;
   $('snapshot').textContent=`${date(data.snapshotDate)}, ${data.snapshotDate.slice(0,4)}`;
-  $('player-search').addEventListener('input',renderPlayers);$('trophy-search').addEventListener('input',renderTrophies);$('show-zero').addEventListener('change',renderTrophies);
-  $('top-three').addEventListener('click',()=>setSelection(data.players.slice(0,3).map(p=>p.player)));
-  $('trophy-preset').addEventListener('click',()=>setSelection(trophyPlayers.filter(p=>p.trophies.length===trophyPlayers[0].trophies.length).map(p=>p.player)));
-  $('clear').addEventListener('click',()=>setSelection([]));$('background').addEventListener('change',renderChart);
+  document.querySelectorAll('[data-top]').forEach(button=>button.addEventListener('click',()=>setSelection(data.players.slice(0,Number(button.dataset.top)).map(p=>p.player))));
   for(const view of ['event','round'])$(`${view}-view`).addEventListener('click',()=>{mode=view;inspected=null;save();render();});
-  $('share').addEventListener('click',async()=>{
-    save();try{await navigator.clipboard.writeText(location.href);$('share').textContent='Link copied';$('status').textContent='Comparison link copied';setTimeout(()=>$('share').textContent='Copy comparison link',2000);}catch{window.prompt('Copy this comparison link',location.href);}
-  });
   new ResizeObserver(()=>{cancelAnimationFrame(chartFrame);chartFrame=requestAnimationFrame(renderChart);}).observe($('chart-wrap'));
   render();renderTrophies();
 }
-init().catch(error=>{console.error(error);$('summary').textContent='League data could not be loaded. Please reload the page.';});
+init().catch(error=>{console.error(error);$('inspection').hidden=false;$('inspection').textContent='League data could not be loaded. Please reload the page.';});
