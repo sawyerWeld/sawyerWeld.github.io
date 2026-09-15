@@ -7,9 +7,10 @@ const fmt = n => Number(n).toFixed(1);
 const delta = n => `${n > 0 ? '+' : ''}${fmt(n)}`;
 const date = value => new Date(`${value}T12:00:00`).toLocaleDateString('en-US', {month:'short', day:'numeric'});
 const signedClass = value => value > 0 ? 'positive' : value < 0 ? 'negative' : '';
-const cup = '<svg class="cup" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3h8v5a4 4 0 0 1-8 0V3Zm0 1H3v2a4 4 0 0 0 4 4m7-6h3v2a4 4 0 0 1-4 4m-3 2v4m-3 1h6"/></svg>';
+
 let data, selected = new Set(), mode = 'round', inspected = null, chartFrame;
-let matchIndex, eventIndex, trophyPlayers;
+let matchIndex, eventIndex, trophyPlayers, leaderboardPage = 0;
+const PAGE_SIZE = 15;
 const playerByName = new Map();
 const color = name => COLORS[data.players.findIndex(p => p.player === name) % COLORS.length];
 const s = (tag, attrs = {}, text = '') => {
@@ -29,20 +30,6 @@ function setSelection(names) {
   selected = new Set(names.filter(name => playerByName.has(name)));
   inspected = null;
   save(); render();
-}
-function toggle(name) {
-  const names = new Set(selected);
-  names.has(name) ? names.delete(name) : names.add(name);
-  setSelection([...names]);
-}
-function renderLegend() {
-  $('legend').replaceChildren();
-  for (const p of data.players.filter(p => selected.has(p.player))) {
-    const button = document.createElement('button');
-    button.innerHTML = `<span class="swatch" style="background:${color(p.player)}"></span>${esc(p.player)}<span class="remove" aria-hidden="true">×</span>`;
-    button.setAttribute('aria-label', `Remove ${p.player} from chart`);
-    button.addEventListener('click', () => toggle(p.player)); $('legend').append(button);
-  }
 }
 function inspect(p, index) {
   inspected = {name:p.player, index};
@@ -152,21 +139,15 @@ function renderChart() {
 }
 function renderTrophies() {
   const players=trophyPlayers.filter(p=>p.trophies.length>0 && trophyPlayers.findIndex(other=>other.trophies.length===p.trophies.length)+1<=5);
-  $('trophy-rows').replaceChildren();
-  for(const p of players){
-    const rank=trophyPlayers.findIndex(other=>other.trophies.length===p.trophies.length)+1;
-    const rate=p.trophies.length/p.fnmEvents*100;
-    const finishes=p.trophies.slice().reverse();
-    const row=document.createElement('tr');
-    row.innerHTML=`<td>${p.trophies.length?rank:'—'}</td><td><button class="trophy-name player-link">${esc(p.player)} <span aria-hidden="true">↗</span></button>${finishes.length?`<details class="finish-details"><summary>${finishes.length===1?'1 finish':`${finishes.length} finishes`} · latest ${date(finishes[0].date)}</summary><ul>${finishes.map(r=>`<li>${date(r.date)} · <span>${r.wins}–0</span>${r.deck?` · ${esc(r.deck)}`:''}</li>`).join('')}</ul></details>`:''}</td><td>${p.trophies.length}<span class="trophy-marks">${cup.repeat(p.trophies.length)}</span></td><td>${p.fnmEvents}</td><td>${Number(rate.toFixed(1))}%<div class="rate-track" aria-hidden="true"><div class="rate-fill" style="width:${rate}%"></div></div></td>`;
-    row.querySelector('button').setAttribute('aria-label',`View ${p.player}'s Elo`);
-    row.querySelector('button').addEventListener('click',()=>{
-      setSelection([p.player]);$('elo').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
-      $('event-view').focus({preventScroll:true});
-    });
-    $('trophy-rows').append(row);
-  }
-  if(!players.length)$('trophy-rows').innerHTML='<tr><td colspan="5" class="empty">No matching players in this view.</td></tr>';
+  $('trophy-list').innerHTML=players.map(p=>`<li><span>${esc(p.player)}</span><strong>${p.trophies.length}</strong></li>`).join('');
+}
+function renderLeaderboard() {
+  const start=leaderboardPage*PAGE_SIZE;
+  const players=data.players.slice(start,start+PAGE_SIZE);
+  $('elo-rows').innerHTML=players.map(p=>`<tr><td>${p.rank}</td><td><span class="swatch" style="background:${selected.has(p.player)?color(p.player):'transparent'}"></span>${esc(p.player)}</td><td>${fmt(p.elo)}</td><td class="${signedClass(p.changeLastEvent)}">${delta(p.changeLastEvent)}</td><td>${p.matches}</td><td>${p.wins}–${p.losses}–${p.draws}</td></tr>`).join('');
+  $('page-range').textContent=`${start+1}–${start+players.length} of ${data.players.length}`;
+  $('previous-page').disabled=leaderboardPage===0;
+  $('next-page').disabled=start+PAGE_SIZE>=data.players.length;
 }
 function render(){
   $('event-view').setAttribute('aria-pressed',String(mode==='event'));
@@ -175,7 +156,7 @@ function render(){
     const names=data.players.slice(0,Number(button.dataset.top)).map(p=>p.player);
     button.setAttribute('aria-pressed',String(selected.size===names.length&&names.every(name=>selected.has(name))));
   });
-  renderLegend();renderChart();
+  renderChart();renderLeaderboard();
   if(inspected&&selected.has(inspected.name))inspect(playerByName.get(inspected.name),inspected.index);
   else { $('inspection').replaceChildren(); $('inspection').hidden=true; }
 }
@@ -195,12 +176,12 @@ async function init(){
   if(url.searchParams.has('players'))try{names=JSON.parse(url.searchParams.get('players'));}catch{names=null;}
   selected=new Set((Array.isArray(names)?names:data.players.slice(0,5).map(p=>p.player)).filter(name=>playerByName.has(name)));
   mode=(url.searchParams.get('view')||saved?.mode)==='event'?'event':'round';
-  const trophies=data.results.filter(r=>r.trophy).length;
-  $('trophy-total').innerHTML=`<strong>${trophies}</strong> trophies · ${trophyPlayers.filter(p=>p.trophies.length).length} players`;
   $('coverage').textContent=`${date(data.results[0].date)} – ${date(data.through)}, ${data.through.slice(0,4)} · Dragon’s Hoard`;
   $('snapshot').textContent=`${date(data.snapshotDate)}, ${data.snapshotDate.slice(0,4)}`;
   document.querySelectorAll('[data-top]').forEach(button=>button.addEventListener('click',()=>setSelection(data.players.slice(0,Number(button.dataset.top)).map(p=>p.player))));
   for(const view of ['event','round'])$(`${view}-view`).addEventListener('click',()=>{mode=view;inspected=null;save();render();});
+  $('previous-page').addEventListener('click',()=>{if(leaderboardPage>0){leaderboardPage--;renderLeaderboard();}});
+  $('next-page').addEventListener('click',()=>{if((leaderboardPage+1)*PAGE_SIZE<data.players.length){leaderboardPage++;renderLeaderboard();}});
   new ResizeObserver(()=>{cancelAnimationFrame(chartFrame);chartFrame=requestAnimationFrame(renderChart);}).observe($('chart-wrap'));
   render();renderTrophies();
 }

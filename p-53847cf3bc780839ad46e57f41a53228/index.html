@@ -7,21 +7,16 @@
   <meta name="referrer" content="no-referrer">
   <title>Piedmont Pauper · League stats</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=2">
-  <script src="app.js?v=2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=3">
+  <script src="app.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip" href="#elo">Skip to Elo explorer</a>
   <main class="shell">
     <noscript><p>This explorer needs JavaScript to display the league results.</p></noscript>
     <section id="trophies" aria-labelledby="trophy-title">
-      <div class="section-head"><div><h2 id="trophy-title">Trophy leaderboard</h2><p>FNM finishes of 3–0 or better. No losses. No draws.</p></div><div id="trophy-total" class="total"></div></div>
-      <div class="panel trophy-panel">
-
-        <div class="table-scroll"><table><caption class="sr-only">FNM trophy counts and qualifying finishes</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player / finishes</th><th scope="col">Trophies</th><th scope="col">FNMs</th><th scope="col">Trophy rate</th></tr></thead><tbody id="trophy-rows"></tbody></table></div>
-        <div class="trophy-foot">Tied counts share a rank. Trophy rate = trophies ÷ FNMs played.</div>
-      </div>
-      <details class="method"><summary>What counts as a trophy?</summary><p>One trophy for each completed FNM with at least three wins, zero losses, and zero draws. Official standings determine the record, including bye wins. Multiple players can trophy on the same night, regardless of tiebreakers. A 2–0 finish or any finish with a draw does not count. The Win-a-Box is outside this FNM trophy leaderboard.</p></details>
+      <div class="section-head"><h2 id="trophy-title">Trophies</h2></div>
+      <ul id="trophy-list" class="trophy-list"></ul>
     </section>
     <section id="elo" aria-labelledby="elo-title">
       <div class="section-head"><div><h2 id="elo-title">Elo explorer</h2><p>All tracked events · FNM + Win-a-Box</p></div></div>
@@ -29,9 +24,15 @@
         <div class="plot-area">
           <div class="plot-tools"><div class="segmented" role="group" aria-label="Chart detail"><button id="event-view" aria-pressed="false">By event</button><button id="round-view" aria-pressed="true">By round</button></div><div class="segmented" role="group" aria-label="Player visibility"><button data-top="5" aria-pressed="true">Top 5</button><button data-top="10" aria-pressed="false">Top 10</button><button data-top="15" aria-pressed="false">Top 15</button></div></div>
           <div id="chart-wrap"><svg id="chart" role="group" aria-label="Interactive Elo history"></svg></div>
-          <div id="legend" class="legend" aria-label="Selected players"></div>
           <div id="inspection" class="inspection" aria-live="polite" hidden></div>
         </div>
+      </div>
+    </section>
+    <section id="leaderboard" aria-labelledby="leaderboard-title">
+      <div class="section-head"><h2 id="leaderboard-title">Elo leaderboard</h2></div>
+      <div class="panel">
+        <div class="table-scroll"><table class="elo-table"><caption class="sr-only">All players ranked by current Elo</caption><thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Elo</th><th scope="col">Δ last event</th><th scope="col">Matches</th><th scope="col">W–L–D</th></tr></thead><tbody id="elo-rows"></tbody></table></div>
+        <div class="pagination"><span id="page-range" aria-live="polite"></span><div><button id="previous-page" aria-label="Previous leaderboard page">Previous</button><button id="next-page" aria-label="Next leaderboard page">Next</button></div></div>
       </div>
     </section>
     <footer><span id="coverage"></span><span>Data snapshot · <span id="snapshot"></span></span></footer>
