@@ -38,7 +38,7 @@ function inspect(p, index) {
     ? matchIndex.get(`${p.player}|${t.eventId}|${t.round}`) || []
     : eventIndex.get(`${p.player}|${t.eventId}`) || [];
   const eventName = t.eventTitle.includes('Win-a-Box') ? 'Win-a-Box' : 'FNM';
-  const step = t.round === 0 ? 'Event start' : mode === 'event' ? 'Event end' : t.round === 6 && eventName === 'Win-a-Box' ? 'Quarterfinal' : `Round ${t.round}`;
+  const step = t.round === 0 ? 'Event start' : mode === 'event' ? '' : t.round === 6 && eventName === 'Win-a-Box' ? 'Quarterfinal' : `Round ${t.round}`;
   const record = data.results.find(r => r.player === p.player && r.eventId === t.eventId);
   const eventStart = data.timeline.findIndex(slot => slot.eventId === t.eventId && slot.round === 0);
   // Use unrounded endpoints for the event total, not the sum of rounded match deltas.
@@ -52,7 +52,7 @@ function inspect(p, index) {
   else detail = entries.map(row => `<span class="match-detail"><strong>${esc(row.result)}</strong> vs ${esc(row.opponent)} <span class="${signedClass(row.ratingChange)}">${delta(row.ratingChange)}</span></span>`).join('');
   if (mode === 'event' && record) detail += `<div class="result-note">Official finish: ${record.wins}–${record.losses}${record.draws ? `–${record.draws}` : ''}${record.trophy ? ' · Trophy' : ''}${record.deck ? ` · ${esc(record.deck)}` : ''}</div>`;
   $('inspection').hidden = false;
-  $('inspection').innerHTML = `<div class="inspection-head"><strong>${esc(p.player)}</strong><span>${date(t.eventDate)} · ${eventName} · ${step}</span></div><div class="rating">${fmt(p.points[index])} <span class="${signedClass(change)}">${t.round && entries.length ? `(${delta(change)})` : ''}</span><span class="result-note">${peakNote}</span></div><div>${detail}</div>`;
+  $('inspection').innerHTML = `<div class="inspection-head"><strong>${esc(p.player)}</strong><span>${date(t.eventDate)} · ${eventName}${step ? ` · ${step}` : ''}</span></div><div class="rating">${fmt(p.points[index])} <span class="${signedClass(change)}">${t.round && entries.length ? `(${delta(change)})` : ''}</span><span class="result-note">${peakNote}</span></div><div>${detail}</div>`;
 }
 function renderChart() {
   const svg = $('chart'); svg.replaceChildren();
