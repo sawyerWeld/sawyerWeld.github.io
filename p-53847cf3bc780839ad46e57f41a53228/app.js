@@ -160,8 +160,9 @@ function render(){
   if(inspected&&selected.has(inspected.name))inspect(playerByName.get(inspected.name),inspected.index);
   else { $('inspection').replaceChildren(); $('inspection').hidden=true; }
 }
-async function init(){
-  const response=await fetch('data.json');if(!response.ok)throw new Error('Could not load league results');data=await response.json();
+function applyData(next){
+  data=next;
+  playerByName.clear();
   data.players.forEach(p=>playerByName.set(p.player,p));
   matchIndex=new Map();eventIndex=new Map();
   for(const row of data.history){
@@ -170,6 +171,31 @@ async function init(){
     }
   }
   trophyPlayers=data.players.filter(p=>p.fnmEvents).sort((a,b)=>b.trophies.length-a.trophies.length||a.player.localeCompare(b.player));
+  leaderboardPage=Math.min(leaderboardPage,Math.max(0,Math.ceil(data.players.length/PAGE_SIZE)-1));
+}
+async function refreshData(initial=false){
+  const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
+  const preset=data?[5,10,15].find(n=>selected.size===n&&data.players.slice(0,n).every(p=>selected.has(p.player))):null;
+  try{
+    const {loadStats}=await import('./data-source.mjs?v=1');
+    const result=await loadStats();
+    applyData(result.data);
+    if(!initial){
+      selected=new Set(preset?data.players.slice(0,preset).map(p=>p.player):[...selected].filter(name=>playerByName.has(name)));
+      inspected=null;render();renderTrophies();
+    }
+    const message=result.source==='live'?`Updated from Google Sheets. Results through ${date(data.through)}, ${data.through.slice(0,4)}.`:`Google Sheets unavailable. Showing saved results through ${date(data.through)}, ${data.through.slice(0,4)}.`;
+    $('data-notice').textContent=result.source==='live'?'':`Saved data · ${date(data.through)}`;
+    $('data-notice').hidden=result.source==='live';
+    $('status').textContent=message;button.title=message;button.dataset.source=result.source;
+  }catch(error){
+    $('data-notice').hidden=false;$('data-notice').textContent=data?`Refresh failed · ${date(data.through)} data`:'Stats unavailable';
+    $('status').textContent='Stats could not be refreshed. Try again.';
+    if(initial)throw error;
+  }finally{button.disabled=false;button.textContent='Refresh';}
+}
+async function init(){
+  await refreshData(true);
   const url=new URL(location.href);let saved;
   try{saved=JSON.parse(localStorage.getItem('piedmont-stats-v2'));}catch{}
   let names=saved?.players;
@@ -183,4 +209,5 @@ async function init(){
   new ResizeObserver(()=>{cancelAnimationFrame(chartFrame);chartFrame=requestAnimationFrame(renderChart);}).observe($('chart-wrap'));
   render();renderTrophies();
 }
+$('refresh-data').addEventListener('click',()=>{if(data)refreshData();else location.reload();});
 init().catch(error=>{console.error(error);$('inspection').hidden=false;$('inspection').textContent='League data could not be loaded. Please reload the page.';});

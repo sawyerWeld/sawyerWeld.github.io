@@ -16,3 +16,5 @@
 @media(max-width:760px){.trophy-list{grid-template-columns:1fr;gap:0}.trophy-list li{padding:8px 0}.elo-table th,.elo-table td{padding:12px}.pagination{padding:12px}.pagination button{min-height:44px}#leaderboard{margin-top:24px}}
 
 @media(min-width:761px){#trophies{max-width:480px;margin-left:auto;margin-right:auto}}
+
+.refresh-tools{display:flex;align-items:center;gap:12px}.refresh-tools button{font-size:12px;min-height:36px}.refresh-tools span{font-size:11px;color:var(--muted)}@media(max-width:760px){.refresh-tools button{min-height:44px}.refresh-tools{gap:8px}}
