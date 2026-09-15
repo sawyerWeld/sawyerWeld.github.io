@@ -7,8 +7,8 @@
   <meta name="referrer" content="no-referrer">
   <title>Piedmont Pauper · League stats</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=3">
-  <script src="app.js?v=3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=4">
+  <script src="app.js?v=4" defer></script>
 </head>
 <body>
   <a class="skip" href="#elo">Skip to Elo explorer</a>
@@ -19,7 +19,7 @@
       <ul id="trophy-list" class="trophy-list"></ul>
     </section>
     <section id="elo" aria-labelledby="elo-title">
-      <div class="section-head"><div><h2 id="elo-title">Elo explorer</h2><p>All tracked events · FNM + Win-a-Box</p></div></div>
+      <div class="section-head"><div><h2 id="elo-title">Elo explorer</h2></div></div>
       <div class="explorer panel">
         <div class="plot-area">
           <div class="plot-tools"><div class="segmented" role="group" aria-label="Chart detail"><button id="event-view" aria-pressed="false">By event</button><button id="round-view" aria-pressed="true">By round</button></div><div class="segmented" role="group" aria-label="Player visibility"><button data-top="5" aria-pressed="true">Top 5</button><button data-top="10" aria-pressed="false">Top 10</button><button data-top="15" aria-pressed="false">Top 15</button></div></div>
@@ -35,7 +35,6 @@
         <div class="pagination"><span id="page-range" aria-live="polite"></span><div><button id="previous-page" aria-label="Previous leaderboard page">Previous</button><button id="next-page" aria-label="Next leaderboard page">Next</button></div></div>
       </div>
     </section>
-    <footer><span id="coverage"></span><span>Data snapshot · <span id="snapshot"></span></span></footer>
     <div class="sr-only" id="status" role="status"></div>
   </main>
 </body>

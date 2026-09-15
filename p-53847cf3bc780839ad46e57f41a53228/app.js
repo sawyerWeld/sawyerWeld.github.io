@@ -176,8 +176,6 @@ async function init(){
   if(url.searchParams.has('players'))try{names=JSON.parse(url.searchParams.get('players'));}catch{names=null;}
   selected=new Set((Array.isArray(names)?names:data.players.slice(0,5).map(p=>p.player)).filter(name=>playerByName.has(name)));
   mode=(url.searchParams.get('view')||saved?.mode)==='event'?'event':'round';
-  $('coverage').textContent=`${date(data.results[0].date)} – ${date(data.through)}, ${data.through.slice(0,4)} · Dragon’s Hoard`;
-  $('snapshot').textContent=`${date(data.snapshotDate)}, ${data.snapshotDate.slice(0,4)}`;
   document.querySelectorAll('[data-top]').forEach(button=>button.addEventListener('click',()=>setSelection(data.players.slice(0,Number(button.dataset.top)).map(p=>p.player))));
   for(const view of ['event','round'])$(`${view}-view`).addEventListener('click',()=>{mode=view;inspected=null;save();render();});
   $('previous-page').addEventListener('click',()=>{if(leaderboardPage>0){leaderboardPage--;renderLeaderboard();}});
