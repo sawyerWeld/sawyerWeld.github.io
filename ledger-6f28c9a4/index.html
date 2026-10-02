@@ -11,7 +11,8 @@
     :root{color-scheme:light;--ink:#182231;--muted:#64748b;--line:#d9e1ea;--panel:#fff;--page:#f3f6f8;--blue:#2167ae}
     *{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums}
     main{max-width:920px;margin:64px auto;padding:0 24px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:24px}h1{font-size:26px;letter-spacing:-.7px;margin:0}header p{margin:3px 0 0;color:var(--muted);font-size:13px}
-    select{min-height:44px;border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:8px 32px 8px 12px;color:var(--ink);font:inherit}select:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+    select{min-height:44px;border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:8px 32px 8px 12px;color:var(--ink);font:inherit}button:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+    .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--blue);font:inherit;cursor:pointer}button:hover{background:#edf3f8}button:disabled{opacity:.6;cursor:wait}
     .metrics{display:flex;gap:64px;padding:30px 0}dl{margin:0}dt{color:var(--muted);font-size:13px}dd{font-size:38px;font-weight:650;letter-spacing:-1px;margin:0;line-height:1.3}.status{font-size:12px;color:var(--muted);margin:0 0 18px}.error{color:#a33b38}
     .table-wrap{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}table{width:100%;border-collapse:collapse;text-align:left}th{font-size:12px;color:var(--muted);font-weight:600;padding:13px 18px;border-bottom:1px solid var(--line)}td{padding:14px 18px;border-bottom:1px solid var(--line)}tbody tr:last-child td{border:0}.number{text-align:right;white-space:nowrap;width:90px}a{color:var(--blue);text-decoration:none;overflow-wrap:anywhere}a:hover{text-decoration:underline}.path{position:relative}.bar{height:3px;background:#c7dced;border-radius:2px;margin-top:7px;min-width:2px}tbody tr:hover{background:#f8fafc}.empty{color:var(--muted);padding:34px 18px;text-align:center}footer{margin-top:20px;color:var(--muted);font-size:12px}summary{cursor:pointer;display:list-item;width:fit-content}details p{max-width:660px}
     @media(max-width:520px){main{margin:28px auto;padding:0 16px}header{align-items:flex-start;flex-direction:column;gap:14px}h1{font-size:23px}.metrics{gap:48px}dd{font-size:34px}th,td{padding:12px}.number{width:70px}}
@@ -19,11 +20,11 @@
 </head>
 <body>
 <main>
-  <header><div><h1>Site analytics</h1><p>sawyerwelden.com</p></div><select id="period" aria-label="Time period"><option value="1">Last 24 hours</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select></header>
+  <header><div><h1>Site analytics</h1><p>sawyerwelden.com</p></div><div class="controls"><select id="period" aria-label="Time period"><option value="1">Last 24 hours</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select><button type="button" id="refresh" title="Load the latest hourly snapshot">Refresh</button></div></header>
   <section class="metrics" aria-label="Traffic totals"><dl><dt>Page views</dt><dd id="views">—</dd></dl><dl><dt>Visits</dt><dd id="visits">—</dd></dl></section>
   <p class="status" id="status" role="status">Loading counts…</p>
   <div class="table-wrap"><table><thead><tr><th scope="col">Page</th><th class="number" scope="col">Views</th><th class="number" scope="col">Share</th></tr></thead><tbody id="pages"><tr><td colspan="3" class="empty">Loading…</td></tr></tbody></table></div>
-  <footer><details><summary>About these counts</summary><p>Updates approximately hourly. Cloudflare may estimate counts from sampled data. Visits are sessions arriving from another site or a direct link, not unique people. This page is excluded from tracking. Tracking began October 1, 2026.</p><p id="window"></p></details></footer>
+  <footer><details><summary>About these counts</summary><p>Updates approximately hourly. Refresh loads the latest published counts. Cloudflare may estimate counts from sampled data. Visits are sessions arriving from another site or a direct link, not unique people. This page is excluded from tracking. Tracking began October 1, 2026.</p><p id="window"></p></details></footer>
 </main>
 <script>
   // Deliberately no tracking beacon on this page.
@@ -61,13 +62,31 @@
     }
   }
   $('period').addEventListener('change', () => { if(snapshot) render(); });
-  fetch('./data.json', {cache:'no-store'}).then(response => {
-    if (!response.ok) throw new Error('Could not load analytics');
-    return response.json();
-  }).then(data => { snapshot = data; render(); }).catch(() => {
-    $('status').textContent = 'Counts are unavailable. Reload to try again.';
-    $('status').classList.add('error'); $('pages').replaceChildren();
-  });
+  async function refresh(manual = false) {
+    const button = $('refresh');
+    if (button.disabled) return;
+    button.disabled = true; button.textContent = 'Refreshing…';
+    $('status').classList.remove('error');
+    $('status').textContent = 'Checking for updated counts…';
+    try {
+      const response = await fetch(`./data.json?t=${Date.now()}`, {cache:'no-store', signal:AbortSignal.timeout(15000)});
+      if (!response.ok) throw new Error('Could not load analytics');
+      const data = await response.json();
+      if (!data.updated_at || !['1','7','30'].every(key => Array.isArray(data.periods?.[key]?.pages))) throw new Error('Invalid snapshot');
+      const unchanged = snapshot?.updated_at === data.updated_at;
+      snapshot = data; render();
+      if (manual) $('status').textContent += unchanged ? ' · No newer counts yet; collection runs hourly.' : ' · Latest published counts loaded.';
+    } catch {
+      if (snapshot) render();
+      else $('pages').replaceChildren();
+      $('status').textContent += snapshot ? ' · Refresh failed; showing previous counts.' : ' Unable to load counts. Try Refresh again.';
+      $('status').classList.add('error');
+    } finally {
+      button.disabled = false; button.textContent = 'Refresh';
+    }
+  }
+  $('refresh').addEventListener('click', () => refresh(true));
+  refresh();
 </script>
 </body>
 </html>
