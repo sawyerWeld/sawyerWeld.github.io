@@ -1,17 +1,22 @@
 {
-  "updated_at": "2026-10-03T21:23:05Z",
+  "updated_at": "2026-10-03T23:55:05Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-02T21:23:05Z",
-      "end_utc_exclusive": "2026-10-03T21:23:05Z",
-      "page_views": 3,
-      "visits": 1,
+      "start_utc": "2026-10-02T23:55:05Z",
+      "end_utc_exclusive": "2026-10-03T23:55:05Z",
+      "page_views": 4,
+      "visits": 2,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/mana-counter/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -29,15 +34,20 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-26T21:23:05Z",
-      "end_utc_exclusive": "2026-10-03T21:23:05Z",
-      "page_views": 4,
-      "visits": 2,
+      "start_utc": "2026-09-26T23:55:05Z",
+      "end_utc_exclusive": "2026-10-03T23:55:05Z",
+      "page_views": 5,
+      "visits": 3,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/mana-counter/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -60,8 +70,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-03T21:23:05Z",
-      "end_utc_exclusive": "2026-10-03T21:23:05Z",
+      "start_utc": "2026-09-03T23:55:05Z",
+      "end_utc_exclusive": "2026-10-03T23:55:05Z",
       "page_views": 0,
       "visits": 0,
       "sample_interval": null,
