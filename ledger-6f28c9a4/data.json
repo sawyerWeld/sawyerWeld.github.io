@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-04T17:37:25Z",
+  "updated_at": "2026-10-04T21:34:23Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-03T17:37:25Z",
-      "end_utc_exclusive": "2026-10-04T17:37:25Z",
-      "page_views": 3,
-      "visits": 3,
+      "start_utc": "2026-10-03T21:34:23Z",
+      "end_utc_exclusive": "2026-10-04T21:34:23Z",
+      "page_views": 4,
+      "visits": 4,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -24,15 +24,20 @@
           "path": "/card-foil/",
           "page_views": 1,
           "sample_interval": 1
+        },
+        {
+          "path": "/paupergenesis2026/",
+          "page_views": 1,
+          "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-27T17:37:25Z",
-      "end_utc_exclusive": "2026-10-04T17:37:25Z",
-      "page_views": 7,
-      "visits": 5,
+      "start_utc": "2026-09-27T21:34:23Z",
+      "end_utc_exclusive": "2026-10-04T21:34:23Z",
+      "page_views": 8,
+      "visits": 6,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -70,13 +75,18 @@
           "path": "/paupergeddon2026/paupergeddon-explorer.html",
           "page_views": 1,
           "sample_interval": 1
+        },
+        {
+          "path": "/paupergenesis2026/",
+          "page_views": 1,
+          "sample_interval": 1
         }
       ]
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-04T17:37:25Z",
-      "end_utc_exclusive": "2026-10-04T17:37:25Z",
+      "start_utc": "2026-09-04T21:34:23Z",
+      "end_utc_exclusive": "2026-10-04T21:34:23Z",
       "page_views": 10,
       "visits": 10,
       "sample_interval": 10,
