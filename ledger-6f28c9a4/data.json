@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-05T01:00:31Z",
+  "updated_at": "2026-10-05T07:08:40Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-04T01:00:31Z",
-      "end_utc_exclusive": "2026-10-05T01:00:31Z",
+      "start_utc": "2026-10-04T07:08:40Z",
+      "end_utc_exclusive": "2026-10-05T07:08:40Z",
       "page_views": 3,
       "visits": 3,
       "sample_interval": 1,
@@ -29,8 +29,8 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-28T01:00:31Z",
-      "end_utc_exclusive": "2026-10-05T01:00:31Z",
+      "start_utc": "2026-09-28T07:08:40Z",
+      "end_utc_exclusive": "2026-10-05T07:08:40Z",
       "page_views": 8,
       "visits": 6,
       "sample_interval": 1,
@@ -80,8 +80,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-05T01:00:31Z",
-      "end_utc_exclusive": "2026-10-05T01:00:31Z",
+      "start_utc": "2026-09-05T07:08:40Z",
+      "end_utc_exclusive": "2026-10-05T07:08:40Z",
       "page_views": 10,
       "visits": 10,
       "sample_interval": 10,
