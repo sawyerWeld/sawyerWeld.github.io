@@ -1,20 +1,15 @@
 {
-  "updated_at": "2026-10-04T21:34:23Z",
+  "updated_at": "2026-10-05T01:00:31Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-03T21:34:23Z",
-      "end_utc_exclusive": "2026-10-04T21:34:23Z",
-      "page_views": 4,
-      "visits": 4,
+      "start_utc": "2026-10-04T01:00:31Z",
+      "end_utc_exclusive": "2026-10-05T01:00:31Z",
+      "page_views": 3,
+      "visits": 3,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
-        {
-          "path": "/mana-counter/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
         {
           "path": "/Tronclock/",
           "page_views": 1,
@@ -34,8 +29,8 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-27T21:34:23Z",
-      "end_utc_exclusive": "2026-10-04T21:34:23Z",
+      "start_utc": "2026-09-28T01:00:31Z",
+      "end_utc_exclusive": "2026-10-05T01:00:31Z",
       "page_views": 8,
       "visits": 6,
       "sample_interval": 1,
@@ -85,8 +80,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-04T21:34:23Z",
-      "end_utc_exclusive": "2026-10-04T21:34:23Z",
+      "start_utc": "2026-09-05T01:00:31Z",
+      "end_utc_exclusive": "2026-10-05T01:00:31Z",
       "page_views": 10,
       "visits": 10,
       "sample_interval": 10,
