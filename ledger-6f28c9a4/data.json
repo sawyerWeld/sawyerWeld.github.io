@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-10-05T16:07:10Z",
+  "updated_at": "2026-10-05T22:42:46Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-04T16:07:10Z",
-      "end_utc_exclusive": "2026-10-05T16:07:10Z",
-      "page_views": 9,
-      "visits": 7,
+      "start_utc": "2026-10-04T22:42:46Z",
+      "end_utc_exclusive": "2026-10-05T22:42:46Z",
+      "page_views": 10,
+      "visits": 8,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 3,
+          "page_views": 5,
           "sample_interval": 1
         },
         {
@@ -39,26 +39,21 @@
           "path": "/paupergeddon2026/paupergeddon-explorer.html",
           "page_views": 1,
           "sample_interval": 1
-        },
-        {
-          "path": "/paupergenesis2026/",
-          "page_views": 1,
-          "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-28T16:07:10Z",
-      "end_utc_exclusive": "2026-10-05T16:07:10Z",
-      "page_views": 16,
-      "visits": 12,
+      "start_utc": "2026-09-28T22:42:46Z",
+      "end_utc_exclusive": "2026-10-05T22:42:46Z",
+      "page_views": 18,
+      "visits": 14,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 4,
+          "page_views": 6,
           "sample_interval": 1
         },
         {
@@ -105,8 +100,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-05T16:07:10Z",
-      "end_utc_exclusive": "2026-10-05T16:07:10Z",
+      "start_utc": "2026-09-05T22:42:46Z",
+      "end_utc_exclusive": "2026-10-05T22:42:46Z",
       "page_views": 10,
       "visits": 10,
       "sample_interval": 10,
