@@ -1,37 +1,22 @@
 {
-  "updated_at": "2026-10-06T10:26:54Z",
+  "updated_at": "2026-10-06T17:15:13Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-05T10:26:54Z",
-      "end_utc_exclusive": "2026-10-06T10:26:54Z",
-      "page_views": 11,
-      "visits": 9,
+      "start_utc": "2026-10-05T17:15:13Z",
+      "end_utc_exclusive": "2026-10-06T17:15:13Z",
+      "page_views": 3,
+      "visits": 3,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 7,
+          "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/survivorship/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
+          "path": "/paupergeddonsummer2026/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -39,10 +24,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-29T10:26:54Z",
-      "end_utc_exclusive": "2026-10-06T10:26:54Z",
-      "page_views": 20,
-      "visits": 16,
+      "start_utc": "2026-09-29T17:15:13Z",
+      "end_utc_exclusive": "2026-10-06T17:15:13Z",
+      "page_views": 21,
+      "visits": 17,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -90,13 +75,18 @@
           "path": "/paupergenesis2026/",
           "page_views": 1,
           "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddonsummer2026/",
+          "page_views": 1,
+          "sample_interval": 1
         }
       ]
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-06T10:26:54Z",
-      "end_utc_exclusive": "2026-10-06T10:26:54Z",
+      "start_utc": "2026-09-06T17:15:13Z",
+      "end_utc_exclusive": "2026-10-06T17:15:13Z",
       "page_views": 20,
       "visits": 20,
       "sample_interval": 10,
