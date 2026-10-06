@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-10-06T03:03:53Z",
+  "updated_at": "2026-10-06T10:26:54Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-05T03:03:53Z",
-      "end_utc_exclusive": "2026-10-06T03:03:53Z",
-      "page_views": 10,
-      "visits": 8,
+      "start_utc": "2026-10-05T10:26:54Z",
+      "end_utc_exclusive": "2026-10-06T10:26:54Z",
+      "page_views": 11,
+      "visits": 9,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 5,
+          "page_views": 7,
           "sample_interval": 1
         },
         {
@@ -22,11 +22,6 @@
         },
         {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/card-foil/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -44,16 +39,16 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-29T03:03:53Z",
-      "end_utc_exclusive": "2026-10-06T03:03:53Z",
-      "page_views": 18,
-      "visits": 14,
+      "start_utc": "2026-09-29T10:26:54Z",
+      "end_utc_exclusive": "2026-10-06T10:26:54Z",
+      "page_views": 20,
+      "visits": 16,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 6,
+          "page_views": 8,
           "sample_interval": 1
         },
         {
@@ -100,13 +95,18 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-06T03:03:53Z",
-      "end_utc_exclusive": "2026-10-06T03:03:53Z",
-      "page_views": 10,
-      "visits": 10,
+      "start_utc": "2026-09-06T10:26:54Z",
+      "end_utc_exclusive": "2026-10-06T10:26:54Z",
+      "page_views": 20,
+      "visits": 20,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
+        {
+          "path": "/Tronclock/",
+          "page_views": 10,
+          "sample_interval": 10
+        },
         {
           "path": "/card-foil/",
           "page_views": 10,
