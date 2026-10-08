@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-08T02:00:39Z",
+  "updated_at": "2026-10-08T09:04:53Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-07T02:00:39Z",
-      "end_utc_exclusive": "2026-10-08T02:00:39Z",
-      "page_views": 13,
-      "visits": 9,
+      "start_utc": "2026-10-07T09:04:53Z",
+      "end_utc_exclusive": "2026-10-08T09:04:53Z",
+      "page_views": 15,
+      "visits": 11,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -17,7 +17,7 @@
         },
         {
           "path": "/pauper/",
-          "page_views": 3,
+          "page_views": 4,
           "sample_interval": 1
         },
         {
@@ -31,6 +31,11 @@
           "sample_interval": 1
         },
         {
+          "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
           "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
@@ -39,10 +44,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-01T02:00:39Z",
-      "end_utc_exclusive": "2026-10-08T02:00:39Z",
-      "page_views": 35,
-      "visits": 27,
+      "start_utc": "2026-10-01T09:04:53Z",
+      "end_utc_exclusive": "2026-10-08T09:04:53Z",
+      "page_views": 37,
+      "visits": 29,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -53,7 +58,7 @@
         },
         {
           "path": "/pauper/",
-          "page_views": 3,
+          "page_views": 4,
           "sample_interval": 1
         },
         {
@@ -68,6 +73,11 @@
         },
         {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 2,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
           "page_views": 2,
           "sample_interval": 1
         },
@@ -92,11 +102,6 @@
           "sample_interval": 1
         },
         {
-          "path": "/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
           "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
@@ -110,8 +115,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-08T02:00:39Z",
-      "end_utc_exclusive": "2026-10-08T02:00:39Z",
+      "start_utc": "2026-09-08T09:04:53Z",
+      "end_utc_exclusive": "2026-10-08T09:04:53Z",
       "page_views": 20,
       "visits": 20,
       "sample_interval": 10,
