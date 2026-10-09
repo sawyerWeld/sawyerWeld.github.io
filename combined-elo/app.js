@@ -69,14 +69,13 @@ function renderChart() {
   const activeEvents = new Set(data.results.filter(r => selected.has(r.player)).map(r => r.eventId));
   const visibleIndexes = data.timeline.map((_,i) => i).filter(i => activeEvents.has(data.timeline[i].eventId));
   const indexes = mode === 'round' ? visibleIndexes : visibleIndexes.filter((i,pos) => pos === 0 || !data.timeline[i+1] || data.timeline[i+1].eventId !== data.timeline[i].eventId);
-  // Plot only played rounds, plus each player's initial rating.
+  // Plot each attended event's starting rating and played rounds.
   const series = new Map(chosen.map(p => {
-    let started = false;
     const samples = indexes.filter(idx => {
       const t = data.timeline[idx];
       if(p.points[idx] == null || !eventIndex.has(`${p.player}|${t.eventId}`))return false;
       if(mode === 'event')return true;
-      if(t.round === 0){if(started)return false;started=true;return true;}
+      if(t.round === 0)return true;
       return matchIndex.has(`${p.player}|${t.eventId}|${t.round}`);
     });
     return [p.player,samples];
@@ -139,11 +138,11 @@ function renderChart() {
         let fromX=previous.x;
         if(missedWeek){
           // Hold the old rating through the absence; only a played match changes it.
-          fromX=x(Math.max(previous.pos,pos-1));
+          fromX=t.round===0?x(pos):x(Math.max(previous.pos,pos-1));
           if(fromX===previous.x)fromX=x((previous.pos+pos)/2);
           svg.append(s('path',{d:`M${previous.x},${previous.y} L${fromX},${previous.y}`,stroke:color(p.player),class:'series-line','stroke-dasharray':'4 5',opacity:'.55'}));
         }
-        svg.append(s('path',{d:`M${fromX},${previous.y} L${x(pos)},${y(rating)}`,stroke:color(p.player),class:'series-line'}));
+        if(fromX!==x(pos)||previous.y!==y(rating))svg.append(s('path',{d:`M${fromX},${previous.y} L${x(pos)},${y(rating)}`,stroke:color(p.player),class:'series-line'}));
       }
       previous={x:x(pos),y:y(rating),date:t.eventDate,pos};
       const point=s('circle',{cx:x(pos),cy:y(rating),r:mode==='round'?3.1:4,fill:color(p.player),class:'point',tabindex:points.length===0?'0':'-1',role:'button','aria-label':`${p.player}, ${date(t.eventDate)}, ${t.label}, Elo ${fmt(rating)}`});
@@ -225,7 +224,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=229e9f5d14aa');
+    const {loadStats}=await import('./data-source.mjs?v=2f90f4cb7cdb');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
