@@ -16,7 +16,7 @@ export function validateData(data){
   const results=new Set();
   for(const r of data.results){
     const key=JSON.stringify([r.eventId,r.player]);
-    if(results.has(key)||!names.has(r.player)||['wins','losses','draws'].some(k=>!Number.isInteger(r[k])||r[k]<0)||r.trophy!==(r.wins>=3&&r.losses===0&&r.draws===0))throw Error('Invalid event result');
+    if(results.has(key)||!names.has(r.player)||['wins','losses','draws'].some(k=>!Number.isInteger(r[k])||r[k]<0)||r.trophy!==(r.wins>=3&&r.losses===0))throw Error('Invalid event result');
     results.add(key);
   }
   if(new Set(data.timeline.map(t=>t.eventId)).size!==data.meta.events)throw Error('Event count mismatch');
