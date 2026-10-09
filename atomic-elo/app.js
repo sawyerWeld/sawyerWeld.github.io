@@ -131,7 +131,7 @@ function renderChart() {
     for(const label of labels){
       label.y-=overflow;
       svg.append(s('path',{d:`M${label.x+5},${label.targetY} L${label.x+12},${label.y} L${label.x+17},${label.y}`,stroke:color(label.p.player),fill:'none','stroke-width':1,opacity:.5}));
-      svg.append(s('text',{x:label.x+22,y:label.y-3,fill:color(label.p.player),class:'end-label'},label.p.player.split(' ')[0]));
+      svg.append(s('text',{x:label.x+22,y:label.y-3,fill:color(label.p.player),class:'end-label'},label.p.player));
       svg.append(s('text',{x:label.x+22,y:label.y+11,class:'axis-label'},fmt(label.p.elo)));
     }
   }
@@ -177,7 +177,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&data.players.slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=da844aa7469b');
+    const {loadStats}=await import('./data-source.mjs?v=65e684f5f92c');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
@@ -200,8 +200,14 @@ async function init(){
   try{saved=JSON.parse(localStorage.getItem('atomic-stats-v2'));}catch{}
   let names=saved?.players;
   if(url.searchParams.has('players'))try{names=JSON.parse(url.searchParams.get('players'));}catch{names=null;}
+  // Keep selections from older links and saved preferences after abbreviating names.
+  if(Array.isArray(names))names=names.filter(name=>typeof name==='string'&&name.trim()).map(name=>{
+    const parts=name.trim().split(/\s+/);
+    return parts[0][0].toUpperCase()+parts[0].slice(1).toLowerCase()+(parts.length>1?' '+parts.at(-1)[0].toUpperCase():'');
+  });
   selected=new Set((Array.isArray(names)?names:data.players.slice(0,5).map(p=>p.player)).filter(name=>playerByName.has(name)));
   mode=(url.searchParams.get('view')||saved?.mode)==='event'?'event':'round';
+  save();
   document.querySelectorAll('[data-top]').forEach(button=>button.addEventListener('click',()=>setSelection(data.players.slice(0,Number(button.dataset.top)).map(p=>p.player))));
   for(const view of ['event','round'])$(`${view}-view`).addEventListener('click',()=>{mode=view;inspected=null;save();render();});
   $('previous-page').addEventListener('click',()=>{if(leaderboardPage>0){leaderboardPage--;renderLeaderboard();}});
