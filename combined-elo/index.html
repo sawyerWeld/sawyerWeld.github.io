@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Combined Elo</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css?v=18b977e7ed07">
+  <script src="app.js?v=18b977e7ed07" defer></script>
+</head>
+<body>
+  <a class="skip" href="#elo">Skip to Elo</a>
+  <main class="shell">
+    <noscript><p>This explorer needs JavaScript to display the league results.</p></noscript>
+    <div class="plot-tools"><div class="segmented" role="group" aria-label="Store"><button data-store="all" aria-pressed="true">All stores</button><button data-store="15582" aria-pressed="false">Dragon’s Hoard</button><button data-store="7679" aria-pressed="false">Atomic Empire</button></div></div>
+    <section id="trophies" aria-labelledby="trophy-title">
+      <div class="section-head"><h2 id="trophy-title">Trophies</h2></div>
+      <ul id="trophy-list" class="trophy-list"></ul>
+    </section>
+    <section id="elo" aria-labelledby="elo-title">
+      <div class="section-head"><h2 id="elo-title">Combined Elo</h2><div class="refresh-tools"><span id="data-notice" hidden></span><button id="refresh-data" type="button" disabled>Loading…</button></div></div>
+      <div class="explorer panel">
+        <div class="plot-area">
+          <div class="plot-tools"><div class="segmented" role="group" aria-label="Chart detail"><button id="event-view" aria-pressed="false">By event</button><button id="round-view" aria-pressed="true">By round</button></div><div class="segmented" role="group" aria-label="Player visibility"><button data-top="5" aria-pressed="true">Top 5</button><button data-top="10" aria-pressed="false">Top 10</button><button data-top="15" aria-pressed="false">Top 15</button></div></div>
+          <div id="chart-wrap"><svg id="chart" role="group" aria-label="Interactive Elo history"></svg></div>
+          <div id="inspection" class="inspection" aria-live="polite" hidden></div>
+        </div>
+      </div>
+    </section>
+    <section id="leaderboard" aria-labelledby="leaderboard-title">
+      <div class="section-head"><h2 id="leaderboard-title">Elo leaderboard</h2></div>
+      <div class="panel">
+        <div class="table-scroll"><table class="elo-table"><caption class="sr-only">All players ranked by current Elo</caption><thead><tr><th scope="col">Overall rank</th><th scope="col">Player</th><th scope="col">Elo</th><th scope="col">Δ last event</th><th scope="col">Matches</th><th scope="col">W–L–D</th></tr></thead><tbody id="elo-rows"></tbody></table></div>
+        <div class="pagination"><span id="page-range" aria-live="polite"></span><div><button id="previous-page" aria-label="Previous leaderboard page">Previous</button><button id="next-page" aria-label="Next leaderboard page">Next</button></div></div>
+      </div>
+    </section>
+    <div class="sr-only" id="status" role="status"></div>
+  </main>
+</body>
+</html>
