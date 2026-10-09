@@ -69,25 +69,47 @@ function renderChart() {
   const activeEvents = new Set(data.results.filter(r => selected.has(r.player)).map(r => r.eventId));
   const visibleIndexes = data.timeline.map((_,i) => i).filter(i => activeEvents.has(data.timeline[i].eventId));
   const indexes = mode === 'round' ? visibleIndexes : visibleIndexes.filter((i,pos) => pos === 0 || !data.timeline[i+1] || data.timeline[i+1].eventId !== data.timeline[i].eventId);
-  const ratings = [1200, ...chosen.flatMap(p => indexes.map(i => p.points[i]).filter(v => v != null))];
+  // Plot only played rounds, plus each player's initial rating.
+  const series = new Map(chosen.map(p => {
+    let started = false;
+    const samples = indexes.filter(idx => {
+      const t = data.timeline[idx];
+      if(p.points[idx] == null || !eventIndex.has(`${p.player}|${t.eventId}`))return false;
+      if(mode === 'event')return true;
+      if(t.round === 0){if(started)return false;started=true;return true;}
+      return matchIndex.has(`${p.player}|${t.eventId}|${t.round}`);
+    });
+    return [p.player,samples];
+  }));
+  const key = idx => {
+    const t=data.timeline[idx];
+    return mode==='round' ? `${t.eventDate}|${String(t.round).padStart(3,'0')}` : `${t.eventDate}|${t.eventId}|${t.round===0?'0':'1'}`;
+  };
+  const slots=[...new Set([...series.values()].flat().map(key))].sort();
+  const positions=new Map(slots.map((slot,pos)=>[slot,pos]));
+  const position = idx => positions.get(key(idx));
+  const ratings = [1200, ...chosen.flatMap(p => series.get(p.player).map(i => p.points[i]))];
   const min = Math.floor((Math.min(...ratings)-15)/25)*25;
   const max = Math.ceil((Math.max(...ratings)+15)/25)*25;
-  const x = pos => margin.left + pos / Math.max(1,indexes.length-1) * plotW;
+  const x = pos => margin.left + pos / Math.max(1,slots.length-1) * plotW;
   const y = value => margin.top + (max-value)/(max-min)*plotH;
-  const events = [...new Set(indexes.map(i => data.timeline[i].eventId))];
-  const byEventPositions = events.map(id => indexes.map((idx,pos) => data.timeline[idx].eventId === id ? pos : -1).filter(pos => pos >= 0));
-  // A narrow event band anchors the special tournament in both views.
-  events.forEach((id,e) => {
-    const positions = byEventPositions[e];
-    if (!positions.length) return;
-    const pos = positions.at(-1), t = data.timeline[indexes[pos]];
-    if (t.eventTitle.includes('Win-a-Box')) {
-      const start = mode === 'event' ? x(pos)-plotW/Math.max(1,indexes.length-1)*.35 : x(positions[0]);
-      const end = mode === 'event' ? x(pos)+plotW/Math.max(1,indexes.length-1)*.35 : x(pos);
-      svg.append(s('rect', {x:start,y:margin.top-6,width:end-start,height:plotH+6,fill:'#eef3f8'}));
-      svg.append(s('text',{x:(start+end)/2,y:24,'text-anchor':'middle',class:'axis-label'},'Win-a-Box'));
-    }
-  });
+  const groups=new Map();
+  for(const idx of [...series.values()].flat()){
+    const t=data.timeline[idx], groupKey=mode==='round'?t.eventDate:t.eventId;
+    if(!groups.has(groupKey))groups.set(groupKey,{date:t.eventDate,positions:new Set(),special:false});
+    const group=groups.get(groupKey);
+    group.positions.add(position(idx));
+    group.special ||= t.eventTitle.includes('Win-a-Box');
+  }
+  const bands=[...groups.values()].map(g=>({...g,positions:[...g.positions].sort((a,b)=>a-b)})).sort((a,b)=>a.positions[0]-b.positions[0]);
+  for(const band of bands){
+    if(!band.special)continue;
+    const first=band.positions[0],last=band.positions.at(-1);
+    const padding=mode==='event'?plotW/Math.max(1,slots.length-1)*.35:0;
+    const start=x(first)-padding,end=x(last)+padding;
+    svg.append(s('rect',{x:start,y:margin.top-6,width:end-start,height:plotH+6,fill:'#eef3f8'}));
+    svg.append(s('text',{x:(start+end)/2,y:24,'text-anchor':'middle',class:'axis-label'},'Win-a-Box'));
+  }
   const increment = max-min > 200 ? 50 : 25;
   for (let value=Math.ceil(min/increment)*increment;value<=max;value+=increment) {
     svg.append(s('line',{x1:margin.left,x2:width-margin.right,y1:y(value),y2:y(value),class:value===1200?'grid-line baseline':'grid-line'}));
@@ -95,26 +117,23 @@ function renderChart() {
   }
   if ((1200-Math.ceil(min/increment)*increment)%increment !== 0) svg.append(s('line',{x1:margin.left,x2:width-margin.right,y1:y(1200),y2:y(1200),class:'baseline'}));
   const small = width < 520;
-  events.forEach((id,e) => {
-    const positions=byEventPositions[e]; if (!positions.length) return;
-    const pos = mode === 'event' ? positions.at(-1) : (positions[0]+positions.at(-1))/2;
-    const t = data.timeline[indexes[positions.at(-1)]];
-    const labelY = height-24+(small && e%2 ? 14 : 0);
-    const labelEvery=Math.max(1,Math.ceil(events.length/(plotW/65)));
-    if(e%labelEvery===0||e===events.length-1)svg.append(s('text',{x:x(pos),y:labelY,'text-anchor':'middle',class:'axis-label'},date(t.eventDate)));
-    if (mode==='round') svg.append(s('line',{x1:x(positions[0]),x2:x(positions[0]),y1:margin.top,y2:height-margin.bottom,stroke:'#d9e1ea','stroke-dasharray':'2 5'}));
+  bands.forEach((band,e) => {
+    const first=band.positions[0],last=band.positions.at(-1);
+    const pos=mode==='event'?last:(first+last)/2;
+    const labelY=height-24+(small && e%2 ? 14 : 0);
+    const labelEvery=Math.max(1,Math.ceil(bands.length/(plotW/65)));
+    if(e%labelEvery===0||e===bands.length-1)svg.append(s('text',{x:x(pos),y:labelY,'text-anchor':'middle',class:'axis-label'},date(band.date)));
+    if(mode==='round')svg.append(s('line',{x1:x(first),x2:x(first),y1:margin.top,y2:height-margin.bottom,stroke:'#d9e1ea','stroke-dasharray':'2 5'}));
   });
   const labels=[];
   for(const p of chosen) {
     let previous=null; const points=[];
-    indexes.forEach((idx,pos) => {
+    series.get(p.player).forEach(idx => {
+      const pos=position(idx);
       const rating=p.points[idx]; if(rating==null)return;
       const t=data.timeline[idx];
-      const active=(eventIndex.get(`${p.player}|${t.eventId}`)||[]).length>0;
-      if(previous) svg.append(s('path',{d:`M${previous.x},${previous.y} L${x(pos)},${y(rating)}`,stroke:color(p.player),class:'series-line',...(active?{}:{'stroke-dasharray':'4 5',opacity:'.55'})}));
+      if(previous) svg.append(s('path',{d:`M${previous.x},${previous.y} L${x(pos)},${y(rating)}`,stroke:color(p.player),class:'series-line'}));
       previous={x:x(pos),y:y(rating)};
-      const matches=matchIndex.get(`${p.player}|${t.eventId}|${t.round}`)||[];
-      if(!active || (mode==='round' && t.round!==0 && !matches.length))return;
       const point=s('circle',{cx:x(pos),cy:y(rating),r:mode==='round'?3.1:4,fill:color(p.player),class:'point',tabindex:points.length===0?'0':'-1',role:'button','aria-label':`${p.player}, ${date(t.eventDate)}, ${t.label}, Elo ${fmt(rating)}`});
       point.append(s('title',{},`${p.player} · ${date(t.eventDate)} · ${fmt(rating)}`));
       const open=()=>inspect(p,idx);
@@ -186,7 +205,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=d7d3a821f2a0');
+    const {loadStats}=await import('./data-source.mjs?v=48a2c8342aba');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
