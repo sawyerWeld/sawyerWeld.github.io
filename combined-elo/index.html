@@ -7,8 +7,8 @@
   <meta name="referrer" content="no-referrer">
   <title>Combined Elo</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=2f90f4cb7cdb">
-  <script src="app.js?v=2f90f4cb7cdb" defer></script>
+  <link rel="stylesheet" href="styles.css?v=38fec0a57160">
+  <script src="app.js?v=38fec0a57160" defer></script>
 </head>
 <body>
   <a class="skip" href="#elo">Skip to Elo</a>
@@ -32,7 +32,7 @@
     <section id="leaderboard" aria-labelledby="leaderboard-title">
       <div class="section-head"><h2 id="leaderboard-title">Elo leaderboard</h2></div>
       <div class="panel">
-        <div class="table-scroll"><table class="elo-table"><caption class="sr-only">All players ranked by current Elo</caption><thead><tr><th scope="col">Overall rank</th><th scope="col">Player</th><th scope="col">Elo</th><th scope="col">Δ last event</th><th scope="col">Matches</th><th scope="col">W–L–D</th></tr></thead><tbody id="elo-rows"></tbody></table></div>
+        <div class="table-scroll"><table class="elo-table"><caption class="sr-only">All players ranked by current Elo</caption><thead><tr><th scope="col">Overall rank</th><th scope="col">Player</th><th scope="col">Elo</th><th scope="col">Δ last event</th><th scope="col" title="Tournament match points: 3 per win, 1 per draw; includes byes">Points</th><th scope="col">Matches</th><th scope="col">W–L–D</th></tr></thead><tbody id="elo-rows"></tbody></table></div>
         <div class="pagination"><span id="page-range" aria-live="polite"></span><div><button id="previous-page" aria-label="Previous leaderboard page">Previous</button><button id="next-page" aria-label="Next leaderboard page">Next</button></div></div>
       </div>
     </section>

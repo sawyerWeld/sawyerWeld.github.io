@@ -189,7 +189,7 @@ function renderLeaderboard() {
   const start=leaderboardPage*PAGE_SIZE;
   const visible=visiblePlayers();
   const players=visible.slice(start,start+PAGE_SIZE);
-  $('elo-rows').innerHTML=players.map(p=>`<tr><td>${p.rank}</td><td><span class="swatch" style="background:${selected.has(p.player)?color(p.player):'transparent'}"></span>${esc(p.player)}</td><td>${fmt(p.elo)}</td><td class="${signedClass(p.changeLastEvent)}">${delta(p.changeLastEvent)}</td><td>${p.matches}</td><td>${p.wins}–${p.losses}–${p.draws}</td></tr>`).join('');
+  $('elo-rows').innerHTML=players.map(p=>`<tr><td>${p.rank}</td><td><span class="swatch" style="background:${selected.has(p.player)?color(p.player):'transparent'}"></span>${esc(p.player)}</td><td>${fmt(p.elo)}</td><td class="${signedClass(p.changeLastEvent)}">${delta(p.changeLastEvent)}</td><td>${p.totalPoints}</td><td>${p.matches}</td><td>${p.wins}–${p.losses}–${p.draws}</td></tr>`).join('');
   $('page-range').textContent=`${start+1}–${start+players.length} of ${visible.length}`;
   $('previous-page').disabled=leaderboardPage===0;
   $('next-page').disabled=start+PAGE_SIZE>=visible.length;
@@ -224,7 +224,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=2f90f4cb7cdb');
+    const {loadStats}=await import('./data-source.mjs?v=38fec0a57160');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
