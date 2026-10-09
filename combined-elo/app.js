@@ -136,9 +136,16 @@ function renderChart() {
       const t=data.timeline[idx];
       if(previous){
         const missedWeek=fnmDates.some(day=>day>previous.date&&day<t.eventDate&&!attendedDates.has(day));
-        svg.append(s('path',{d:`M${previous.x},${previous.y} L${x(pos)},${y(rating)}`,stroke:color(p.player),class:'series-line',...(missedWeek?{'stroke-dasharray':'4 5',opacity:'.55'}:{})}));
+        let fromX=previous.x;
+        if(missedWeek){
+          // Hold the old rating through the absence; only a played match changes it.
+          fromX=x(Math.max(previous.pos,pos-1));
+          if(fromX===previous.x)fromX=x((previous.pos+pos)/2);
+          svg.append(s('path',{d:`M${previous.x},${previous.y} L${fromX},${previous.y}`,stroke:color(p.player),class:'series-line','stroke-dasharray':'4 5',opacity:'.55'}));
+        }
+        svg.append(s('path',{d:`M${fromX},${previous.y} L${x(pos)},${y(rating)}`,stroke:color(p.player),class:'series-line'}));
       }
-      previous={x:x(pos),y:y(rating),date:t.eventDate};
+      previous={x:x(pos),y:y(rating),date:t.eventDate,pos};
       const point=s('circle',{cx:x(pos),cy:y(rating),r:mode==='round'?3.1:4,fill:color(p.player),class:'point',tabindex:points.length===0?'0':'-1',role:'button','aria-label':`${p.player}, ${date(t.eventDate)}, ${t.label}, Elo ${fmt(rating)}`});
       point.append(s('title',{},`${p.player} · ${date(t.eventDate)} · ${fmt(rating)}`));
       const open=()=>inspect(p,idx);
@@ -151,7 +158,15 @@ function renderChart() {
       });
       points.push(point); svg.append(point);
     });
-    if(previous)labels.push({p,x:previous.x,y:previous.y,targetY:previous.y});
+    if(previous){
+      const missedLaterWeek=fnmDates.some(day=>day>previous.date&&!attendedDates.has(day));
+      if(missedLaterWeek&&previous.pos<slots.length-1){
+        const edge=x(slots.length-1);
+        svg.append(s('path',{d:`M${previous.x},${previous.y} L${edge},${previous.y}`,stroke:color(p.player),class:'series-line','stroke-dasharray':'4 5',opacity:'.55'}));
+        previous.x=edge;
+      }
+      labels.push({p,x:previous.x,y:previous.y,targetY:previous.y});
+    }
   }
   if(endpoints){
     labels.sort((a,b)=>a.y-b.y);
@@ -210,7 +225,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=603e3a344c04');
+    const {loadStats}=await import('./data-source.mjs?v=229e9f5d14aa');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
