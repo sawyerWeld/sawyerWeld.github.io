@@ -170,13 +170,15 @@ function renderChart() {
   }
   if(endpoints){
     labels.sort((a,b)=>a.y-b.y);
-    for(let i=1;i<labels.length;i++)labels[i].y=Math.max(labels[i].y,labels[i-1].y+27);
-    const overflow=labels.length?Math.max(0,labels.at(-1).y-(height-margin.bottom)):0;
+    for(let i=1;i<labels.length;i++)labels[i].y=Math.max(labels[i].y,labels[i-1].y+42);
+    const labelX=width-margin.right+22;
+    const centered=labels.length?labels.reduce((sum,l)=>sum+l.targetY-l.y,0)/labels.length:0;
+    const shift=labels.length?Math.max(margin.top+13-labels[0].y,Math.min(centered,height-margin.bottom-14-labels.at(-1).y)):0;
     for(const label of labels){
-      label.y-=overflow;
-      svg.append(s('path',{d:`M${label.x+5},${label.targetY} L${label.x+12},${label.y} L${label.x+17},${label.y}`,stroke:color(label.p.player),fill:'none','stroke-width':1,opacity:.5}));
-      svg.append(s('text',{x:label.x+22,y:label.y-3,fill:color(label.p.player),class:'end-label'},label.p.player));
-      svg.append(s('text',{x:label.x+22,y:label.y+11,class:'axis-label'},fmt(label.p.elo)));
+      label.y+=shift;
+      svg.append(s('path',{d:`M${label.x+5},${label.targetY} L${labelX-10},${label.y} L${labelX-5},${label.y}`,stroke:color(label.p.player),fill:'none','stroke-width':1,opacity:.5}));
+      svg.append(s('text',{x:labelX,y:label.y-3,fill:color(label.p.player),class:'end-label'},label.p.player));
+      svg.append(s('text',{x:labelX,y:label.y+11,class:'axis-label'},fmt(label.p.elo)));
     }
   }
   if(!chosen.length)svg.append(s('text',{x:width/2,y:height/2,'text-anchor':'middle',class:'axis-label'},'Choose players to explore their ratings.'));
@@ -227,7 +229,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=945d30a918e5');
+    const {loadStats}=await import('./data-source.mjs?v=314e01d0453b');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
