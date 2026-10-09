@@ -66,14 +66,15 @@ function renderChart() {
   const endpoints = width > 610 && chosen.length <= 6;
   const margin = {left:43, right:endpoints ? 115 : 22, top:47, bottom:51};
   const plotW = width - margin.left - margin.right, plotH = height - margin.top - margin.bottom;
-  const indexes = mode === 'round' ? data.timeline.map((_,i) => i) : data.timeline.map((t,i) => i).filter(i => i === 0 || !data.timeline[i+1] || data.timeline[i+1].eventId !== data.timeline[i].eventId);
-  const scalePlayers = chosen;
-  const ratings = [1200, ...scalePlayers.flatMap(p => p.points.filter(v => v != null))];
+  const activeEvents = new Set(data.results.filter(r => selected.has(r.player)).map(r => r.eventId));
+  const visibleIndexes = data.timeline.map((_,i) => i).filter(i => activeEvents.has(data.timeline[i].eventId));
+  const indexes = mode === 'round' ? visibleIndexes : visibleIndexes.filter((i,pos) => pos === 0 || !data.timeline[i+1] || data.timeline[i+1].eventId !== data.timeline[i].eventId);
+  const ratings = [1200, ...chosen.flatMap(p => indexes.map(i => p.points[i]).filter(v => v != null))];
   const min = Math.floor((Math.min(...ratings)-15)/25)*25;
   const max = Math.ceil((Math.max(...ratings)+15)/25)*25;
-  const x = pos => margin.left + pos / (indexes.length-1) * plotW;
+  const x = pos => margin.left + pos / Math.max(1,indexes.length-1) * plotW;
   const y = value => margin.top + (max-value)/(max-min)*plotH;
-  const events = [...new Set(data.timeline.map(t => t.eventId))];
+  const events = [...new Set(indexes.map(i => data.timeline[i].eventId))];
   const byEventPositions = events.map(id => indexes.map((idx,pos) => data.timeline[idx].eventId === id ? pos : -1).filter(pos => pos >= 0));
   // A narrow event band anchors the special tournament in both views.
   events.forEach((id,e) => {
@@ -81,8 +82,8 @@ function renderChart() {
     if (!positions.length) return;
     const pos = positions.at(-1), t = data.timeline[indexes[pos]];
     if (t.eventTitle.includes('Win-a-Box')) {
-      const start = mode === 'event' ? x(pos)-plotW/(indexes.length-1)*.35 : x(positions[0]);
-      const end = mode === 'event' ? x(pos)+plotW/(indexes.length-1)*.35 : x(pos);
+      const start = mode === 'event' ? x(pos)-plotW/Math.max(1,indexes.length-1)*.35 : x(positions[0]);
+      const end = mode === 'event' ? x(pos)+plotW/Math.max(1,indexes.length-1)*.35 : x(pos);
       svg.append(s('rect', {x:start,y:margin.top-6,width:end-start,height:plotH+6,fill:'#eef3f8'}));
       svg.append(s('text',{x:(start+end)/2,y:24,'text-anchor':'middle',class:'axis-label'},'Win-a-Box'));
     }
@@ -185,7 +186,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=18b977e7ed07');
+    const {loadStats}=await import('./data-source.mjs?v=d7d3a821f2a0');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
