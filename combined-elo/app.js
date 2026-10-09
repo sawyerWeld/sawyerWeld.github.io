@@ -125,15 +125,20 @@ function renderChart() {
     if(e%labelEvery===0||e===bands.length-1)svg.append(s('text',{x:x(pos),y:labelY,'text-anchor':'middle',class:'axis-label'},date(band.date)));
     if(mode==='round')svg.append(s('line',{x1:x(first),x2:x(first),y1:margin.top,y2:height-margin.bottom,stroke:'#d9e1ea','stroke-dasharray':'2 5'}));
   });
+  const fnmDates=[...new Set(data.results.filter(r=>r.isFnm).map(r=>r.date))];
   const labels=[];
   for(const p of chosen) {
+    const attendedDates=new Set(data.results.filter(r=>r.player===p.player).map(r=>r.date));
     let previous=null; const points=[];
     series.get(p.player).forEach(idx => {
       const pos=position(idx);
       const rating=p.points[idx]; if(rating==null)return;
       const t=data.timeline[idx];
-      if(previous) svg.append(s('path',{d:`M${previous.x},${previous.y} L${x(pos)},${y(rating)}`,stroke:color(p.player),class:'series-line'}));
-      previous={x:x(pos),y:y(rating)};
+      if(previous){
+        const missedWeek=fnmDates.some(day=>day>previous.date&&day<t.eventDate&&!attendedDates.has(day));
+        svg.append(s('path',{d:`M${previous.x},${previous.y} L${x(pos)},${y(rating)}`,stroke:color(p.player),class:'series-line',...(missedWeek?{'stroke-dasharray':'4 5',opacity:'.55'}:{})}));
+      }
+      previous={x:x(pos),y:y(rating),date:t.eventDate};
       const point=s('circle',{cx:x(pos),cy:y(rating),r:mode==='round'?3.1:4,fill:color(p.player),class:'point',tabindex:points.length===0?'0':'-1',role:'button','aria-label':`${p.player}, ${date(t.eventDate)}, ${t.label}, Elo ${fmt(rating)}`});
       point.append(s('title',{},`${p.player} · ${date(t.eventDate)} · ${fmt(rating)}`));
       const open=()=>inspect(p,idx);
@@ -205,7 +210,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=48a2c8342aba');
+    const {loadStats}=await import('./data-source.mjs?v=603e3a344c04');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
