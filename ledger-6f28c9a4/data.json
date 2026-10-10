@@ -1,22 +1,27 @@
 {
-  "updated_at": "2026-10-10T00:56:42Z",
+  "updated_at": "2026-10-10T07:13:41Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-09T00:56:42Z",
-      "end_utc_exclusive": "2026-10-10T00:56:42Z",
-      "page_views": 12,
-      "visits": 10,
+      "start_utc": "2026-10-09T07:13:41Z",
+      "end_utc_exclusive": "2026-10-10T07:13:41Z",
+      "page_views": 17,
+      "visits": 15,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 7,
+          "page_views": 11,
           "sample_interval": 1
         },
         {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -44,16 +49,16 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-03T00:56:42Z",
-      "end_utc_exclusive": "2026-10-10T00:56:42Z",
-      "page_views": 50,
-      "visits": 40,
+      "start_utc": "2026-10-03T07:13:41Z",
+      "end_utc_exclusive": "2026-10-10T07:13:41Z",
+      "page_views": 55,
+      "visits": 45,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 23,
+          "page_views": 27,
           "sample_interval": 1
         },
         {
@@ -92,12 +97,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/mana-counter/",
-          "page_views": 1,
+          "path": "/",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/",
+          "path": "/mana-counter/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -115,16 +120,16 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-10T00:56:42Z",
-      "end_utc_exclusive": "2026-10-10T00:56:42Z",
-      "page_views": 30,
-      "visits": 30,
+      "start_utc": "2026-09-10T07:13:41Z",
+      "end_utc_exclusive": "2026-10-10T07:13:41Z",
+      "page_views": 40,
+      "visits": 40,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 20,
+          "page_views": 30,
           "sample_interval": 10
         },
         {
