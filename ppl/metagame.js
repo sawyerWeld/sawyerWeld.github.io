@@ -1,8 +1,13 @@
+import {deckImages} from './deck-images.mjs';
 import {metagame,rate} from './metagame-stats.mjs?v=parent-1';
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=v=>v===null?'—':`${(v*100).toFixed(1)}%`;
 const date=v=>new Date(v+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+function deckLabel(name) {
+  const art=deckImages[name];
+  return `${art?`<img class="deck-art" src="${esc(art.url)}" alt="" loading="lazy" title="${esc(art.card)} · ${esc(art.artist)}">`:''}<span>${esc(name)}</span>`;
+}
 let data,stats,expanded=null,visible=[],page=0;
 function renderDecks(){
   let rows=[...stats.decks];
@@ -11,11 +16,11 @@ function renderDecks(){
   page=Math.min(page,Math.max(0,Math.ceil(rows.length/16)-1));
   $('page-count').textContent=rows.length?`${page*16+1}–${Math.min((page+1)*16,rows.length)} of ${rows.length} archetypes`:'0 archetypes';
   $('previous').disabled=page===0;$('next').disabled=(page+1)*16>=rows.length;
-  $('archetypes').innerHTML=rows.slice(page*16,(page+1)*16).map(d=>{const i=stats.decks.indexOf(d);return `<tr class="deck-row" data-deck="${i}"><td><button class="deck-toggle" aria-expanded="${expanded===i}">${esc(d.name)}</button></td><td>${d.entries.length}</td><td><span class="share-bar" style="--share:${d.share*180}px"></span>${pct(d.share)}</td><td>${d.players.size}</td><td>${d.wins}–${d.losses}–${d.draws}</td><td>${pct(d.winRate)}</td></tr>${expanded===i?`<tr class="expanded"><td colspan="6"><div class="scroll"><table><tbody>${[...d.entries].sort((a,b)=>a.date.localeCompare(b.date)||a.player.localeCompare(b.player)).map(e=>`<tr><td>${date(e.date)}</td><td>${esc(data.stores[e.storeId])}</td><td><a href="./player.html?player=${encodeURIComponent(e.player)}">${esc(e.player)}</a></td><td>${esc(e.deck)}</td></tr>`).join('')}</tbody></table></div></td></tr>`:''}`;}).join('')||'<tr><td colspan="6" class="empty">No recorded decks in this range.</td></tr>';
+  $('archetypes').innerHTML=rows.slice(page*16,(page+1)*16).map(d=>{const i=stats.decks.indexOf(d);return `<tr class="deck-row" data-deck="${i}"><td><button class="deck-toggle" aria-expanded="${expanded===i}">${deckLabel(d.name)}</button></td><td>${pct(d.winRate)}</td><td>${d.entries.length}</td><td><span class="share-bar" style="--share:${d.share*180}px"></span>${pct(d.share)}</td><td>${d.players.size}</td><td>${d.wins}–${d.losses}–${d.draws}</td></tr>${expanded===i?`<tr class="expanded"><td colspan="6"><div class="scroll"><table><tbody>${[...d.entries].sort((a,b)=>a.date.localeCompare(b.date)||a.player.localeCompare(b.player)).map(e=>`<tr><td>${date(e.date)}</td><td>${esc(data.stores[e.storeId])}</td><td><a href="./player.html?player=${encodeURIComponent(e.player)}">${esc(e.player)}</a></td><td>${esc(e.deck)}</td></tr>`).join('')}</tbody></table></div></td></tr>`:''}`;}).join('')||'<tr><td colspan="6" class="empty">No recorded decks in this range.</td></tr>';
 }
 function renderMatrix(){
   visible=$('limit').value==='all'?stats.decks:stats.decks.slice(0,Number($('limit').value));
-  $('matrix').innerHTML=`<thead><tr><th>Deck / opponent</th>${visible.map(d=>`<th scope="col">${esc(d.name)}</th>`).join('')}</tr></thead><tbody>${visible.map((d,i)=>`<tr><th scope="row">${esc(d.name)}</th>${visible.map((o,j)=>{const cell=stats.matrix.get(d.name)?.get(o.name);if(i===j||!cell)return `<td class="missing" title="${i===j?'Mirror matchup':'No recorded matches'}">—</td>`;const r=rate(cell),n=cell.matches.length;const color=r>.5?'#e1f0e8':r<.5?'#f7e7e6':'#eef2f6';return `<td><button data-row="${i}" data-col="${j}" style="--cell:${color}" aria-label="${esc(d.name)} versus ${esc(o.name)}: ${pct(r)}, ${n} matches">${pct(r)}<small>${n} ${n===1?'match':'matches'}</small></button></td>`;}).join('')}</tr>`).join('')}</tbody>`;
+  $('matrix').innerHTML=`<thead><tr><th>Deck / opponent</th><th>Overall WR</th>${visible.map(d=>`<th scope="col">${deckLabel(d.name)}</th>`).join('')}</tr></thead><tbody>${visible.map((d,i)=>`<tr><th scope="row"><span class="deck-label">${deckLabel(d.name)}</span></th><td class="overall"><strong>${pct(d.winRate)}</strong><small>${d.matches.length} matches</small></td>${visible.map((o,j)=>{const cell=stats.matrix.get(d.name)?.get(o.name);if(i===j||!cell)return `<td class="missing" title="${i===j?'Mirror matchup':'No recorded matches'}">—</td>`;const r=rate(cell),n=cell.matches.length;const color=r>.5?'#e1f0e8':r<.5?'#f7e7e6':'#eef2f6';return `<td><button data-row="${i}" data-col="${j}" style="--cell:${color}" aria-label="${esc(d.name)} versus ${esc(o.name)}: ${pct(r)}, ${n} matches">${pct(r)}<small>${n} ${n===1?'match':'matches'}</small></button></td>`;}).join('')}</tr>`).join('')}</tbody>`;
   $('matchup').hidden=true;
 }
 function render(){
