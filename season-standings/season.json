@@ -1,0 +1,2873 @@
+{
+  "schemaVersion": 1,
+  "season": {
+    "id": "preview-2026-09-11-2026-10-10",
+    "name": "Sample season",
+    "status": "preview",
+    "startDate": "2026-09-11",
+    "endDate": "2026-10-10",
+    "timeZone": "America/New_York"
+  },
+  "rules": {
+    "countedRounds": [
+      1,
+      2,
+      3
+    ],
+    "winPoints": 3,
+    "drawPoints": 1,
+    "lossPoints": 0,
+    "byePoints": 3,
+    "maximumPointsPerEvent": 9,
+    "eventLimit": null,
+    "multipleEventsPolicy": "undecided",
+    "tiebreakers": [],
+    "qualification": null,
+    "trophy": {
+      "minimumWins": 3,
+      "maximumLosses": 0,
+      "scope": "whole-event"
+    }
+  },
+  "stores": [
+    {
+      "id": "15582",
+      "name": "Dragon's Hoard",
+      "logoUrl": null
+    },
+    {
+      "id": "7679",
+      "name": "Atomic Empire",
+      "logoUrl": null
+    }
+  ],
+  "events": [
+    {
+      "id": "11337473",
+      "storeId": "15582",
+      "date": "2026-09-11",
+      "title": "FNM Pauper",
+      "roundsPlayed": 3,
+      "players": 13,
+      "provisional": false
+    },
+    {
+      "id": "11549063",
+      "storeId": "7679",
+      "date": "2026-09-11",
+      "title": "Friday Night Magic Pauper",
+      "roundsPlayed": 4,
+      "players": 12,
+      "provisional": false
+    },
+    {
+      "id": "11337474",
+      "storeId": "15582",
+      "date": "2026-09-18",
+      "title": "FNM Pauper",
+      "roundsPlayed": 3,
+      "players": 7,
+      "provisional": true
+    },
+    {
+      "id": "11549064",
+      "storeId": "7679",
+      "date": "2026-09-18",
+      "title": "Friday Night Magic Pauper",
+      "roundsPlayed": 4,
+      "players": 11,
+      "provisional": false
+    },
+    {
+      "id": "11337476",
+      "storeId": "15582",
+      "date": "2026-10-02",
+      "title": "FNM Pauper",
+      "roundsPlayed": 3,
+      "players": 6,
+      "provisional": true
+    },
+    {
+      "id": "11783553",
+      "storeId": "7679",
+      "date": "2026-10-02",
+      "title": "Friday Night Magic Pauper",
+      "roundsPlayed": 4,
+      "players": 9,
+      "provisional": false
+    },
+    {
+      "id": "11783554",
+      "storeId": "7679",
+      "date": "2026-10-09",
+      "title": "Friday Night Magic Pauper",
+      "roundsPlayed": 4,
+      "players": 14,
+      "provisional": true
+    },
+    {
+      "id": "12010611",
+      "storeId": "15582",
+      "date": "2026-10-09",
+      "title": "Weekly Pauper at Dragon's Hoard",
+      "roundsPlayed": 3,
+      "players": 9,
+      "provisional": true
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "playerId": "bab003a5-9e2a-4a49-8c41-83fe94018828",
+      "name": "Sam H",
+      "points": 33,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 2,
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "name": "David N",
+      "points": 27,
+      "eventsPlayed": 3,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 3,
+      "playerId": "40f05c67-5a2f-488f-a109-80af1676a8db",
+      "name": "Rory K",
+      "points": 25,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 4,
+      "playerId": "07cd4a93-055d-4e37-a845-822f5481a067",
+      "name": "Eser G",
+      "points": 21,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 4,
+      "playerId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc",
+      "name": "Seba F",
+      "points": 21,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 6,
+      "playerId": "2cf6eb46-928f-42bd-9867-33840d561fcb",
+      "name": "Zack W",
+      "points": 19,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 7,
+      "playerId": "ad91163a-657e-4114-ae18-5dd7e21c39c1",
+      "name": "Tom F",
+      "points": 18,
+      "eventsPlayed": 3,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 8,
+      "playerId": "868ebded-6f80-4876-8be8-8220c559359c",
+      "name": "Connor B",
+      "points": 15,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 8,
+      "playerId": "f3012b80-6e28-49f8-8f99-642ac258434a",
+      "name": "Dorian S",
+      "points": 15,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 8,
+      "playerId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e",
+      "name": "Olivier L",
+      "points": 15,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 8,
+      "playerId": "d88d08ca-6f23-4200-876e-5961e4b1b07d",
+      "name": "Sawyer W",
+      "points": 15,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 12,
+      "playerId": "7007a9af-9059-4888-a215-cf85430be1f1",
+      "name": "Brett A",
+      "points": 12,
+      "eventsPlayed": 3,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 12,
+      "playerId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd",
+      "name": "Brian F",
+      "points": 12,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 12,
+      "playerId": "c07b66f8-bd7b-44c9-b4a4-648257675561",
+      "name": "Jarrod K",
+      "points": 12,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 12,
+      "playerId": "867d6d68-ab09-48f0-8d43-efc44115c731",
+      "name": "Luke S",
+      "points": 12,
+      "eventsPlayed": 3,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 16,
+      "playerId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de",
+      "name": "Miles L",
+      "points": 10,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 17,
+      "playerId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661",
+      "name": "Brian V",
+      "points": 9,
+      "eventsPlayed": 3,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 17,
+      "playerId": "d6eae2a6-59bf-448b-b43e-824d3e235b67",
+      "name": "Chris M",
+      "points": 9,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 17,
+      "playerId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8",
+      "name": "Joe R",
+      "points": 9,
+      "eventsPlayed": 3,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 17,
+      "playerId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68",
+      "name": "Justin H",
+      "points": 9,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 21,
+      "playerId": "cdcee6fc-6540-4497-bbff-5a435599d98d",
+      "name": "Caleb P",
+      "points": 6,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 21,
+      "playerId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca",
+      "name": "Danny M",
+      "points": 6,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 21,
+      "playerId": "58fd6acb-05c6-4177-b878-e27cce372aef",
+      "name": "Julius F",
+      "points": 6,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 21,
+      "playerId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1",
+      "name": "Michael S",
+      "points": 6,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 21,
+      "playerId": "7452b5e6-ee4c-4eb1-a108-857468ea3190",
+      "name": "Mike K",
+      "points": 6,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 21,
+      "playerId": "bfa49eaf-12fd-4c1d-9a76-63ec1a81477a",
+      "name": "Owen S",
+      "points": 6,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 27,
+      "playerId": "2dfd991b-56d1-4538-a2e0-df3112d94939",
+      "name": "Zak J",
+      "points": 4,
+      "eventsPlayed": 2,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "7da48d4f-1b79-4cf8-a3fe-28143b346965",
+      "name": "Andrew C",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "16800c9c-3b92-4090-805f-38362a7fcc76",
+      "name": "Clay W",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "390649de-cf5e-4a0e-b395-76de119591fb",
+      "name": "Devon C",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "0243e419-4bd5-4059-9e07-a4c74a7343a9",
+      "name": "Jacob C",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "3e14ffa9-b0d7-4655-b7fb-8817c7dcc258",
+      "name": "James H",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "62351944-9198-4467-a77d-7c8a2ee3146f",
+      "name": "Lucas E",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "9b5145e5-425b-4986-8114-578a0e5772f3",
+      "name": "Nick P",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "adb02120-1bf9-4ceb-aeb9-7879efd619e5",
+      "name": "Phoenix C",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
+      "playerId": "fe0b9369-9bf2-431d-aff5-c2158ea60c31",
+      "name": "William C",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 37,
+      "playerId": "f0be3118-c6a7-4208-ae0c-0c06ad85d07b",
+      "name": "David E",
+      "points": 0,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "7679"
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 37,
+      "playerId": "344e92f4-0ccc-4a65-926f-15858206cc5c",
+      "name": "Joel S",
+      "points": 0,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "qualified": null
+    }
+  ],
+  "eventResults": [
+    {
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-0-0",
+      "provisional": false,
+      "points": 9
+    },
+    {
+      "playerId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-0-0",
+      "provisional": false,
+      "points": 9
+    },
+    {
+      "playerId": "07cd4a93-055d-4e37-a845-822f5481a067",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "bfa49eaf-12fd-4c1d-9a76-63ec1a81477a",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "c07b66f8-bd7b-44c9-b4a4-648257675561",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "867d6d68-ab09-48f0-8d43-efc44115c731",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "0243e419-4bd5-4059-9e07-a4c74a7343a9",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "7007a9af-9059-4888-a215-cf85430be1f1",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "9b5145e5-425b-4986-8114-578a0e5772f3",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "344e92f4-0ccc-4a65-926f-15858206cc5c",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "0-3-0",
+      "provisional": false,
+      "points": 0
+    },
+    {
+      "playerId": "bab003a5-9e2a-4a49-8c41-83fe94018828",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "4-0-0",
+      "provisional": false,
+      "points": 9
+    },
+    {
+      "playerId": "40f05c67-5a2f-488f-a109-80af1676a8db",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-1-0",
+      "provisional": false,
+      "points": 9
+    },
+    {
+      "playerId": "ad91163a-657e-4114-ae18-5dd7e21c39c1",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "d6eae2a6-59bf-448b-b43e-824d3e235b67",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "16800c9c-3b92-4090-805f-38362a7fcc76",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "d88d08ca-6f23-4200-876e-5961e4b1b07d",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "2cf6eb46-928f-42bd-9867-33840d561fcb",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-3-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "f0be3118-c6a7-4208-ae0c-0c06ad85d07b",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "0-4-0",
+      "provisional": false,
+      "points": 0
+    },
+    {
+      "playerId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "0-4-0",
+      "provisional": false,
+      "points": 0
+    },
+    {
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "eventId": "11337474",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-0-0",
+      "provisional": true,
+      "points": 9
+    },
+    {
+      "playerId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e",
+      "eventId": "11337474",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "07cd4a93-055d-4e37-a845-822f5481a067",
+      "eventId": "11337474",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "cdcee6fc-6540-4497-bbff-5a435599d98d",
+      "eventId": "11337474",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8",
+      "eventId": "11337474",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "867d6d68-ab09-48f0-8d43-efc44115c731",
+      "eventId": "11337474",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "7007a9af-9059-4888-a215-cf85430be1f1",
+      "eventId": "11337474",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "40f05c67-5a2f-488f-a109-80af1676a8db",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "draw",
+          "points": 1,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-0-1",
+      "provisional": false,
+      "points": 7
+    },
+    {
+      "playerId": "bab003a5-9e2a-4a49-8c41-83fe94018828",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-1-0",
+      "provisional": false,
+      "points": 9
+    },
+    {
+      "playerId": "2cf6eb46-928f-42bd-9867-33840d561fcb",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "draw",
+          "points": 1,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-0-2",
+      "provisional": false,
+      "points": 7
+    },
+    {
+      "playerId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "fe0b9369-9bf2-431d-aff5-c2158ea60c31",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "ad91163a-657e-4114-ae18-5dd7e21c39c1",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "7da48d4f-1b79-4cf8-a3fe-28143b346965",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "d88d08ca-6f23-4200-876e-5961e4b1b07d",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "62351944-9198-4467-a77d-7c8a2ee3146f",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-3-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-3-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "f3012b80-6e28-49f8-8f99-642ac258434a",
+      "eventId": "11337476",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "7007a9af-9059-4888-a215-cf85430be1f1",
+      "eventId": "11337476",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "c07b66f8-bd7b-44c9-b4a4-648257675561",
+      "eventId": "11337476",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8",
+      "eventId": "11337476",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "07cd4a93-055d-4e37-a845-822f5481a067",
+      "eventId": "11337476",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1",
+      "eventId": "11337476",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "868ebded-6f80-4876-8be8-8220c559359c",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-0-1",
+      "provisional": false,
+      "points": 9
+    },
+    {
+      "playerId": "d88d08ca-6f23-4200-876e-5961e4b1b07d",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "40f05c67-5a2f-488f-a109-80af1676a8db",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "2cf6eb46-928f-42bd-9867-33840d561fcb",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "d6eae2a6-59bf-448b-b43e-824d3e235b67",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "bab003a5-9e2a-4a49-8c41-83fe94018828",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "2dfd991b-56d1-4538-a2e0-df3112d94939",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-3-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "bab003a5-9e2a-4a49-8c41-83fe94018828",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-0-1",
+      "provisional": true,
+      "points": 9
+    },
+    {
+      "playerId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "ad91163a-657e-4114-ae18-5dd7e21c39c1",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "7452b5e6-ee4c-4eb1-a108-857468ea3190",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "868ebded-6f80-4876-8be8-8220c559359c",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "2cf6eb46-928f-42bd-9867-33840d561fcb",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-1",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "40f05c67-5a2f-488f-a109-80af1676a8db",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "390649de-cf5e-4a0e-b395-76de119591fb",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "draw",
+          "points": 1,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-1",
+      "provisional": true,
+      "points": 1
+    },
+    {
+      "playerId": "d88d08ca-6f23-4200-876e-5961e4b1b07d",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-3-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-3-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "adb02120-1bf9-4ceb-aeb9-7879efd619e5",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-3-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "2dfd991b-56d1-4538-a2e0-df3112d94939",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "draw",
+          "points": 1,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "0-3-1",
+      "provisional": true,
+      "points": 1
+    },
+    {
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-0-0",
+      "provisional": true,
+      "points": 9
+    },
+    {
+      "playerId": "f3012b80-6e28-49f8-8f99-642ac258434a",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "3-0-0",
+      "provisional": true,
+      "points": 9
+    },
+    {
+      "playerId": "07cd4a93-055d-4e37-a845-822f5481a067",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "58fd6acb-05c6-4177-b878-e27cce372aef",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": true,
+      "points": 6
+    },
+    {
+      "playerId": "3e14ffa9-b0d7-4655-b7fb-8817c7dcc258",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "867d6d68-ab09-48f0-8d43-efc44115c731",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "bye",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    },
+    {
+      "playerId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": true,
+      "points": 3
+    }
+  ],
+  "trophies": [
+    {
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "eventRecord": "3-0-0",
+      "provisional": false
+    },
+    {
+      "playerId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e",
+      "eventId": "11337473",
+      "storeId": "15582",
+      "eventRecord": "3-0-0",
+      "provisional": false
+    },
+    {
+      "playerId": "bab003a5-9e2a-4a49-8c41-83fe94018828",
+      "eventId": "11549063",
+      "storeId": "7679",
+      "eventRecord": "4-0-0",
+      "provisional": false
+    },
+    {
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "eventId": "11337474",
+      "storeId": "15582",
+      "eventRecord": "3-0-0",
+      "provisional": true
+    },
+    {
+      "playerId": "40f05c67-5a2f-488f-a109-80af1676a8db",
+      "eventId": "11549064",
+      "storeId": "7679",
+      "eventRecord": "3-0-1",
+      "provisional": false
+    },
+    {
+      "playerId": "868ebded-6f80-4876-8be8-8220c559359c",
+      "eventId": "11783553",
+      "storeId": "7679",
+      "eventRecord": "3-0-1",
+      "provisional": false
+    },
+    {
+      "playerId": "bab003a5-9e2a-4a49-8c41-83fe94018828",
+      "eventId": "11783554",
+      "storeId": "7679",
+      "eventRecord": "3-0-1",
+      "provisional": true
+    },
+    {
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "eventRecord": "3-0-0",
+      "provisional": true
+    },
+    {
+      "playerId": "f3012b80-6e28-49f8-8f99-642ac258434a",
+      "eventId": "12010611",
+      "storeId": "15582",
+      "eventRecord": "3-0-0",
+      "provisional": true
+    }
+  ]
+}
