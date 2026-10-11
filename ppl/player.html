@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Player profile</title><link rel="icon" href="data:,"><link rel="stylesheet" href="styles.css"><script type="module" src="app.js"></script></head>
+<body><main><nav aria-label="League stats"><a href="/season-standings/">Season standings</a><a href="/ppl/player.html">Player stats</a><a href="/ppl/store.html">Store stats</a></nav>
+<header><h1 id="name">Player profile</h1><label><span class="sr-only">Player</span><select id="player"></select></label></header>
+<p id="stores"></p><div id="stats"></div><div id="trophies"></div>
+<section class="chart-panel"><h2>Elo</h2><svg id="chart" role="img" aria-label="Elo history"></svg><p id="inspection" aria-live="polite"></p></section>
+<section><h2>Events</h2><div id="events"></div></section>
+<p id="error" role="alert" hidden></p>
+</main></body></html>
