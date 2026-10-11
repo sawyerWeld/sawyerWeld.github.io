@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-10-10T22:37:35Z",
+  "updated_at": "2026-10-11T01:57:43Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-09T22:37:35Z",
-      "end_utc_exclusive": "2026-10-10T22:37:35Z",
-      "page_views": 13,
-      "visits": 11,
+      "start_utc": "2026-10-10T01:57:43Z",
+      "end_utc_exclusive": "2026-10-11T01:57:43Z",
+      "page_views": 14,
+      "visits": 12,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 8,
+          "page_views": 9,
           "sample_interval": 1
         },
         {
@@ -44,16 +44,16 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-03T22:37:35Z",
-      "end_utc_exclusive": "2026-10-10T22:37:35Z",
-      "page_views": 59,
-      "visits": 49,
+      "start_utc": "2026-10-04T01:57:43Z",
+      "end_utc_exclusive": "2026-10-11T01:57:43Z",
+      "page_views": 60,
+      "visits": 50,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 30,
+          "page_views": 32,
           "sample_interval": 1
         },
         {
@@ -92,13 +92,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/mana-counter/",
+          "path": "/",
           "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/",
-          "page_views": 2,
+          "path": "/mana-counter/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -115,16 +115,16 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-10T22:37:35Z",
-      "end_utc_exclusive": "2026-10-10T22:37:35Z",
-      "page_views": 50,
-      "visits": 50,
+      "start_utc": "2026-09-11T01:57:43Z",
+      "end_utc_exclusive": "2026-10-11T01:57:43Z",
+      "page_views": 60,
+      "visits": 60,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 30,
+          "page_views": 40,
           "sample_interval": 10
         },
         {
