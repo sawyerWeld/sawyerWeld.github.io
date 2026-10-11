@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const shortDate=s=>new Date(s+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
 let data,query='',page=0,expanded=null;
-const pageSize=15;
+const pageSize=16;
 const params=new URLSearchParams(location.search);expanded=params.get('player');
 function saveURL(){const u=new URL(location.href);u.searchParams.delete('store');expanded?u.searchParams.set('player',expanded):u.searchParams.delete('player');history.replaceState(null,'',u);}
 function trophyHTML(playerId){
