@@ -1,4 +1,4 @@
-import {metagame,rate} from './metagame-stats.mjs';
+import {metagame,rate} from './metagame-stats.mjs?v=parent-1';
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=v=>v===null?'—':`${(v*100).toFixed(1)}%`;

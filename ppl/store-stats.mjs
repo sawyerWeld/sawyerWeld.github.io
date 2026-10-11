@@ -8,7 +8,7 @@ export function storeStats(data, storeId) {
     history.get(key).push(match);
   }
   for (const entry of entries) {
-    const name = entry.archetype || entry.deck;
+    const name = entry.parentArchetype || entry.archetype || entry.deck;
     if (!name) continue;
     if (!decks.has(name)) decks.set(name, {name, entries:[], wins:0, losses:0, draws:0});
     const deck = decks.get(name);

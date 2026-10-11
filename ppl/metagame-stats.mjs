@@ -1,4 +1,4 @@
-export const archetype = entry => entry?.archetype || entry?.deck || null;
+export const archetype = entry => entry?.parentArchetype || entry?.archetype || entry?.deck || null;
 export const rate = record => {
   const n = record.wins + record.losses + record.draws;
   return n ? (record.wins + record.draws / 2) / n : null;
