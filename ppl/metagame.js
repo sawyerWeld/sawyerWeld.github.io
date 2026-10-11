@@ -27,7 +27,7 @@ function render(){
   const options={store:$('store').value,from:$('from').value,to:$('to').value,fnm:$('kind').value==='fnm'};
   stats=metagame(data,options);expanded=null;page=0;
   const url=new URL(location.href);for(const [key,value] of Object.entries(options))value&&value!=='all'?url.searchParams.set(key,String(value)):url.searchParams.delete(key);history.replaceState(null,'',url);
-  $('coverage').textContent=options.from&&options.to&&options.from>options.to?'Choose an end date on or after the start date.':`${stats.events} events · ${stats.entries.length} entries · ${stats.entries.length-stats.unknown} decks recorded · ${stats.matches} played matches`;
+  $('date-error').hidden=!(options.from&&options.to&&options.from>options.to);
   renderDecks();renderMatrix();
 }
 $('previous').addEventListener('click',()=>{page--;renderDecks();});$('next').addEventListener('click',()=>{page++;renderDecks();});
