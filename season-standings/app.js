@@ -24,14 +24,13 @@ function detailHTML(p,columns){
 }
 function render(){
   if(!data)return;
-  const dates=[...new Set(data.events.map(e=>e.date))].sort();
   const players=data.standings.filter(p=>p.name.toLowerCase().includes(query.toLowerCase()));
   page=Math.min(page,Math.max(0,Math.ceil(players.length/pageSize)-1));
-  $('head').innerHTML=`<tr><th class="rank" scope="col">Rank</th><th scope="col">Player</th>${dates.map(d=>`<th class="number week" scope="col">${shortDate(d)}</th>`).join('')}<th class="number" scope="col">Events</th><th class="number" scope="col">Points</th></tr>`;
-  const columns=4+dates.length;
+  $('head').innerHTML=`<tr><th class="rank" scope="col">Rank</th><th scope="col">Player</th><th class="number" scope="col">Events</th><th class="number" scope="col">Points</th></tr>`;
+  const columns=4;
   $('rows').innerHTML=players.slice(page*pageSize,(page+1)*pageSize).map(p=>{
     const open=expanded===p.playerId;
-    return `<tr data-player="${p.playerId}" class="player-row ${open?'selected':''}"><td class="rank">${p.rank}</td><td class="player"><button class="name" data-player="${p.playerId}" aria-expanded="${open}" ${open?`aria-controls="detail-${p.playerId}"`:''}><span class="chevron" aria-hidden="true">${open?'▾':'▸'}</span>${esc(p.name)}</button>${trophyHTML(p.playerId)}</td>${dates.map(d=>{const entries=data.eventResults.filter(r=>r.playerId===p.playerId&&data.events.find(e=>e.id===r.eventId).date===d);return `<td class="number week">${entries.length?`<button data-player="${p.playerId}" aria-label="${esc(p.name)}, ${shortDate(d)}: ${entries.reduce((n,r)=>n+r.points,0)} points; show results">${entries.reduce((n,r)=>n+r.points,0)}</button>`:'<span aria-label="Did not attend">—</span>'}</td>`;}).join('')}<td class="number">${p.eventsPlayed}</td><td class="number total">${p.points}</td></tr>${open?detailHTML(p,columns):''}`;
+    return `<tr data-player="${p.playerId}" class="player-row ${open?'selected':''}"><td class="rank">${p.rank}</td><td class="player"><button class="name" data-player="${p.playerId}" aria-expanded="${open}" ${open?`aria-controls="detail-${p.playerId}"`:''}><span class="chevron" aria-hidden="true">${open?'▾':'▸'}</span>${esc(p.name)}</button>${trophyHTML(p.playerId)}</td><td class="number">${p.eventsPlayed}</td><td class="number total">${p.points}</td></tr>${open?detailHTML(p,columns):''}`;
   }).join('')||`<tr class="empty"><td colspan="${columns}">No players found.</td></tr>`;
   $('count').textContent=players.length?`${page*pageSize+1}–${Math.min((page+1)*pageSize,players.length)} of ${players.length} players`:'0 players';
   $('previous').disabled=page===0;$('next').disabled=(page+1)*pageSize>=players.length;
