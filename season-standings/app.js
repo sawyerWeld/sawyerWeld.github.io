@@ -36,7 +36,7 @@ function render(){
   $('count').textContent=players.length?`${page*pageSize+1}–${Math.min((page+1)*pageSize,players.length)} of ${players.length} players`:'0 players';
   $('previous').disabled=page===0;$('next').disabled=(page+1)*pageSize>=players.length;
 }
-$('rows').addEventListener('click',e=>{if(e.target.closest('a'))return;const b=e.target.closest('[data-player]');if(!b)return;expanded=expanded===b.dataset.player?null:b.dataset.player;render();saveURL();$('rows').querySelector(`button.expand[data-player="${b.dataset.player}"]`).focus({preventScroll:true});});
+$('rows').addEventListener('click',e=>{if(e.target.closest('a'))return;const b=e.target.closest('[data-player]');if(!b)return;expanded=expanded===b.dataset.player?null:b.dataset.player;render();saveURL();if(e.detail===0)$('rows').querySelector(`button.expand[data-player="${b.dataset.player}"]`).focus({preventScroll:true});});
 $('search').addEventListener('input',e=>{query=e.target.value;page=0;render();});
 $('previous').addEventListener('click',()=>{page--;render();});$('next').addEventListener('click',()=>{page++;render();});
 async function init(){

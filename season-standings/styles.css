@@ -26,3 +26,5 @@ nav[aria-label="League stats"]{display:flex;flex-wrap:wrap;gap:12px 24px;margin-
  .award img{width:19px;height:19px}
  #standings .total{font-size:15px}
 }
+
+button:focus:not(:focus-visible),summary:focus:not(:focus-visible),select:focus:not(:focus-visible),a:focus:not(:focus-visible){outline:none}
