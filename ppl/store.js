@@ -5,7 +5,7 @@ const date = v => new Date(v+'T12:00:00').toLocaleDateString('en-US',{month:'sho
 const percent = n => n === null ? '—' : `${(n*100).toFixed(1)}%`;
 let data, stats, expanded = null;
 function renderDecks() {
-  $('decks').innerHTML = stats.decks.map((d,i) => `<tr class="deck-row" data-deck="${i}"><td><button class="deck-toggle" aria-expanded="${expanded===i}">${esc(d.name)}</button></td><td>${d.entries.length}</td><td><span class="bar" style="--share:${d.share*180}px"></span>${percent(d.share)}</td><td>${d.wins}–${d.losses}–${d.draws}</td><td>${percent(d.winRate)}</td></tr>${expanded===i ? `<tr class="deck-detail"><td colspan="5"><table><tbody>${[...d.entries].sort((a,b)=>a.date.localeCompare(b.date)||a.player.localeCompare(b.player)).map(e=>`<tr><td>${date(e.date)}</td><td><a href="./player.html?player=${encodeURIComponent(e.player)}">${esc(e.player)}</a></td><td>${e.wins}–${e.losses}–${e.draws}</td></tr>`).join('')}</tbody></table></td></tr>` : ''}`).join('');
+  $('decks').innerHTML = stats.decks.map((d,i) => `<tr class="deck-row" data-deck="${i}"><td><button class="deck-toggle" aria-expanded="${expanded===i}">${esc(d.name)}</button></td><td>${d.entries.length}</td><td><span class="bar" style="--share:${d.share*180}px"></span>${percent(d.share)}</td><td>${d.wins}–${d.losses}–${d.draws}</td><td>${percent(d.winRate)}</td></tr>${expanded===i ? `<tr class="deck-detail"><td colspan="5"><table><tbody>${[...d.entries].sort((a,b)=>b.date.localeCompare(a.date)||a.player.localeCompare(b.player)).map(e=>`<tr><td>${date(e.date)}</td><td><a href="./player.html?player=${encodeURIComponent(e.player)}">${esc(e.player)}</a></td><td>${e.wins}–${e.losses}–${e.draws}</td></tr>`).join('')}</tbody></table></td></tr>` : ''}`).join('');
 }
 function render(id) {
   if (!data.stores[id]) id = Object.keys(data.stores)[0];
@@ -23,7 +23,7 @@ function render(id) {
     }
     events.get(entry.eventId).players.add(entry.player);
   }
-  $('store-events').innerHTML = [...events.values()].sort((a,b) => a.date.localeCompare(b.date)).map(e => `<tr><td>${date(e.date)}</td><td>${esc(e.title)}</td><td>${e.players.size}</td></tr>`).join('');
+  $('store-events').innerHTML = [...events.values()].sort((a,b) => b.date.localeCompare(a.date)).map(e => `<tr><td>${date(e.date)}</td><td>${esc(e.title)}</td><td>${e.players.size}</td></tr>`).join('');
   renderDecks();
 }
 $('decks').addEventListener('click',e=>{const row=e.target.closest('[data-deck]');if(!row)return;const i=Number(row.dataset.deck);expanded=expanded===i?null:i;renderDecks();$('decks').querySelector(`[data-deck="${i}"] button`).focus({preventScroll:true});});

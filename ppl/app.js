@@ -21,8 +21,8 @@ function showPlayer(name) {
   $('stores').innerHTML = player.storeIds.map(id => `<a href="./store.html?store=${id}">${esc(data.stores[id])}</a>`).join(' · ');
   const stats = [['Elo', fmt(player.elo)], ['Peak', fmt(player.peakElo)], ['Record', `${player.wins}–${player.losses}–${player.draws}`], ['Events', player.eventsPlayed], ['Trophies', player.trophies.length]];
   $('stats').innerHTML = stats.map(([label,value]) => `<div><strong>${value}</strong><span>${label}</span></div>`).join('');
-  $('trophies').innerHTML = player.trophies.map(t => `<span class="trophy" tabindex="0" title="${esc(data.stores[t.storeId])} · ${date(t.date)} · ${t.wins}–${t.losses}–${t.draws}">🏆 ${t.storeId === '7679' ? 'AE' : 'DH'} · ${date(t.date)}</span>`).join('');
-  const events = data.results.filter(r => r.player === player.player).sort((a,b) => a.date.localeCompare(b.date) || a.eventId.localeCompare(b.eventId));
+  $('trophies').innerHTML = [...player.trophies].sort((a,b) => b.date.localeCompare(a.date)).map(t => `<span class="trophy" tabindex="0" title="${esc(data.stores[t.storeId])} · ${date(t.date)} · ${t.wins}–${t.losses}–${t.draws}">🏆 ${t.storeId === '7679' ? 'AE' : 'DH'} · ${date(t.date)}</span>`).join('');
+  const events = data.results.filter(r => r.player === player.player).sort((a,b) => b.date.localeCompare(a.date) || a.eventId.localeCompare(b.eventId));
   $('events').innerHTML = events.map(event => {
     const change = eventChange(event.eventId);
     const matches = data.history.filter(r => r.player === player.player && r.eventId === event.eventId);

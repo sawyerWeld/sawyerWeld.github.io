@@ -8,7 +8,7 @@ const pageSize=16;
 const params=new URLSearchParams(location.search);expanded=params.get('player');
 function saveURL(){const u=new URL(location.href);u.searchParams.delete('store');expanded?u.searchParams.set('player',expanded):u.searchParams.delete('player');history.replaceState(null,'',u);}
 function trophyHTML(playerId){
-  return data.trophies.filter(t=>t.playerId===playerId).map(t=>{
+  return data.trophies.filter(t=>t.playerId===playerId).sort((a,b)=>data.events.find(e=>e.id===b.eventId).date.localeCompare(data.events.find(e=>e.id===a.eventId).date)).map(t=>{
     const s=data.stores.find(s=>s.id===t.storeId),e=data.events.find(e=>e.id===t.eventId);
     const title=`${s.name} · ${shortDate(e.date)} · ${t.eventRecord}`;
     let icon=`🏆 <span>${s.id==='7679'?'AE':s.id==='15582'?'DH':esc(s.name)}</span>`;
@@ -17,7 +17,7 @@ function trophyHTML(playerId){
   }).join('');
 }
 function detailHTML(p,columns){
-  const entries=data.eventResults.filter(r=>r.playerId===p.playerId).sort((a,b)=>data.events.find(e=>e.id===a.eventId).date.localeCompare(data.events.find(e=>e.id===b.eventId).date));
+  const entries=data.eventResults.filter(r=>r.playerId===p.playerId).sort((a,b)=>data.events.find(e=>e.id===b.eventId).date.localeCompare(data.events.find(e=>e.id===a.eventId).date));
   return `<tr class="detail" id="detail-${p.playerId}"><td colspan="${columns}"><div class="event-list">${entries.map(r=>{
     const e=data.events.find(e=>e.id===r.eventId),s=data.stores.find(s=>s.id===r.storeId);
     return `<div class="event"><span class="event-date">${shortDate(e.date)}</span><span class="store-name">${esc(s.name)}</span><div class="rounds">${[1,2,3].map(n=>{const x=r.rounds.find(x=>x.round===n);const label=x?(x.intentionalDraw?'ID':({win:'W',loss:'L',draw:'D',bye:'Bye'})[x.result]):'—';return `<span class="round"><small>R${n}</small>${label}</span>`;}).join('')}</div><span class="event-points">${r.points} pts</span><span class="record">${esc(r.eventRecord)}</span></div>`;
