@@ -1,6 +1,7 @@
 import {loadSeason} from './data-source.mjs';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const percent=value=>value==null?'—':`${(value*100).toFixed(1)}%`;
 const shortDate=s=>new Date(s+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
 let data,query='',page=0,expanded=null;
 const pageSize=16;
@@ -26,11 +27,11 @@ function render(){
   if(!data)return;
   const players=data.standings.filter(p=>p.name.toLowerCase().includes(query.toLowerCase()));
   page=Math.min(page,Math.max(0,Math.ceil(players.length/pageSize)-1));
-  $('head').innerHTML=`<tr><th class="rank" scope="col">Rank</th><th scope="col">Player</th><th class="number" scope="col">Events</th><th class="number" scope="col">Points</th></tr>`;
-  const columns=4;
+  $('head').innerHTML=`<tr><th class="rank" scope="col">Rank</th><th scope="col">Player</th><th class="number" scope="col">Events</th><th class="number" scope="col">Points</th><th class="number" scope="col" title="Wins–losses–draws in rounds 1–3; byes count as wins">W–L–D</th><th class="number" scope="col" title="Match points divided by possible points in rounds 1–3">MW%</th><th class="number" scope="col" title="Average opponent season MW%, with a 33% floor per opponent; byes excluded, repeat opponents counted per match">OMW%</th></tr>`;
+  const columns=7;
   $('rows').innerHTML=players.slice(page*pageSize,(page+1)*pageSize).map(p=>{
     const open=expanded===p.playerId;
-    return `<tr data-player="${p.playerId}" class="player-row ${open?'selected':''}"><td class="rank">${p.rank}</td><td class="player"><button class="name" data-player="${p.playerId}" aria-expanded="${open}" ${open?`aria-controls="detail-${p.playerId}"`:''}><span class="chevron" aria-hidden="true">${open?'▾':'▸'}</span>${esc(p.name)}</button>${trophyHTML(p.playerId)}</td><td class="number">${p.eventsPlayed}</td><td class="number total">${p.points}</td></tr>${open?detailHTML(p,columns):''}`;
+    return `<tr data-player="${p.playerId}" class="player-row ${open?'selected':''}"><td class="rank">${p.rank}</td><td class="player"><button class="name" data-player="${p.playerId}" aria-expanded="${open}" ${open?`aria-controls="detail-${p.playerId}"`:''}><span class="chevron" aria-hidden="true">${open?'▾':'▸'}</span>${esc(p.name)}</button>${trophyHTML(p.playerId)}</td><td class="number">${p.eventsPlayed}</td><td class="number total">${p.points}</td><td class="number season-record">${esc(p.record)}</td><td class="number">${percent(p.matchWinPercentage)}</td><td class="number">${percent(p.opponentMatchWinPercentage)}</td></tr>${open?detailHTML(p,columns):''}`;
   }).join('')||`<tr class="empty"><td colspan="${columns}">No players found.</td></tr>`;
   $('count').textContent=players.length?`${page*pageSize+1}–${Math.min((page+1)*pageSize,players.length)} of ${players.length} players`:'0 players';
   $('previous').disabled=page===0;$('next').disabled=(page+1)*pageSize>=players.length;

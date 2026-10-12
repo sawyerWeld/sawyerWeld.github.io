@@ -23,6 +23,14 @@
     "multipleEventsPolicy": "undecided",
     "tiebreakers": [],
     "qualification": null,
+    "matchStatistics": {
+      "scope": "counted-rounds",
+      "opponentScope": "season",
+      "opponentMinimum": 0.33,
+      "repeatOpponents": "per-match",
+      "byes": "wins-without-opponent",
+      "drawWeight": "one-third"
+    },
     "trophy": {
       "minimumWins": 3,
       "maximumLosses": 0,
@@ -125,6 +133,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 11,
+      "losses": 1,
+      "draws": 0,
+      "record": "11-1-0",
+      "matchWinPercentage": 0.9166666666666666,
+      "opponentMatchWinPercentage": 0.49194444444444446,
       "qualified": null
     },
     {
@@ -136,6 +150,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 9,
+      "losses": 0,
+      "draws": 0,
+      "record": "9-0-0",
+      "matchWinPercentage": 1.0,
+      "opponentMatchWinPercentage": 0.5493827160493827,
       "qualified": null
     },
     {
@@ -147,6 +167,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 8,
+      "losses": 3,
+      "draws": 1,
+      "record": "8-3-1",
+      "matchWinPercentage": 0.6944444444444444,
+      "opponentMatchWinPercentage": 0.5023148148148148,
       "qualified": null
     },
     {
@@ -158,6 +184,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 7,
+      "losses": 5,
+      "draws": 0,
+      "record": "7-5-0",
+      "matchWinPercentage": 0.5833333333333334,
+      "opponentMatchWinPercentage": 0.6157407407407407,
       "qualified": null
     },
     {
@@ -169,6 +201,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 7,
+      "losses": 5,
+      "draws": 0,
+      "record": "7-5-0",
+      "matchWinPercentage": 0.5833333333333334,
+      "opponentMatchWinPercentage": 0.488989898989899,
       "qualified": null
     },
     {
@@ -180,6 +218,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 6,
+      "losses": 5,
+      "draws": 1,
+      "record": "6-5-1",
+      "matchWinPercentage": 0.5277777777777778,
+      "opponentMatchWinPercentage": 0.5437037037037037,
       "qualified": null
     },
     {
@@ -191,6 +235,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 6,
+      "losses": 3,
+      "draws": 0,
+      "record": "6-3-0",
+      "matchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.65625,
       "qualified": null
     },
     {
@@ -202,6 +252,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 5,
+      "losses": 1,
+      "draws": 0,
+      "record": "5-1-0",
+      "matchWinPercentage": 0.8333333333333334,
+      "opponentMatchWinPercentage": 0.5611111111111111,
       "qualified": null
     },
     {
@@ -213,6 +269,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 5,
+      "losses": 1,
+      "draws": 0,
+      "record": "5-1-0",
+      "matchWinPercentage": 0.8333333333333334,
+      "opponentMatchWinPercentage": 0.4351851851851852,
       "qualified": null
     },
     {
@@ -224,6 +286,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 5,
+      "losses": 1,
+      "draws": 0,
+      "record": "5-1-0",
+      "matchWinPercentage": 0.8333333333333334,
+      "opponentMatchWinPercentage": 0.5555555555555556,
       "qualified": null
     },
     {
@@ -235,6 +303,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 5,
+      "losses": 7,
+      "draws": 0,
+      "record": "5-7-0",
+      "matchWinPercentage": 0.4166666666666667,
+      "opponentMatchWinPercentage": 0.5020370370370371,
       "qualified": null
     },
     {
@@ -246,6 +320,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 4,
+      "losses": 5,
+      "draws": 0,
+      "record": "4-5-0",
+      "matchWinPercentage": 0.4444444444444444,
+      "opponentMatchWinPercentage": 0.4938271604938272,
       "qualified": null
     },
     {
@@ -257,6 +337,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 4,
+      "losses": 2,
+      "draws": 0,
+      "record": "4-2-0",
+      "matchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.5370370370370371,
       "qualified": null
     },
     {
@@ -268,6 +354,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 4,
+      "losses": 2,
+      "draws": 0,
+      "record": "4-2-0",
+      "matchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.504074074074074,
       "qualified": null
     },
     {
@@ -279,6 +371,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 4,
+      "losses": 5,
+      "draws": 0,
+      "record": "4-5-0",
+      "matchWinPercentage": 0.4444444444444444,
+      "opponentMatchWinPercentage": 0.5873015873015872,
       "qualified": null
     },
     {
@@ -290,6 +388,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 3,
+      "losses": 8,
+      "draws": 1,
+      "record": "3-8-1",
+      "matchWinPercentage": 0.2777777777777778,
+      "opponentMatchWinPercentage": 0.48577777777777775,
       "qualified": null
     },
     {
@@ -301,6 +405,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 3,
+      "losses": 6,
+      "draws": 0,
+      "record": "3-6-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5112345679012346,
       "qualified": null
     },
     {
@@ -312,6 +422,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 3,
+      "losses": 3,
+      "draws": 0,
+      "record": "3-3-0",
+      "matchWinPercentage": 0.5,
+      "opponentMatchWinPercentage": 0.629074074074074,
       "qualified": null
     },
     {
@@ -323,6 +439,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 3,
+      "losses": 6,
+      "draws": 0,
+      "record": "3-6-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5829166666666666,
       "qualified": null
     },
     {
@@ -334,6 +456,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 3,
+      "losses": 3,
+      "draws": 0,
+      "record": "3-3-0",
+      "matchWinPercentage": 0.5,
+      "opponentMatchWinPercentage": 0.6055555555555555,
       "qualified": null
     },
     {
@@ -345,6 +473,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 2,
+      "losses": 1,
+      "draws": 0,
+      "record": "2-1-0",
+      "matchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.5138888888888888,
       "qualified": null
     },
     {
@@ -356,6 +490,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 2,
+      "losses": 4,
+      "draws": 0,
+      "record": "2-4-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5777777777777777,
       "qualified": null
     },
     {
@@ -367,6 +507,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 2,
+      "losses": 1,
+      "draws": 0,
+      "record": "2-1-0",
+      "matchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.611111111111111,
       "qualified": null
     },
     {
@@ -378,6 +524,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 2,
+      "losses": 4,
+      "draws": 0,
+      "record": "2-4-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.6018518518518519,
       "qualified": null
     },
     {
@@ -389,6 +541,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 2,
+      "losses": 1,
+      "draws": 0,
+      "record": "2-1-0",
+      "matchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.6203703703703703,
       "qualified": null
     },
     {
@@ -400,6 +558,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 2,
+      "losses": 1,
+      "draws": 0,
+      "record": "2-1-0",
+      "matchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.5833333333333334,
       "qualified": null
     },
     {
@@ -411,6 +575,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 1,
+      "losses": 4,
+      "draws": 1,
+      "record": "1-4-1",
+      "matchWinPercentage": 0.2222222222222222,
+      "opponentMatchWinPercentage": 0.5493333333333333,
       "qualified": null
     },
     {
@@ -422,6 +592,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.4444444444444445,
       "qualified": null
     },
     {
@@ -433,6 +609,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5277777777777778,
       "qualified": null
     },
     {
@@ -444,6 +626,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5266666666666667,
       "qualified": null
     },
     {
@@ -455,6 +643,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5833333333333334,
       "qualified": null
     },
     {
@@ -466,6 +660,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.75,
       "qualified": null
     },
     {
@@ -477,6 +677,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5462962962962963,
       "qualified": null
     },
     {
@@ -488,6 +694,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.44333333333333336,
       "qualified": null
     },
     {
@@ -499,6 +711,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5174074074074074,
       "qualified": null
     },
     {
@@ -510,6 +728,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.647037037037037,
       "qualified": null
     },
     {
@@ -521,6 +745,12 @@
       "storeIds": [
         "7679"
       ],
+      "wins": 0,
+      "losses": 3,
+      "draws": 0,
+      "record": "0-3-0",
+      "matchWinPercentage": 0.0,
+      "opponentMatchWinPercentage": 0.638888888888889,
       "qualified": null
     },
     {
@@ -532,6 +762,12 @@
       "storeIds": [
         "15582"
       ],
+      "wins": 0,
+      "losses": 3,
+      "draws": 0,
+      "record": "0-3-0",
+      "matchWinPercentage": 0.0,
+      "opponentMatchWinPercentage": 0.4444444444444444,
       "qualified": null
     }
   ],
@@ -545,19 +781,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "c07b66f8-bd7b-44c9-b4a4-648257675561"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68"
         }
       ],
       "eventRecord": "3-0-0",
@@ -573,19 +812,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0243e419-4bd5-4059-9e07-a4c74a7343a9"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bfa49eaf-12fd-4c1d-9a76-63ec1a81477a"
         }
       ],
       "eventRecord": "3-0-0",
@@ -601,19 +843,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0243e419-4bd5-4059-9e07-a4c74a7343a9"
         }
       ],
       "eventRecord": "2-1-0",
@@ -629,19 +874,22 @@
           "round": 1,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9b5145e5-425b-4986-8114-578a0e5772f3"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e"
         }
       ],
       "eventRecord": "2-1-0",
@@ -657,19 +905,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         }
       ],
       "eventRecord": "2-1-0",
@@ -685,19 +936,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "344e92f4-0ccc-4a65-926f-15858206cc5c"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         }
       ],
       "eventRecord": "2-1-0",
@@ -713,19 +967,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         },
         {
           "round": 2,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8"
         }
       ],
       "eventRecord": "2-1-0",
@@ -741,19 +998,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9b5145e5-425b-4986-8114-578a0e5772f3"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         }
       ],
       "eventRecord": "1-2-0",
@@ -769,19 +1029,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         },
         {
           "round": 3,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         }
       ],
       "eventRecord": "1-2-0",
@@ -797,19 +1060,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "c07b66f8-bd7b-44c9-b4a4-648257675561"
         }
       ],
       "eventRecord": "1-2-0",
@@ -825,19 +1091,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "344e92f4-0ccc-4a65-926f-15858206cc5c"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
         }
       ],
       "eventRecord": "1-2-0",
@@ -853,19 +1122,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0243e419-4bd5-4059-9e07-a4c74a7343a9"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bfa49eaf-12fd-4c1d-9a76-63ec1a81477a"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "344e92f4-0ccc-4a65-926f-15858206cc5c"
         }
       ],
       "eventRecord": "1-2-0",
@@ -881,19 +1153,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "c07b66f8-bd7b-44c9-b4a4-648257675561"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9b5145e5-425b-4986-8114-578a0e5772f3"
         }
       ],
       "eventRecord": "0-3-0",
@@ -909,19 +1184,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f0be3118-c6a7-4208-ae0c-0c06ad85d07b"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d6eae2a6-59bf-448b-b43e-824d3e235b67"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         }
       ],
       "eventRecord": "4-0-0",
@@ -937,19 +1215,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad91163a-657e-4114-ae18-5dd7e21c39c1"
         }
       ],
       "eventRecord": "3-1-0",
@@ -965,19 +1246,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "16800c9c-3b92-4090-805f-38362a7fcc76"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         }
       ],
       "eventRecord": "3-1-0",
@@ -993,19 +1277,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         }
       ],
       "eventRecord": "2-1-1",
@@ -1021,19 +1308,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f0be3118-c6a7-4208-ae0c-0c06ad85d07b"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         }
       ],
       "eventRecord": "2-1-1",
@@ -1049,19 +1339,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "16800c9c-3b92-4090-805f-38362a7fcc76"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1077,19 +1370,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d6eae2a6-59bf-448b-b43e-824d3e235b67"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1105,19 +1401,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad91163a-657e-4114-ae18-5dd7e21c39c1"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d6eae2a6-59bf-448b-b43e-824d3e235b67"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1133,19 +1432,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "16800c9c-3b92-4090-805f-38362a7fcc76"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f0be3118-c6a7-4208-ae0c-0c06ad85d07b"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1161,19 +1463,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad91163a-657e-4114-ae18-5dd7e21c39c1"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd"
         }
       ],
       "eventRecord": "1-3-0",
@@ -1189,19 +1494,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         }
       ],
       "eventRecord": "0-4-0",
@@ -1217,19 +1525,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         }
       ],
       "eventRecord": "0-4-0",
@@ -1245,19 +1556,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e"
         }
       ],
       "eventRecord": "3-0-0",
@@ -1273,19 +1587,22 @@
           "round": 1,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         }
       ],
       "eventRecord": "2-1-0",
@@ -1301,19 +1618,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "cdcee6fc-6540-4497-bbff-5a435599d98d"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
         }
       ],
       "eventRecord": "2-1-0",
@@ -1329,19 +1649,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         },
         {
           "round": 2,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         }
       ],
       "eventRecord": "2-1-0",
@@ -1357,19 +1680,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         },
         {
           "round": 3,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         }
       ],
       "eventRecord": "1-2-0",
@@ -1385,19 +1711,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         }
       ],
       "eventRecord": "1-2-0",
@@ -1413,19 +1742,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "cdcee6fc-6540-4497-bbff-5a435599d98d"
         }
       ],
       "eventRecord": "1-2-0",
@@ -1441,19 +1773,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "62351944-9198-4467-a77d-7c8a2ee3146f"
         },
         {
           "round": 2,
           "result": "draw",
           "points": 1,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "fe0b9369-9bf2-431d-aff5-c2158ea60c31"
         }
       ],
       "eventRecord": "3-0-1",
@@ -1469,19 +1804,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad91163a-657e-4114-ae18-5dd7e21c39c1"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "fe0b9369-9bf2-431d-aff5-c2158ea60c31"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         }
       ],
       "eventRecord": "3-1-0",
@@ -1497,19 +1835,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         },
         {
           "round": 2,
           "result": "draw",
           "points": 1,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "62351944-9198-4467-a77d-7c8a2ee3146f"
         }
       ],
       "eventRecord": "2-0-2",
@@ -1525,19 +1866,22 @@
           "round": 1,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7da48d4f-1b79-4cf8-a3fe-28143b346965"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         }
       ],
       "eventRecord": "2-1-1",
@@ -1553,19 +1897,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1581,19 +1928,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         },
         {
           "round": 2,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1609,19 +1959,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1637,19 +1990,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "62351944-9198-4467-a77d-7c8a2ee3146f"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7da48d4f-1b79-4cf8-a3fe-28143b346965"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1665,19 +2021,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7da48d4f-1b79-4cf8-a3fe-28143b346965"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad91163a-657e-4114-ae18-5dd7e21c39c1"
         }
       ],
       "eventRecord": "2-2-0",
@@ -1693,19 +2052,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         }
       ],
       "eventRecord": "1-3-0",
@@ -1721,19 +2083,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "fe0b9369-9bf2-431d-aff5-c2158ea60c31"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         },
         {
           "round": 3,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         }
       ],
       "eventRecord": "1-3-0",
@@ -1749,19 +2114,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         }
       ],
       "eventRecord": "2-1-0",
@@ -1777,19 +2145,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
         }
       ],
       "eventRecord": "2-1-0",
@@ -1805,19 +2176,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8"
         }
       ],
       "eventRecord": "2-1-0",
@@ -1833,19 +2207,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "c07b66f8-bd7b-44c9-b4a4-648257675561"
         }
       ],
       "eventRecord": "1-2-0",
@@ -1861,19 +2238,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "c07b66f8-bd7b-44c9-b4a4-648257675561"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
         }
       ],
       "eventRecord": "1-2-0",
@@ -1889,19 +2269,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "c07b66f8-bd7b-44c9-b4a4-648257675561"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7007a9af-9059-4888-a215-cf85430be1f1"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         }
       ],
       "eventRecord": "1-2-0",
@@ -1917,19 +2300,22 @@
           "round": 1,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         }
       ],
       "eventRecord": "3-0-1",
@@ -1945,19 +2331,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         }
       ],
       "eventRecord": "2-1-1",
@@ -1973,19 +2362,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d6eae2a6-59bf-448b-b43e-824d3e235b67"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "868ebded-6f80-4876-8be8-8220c559359c"
         }
       ],
       "eventRecord": "2-1-1",
@@ -2001,19 +2393,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2dfd991b-56d1-4538-a2e0-df3112d94939"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d6eae2a6-59bf-448b-b43e-824d3e235b67"
         }
       ],
       "eventRecord": "2-1-1",
@@ -2029,19 +2424,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "868ebded-6f80-4876-8be8-8220c559359c"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         }
       ],
       "eventRecord": "2-2-0",
@@ -2057,19 +2455,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         }
       ],
       "eventRecord": "2-2-0",
@@ -2085,19 +2486,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d6eae2a6-59bf-448b-b43e-824d3e235b67"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2dfd991b-56d1-4538-a2e0-df3112d94939"
         }
       ],
       "eventRecord": "2-2-0",
@@ -2113,19 +2517,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         },
         {
           "round": 2,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         }
       ],
       "eventRecord": "1-3-0",
@@ -2141,19 +2548,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         },
         {
           "round": 3,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         }
       ],
       "eventRecord": "1-2-0",
@@ -2169,19 +2579,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7452b5e6-ee4c-4eb1-a108-857468ea3190"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad91163a-657e-4114-ae18-5dd7e21c39c1"
         }
       ],
       "eventRecord": "3-0-1",
@@ -2197,19 +2610,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         }
       ],
       "eventRecord": "3-1-0",
@@ -2225,19 +2641,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "868ebded-6f80-4876-8be8-8220c559359c"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         }
       ],
       "eventRecord": "2-1-1",
@@ -2253,19 +2672,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         }
       ],
       "eventRecord": "2-1-1",
@@ -2281,19 +2703,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "bab003a5-9e2a-4a49-8c41-83fe94018828"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         }
       ],
       "eventRecord": "2-1-1",
@@ -2309,19 +2734,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "390649de-cf5e-4a0e-b395-76de119591fb"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad91163a-657e-4114-ae18-5dd7e21c39c1"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         }
       ],
       "eventRecord": "2-1-1",
@@ -2337,19 +2765,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "adb02120-1bf9-4ceb-aeb9-7879efd619e5"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7452b5e6-ee4c-4eb1-a108-857468ea3190"
         }
       ],
       "eventRecord": "2-1-1",
@@ -2365,19 +2796,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad91163a-657e-4114-ae18-5dd7e21c39c1"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "adb02120-1bf9-4ceb-aeb9-7879efd619e5"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         }
       ],
       "eventRecord": "2-2-0",
@@ -2393,19 +2827,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "868ebded-6f80-4876-8be8-8220c559359c"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "d88d08ca-6f23-4200-876e-5961e4b1b07d"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         }
       ],
       "eventRecord": "2-2-0",
@@ -2421,19 +2858,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661"
         },
         {
           "round": 2,
           "result": "draw",
           "points": 1,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2dfd991b-56d1-4538-a2e0-df3112d94939"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "390649de-cf5e-4a0e-b395-76de119591fb"
         }
       ],
       "eventRecord": "1-2-1",
@@ -2449,19 +2889,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "7452b5e6-ee4c-4eb1-a108-857468ea3190"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "390649de-cf5e-4a0e-b395-76de119591fb"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd"
         }
       ],
       "eventRecord": "1-3-0",
@@ -2477,19 +2920,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2dfd991b-56d1-4538-a2e0-df3112d94939"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "868ebded-6f80-4876-8be8-8220c559359c"
         }
       ],
       "eventRecord": "1-3-0",
@@ -2505,19 +2951,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2cf6eb46-928f-42bd-9867-33840d561fcb"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "40f05c67-5a2f-488f-a109-80af1676a8db"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "2dfd991b-56d1-4538-a2e0-df3112d94939"
         }
       ],
       "eventRecord": "1-3-0",
@@ -2533,19 +2982,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ee27f91a-c27c-4573-8b71-afe1b46bfbcc"
         },
         {
           "round": 2,
           "result": "draw",
           "points": 1,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "adb02120-1bf9-4ceb-aeb9-7879efd619e5"
         }
       ],
       "eventRecord": "0-3-1",
@@ -2561,19 +3013,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "58fd6acb-05c6-4177-b878-e27cce372aef"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
         }
       ],
       "eventRecord": "3-0-0",
@@ -2589,19 +3044,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "3e14ffa9-b0d7-4655-b7fb-8817c7dcc258"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         }
       ],
       "eventRecord": "3-0-0",
@@ -2617,19 +3075,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
         }
       ],
       "eventRecord": "2-1-0",
@@ -2645,19 +3106,22 @@
           "round": 1,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "3e14ffa9-b0d7-4655-b7fb-8817c7dcc258"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68"
         }
       ],
       "eventRecord": "2-1-0",
@@ -2673,19 +3137,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "58fd6acb-05c6-4177-b878-e27cce372aef"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
         },
         {
           "round": 3,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         }
       ],
       "eventRecord": "1-2-0",
@@ -2701,19 +3168,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         },
         {
           "round": 2,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca"
         }
       ],
       "eventRecord": "1-2-0",
@@ -2729,19 +3199,22 @@
           "round": 1,
           "result": "bye",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": null
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "58fd6acb-05c6-4177-b878-e27cce372aef"
         }
       ],
       "eventRecord": "1-2-0",
@@ -2757,19 +3230,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "07cd4a93-055d-4e37-a845-822f5481a067"
         },
         {
           "round": 2,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca"
         },
         {
           "round": 3,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
         }
       ],
       "eventRecord": "1-2-0",
@@ -2785,19 +3261,22 @@
           "round": 1,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
         },
         {
           "round": 2,
           "result": "loss",
           "points": 0,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
         },
         {
           "round": 3,
           "result": "win",
           "points": 3,
-          "intentionalDraw": false
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
         }
       ],
       "eventRecord": "1-2-0",

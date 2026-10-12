@@ -6,3 +6,5 @@
 .player-row{cursor:pointer}.player-row:hover>td,.player-row:focus-within>td{background:#edf3f8}
 
 nav[aria-label="League stats"]{display:flex;flex-wrap:wrap;gap:12px 24px;margin-bottom:30px;font-size:14px}nav a{color:#2167ae;text-decoration:none}nav a:hover{text-decoration:underline}
+
+.table-scroll{overflow-x:auto}.season-record{white-space:nowrap}
