@@ -8,3 +8,5 @@
 nav[aria-label="League stats"]{display:flex;flex-wrap:wrap;gap:12px 24px;margin-bottom:30px;font-size:14px}nav a{color:#2167ae;text-decoration:none}nav a:hover{text-decoration:underline}
 
 .table-scroll{overflow-x:auto}.season-record{white-space:nowrap}
+
+.player a.name{color:var(--ink);text-decoration:none}.player a.name:hover{color:var(--blue);text-decoration:underline}.player a.name:focus-visible{outline:2px solid var(--blue);outline-offset:3px}.expand{border:0;background:transparent;padding:0;width:24px;min-height:44px;color:var(--muted)}.expand:hover{color:var(--blue)}

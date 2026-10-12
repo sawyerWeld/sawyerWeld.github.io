@@ -31,12 +31,12 @@ function render(){
   const columns=7;
   $('rows').innerHTML=players.slice(page*pageSize,(page+1)*pageSize).map(p=>{
     const open=expanded===p.playerId;
-    return `<tr data-player="${p.playerId}" class="player-row ${open?'selected':''}"><td class="rank">${p.rank}</td><td class="player"><button class="name" data-player="${p.playerId}" aria-expanded="${open}" ${open?`aria-controls="detail-${p.playerId}"`:''}><span class="chevron" aria-hidden="true">${open?'▾':'▸'}</span>${esc(p.name)}</button>${trophyHTML(p.playerId)}</td><td class="number">${p.eventsPlayed}</td><td class="number total">${p.points}</td><td class="number season-record">${esc(p.record)}</td><td class="number">${percent(p.matchWinPercentage)}</td><td class="number">${percent(p.opponentMatchWinPercentage)}</td></tr>${open?detailHTML(p,columns):''}`;
+    return `<tr data-player="${p.playerId}" class="player-row ${open?'selected':''}"><td class="rank">${p.rank}</td><td class="player"><button class="expand" data-player="${p.playerId}" aria-label="${open?'Hide':'Show'} events for ${esc(p.name)}" aria-expanded="${open}" ${open?`aria-controls="detail-${p.playerId}"`:''}><span class="chevron" aria-hidden="true">${open?'▾':'▸'}</span></button><a class="name" href="/ppl/player.html?player=${encodeURIComponent(p.name)}">${esc(p.name)}</a>${trophyHTML(p.playerId)}</td><td class="number">${p.eventsPlayed}</td><td class="number total">${p.points}</td><td class="number season-record">${esc(p.record)}</td><td class="number">${percent(p.matchWinPercentage)}</td><td class="number">${percent(p.opponentMatchWinPercentage)}</td></tr>${open?detailHTML(p,columns):''}`;
   }).join('')||`<tr class="empty"><td colspan="${columns}">No players found.</td></tr>`;
   $('count').textContent=players.length?`${page*pageSize+1}–${Math.min((page+1)*pageSize,players.length)} of ${players.length} players`:'0 players';
   $('previous').disabled=page===0;$('next').disabled=(page+1)*pageSize>=players.length;
 }
-$('rows').addEventListener('click',e=>{const b=e.target.closest('[data-player]');if(!b)return;expanded=expanded===b.dataset.player?null:b.dataset.player;render();saveURL();$('rows').querySelector(`button.name[data-player="${b.dataset.player}"]`).focus({preventScroll:true});});
+$('rows').addEventListener('click',e=>{if(e.target.closest('a'))return;const b=e.target.closest('[data-player]');if(!b)return;expanded=expanded===b.dataset.player?null:b.dataset.player;render();saveURL();$('rows').querySelector(`button.expand[data-player="${b.dataset.player}"]`).focus({preventScroll:true});});
 $('search').addEventListener('input',e=>{query=e.target.value;page=0;render();});
 $('previous').addEventListener('click',()=>{page--;render();});$('next').addEventListener('click',()=>{page++;render();});
 async function init(){
