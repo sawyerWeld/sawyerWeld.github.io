@@ -11,7 +11,7 @@ function eventChange(id) {
   return player.points[slots.at(-1).index] - player.points[slots[0].index];
 }
 function showPlayer(name) {
-  player = data.players.find(p => p.player === name) || data.players[0];
+  player = data.players.find(p => p.player === name) || data.players.find(p => p.rank === 1) || data.players[0];
   const url = new URL(location.href);
   url.searchParams.set('player', player.player);
   history.replaceState(null, '', url);
@@ -71,7 +71,7 @@ try {
   if (!response.ok) throw Error('Could not load player data.');
   data = await response.json();
   $('player').innerHTML = [...data.players].sort((a,b) => a.player.localeCompare(b.player)).map(p => `<option value="${esc(p.player)}">${esc(p.player)}</option>`).join('');
-  showPlayer(new URL(location.href).searchParams.get('player') || 'Sawyer W');
+  showPlayer(new URL(location.href).searchParams.get('player'));
 } catch(error) {
   $('error').hidden = false;
   $('error').textContent = error.message;
