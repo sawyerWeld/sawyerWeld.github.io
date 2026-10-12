@@ -12,7 +12,6 @@ function render(id) {
   stats = storeStats(data,id); expanded = null;
   $('store').value = id;
   $('name').textContent = data.stores[id];document.title = `${data.stores[id]} · Store profile`;
-  $('coverage').textContent = `${date(stats.dates[0])} – ${date(stats.dates.at(-1))} · ${stats.known}/${stats.entries} decks recorded`;
   $('stats').innerHTML = [['Events',stats.events],['Players',stats.players],['Entries',stats.entries],['Decks',stats.decks.length]].map(([label,value])=>`<div><strong>${value}</strong><span>${label}</span></div>`).join('');
   const u = new URL(location.href);u.searchParams.set('store',id);history.replaceState(null,'',u);
   const events = new Map();
