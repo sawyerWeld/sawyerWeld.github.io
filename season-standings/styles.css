@@ -10,3 +10,19 @@ nav[aria-label="League stats"]{display:flex;flex-wrap:wrap;gap:12px 24px;margin-
 .table-scroll{overflow-x:auto}.season-record{white-space:nowrap}
 
 .player a.name{color:var(--ink);text-decoration:none}.player a.name:hover{color:var(--blue);text-decoration:underline}.player a.name:focus-visible{outline:2px solid var(--blue);outline-offset:3px}.expand{border:0;background:transparent;padding:0;width:24px;min-height:44px;color:var(--muted)}.expand:hover{color:var(--blue)}
+
+@media(max-width:760px){
+ main{padding:24px 10px}
+ #standings th,#standings td{padding-left:5px;padding-right:5px}
+ #standings th{font-size:10px}
+ #standings td{font-size:12px}
+ #standings .rank{width:26px}
+ .player{white-space:nowrap}
+ .player a.name{font-size:12px}
+ .expand{width:14px}
+ .trophies{display:block;margin-left:14px;line-height:1}
+ .trophies:empty{display:none}
+ .award{margin:0 2px;min-height:24px}
+ .award img{width:19px;height:19px}
+ #standings .total{font-size:15px}
+}
