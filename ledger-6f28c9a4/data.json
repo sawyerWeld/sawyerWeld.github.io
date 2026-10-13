@@ -1,94 +1,104 @@
 {
-  "updated_at": "2026-10-13T11:52:42Z",
+  "updated_at": "2026-10-13T19:20:23Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-12T11:52:42Z",
-      "end_utc_exclusive": "2026-10-13T11:52:42Z",
-      "page_views": 60,
-      "visits": 13,
-      "sample_interval": 1.0714285714285714,
+      "start_utc": "2026-10-12T19:20:23Z",
+      "end_utc_exclusive": "2026-10-13T19:20:23Z",
+      "page_views": 105,
+      "visits": 26,
+      "sample_interval": 1.206896551724138,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 26,
-          "sample_interval": 1.04
+          "page_views": 34,
+          "sample_interval": 1.096774193548387
         },
         {
           "path": "/season-standings/",
-          "page_views": 9,
-          "sample_interval": 1.5
+          "page_views": 21,
+          "sample_interval": 1.2352941176470589
+        },
+        {
+          "path": "/ppl/store.html",
+          "page_views": 17,
+          "sample_interval": 1.7
         },
         {
           "path": "/ppl/metagame.html",
-          "page_views": 7,
-          "sample_interval": 1
+          "page_views": 13,
+          "sample_interval": 1.3
         },
         {
           "path": "/",
-          "page_views": 5,
+          "page_views": 7,
+          "sample_interval": 1.1666666666666667
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 6,
           "sample_interval": 1
         },
         {
           "path": "/pauper/",
-          "page_views": 5,
-          "sample_interval": 1
-        },
-        {
-          "path": "/Tronclock/",
           "page_views": 4,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/",
+          "path": "/Tronclock/",
           "page_views": 3,
-          "sample_interval": 1
-        },
-        {
-          "path": "/mana-counter/",
-          "page_views": 1,
           "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-06T11:52:42Z",
-      "end_utc_exclusive": "2026-10-13T11:52:42Z",
-      "page_views": 112,
-      "visits": 57,
-      "sample_interval": 1.037037037037037,
+      "start_utc": "2026-10-06T19:20:23Z",
+      "end_utc_exclusive": "2026-10-13T19:20:23Z",
+      "page_views": 165,
+      "visits": 72,
+      "sample_interval": 1.1224489795918366,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/Tronclock/",
-          "page_views": 29,
-          "sample_interval": 1
+          "path": "/ppl/player.html",
+          "page_views": 34,
+          "sample_interval": 1.096774193548387
         },
         {
-          "path": "/ppl/player.html",
-          "page_views": 26,
-          "sample_interval": 1.04
+          "path": "/Tronclock/",
+          "page_views": 30,
+          "sample_interval": 1
         },
         {
           "path": "/season-standings/",
-          "page_views": 9,
-          "sample_interval": 1.5
+          "page_views": 21,
+          "sample_interval": 1.2352941176470589
         },
         {
-          "path": "/pauper/",
-          "page_views": 9,
-          "sample_interval": 1
+          "path": "/ppl/store.html",
+          "page_views": 17,
+          "sample_interval": 1.7
         },
         {
           "path": "/ppl/metagame.html",
-          "page_views": 7,
-          "sample_interval": 1
+          "page_views": 13,
+          "sample_interval": 1.3
         },
         {
           "path": "/",
-          "page_views": 7,
+          "page_views": 12,
+          "sample_interval": 1.0909090909090908
+        },
+        {
+          "path": "/pauper/",
+          "page_views": 11,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 6,
           "sample_interval": 1
         },
         {
@@ -99,11 +109,6 @@
         {
           "path": "/paupergenesis2026/",
           "page_views": 5,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/",
-          "page_views": 3,
           "sample_interval": 1
         },
         {
@@ -135,37 +140,42 @@
           "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddonsummer2026/",
-          "page_views": 1,
-          "sample_interval": 1
         }
       ]
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-13T11:52:42Z",
-      "end_utc_exclusive": "2026-10-13T11:52:42Z",
-      "page_views": 140,
-      "visits": 80,
-      "sample_interval": 10.76923076923077,
+      "start_utc": "2026-09-13T19:20:23Z",
+      "end_utc_exclusive": "2026-10-13T19:20:23Z",
+      "page_views": 230,
+      "visits": 110,
+      "sample_interval": 12.105263157894736,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 40,
+          "page_views": 50,
           "sample_interval": 10
         },
         {
           "path": "/ppl/player.html",
-          "page_views": 30,
-          "sample_interval": 10
+          "page_views": 50,
+          "sample_interval": 12.5
         },
         {
           "path": "/season-standings/",
-          "page_views": 20,
-          "sample_interval": 20
+          "page_views": 30,
+          "sample_interval": 15
+        },
+        {
+          "path": "/",
+          "page_views": 30,
+          "sample_interval": 15
+        },
+        {
+          "path": "/ppl/store.html",
+          "page_views": 30,
+          "sample_interval": 15
         },
         {
           "path": "/card-foil/",
@@ -179,11 +189,6 @@
         },
         {
           "path": "/mana-counter/",
-          "page_views": 10,
-          "sample_interval": 10
-        },
-        {
-          "path": "/",
           "page_views": 10,
           "sample_interval": 10
         }
