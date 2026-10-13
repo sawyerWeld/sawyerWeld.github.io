@@ -37,6 +37,9 @@ header {
   margin-bottom: 24px;
 }
 h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 28px;
   letter-spacing: -0.6px;
   margin: 0;
@@ -524,4 +527,10 @@ summary:focus:not(:focus-visible),
 select:focus:not(:focus-visible),
 a:focus:not(:focus-visible) {
   outline: none;
+}
+
+.league-mark {
+  width: 30px;
+  height: auto;
+  flex-shrink: 0;
 }
