@@ -12,14 +12,23 @@ export function playerEvents(results, name) {
     .sort((a, b) => b.date.localeCompare(a.date) || a.eventId.localeCompare(b.eventId));
 }
 
-// Event records include byes and IDs. Elo's rated-match counters do not.
-export function eventRecord(events) {
-  return events.reduce(
-    (total, event) => ({
-      wins: total.wins + event.wins,
-      losses: total.losses + event.losses,
-      draws: total.draws + event.draws,
-    }),
-    { wins: 0, losses: 0, draws: 0 },
-  );
+// Use the same rounds shown in event details, including playoffs and unrated results.
+export function playerMatches(data, name, eventId) {
+  const belongs = (match) =>
+    match.player === name && (eventId == null || match.eventId === eventId);
+  const byes = data.byes
+    .filter(belongs)
+    .map((bye) => ({ ...bye, result: 'Bye', opponent: null, ratingChange: 0 }));
+  return [...data.history.filter(belongs), ...byes].sort((a, b) => a.round - b.round);
+}
+
+export function matchRecord(matches) {
+  const record = { wins: 0, losses: 0, draws: 0 };
+  for (const match of matches) {
+    if (match.result === 'Win' || match.result === 'Bye') record.wins++;
+    else if (match.result === 'Loss') record.losses++;
+    else if (match.result === 'Draw' || match.result === 'ID') record.draws++;
+    else throw Error(`Unknown match result: ${match.result}`);
+  }
+  return record;
 }

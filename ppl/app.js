@@ -1,5 +1,5 @@
 import { renderTrophy } from './trophies.mjs';
-import { selectPlayer, playerEvents, eventRecord } from './profile-data.mjs';
+import { selectPlayer, playerEvents, playerMatches, matchRecord } from './profile-data.mjs?v=2';
 import { element as $, escapeHtml as esc, formatDate, loadLeagueData } from './ui.mjs';
 const date = formatDate;
 const fmt = (value) => Number(value).toFixed(1);
@@ -27,7 +27,7 @@ function showPlayer(name) {
     .map((id) => `<a href="./store.html?store=${id}">${esc(data.stores[id])}</a>`)
     .join(' · ');
   const events = playerEvents(data.results, player.player);
-  const record = eventRecord(events);
+  const record = matchRecord(playerMatches(data, player.player));
   const stats = [
     ['Elo', fmt(player.elo)],
     ['Peak', fmt(player.peakElo)],
@@ -71,19 +71,14 @@ function renderMatch(match, eventId) {
 
 function renderEvent(event) {
   const change = eventChange(event.eventId);
-  const belongsToEvent = (match) =>
-    match.player === player.player && match.eventId === event.eventId;
-  const matches = data.history.filter(belongsToEvent);
-  const byes = data.byes
-    .filter(belongsToEvent)
-    .map((bye) => ({ ...bye, result: 'Bye', opponent: null, ratingChange: 0 }));
-  const rounds = [...matches, ...byes].sort((a, b) => a.round - b.round);
+  const rounds = playerMatches(data, player.player, event.eventId);
+  const record = matchRecord(rounds);
   return `<details>
     <summary>
       <strong class="event-date">${date(event.date)}</strong>
       <span class="event-store muted">${esc(data.stores[event.storeId])}</span>
       <span class="deck">${esc(event.deck || '—')}</span>
-      <span class="record">${event.wins}–${event.losses}–${event.draws}</span>
+      <span class="record">${record.wins}–${record.losses}–${record.draws}</span>
       <span class="delta ${tone(change)}">${signed(change)}</span>
     </summary>
     <div class="matches"><table><tbody>
