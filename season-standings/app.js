@@ -1,3 +1,4 @@
+import { renderTrophy } from './trophies.mjs';
 import { loadSeason } from './data-source.mjs';
 const $ = (id) => document.getElementById(id);
 const esc = (s) =>
@@ -32,14 +33,12 @@ function trophyHTML(playerId) {
     .map((t) => {
       const s = data.stores.find((s) => s.id === t.storeId),
         e = data.events.find((e) => e.id === t.eventId);
-      const title = `${s.name} · ${shortDate(e.date)} · ${t.eventRecord}`;
-      let icon = `🏆 <span>${s.id === '7679' ? 'AE' : s.id === '15582' ? 'DH' : esc(s.name)}</span>`;
-      if (s.logoUrl) {
-        const url = new URL(s.logoUrl, location.href);
-        if (['http:', 'https:'].includes(url.protocol))
-          icon = `<img src="${esc(url.href)}" alt="${esc(s.name)}">`;
-      }
-      return `<span class="award" tabindex="0" aria-label="${esc(title)}">${icon}<span class="tip" role="tooltip">${esc(title)}</span></span>`;
+      return renderTrophy({
+        storeId: s.id,
+        storeName: s.name,
+        date: e.date,
+        record: t.eventRecord,
+      });
     })
     .join('');
 }

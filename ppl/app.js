@@ -1,3 +1,4 @@
+import { renderTrophy } from './trophies.mjs';
 import { selectPlayer, playerEvents, eventRecord } from './profile-data.mjs';
 import { element as $, escapeHtml as esc, formatDate, loadLeagueData } from './ui.mjs';
 const date = formatDate;
@@ -39,9 +40,14 @@ function showPlayer(name) {
     .join('');
   $('trophies').innerHTML = [...player.trophies]
     .sort((a, b) => b.date.localeCompare(a.date))
-    .map(
-      (t) =>
-        `<span class="trophy" tabindex="0" title="${esc(data.stores[t.storeId])} · ${date(t.date)} · ${t.wins}–${t.losses}–${t.draws}">🏆 ${t.storeId === '7679' ? 'AE' : 'DH'} · ${date(t.date)}</span>`,
+    .map((trophy) =>
+      renderTrophy({
+        storeId: trophy.storeId,
+        storeName: data.stores[trophy.storeId],
+        date: trophy.date,
+        record: `${trophy.wins}–${trophy.losses}–${trophy.draws}`,
+        showDate: true,
+      }),
     )
     .join('');
   $('events').innerHTML = events.map(renderEvent).join('');

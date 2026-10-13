@@ -76,7 +76,7 @@ select {
   gap: 12px;
   margin: 18px 0 24px;
 }
-.trophy {
+#trophies .award {
   font-size: 12px;
   color: var(--muted);
   cursor: help;
@@ -195,7 +195,7 @@ a:hover {
 select:focus-visible,
 summary:focus-visible,
 a:focus-visible,
-.trophy:focus-visible {
+.award:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 3px;
 }
