@@ -1,22 +1,17 @@
 {
-  "updated_at": "2026-10-14T18:41:01Z",
+  "updated_at": "2026-10-14T22:20:23Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-13T18:41:01Z",
-      "end_utc_exclusive": "2026-10-14T18:41:01Z",
-      "page_views": 35,
-      "visits": 11,
-      "sample_interval": 1.2962962962962963,
+      "start_utc": "2026-10-13T22:20:23Z",
+      "end_utc_exclusive": "2026-10-14T22:20:23Z",
+      "page_views": 30,
+      "visits": 6,
+      "sample_interval": 1.3636363636363635,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/metagame.html",
-          "page_views": 8,
-          "sample_interval": 1.3333333333333333
-        },
-        {
-          "path": "/season-standings/",
           "page_views": 8,
           "sample_interval": 1.3333333333333333
         },
@@ -31,9 +26,9 @@
           "sample_interval": 1.5
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 3,
-          "sample_interval": 1
+          "path": "/season-standings/",
+          "page_views": 5,
+          "sample_interval": 1.6666666666666667
         },
         {
           "path": "/ppl/",
@@ -41,7 +36,7 @@
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
+          "path": "/Tronclock/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -49,16 +44,21 @@
           "path": "/paupergeddon2026/paupergeddon-explorer.html",
           "page_views": 1,
           "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddonsummer2026/",
+          "page_views": 1,
+          "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-07T18:41:01Z",
-      "end_utc_exclusive": "2026-10-14T18:41:01Z",
-      "page_views": 187,
-      "visits": 74,
-      "sample_interval": 1.1614906832298137,
+      "start_utc": "2026-10-07T22:20:23Z",
+      "end_utc_exclusive": "2026-10-14T22:20:23Z",
+      "page_views": 188,
+      "visits": 75,
+      "sample_interval": 1.1604938271604939,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -135,13 +135,18 @@
           "path": "/paupergenesis2026/survivorship/",
           "page_views": 1,
           "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddonsummer2026/",
+          "page_views": 1,
+          "sample_interval": 1
         }
       ]
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-14T18:41:01Z",
-      "end_utc_exclusive": "2026-10-14T18:41:01Z",
+      "start_utc": "2026-09-14T22:20:23Z",
+      "end_utc_exclusive": "2026-10-14T22:20:23Z",
       "page_views": 260,
       "visits": 120,
       "sample_interval": 11.818181818181818,
