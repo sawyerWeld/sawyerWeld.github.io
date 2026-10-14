@@ -1,90 +1,95 @@
 {
-  "updated_at": "2026-10-13T19:20:23Z",
+  "updated_at": "2026-10-14T01:58:01Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-12T19:20:23Z",
-      "end_utc_exclusive": "2026-10-13T19:20:23Z",
-      "page_views": 105,
-      "visits": 26,
-      "sample_interval": 1.206896551724138,
+      "start_utc": "2026-10-13T01:58:01Z",
+      "end_utc_exclusive": "2026-10-14T01:58:01Z",
+      "page_views": 133,
+      "visits": 31,
+      "sample_interval": 1.2429906542056075,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 34,
-          "sample_interval": 1.096774193548387
+          "page_views": 40,
+          "sample_interval": 1.1428571428571428
         },
         {
           "path": "/season-standings/",
-          "page_views": 21,
-          "sample_interval": 1.2352941176470589
+          "page_views": 28,
+          "sample_interval": 1.2727272727272727
         },
         {
           "path": "/ppl/store.html",
-          "page_views": 17,
-          "sample_interval": 1.7
+          "page_views": 23,
+          "sample_interval": 1.6428571428571428
         },
         {
           "path": "/ppl/metagame.html",
-          "page_views": 13,
-          "sample_interval": 1.3
-        },
-        {
-          "path": "/",
-          "page_views": 7,
-          "sample_interval": 1.1666666666666667
+          "page_views": 21,
+          "sample_interval": 1.3125
         },
         {
           "path": "/ppl/",
-          "page_views": 6,
+          "page_views": 8,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
+          "page_views": 5,
+          "sample_interval": 1.25
+        },
+        {
+          "path": "/Tronclock/",
+          "page_views": 5,
           "sample_interval": 1
         },
         {
           "path": "/pauper/",
-          "page_views": 4,
+          "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 3,
+          "path": "/card-foil/",
+          "page_views": 1,
           "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-06T19:20:23Z",
-      "end_utc_exclusive": "2026-10-13T19:20:23Z",
-      "page_views": 165,
-      "visits": 72,
-      "sample_interval": 1.1224489795918366,
+      "start_utc": "2026-10-07T01:58:01Z",
+      "end_utc_exclusive": "2026-10-14T01:58:01Z",
+      "page_views": 197,
+      "visits": 81,
+      "sample_interval": 1.152046783625731,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 34,
-          "sample_interval": 1.096774193548387
+          "page_views": 40,
+          "sample_interval": 1.1428571428571428
         },
         {
           "path": "/Tronclock/",
-          "page_views": 30,
+          "page_views": 32,
           "sample_interval": 1
         },
         {
           "path": "/season-standings/",
-          "page_views": 21,
-          "sample_interval": 1.2352941176470589
+          "page_views": 28,
+          "sample_interval": 1.2727272727272727
         },
         {
           "path": "/ppl/store.html",
-          "page_views": 17,
-          "sample_interval": 1.7
+          "page_views": 23,
+          "sample_interval": 1.6428571428571428
         },
         {
           "path": "/ppl/metagame.html",
-          "page_views": 13,
-          "sample_interval": 1.3
+          "page_views": 21,
+          "sample_interval": 1.3125
         },
         {
           "path": "/",
@@ -98,12 +103,12 @@
         },
         {
           "path": "/ppl/",
-          "page_views": 6,
+          "page_views": 8,
           "sample_interval": 1
         },
         {
           "path": "/card-foil/",
-          "page_views": 5,
+          "page_views": 6,
           "sample_interval": 1
         },
         {
@@ -145,27 +150,27 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-13T19:20:23Z",
-      "end_utc_exclusive": "2026-10-13T19:20:23Z",
-      "page_views": 230,
-      "visits": 110,
-      "sample_interval": 12.105263157894736,
+      "start_utc": "2026-09-14T01:58:01Z",
+      "end_utc_exclusive": "2026-10-14T01:58:01Z",
+      "page_views": 250,
+      "visits": 120,
+      "sample_interval": 11.904761904761905,
       "pages_may_be_truncated": false,
       "pages": [
+        {
+          "path": "/ppl/player.html",
+          "page_views": 60,
+          "sample_interval": 12
+        },
         {
           "path": "/Tronclock/",
           "page_views": 50,
           "sample_interval": 10
         },
         {
-          "path": "/ppl/player.html",
-          "page_views": 50,
-          "sample_interval": 12.5
-        },
-        {
           "path": "/season-standings/",
-          "page_views": 30,
-          "sample_interval": 15
+          "page_views": 40,
+          "sample_interval": 13.333333333333334
         },
         {
           "path": "/",
