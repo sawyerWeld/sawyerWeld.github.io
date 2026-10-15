@@ -1,26 +1,313 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Season Standings Demo</title>
-    <link rel="icon" type="image/svg+xml" href="/ppl/favicon.svg" />
-    <link rel="stylesheet" href="trophies.css?v=1" />
-    <link rel="stylesheet" href="styles.css?v=league-mark-1" />
-    <script type="module" src="app.js?v=shared-trophies-1"></script>
-  </head>
-  <body>
-    <a class="skip" href="#standings">Skip to standings</a>
-    <main>
-      <nav aria-label="League stats">
-        <a href="/season-standings/">Season standings</a><a href="/ppl/player.html">Player stats</a
-        ><a href="/ppl/store.html">Stores</a><a href="/ppl/metagame.html">Overall metagame</a>
-      </nav>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="league-data" content="../combined-elo/data.json">
+<title>Preseason Standings | Piedmont Pauper League</title>
+<link rel="icon" href="/ppl/favicon.svg" type="image/svg+xml">
+<style>:root {
+  --font-family: -apple-system, system-ui, sans-serif;
+  --max-width: 70rem;
+  --nav-link-color: #BBB;
+  --nav-link-hover-color: #FFF;
+  --button-color: #00713D;
+  --button-hover-color: #069654;
+  --table-alt-color: #E8FAEA;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0 auto;
+  font-family: var(--font-family);
+}
+html {
+  overflow-y: scroll;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+strong {
+  font-weight: 550;
+}
+
+h1, h2 {
+  font-weight: 550;
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  text-wrap: pretty;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: max-content;
+}
+
+.tableDiv {
+  overflow-x: scroll;
+  padding-bottom: 1rem;
+}
+
+td, th {
+  padding: .3rem .5rem;
+}
+
+td {
+  border: 1px solid #ccc;
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+th {
+  text-align: right;
+  font-weight: 550;
+  color: var(--nav-link-color);
+  background-color: black;
+  border: 1px solid black;
+}
+
+.sort {
+  transition: color 0.2s ease;
+}
+
+.sort:hover {
+  color: var(--nav-link-hover-color);
+  cursor: pointer;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--table-alt-color);
+}
+
+.sort.asc::after {
+  content: "\002B06";
+  padding-left: 3px;
+}
+.sort.desc::after {
+  content: "\002B07";
+  padding-left: 3px
+}
+
+.search {
+  font-size:1.2rem;
+  margin-bottom: 0.5rem;
+  width: 12rem;
+}
+
+.headline {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  line-height: 1.2;
+}
+
+.sub-headline {
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  text-wrap: balance;
+  text-align: center;
+}
+
+header {
+  box-shadow: 0px 1px 1px #999;
+  width: 100%;
+  background-color: black;
+}
+
+footer {
+  box-shadow: 0px -1px 1px #999;
+  width: 100%;
+  padding-top: 1rem;
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  margin-inline: auto;
+  max-width: var(--max-width);
+}
+
+.center-aligned {
+  align-items: center;
+}
+
+.spread-content {
+  justify-content: space-between;
+}
+
+.button-span {
+  gap: 1.6rem;
+}
+
+.media-span {
+  gap: 0.5rem;
+}
+
+.navbar {
+  justify-content: space-between;
+  padding: 0.75rem;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+a.navbar-link {
+  font-size: 1rem;
+  color: var(--nav-link-color);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+a.navbar-link:hover,
+a.navbar-link[aria-current="page"] {
+  text-decoration: none;
+  color: var(--nav-link-hover-color);
+}
+
+a.navbar-home {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+}
+
+a.media-link {
+  padding: 0.4rem 0.4rem;
+  padding-bottom: 0.1rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+a.media-link:hover {
+  background-color: #EEE;
+}
+
+.navbar-container {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+@media (max-width: 600px) {
+  .navbar-container {
+    justify-content: center;
+  }
+
+  a.navbar-home {
+    font-size: 1.2rem;
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.button {
+  text-decoration: none;
+  text-align:center;
+  background-color: var(--button-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  text-decoration: none;
+  background-color: var(--button-hover-color);
+}
+
+.button-text-span {
+  gap: 0.3rem;
+}
+
+@media (max-width: 450px) {
+  .button-text-span {
+    flex-direction: column;
+  }
+}
+
+.image {
+  width: 50%;
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .dragonImage {
+    width: 75%;
+  }
+}</style>
+<link rel="stylesheet" href="/ppl/assets/bac61d0507be/stats/integration.css">
+<link rel="stylesheet" href="/ppl/assets/bac61d0507be/stats/standings.css">
+<link rel="stylesheet" href="/ppl/assets/bac61d0507be/stats/profiles/trophies.css">
+<script type="module" src="/ppl/assets/bac61d0507be/stats/season/app.js"></script>
+</head><body class="stats-page">
+<header><nav class="container navbar flex-row" aria-label="League stats">
+<a class="navbar-home" href="/ppl/">Piedmont Pauper League</a>
+<div class="navbar-container flex-row"><a class="navbar-link" href="/season-standings/" aria-current="page">Standings</a><a class="navbar-link" href="/combined-elo/">Elo</a><a class="navbar-link" href="/ppl/player.html">Players</a><a class="navbar-link" href="/ppl/store.html">Stores</a><a class="navbar-link" href="/ppl/metagame.html">Metagame</a></div></nav></header>
+<main><div class="container">
+<div class="league-page">
+
       <header>
         <h1>
-          <img class="league-mark" src="/ppl/favicon.svg" alt="" width="858" height="1002" />Season
-          Standings Demo
+          <img class="league-mark" src="/ppl/favicon.svg" alt="" width="858" height="1002" />Preseason Standings
         </h1>
         <label class="search"
           ><span class="sr-only">Find a player</span
@@ -29,9 +316,9 @@
         <p id="dates"></p>
       </header>
       <p id="status" role="alert" hidden></p>
-      <section class="panel" id="standings" aria-label="Season standings">
+      <section class="panel" id="standings" aria-label="Preseason standings">
         <div class="table-scroll">
-          <table>
+          <table class="standings-table">
             <thead id="head"></thead>
             <tbody id="rows"></tbody>
           </table>
@@ -45,12 +332,11 @@
         </div>
       </section>
       <noscript>JavaScript is needed to show the standings.</noscript>
-    </main>
-    <!-- Ask Luke if we should remove this analytics script when these pages move to the PPL site. -->
+    </div>
+</div></main>
+<!-- Ask Luke if we should remove this analytics script when these pages move to the PPL site. -->
     <script
       defer
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon='{"token":"ed4770c8a20f4c649e2d4689e0e83033"}'
-    ></script>
-  </body>
-</html>
+    ></script></body></html>
