@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-15T00:35:26Z",
+  "updated_at": "2026-10-15T05:56:23Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-14T00:35:26Z",
-      "end_utc_exclusive": "2026-10-15T00:35:26Z",
+      "start_utc": "2026-10-14T05:56:23Z",
+      "end_utc_exclusive": "2026-10-15T05:56:23Z",
       "page_views": 4,
       "visits": 3,
       "sample_interval": 1,
@@ -16,12 +16,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
+          "path": "/card-foil/",
           "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
+          "path": "/paupergenesis2026/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -34,11 +34,11 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-08T00:35:26Z",
-      "end_utc_exclusive": "2026-10-15T00:35:26Z",
-      "page_views": 188,
-      "visits": 75,
-      "sample_interval": 1.1604938271604939,
+      "start_utc": "2026-10-08T05:56:23Z",
+      "end_utc_exclusive": "2026-10-15T05:56:23Z",
+      "page_views": 187,
+      "visits": 74,
+      "sample_interval": 1.1614906832298137,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -68,8 +68,8 @@
         },
         {
           "path": "/",
-          "page_views": 12,
-          "sample_interval": 1.0909090909090908
+          "page_views": 11,
+          "sample_interval": 1.1
         },
         {
           "path": "/ppl/",
@@ -77,13 +77,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
-          "page_views": 8,
+          "path": "/card-foil/",
+          "page_views": 7,
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
-          "page_views": 6,
+          "path": "/pauper/",
+          "page_views": 7,
           "sample_interval": 1
         },
         {
@@ -125,8 +125,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-15T00:35:26Z",
-      "end_utc_exclusive": "2026-10-15T00:35:26Z",
+      "start_utc": "2026-09-15T05:56:23Z",
+      "end_utc_exclusive": "2026-10-15T05:56:23Z",
       "page_views": 260,
       "visits": 120,
       "sample_interval": 11.818181818181818,
