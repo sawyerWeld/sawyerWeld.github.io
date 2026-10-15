@@ -190,5 +190,17 @@ export const deckImages = {
     "card": "Mortician Beetle",
     "artist": "Lars Grant-West",
     "source": "https://scryfall.com/card/mm3/78/mortician-beetle?utm_source=api"
+  },
+  "Turbo Initiative": {
+    "url": "https://cards.scryfall.io/art_crop/front/f/4/f4072640-0f9b-4f0a-84cc-eda415cc92e7.jpg?1783922721",
+    "card": "Avenging Hunter",
+    "artist": "Borja Pindado",
+    "source": "https://scryfall.com/card/clb/215/avenging-hunter?utm_source=api"
+  },
+  "Pinger Tron": {
+    "url": "https://cards.scryfall.io/art_crop/front/6/b/6bc39af4-be19-4889-b930-df7ebf7b9481.jpg?1783906602",
+    "card": "Mysidian Elder",
+    "artist": "David Astruga",
+    "source": "https://scryfall.com/card/fin/145/mysidian-elder?utm_source=api"
   }
 };

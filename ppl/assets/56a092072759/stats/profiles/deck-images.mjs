@@ -196,5 +196,11 @@ export const deckImages = {
     "card": "Avenging Hunter",
     "artist": "Borja Pindado",
     "source": "https://scryfall.com/card/clb/215/avenging-hunter?utm_source=api"
+  },
+  "Pinger Tron": {
+    "url": "https://cards.scryfall.io/art_crop/front/6/b/6bc39af4-be19-4889-b930-df7ebf7b9481.jpg?1783906602",
+    "card": "Mysidian Elder",
+    "artist": "David Astruga",
+    "source": "https://scryfall.com/card/fin/145/mysidian-elder?utm_source=api"
   }
 };
