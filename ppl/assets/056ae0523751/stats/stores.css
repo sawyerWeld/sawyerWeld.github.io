@@ -1,0 +1,372 @@
+:where(.league-page) header {
+  background: transparent;
+  box-shadow: none;
+  width: auto;
+}
+:where(.league-page) section {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+:where(.league-page) td,
+:where(.league-page) th {
+  border: 0;
+  text-align: left;
+}
+:where(.league-page) tbody tr:nth-child(even) {
+  background: transparent;
+}
+:where(.league-page) .search {
+  font: inherit;
+  margin: 0;
+  width: auto;
+}
+:where(.league-page) a {
+  color: var(--blue);
+}
+.league-page {
+  color-scheme: light;
+  --ink: #182231;
+  --muted: #64748b;
+  --line: #d9e1ea;
+  --page: #f3f6f8;
+  --blue: #2167ae;
+}
+:where(.league-page) * {
+  box-sizing: border-box;
+}
+.league-page {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font:
+    14px/1.5 Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.league-page {
+  max-width: 1040px;
+  margin: auto;
+  padding: 40px 24px;
+}
+:where(.league-page) header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+:where(.league-page) h1 {
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -0.6px;
+}
+:where(.league-page) h2 {
+  font-size: 17px;
+  margin: 0 0 14px;
+}
+:where(.league-page) select {
+  font: inherit;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: white;
+  padding: 8px 12px;
+  min-width: 180px;
+}
+:where(.league-page) #stores {
+  color: var(--muted);
+  margin: 4px 0 22px;
+}
+:where(.league-page) #stats {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+:where(.league-page) #stats strong {
+  display: block;
+  font-size: 25px;
+  font-weight: 600;
+}
+:where(.league-page) #stats span {
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) #trophies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+:where(.league-page) #trophies .award {
+  font-size: 12px;
+  color: var(--muted);
+  cursor: help;
+}
+:where(.league-page) .chart-panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+:where(.league-page) svg {
+  width: 100%;
+  display: block;
+}
+:where(.league-page) svg text {
+  fill: var(--muted);
+  font-size: 11px;
+}
+:where(.league-page) svg circle {
+  cursor: pointer;
+  fill: var(--blue);
+  stroke: white;
+  stroke-width: 2;
+}
+:where(.league-page) svg circle:hover,
+:where(.league-page) svg circle:focus {
+  r: 6;
+  outline: none;
+  stroke: var(--ink);
+}
+:where(.league-page) #inspection {
+  color: var(--muted);
+  min-height: 21px;
+  margin: 8px 0 0;
+  font-size: 12px;
+}
+:where(.league-page) details {
+  background: white;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+}
+:where(.league-page) details:first-child {
+  border-radius: 6px 6px 0 0;
+}
+:where(.league-page) details:last-child {
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 6px 6px;
+}
+:where(.league-page) summary {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 18px 90px 135px 1fr 70px 65px;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  list-style: none;
+}
+:where(.league-page) summary::-webkit-details-marker {
+  display: none;
+}
+:where(.league-page) summary:before {
+  content: "▸";
+  color: var(--muted);
+}
+:where(.league-page) details[open] > summary:before {
+  content: "▾";
+}
+:where(.league-page) summary:hover {
+  background: #edf3f8;
+}
+:where(.league-page) .muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .record,
+:where(.league-page) .delta {
+  text-align: right;
+}
+:where(.league-page) .positive {
+  color: #2f855a;
+}
+:where(.league-page) .negative {
+  color: #a13232;
+}
+:where(.league-page) .matches {
+  padding: 0 18px 14px;
+} /* Store selection changes the rows, not the column positions. */
+:where(.league-page) .store-events-table {
+  table-layout: fixed;
+}
+:where(.league-page) .store-events-table th:first-child {
+  width: 24%;
+}
+:where(.league-page) .store-events-table th:last-child {
+  width: 20%;
+}
+@media (max-width: 760px) {
+  :where(.league-page) .store-events-table th:first-child {
+    width: 110px;
+  }
+  :where(.league-page) .store-events-table th:last-child {
+    width: 85px;
+  }
+}
+:where(.league-page) table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+:where(.league-page) th,
+:where(.league-page) td {
+  padding: 9px 12px;
+  border-top: 1px solid var(--line);
+  text-align: left;
+}
+:where(.league-page) th {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+:where(.league-page) td:last-child,
+:where(.league-page) th:last-child {
+  text-align: right;
+}
+:where(.league-page) a {
+  color: var(--blue);
+  text-decoration: none;
+}
+:where(.league-page) a:hover {
+  text-decoration: underline;
+}
+:where(.league-page) select:focus-visible,
+:where(.league-page) summary:focus-visible,
+:where(.league-page) a:focus-visible,
+:where(.league-page) .award:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+:where(.league-page) .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+:where(.league-page) #error {
+  color: #a13232;
+}
+@media (max-width: 650px) {
+  .league-page {
+    padding: 24px 14px;
+  }
+  :where(.league-page) h1 {
+    font-size: 25px;
+  }
+  :where(.league-page) select {
+    min-width: 140px;
+    max-width: 175px;
+  }
+  :where(.league-page) #stats {
+    gap: 16px 26px;
+  }
+  :where(.league-page) #stats strong {
+    font-size: 22px;
+  }
+  :where(.league-page) .chart-panel {
+    padding: 14px 8px;
+  }
+  :where(.league-page) .chart-panel h2 {
+    padding-left: 6px;
+  }
+  :where(.league-page) summary {
+    grid-template-columns: 12px 1fr 1fr 50px;
+    gap: 4px 8px;
+    padding: 12px;
+  }
+  :where(.league-page) summary:before {
+    grid-row: 1 / 3;
+  }
+  :where(.league-page) .event-date {
+    grid-column: 2;
+  }
+  :where(.league-page) .event-store {
+    grid-column: 3;
+  }
+  :where(.league-page) .deck {
+    grid-column: 2 / 4;
+    grid-row: 2;
+  }
+  :where(.league-page) .record {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  :where(.league-page) .delta {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  :where(.league-page) .matches {
+    padding: 0 8px 8px;
+  }
+  :where(.league-page) th,
+  :where(.league-page) td {
+    padding: 9px 5px;
+  }
+}
+:where(.league-page) button:focus:not(:focus-visible),
+:where(.league-page) summary:focus:not(:focus-visible),
+:where(.league-page) select:focus:not(:focus-visible),
+:where(.league-page) a:focus:not(:focus-visible) {
+  outline: none;
+}
+:where(.league-page) nav a {
+  color: #2167ae;
+  text-decoration: none;
+}
+:where(.league-page) nav a:hover {
+  text-decoration: underline;
+}
+:where(.league-page) .table-wrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: auto;
+}
+:where(.league-page) .store-events {
+  margin-top: 28px;
+}
+:where(.league-page) .store-events th {
+  border-top: 0;
+  background: #f8fafc;
+  color: var(--ink);
+}
+:where(.league-page) .store-events td,
+:where(.league-page) .store-events th {
+  padding: 12px 16px;
+}
+:where(.league-page) .store-events td:first-child {
+  white-space: nowrap;
+}
+:where(.league-page) .store-events td:last-child,
+:where(.league-page) .store-events th:last-child {
+  text-align: right;
+}
+@media (max-width: 650px) {
+  :where(.league-page) header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  :where(.league-page) header select {
+    max-width: none;
+    width: 100%;
+  }
+  :where(.league-page) header label {
+    width: 100%;
+  }
+  :where(.league-page) h1 {
+    font-size: 25px;
+  }
+}
+.league-page {
+  max-width: none;
+  margin: 0;
+  padding: 32px 0;
+  background: transparent;
+}
