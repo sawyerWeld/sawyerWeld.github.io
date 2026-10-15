@@ -1,6 +1,6 @@
 import { element as $, escapeHtml as esc, formatDate, loadLeagueData } from './ui.mjs';
 const date = (value) => formatDate(value, true);
-import { deckImages } from './deck-images.mjs?v=63fef329a45c';
+import { deckImages } from './deck-images.mjs?v=f5f95464670b';
 import { metagame, rate } from './metagame-stats.mjs?v=parent-1';
 const pct = (v) => (v === null ? '—' : `${(v * 100).toFixed(1)}%`);
 function deckLabel(name) {

@@ -11,23 +11,11 @@ export const deckImages = {
     "artist": "Mila Pesic",
     "source": "https://scryfall.com/card/mh1/19/martyrs-soul?utm_source=api"
   },
-  "Red Deck Wins": {
-    "url": "https://cards.scryfall.io/art_crop/front/e/e/ee7292f7-1c7e-449c-9c52-7584d6a14c2c.jpg?1783916278",
-    "card": "Rally at the Hornburg",
-    "artist": "Ekaterina Burmak",
-    "source": "https://scryfall.com/card/ltr/142/rally-at-the-hornburg?utm_source=api"
-  },
   "Elves": {
     "url": "https://cards.scryfall.io/art_crop/front/3/2/320fdf89-e158-41c5-b0bf-fee9dec36a75.jpg?1783926781",
     "card": "Quirion Ranger",
     "artist": "Allen Williams",
     "source": "https://scryfall.com/card/mh2/285/quirion-ranger?utm_source=api"
-  },
-  "Mono Red Madness": {
-    "url": "https://cards.scryfall.io/art_crop/front/1/d/1d3a3a1d-c393-4a57-8a0e-5907d1722331.jpg?1783908123",
-    "card": "Fiery Temper",
-    "artist": "Johannes Voss",
-    "source": "https://scryfall.com/card/inr/154/fiery-temper?utm_source=api"
   },
   "Monster Tron": {
     "url": "https://cards.scryfall.io/art_crop/front/6/e/6e6e5338-9b95-4ac7-a57c-5efaa6423531.jpg?1783920037",
@@ -40,12 +28,6 @@ export const deckImages = {
     "card": "Spellstutter Sprite",
     "artist": "Rebecca Guay",
     "source": "https://scryfall.com/card/mma/65/spellstutter-sprite?utm_source=api"
-  },
-  "Mono Blue Terror": {
-    "url": "https://cards.scryfall.io/art_crop/front/2/5/2569d4f3-55ed-4f99-9592-34c7df0aab72.jpg?1783909076",
-    "card": "Tolarian Terror",
-    "artist": "Vincent Christiaens",
-    "source": "https://scryfall.com/card/fdn/167/tolarian-terror?utm_source=api"
   },
   "Gruul": {
     "url": "https://cards.scryfall.io/art_crop/front/f/5/f54dbeb1-51f8-40e2-912a-ec25457de5a2.jpg?1783911244",
@@ -89,12 +71,6 @@ export const deckImages = {
     "artist": "Dave Allsop",
     "source": "https://scryfall.com/card/som/10/glint-hawk?utm_source=api"
   },
-  "Mono Blue Faeries": {
-    "url": "https://cards.scryfall.io/art_crop/front/d/1/d1fcfeb4-1818-4e08-be4c-27b8a9dc12e6.jpg?1783933144",
-    "card": "Faerie Seer",
-    "artist": "Colin Boyer",
-    "source": "https://scryfall.com/card/mh1/51/faerie-seer?utm_source=api"
-  },
   "Golgari Gardens": {
     "url": "https://cards.scryfall.io/art_crop/front/3/e/3e0f6ae6-b303-405a-8efa-91de9692768e.jpg?1783934242",
     "card": "Khalni Garden",
@@ -102,16 +78,16 @@ export const deckImages = {
     "source": "https://scryfall.com/card/c18/262/khalni-garden?utm_source=api"
   },
   "Dimir Affinity": {
-    "url": "https://cards.scryfall.io/art_crop/front/d/f/dff51ae7-4b68-4770-915b-fb6bcf9ca1ed.jpg?1783938381",
-    "card": "Myr Enforcer",
-    "artist": "Jim Murray",
-    "source": "https://scryfall.com/card/mm2/224/myr-enforcer?utm_source=api"
+    "url": "https://cards.scryfall.io/art_crop/front/9/f/9f36a6e2-3e51-4a30-a225-10cfe6650b9d.jpg?1783926795",
+    "card": "Mistvault Bridge",
+    "artist": "Mathias Kollros",
+    "source": "https://scryfall.com/card/mh2/249/mistvault-bridge?utm_source=api"
   },
   "Grixis Affinity": {
-    "url": "https://cards.scryfall.io/art_crop/front/d/f/dff51ae7-4b68-4770-915b-fb6bcf9ca1ed.jpg?1783938381",
-    "card": "Myr Enforcer",
-    "artist": "Jim Murray",
-    "source": "https://scryfall.com/card/mm2/224/myr-enforcer?utm_source=api"
+    "url": "https://cards.scryfall.io/art_crop/front/8/c/8ce6647c-343a-45e8-9b6e-0292ae01ec81.jpg?1783904138",
+    "card": "Utrom Monitor",
+    "artist": "Leonardo Vincent (Levinky)",
+    "source": "https://scryfall.com/card/tmc/113/utrom-monitor?utm_source=api"
   },
   "Tireless Tribe": {
     "url": "https://cards.scryfall.io/art_crop/front/1/d/1d23e47a-21d5-4d7e-8aa0-3b3064da5967.jpg?1783945271",
@@ -202,5 +178,77 @@ export const deckImages = {
     "card": "Mysidian Elder",
     "artist": "David Astruga",
     "source": "https://scryfall.com/card/fin/145/mysidian-elder?utm_source=api"
+  },
+  "Azorius Caw-Gates": {
+    "url": "https://cards.scryfall.io/art_crop/front/9/e/9e81806d-5d87-4032-ad94-c2cdeabecdbf.jpg?1783935189",
+    "card": "Squadron Hawk",
+    "artist": "Martina Pilcerova",
+    "source": "https://scryfall.com/card/a25/34/squadron-hawk?utm_source=api"
+  },
+  "Boros Robots": {
+    "url": "https://cards.scryfall.io/art_crop/front/8/a/8aae3bd6-a935-44a5-aa4d-a525b00cbf50.jpg?1783904095",
+    "card": "Mouser Foundry",
+    "artist": "Jakob Eirich",
+    "source": "https://scryfall.com/card/tmt/96/mouser-foundry?utm_source=api"
+  },
+  "Mono-Blue Faeries": {
+    "url": "https://cards.scryfall.io/art_crop/front/d/1/d1fcfeb4-1818-4e08-be4c-27b8a9dc12e6.jpg?1783933144",
+    "card": "Faerie Seer",
+    "artist": "Colin Boyer",
+    "source": "https://scryfall.com/card/mh1/51/faerie-seer?utm_source=api"
+  },
+  "Mono-Blue Terror": {
+    "url": "https://cards.scryfall.io/art_crop/front/2/5/2569d4f3-55ed-4f99-9592-34c7df0aab72.jpg?1783909076",
+    "card": "Tolarian Terror",
+    "artist": "Vincent Christiaens",
+    "source": "https://scryfall.com/card/fdn/167/tolarian-terror?utm_source=api"
+  },
+  "Mono-Red Madness": {
+    "url": "https://cards.scryfall.io/art_crop/front/1/d/1d3a3a1d-c393-4a57-8a0e-5907d1722331.jpg?1783908123",
+    "card": "Fiery Temper",
+    "artist": "Johannes Voss",
+    "source": "https://scryfall.com/card/inr/154/fiery-temper?utm_source=api"
+  },
+  "Slivers": {
+    "url": "https://cards.scryfall.io/art_crop/front/6/c/6cd2ed50-cd9a-45d9-a59a-6279be1ab308.jpg?1783943165",
+    "card": "Sinew Sliver",
+    "artist": "Steven Belledin",
+    "source": "https://scryfall.com/card/plc/30/sinew-sliver?utm_source=api"
+  },
+  "Persistent Petitioners": {
+    "url": "https://cards.scryfall.io/art_crop/front/e/9/e93f0c57-eb80-4dde-bdb0-326970491621.jpg?1783933707",
+    "card": "Persistent Petitioners",
+    "artist": "Jason Rainville",
+    "source": "https://scryfall.com/card/rna/44/persistent-petitioners?utm_source=api"
+  },
+  "Rogue": {
+    "url": "https://cards.scryfall.io/display/front/0/3/0392db52-c77c-4310-be26-7daccc661d07.webp?1783913086",
+    "card": "Circular Logic",
+    "artist": "Alexander Khabbazi",
+    "source": ""
+  },
+  "Dredge": {
+    "url": "https://cards.scryfall.io/art_crop/front/6/2/628903a0-6695-4643-80f3-9a6efc4d6a27.jpg?1783943661",
+    "card": "Stinkweed Imp",
+    "artist": "Edward P. Beard, Jr.",
+    "source": "https://scryfall.com/card/rav/107/stinkweed-imp?utm_source=api"
+  },
+  "Mono-Red Axe": {
+    "url": "https://cards.scryfall.io/art_crop/front/3/b/3b2f918c-bd02-4a63-b4c2-ca204c77b208.jpg?1783911269",
+    "card": "Inventor's Axe",
+    "artist": "Filipe Pagliuso",
+    "source": "https://scryfall.com/card/mh3/126/inventors-axe?utm_source=api"
+  },
+  "Mono-Red Rally": {
+    "url": "https://cards.scryfall.io/art_crop/front/4/0/4085a5bf-a71b-4c73-9b39-0dcc328fe11b.jpg?1783942145",
+    "card": "Goblin Bushwhacker",
+    "artist": "Mark Tedin",
+    "source": "https://scryfall.com/card/zen/125/goblin-bushwhacker?utm_source=api"
+  },
+  "Red Burn": {
+    "url": "https://cards.scryfall.io/art_crop/front/b/5/b5883762-ca0a-4932-8d2a-41a45796a5f8.jpg?1783948058",
+    "card": "Chain Lightning",
+    "artist": "Sandra Everingham",
+    "source": "https://scryfall.com/card/leg/137/chain-lightning?utm_source=api"
   }
 };
