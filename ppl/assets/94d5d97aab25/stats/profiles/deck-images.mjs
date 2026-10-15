@@ -221,12 +221,6 @@ export const deckImages = {
     "artist": "Jason Rainville",
     "source": "https://scryfall.com/card/rna/44/persistent-petitioners?utm_source=api"
   },
-  "Rogue": {
-    "url": "https://cards.scryfall.io/display/front/0/3/0392db52-c77c-4310-be26-7daccc661d07.webp?1783913086",
-    "card": "Circular Logic",
-    "artist": "Alexander Khabbazi",
-    "source": ""
-  },
   "Dredge": {
     "url": "https://cards.scryfall.io/art_crop/front/6/2/628903a0-6695-4643-80f3-9a6efc4d6a27.jpg?1783943661",
     "card": "Stinkweed Imp",
@@ -250,5 +244,11 @@ export const deckImages = {
     "card": "Chain Lightning",
     "artist": "Sandra Everingham",
     "source": "https://scryfall.com/card/leg/137/chain-lightning?utm_source=api"
+  },
+  "Other": {
+    "url": "https://cards.scryfall.io/art_crop/front/f/f/fff118a5-765b-4ba1-8f12-ce6f24b2459b.jpg?1783939714",
+    "card": "Unknown Shores",
+    "artist": "Seb McKinnon",
+    "source": "https://scryfall.com/card/ths/229/unknown-shores?utm_source=api"
   }
 };
