@@ -1,0 +1,599 @@
+:where(.league-page) header {
+  background: transparent;
+  box-shadow: none;
+  width: auto;
+}
+:where(.league-page) section {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+:where(.league-page) td,
+:where(.league-page) th {
+  border: 0;
+  text-align: left;
+}
+:where(.league-page) tbody tr:nth-child(even) {
+  background: transparent;
+}
+:where(.league-page) .search {
+  font: inherit;
+  margin: 0;
+  width: auto;
+}
+:where(.league-page) a {
+  color: var(--blue);
+}
+:where(.league-page) .award {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  vertical-align: middle;
+  color: var(--muted);
+  font-size: 10px;
+  margin: 0 3px;
+  cursor: help;
+  min-height: 28px;
+}
+:where(.league-page) .award img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+:where(.league-page) .award .tip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 4;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px #18223122;
+}
+:where(.league-page) .award:hover .tip,
+:where(.league-page) .award:focus .tip {
+  display: block;
+}
+:where(.league-page) .award:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+.league-page {
+  color-scheme: light;
+  --ink: #182231;
+  --muted: #64748b;
+  --line: #d9e1ea;
+  --panel: #fff;
+  --page: #f3f6f8;
+  --blue: #2167ae;
+}
+:where(.league-page) * {
+  box-sizing: border-box;
+}
+.league-page {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font:
+    14px/1.5 Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.league-page {
+  max-width: 1120px;
+  margin: auto;
+  padding: 48px 24px;
+}
+:where(.league-page) header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6px 20px;
+  margin-bottom: 24px;
+}
+:where(.league-page) h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 28px;
+  letter-spacing: -0.6px;
+  margin: 0;
+  font-weight: 650;
+}
+:where(.league-page) #dates {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+}
+:where(.league-page) button,
+:where(.league-page) input {
+  font: inherit;
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  min-height: 44px;
+  padding: 8px 13px;
+}
+:where(.league-page) button {
+  cursor: pointer;
+}
+:where(.league-page) button:hover {
+  background: #edf3f8;
+}
+:where(.league-page) button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+:where(.league-page) button:focus-visible,
+:where(.league-page) input:focus-visible,
+:where(.league-page) summary:focus-visible,
+:where(.league-page) .award:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+:where(.league-page) .search input {
+  width: 210px;
+}
+:where(.league-page) #status {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 18px;
+  margin: 0 0 12px;
+}
+:where(.league-page) .panel {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  overflow: hidden;
+}
+:where(.league-page) table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+} /* Keep the same columns across pages, searches, and expanded players. */
+:where(.league-page) .standings-table {
+  table-layout: fixed;
+}
+:where(.league-page) .standings-table th:nth-child(1) {
+  width: 5%;
+}
+:where(.league-page) .standings-table th:nth-child(2) {
+  width: 39%;
+}
+:where(.league-page) .standings-table th:nth-child(3),
+:where(.league-page) .standings-table th:nth-child(4) {
+  width: 13%;
+}
+:where(.league-page) .standings-table th:nth-child(5),
+:where(.league-page) .standings-table th:nth-child(6) {
+  width: 15%;
+}
+@media (max-width: 760px) {
+  :where(.league-page) .standings-table th:nth-child(1) {
+    width: 32px;
+  }
+  :where(.league-page) .standings-table th:nth-child(2) {
+    width: auto;
+  }
+  :where(.league-page) .standings-table th:nth-child(3),
+  :where(.league-page) .standings-table th:nth-child(4) {
+    width: 44px;
+  }
+  :where(.league-page) .standings-table th:nth-child(5) {
+    width: 60px;
+  }
+  :where(.league-page) .standings-table th:nth-child(6) {
+    width: 54px;
+  }
+}
+:where(.league-page) th {
+  font-size: 11px;
+  font-weight: 550;
+  color: var(--muted);
+  background: #f8fafc;
+  padding: 13px 14px;
+  white-space: nowrap;
+}
+:where(.league-page) td {
+  border-top: 1px solid #e8edf2;
+  padding: 5px 14px;
+  height: 55px;
+}
+:where(.league-page) th.number,
+:where(.league-page) td.number {
+  text-align: right;
+}
+:where(.league-page) .rank {
+  width: 55px;
+  color: var(--muted);
+}
+:where(.league-page) .player {
+  white-space: nowrap;
+}
+:where(.league-page) .name {
+  border: 0;
+  padding: 0 4px 0 0;
+  background: transparent;
+  font-weight: 600;
+  text-align: left;
+}
+:where(.league-page) .name:hover {
+  color: var(--blue);
+  background: transparent;
+  text-decoration: underline;
+}
+:where(.league-page) .name .chevron {
+  display: inline-block;
+  width: 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .total {
+  font-size: 17px;
+  font-weight: 650;
+}
+:where(.league-page) .week {
+  color: var(--muted);
+}
+:where(.league-page) .week button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  min-width: 28px;
+  color: inherit;
+}
+:where(.league-page) .week button:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+:where(.league-page) .week span {
+  opacity: 0.55;
+}
+:where(.league-page) .selected td {
+  background: #edf3f8;
+}
+:where(.league-page) .detail > td {
+  padding: 20px 24px;
+  background: #f8fafc;
+  height: auto;
+}
+:where(.league-page) .detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 14px;
+}
+:where(.league-page) .detail h2 {
+  margin: 0;
+  font-size: 16px;
+}
+:where(.league-page) .detail-header span {
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .event-list {
+  display: grid;
+  gap: 0;
+}
+:where(.league-page) .event {
+  display: grid;
+  grid-template-columns: 100px minmax(130px, 1fr) minmax(180px, 1fr) 65px 95px;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+:where(.league-page) .event-date {
+  font-weight: 550;
+}
+:where(.league-page) .store-name {
+  font-size: 12px;
+  color: var(--muted);
+}
+:where(.league-page) .rounds {
+  display: flex;
+  gap: 8px;
+}
+:where(.league-page) .round {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 4px;
+  text-align: center;
+  min-width: 54px;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+:where(.league-page) .round small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+:where(.league-page) .event-points {
+  text-align: right;
+  font-weight: 650;
+}
+:where(.league-page) .record {
+  text-align: right;
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .record small {
+  display: block;
+  font-size: 10px;
+}
+:where(.league-page) .pagination {
+  border-top: 1px solid var(--line);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .pagination button {
+  min-width: 44px;
+}
+:where(.league-page) .pagination > div {
+  display: flex;
+  gap: 6px;
+}
+:where(.league-page) .empty td {
+  text-align: center;
+  color: var(--muted);
+  padding: 30px;
+}
+:where(.league-page) .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+:where(.league-page) .skip {
+  position: absolute;
+  top: -100px;
+}
+:where(.league-page) .skip:focus {
+  top: 10px;
+  background: #fff;
+  padding: 10px;
+  z-index: 10;
+}
+:where(.league-page) #status.error {
+  color: #a13232;
+}
+@media (max-width: 760px) {
+  .league-page {
+    padding: 24px 14px;
+  }
+  :where(.league-page) h1 {
+    font-size: 23px;
+  }
+  :where(.league-page) header {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  :where(.league-page) #dates {
+    font-size: 12px;
+    grid-row: 2;
+  }
+  :where(.league-page) .search input {
+    width: 100%;
+  }
+  :where(.league-page) .week {
+    display: none;
+  }
+  :where(.league-page) td,
+  :where(.league-page) th {
+    padding-inline: 10px;
+  }
+  :where(.league-page) .rank {
+    width: 35px;
+  }
+  :where(.league-page) .player {
+    width: auto;
+    white-space: normal;
+  }
+  :where(.league-page) .name {
+    font-size: 13px;
+  }
+  :where(.league-page) .award {
+    font-size: 9px;
+  }
+  :where(.league-page) .total {
+    font-size: 16px;
+  }
+  :where(.league-page) .detail > td {
+    padding: 16px 12px;
+  }
+  :where(.league-page) .detail-header {
+    align-items: flex-start;
+  }
+  :where(.league-page) .detail-header span {
+    text-align: right;
+  }
+  :where(.league-page) .event {
+    grid-template-columns: 1fr auto;
+    gap: 4px 12px;
+    padding: 12px 0;
+  }
+  :where(.league-page) .event-date {
+    grid-column: 1;
+  }
+  :where(.league-page) .store-name {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  :where(.league-page) .rounds {
+    grid-column: 1;
+    margin-top: 8px;
+  }
+  :where(.league-page) .event-points {
+    grid-column: 2;
+    grid-row: auto;
+  }
+  :where(.league-page) .record {
+    grid-column: 2;
+    grid-row: auto;
+  }
+  :where(.league-page) .round {
+    min-width: 48px;
+  }
+  :where(.league-page) .award .tip {
+    white-space: normal;
+    width: 165px;
+    left: auto;
+    right: 0;
+  }
+  :where(.league-page) .pagination {
+    padding: 10px 12px;
+  }
+}
+@media (max-width: 760px) {
+  :where(.league-page) .event {
+    grid-template-areas: "date points" "store record" "rounds rounds";
+  }
+  :where(.league-page) .event-date {
+    grid-area: date;
+  }
+  :where(.league-page) .store-name {
+    grid-area: store;
+  }
+  :where(.league-page) .rounds {
+    grid-area: rounds;
+  }
+  :where(.league-page) .event-points {
+    grid-area: points;
+  }
+  :where(.league-page) .record {
+    grid-area: record;
+  }
+}
+:where(.league-page) .player-row {
+  cursor: pointer;
+}
+:where(.league-page) .player-row:hover > td,
+:where(.league-page) .player-row:focus-within > td {
+  background: #edf3f8;
+}
+:where(.league-page) nav[aria-label="League stats"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+:where(.league-page) nav a {
+  color: #2167ae;
+  text-decoration: none;
+}
+:where(.league-page) nav a:hover {
+  text-decoration: underline;
+}
+:where(.league-page) .table-scroll {
+  overflow-x: auto;
+}
+:where(.league-page) .season-record {
+  white-space: nowrap;
+}
+:where(.league-page) .player a.name {
+  color: var(--ink);
+  text-decoration: none;
+}
+:where(.league-page) .player a.name:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+:where(.league-page) .player a.name:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+:where(.league-page) .expand {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  width: 24px;
+  min-height: 44px;
+  color: var(--muted);
+}
+:where(.league-page) .expand:hover {
+  color: var(--blue);
+}
+@media (max-width: 760px) {
+  .league-page {
+    padding: 24px 10px;
+  }
+  :where(.league-page) #standings th,
+  :where(.league-page) #standings td {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  :where(.league-page) #standings th {
+    font-size: 10px;
+  }
+  :where(.league-page) #standings td {
+    font-size: 12px;
+  }
+  :where(.league-page) #standings .rank {
+    width: 32px;
+  }
+  :where(.league-page) .player {
+    white-space: nowrap;
+  }
+  :where(.league-page) .player a.name {
+    font-size: 12px;
+  }
+  :where(.league-page) .expand {
+    width: 14px;
+  }
+  :where(.league-page) .trophies {
+    display: block;
+    margin-left: 14px;
+    line-height: 1;
+  }
+  :where(.league-page) .trophies:empty {
+    display: none;
+  }
+  :where(.league-page) .award {
+    margin: 0 2px;
+    min-height: 24px;
+  }
+  :where(.league-page) .award img {
+    width: 19px;
+    height: 19px;
+  }
+  :where(.league-page) #standings .total {
+    font-size: 15px;
+  }
+}
+:where(.league-page) button:focus:not(:focus-visible),
+:where(.league-page) summary:focus:not(:focus-visible),
+:where(.league-page) select:focus:not(:focus-visible),
+:where(.league-page) a:focus:not(:focus-visible) {
+  outline: none;
+}
+:where(.league-page) .league-mark {
+  width: 30px;
+  height: auto;
+  flex-shrink: 0;
+}
+.league-page {
+  max-width: none;
+  margin: 0;
+  padding: 32px 0;
+  background: transparent;
+}

@@ -1,0 +1,1250 @@
+:where(.league-page) header {
+  background: transparent;
+  box-shadow: none;
+  width: auto;
+}
+
+:where(.league-page) section {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+:where(.league-page) td,
+:where(.league-page) th {
+  border: 0;
+  text-align: left;
+}
+
+:where(.league-page) tbody tr:nth-child(even) {
+  background: transparent;
+}
+
+:where(.league-page) .search {
+  font: inherit;
+  margin: 0;
+  width: auto;
+}
+
+:where(.league-page) a {
+  color: var(--blue);
+}
+
+.league-page {
+  color-scheme: light;
+  --ink: #182231;
+  --muted: #64748b;
+  --line: #d9e1ea;
+  --panel: #fff;
+  --page: #f3f6f8;
+  --blue: #2167ae;
+  --gold: #936616;
+}
+
+:where(.league-page) * {
+  box-sizing: border-box;
+}
+
+.league-page {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+.league-page {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+}
+
+:where(.league-page) button,
+:where(.league-page) input,
+:where(.league-page) select {
+  font: inherit;
+  color: inherit;
+}
+
+:where(.league-page) button,
+:where(.league-page) a,
+:where(.league-page) input,
+:where(.league-page) summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(.league-page) button {
+  cursor: pointer;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 5px;
+  padding: 7px 12px;
+}
+
+:where(.league-page) button:hover {
+  background: #edf3f8;
+  border-color: #b8c9db;
+}
+
+:where(.league-page) button:focus-visible,
+:where(.league-page) a:focus-visible,
+:where(.league-page) input:focus-visible,
+:where(.league-page) summary:focus-visible,
+:where(.league-page) svg circle:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+:where(.league-page) a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+:where(.league-page) a:hover {
+  text-decoration: underline;
+}
+
+:where(.league-page) input[type="search"] {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 11px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  min-width: 0;
+}
+
+:where(.league-page) input[type="checkbox"] {
+  accent-color: var(--blue);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+:where(.league-page) .shell {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 54px 36px 28px;
+}
+
+:where(.league-page) .page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+}
+
+:where(.league-page) .eyebrow {
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+:where(.league-page) h1 {
+  font-size: clamp(32px, 4.4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  margin: 0;
+  font-weight: 750;
+}
+
+:where(.league-page) nav {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+:where(.league-page) nav span {
+  margin-left: 6px;
+  color: var(--muted);
+}
+
+:where(.league-page) .summary {
+  border-block: 1px solid var(--line);
+  margin: 28px 0 38px;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  color: var(--muted);
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+:where(.league-page) .summary strong {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 650;
+  margin-right: 4px;
+}
+
+:where(.league-page) .summary .through {
+  margin-left: auto;
+}
+
+:where(.league-page) h2 {
+  font-size: 23px;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+:where(.league-page) .section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+:where(.league-page) .section-head p {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 7px 0 0;
+}
+
+:where(.league-page) .section-head > button {
+  font-size: 12px;
+}
+
+:where(.league-page) .panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+:where(.league-page) .explorer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 272px;
+}
+
+:where(.league-page) .plot-area {
+  min-width: 0;
+}
+
+:where(.league-page) .plot-tools {
+  padding: 18px 22px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+:where(.league-page) .segmented {
+  display: inline-flex;
+  padding: 3px;
+  background: #f0f4f7;
+  border: 1px solid #e4ebf1;
+  border-radius: 6px;
+}
+
+:where(.league-page) .segmented button {
+  border: 0;
+  background: none;
+  min-height: 32px;
+  font-size: 12px;
+  padding: 6px 12px;
+  color: var(--muted);
+}
+
+:where(.league-page) .segmented button[aria-pressed="true"] {
+  background: white;
+  color: var(--ink);
+  box-shadow: 0 1px 2px #18223115;
+  font-weight: 650;
+}
+
+:where(.league-page) .background-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  min-height: 38px;
+}
+
+:where(.league-page) #chart-wrap {
+  width: 100%;
+  padding: 0 12px;
+  min-height: 400px;
+}
+
+:where(.league-page) #chart {
+  display: block;
+  width: 100%;
+  height: 420px;
+  overflow: visible;
+}
+
+:where(.league-page) .league-line {
+  fill: none;
+  stroke: #c5d0dc;
+  stroke-width: 1;
+  opacity: 0.45;
+}
+
+:where(.league-page) .legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 22px 20px;
+}
+
+:where(.league-page) .legend button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  min-height: 30px;
+  padding: 5px 8px;
+}
+
+:where(.league-page) .legend .remove {
+  color: var(--muted);
+  margin-left: 2px;
+}
+
+:where(.league-page) .swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+:where(.league-page) .inspection {
+  background: #f8fafc;
+  min-height: 93px;
+  border-top: 1px solid var(--line);
+  padding: 16px 22px;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+:where(.league-page) .inspection p {
+  margin: 8px 0;
+  color: var(--muted);
+}
+
+:where(.league-page) .inspection-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+:where(.league-page) .inspection-head strong {
+  font-size: 13px;
+}
+
+:where(.league-page) .inspection-head span {
+  color: var(--muted);
+}
+
+:where(.league-page) .match-detail {
+  display: inline-block;
+  margin-right: 18px;
+}
+
+:where(.league-page) .inspection .rating {
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+:where(.league-page) .inspection .result-note {
+  color: var(--muted);
+}
+
+:where(.league-page) .players {
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+:where(.league-page) .picker-head {
+  padding: 20px 16px 12px;
+}
+
+:where(.league-page) .picker-head > label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 650;
+  margin-bottom: 12px;
+}
+
+:where(.league-page) .picker-head label span {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+:where(.league-page) .picker-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+:where(.league-page) .picker-actions button {
+  border: 0;
+  padding: 5px 7px;
+  font-size: 11px;
+  min-height: 30px;
+  color: var(--blue);
+}
+
+:where(.league-page) .player-list {
+  height: 415px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  overscroll-behavior: contain;
+}
+
+:where(.league-page) .player-option {
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid #edf1f5;
+  cursor: pointer;
+  min-height: 51px;
+}
+
+:where(.league-page) .player-option:hover {
+  background: #f7f9fc;
+}
+
+:where(.league-page) .player-option.selected {
+  background: #edf3f8;
+}
+
+:where(.league-page) .player-name {
+  font-size: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+:where(.league-page) .player-rating {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+:where(.league-page) .player-rating small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+:where(.league-page) .positive {
+  color: #26704c !important;
+}
+
+:where(.league-page) .negative {
+  color: #a14b45 !important;
+}
+
+:where(.league-page) .picker-foot {
+  margin-top: auto;
+  padding: 11px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+:where(.league-page) .method {
+  margin-top: 13px;
+  font-size: 12px;
+  max-width: 820px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+:where(.league-page) .method summary {
+  cursor: pointer;
+  width: fit-content;
+}
+
+:where(.league-page) .method p {
+  margin: 9px 0;
+}
+
+:where(.league-page) .method[open] summary {
+  color: var(--ink);
+}
+
+:where(.league-page) #trophies {
+  margin-top: 46px;
+}
+
+:where(.league-page) .total {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+:where(.league-page) .total strong {
+  font-size: 23px;
+  color: var(--gold);
+  margin-right: 5px;
+}
+
+:where(.league-page) .trophy-tools {
+  padding: 16px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+:where(.league-page) .trophy-tools input[type="search"] {
+  width: 240px;
+}
+
+:where(.league-page) .table-scroll {
+  overflow-x: auto;
+  position: relative;
+}
+
+:where(.league-page) table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+:where(.league-page) th {
+  padding: 12px 22px;
+  background: #f8fafc;
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+  white-space: nowrap;
+}
+
+:where(.league-page) td {
+  padding: 18px 22px;
+  border-top: 1px solid #e8edf2;
+  vertical-align: top;
+}
+
+:where(.league-page) td:nth-child(1) {
+  color: var(--muted);
+  font-size: 12px;
+  width: 55px;
+}
+
+:where(.league-page) td:nth-child(2) {
+  width: 45%;
+}
+
+:where(.league-page) td:nth-child(3),
+:where(.league-page) th:nth-child(3),
+:where(.league-page) td:nth-child(4),
+:where(.league-page) th:nth-child(4),
+:where(.league-page) td:nth-child(5),
+:where(.league-page) th:nth-child(5) {
+  text-align: right;
+}
+
+:where(.league-page) td:nth-child(3) {
+  font-size: 19px;
+  font-weight: 650;
+  color: var(--gold);
+}
+
+:where(.league-page) .trophy-marks {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  margin-top: 6px;
+  color: var(--gold);
+}
+
+:where(.league-page) .cup {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+:where(.league-page) .trophy-name {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+:where(.league-page) .finish-details {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+
+:where(.league-page) .finish-details summary {
+  cursor: pointer;
+  width: fit-content;
+  min-height: 25px;
+}
+
+:where(.league-page) .finish-details ul {
+  margin: 5px 0 0;
+  padding-left: 15px;
+  line-height: 1.9;
+}
+
+:where(.league-page) .finish-details li span {
+  color: var(--ink);
+}
+
+:where(.league-page) .rate-track {
+  width: 54px;
+  height: 3px;
+  background: #e6ecf1;
+  margin: 8px 0 0 auto;
+}
+
+:where(.league-page) .rate-fill {
+  height: 3px;
+  background: #9bb2c9;
+}
+
+:where(.league-page) .compare-button {
+  font-size: 11px;
+  white-space: nowrap;
+  min-height: 32px;
+}
+
+:where(.league-page) .trophy-foot {
+  padding: 14px 22px;
+  color: var(--muted);
+  font-size: 11px;
+  border-top: 1px solid var(--line);
+}
+
+:where(.league-page) .empty {
+  padding: 24px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+:where(.league-page) footer {
+  border-top: 1px solid var(--line);
+  margin-top: 36px;
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+:where(.league-page) .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:where(.league-page) .skip {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  padding: 12px;
+  background: white;
+  z-index: 4;
+}
+
+:where(.league-page) .skip:focus {
+  top: 10px;
+}
+
+@media (min-width: 1500px) {
+  :where(.league-page) .shell {
+    padding-top: 65px;
+  }
+}
+
+@media (max-width: 1000px) {
+  :where(.league-page) .shell {
+    padding: 34px 22px 24px;
+  }
+  :where(.league-page) .explorer {
+    grid-template-columns: minmax(0, 1fr) 236px;
+  }
+  :where(.league-page) .picker-head {
+    padding-inline: 12px;
+  }
+  :where(.league-page) .player-option {
+    padding-inline: 12px;
+  }
+  :where(.league-page) td,
+  :where(.league-page) th {
+    padding-inline: 16px;
+  }
+  :where(.league-page) .summary {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  :where(.league-page) .shell {
+    padding: 28px 16px 24px;
+  }
+  :where(.league-page) .page-head {
+    display: block;
+  }
+  :where(.league-page) nav {
+    margin-top: 20px;
+    gap: 25px;
+  }
+  :where(.league-page) .summary {
+    margin-top: 16px;
+    margin-bottom: 28px;
+    gap: 12px 20px;
+  }
+  :where(.league-page) .summary .through {
+    margin-left: 0;
+    width: 100%;
+  }
+  :where(.league-page) .summary strong {
+    font-size: 16px;
+  }
+  :where(.league-page) .section-head {
+    align-items: flex-start;
+  }
+  :where(.league-page) .section-head > button {
+    max-width: 120px;
+    min-height: 44px;
+  }
+  :where(.league-page) h2 {
+    font-size: 21px;
+  }
+  :where(.league-page) .explorer {
+    display: flex;
+    flex-direction: column;
+  }
+  :where(.league-page) .players {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  :where(.league-page) .picker-head {
+    padding: 16px;
+  }
+  :where(.league-page) .player-list {
+    height: 210px;
+  }
+  :where(.league-page) .picker-foot {
+    display: none;
+  }
+  :where(.league-page) .player-option {
+    padding: 11px 16px;
+  }
+  :where(.league-page) .picker-actions button {
+    min-height: 44px;
+  }
+  :where(.league-page) .picker-head label {
+    font-size: 13px;
+  }
+  :where(.league-page) .plot-tools {
+    padding: 14px 12px 0;
+    gap: 6px;
+  }
+  :where(.league-page) .segmented button {
+    min-height: 38px;
+    padding: 7px 9px;
+  }
+  :where(.league-page) #chart-wrap {
+    padding: 0 4px;
+    min-height: 350px;
+  }
+  :where(.league-page) #chart {
+    height: 365px;
+  }
+  :where(.league-page) .legend {
+    padding: 0 12px 14px;
+    gap: 6px;
+  }
+  :where(.league-page) .legend button {
+    min-height: 40px;
+  }
+  :where(.league-page) .inspection {
+    padding: 14px;
+    min-height: 106px;
+  }
+  :where(.league-page) .inspection p {
+    margin: 3px 0;
+  }
+  :where(.league-page) .background-toggle {
+    font-size: 11px;
+    min-height: 44px;
+  }
+  :where(.league-page) .trophy-tools {
+    padding: 12px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  :where(.league-page) .trophy-tools input[type="search"] {
+    width: 100%;
+  }
+  :where(.league-page) .trophy-tools .background-toggle {
+    min-height: 40px;
+  }
+  :where(.league-page) .trophy-tools input[type="checkbox"] {
+    margin-left: 0;
+  }
+  :where(.league-page) td,
+  :where(.league-page) th {
+    padding: 14px 12px;
+  }
+  :where(.league-page) td:nth-child(2) {
+    min-width: 168px;
+  }
+  :where(.league-page) td:nth-child(1),
+  :where(.league-page) th:nth-child(1) {
+    padding-right: 0;
+    min-width: 42px;
+  }
+  :where(.league-page) .trophy-name {
+    font-size: 13px;
+  }
+  :where(.league-page) table {
+    min-width: 570px;
+  }
+  :where(.league-page) .trophy-foot {
+    padding: 12px;
+    line-height: 1.5;
+  }
+  :where(.league-page) #trophies {
+    margin-top: 32px;
+  }
+  :where(.league-page) .total strong {
+    font-size: 21px;
+  }
+  :where(.league-page) .total {
+    font-size: 11px;
+  }
+  :where(.league-page) footer {
+    flex-direction: column;
+    line-height: 1.6;
+  }
+  :where(.league-page) button {
+    min-height: 44px;
+  }
+  :where(.league-page) .compare-button {
+    min-height: 44px;
+  }
+  :where(.league-page) .finish-details summary {
+    min-height: 32px;
+  }
+  :where(.league-page) .method summary {
+    min-height: 36px;
+    padding-top: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .league-page {
+    scroll-behavior: auto;
+  }
+}
+
+:where(.league-page) .player-link {
+  padding: 0;
+  min-height: 24px;
+  border: 0;
+  background: none;
+  text-align: left;
+  border-radius: 2px;
+}
+
+:where(.league-page) .player-link span {
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 5px;
+}
+
+:where(.league-page) .player-link:hover {
+  background: none;
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  :where(.league-page) table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+  :where(.league-page) th,
+  :where(.league-page) td {
+    padding: 14px 6px;
+  }
+  :where(.league-page) th {
+    font-size: 8px;
+    white-space: normal;
+  }
+  :where(.league-page) th:nth-child(1),
+  :where(.league-page) td:nth-child(1) {
+    width: 32px;
+    min-width: 0;
+    padding-left: 8px;
+  }
+  :where(.league-page) th:nth-child(2),
+  :where(.league-page) td:nth-child(2) {
+    width: auto;
+    min-width: 0;
+  }
+  :where(.league-page) th:nth-child(3),
+  :where(.league-page) td:nth-child(3) {
+    width: 51px;
+  }
+  :where(.league-page) th:nth-child(4),
+  :where(.league-page) td:nth-child(4) {
+    width: 38px;
+  }
+  :where(.league-page) th:nth-child(5),
+  :where(.league-page) td:nth-child(5) {
+    width: 57px;
+    padding-right: 10px;
+  }
+  :where(.league-page) td:nth-child(4),
+  :where(.league-page) td:nth-child(5) {
+    font-size: 12px;
+  }
+  :where(.league-page) .rate-track {
+    width: 36px;
+  }
+  :where(.league-page) .player-link {
+    min-height: 32px;
+  }
+  :where(.league-page) .player-link span {
+    display: none;
+  }
+  :where(.league-page) .trophy-name {
+    font-size: 12px;
+  }
+  :where(.league-page) .finish-details {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  :where(.league-page) .finish-details summary {
+    min-height: 32px;
+  }
+  :where(.league-page) .finish-details ul {
+    padding-left: 10px;
+  }
+}
+
+/* Compact leaderboard first, full-width Elo explorer. */
+
+:where(.league-page) .shell {
+  padding-top: 30px;
+}
+
+:where(.league-page) .explorer {
+  display: block;
+}
+
+:where(.league-page) #trophies {
+  margin-top: 0;
+  margin-bottom: 34px;
+}
+
+:where(.league-page) .trophy-panel td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+:where(.league-page) .trophy-foot {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+:where(.league-page) .trophy-marks {
+  display: inline-flex;
+  margin: 0 0 0 10px;
+  vertical-align: middle;
+}
+
+:where(.league-page) .finish-details {
+  margin-top: 2px;
+}
+
+:where(.league-page) .section-head {
+  margin-bottom: 14px;
+}
+
+:where(.league-page) .inspection[hidden] {
+  display: none;
+}
+
+:where(.league-page) .legend {
+  padding-bottom: 16px;
+}
+
+:where(.league-page) .plot-tools {
+  flex-wrap: wrap;
+}
+
+:where(.league-page) .trophy-panel .player-link {
+  min-height: 24px;
+}
+
+:where(.league-page) .trophy-panel .finish-details summary {
+  min-height: 22px;
+}
+
+@media (max-width: 760px) {
+  :where(.league-page) .shell {
+    padding-top: 22px;
+  }
+  :where(.league-page) .trophy-marks {
+    display: flex;
+    margin: 5px 0 0;
+  }
+  :where(.league-page) .trophy-panel .player-link {
+    min-height: 32px;
+  }
+  :where(.league-page) .trophy-panel .finish-details summary {
+    min-height: 32px;
+  }
+  :where(.league-page) .plot-tools {
+    gap: 8px;
+  }
+  :where(.league-page) .plot-tools .segmented button {
+    padding-inline: 10px;
+  }
+  :where(.league-page) #trophies {
+    margin-top: 0;
+    margin-bottom: 28px;
+  }
+}
+
+:where(.league-page) .trophy-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+:where(.league-page) .trophy-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+:where(.league-page) .trophy-list strong {
+  font-weight: 650;
+  color: var(--gold);
+}
+
+:where(.league-page) #leaderboard {
+  margin-top: 30px;
+}
+
+:where(.league-page) .elo-table {
+  table-layout: fixed;
+  min-width: 900px;
+}
+
+:where(.league-page) .elo-table th,
+:where(.league-page) .elo-table td {
+  width: auto;
+  min-width: 0;
+  padding: 12px 20px;
+  white-space: nowrap;
+  text-align: right;
+  font-size: 12px;
+}
+
+:where(.league-page) .elo-table th {
+  font-size: 10px;
+}
+
+:where(.league-page) .elo-table th:first-child,
+:where(.league-page) .elo-table td:first-child {
+  text-align: left;
+  width: 65px;
+}
+
+:where(.league-page) .elo-table th:nth-child(2),
+:where(.league-page) .elo-table td:nth-child(2) {
+  text-align: left;
+  width: 40%;
+  font-size: 13px;
+}
+
+:where(.league-page) .elo-table th:nth-child(1) {
+  width: 12%;
+}
+
+:where(.league-page) .elo-table th:nth-child(2) {
+  width: 32%;
+}
+
+:where(.league-page) .elo-table th:nth-child(3),
+:where(.league-page) .elo-table th:nth-child(5),
+:where(.league-page) .elo-table th:nth-child(6) {
+  width: 10%;
+}
+
+:where(.league-page) .elo-table th:nth-child(4) {
+  width: 14%;
+}
+
+:where(.league-page) .elo-table th:nth-child(7) {
+  width: 12%;
+}
+
+:where(.league-page) .elo-table th:nth-child(2) {
+  font-size: 10px;
+}
+
+:where(.league-page) .elo-table td:nth-child(3) {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+:where(.league-page) .elo-table .swatch {
+  margin-right: 9px;
+}
+
+:where(.league-page) .pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+:where(.league-page) .pagination > div {
+  display: flex;
+  gap: 8px;
+}
+
+:where(.league-page) .pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+  background: white;
+}
+
+:where(.league-page) .plot-area {
+  padding-bottom: 12px;
+}
+
+@media (max-width: 760px) {
+  :where(.league-page) .trophy-list {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  :where(.league-page) .trophy-list li {
+    padding: 8px 0;
+  }
+  :where(.league-page) .elo-table th,
+  :where(.league-page) .elo-table td {
+    padding: 12px;
+  }
+  :where(.league-page) .pagination {
+    padding: 12px;
+  }
+  :where(.league-page) .pagination button {
+    min-height: 44px;
+  }
+  :where(.league-page) #leaderboard {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 761px) {
+  :where(.league-page) #trophies {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+:where(.league-page) .refresh-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+:where(.league-page) .refresh-tools button {
+  font-size: 12px;
+  min-height: 36px;
+}
+
+:where(.league-page) .refresh-tools span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  :where(.league-page) .refresh-tools button {
+    min-height: 44px;
+  }
+  :where(.league-page) .refresh-tools {
+    gap: 8px;
+  }
+}
+
+.league-page {
+  max-width: none;
+  margin: 0;
+  padding: 32px 0;
+  background: transparent;
+}
+
+:where(.league-page) .player-trophies {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 0.6em;
+}
+
+:where(.league-page) .store-filter {
+  margin-bottom: 24px;
+}
+
+:where(.league-page) .store-filter .segmented {
+  flex-wrap: wrap;
+}
