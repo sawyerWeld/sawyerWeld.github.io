@@ -1,38 +1,38 @@
 {
-  "updated_at": "2026-10-16T21:17:19Z",
+  "updated_at": "2026-10-16T23:39:04Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-15T21:17:19Z",
-      "end_utc_exclusive": "2026-10-16T21:17:19Z",
-      "page_views": 60,
-      "visits": 18,
-      "sample_interval": 1.3636363636363635,
+      "start_utc": "2026-10-15T23:39:04Z",
+      "end_utc_exclusive": "2026-10-16T23:39:04Z",
+      "page_views": 50,
+      "visits": 14,
+      "sample_interval": 1.0416666666666667,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/ppl/metagame.html",
-          "page_views": 17,
-          "sample_interval": 1.7
-        },
-        {
-          "path": "/ppl/store.html",
-          "page_views": 17,
-          "sample_interval": 2.125
-        },
-        {
           "path": "/season-standings/",
+          "page_views": 15,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/player.html",
           "page_views": 13,
+          "sample_interval": 1.1818181818181819
+        },
+        {
+          "path": "/ppl/metagame.html",
+          "page_views": 5,
           "sample_interval": 1
         },
         {
           "path": "/combined-elo/",
-          "page_views": 4,
+          "page_views": 5,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
-          "page_views": 3,
+          "path": "/ppl/store.html",
+          "page_views": 5,
           "sample_interval": 1
         },
         {
@@ -41,8 +41,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/ppl/player.html",
+          "path": "/paupergenesis2026/",
           "page_views": 2,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -59,17 +64,17 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-09T21:17:19Z",
-      "end_utc_exclusive": "2026-10-16T21:17:19Z",
-      "page_views": 359,
+      "start_utc": "2026-10-09T23:39:04Z",
+      "end_utc_exclusive": "2026-10-16T23:39:04Z",
+      "page_views": 376,
       "visits": 112,
-      "sample_interval": 1.2422145328719723,
+      "sample_interval": 1.236842105263158,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 81,
-          "sample_interval": 1.125
+          "page_views": 92,
+          "sample_interval": 1.1358024691358024
         },
         {
           "path": "/ppl/store.html",
@@ -78,23 +83,23 @@
         },
         {
           "path": "/season-standings/",
-          "page_views": 59,
-          "sample_interval": 1.2291666666666667
+          "page_views": 62,
+          "sample_interval": 1.2156862745098038
         },
         {
           "path": "/ppl/metagame.html",
-          "page_views": 44,
-          "sample_interval": 1.375
-        },
-        {
-          "path": "/Tronclock/",
-          "page_views": 25,
-          "sample_interval": 1
+          "page_views": 47,
+          "sample_interval": 1.3428571428571427
         },
         {
           "path": "/combined-elo/",
-          "page_views": 24,
-          "sample_interval": 1.2
+          "page_views": 25,
+          "sample_interval": 1.1904761904761905
+        },
+        {
+          "path": "/Tronclock/",
+          "page_views": 23,
+          "sample_interval": 1
         },
         {
           "path": "/",
@@ -103,8 +108,8 @@
         },
         {
           "path": "/ppl/",
-          "page_views": 11,
-          "sample_interval": 1.1
+          "page_views": 12,
+          "sample_interval": 1.0909090909090908
         },
         {
           "path": "/pauper/",
@@ -155,17 +160,17 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-16T21:17:19Z",
-      "end_utc_exclusive": "2026-10-16T21:17:19Z",
-      "page_views": 400,
+      "start_utc": "2026-09-16T23:39:04Z",
+      "end_utc_exclusive": "2026-10-16T23:39:04Z",
+      "page_views": 430,
       "visits": 170,
-      "sample_interval": 11.764705882352942,
+      "sample_interval": 11.944444444444445,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 110,
-          "sample_interval": 11
+          "page_views": 140,
+          "sample_interval": 11.666666666666666
         },
         {
           "path": "/season-standings/",
