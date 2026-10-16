@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-10-16T12:29:26Z",
+  "updated_at": "2026-10-16T17:29:24Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-15T12:29:26Z",
-      "end_utc_exclusive": "2026-10-16T12:29:26Z",
-      "page_views": 168,
-      "visits": 37,
-      "sample_interval": 1.3548387096774193,
+      "start_utc": "2026-10-15T17:29:24Z",
+      "end_utc_exclusive": "2026-10-16T17:29:24Z",
+      "page_views": 174,
+      "visits": 40,
+      "sample_interval": 1.3384615384615384,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -17,8 +17,13 @@
         },
         {
           "path": "/ppl/store.html",
-          "page_views": 39,
-          "sample_interval": 2.1666666666666665
+          "page_views": 41,
+          "sample_interval": 2.05
+        },
+        {
+          "path": "/season-standings/",
+          "page_views": 30,
+          "sample_interval": 1.2
         },
         {
           "path": "/combined-elo/",
@@ -29,11 +34,6 @@
           "path": "/ppl/metagame.html",
           "page_views": 23,
           "sample_interval": 1.4375
-        },
-        {
-          "path": "/season-standings/",
-          "page_views": 23,
-          "sample_interval": 1.2777777777777777
         },
         {
           "path": "/",
@@ -47,38 +47,23 @@
         },
         {
           "path": "/Tronclock/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/pauper/",
-          "page_views": 2,
+          "page_views": 3,
           "sample_interval": 1
         },
         {
           "path": "/paupergenesis2026/",
           "page_views": 2,
           "sample_interval": 1
-        },
-        {
-          "path": "/mana-counter/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/card-foil/",
-          "page_views": 1,
-          "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-09T12:29:26Z",
-      "end_utc_exclusive": "2026-10-16T12:29:26Z",
-      "page_views": 351,
-      "visits": 109,
-      "sample_interval": 1.2491103202846976,
+      "start_utc": "2026-10-09T17:29:24Z",
+      "end_utc_exclusive": "2026-10-16T17:29:24Z",
+      "page_views": 361,
+      "visits": 114,
+      "sample_interval": 1.2405498281786942,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -88,13 +73,13 @@
         },
         {
           "path": "/ppl/store.html",
-          "page_views": 62,
-          "sample_interval": 1.9375
+          "page_views": 64,
+          "sample_interval": 1.8823529411764706
         },
         {
           "path": "/season-standings/",
-          "page_views": 52,
-          "sample_interval": 1.2682926829268293
+          "page_views": 59,
+          "sample_interval": 1.2291666666666667
         },
         {
           "path": "/ppl/metagame.html",
@@ -103,7 +88,7 @@
         },
         {
           "path": "/Tronclock/",
-          "page_views": 27,
+          "page_views": 29,
           "sample_interval": 1
         },
         {
@@ -128,7 +113,7 @@
         },
         {
           "path": "/card-foil/",
-          "page_views": 8,
+          "page_views": 7,
           "sample_interval": 1
         },
         {
@@ -170,11 +155,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-16T12:29:26Z",
-      "end_utc_exclusive": "2026-10-16T12:29:26Z",
-      "page_views": 390,
-      "visits": 160,
-      "sample_interval": 11.818181818181818,
+      "start_utc": "2026-09-16T17:29:24Z",
+      "end_utc_exclusive": "2026-10-16T17:29:24Z",
+      "page_views": 400,
+      "visits": 170,
+      "sample_interval": 11.764705882352942,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -189,7 +174,7 @@
         },
         {
           "path": "/Tronclock/",
-          "page_views": 50,
+          "page_views": 60,
           "sample_interval": 10
         },
         {
