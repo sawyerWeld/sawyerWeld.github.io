@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-10-17T13:46:56Z",
+  "updated_at": "2026-10-17T17:16:26Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-16T13:46:56Z",
-      "end_utc_exclusive": "2026-10-17T13:46:56Z",
-      "page_views": 104,
-      "visits": 18,
-      "sample_interval": 1.0196078431372548,
+      "start_utc": "2026-10-16T17:16:26Z",
+      "end_utc_exclusive": "2026-10-17T17:16:26Z",
+      "page_views": 94,
+      "visits": 13,
+      "sample_interval": 1.0217391304347827,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -17,7 +17,7 @@
         },
         {
           "path": "/season-standings/",
-          "page_views": 24,
+          "page_views": 17,
           "sample_interval": 1
         },
         {
@@ -36,13 +36,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/ppl/store.html",
-          "page_views": 4,
+          "path": "/Tronclock/",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 3,
+          "path": "/ppl/store.html",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
@@ -64,8 +64,8 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-10T13:46:56Z",
-      "end_utc_exclusive": "2026-10-17T13:46:56Z",
+      "start_utc": "2026-10-10T17:16:26Z",
+      "end_utc_exclusive": "2026-10-17T17:16:26Z",
       "page_views": 437,
       "visits": 111,
       "sample_interval": 1.1972602739726028,
@@ -150,8 +150,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-17T13:46:56Z",
-      "end_utc_exclusive": "2026-10-17T13:46:56Z",
+      "start_utc": "2026-09-17T17:16:26Z",
+      "end_utc_exclusive": "2026-10-17T17:16:26Z",
       "page_views": 490,
       "visits": 170,
       "sample_interval": 11.666666666666666,
