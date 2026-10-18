@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-18T05:59:18Z",
+  "updated_at": "2026-10-18T11:16:38Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-17T05:59:18Z",
-      "end_utc_exclusive": "2026-10-18T05:59:18Z",
-      "page_views": 43,
-      "visits": 6,
+      "start_utc": "2026-10-17T11:16:38Z",
+      "end_utc_exclusive": "2026-10-18T11:16:38Z",
+      "page_views": 42,
+      "visits": 5,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -36,12 +36,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 2,
+          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "path": "/Tronclock/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -59,8 +59,8 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-11T05:59:18Z",
-      "end_utc_exclusive": "2026-10-18T05:59:18Z",
+      "start_utc": "2026-10-11T11:16:38Z",
+      "end_utc_exclusive": "2026-10-18T11:16:38Z",
       "page_views": 464,
       "visits": 111,
       "sample_interval": 1.183673469387755,
@@ -155,8 +155,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-18T05:59:18Z",
-      "end_utc_exclusive": "2026-10-18T05:59:18Z",
+      "start_utc": "2026-09-18T11:16:38Z",
+      "end_utc_exclusive": "2026-10-18T11:16:38Z",
       "page_views": 540,
       "visits": 180,
       "sample_interval": 11.48936170212766,
