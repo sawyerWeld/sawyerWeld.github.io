@@ -1,137 +1,102 @@
 {
-  "updated_at": "2026-10-20T10:08:15Z",
+  "updated_at": "2026-10-20T15:09:16Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-19T10:08:15Z",
-      "end_utc_exclusive": "2026-10-20T10:08:15Z",
-      "page_views": 23,
-      "visits": 4,
+      "start_utc": "2026-10-19T15:09:16Z",
+      "end_utc_exclusive": "2026-10-20T15:09:16Z",
+      "page_views": 8,
+      "visits": 5,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/season-standings/",
-          "page_views": 8,
+          "page_views": 3,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/store.html",
-          "page_views": 7,
+          "path": "/Tronclock/",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/player.html",
-          "page_views": 4,
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
           "path": "/ppl/",
-          "page_views": 2,
+          "page_views": 1,
           "sample_interval": 1
         },
         {
           "path": "/",
-          "page_views": 2,
+          "page_views": 1,
           "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-13T10:08:15Z",
-      "end_utc_exclusive": "2026-10-20T10:08:15Z",
-      "page_views": 457,
-      "visits": 104,
-      "sample_interval": 1.187012987012987,
+      "start_utc": "2026-10-13T15:09:16Z",
+      "end_utc_exclusive": "2026-10-20T15:09:16Z",
+      "page_views": 370,
+      "visits": 70,
+      "sample_interval": 11.212121212121213,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 109,
-          "sample_interval": 1.1122448979591837
+          "page_views": 150,
+          "sample_interval": 10.714285714285714
         },
         {
           "path": "/season-standings/",
-          "page_views": 99,
-          "sample_interval": 1.125
+          "page_views": 70,
+          "sample_interval": 11.666666666666666
         },
         {
           "path": "/ppl/store.html",
-          "page_views": 80,
-          "sample_interval": 1.6
-        },
-        {
-          "path": "/ppl/metagame.html",
-          "page_views": 55,
-          "sample_interval": 1.2790697674418605
+          "page_views": 50,
+          "sample_interval": 16.666666666666668
         },
         {
           "path": "/combined-elo/",
-          "page_views": 43,
-          "sample_interval": 1.1025641025641026
+          "page_views": 40,
+          "sample_interval": 10
+        },
+        {
+          "path": "/ppl/metagame.html",
+          "page_views": 20,
+          "sample_interval": 10
         },
         {
           "path": "/ppl/",
-          "page_views": 21,
-          "sample_interval": 1.05
-        },
-        {
-          "path": "/",
-          "page_views": 15,
-          "sample_interval": 1.25
+          "page_views": 10,
+          "sample_interval": 10
         },
         {
           "path": "/Tronclock/",
-          "page_views": 15,
-          "sample_interval": 1
+          "page_views": 10,
+          "sample_interval": 10
         },
         {
           "path": "/pauper/",
-          "page_views": 5,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergenesis2026/",
-          "page_views": 5,
-          "sample_interval": 1
-        },
-        {
-          "path": "/card-foil/",
-          "page_views": 4,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/mana-counter/",
-          "page_views": 1,
-          "sample_interval": 1
+          "page_views": 10,
+          "sample_interval": 10
         },
         {
           "path": "/paupergeddon2026/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddonsummer2026/",
-          "page_views": 1,
-          "sample_interval": 1
+          "page_views": 10,
+          "sample_interval": 10
         }
       ]
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-20T10:08:15Z",
-      "end_utc_exclusive": "2026-10-20T10:08:15Z",
+      "start_utc": "2026-09-20T15:09:16Z",
+      "end_utc_exclusive": "2026-10-20T15:09:16Z",
       "page_views": 570,
       "visits": 180,
       "sample_interval": 11.4,
