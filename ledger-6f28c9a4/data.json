@@ -1,23 +1,18 @@
 {
-  "updated_at": "2026-10-21T07:44:44Z",
+  "updated_at": "2026-10-21T13:52:40Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-20T07:44:44Z",
-      "end_utc_exclusive": "2026-10-21T07:44:44Z",
-      "page_views": 9,
-      "visits": 7,
+      "start_utc": "2026-10-20T13:52:40Z",
+      "end_utc_exclusive": "2026-10-21T13:52:40Z",
+      "page_views": 7,
+      "visits": 5,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/Tronclock/",
-          "page_views": 3,
-          "sample_interval": 1
-        },
-        {
           "path": "/paupergenesis2026/survivorship/",
-          "page_views": 2,
+          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -27,6 +22,16 @@
         },
         {
           "path": "/spanishpauper2026/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/Tronclock/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -44,11 +49,11 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-14T07:44:44Z",
-      "end_utc_exclusive": "2026-10-21T07:44:44Z",
-      "page_views": 340,
-      "visits": 70,
-      "sample_interval": 10.96774193548387,
+      "start_utc": "2026-10-14T13:52:40Z",
+      "end_utc_exclusive": "2026-10-21T13:52:40Z",
+      "page_views": 369,
+      "visits": 83,
+      "sample_interval": 1.1424148606811146,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -88,8 +93,8 @@
         },
         {
           "path": "/",
-          "page_views": 10,
-          "sample_interval": 1.25
+          "page_views": 11,
+          "sample_interval": 1.2222222222222223
         },
         {
           "path": "/paupergenesis2026/",
@@ -145,11 +150,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-21T07:44:44Z",
-      "end_utc_exclusive": "2026-10-21T07:44:44Z",
-      "page_views": 590,
-      "visits": 190,
-      "sample_interval": 11.346153846153847,
+      "start_utc": "2026-09-21T13:52:40Z",
+      "end_utc_exclusive": "2026-10-21T13:52:40Z",
+      "page_views": 600,
+      "visits": 200,
+      "sample_interval": 11.320754716981131,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -173,6 +178,11 @@
           "sample_interval": 16.666666666666668
         },
         {
+          "path": "/",
+          "page_views": 40,
+          "sample_interval": 13.333333333333334
+        },
+        {
           "path": "/combined-elo/",
           "page_views": 40,
           "sample_interval": 10
@@ -181,11 +191,6 @@
           "path": "/ppl/metagame.html",
           "page_views": 30,
           "sample_interval": 10
-        },
-        {
-          "path": "/",
-          "page_views": 30,
-          "sample_interval": 15
         },
         {
           "path": "/card-foil/",
