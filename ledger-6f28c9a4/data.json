@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-10-21T13:52:40Z",
+  "updated_at": "2026-10-21T18:42:23Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-20T13:52:40Z",
-      "end_utc_exclusive": "2026-10-21T13:52:40Z",
-      "page_views": 7,
-      "visits": 5,
+      "start_utc": "2026-10-20T18:42:23Z",
+      "end_utc_exclusive": "2026-10-21T18:42:23Z",
+      "page_views": 8,
+      "visits": 4,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/paupergenesis2026/survivorship/",
-          "page_views": 1,
+          "path": "/ppl/player.html",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
@@ -21,7 +21,7 @@
           "sample_interval": 1
         },
         {
-          "path": "/spanishpauper2026/",
+          "path": "/ppl/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -49,22 +49,22 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-14T13:52:40Z",
-      "end_utc_exclusive": "2026-10-21T13:52:40Z",
-      "page_views": 369,
-      "visits": 83,
-      "sample_interval": 1.1424148606811146,
+      "start_utc": "2026-10-14T18:42:23Z",
+      "end_utc_exclusive": "2026-10-21T18:42:23Z",
+      "page_views": 371,
+      "visits": 84,
+      "sample_interval": 1.1415384615384616,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 93,
-          "sample_interval": 1.0689655172413792
+          "page_views": 95,
+          "sample_interval": 1.0674157303370786
         },
         {
           "path": "/season-standings/",
-          "page_views": 73,
-          "sample_interval": 1.0735294117647058
+          "page_views": 72,
+          "sample_interval": 1.0746268656716418
         },
         {
           "path": "/ppl/store.html",
@@ -83,8 +83,8 @@
         },
         {
           "path": "/ppl/",
-          "page_views": 16,
-          "sample_interval": 1.0666666666666667
+          "page_views": 17,
+          "sample_interval": 1.0625
         },
         {
           "path": "/Tronclock/",
@@ -150,8 +150,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-21T13:52:40Z",
-      "end_utc_exclusive": "2026-10-21T13:52:40Z",
+      "start_utc": "2026-09-21T18:42:23Z",
+      "end_utc_exclusive": "2026-10-21T18:42:23Z",
       "page_views": 600,
       "visits": 200,
       "sample_interval": 11.320754716981131,
