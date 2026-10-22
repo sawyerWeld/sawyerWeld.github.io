@@ -1,23 +1,18 @@
 {
-  "updated_at": "2026-10-22T18:35:23Z",
+  "updated_at": "2026-10-22T22:24:10Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-21T18:35:23Z",
-      "end_utc_exclusive": "2026-10-22T18:35:23Z",
-      "page_views": 4,
-      "visits": 4,
+      "start_utc": "2026-10-21T22:24:10Z",
+      "end_utc_exclusive": "2026-10-22T22:24:10Z",
+      "page_views": 3,
+      "visits": 3,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/card-foil/",
           "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/",
-          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -29,56 +24,56 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-15T18:35:23Z",
-      "end_utc_exclusive": "2026-10-22T18:35:23Z",
-      "page_views": 362,
-      "visits": 78,
-      "sample_interval": 1.1455696202531647,
+      "start_utc": "2026-10-15T22:24:10Z",
+      "end_utc_exclusive": "2026-10-22T22:24:10Z",
+      "page_views": 247,
+      "visits": 55,
+      "sample_interval": 1.0786026200873362,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 95,
-          "sample_interval": 1.0674157303370786
+          "page_views": 56,
+          "sample_interval": 1.037037037037037
         },
         {
           "path": "/season-standings/",
-          "page_views": 70,
-          "sample_interval": 1.0769230769230769
-        },
-        {
-          "path": "/ppl/store.html",
           "page_views": 55,
-          "sample_interval": 1.6176470588235294
-        },
-        {
-          "path": "/combined-elo/",
-          "page_views": 43,
-          "sample_interval": 1.1025641025641026
+          "sample_interval": 1
         },
         {
           "path": "/ppl/metagame.html",
-          "page_views": 41,
-          "sample_interval": 1.2058823529411764
+          "page_views": 34,
+          "sample_interval": 1.2592592592592593
+        },
+        {
+          "path": "/ppl/store.html",
+          "page_views": 33,
+          "sample_interval": 1.375
+        },
+        {
+          "path": "/combined-elo/",
+          "page_views": 23,
+          "sample_interval": 1
         },
         {
           "path": "/ppl/",
-          "page_views": 17,
-          "sample_interval": 1.0625
+          "page_views": 14,
+          "sample_interval": 1
         },
         {
           "path": "/Tronclock/",
-          "page_views": 13,
+          "page_views": 12,
           "sample_interval": 1
         },
         {
           "path": "/",
-          "page_views": 12,
-          "sample_interval": 1.2
+          "page_views": 5,
+          "sample_interval": 1
         },
         {
           "path": "/paupergenesis2026/",
-          "page_views": 4,
+          "page_views": 3,
           "sample_interval": 1
         },
         {
@@ -120,8 +115,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-22T18:35:23Z",
-      "end_utc_exclusive": "2026-10-22T18:35:23Z",
+      "start_utc": "2026-09-22T22:24:10Z",
+      "end_utc_exclusive": "2026-10-22T22:24:10Z",
       "page_views": 610,
       "visits": 210,
       "sample_interval": 11.296296296296296,
