@@ -1,20 +1,15 @@
 {
-  "updated_at": "2026-10-23T22:16:30Z",
+  "updated_at": "2026-10-24T00:45:47Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-22T22:16:30Z",
-      "end_utc_exclusive": "2026-10-23T22:16:30Z",
-      "page_views": 7,
-      "visits": 5,
+      "start_utc": "2026-10-23T00:45:47Z",
+      "end_utc_exclusive": "2026-10-24T00:45:47Z",
+      "page_views": 6,
+      "visits": 4,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
-        {
-          "path": "/card-foil/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
         {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
           "page_views": 1,
@@ -22,6 +17,11 @@
         },
         {
           "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/card-foil/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -44,31 +44,21 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-16T22:16:30Z",
-      "end_utc_exclusive": "2026-10-23T22:16:30Z",
-      "page_views": 196,
-      "visits": 43,
-      "sample_interval": 1.0103092783505154,
+      "start_utc": "2026-10-17T00:45:47Z",
+      "end_utc_exclusive": "2026-10-24T00:45:47Z",
+      "page_views": 170,
+      "visits": 39,
+      "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 54,
-          "sample_interval": 1.0384615384615385
+          "page_views": 43,
+          "sample_interval": 1
         },
         {
           "path": "/season-standings/",
-          "page_views": 42,
-          "sample_interval": 1
-        },
-        {
-          "path": "/combined-elo/",
-          "page_views": 19,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/metagame.html",
-          "page_views": 18,
+          "page_views": 39,
           "sample_interval": 1
         },
         {
@@ -77,8 +67,18 @@
           "sample_interval": 1
         },
         {
+          "path": "/ppl/metagame.html",
+          "page_views": 15,
+          "sample_interval": 1
+        },
+        {
           "path": "/ppl/",
-          "page_views": 14,
+          "page_views": 12,
+          "sample_interval": 1
+        },
+        {
+          "path": "/combined-elo/",
+          "page_views": 12,
           "sample_interval": 1
         },
         {
@@ -135,8 +135,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-23T22:16:30Z",
-      "end_utc_exclusive": "2026-10-23T22:16:30Z",
+      "start_utc": "2026-09-24T00:45:47Z",
+      "end_utc_exclusive": "2026-10-24T00:45:47Z",
       "page_views": 630,
       "visits": 230,
       "sample_interval": 11.25,
