@@ -1,33 +1,33 @@
 {
-  "updated_at": "2026-10-24T18:12:33Z",
+  "updated_at": "2026-10-24T20:55:15Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-23T18:12:33Z",
-      "end_utc_exclusive": "2026-10-24T18:12:33Z",
-      "page_views": 38,
-      "visits": 7,
+      "start_utc": "2026-10-23T20:55:15Z",
+      "end_utc_exclusive": "2026-10-24T20:55:15Z",
+      "page_views": 48,
+      "visits": 10,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 11,
+          "page_views": 14,
           "sample_interval": 1
         },
         {
           "path": "/combined-elo/",
-          "page_views": 10,
+          "page_views": 13,
           "sample_interval": 1
         },
         {
           "path": "/season-standings/",
-          "page_views": 7,
+          "page_views": 8,
           "sample_interval": 1
         },
         {
           "path": "/ppl/",
-          "page_views": 3,
+          "page_views": 4,
           "sample_interval": 1
         },
         {
@@ -41,12 +41,17 @@
           "sample_interval": 1
         },
         {
+          "path": "/card-foil/",
+          "page_views": 2,
+          "sample_interval": 1
+        },
+        {
           "path": "/ppl/metagame.html",
           "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
+          "path": "/paupergenesis2026/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -54,26 +59,26 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-17T18:12:33Z",
-      "end_utc_exclusive": "2026-10-24T18:12:33Z",
+      "start_utc": "2026-10-17T20:55:15Z",
+      "end_utc_exclusive": "2026-10-24T20:55:15Z",
       "page_views": 143,
-      "visits": 40,
+      "visits": 42,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/season-standings/",
-          "page_views": 32,
+          "page_views": 33,
           "sample_interval": 1
         },
         {
           "path": "/ppl/player.html",
-          "page_views": 31,
+          "page_views": 29,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/store.html",
-          "page_views": 17,
+          "path": "/combined-elo/",
+          "page_views": 15,
           "sample_interval": 1
         },
         {
@@ -82,8 +87,8 @@
           "sample_interval": 1
         },
         {
-          "path": "/combined-elo/",
-          "page_views": 12,
+          "path": "/ppl/store.html",
+          "page_views": 13,
           "sample_interval": 1
         },
         {
@@ -98,7 +103,7 @@
         },
         {
           "path": "/card-foil/",
-          "page_views": 5,
+          "page_views": 6,
           "sample_interval": 1
         },
         {
@@ -127,6 +132,11 @@
           "sample_interval": 1
         },
         {
+          "path": "/paupergenesis2026/",
+          "page_views": 2,
+          "sample_interval": 1
+        },
+        {
           "path": "/spanishpauper2026/",
           "page_views": 1,
           "sample_interval": 1
@@ -135,21 +145,16 @@
           "path": "/pauper/",
           "page_views": 1,
           "sample_interval": 1
-        },
-        {
-          "path": "/paupergenesis2026/",
-          "page_views": 1,
-          "sample_interval": 1
         }
       ]
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-24T18:12:33Z",
-      "end_utc_exclusive": "2026-10-24T18:12:33Z",
-      "page_views": 640,
+      "start_utc": "2026-09-24T20:55:15Z",
+      "end_utc_exclusive": "2026-10-24T20:55:15Z",
+      "page_views": 650,
       "visits": 230,
-      "sample_interval": 11.228070175438596,
+      "sample_interval": 11.206896551724139,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -173,14 +178,14 @@
           "sample_interval": 12.5
         },
         {
+          "path": "/combined-elo/",
+          "page_views": 50,
+          "sample_interval": 10
+        },
+        {
           "path": "/ppl/store.html",
           "page_views": 50,
           "sample_interval": 16.666666666666668
-        },
-        {
-          "path": "/combined-elo/",
-          "page_views": 40,
-          "sample_interval": 10
         },
         {
           "path": "/card-foil/",
