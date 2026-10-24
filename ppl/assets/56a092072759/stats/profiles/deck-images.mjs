@@ -11,6 +11,12 @@ export const deckImages = {
     "artist": "Mila Pesic",
     "source": "https://scryfall.com/card/mh1/19/martyrs-soul?utm_source=api"
   },
+  "Red Deck Wins": {
+    "url": "https://cards.scryfall.io/art_crop/front/d/5/d573ef03-4730-45aa-93dd-e45ac1dbaf4a.jpg?1783948684",
+    "card": "Lightning Bolt",
+    "artist": "Christopher Rush",
+    "source": "https://scryfall.com/card/lea/161/lightning-bolt?utm_source=api"
+  },
   "Elves": {
     "url": "https://cards.scryfall.io/art_crop/front/3/2/320fdf89-e158-41c5-b0bf-fee9dec36a75.jpg?1783926781",
     "card": "Quirion Ranger",
