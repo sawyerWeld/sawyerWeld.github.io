@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-24T20:55:15Z",
+  "updated_at": "2026-10-24T23:20:17Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-23T20:55:15Z",
-      "end_utc_exclusive": "2026-10-24T20:55:15Z",
+      "start_utc": "2026-10-23T23:20:17Z",
+      "end_utc_exclusive": "2026-10-24T23:20:17Z",
       "page_views": 48,
       "visits": 10,
       "sample_interval": 1,
@@ -59,10 +59,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-17T20:55:15Z",
-      "end_utc_exclusive": "2026-10-24T20:55:15Z",
-      "page_views": 143,
-      "visits": 42,
+      "start_utc": "2026-10-17T23:20:17Z",
+      "end_utc_exclusive": "2026-10-24T23:20:17Z",
+      "page_views": 139,
+      "visits": 41,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -73,7 +73,7 @@
         },
         {
           "path": "/ppl/player.html",
-          "page_views": 29,
+          "page_views": 28,
           "sample_interval": 1
         },
         {
@@ -112,22 +112,22 @@
           "sample_interval": 1
         },
         {
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 2,
+          "sample_interval": 1
+        },
+        {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 3,
+          "page_views": 2,
           "sample_interval": 1
         },
         {
           "path": "/paupergeddon2026/",
-          "page_views": 3,
+          "page_views": 2,
           "sample_interval": 1
         },
         {
           "path": "/paupergeddon2026/paupergeddon-explorer.html",
-          "page_views": 3,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergenesis2026/survivorship/",
           "page_views": 2,
           "sample_interval": 1
         },
@@ -150,8 +150,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-24T20:55:15Z",
-      "end_utc_exclusive": "2026-10-24T20:55:15Z",
+      "start_utc": "2026-09-24T23:20:17Z",
+      "end_utc_exclusive": "2026-10-24T23:20:17Z",
       "page_views": 650,
       "visits": 230,
       "sample_interval": 11.206896551724139,
