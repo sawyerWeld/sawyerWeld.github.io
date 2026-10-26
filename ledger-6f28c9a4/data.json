@@ -1,48 +1,23 @@
 {
-  "updated_at": "2026-10-26T01:15:42Z",
+  "updated_at": "2026-10-26T06:20:53Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-25T01:15:42Z",
-      "end_utc_exclusive": "2026-10-26T01:15:42Z",
-      "page_views": 9,
+      "start_utc": "2026-10-25T06:20:53Z",
+      "end_utc_exclusive": "2026-10-26T06:20:53Z",
+      "page_views": 6,
       "visits": 6,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/season-standings/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/",
-          "page_views": 1,
+          "page_views": 3,
           "sample_interval": 1
         },
         {
           "path": "/card-foil/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
-          "page_views": 1,
+          "page_views": 2,
           "sample_interval": 1
         },
         {
@@ -54,10 +29,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-19T01:15:42Z",
-      "end_utc_exclusive": "2026-10-26T01:15:42Z",
-      "page_views": 105,
-      "visits": 39,
+      "start_utc": "2026-10-19T06:20:53Z",
+      "end_utc_exclusive": "2026-10-26T06:20:53Z",
+      "page_views": 106,
+      "visits": 40,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -87,18 +62,18 @@
           "sample_interval": 1
         },
         {
+          "path": "/card-foil/",
+          "page_views": 8,
+          "sample_interval": 1
+        },
+        {
           "path": "/",
           "page_views": 7,
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
-          "page_views": 7,
-          "sample_interval": 1
-        },
-        {
           "path": "/Tronclock/",
-          "page_views": 6,
+          "page_views": 7,
           "sample_interval": 1
         },
         {
@@ -117,12 +92,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
-          "page_views": 3,
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/survivorship/",
+          "path": "/paupergenesis2026/",
           "page_views": 2,
           "sample_interval": 1
         },
@@ -145,8 +120,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-26T01:15:42Z",
-      "end_utc_exclusive": "2026-10-26T01:15:42Z",
+      "start_utc": "2026-09-26T06:20:53Z",
+      "end_utc_exclusive": "2026-10-26T06:20:53Z",
       "page_views": 650,
       "visits": 230,
       "sample_interval": 11.206896551724139,
