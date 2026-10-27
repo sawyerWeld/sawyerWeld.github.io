@@ -1,23 +1,58 @@
 {
-  "updated_at": "2026-10-27T14:35:37Z",
+  "updated_at": "2026-10-27T20:07:21Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-26T14:35:37Z",
-      "end_utc_exclusive": "2026-10-27T14:35:37Z",
-      "page_views": 8,
-      "visits": 8,
+      "start_utc": "2026-10-26T20:07:21Z",
+      "end_utc_exclusive": "2026-10-27T20:07:21Z",
+      "page_views": 42,
+      "visits": 29,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
+          "path": "/pauper/",
+          "page_views": 10,
+          "sample_interval": 1
+        },
+        {
           "path": "/",
+          "page_views": 8,
+          "sample_interval": 1
+        },
+        {
+          "path": "/combined-elo/",
+          "page_views": 5,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddonsummer2026/",
+          "page_views": 5,
+          "sample_interval": 1
+        },
+        {
+          "path": "/spanishpauper2026/",
           "page_views": 4,
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
+          "path": "/commongroundcup4/",
+          "page_views": 3,
+          "sample_interval": 1
+        },
+        {
+          "path": "/Tronclock/",
           "page_views": 2,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/season-standings/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -26,7 +61,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
+          "path": "/card-foil/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergenesis2026/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -34,21 +74,31 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-20T14:35:37Z",
-      "end_utc_exclusive": "2026-10-27T14:35:37Z",
-      "page_views": 97,
-      "visits": 46,
+      "start_utc": "2026-10-20T20:07:21Z",
+      "end_utc_exclusive": "2026-10-27T20:07:21Z",
+      "page_views": 130,
+      "visits": 66,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
+        {
+          "path": "/combined-elo/",
+          "page_views": 18,
+          "sample_interval": 1
+        },
         {
           "path": "/ppl/player.html",
           "page_views": 16,
           "sample_interval": 1
         },
         {
-          "path": "/combined-elo/",
-          "page_views": 13,
+          "path": "/",
+          "page_views": 14,
+          "sample_interval": 1
+        },
+        {
+          "path": "/season-standings/",
+          "page_views": 11,
           "sample_interval": 1
         },
         {
@@ -57,13 +107,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/season-standings/",
-          "page_views": 10,
+          "path": "/pauper/",
+          "page_views": 11,
           "sample_interval": 1
         },
         {
-          "path": "/",
-          "page_views": 10,
+          "path": "/Tronclock/",
+          "page_views": 9,
           "sample_interval": 1
         },
         {
@@ -72,17 +122,27 @@
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 7,
-          "sample_interval": 1
-        },
-        {
           "path": "/ppl/store.html",
           "page_views": 6,
           "sample_interval": 1
         },
         {
+          "path": "/paupergeddonsummer2026/",
+          "page_views": 5,
+          "sample_interval": 1
+        },
+        {
+          "path": "/spanishpauper2026/",
+          "page_views": 4,
+          "sample_interval": 1
+        },
+        {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 3,
+          "sample_interval": 1
+        },
+        {
+          "path": "/commongroundcup4/",
           "page_views": 3,
           "sample_interval": 1
         },
@@ -97,22 +157,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
           "path": "/paupergenesis2026/",
-          "page_views": 2,
+          "page_views": 3,
           "sample_interval": 1
         },
         {
           "path": "/paupergenesis2026/survivorship/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/spanishpauper2026/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -125,11 +175,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-27T14:35:37Z",
-      "end_utc_exclusive": "2026-10-27T14:35:37Z",
-      "page_views": 660,
-      "visits": 230,
-      "sample_interval": 11.186440677966102,
+      "start_utc": "2026-09-27T20:07:21Z",
+      "end_utc_exclusive": "2026-10-27T20:07:21Z",
+      "page_views": 670,
+      "visits": 240,
+      "sample_interval": 11.166666666666666,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -148,14 +198,14 @@
           "sample_interval": 10
         },
         {
+          "path": "/",
+          "page_views": 60,
+          "sample_interval": 12
+        },
+        {
           "path": "/ppl/store.html",
           "page_views": 60,
           "sample_interval": 15
-        },
-        {
-          "path": "/",
-          "page_views": 50,
-          "sample_interval": 12.5
         },
         {
           "path": "/combined-elo/",
