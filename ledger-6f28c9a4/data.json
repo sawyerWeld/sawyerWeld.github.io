@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-27T20:07:21Z",
+  "updated_at": "2026-10-27T23:48:31Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-26T20:07:21Z",
-      "end_utc_exclusive": "2026-10-27T20:07:21Z",
+      "start_utc": "2026-10-26T23:48:31Z",
+      "end_utc_exclusive": "2026-10-27T23:48:31Z",
       "page_views": 42,
       "visits": 29,
       "sample_interval": 1,
@@ -74,10 +74,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-20T20:07:21Z",
-      "end_utc_exclusive": "2026-10-27T20:07:21Z",
-      "page_views": 130,
-      "visits": 66,
+      "start_utc": "2026-10-20T23:48:31Z",
+      "end_utc_exclusive": "2026-10-27T23:48:31Z",
+      "page_views": 126,
+      "visits": 64,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -112,12 +112,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 9,
+          "path": "/ppl/",
+          "page_views": 8,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/",
+          "path": "/Tronclock/",
           "page_views": 8,
           "sample_interval": 1
         },
@@ -137,28 +137,28 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 3,
-          "sample_interval": 1
-        },
-        {
           "path": "/commongroundcup4/",
-          "page_views": 3,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/",
-          "page_views": 3,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
           "page_views": 3,
           "sample_interval": 1
         },
         {
           "path": "/paupergenesis2026/",
           "page_views": 3,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 2,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddon2026/",
+          "page_views": 2,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddon2026/paupergeddon-explorer.html",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
@@ -175,8 +175,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-27T20:07:21Z",
-      "end_utc_exclusive": "2026-10-27T20:07:21Z",
+      "start_utc": "2026-09-27T23:48:31Z",
+      "end_utc_exclusive": "2026-10-27T23:48:31Z",
       "page_views": 670,
       "visits": 240,
       "sample_interval": 11.166666666666666,
