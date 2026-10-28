@@ -1,21 +1,32 @@
 {
-  "updated_at": "2026-10-28T18:53:54Z",
+  "updated_at": "2026-10-28T23:16:31Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-27T18:53:54Z",
-      "end_utc_exclusive": "2026-10-28T18:53:54Z",
-      "page_views": 0,
-      "visits": 0,
-      "sample_interval": null,
+      "start_utc": "2026-10-27T23:16:31Z",
+      "end_utc_exclusive": "2026-10-28T23:16:31Z",
+      "page_views": 2,
+      "visits": 1,
+      "sample_interval": 1,
       "pages_may_be_truncated": false,
-      "pages": []
+      "pages": [
+        {
+          "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/pauper/",
+          "page_views": 1,
+          "sample_interval": 1
+        }
+      ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-21T18:53:54Z",
-      "end_utc_exclusive": "2026-10-28T18:53:54Z",
-      "page_views": 122,
+      "start_utc": "2026-10-21T23:16:31Z",
+      "end_utc_exclusive": "2026-10-28T23:16:31Z",
+      "page_views": 123,
       "visits": 62,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
@@ -36,17 +47,17 @@
           "sample_interval": 1
         },
         {
+          "path": "/pauper/",
+          "page_views": 12,
+          "sample_interval": 1
+        },
+        {
           "path": "/season-standings/",
           "page_views": 11,
           "sample_interval": 1
         },
         {
           "path": "/card-foil/",
-          "page_views": 11,
-          "sample_interval": 1
-        },
-        {
-          "path": "/pauper/",
           "page_views": 11,
           "sample_interval": 1
         },
@@ -114,11 +125,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-28T18:53:54Z",
-      "end_utc_exclusive": "2026-10-28T18:53:54Z",
-      "page_views": 670,
-      "visits": 240,
-      "sample_interval": 11.166666666666666,
+      "start_utc": "2026-09-28T23:16:31Z",
+      "end_utc_exclusive": "2026-10-28T23:16:31Z",
+      "page_views": 680,
+      "visits": 250,
+      "sample_interval": 11.147540983606557,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -132,14 +143,14 @@
           "sample_interval": 12.5
         },
         {
+          "path": "/",
+          "page_views": 70,
+          "sample_interval": 11.666666666666666
+        },
+        {
           "path": "/Tronclock/",
           "page_views": 70,
           "sample_interval": 10
-        },
-        {
-          "path": "/",
-          "page_views": 60,
-          "sample_interval": 12
         },
         {
           "path": "/ppl/store.html",
