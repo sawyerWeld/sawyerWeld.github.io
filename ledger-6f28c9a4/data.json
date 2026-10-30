@@ -1,27 +1,37 @@
 {
-  "updated_at": "2026-10-30T08:43:19Z",
+  "updated_at": "2026-10-30T15:58:53Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-29T08:43:19Z",
-      "end_utc_exclusive": "2026-10-30T08:43:19Z",
-      "page_views": 15,
-      "visits": 12,
+      "start_utc": "2026-10-29T15:58:53Z",
+      "end_utc_exclusive": "2026-10-30T15:58:53Z",
+      "page_views": 26,
+      "visits": 14,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
+        {
+          "path": "/ppl/store.html",
+          "page_views": 6,
+          "sample_interval": 1
+        },
+        {
+          "path": "/combined-elo/",
+          "page_views": 5,
+          "sample_interval": 1
+        },
+        {
+          "path": "/season-standings/",
+          "page_views": 4,
+          "sample_interval": 1
+        },
         {
           "path": "/card-foil/",
           "page_views": 3,
           "sample_interval": 1
         },
         {
-          "path": "/combined-elo/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/pauper/",
+          "path": "/ppl/",
           "page_views": 2,
           "sample_interval": 1
         },
@@ -36,17 +46,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/season-standings/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
           "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/pauper/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -59,26 +64,26 @@
           "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
-        },
-        {
-          "path": "/ppl/store.html",
-          "page_views": 1,
-          "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-23T08:43:19Z",
-      "end_utc_exclusive": "2026-10-30T08:43:19Z",
-      "page_views": 132,
-      "visits": 70,
+      "start_utc": "2026-10-23T15:58:53Z",
+      "end_utc_exclusive": "2026-10-30T15:58:53Z",
+      "page_views": 145,
+      "visits": 74,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/combined-elo/",
-          "page_views": 20,
+          "page_views": 23,
+          "sample_interval": 1
+        },
+        {
+          "path": "/season-standings/",
+          "page_views": 15,
           "sample_interval": 1
         },
         {
@@ -97,27 +102,22 @@
           "sample_interval": 1
         },
         {
-          "path": "/season-standings/",
+          "path": "/card-foil/",
           "page_views": 12,
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
-          "page_views": 11,
+          "path": "/ppl/store.html",
+          "page_views": 12,
           "sample_interval": 1
         },
         {
           "path": "/ppl/",
-          "page_views": 8,
+          "page_views": 9,
           "sample_interval": 1
         },
         {
           "path": "/Tronclock/",
-          "page_views": 7,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/store.html",
           "page_views": 7,
           "sample_interval": 1
         },
@@ -170,8 +170,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-30T08:43:19Z",
-      "end_utc_exclusive": "2026-10-30T08:43:19Z",
+      "start_utc": "2026-09-30T15:58:53Z",
+      "end_utc_exclusive": "2026-10-30T15:58:53Z",
       "page_views": 710,
       "visits": 280,
       "sample_interval": 11.09375,
