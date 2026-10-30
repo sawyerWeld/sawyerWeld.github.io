@@ -11,7 +11,7 @@ const signedClass = value => value > 0 ? 'positive' : value < 0 ? 'negative' : '
 let store = new URL(location.href).searchParams.get('store') || 'all';
 const visiblePlayers = () => data.players.filter(p => store === 'all' || p.storeIds.includes(store));
 let data, selected = new Set(), mode = 'round', inspected = null, chartFrame;
-let matchIndex, eventIndex, byeIndex, attendanceIndex, trophyPlayers, leaderboardPage = 0;
+let matchIndex, eventIndex, byeIndex, unpairedLossIndex, attendanceIndex, trophyPlayers, leaderboardPage = 0;
 const PAGE_SIZE = 15;
 const playerByName = new Map();
 const color = name => COLORS[data.players.findIndex(p => p.player === name) % COLORS.length];
@@ -51,6 +51,7 @@ function inspect(p, index) {
   const peakNote = Math.abs(p.points[index] - p.peakElo) < .051 ? ' · Personal best' : '';
   let detail = '';
   if (t.round === 0) detail = '<span class="result-note">Rating entering the event.</span>';
+  else if(mode==='round' && unpairedLossIndex.has(`${p.player}|${t.eventId}|${t.round}`))detail='<span class="result-note">Loss · No opponent recorded · Elo unchanged</span>';
   else if(mode==='round' && byeIndex.has(`${p.player}|${t.eventId}|${t.round}`))detail='<span class="result-note">Bye · Elo unchanged</span>';
   else if (!entries.length) detail = '<span class="result-note">No rated match at this point. Rating unchanged.</span>';
   else detail = entries.map(row => `<span class="match-detail"><strong>${esc(row.result)}</strong> vs ${esc(row.opponent)} <span class="${signedClass(row.ratingChange)}">${delta(row.ratingChange)}</span></span>`).join('');
@@ -77,7 +78,7 @@ function renderChart() {
       if(p.points[idx] == null || !attendanceIndex.has(`${p.player}|${t.eventId}`))return false;
       if(mode === 'event')return true;
       if(t.round === 0)return true;
-      return matchIndex.has(`${p.player}|${t.eventId}|${t.round}`) || byeIndex.has(`${p.player}|${t.eventId}|${t.round}`);
+      return matchIndex.has(`${p.player}|${t.eventId}|${t.round}`) || byeIndex.has(`${p.player}|${t.eventId}|${t.round}`) || unpairedLossIndex.has(`${p.player}|${t.eventId}|${t.round}`);
     });
     return [p.player,samples];
   }));
@@ -215,6 +216,7 @@ function applyData(next){
   playerByName.clear();
   data.players.forEach(p=>playerByName.set(p.player,p));
   matchIndex=new Map();eventIndex=new Map();
+  unpairedLossIndex=new Set((data.unpairedLosses||[]).map(r=>`${r.player}|${r.eventId}|${r.round}`));
   byeIndex=new Set((data.byes||[]).map(r=>`${r.player}|${r.eventId}|${r.round}`));
   attendanceIndex=new Set(data.results.map(r=>`${r.player}|${r.eventId}`));
   for(const row of data.history){
@@ -229,7 +231,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=f3dc4469f479');
+    const {loadStats}=await import('./data-source.mjs?v=ddebae04e23b');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
