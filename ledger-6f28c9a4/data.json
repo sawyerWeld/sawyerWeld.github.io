@@ -1,27 +1,52 @@
 {
-  "updated_at": "2026-10-29T21:50:41Z",
+  "updated_at": "2026-10-30T01:59:33Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-28T21:50:41Z",
-      "end_utc_exclusive": "2026-10-29T21:50:41Z",
-      "page_views": 7,
-      "visits": 6,
+      "start_utc": "2026-10-29T01:59:33Z",
+      "end_utc_exclusive": "2026-10-30T01:59:33Z",
+      "page_views": 12,
+      "visits": 11,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/",
+          "path": "/combined-elo/",
           "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
-          "page_views": 2,
+          "path": "/ppl/metagame.html",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/season-standings/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
           "path": "/card-foil/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/pauper/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/player.html",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -34,30 +59,35 @@
           "path": "/paupergeddonsummer2026/",
           "page_views": 1,
           "sample_interval": 1
+        },
+        {
+          "path": "/ppl/store.html",
+          "page_views": 1,
+          "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-22T21:50:41Z",
-      "end_utc_exclusive": "2026-10-29T21:50:41Z",
-      "page_views": 125,
-      "visits": 64,
+      "start_utc": "2026-10-23T01:59:33Z",
+      "end_utc_exclusive": "2026-10-30T01:59:33Z",
+      "page_views": 128,
+      "visits": 68,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/combined-elo/",
-          "page_views": 18,
-          "sample_interval": 1
-        },
-        {
-          "path": "/",
-          "page_views": 14,
+          "page_views": 20,
           "sample_interval": 1
         },
         {
           "path": "/ppl/player.html",
+          "page_views": 15,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
           "page_views": 14,
           "sample_interval": 1
         },
@@ -68,17 +98,17 @@
         },
         {
           "path": "/season-standings/",
-          "page_views": 11,
+          "page_views": 12,
           "sample_interval": 1
         },
         {
           "path": "/card-foil/",
-          "page_views": 10,
+          "page_views": 9,
           "sample_interval": 1
         },
         {
           "path": "/ppl/",
-          "page_views": 7,
+          "page_views": 8,
           "sample_interval": 1
         },
         {
@@ -87,12 +117,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddonsummer2026/",
-          "page_views": 6,
+          "path": "/ppl/store.html",
+          "page_views": 7,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/store.html",
+          "path": "/paupergeddonsummer2026/",
           "page_views": 6,
           "sample_interval": 1
         },
@@ -112,17 +142,7 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
+          "path": "/ppl/metagame.html",
           "page_views": 2,
           "sample_interval": 1
         },
@@ -132,7 +152,17 @@
           "sample_interval": 1
         },
         {
-          "path": "/ppl/metagame.html",
+          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddon2026/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergeddon2026/paupergeddon-explorer.html",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -140,11 +170,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-29T21:50:41Z",
-      "end_utc_exclusive": "2026-10-29T21:50:41Z",
-      "page_views": 690,
-      "visits": 260,
-      "sample_interval": 11.129032258064516,
+      "start_utc": "2026-09-30T01:59:33Z",
+      "end_utc_exclusive": "2026-10-30T01:59:33Z",
+      "page_views": 700,
+      "visits": 270,
+      "sample_interval": 11.11111111111111,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -169,8 +199,8 @@
         },
         {
           "path": "/ppl/store.html",
-          "page_views": 60,
-          "sample_interval": 15
+          "page_views": 70,
+          "sample_interval": 14
         },
         {
           "path": "/combined-elo/",
