@@ -3,7 +3,7 @@ import {
   delta as signed,
   signedClass as tone,
 } from "../combined/format.mjs";
-import { renderProfileEventChart } from "./event-chart.mjs";
+import { renderProfileEventChart } from "./event-chart.mjs?v=d6ea6427d4b5";
 import { indexResults } from "../combined/chart-data.mjs";
 import { eventRatingChange } from "../combined/event-rating.mjs";
 import { renderEloChart } from "../combined/chart.mjs";
@@ -23,7 +23,7 @@ import {
   escapeHtml as esc,
   formatDate,
   loadLeagueData,
-} from "./ui.mjs";
+} from "./ui.mjs?v=d6ea6427d4b5";
 const date = formatDate;
 let data, player, resultIndexes, playerPicker;
 let chartView =

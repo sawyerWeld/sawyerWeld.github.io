@@ -1,6 +1,6 @@
 import { playerChartPoints } from "./profile-data.mjs";
 import { eventRatingChange } from "../combined/event-rating.mjs";
-import { escapeHtml as esc, formatDate as date } from "./ui.mjs";
+import { escapeHtml as esc, formatDate as date } from "./ui.mjs?v=d6ea6427d4b5";
 import { fmt, delta as signed } from "../combined/format.mjs";
 
 export function renderProfileEventChart(

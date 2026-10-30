@@ -1,5 +1,5 @@
-import { loadLeagueFeed } from '../league-feed.mjs';
-import { validateData } from '../combined/data-source.mjs';
+import { loadLeagueFeed } from '../league-feed.mjs?v=d6ea6427d4b5';
+import { validateData } from '../combined/data-source.mjs?v=d6ea6427d4b5';
 
 export const element = (id) => document.getElementById(id);
 

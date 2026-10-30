@@ -78,10 +78,10 @@ export const deckImages = {
     "source": "https://scryfall.com/card/som/10/glint-hawk?utm_source=api"
   },
   "Golgari Gardens": {
-    "url": "https://cards.scryfall.io/art_crop/front/3/e/3e0f6ae6-b303-405a-8efa-91de9692768e.jpg?1783934242",
-    "card": "Khalni Garden",
-    "artist": "Ryan Pancoast",
-    "source": "https://scryfall.com/card/c18/262/khalni-garden?utm_source=api"
+    "url": "https://cards.scryfall.io/art_crop/front/d/4/d42a6350-b16b-4e10-a273-e6cbb55dcb7a.jpg?1783948692",
+    "card": "Pestilence",
+    "artist": "Jesper Myrfors",
+    "source": "https://scryfall.com/card/lea/120/pestilence?utm_source=api"
   },
   "Dimir Affinity": {
     "url": "https://cards.scryfall.io/art_crop/front/9/f/9f36a6e2-3e51-4a30-a225-10cfe6650b9d.jpg?1783926795",
@@ -256,5 +256,17 @@ export const deckImages = {
     "card": "Unknown Shores",
     "artist": "Seb McKinnon",
     "source": "https://scryfall.com/card/ths/229/unknown-shores?utm_source=api"
+  },
+  "Eggs Tron": {
+    "url": "https://cards.scryfall.io/art_crop/front/2/d/2d32960e-d182-455f-8e74-eb11b10050da.jpg?1783944384",
+    "card": "Conjurer's Bauble",
+    "artist": "Darrell Riche",
+    "source": "https://scryfall.com/card/5dn/112/conjurers-bauble?utm_source=api"
+  },
+  "Dimir Control": {
+    "url": "https://cards.scryfall.io/art_crop/front/a/f/afb73190-b9bd-4744-a011-a37cd9c0148d.jpg?1785496438",
+    "card": "Plunder the Trollshaws",
+    "artist": "Alexander Mokhov",
+    "source": "https://scryfall.com/card/hob/51/plunder-the-trollshaws?utm_source=api"
   }
 };

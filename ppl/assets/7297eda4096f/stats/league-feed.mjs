@@ -1,4 +1,4 @@
-import { deckImages } from './profiles/deck-images.mjs';
+import { deckImages } from './profiles/deck-images.mjs?v=d6ea6427d4b5';
 
 async function readJSON(fetchResponse, url) {
   const response = await fetchResponse(url, {
