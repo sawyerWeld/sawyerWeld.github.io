@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-30T15:58:53Z",
+  "updated_at": "2026-10-30T20:51:49Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-29T15:58:53Z",
-      "end_utc_exclusive": "2026-10-30T15:58:53Z",
-      "page_views": 26,
+      "start_utc": "2026-10-29T20:51:49Z",
+      "end_utc_exclusive": "2026-10-30T20:51:49Z",
+      "page_views": 27,
       "visits": 14,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
@@ -26,13 +26,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
+          "path": "/ppl/",
           "page_views": 3,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/",
-          "page_views": 2,
+          "path": "/card-foil/",
+          "page_views": 3,
           "sample_interval": 1
         },
         {
@@ -69,10 +69,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-23T15:58:53Z",
-      "end_utc_exclusive": "2026-10-30T15:58:53Z",
+      "start_utc": "2026-10-23T20:51:49Z",
+      "end_utc_exclusive": "2026-10-30T20:51:49Z",
       "page_views": 145,
-      "visits": 74,
+      "visits": 73,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -102,18 +102,18 @@
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
-          "page_views": 12,
-          "sample_interval": 1
-        },
-        {
           "path": "/ppl/store.html",
           "page_views": 12,
           "sample_interval": 1
         },
         {
+          "path": "/card-foil/",
+          "page_views": 11,
+          "sample_interval": 1
+        },
+        {
           "path": "/ppl/",
-          "page_views": 9,
+          "page_views": 10,
           "sample_interval": 1
         },
         {
@@ -170,8 +170,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-30T15:58:53Z",
-      "end_utc_exclusive": "2026-10-30T15:58:53Z",
+      "start_utc": "2026-09-30T20:51:49Z",
+      "end_utc_exclusive": "2026-10-30T20:51:49Z",
       "page_views": 710,
       "visits": 280,
       "sample_interval": 11.09375,
