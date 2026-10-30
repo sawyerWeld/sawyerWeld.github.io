@@ -4,7 +4,7 @@ import { renderInspection } from "./inspection.mjs";
 import { renderLeaderboard as drawLeaderboard } from "./leaderboard.mjs";
 import { date } from "./format.mjs";
 import { restoreSelection, selectPlayers } from "./selection-state.mjs";
-import { renderStoreFilter } from "./store-filter.mjs";
+import { renderStoreFilter } from "./store-filter.mjs?v=d570585b5328";
 
 const $ = (id) => document.getElementById(id);
 const COLORS = [
