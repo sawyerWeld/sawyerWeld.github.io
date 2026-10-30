@@ -1,0 +1,398 @@
+:where(.league-page) header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6px 20px;
+  margin-bottom: 24px;
+}
+:where(.league-page) h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 28px;
+  letter-spacing: -0.6px;
+  margin: 0;
+  font-weight: 650;
+}
+:where(.league-page) .league-mark {
+  width: 30px;
+  height: auto;
+  flex-shrink: 0;
+}
+:where(.league-page) #dates {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+}
+:where(.league-page) button,
+:where(.league-page) input {
+  font: inherit;
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  min-height: 44px;
+  padding: 8px 13px;
+}
+:where(.league-page) button {
+  cursor: pointer;
+}
+:where(.league-page) button:hover {
+  background: #edf3f8;
+}
+:where(.league-page) button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+:where(.league-page) button:focus-visible,
+:where(.league-page) input:focus-visible,
+:where(.league-page) .player a.name:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+:where(.league-page) button:focus:not(:focus-visible),
+:where(.league-page) a:focus:not(:focus-visible) {
+  outline: none;
+}
+:where(.league-page) .search input {
+  width: 210px;
+}
+:where(.league-page) #status {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 18px;
+  margin: 0 0 12px;
+}
+:where(.league-page) #status.error {
+  color: #a13232;
+}
+:where(.league-page) .panel {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  overflow: hidden;
+}
+:where(.league-page) .table-scroll {
+  overflow-x: auto;
+}
+:where(.league-page) table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* Keep the same columns across pages, searches, and expanded players. */
+:where(.league-page) .standings-table {
+  table-layout: fixed;
+}
+:where(.league-page) .standings-table th:nth-child(1) {
+  width: 5%;
+}
+:where(.league-page) .standings-table th:nth-child(2) {
+  width: 39%;
+}
+:where(.league-page) .standings-table th:nth-child(3),
+:where(.league-page) .standings-table th:nth-child(4) {
+  width: 13%;
+}
+:where(.league-page) .standings-table th:nth-child(5),
+:where(.league-page) .standings-table th:nth-child(6) {
+  width: 15%;
+}
+:where(.league-page) th {
+  font-size: 11px;
+  font-weight: 550;
+  color: var(--muted);
+  background: #f8fafc;
+  padding: 13px 14px;
+  white-space: nowrap;
+}
+:where(.league-page) td {
+  border-top: 1px solid #e8edf2;
+  padding: 5px 14px;
+  height: 55px;
+}
+:where(.league-page) th.number,
+:where(.league-page) td.number {
+  text-align: right;
+}
+:where(.league-page) .rank {
+  width: 55px;
+  color: var(--muted);
+}
+:where(.league-page) .player,
+:where(.league-page) .season-record {
+  white-space: nowrap;
+}
+:where(.league-page) .player a.name {
+  border: 0;
+  padding: 0 4px 0 0;
+  background: transparent;
+  font-weight: 600;
+  text-align: left;
+  color: var(--ink);
+  text-decoration: none;
+}
+:where(.league-page) .player a.name:hover {
+  color: var(--blue);
+  background: transparent;
+  text-decoration: underline;
+}
+:where(.league-page) .expand {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  width: 24px;
+  min-height: 44px;
+  color: var(--muted);
+}
+:where(.league-page) .expand:hover {
+  color: var(--blue);
+}
+:where(.league-page) .total {
+  font-size: 17px;
+  font-weight: 650;
+}
+:where(.league-page) .player-row {
+  cursor: pointer;
+}
+:where(.league-page) .selected td,
+:where(.league-page) .player-row:hover > td,
+:where(.league-page) .player-row:focus-within > td {
+  background: #edf3f8;
+}
+:where(.league-page) .detail > td {
+  padding: 20px 24px;
+  background: #f8fafc;
+  height: auto;
+}
+:where(.league-page) .event-list {
+  display: grid;
+  gap: 0;
+}
+:where(.league-page) .event {
+  display: grid;
+  grid-template-columns: 100px minmax(130px, 1fr) minmax(180px, 1fr) 65px 95px;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+:where(.league-page) .event-date {
+  font-weight: 550;
+}
+:where(.league-page) .store-name {
+  font-size: 12px;
+  color: var(--muted);
+}
+:where(.league-page) .rounds {
+  display: flex;
+  gap: 8px;
+}
+:where(.league-page) .round {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 4px;
+  text-align: center;
+  min-width: 54px;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+:where(.league-page) .round small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+:where(.league-page) .event-points {
+  text-align: right;
+  font-weight: 650;
+}
+:where(.league-page) .record {
+  text-align: right;
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .store-bonus {
+  grid-template-areas: "date stores stores points .";
+}
+:where(.league-page) .store-bonus .event-date {
+  grid-area: date;
+}
+:where(.league-page) .store-bonus .store-name {
+  grid-area: stores;
+}
+:where(.league-page) .store-bonus .event-points {
+  grid-area: points;
+}
+:where(.league-page) .pagination {
+  border-top: 1px solid var(--line);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .pagination button {
+  min-width: 44px;
+}
+:where(.league-page) .pagination > div {
+  display: flex;
+  gap: 6px;
+}
+:where(.league-page) .empty td {
+  text-align: center;
+  color: var(--muted);
+  padding: 30px;
+}
+
+@media (max-width: 760px) {
+  :where(.league-page) h1 {
+    font-size: 23px;
+  }
+  :where(.league-page) header {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  :where(.league-page) #dates {
+    font-size: 12px;
+    grid-row: 2;
+  }
+  :where(.league-page) .search input {
+    width: 100%;
+  }
+  :where(.league-page) .standings-table th:nth-child(1) {
+    width: 32px;
+  }
+  :where(.league-page) .standings-table th:nth-child(2) {
+    width: auto;
+  }
+  :where(.league-page) .standings-table th:nth-child(3),
+  :where(.league-page) .standings-table th:nth-child(4) {
+    width: 44px;
+  }
+  :where(.league-page) .standings-table th:nth-child(5) {
+    width: 60px;
+  }
+  :where(.league-page) .standings-table th:nth-child(6) {
+    width: 54px;
+  }
+  :where(.league-page) #standings th,
+  :where(.league-page) #standings td {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  :where(.league-page) #standings th {
+    font-size: 10px;
+  }
+  :where(.league-page) #standings td {
+    font-size: 12px;
+  }
+  :where(.league-page) #standings .rank {
+    width: 32px;
+  }
+  :where(.league-page) #standings .total {
+    font-size: 15px;
+  }
+  :where(.league-page) .player a.name {
+    font-size: 12px;
+  }
+  :where(.league-page) #standings td.player {
+    position: relative;
+    padding-left: 19px;
+    white-space: normal;
+  }
+  /* Keep the 44px disclosure target from adding height above the trophies. */
+  :where(.league-page) .expand {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    width: 14px;
+  }
+  :where(.league-page) .trophies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    line-height: 1;
+  }
+  :where(.league-page) .trophies .award {
+    margin: 0;
+  }
+  :where(.league-page) .trophies:empty {
+    display: none;
+  }
+  :where(.league-page) .award .tip {
+    white-space: normal;
+    width: 165px;
+    left: auto;
+    right: 0;
+  }
+  :where(.league-page) .detail > td {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  :where(.league-page) .event {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "date points" "store record" "rounds rounds";
+    gap: 4px 12px;
+  }
+  :where(.league-page) .store-bonus {
+    grid-template-areas: "date points" "stores stores";
+  }
+  :where(.league-page) .event-date {
+    grid-area: date;
+  }
+  :where(.league-page) .store-name {
+    grid-area: store;
+  }
+  :where(.league-page) .rounds {
+    grid-area: rounds;
+    margin-top: 8px;
+  }
+  :where(.league-page) .event-points {
+    grid-area: points;
+  }
+  :where(.league-page) .record {
+    grid-area: record;
+  }
+  :where(.league-page) .round {
+    min-width: 48px;
+  }
+  :where(.league-page) .pagination {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  :where(.league-page) .standings-table th:nth-child(1),
+  :where(.league-page) #standings .rank {
+    width: 26px;
+  }
+  :where(.league-page) .standings-table th:nth-child(3) {
+    width: 36px;
+  }
+  :where(.league-page) .standings-table th:nth-child(4) {
+    width: 34px;
+  }
+  :where(.league-page) .standings-table th:nth-child(5) {
+    width: 52px;
+  }
+  :where(.league-page) .standings-table th:nth-child(6) {
+    width: 47px;
+  }
+  :where(.league-page) #standings th,
+  :where(.league-page) #standings td {
+    padding-inline: 3px;
+  }
+  :where(.league-page) #standings th {
+    font-size: 9px;
+  }
+  :where(.league-page) #standings td.player {
+    padding-left: 17px;
+  }
+  :where(.league-page) .expand {
+    left: 3px;
+  }
+}

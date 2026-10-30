@@ -1,0 +1,53 @@
+.award {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  vertical-align: middle;
+  color: var(--muted);
+  font-size: 10px;
+  margin: 0 3px;
+  cursor: help;
+  min-height: 28px;
+}
+.award img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+.award .tip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 4;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px #18223122;
+}
+.award:hover .tip,
+.award:focus .tip {
+  display: block;
+}
+
+.award:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .award {
+    min-height: 20px;
+    margin-inline: 1px;
+    font-size: 9px;
+  }
+  .award img {
+    width: 16px;
+    height: 16px;
+  }
+}
