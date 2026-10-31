@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-31T18:36:52Z",
+  "updated_at": "2026-10-31T22:32:27Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-30T18:36:52Z",
-      "end_utc_exclusive": "2026-10-31T18:36:52Z",
+      "start_utc": "2026-10-30T22:32:27Z",
+      "end_utc_exclusive": "2026-10-31T22:32:27Z",
       "page_views": 11,
       "visits": 6,
       "sample_interval": 1,
@@ -49,10 +49,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-24T18:36:52Z",
-      "end_utc_exclusive": "2026-10-31T18:36:52Z",
-      "page_views": 118,
-      "visits": 72,
+      "start_utc": "2026-10-24T22:32:27Z",
+      "end_utc_exclusive": "2026-10-31T22:32:27Z",
+      "page_views": 108,
+      "visits": 69,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -67,28 +67,28 @@
           "sample_interval": 1
         },
         {
-          "path": "/combined-elo/",
-          "page_views": 13,
-          "sample_interval": 1
-        },
-        {
-          "path": "/season-standings/",
-          "page_views": 11,
-          "sample_interval": 1
-        },
-        {
-          "path": "/card-foil/",
-          "page_views": 11,
-          "sample_interval": 1
-        },
-        {
           "path": "/ppl/store.html",
           "page_views": 11,
           "sample_interval": 1
         },
         {
+          "path": "/season-standings/",
+          "page_views": 10,
+          "sample_interval": 1
+        },
+        {
+          "path": "/combined-elo/",
+          "page_views": 10,
+          "sample_interval": 1
+        },
+        {
+          "path": "/card-foil/",
+          "page_views": 10,
+          "sample_interval": 1
+        },
+        {
           "path": "/ppl/",
-          "page_views": 9,
+          "page_views": 8,
           "sample_interval": 1
         },
         {
@@ -107,22 +107,17 @@
           "sample_interval": 1
         },
         {
-          "path": "/ppl/player.html",
-          "page_views": 4,
-          "sample_interval": 1
-        },
-        {
           "path": "/commongroundcup4/",
           "page_views": 4,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
-          "page_views": 4,
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 3,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/survivorship/",
+          "path": "/paupergenesis2026/",
           "page_views": 3,
           "sample_interval": 1
         },
@@ -133,6 +128,11 @@
         },
         {
           "path": "/ppl/metagame.html",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/player.html",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -150,8 +150,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-01T18:36:52Z",
-      "end_utc_exclusive": "2026-10-31T18:36:52Z",
+      "start_utc": "2026-10-01T22:32:27Z",
+      "end_utc_exclusive": "2026-10-31T22:32:27Z",
       "page_views": 720,
       "visits": 290,
       "sample_interval": 11.076923076923077,
