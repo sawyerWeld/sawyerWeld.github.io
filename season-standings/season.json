@@ -199,6 +199,15 @@
       "roundsPlayed": 4,
       "players": 12,
       "provisional": false
+    },
+    {
+      "id": "12010614",
+      "storeId": "15582",
+      "date": "2026-10-30",
+      "title": "Weekly Pauper at Dragon's Hoard",
+      "roundsPlayed": 3,
+      "players": 10,
+      "provisional": false
     }
   ],
   "standings": [
@@ -206,24 +215,25 @@
       "rank": 1,
       "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
       "name": "David N",
-      "points": 39,
-      "eventsPlayed": 5,
+      "points": 48,
+      "eventsPlayed": 6,
       "storeIds": [
         "15582"
       ],
-      "wins": 13,
+      "wins": 16,
       "losses": 2,
       "draws": 0,
-      "record": "13-2-0",
-      "trophyCount": 4,
-      "matchWinPercentage": 0.8666666666666667,
-      "opponentMatchWinPercentage": 0.5642857142857143,
-      "eventPoints": 39,
+      "record": "16-2-0",
+      "trophyCount": 5,
+      "matchWinPercentage": 0.8888888888888888,
+      "opponentMatchWinPercentage": 0.5392156862745098,
+      "eventPoints": 48,
       "countedEventIds": [
         "11337473",
         "11337474",
         "12010611",
         "12010612",
+        "12010614",
         "11410496"
       ],
       "storeBonusPoints": 0,
@@ -507,6 +517,50 @@
     },
     {
       "rank": 8,
+      "playerId": "867d6d68-ab09-48f0-8d43-efc44115c731",
+      "name": "Luke S",
+      "points": 24,
+      "eventsPlayed": 6,
+      "storeIds": [
+        "15582"
+      ],
+      "wins": 8,
+      "losses": 10,
+      "draws": 0,
+      "record": "8-10-0",
+      "trophyCount": 0,
+      "matchWinPercentage": 0.4444444444444444,
+      "opponentMatchWinPercentage": 0.5938518518518519,
+      "eventPoints": 24,
+      "countedEventIds": [
+        "11337473",
+        "11410496",
+        "11337474",
+        "12010611",
+        "12010612",
+        "12010614"
+      ],
+      "storeBonusPoints": 0,
+      "storeBonuses": [
+        {
+          "month": "2026-09",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        },
+        {
+          "month": "2026-10",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        }
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 9,
       "playerId": "dd3b1b74-6fdc-42a5-8e5a-2bde394e6661",
       "name": "Brian V",
       "points": 24,
@@ -549,7 +603,7 @@
       "qualified": null
     },
     {
-      "rank": 9,
+      "rank": 10,
       "playerId": "c07b66f8-bd7b-44c9-b4a4-648257675561",
       "name": "Jarrod K",
       "points": 24,
@@ -563,7 +617,7 @@
       "record": "8-4-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.6666666666666666,
-      "opponentMatchWinPercentage": 0.5254545454545455,
+      "opponentMatchWinPercentage": 0.5395959595959596,
       "eventPoints": 24,
       "countedEventIds": [
         "11337473",
@@ -591,7 +645,7 @@
       "qualified": null
     },
     {
-      "rank": 10,
+      "rank": 11,
       "playerId": "4a20e193-d96b-47d7-b08b-424622c321a7",
       "name": "Nate B",
       "points": 22,
@@ -625,49 +679,6 @@
       "qualified": null
     },
     {
-      "rank": 11,
-      "playerId": "867d6d68-ab09-48f0-8d43-efc44115c731",
-      "name": "Luke S",
-      "points": 21,
-      "eventsPlayed": 5,
-      "storeIds": [
-        "15582"
-      ],
-      "wins": 7,
-      "losses": 8,
-      "draws": 0,
-      "record": "7-8-0",
-      "trophyCount": 0,
-      "matchWinPercentage": 0.4666666666666667,
-      "opponentMatchWinPercentage": 0.6259259259259259,
-      "eventPoints": 21,
-      "countedEventIds": [
-        "11337473",
-        "11410496",
-        "11337474",
-        "12010611",
-        "12010612"
-      ],
-      "storeBonusPoints": 0,
-      "storeBonuses": [
-        {
-          "month": "2026-09",
-          "storeIds": [
-            "15582"
-          ],
-          "points": 0
-        },
-        {
-          "month": "2026-10",
-          "storeIds": [
-            "15582"
-          ],
-          "points": 0
-        }
-      ],
-      "qualified": null
-    },
-    {
       "rank": 12,
       "playerId": "7007a9af-9059-4888-a215-cf85430be1f1",
       "name": "Brett A",
@@ -682,7 +693,7 @@
       "record": "7-8-0",
       "trophyCount": 1,
       "matchWinPercentage": 0.4666666666666667,
-      "opponentMatchWinPercentage": 0.5055555555555555,
+      "opponentMatchWinPercentage": 0.49206349206349204,
       "eventPoints": 21,
       "countedEventIds": [
         "11410496",
@@ -712,6 +723,41 @@
     },
     {
       "rank": 13,
+      "playerId": "58fd6acb-05c6-4177-b878-e27cce372aef",
+      "name": "Julius F",
+      "points": 21,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "15582"
+      ],
+      "wins": 7,
+      "losses": 5,
+      "draws": 0,
+      "record": "7-5-0",
+      "trophyCount": 1,
+      "matchWinPercentage": 0.5833333333333334,
+      "opponentMatchWinPercentage": 0.6077777777777778,
+      "eventPoints": 21,
+      "countedEventIds": [
+        "12010612",
+        "12010611",
+        "11410496",
+        "12010614"
+      ],
+      "storeBonusPoints": 0,
+      "storeBonuses": [
+        {
+          "month": "2026-10",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        }
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 14,
       "playerId": "07cd4a93-055d-4e37-a845-822f5481a067",
       "name": "Eser G",
       "points": 21,
@@ -725,7 +771,7 @@
       "record": "7-5-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.5833333333333334,
-      "opponentMatchWinPercentage": 0.5879629629629629,
+      "opponentMatchWinPercentage": 0.5740740740740741,
       "eventPoints": 21,
       "countedEventIds": [
         "11337473",
@@ -753,7 +799,83 @@
       "qualified": null
     },
     {
-      "rank": 14,
+      "rank": 15,
+      "playerId": "f3012b80-6e28-49f8-8f99-642ac258434a",
+      "name": "Dorian S",
+      "points": 21,
+      "eventsPlayed": 4,
+      "storeIds": [
+        "15582"
+      ],
+      "wins": 7,
+      "losses": 5,
+      "draws": 0,
+      "record": "7-5-0",
+      "trophyCount": 1,
+      "matchWinPercentage": 0.5833333333333334,
+      "opponentMatchWinPercentage": 0.48333333333333334,
+      "eventPoints": 21,
+      "countedEventIds": [
+        "12010611",
+        "11337476",
+        "12010612",
+        "12010614"
+      ],
+      "storeBonusPoints": 0,
+      "storeBonuses": [
+        {
+          "month": "2026-10",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        }
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 16,
+      "playerId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e",
+      "name": "Olivier L",
+      "points": 21,
+      "eventsPlayed": 3,
+      "storeIds": [
+        "15582"
+      ],
+      "wins": 7,
+      "losses": 2,
+      "draws": 0,
+      "record": "7-2-0",
+      "trophyCount": 1,
+      "matchWinPercentage": 0.7777777777777778,
+      "opponentMatchWinPercentage": 0.5725,
+      "eventPoints": 21,
+      "countedEventIds": [
+        "11337473",
+        "11337474",
+        "12010614"
+      ],
+      "storeBonusPoints": 0,
+      "storeBonuses": [
+        {
+          "month": "2026-09",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        },
+        {
+          "month": "2026-10",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        }
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 17,
       "playerId": "868ebded-6f80-4876-8be8-8220c559359c",
       "name": "Connor B",
       "points": 21,
@@ -787,75 +909,7 @@
       "qualified": null
     },
     {
-      "rank": 15,
-      "playerId": "f3012b80-6e28-49f8-8f99-642ac258434a",
-      "name": "Dorian S",
-      "points": 21,
-      "eventsPlayed": 3,
-      "storeIds": [
-        "15582"
-      ],
-      "wins": 7,
-      "losses": 2,
-      "draws": 0,
-      "record": "7-2-0",
-      "trophyCount": 1,
-      "matchWinPercentage": 0.7777777777777778,
-      "opponentMatchWinPercentage": 0.45555555555555555,
-      "eventPoints": 21,
-      "countedEventIds": [
-        "12010611",
-        "11337476",
-        "12010612"
-      ],
-      "storeBonusPoints": 0,
-      "storeBonuses": [
-        {
-          "month": "2026-10",
-          "storeIds": [
-            "15582"
-          ],
-          "points": 0
-        }
-      ],
-      "qualified": null
-    },
-    {
-      "rank": 16,
-      "playerId": "58fd6acb-05c6-4177-b878-e27cce372aef",
-      "name": "Julius F",
-      "points": 18,
-      "eventsPlayed": 3,
-      "storeIds": [
-        "15582"
-      ],
-      "wins": 6,
-      "losses": 3,
-      "draws": 0,
-      "record": "6-3-0",
-      "trophyCount": 1,
-      "matchWinPercentage": 0.6666666666666666,
-      "opponentMatchWinPercentage": 0.5763888888888888,
-      "eventPoints": 18,
-      "countedEventIds": [
-        "12010612",
-        "12010611",
-        "11410496"
-      ],
-      "storeBonusPoints": 0,
-      "storeBonuses": [
-        {
-          "month": "2026-10",
-          "storeIds": [
-            "15582"
-          ],
-          "points": 0
-        }
-      ],
-      "qualified": null
-    },
-    {
-      "rank": 17,
+      "rank": 18,
       "playerId": "ad54aa5d-38dc-498b-8052-874bdb6ce4de",
       "name": "Miles L",
       "points": 16,
@@ -899,7 +953,7 @@
       "qualified": null
     },
     {
-      "rank": 18,
+      "rank": 19,
       "playerId": "bde3e5e8-4725-49f7-b705-18080a86d68c",
       "name": "Raines W",
       "points": 16,
@@ -932,7 +986,7 @@
       "qualified": null
     },
     {
-      "rank": 19,
+      "rank": 20,
       "playerId": "9f2b9aef-9e07-46dd-ad41-48f296b259b8",
       "name": "Joe R",
       "points": 15,
@@ -946,7 +1000,7 @@
       "record": "5-10-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.3333333333333333,
-      "opponentMatchWinPercentage": 0.5751587301587302,
+      "opponentMatchWinPercentage": 0.5457936507936508,
       "eventPoints": 15,
       "countedEventIds": [
         "11337473",
@@ -975,7 +1029,7 @@
       "qualified": null
     },
     {
-      "rank": 20,
+      "rank": 21,
       "playerId": "fe0b9369-9bf2-431d-aff5-c2158ea60c31",
       "name": "William C",
       "points": 15,
@@ -1018,7 +1072,7 @@
       "qualified": null
     },
     {
-      "rank": 21,
+      "rank": 22,
       "playerId": "000f5611-0885-41c1-ad2f-5b506b715c7a",
       "name": "Chloe D",
       "points": 15,
@@ -1045,39 +1099,6 @@
           "month": "2026-10",
           "storeIds": [
             "6696"
-          ],
-          "points": 0
-        }
-      ],
-      "qualified": null
-    },
-    {
-      "rank": 22,
-      "playerId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e",
-      "name": "Olivier L",
-      "points": 15,
-      "eventsPlayed": 2,
-      "storeIds": [
-        "15582"
-      ],
-      "wins": 5,
-      "losses": 1,
-      "draws": 0,
-      "record": "5-1-0",
-      "trophyCount": 1,
-      "matchWinPercentage": 0.8333333333333334,
-      "opponentMatchWinPercentage": 0.5333333333333333,
-      "eventPoints": 15,
-      "countedEventIds": [
-        "11337473",
-        "11337474"
-      ],
-      "storeBonusPoints": 0,
-      "storeBonuses": [
-        {
-          "month": "2026-09",
-          "storeIds": [
-            "15582"
           ],
           "points": 0
         }
@@ -1219,6 +1240,40 @@
     },
     {
       "rank": 27,
+      "playerId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1",
+      "name": "Michael S",
+      "points": 12,
+      "eventsPlayed": 3,
+      "storeIds": [
+        "15582"
+      ],
+      "wins": 4,
+      "losses": 5,
+      "draws": 0,
+      "record": "4-5-0",
+      "trophyCount": 0,
+      "matchWinPercentage": 0.4444444444444444,
+      "opponentMatchWinPercentage": 0.5796296296296296,
+      "eventPoints": 12,
+      "countedEventIds": [
+        "12010614",
+        "11337476",
+        "12010611"
+      ],
+      "storeBonusPoints": 0,
+      "storeBonuses": [
+        {
+          "month": "2026-10",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        }
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 28,
       "playerId": "f599a7f9-b705-48df-8711-f29de09a2be6",
       "name": "Aiden R",
       "points": 12,
@@ -1252,7 +1307,7 @@
       "qualified": null
     },
     {
-      "rank": 28,
+      "rank": 29,
       "playerId": "d6eae2a6-59bf-448b-b43e-824d3e235b67",
       "name": "Chris M",
       "points": 12,
@@ -1293,7 +1348,7 @@
       "qualified": null
     },
     {
-      "rank": 29,
+      "rank": 30,
       "playerId": "060340b0-55c1-4db8-a312-29cb7f8df00f",
       "name": "Erik H",
       "points": 12,
@@ -1326,7 +1381,7 @@
       "qualified": null
     },
     {
-      "rank": 30,
+      "rank": 31,
       "playerId": "a2f54841-e0ff-4d2d-9c5e-ff3e4e1812fd",
       "name": "Brian F",
       "points": 12,
@@ -1366,7 +1421,7 @@
       "qualified": null
     },
     {
-      "rank": 31,
+      "rank": 32,
       "playerId": "a993f688-c149-48db-ab72-ce5ce742e619",
       "name": "Noah R",
       "points": 12,
@@ -1399,7 +1454,7 @@
       "qualified": null
     },
     {
-      "rank": 32,
+      "rank": 33,
       "playerId": "b2654903-11d0-497e-b3de-90849fbeeb76",
       "name": "Will A",
       "points": 10,
@@ -1432,7 +1487,7 @@
       "qualified": null
     },
     {
-      "rank": 33,
+      "rank": 34,
       "playerId": "b5b9bfbd-c93e-481e-8711-3b6edb4adb68",
       "name": "Justin H",
       "points": 9,
@@ -1446,7 +1501,7 @@
       "record": "3-3-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.5,
-      "opponentMatchWinPercentage": 0.5833333333333334,
+      "opponentMatchWinPercentage": 0.5711111111111111,
       "eventPoints": 9,
       "countedEventIds": [
         "11337473",
@@ -1472,7 +1527,7 @@
       "qualified": null
     },
     {
-      "rank": 34,
+      "rank": 35,
       "playerId": "921c69a5-6bac-4c3f-b696-e36fce0a9c9e",
       "name": "David L",
       "points": 9,
@@ -1505,7 +1560,7 @@
       "qualified": null
     },
     {
-      "rank": 35,
+      "rank": 36,
       "playerId": "be08d4bb-c3c7-43e3-ae40-4f6d66b8835f",
       "name": "Jack S",
       "points": 9,
@@ -1538,7 +1593,39 @@
       "qualified": null
     },
     {
-      "rank": 36,
+      "rank": 37,
+      "playerId": "3106507a-6a34-45b6-a1e9-7814f3ac1db6",
+      "name": "Andrew M",
+      "points": 9,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "wins": 3,
+      "losses": 0,
+      "draws": 0,
+      "record": "3-0-0",
+      "trophyCount": 1,
+      "matchWinPercentage": 1.0,
+      "opponentMatchWinPercentage": 0.5648148148148148,
+      "eventPoints": 9,
+      "countedEventIds": [
+        "12010614"
+      ],
+      "storeBonusPoints": 0,
+      "storeBonuses": [
+        {
+          "month": "2026-10",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        }
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 38,
       "playerId": "f7282864-b24a-4bcc-9334-c38cadafad73",
       "name": "Devin S",
       "points": 8,
@@ -1572,7 +1659,7 @@
       "qualified": null
     },
     {
-      "rank": 37,
+      "rank": 39,
       "playerId": "8575c158-3893-4065-8429-17cae39dc9a0",
       "name": "Josiah M",
       "points": 8,
@@ -1605,9 +1692,9 @@
       "qualified": null
     },
     {
-      "rank": 38,
-      "playerId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1",
-      "name": "Michael S",
+      "rank": 40,
+      "playerId": "9b5145e5-425b-4986-8114-578a0e5772f3",
+      "name": "Nick P",
       "points": 6,
       "eventsPlayed": 2,
       "storeIds": [
@@ -1619,14 +1706,21 @@
       "record": "2-4-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.3333333333333333,
-      "opponentMatchWinPercentage": 0.5833333333333334,
+      "opponentMatchWinPercentage": 0.5914814814814815,
       "eventPoints": 6,
       "countedEventIds": [
-        "11337476",
-        "12010611"
+        "11337473",
+        "12010614"
       ],
       "storeBonusPoints": 0,
       "storeBonuses": [
+        {
+          "month": "2026-09",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        },
         {
           "month": "2026-10",
           "storeIds": [
@@ -1638,7 +1732,7 @@
       "qualified": null
     },
     {
-      "rank": 39,
+      "rank": 41,
       "playerId": "ed59c3d4-d5e3-4cc5-82ba-d52d805705ca",
       "name": "Danny M",
       "points": 6,
@@ -1652,7 +1746,7 @@
       "record": "2-4-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.3333333333333333,
-      "opponentMatchWinPercentage": 0.5755555555555556,
+      "opponentMatchWinPercentage": 0.5433333333333333,
       "eventPoints": 6,
       "countedEventIds": [
         "11337473",
@@ -1678,7 +1772,7 @@
       "qualified": null
     },
     {
-      "rank": 40,
+      "rank": 42,
       "playerId": "6e0c22d3-3088-453a-9e5b-dc639f8573bb",
       "name": "Wyatt R",
       "points": 6,
@@ -1710,7 +1804,7 @@
       "qualified": null
     },
     {
-      "rank": 41,
+      "rank": 43,
       "playerId": "eaa43bd6-c9d4-45f3-94a4-5378560f325f",
       "name": "David W",
       "points": 6,
@@ -1724,7 +1818,7 @@
       "record": "2-1-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.6666666666666666,
-      "opponentMatchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.674074074074074,
       "eventPoints": 6,
       "countedEventIds": [
         "11410496"
@@ -1742,7 +1836,39 @@
       "qualified": null
     },
     {
-      "rank": 42,
+      "rank": 44,
+      "playerId": "7aab8277-d4ec-45c3-88ec-0b1e5b9b7f1d",
+      "name": "Josh S",
+      "points": 6,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "wins": 2,
+      "losses": 1,
+      "draws": 0,
+      "record": "2-1-0",
+      "trophyCount": 0,
+      "matchWinPercentage": 0.6666666666666666,
+      "opponentMatchWinPercentage": 0.6388888888888888,
+      "eventPoints": 6,
+      "countedEventIds": [
+        "12010614"
+      ],
+      "storeBonusPoints": 0,
+      "storeBonuses": [
+        {
+          "month": "2026-10",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        }
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 45,
       "playerId": "c3b4516a-6210-4b5c-a2a5-e9c8e39ce29b",
       "name": "Dustin D",
       "points": 6,
@@ -1774,7 +1900,7 @@
       "qualified": null
     },
     {
-      "rank": 43,
+      "rank": 46,
       "playerId": "bfa49eaf-12fd-4c1d-9a76-63ec1a81477a",
       "name": "Owen S",
       "points": 6,
@@ -1788,7 +1914,7 @@
       "record": "2-1-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.6666666666666666,
-      "opponentMatchWinPercentage": 0.5833333333333334,
+      "opponentMatchWinPercentage": 0.5555555555555556,
       "eventPoints": 6,
       "countedEventIds": [
         "11337473"
@@ -1806,7 +1932,7 @@
       "qualified": null
     },
     {
-      "rank": 44,
+      "rank": 47,
       "playerId": "cdcee6fc-6540-4497-bbff-5a435599d98d",
       "name": "Caleb P",
       "points": 6,
@@ -1838,7 +1964,7 @@
       "qualified": null
     },
     {
-      "rank": 45,
+      "rank": 48,
       "playerId": "0155aa8d-fd53-417e-b538-54f5c584fee2",
       "name": "Alex T",
       "points": 6,
@@ -1852,7 +1978,7 @@
       "record": "2-1-0",
       "trophyCount": 0,
       "matchWinPercentage": 0.6666666666666666,
-      "opponentMatchWinPercentage": 0.4888888888888889,
+      "opponentMatchWinPercentage": 0.48777777777777775,
       "eventPoints": 6,
       "countedEventIds": [
         "12010612"
@@ -1870,7 +1996,7 @@
       "qualified": null
     },
     {
-      "rank": 46,
+      "rank": 49,
       "playerId": "0afe2162-133b-4eed-8f9d-f248454cc7c1",
       "name": "Scott C",
       "points": 4,
@@ -1904,7 +2030,7 @@
       "qualified": null
     },
     {
-      "rank": 47,
+      "rank": 50,
       "playerId": "2dfd991b-56d1-4538-a2e0-df3112d94939",
       "name": "Zak J",
       "points": 4,
@@ -1937,7 +2063,7 @@
       "qualified": null
     },
     {
-      "rank": 48,
+      "rank": 51,
       "playerId": "f0be3118-c6a7-4208-ae0c-0c06ad85d07b",
       "name": "David E",
       "points": 3,
@@ -1977,24 +2103,25 @@
       "qualified": null
     },
     {
-      "rank": 49,
-      "playerId": "3e14ffa9-b0d7-4655-b7fb-8817c7dcc258",
-      "name": "James H",
+      "rank": 52,
+      "playerId": "bd7f9a53-a65e-4557-b1ac-ec7776e38231",
+      "name": "Kemp L",
       "points": 3,
-      "eventsPlayed": 1,
+      "eventsPlayed": 2,
       "storeIds": [
         "15582"
       ],
       "wins": 1,
-      "losses": 2,
+      "losses": 5,
       "draws": 0,
-      "record": "1-2-0",
+      "record": "1-5-0",
       "trophyCount": 0,
-      "matchWinPercentage": 0.3333333333333333,
-      "opponentMatchWinPercentage": 0.7222222222222222,
+      "matchWinPercentage": 0.16666666666666666,
+      "opponentMatchWinPercentage": 0.5611111111111111,
       "eventPoints": 3,
       "countedEventIds": [
-        "12010611"
+        "12010612",
+        "12010614"
       ],
       "storeBonusPoints": 0,
       "storeBonuses": [
@@ -2009,7 +2136,7 @@
       "qualified": null
     },
     {
-      "rank": 50,
+      "rank": 53,
       "playerId": "89cc299f-73dd-45de-9248-c10980e8daf1",
       "name": "Mauricio V",
       "points": 3,
@@ -2041,39 +2168,7 @@
       "qualified": null
     },
     {
-      "rank": 51,
-      "playerId": "bd7f9a53-a65e-4557-b1ac-ec7776e38231",
-      "name": "Kemp L",
-      "points": 3,
-      "eventsPlayed": 1,
-      "storeIds": [
-        "15582"
-      ],
-      "wins": 1,
-      "losses": 2,
-      "draws": 0,
-      "record": "1-2-0",
-      "trophyCount": 0,
-      "matchWinPercentage": 0.3333333333333333,
-      "opponentMatchWinPercentage": 0.6666666666666666,
-      "eventPoints": 3,
-      "countedEventIds": [
-        "12010612"
-      ],
-      "storeBonusPoints": 0,
-      "storeBonuses": [
-        {
-          "month": "2026-10",
-          "storeIds": [
-            "15582"
-          ],
-          "points": 0
-        }
-      ],
-      "qualified": null
-    },
-    {
-      "rank": 52,
+      "rank": 54,
       "playerId": "d3f416c4-e638-4c2d-9e92-7fd4ecd8de17",
       "name": "Neil S",
       "points": 3,
@@ -2105,7 +2200,7 @@
       "qualified": null
     },
     {
-      "rank": 53,
+      "rank": 55,
       "playerId": "6b76aef0-e49d-42a0-abd0-bb54cd77b94b",
       "name": "Reilly T",
       "points": 3,
@@ -2137,7 +2232,7 @@
       "qualified": null
     },
     {
-      "rank": 54,
+      "rank": 56,
       "playerId": "62351944-9198-4467-a77d-7c8a2ee3146f",
       "name": "Lucas E",
       "points": 3,
@@ -2169,7 +2264,7 @@
       "qualified": null
     },
     {
-      "rank": 55,
+      "rank": 57,
       "playerId": "7da48d4f-1b79-4cf8-a3fe-28143b346965",
       "name": "Andrew C",
       "points": 3,
@@ -2201,9 +2296,9 @@
       "qualified": null
     },
     {
-      "rank": 56,
-      "playerId": "0243e419-4bd5-4059-9e07-a4c74a7343a9",
-      "name": "Jacob C",
+      "rank": 58,
+      "playerId": "3e14ffa9-b0d7-4655-b7fb-8817c7dcc258",
+      "name": "James H",
       "points": 3,
       "eventsPlayed": 1,
       "storeIds": [
@@ -2218,12 +2313,12 @@
       "opponentMatchWinPercentage": 0.5833333333333334,
       "eventPoints": 3,
       "countedEventIds": [
-        "11337473"
+        "12010611"
       ],
       "storeBonusPoints": 0,
       "storeBonuses": [
         {
-          "month": "2026-09",
+          "month": "2026-10",
           "storeIds": [
             "15582"
           ],
@@ -2233,7 +2328,7 @@
       "qualified": null
     },
     {
-      "rank": 57,
+      "rank": 59,
       "playerId": "8c687a06-8135-461b-8501-b921d9c50a6c",
       "name": "Anthony S",
       "points": 3,
@@ -2265,7 +2360,39 @@
       "qualified": null
     },
     {
-      "rank": 58,
+      "rank": 60,
+      "playerId": "0243e419-4bd5-4059-9e07-a4c74a7343a9",
+      "name": "Jacob C",
+      "points": 3,
+      "eventsPlayed": 1,
+      "storeIds": [
+        "15582"
+      ],
+      "wins": 1,
+      "losses": 2,
+      "draws": 0,
+      "record": "1-2-0",
+      "trophyCount": 0,
+      "matchWinPercentage": 0.3333333333333333,
+      "opponentMatchWinPercentage": 0.5648148148148148,
+      "eventPoints": 3,
+      "countedEventIds": [
+        "11337473"
+      ],
+      "storeBonusPoints": 0,
+      "storeBonuses": [
+        {
+          "month": "2026-09",
+          "storeIds": [
+            "15582"
+          ],
+          "points": 0
+        }
+      ],
+      "qualified": null
+    },
+    {
+      "rank": 61,
       "playerId": "390649de-cf5e-4a0e-b395-76de119591fb",
       "name": "Devon C",
       "points": 3,
@@ -2297,7 +2424,7 @@
       "qualified": null
     },
     {
-      "rank": 59,
+      "rank": 62,
       "playerId": "7281bb4f-0c91-47ff-9d8e-8136fcbecfdb",
       "name": "Julia M",
       "points": 3,
@@ -2329,7 +2456,7 @@
       "qualified": null
     },
     {
-      "rank": 60,
+      "rank": 63,
       "playerId": "16800c9c-3b92-4090-805f-38362a7fcc76",
       "name": "Clay W",
       "points": 3,
@@ -2361,7 +2488,7 @@
       "qualified": null
     },
     {
-      "rank": 61,
+      "rank": 64,
       "playerId": "89067b90-3791-449b-a6e2-773b7c77db56",
       "name": "Simon H",
       "points": 3,
@@ -2393,7 +2520,7 @@
       "qualified": null
     },
     {
-      "rank": 62,
+      "rank": 65,
       "playerId": "adb02120-1bf9-4ceb-aeb9-7879efd619e5",
       "name": "Phoenix C",
       "points": 3,
@@ -2425,7 +2552,7 @@
       "qualified": null
     },
     {
-      "rank": 63,
+      "rank": 66,
       "playerId": "1fb7b68e-4a49-44b9-9fe4-5038285d3296",
       "name": "Eli G",
       "points": 3,
@@ -2457,39 +2584,7 @@
       "qualified": null
     },
     {
-      "rank": 64,
-      "playerId": "9b5145e5-425b-4986-8114-578a0e5772f3",
-      "name": "Nick P",
-      "points": 3,
-      "eventsPlayed": 1,
-      "storeIds": [
-        "15582"
-      ],
-      "wins": 1,
-      "losses": 2,
-      "draws": 0,
-      "record": "1-2-0",
-      "trophyCount": 0,
-      "matchWinPercentage": 0.3333333333333333,
-      "opponentMatchWinPercentage": 0.44333333333333336,
-      "eventPoints": 3,
-      "countedEventIds": [
-        "11337473"
-      ],
-      "storeBonusPoints": 0,
-      "storeBonuses": [
-        {
-          "month": "2026-09",
-          "storeIds": [
-            "15582"
-          ],
-          "points": 0
-        }
-      ],
-      "qualified": null
-    },
-    {
-      "rank": 65,
+      "rank": 67,
       "playerId": "e78aa7f4-a538-44bd-8abb-284acabfd570",
       "name": "Charles M",
       "points": 3,
@@ -2521,7 +2616,7 @@
       "qualified": null
     },
     {
-      "rank": 66,
+      "rank": 68,
       "playerId": "ff22987a-3a69-479a-967c-201ba4c9206b",
       "name": "Gabe K",
       "points": 1,
@@ -2553,7 +2648,7 @@
       "qualified": null
     },
     {
-      "rank": 67,
+      "rank": 69,
       "playerId": "75129cfc-0fc4-44ed-8174-a55765afd093",
       "name": "Joe G",
       "points": 0,
@@ -2585,7 +2680,7 @@
       "qualified": null
     },
     {
-      "rank": 68,
+      "rank": 70,
       "playerId": "344e92f4-0ccc-4a65-926f-15858206cc5c",
       "name": "Joel S",
       "points": 0,
@@ -2617,7 +2712,7 @@
       "qualified": null
     },
     {
-      "rank": 69,
+      "rank": 71,
       "playerId": "3a787856-9166-4a98-b0f3-9c02eeb63381",
       "name": "James H (GH)",
       "points": 0,
@@ -2649,7 +2744,7 @@
       "qualified": null
     },
     {
-      "rank": 70,
+      "rank": 72,
       "playerId": "cb75d437-2462-4c5f-b399-37bcac5f6bca",
       "name": "Vincent E",
       "points": 0,
@@ -2681,7 +2776,7 @@
       "qualified": null
     },
     {
-      "rank": 71,
+      "rank": 73,
       "playerId": "93004d60-f968-486d-99da-f03d9d599769",
       "name": "Samuel L",
       "points": 0,
@@ -7916,6 +8011,316 @@
       "eventRecord": "0-3-1",
       "provisional": false,
       "points": 1
+    },
+    {
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "9b5145e5-425b-4986-8114-578a0e5772f3"
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "7aab8277-d4ec-45c3-88ec-0b1e5b9b7f1d"
+        }
+      ],
+      "eventRecord": "3-0-0",
+      "provisional": false,
+      "points": 9
+    },
+    {
+      "playerId": "3106507a-6a34-45b6-a1e9-7814f3ac1db6",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e"
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "58fd6acb-05c6-4177-b878-e27cce372aef"
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "9b5145e5-425b-4986-8114-578a0e5772f3"
+        }
+      ],
+      "eventRecord": "3-0-0",
+      "provisional": false,
+      "points": 9
+    },
+    {
+      "playerId": "7aab8277-d4ec-45c3-88ec-0b1e5b9b7f1d",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "58fd6acb-05c6-4177-b878-e27cce372aef"
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "3106507a-6a34-45b6-a1e9-7814f3ac1db6"
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "bd7f9a53-a65e-4557-b1ac-ec7776e38231"
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "7aab8277-d4ec-45c3-88ec-0b1e5b9b7f1d"
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
+        }
+      ],
+      "eventRecord": "2-1-0",
+      "provisional": false,
+      "points": 6
+    },
+    {
+      "playerId": "9b5145e5-425b-4986-8114-578a0e5772f3",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
+        },
+        {
+          "round": 2,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "bd7f9a53-a65e-4557-b1ac-ec7776e38231"
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "3106507a-6a34-45b6-a1e9-7814f3ac1db6"
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "58fd6acb-05c6-4177-b878-e27cce372aef",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "7aab8277-d4ec-45c3-88ec-0b1e5b9b7f1d"
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "3106507a-6a34-45b6-a1e9-7814f3ac1db6"
+        },
+        {
+          "round": 3,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "f3012b80-6e28-49f8-8f99-642ac258434a"
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "867d6d68-ab09-48f0-8d43-efc44115c731",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "win",
+          "points": 3,
+          "intentionalDraw": false,
+          "opponentId": "bd7f9a53-a65e-4557-b1ac-ec7776e38231"
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27"
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
+        }
+      ],
+      "eventRecord": "1-2-0",
+      "provisional": false,
+      "points": 3
+    },
+    {
+      "playerId": "f3012b80-6e28-49f8-8f99-642ac258434a",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "0e251fe5-7db1-4583-bf47-76c6f0326ed1"
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e"
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "58fd6acb-05c6-4177-b878-e27cce372aef"
+        }
+      ],
+      "eventRecord": "0-3-0",
+      "provisional": false,
+      "points": 0
+    },
+    {
+      "playerId": "bd7f9a53-a65e-4557-b1ac-ec7776e38231",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "rounds": [
+        {
+          "round": 1,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "867d6d68-ab09-48f0-8d43-efc44115c731"
+        },
+        {
+          "round": 2,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "9b5145e5-425b-4986-8114-578a0e5772f3"
+        },
+        {
+          "round": 3,
+          "result": "loss",
+          "points": 0,
+          "intentionalDraw": false,
+          "opponentId": "8f7a8f4b-293e-4338-ba58-edb2f34f452e"
+        }
+      ],
+      "eventRecord": "0-3-0",
+      "provisional": false,
+      "points": 0
     }
   ],
   "trophies": [
@@ -8057,6 +8462,20 @@
       "eventId": "11936649",
       "storeId": "6696",
       "eventRecord": "4-0-0",
+      "provisional": false
+    },
+    {
+      "playerId": "e516b8b1-ea44-4d37-90ba-5c8331ddfb27",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "eventRecord": "3-0-0",
+      "provisional": false
+    },
+    {
+      "playerId": "3106507a-6a34-45b6-a1e9-7814f3ac1db6",
+      "eventId": "12010614",
+      "storeId": "15582",
+      "eventRecord": "3-0-0",
       "provisional": false
     }
   ]
