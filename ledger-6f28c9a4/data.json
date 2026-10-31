@@ -1,84 +1,74 @@
 {
-  "updated_at": "2026-10-31T07:03:13Z",
+  "updated_at": "2026-10-31T13:42:00Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-30T07:03:13Z",
-      "end_utc_exclusive": "2026-10-31T07:03:13Z",
-      "page_views": 22,
-      "visits": 7,
+      "start_utc": "2026-10-30T13:42:00Z",
+      "end_utc_exclusive": "2026-10-31T13:42:00Z",
+      "page_views": 11,
+      "visits": 5,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/ppl/store.html",
-          "page_views": 7,
-          "sample_interval": 1
-        },
-        {
           "path": "/season-standings/",
-          "page_views": 6,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/",
-          "page_views": 4,
-          "sample_interval": 1
-        },
-        {
-          "path": "/combined-elo/",
           "page_views": 3,
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
+          "path": "/ppl/",
+          "page_views": 3,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/store.html",
           "page_views": 2,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/card-foil/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/pauper/",
+          "page_views": 1,
           "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-24T07:03:13Z",
-      "end_utc_exclusive": "2026-10-31T07:03:13Z",
-      "page_views": 152,
-      "visits": 75,
+      "start_utc": "2026-10-24T13:42:00Z",
+      "end_utc_exclusive": "2026-10-31T13:42:00Z",
+      "page_views": 129,
+      "visits": 72,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
-        {
-          "path": "/combined-elo/",
-          "page_views": 23,
-          "sample_interval": 1
-        },
         {
           "path": "/season-standings/",
           "page_views": 18,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/player.html",
+          "path": "/combined-elo/",
           "page_views": 15,
           "sample_interval": 1
         },
         {
-          "path": "/",
-          "page_views": 14,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/store.html",
-          "page_views": 14,
-          "sample_interval": 1
-        },
-        {
           "path": "/pauper/",
-          "page_views": 13,
+          "page_views": 14,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/",
-          "page_views": 12,
+          "path": "/",
+          "page_views": 13,
           "sample_interval": 1
         },
         {
@@ -87,8 +77,23 @@
           "sample_interval": 1
         },
         {
+          "path": "/ppl/store.html",
+          "page_views": 11,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 10,
+          "sample_interval": 1
+        },
+        {
           "path": "/Tronclock/",
           "page_views": 7,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/player.html",
+          "page_views": 6,
           "sample_interval": 1
         },
         {
@@ -117,12 +122,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/ppl/metagame.html",
-          "page_views": 2,
+          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "path": "/ppl/metagame.html",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -140,8 +145,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-01T07:03:13Z",
-      "end_utc_exclusive": "2026-10-31T07:03:13Z",
+      "start_utc": "2026-10-01T13:42:00Z",
+      "end_utc_exclusive": "2026-10-31T13:42:00Z",
       "page_views": 710,
       "visits": 280,
       "sample_interval": 11.09375,
