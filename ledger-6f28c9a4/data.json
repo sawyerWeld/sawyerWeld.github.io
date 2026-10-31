@@ -1,32 +1,27 @@
 {
-  "updated_at": "2026-10-30T20:51:49Z",
+  "updated_at": "2026-10-31T00:51:05Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-29T20:51:49Z",
-      "end_utc_exclusive": "2026-10-30T20:51:49Z",
-      "page_views": 27,
-      "visits": 14,
+      "start_utc": "2026-10-30T00:51:05Z",
+      "end_utc_exclusive": "2026-10-31T00:51:05Z",
+      "page_views": 22,
+      "visits": 9,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
-        {
-          "path": "/ppl/store.html",
-          "page_views": 6,
-          "sample_interval": 1
-        },
         {
           "path": "/combined-elo/",
           "page_views": 5,
           "sample_interval": 1
         },
         {
-          "path": "/season-standings/",
-          "page_views": 4,
+          "path": "/ppl/store.html",
+          "page_views": 5,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/",
+          "path": "/season-standings/",
           "page_views": 3,
           "sample_interval": 1
         },
@@ -36,12 +31,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/survivorship/",
-          "page_views": 1,
+          "path": "/ppl/",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/metagame.html",
+          "path": "/paupergenesis2026/survivorship/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -56,11 +51,6 @@
           "sample_interval": 1
         },
         {
-          "path": "/ppl/player.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
           "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
@@ -69,8 +59,8 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-23T20:51:49Z",
-      "end_utc_exclusive": "2026-10-30T20:51:49Z",
+      "start_utc": "2026-10-24T00:51:05Z",
+      "end_utc_exclusive": "2026-10-31T00:51:05Z",
       "page_views": 145,
       "visits": 73,
       "sample_interval": 1,
@@ -170,8 +160,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-09-30T20:51:49Z",
-      "end_utc_exclusive": "2026-10-30T20:51:49Z",
+      "start_utc": "2026-10-01T00:51:05Z",
+      "end_utc_exclusive": "2026-10-31T00:51:05Z",
       "page_views": 710,
       "visits": 280,
       "sample_interval": 11.09375,
