@@ -1,3 +1,19 @@
+function validateUnpairedLosses(data, names, results) {
+  const losses = data.unpairedLosses === undefined ? [] : data.unpairedLosses;
+  if (!Array.isArray(losses)) throw Error('Invalid unpaired losses');
+  const key = row => JSON.stringify([row.eventId, row.round, row.player]);
+  const occupied = new Set([...data.history, ...(data.byes || [])].map(key));
+  const checkpoints = new Set(data.timeline.map(row => JSON.stringify([row.eventId, row.round])));
+  for (const loss of losses) {
+    if (!loss || Object.keys(loss).sort().join(',') !== 'eventId,player,round' ||
+        !names.has(loss.player) || !Number.isInteger(loss.round) || loss.round < 1 ||
+        !results.has(JSON.stringify([loss.eventId, loss.player])) ||
+        !checkpoints.has(JSON.stringify([loss.eventId, loss.round])) || occupied.has(key(loss)))
+      throw Error('Duplicate or invalid unpaired loss');
+    occupied.add(key(loss));
+  }
+}
+
 const ARRAY_SECTIONS=['timeline','players','history','results'];
 export function validateData(data){
   if(!data||!/^\d{4}-\d{2}-\d{2}$/.test(data.through)||!data.meta)throw Error('Invalid stats metadata');
@@ -20,6 +36,7 @@ export function validateData(data){
     results.add(key);
   }
   if(new Set(data.timeline.map(t=>t.eventId)).size!==data.meta.events)throw Error('Event count mismatch');
+  validateUnpairedLosses(data, names, results);
   return data;
 }
 
