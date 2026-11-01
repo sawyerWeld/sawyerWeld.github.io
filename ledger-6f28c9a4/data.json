@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-11-01T16:07:43Z",
+  "updated_at": "2026-11-01T20:33:39Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-31T16:07:43Z",
-      "end_utc_exclusive": "2026-11-01T16:07:43Z",
+      "start_utc": "2026-10-31T20:33:39Z",
+      "end_utc_exclusive": "2026-11-01T20:33:39Z",
       "page_views": 4,
       "visits": 2,
       "sample_interval": 1,
@@ -34,10 +34,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-25T16:07:43Z",
-      "end_utc_exclusive": "2026-11-01T16:07:43Z",
-      "page_views": 104,
-      "visits": 66,
+      "start_utc": "2026-10-25T20:33:39Z",
+      "end_utc_exclusive": "2026-11-01T20:33:39Z",
+      "page_views": 103,
+      "visits": 65,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -103,7 +103,7 @@
         },
         {
           "path": "/paupergenesis2026/",
-          "page_views": 3,
+          "page_views": 2,
           "sample_interval": 1
         },
         {
@@ -135,8 +135,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-02T16:07:43Z",
-      "end_utc_exclusive": "2026-11-01T16:07:43Z",
+      "start_utc": "2026-10-02T20:33:39Z",
+      "end_utc_exclusive": "2026-11-01T20:33:39Z",
       "page_views": 720,
       "visits": 290,
       "sample_interval": 11.076923076923077,
