@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-04T06:35:52Z",
+  "updated_at": "2026-11-04T15:29:21Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-03T06:35:52Z",
-      "end_utc_exclusive": "2026-11-04T06:35:52Z",
-      "page_views": 4,
+      "start_utc": "2026-11-03T15:29:21Z",
+      "end_utc_exclusive": "2026-11-04T15:29:21Z",
+      "page_views": 5,
       "visits": 4,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
@@ -13,6 +13,11 @@
         {
           "path": "/Tronclock/",
           "page_views": 2,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -29,10 +34,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-28T06:35:52Z",
-      "end_utc_exclusive": "2026-11-04T06:35:52Z",
-      "page_views": 59,
-      "visits": 38,
+      "start_utc": "2026-10-28T15:29:21Z",
+      "end_utc_exclusive": "2026-11-04T15:29:21Z",
+      "page_views": 61,
+      "visits": 39,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -72,18 +77,18 @@
           "sample_interval": 1
         },
         {
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 3,
+          "sample_interval": 1
+        },
+        {
           "path": "/Tronclock/",
           "page_views": 3,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/survivorship/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
           "path": "/paupergenesis2026/",
-          "page_views": 2,
+          "page_views": 3,
           "sample_interval": 1
         },
         {
@@ -125,8 +130,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-05T06:35:52Z",
-      "end_utc_exclusive": "2026-11-04T06:35:52Z",
+      "start_utc": "2026-10-05T15:29:21Z",
+      "end_utc_exclusive": "2026-11-04T15:29:21Z",
       "page_views": 730,
       "visits": 300,
       "sample_interval": 11.06060606060606,
