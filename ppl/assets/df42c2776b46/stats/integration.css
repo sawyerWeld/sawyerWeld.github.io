@@ -1,0 +1,20 @@
+body.stats-page {
+  background: #f3f6f8;
+  color: #182231;
+}
+
+body.stats-page > main > .container {
+  padding: 0 20px;
+}
+
+body.stats-page > footer {
+  background: white;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  body.stats-page > main > .container {
+    padding: 0 10px;
+  }
+}

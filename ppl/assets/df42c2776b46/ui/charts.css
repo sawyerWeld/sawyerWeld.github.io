@@ -1,0 +1,36 @@
+/* No Elo rules here: these classes describe appearance only. */
+.ui-chart__grid {
+  stroke: #e9eef3;
+  stroke-width: 1;
+}
+.ui-chart__baseline {
+  stroke: #a5b5c7;
+  stroke-dasharray: 4 5;
+}
+.ui-chart__axis-label {
+  fill: var(--muted);
+  font: 11px var(--ui-font);
+}
+.ui-chart__end-label {
+  font: 650 11px var(--ui-font);
+}
+.ui-chart__line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ui-chart__point {
+  stroke: white;
+  stroke-width: 1.7;
+  cursor: pointer;
+}
+.ui-chart__point:hover,
+.ui-chart__point:focus {
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+.ui-chart__point:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}

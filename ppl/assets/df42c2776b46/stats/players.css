@@ -1,0 +1,392 @@
+:where(.league-page) header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+:where(.league-page) h1 {
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -0.6px;
+}
+:where(.league-page) h2 {
+  font-size: 17px;
+  margin: 0 0 14px;
+}
+:where(.league-page) .player-picker {
+  position: relative;
+  width: 240px;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+:where(.league-page) .player-picker input {
+  font: inherit;
+  color: var(--ink);
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: white;
+  padding: 8px 12px;
+}
+:where(.league-page) .player-picker-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 100%;
+  max-height: 280px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  z-index: 10;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  box-shadow: 0 4px 12px #18223118;
+}
+:where(.league-page) #player-options {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+}
+:where(.league-page) #player-options [role="option"] {
+  padding: 10px 8px;
+  min-height: 44px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+:where(.league-page) #player-options [aria-selected="true"],
+:where(.league-page) #player-options [role="option"]:hover {
+  background: #edf3f8;
+}
+:where(.league-page) .player-picker-empty {
+  margin: 0;
+  padding: 12px;
+  color: var(--muted);
+}
+:where(.league-page) #stores {
+  color: var(--muted);
+  margin: 4px 0 22px;
+}
+:where(.league-page) #stats {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+:where(.league-page) #stats strong {
+  display: block;
+  font-size: 25px;
+  font-weight: 600;
+}
+:where(.league-page) #stats span {
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) #trophies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+:where(.league-page) #trophies .award {
+  font-size: 12px;
+  color: var(--muted);
+  cursor: help;
+}
+:where(.league-page) .chart-panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+:where(.league-page) .chart-panel .ui-toolbar {
+  margin-bottom: 16px;
+}
+:where(.league-page) .chart-panel .ui-toolbar h2 {
+  margin: 0;
+}
+:where(.league-page) #chart {
+  height: 300px;
+}
+:where(.league-page) svg {
+  width: 100%;
+  display: block;
+}
+:where(.league-page) svg text {
+  fill: var(--muted);
+  font-size: 11px;
+}
+:where(.league-page) svg circle {
+  cursor: pointer;
+  fill: var(--blue);
+  stroke: white;
+  stroke-width: 2;
+}
+:where(.league-page) svg circle:hover,
+:where(.league-page) svg circle:focus {
+  r: 6;
+  outline: none;
+  stroke: var(--ink);
+}
+:where(.league-page) #inspection {
+  color: var(--muted);
+  min-height: 76px;
+  margin: 8px 0 0;
+  font-size: 12px;
+}
+:where(.league-page) .inspection-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+:where(.league-page) .match-detail {
+  display: inline-block;
+  margin-right: 16px;
+}
+:where(.league-page) details {
+  background: white;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+}
+:where(.league-page) details:first-child {
+  border-radius: 6px 6px 0 0;
+}
+:where(.league-page) details:last-child {
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 6px 6px;
+}
+/* Event summaries and their matches share the same column edges. */
+:where(.league-page) #events {
+  --event-columns: 18px minmax(0, 1fr) minmax(0, 1fr) 70px 65px;
+  --event-gap: 16px;
+  --event-padding: 16px;
+  --event-date-width: 66px;
+  --event-identity-gap: 24px;
+}
+:where(.league-page) summary {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: var(--event-columns);
+  align-items: center;
+  gap: var(--event-gap);
+  padding: 16px var(--event-padding);
+  list-style: none;
+}
+:where(.league-page) .event-identity {
+  display: flex;
+  align-items: baseline;
+  gap: var(--event-identity-gap);
+  min-width: 0;
+}
+:where(.league-page) .event-date {
+  flex: 0 0 var(--event-date-width);
+}
+:where(.league-page) summary::-webkit-details-marker {
+  display: none;
+}
+:where(.league-page) summary:before {
+  content: "▸";
+  color: var(--muted);
+}
+:where(.league-page) details[open] > summary:before {
+  content: "▾";
+}
+:where(.league-page) summary:hover {
+  background: #edf3f8;
+}
+:where(.league-page) .muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .record,
+:where(.league-page) .delta {
+  text-align: right;
+}
+:where(.league-page) .positive {
+  color: #2f855a;
+}
+:where(.league-page) .negative {
+  color: #a13232;
+}
+:where(.league-page) .matches {
+  padding: 0 var(--event-padding) 12px;
+}
+:where(.league-page) .matches table,
+:where(.league-page) .matches tbody {
+  display: block;
+  width: 100%;
+  font-size: 13px;
+}
+:where(.league-page) .matches tr {
+  display: grid;
+  grid-template-columns: var(--event-columns);
+  gap: var(--event-gap);
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+:where(.league-page) .matches td {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+@media (min-width: 651px) {
+  :where(.league-page) .event-date {
+    text-align: center;
+  }
+  :where(.league-page) .record,
+  :where(.league-page) .matches .match-result {
+    padding-inline-end: 24px;
+  }
+  /* Round and opponent share the date/store area, leaving the chevron empty. */
+  :where(.league-page) .matches td {
+    grid-row: 1;
+  }
+  :where(.league-page) .matches .match-round {
+    grid-column: 2;
+    justify-self: start;
+    width: var(--event-date-width);
+    text-align: center;
+  }
+  :where(.league-page) .matches .match-opponent {
+    grid-column: 2;
+    padding-inline-start: calc(var(--event-date-width) + var(--event-identity-gap));
+  }
+  :where(.league-page) .matches .opponent-deck {
+    grid-column: 3;
+  }
+  :where(.league-page) .matches .match-result {
+    grid-column: 4;
+  }
+  :where(.league-page) .matches .match-delta {
+    grid-column: 5;
+  }
+}
+:where(.league-page) .matches .match-round {
+  color: var(--muted);
+}
+:where(.league-page) .matches .match-result,
+:where(.league-page) .matches .match-delta {
+  text-align: right;
+}
+:where(.league-page) .match-result {
+  white-space: nowrap;
+}
+:where(.league-page) a {
+  text-decoration: none;
+}
+:where(.league-page) a:hover {
+  text-decoration: underline;
+}
+:where(.league-page) .player-picker input:focus-visible,
+:where(.league-page) summary:focus-visible,
+:where(.league-page) a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+:where(.league-page) #error {
+  color: #a13232;
+}
+@media (max-width: 650px) {
+  :where(.league-page) h1 {
+    font-size: 25px;
+  }
+  :where(.league-page) header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  :where(.league-page) .player-picker {
+    width: 180px;
+  }
+  :where(.league-page) .player-picker input {
+    font-size: 16px;
+  }
+  :where(.league-page) #stats {
+    gap: 16px 26px;
+  }
+  :where(.league-page) #stats strong {
+    font-size: 22px;
+  }
+  :where(.league-page) .chart-panel {
+    padding: 14px 8px;
+  }
+  :where(.league-page) .chart-panel h2 {
+    padding-left: 6px;
+  }
+  :where(.league-page) #events {
+    --event-columns: 12px minmax(0, 1fr) 42px 48px;
+    --event-gap: 8px;
+    --event-padding: 12px;
+  }
+  :where(.league-page) summary {
+    row-gap: 4px;
+    padding-block: 12px;
+  }
+  :where(.league-page) summary:before {
+    grid-row: 1 / 3;
+  }
+  :where(.league-page) .event-identity {
+    grid-column: 2 / 4;
+    gap: 12px;
+    justify-content: space-between;
+  }
+  :where(.league-page) .event-date {
+    flex-basis: auto;
+  }
+  :where(.league-page) .deck {
+    grid-column: 2 / 4;
+    grid-row: 2;
+  }
+  :where(.league-page) .record {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  :where(.league-page) .delta {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  :where(.league-page) .matches {
+    padding-bottom: 8px;
+  }
+  :where(.league-page) .matches tr {
+    row-gap: 2px;
+  }
+  :where(.league-page) .match-round {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  :where(.league-page) .match-opponent {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  :where(.league-page) .opponent-deck {
+    grid-column: 2;
+    grid-row: 2;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  :where(.league-page) .match-result {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+  :where(.league-page) .match-delta {
+    grid-column: 4;
+    grid-row: 1 / 3;
+  }
+}
+:where(.league-page) button:focus:not(:focus-visible),
+:where(.league-page) summary:focus:not(:focus-visible),
+:where(.league-page) .player-picker input:focus:not(:focus-visible),
+:where(.league-page) a:focus:not(:focus-visible) {
+  outline: none;
+}
+@media (max-width: 760px) {
+  :where(.league-page) #chart {
+    height: 260px;
+  }
+  :where(.league-page) #inspection {
+    min-height: 108px;
+  }
+}

@@ -1,0 +1,52 @@
+/* Components own their interior. Pages own outer margins and widths. */
+.ui-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.ui-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.ui-heading {
+  margin: 0;
+  color: var(--ink);
+  font: 700 23px/1.2 var(--ui-font);
+}
+.ui-segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 3px;
+  background: #f0f4f7;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.ui-segmented > button {
+  font: inherit;
+  font-size: 12px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  padding: 6px 12px;
+  min-height: 32px;
+  cursor: pointer;
+}
+.ui-segmented > button[aria-pressed="true"] {
+  background: var(--panel);
+  color: var(--ink);
+  font-weight: 650;
+}
+.ui-segmented > button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+@media (max-width: 760px) {
+  .ui-segmented > button {
+    min-height: 44px;
+  }
+}

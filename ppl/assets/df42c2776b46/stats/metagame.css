@@ -1,0 +1,391 @@
+:where(.league-page) h1 {
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -0.6px;
+}
+:where(.league-page) h2 {
+  font-size: 17px;
+  margin: 0 0 14px;
+}
+:where(.league-page) select,
+:where(.league-page) input,
+:where(.league-page) button {
+  font: inherit;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: white;
+  padding: 8px 12px;
+}
+:where(.league-page) select {
+  min-width: 0;
+}
+:where(.league-page) input,
+:where(.league-page) button {
+  color: var(--ink);
+}
+:where(.league-page) button {
+  cursor: pointer;
+}
+:where(.league-page) button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+:where(.league-page) a {
+  text-decoration: none;
+}
+:where(.league-page) a:hover {
+  text-decoration: underline;
+}
+:where(.league-page) select:focus-visible,
+:where(.league-page) a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+:where(.league-page) button:focus-visible,
+:where(.league-page) input:focus-visible,
+:where(.league-page) .scroll:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+:where(.league-page) button:focus:not(:focus-visible),
+:where(.league-page) select:focus:not(:focus-visible),
+:where(.league-page) a:focus:not(:focus-visible) {
+  outline: none;
+}
+:where(.league-page) #error {
+  color: #a13232;
+}
+:where(.league-page) #filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin-top: 0;
+}
+:where(.league-page) #filters label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+:where(.league-page) section {
+  margin: 28px 0;
+}
+:where(.league-page) .section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+:where(.league-page) .section-head h2 {
+  margin: 0;
+}
+:where(.league-page) .section-head select {
+  font-size: 12px;
+}
+:where(.league-page) .scroll {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: white;
+}
+:where(.league-page) table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+:where(.league-page) th,
+:where(.league-page) td {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+}
+:where(.league-page) th {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  background: #f8fafc;
+  border-top: 0;
+  white-space: nowrap;
+}
+:where(.league-page) td:last-child,
+:where(.league-page) th:last-child {
+  text-align: right;
+}
+:where(.league-page) td:not(:first-child),
+:where(.league-page) th:not(:first-child) {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Expanded entry tables must not resize the summary columns. */
+:where(.league-page) .archetype-table {
+  table-layout: fixed;
+  min-width: 720px;
+}
+:where(.league-page) .archetype-name-column {
+  width: 32%;
+}
+:where(.league-page) .archetype-count-column {
+  width: 10%;
+}
+:where(.league-page) .archetype-share-column {
+  width: 18%;
+}
+:where(.league-page) .archetype-record-column {
+  width: 16%;
+}
+:where(.league-page) .archetype-rate-column {
+  width: 14%;
+}
+:where(.league-page) .compact-stat {
+  display: none;
+}
+:where(.league-page) .deck-row {
+  cursor: pointer;
+}
+:where(.league-page) .deck-row:hover {
+  background: #edf3f8;
+}
+:where(.league-page) .deck-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  min-height: 28px;
+  text-align: left;
+  font: inherit;
+}
+:where(.league-page) .deck-toggle,
+:where(.league-page) .deck-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+:where(.league-page) .deck-toggle:before {
+  content: "▸";
+  color: var(--muted);
+}
+:where(.league-page) .deck-toggle[aria-expanded="true"]:before {
+  content: "▾";
+}
+:where(.league-page) .deck-art {
+  width: 36px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+:where(.league-page) .share-bar {
+  display: inline-block;
+  width: var(--share);
+  height: 5px;
+  background: var(--blue);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+:where(.league-page) .expanded > td {
+  background: #f8fafc;
+  padding: 8px;
+}
+:where(.league-page) .expanded table {
+  font-size: 12px;
+}
+:where(.league-page) .archetype-entries {
+  table-layout: fixed;
+}
+:where(.league-page) .archetype-entries td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+:where(.league-page) .archetype-entries td:nth-child(1) {
+  width: 15%;
+}
+:where(.league-page) .archetype-entries td:nth-child(2) {
+  width: 28%;
+}
+:where(.league-page) .archetype-entries td:nth-child(3) {
+  width: 22%;
+}
+:where(.league-page) .pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+:where(.league-page) .pagination button {
+  min-width: 44px;
+  margin-left: 6px;
+}
+:where(.league-page) .empty {
+  text-align: center !important;
+  color: var(--muted);
+}
+:where(.league-page) .matrix-wrap {
+  max-height: 630px;
+}
+:where(.league-page) .matrix-wrap th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+:where(.league-page) .matrix-wrap th:first-child {
+  left: 0;
+  z-index: 3;
+}
+:where(.league-page) .matrix-wrap tbody th {
+  left: 0;
+  top: auto;
+  text-align: left;
+  z-index: 1;
+  min-width: 165px;
+  white-space: normal;
+}
+:where(.league-page) .matrix-wrap thead th:not(:first-child) {
+  min-width: 110px;
+  max-width: 140px;
+  white-space: normal;
+  text-align: center;
+  font-size: 11px;
+}
+:where(.league-page) .matrix-wrap thead .deck-art {
+  display: block;
+  margin: 0 auto 5px;
+}
+:where(.league-page) .matrix-wrap td {
+  text-align: center;
+  padding: 0;
+  border-left: 1px solid #e8edf2;
+}
+:where(.league-page) .matrix-wrap button {
+  width: 100%;
+  min-width: 80px;
+  border: 0;
+  border-radius: 0;
+  background: var(--cell);
+  font-size: 13px;
+}
+:where(.league-page) .matrix-wrap small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+:where(.league-page) .matrix-wrap .missing {
+  color: var(--muted);
+  padding: 14px;
+}
+:where(.league-page) .matrix-wrap td.overall {
+  padding: 8px;
+  background: #f3f6f8;
+}
+:where(.league-page) #matchup {
+  margin-top: 16px;
+}
+:where(.league-page) #matchup h3 {
+  font-size: 14px;
+}
+
+@media (max-width: 650px) {
+  :where(.league-page) h1 {
+    font-size: 25px;
+  }
+  :where(.league-page) select {
+    max-width: 175px;
+  }
+  :where(.league-page) #filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  :where(.league-page) #filters select,
+  :where(.league-page) #filters input {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+  }
+  :where(.league-page) #filters button {
+    grid-column: 2;
+  }
+  :where(.league-page) .share-bar {
+    display: none;
+  }
+  :where(.league-page) td,
+  :where(.league-page) th {
+    padding: 10px 8px;
+  }
+  :where(.league-page) .expanded table {
+    min-width: 500px;
+  }
+  :where(.league-page) .archetype-table {
+    min-width: 0;
+  }
+  :where(.league-page) .archetype-table colgroup,
+  :where(.league-page) .archetype-table .desktop-stat {
+    display: none;
+  }
+  :where(.league-page) .archetype-table > thead th:first-child {
+    width: calc(100% - 132px);
+    text-align: left;
+  }
+  :where(.league-page) .archetype-table > thead th:nth-child(2) {
+    width: 56px;
+  }
+  :where(.league-page) .archetype-table > thead th:last-child {
+    width: 76px;
+  }
+  :where(.league-page) .compact-stat {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+  }
+  :where(.league-page) .entry-count {
+    margin: 4px 6px 10px;
+    text-align: left;
+  }
+  :where(.league-page) .deck-toggle {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+  }
+  :where(.league-page) .deck-toggle span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  :where(.league-page) #matrix {
+    width: max-content;
+  }
+  :where(.league-page) .matrix-wrap th:first-child {
+    width: 124px;
+    min-width: 124px;
+    max-width: 124px;
+  }
+  :where(.league-page) .matrix-wrap tbody th {
+    font-size: 11px;
+  }
+  :where(.league-page) .matrix-wrap tbody .deck-art {
+    display: none;
+  }
+  :where(.league-page) .matrix-wrap thead th:not(:first-child) {
+    min-width: 80px;
+    max-width: 80px;
+  }
+  :where(.league-page) .matrix-wrap thead th:nth-child(2) {
+    min-width: 70px;
+    max-width: 70px;
+  }
+  :where(.league-page) .matrix-wrap button {
+    min-width: 80px;
+    padding-inline: 4px;
+    font-size: 12px;
+  }
+  :where(.league-page) .deck-art {
+    width: 28px;
+    height: 24px;
+  }
+  :where(.league-page) .deck-toggle,
+  :where(.league-page) .deck-label {
+    gap: 5px;
+  }
+}
