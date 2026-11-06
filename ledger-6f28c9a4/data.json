@@ -1,28 +1,28 @@
 {
-  "updated_at": "2026-11-06T15:08:23Z",
+  "updated_at": "2026-11-06T20:56:09Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-05T15:08:23Z",
-      "end_utc_exclusive": "2026-11-06T15:08:23Z",
-      "page_views": 1,
-      "visits": 1,
+      "start_utc": "2026-11-05T20:56:09Z",
+      "end_utc_exclusive": "2026-11-06T20:56:09Z",
+      "page_views": 2,
+      "visits": 2,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/Tronclock/",
-          "page_views": 1,
+          "path": "/",
+          "page_views": 2,
           "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-30T15:08:23Z",
-      "end_utc_exclusive": "2026-11-06T15:08:23Z",
-      "page_views": 33,
-      "visits": 24,
+      "start_utc": "2026-10-30T20:56:09Z",
+      "end_utc_exclusive": "2026-11-06T20:56:09Z",
+      "page_views": 34,
+      "visits": 26,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -32,13 +32,8 @@
           "sample_interval": 1
         },
         {
-          "path": "/ppl/",
-          "page_views": 4,
-          "sample_interval": 1
-        },
-        {
           "path": "/",
-          "page_views": 4,
+          "page_views": 6,
           "sample_interval": 1
         },
         {
@@ -48,6 +43,11 @@
         },
         {
           "path": "/season-standings/",
+          "page_views": 3,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/",
           "page_views": 3,
           "sample_interval": 1
         },
@@ -95,11 +95,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-07T15:08:23Z",
-      "end_utc_exclusive": "2026-11-06T15:08:23Z",
-      "page_views": 720,
-      "visits": 290,
-      "sample_interval": 11.076923076923077,
+      "start_utc": "2026-10-07T20:56:09Z",
+      "end_utc_exclusive": "2026-11-06T20:56:09Z",
+      "page_views": 730,
+      "visits": 300,
+      "sample_interval": 11.06060606060606,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -114,8 +114,8 @@
         },
         {
           "path": "/",
-          "page_views": 90,
-          "sample_interval": 11.25
+          "page_views": 100,
+          "sample_interval": 11.11111111111111
         },
         {
           "path": "/Tronclock/",
