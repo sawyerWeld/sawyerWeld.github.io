@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-11-07T14:07:06Z",
+  "updated_at": "2026-11-07T18:49:56Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-06T14:07:06Z",
-      "end_utc_exclusive": "2026-11-07T14:07:06Z",
-      "page_views": 7,
-      "visits": 7,
+      "start_utc": "2026-11-06T18:49:56Z",
+      "end_utc_exclusive": "2026-11-07T18:49:56Z",
+      "page_views": 5,
+      "visits": 5,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/",
-          "page_views": 6,
+          "page_views": 4,
           "sample_interval": 1
         },
         {
@@ -24,10 +24,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-31T14:07:06Z",
-      "end_utc_exclusive": "2026-11-07T14:07:06Z",
-      "page_views": 29,
-      "visits": 26,
+      "start_utc": "2026-10-31T18:49:56Z",
+      "end_utc_exclusive": "2026-11-07T18:49:56Z",
+      "page_views": 28,
+      "visits": 25,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -47,13 +47,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/survivorship/",
+          "path": "/paupergenesis2026/",
           "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
-          "page_views": 2,
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -90,8 +90,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-08T14:07:06Z",
-      "end_utc_exclusive": "2026-11-07T14:07:06Z",
+      "start_utc": "2026-10-08T18:49:56Z",
+      "end_utc_exclusive": "2026-11-07T18:49:56Z",
       "page_views": 730,
       "visits": 300,
       "sample_interval": 11.06060606060606,
