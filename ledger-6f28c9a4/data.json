@@ -1,18 +1,23 @@
 {
-  "updated_at": "2026-11-08T17:06:05Z",
+  "updated_at": "2026-11-08T21:12:38Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-07T17:06:05Z",
-      "end_utc_exclusive": "2026-11-08T17:06:05Z",
-      "page_views": 14,
-      "visits": 4,
+      "start_utc": "2026-11-07T21:12:38Z",
+      "end_utc_exclusive": "2026-11-08T21:12:38Z",
+      "page_views": 15,
+      "visits": 5,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/season-standings/",
           "page_views": 7,
+          "sample_interval": 1
+        },
+        {
+          "path": "/Tronclock/",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
@@ -36,11 +41,6 @@
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
           "path": "/card-foil/",
           "page_views": 1,
           "sample_interval": 1
@@ -49,10 +49,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-01T17:06:05Z",
-      "end_utc_exclusive": "2026-11-08T17:06:05Z",
-      "page_views": 38,
-      "visits": 27,
+      "start_utc": "2026-11-01T21:12:38Z",
+      "end_utc_exclusive": "2026-11-08T21:12:38Z",
+      "page_views": 39,
+      "visits": 28,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -73,7 +73,7 @@
         },
         {
           "path": "/Tronclock/",
-          "page_views": 5,
+          "page_views": 6,
           "sample_interval": 1
         },
         {
@@ -110,11 +110,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-09T17:06:05Z",
-      "end_utc_exclusive": "2026-11-08T17:06:05Z",
-      "page_views": 700,
-      "visits": 300,
-      "sample_interval": 116.66666666666667,
+      "start_utc": "2026-10-09T21:12:38Z",
+      "end_utc_exclusive": "2026-11-08T21:12:38Z",
+      "page_views": 740,
+      "visits": 310,
+      "sample_interval": 11.044776119402986,
       "pages_may_be_truncated": false,
       "pages": [
         {
