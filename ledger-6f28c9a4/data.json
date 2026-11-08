@@ -1,22 +1,42 @@
 {
-  "updated_at": "2026-11-08T02:32:15Z",
+  "updated_at": "2026-11-08T10:29:51Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-07T02:32:15Z",
-      "end_utc_exclusive": "2026-11-08T02:32:15Z",
-      "page_views": 3,
+      "start_utc": "2026-11-07T10:29:51Z",
+      "end_utc_exclusive": "2026-11-08T10:29:51Z",
+      "page_views": 13,
       "visits": 3,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/",
+          "path": "/season-standings/",
+          "page_views": 7,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/player.html",
           "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
+          "path": "/ppl/metagame.html",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/Tronclock/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -24,16 +44,21 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-01T02:32:15Z",
-      "end_utc_exclusive": "2026-11-08T02:32:15Z",
-      "page_views": 28,
-      "visits": 25,
+      "start_utc": "2026-11-01T10:29:51Z",
+      "end_utc_exclusive": "2026-11-08T10:29:51Z",
+      "page_views": 38,
+      "visits": 27,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/",
-          "page_views": 9,
+          "page_views": 10,
+          "sample_interval": 1
+        },
+        {
+          "path": "/season-standings/",
+          "page_views": 7,
           "sample_interval": 1
         },
         {
@@ -43,7 +68,17 @@
         },
         {
           "path": "/Tronclock/",
-          "page_views": 4,
+          "page_views": 5,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/player.html",
+          "page_views": 3,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 2,
           "sample_interval": 1
         },
         {
@@ -57,12 +92,7 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/",
+          "path": "/ppl/metagame.html",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -70,31 +100,16 @@
           "path": "/pauper/",
           "page_views": 1,
           "sample_interval": 1
-        },
-        {
-          "path": "/ppl/player.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
-          "page_views": 1,
-          "sample_interval": 1
         }
       ]
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-09T02:32:15Z",
-      "end_utc_exclusive": "2026-11-08T02:32:15Z",
-      "page_views": 730,
-      "visits": 300,
-      "sample_interval": 11.06060606060606,
+      "start_utc": "2026-10-09T10:29:51Z",
+      "end_utc_exclusive": "2026-11-08T10:29:51Z",
+      "page_views": 740,
+      "visits": 310,
+      "sample_interval": 11.044776119402986,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -103,14 +118,14 @@
           "sample_interval": 11.052631578947368
         },
         {
+          "path": "/",
+          "page_views": 110,
+          "sample_interval": 11
+        },
+        {
           "path": "/season-standings/",
           "page_views": 100,
           "sample_interval": 12.5
-        },
-        {
-          "path": "/",
-          "page_views": 100,
-          "sample_interval": 11.11111111111111
         },
         {
           "path": "/Tronclock/",
