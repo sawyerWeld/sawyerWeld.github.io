@@ -1,38 +1,18 @@
 {
-  "updated_at": "2026-11-09T00:57:38Z",
+  "updated_at": "2026-11-09T08:02:07Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-08T00:57:38Z",
-      "end_utc_exclusive": "2026-11-09T00:57:38Z",
-      "page_views": 15,
-      "visits": 5,
+      "start_utc": "2026-11-08T08:02:07Z",
+      "end_utc_exclusive": "2026-11-09T08:02:07Z",
+      "page_views": 4,
+      "visits": 4,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/season-standings/",
-          "page_views": 7,
-          "sample_interval": 1
-        },
-        {
           "path": "/Tronclock/",
           "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/player.html",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/metagame.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/",
-          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -49,10 +29,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-02T00:57:38Z",
-      "end_utc_exclusive": "2026-11-09T00:57:38Z",
-      "page_views": 39,
-      "visits": 28,
+      "start_utc": "2026-11-02T08:02:07Z",
+      "end_utc_exclusive": "2026-11-09T08:02:07Z",
+      "page_views": 37,
+      "visits": 26,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -67,13 +47,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
-          "page_views": 7,
+          "path": "/Tronclock/",
+          "page_views": 6,
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 6,
+          "path": "/card-foil/",
+          "page_views": 5,
           "sample_interval": 1
         },
         {
@@ -110,11 +90,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-10T00:57:38Z",
-      "end_utc_exclusive": "2026-11-09T00:57:38Z",
-      "page_views": 730,
-      "visits": 300,
-      "sample_interval": 11.06060606060606,
+      "start_utc": "2026-10-10T08:02:07Z",
+      "end_utc_exclusive": "2026-11-09T08:02:07Z",
+      "page_views": 720,
+      "visits": 290,
+      "sample_interval": 11.076923076923077,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -138,12 +118,12 @@
           "sample_interval": 14
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 60,
+          "path": "/combined-elo/",
+          "page_views": 50,
           "sample_interval": 10
         },
         {
-          "path": "/combined-elo/",
+          "path": "/Tronclock/",
           "page_views": 50,
           "sample_interval": 10
         },
