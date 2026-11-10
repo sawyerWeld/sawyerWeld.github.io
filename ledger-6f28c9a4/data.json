@@ -1,38 +1,33 @@
 {
-  "updated_at": "2026-11-10T17:54:46Z",
+  "updated_at": "2026-11-10T23:27:45Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-09T17:54:46Z",
-      "end_utc_exclusive": "2026-11-10T17:54:46Z",
+      "start_utc": "2026-11-09T23:27:45Z",
+      "end_utc_exclusive": "2026-11-10T23:27:45Z",
       "page_views": 5,
       "visits": 5,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
+          "path": "/paupergenesis2026/",
+          "page_views": 3,
+          "sample_interval": 1
+        },
+        {
           "path": "/card-foil/",
           "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergenesis2026/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/pauper/",
-          "page_views": 1,
           "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-03T17:54:46Z",
-      "end_utc_exclusive": "2026-11-10T17:54:46Z",
-      "page_views": 38,
-      "visits": 27,
+      "start_utc": "2026-11-03T23:27:45Z",
+      "end_utc_exclusive": "2026-11-10T23:27:45Z",
+      "page_views": 37,
+      "visits": 26,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -47,22 +42,22 @@
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 5,
-          "sample_interval": 1
-        },
-        {
           "path": "/card-foil/",
           "page_views": 5,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/player.html",
+          "path": "/paupergenesis2026/",
+          "page_views": 4,
+          "sample_interval": 1
+        },
+        {
+          "path": "/Tronclock/",
           "page_views": 3,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
+          "path": "/ppl/player.html",
           "page_views": 3,
           "sample_interval": 1
         },
@@ -90,8 +85,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-11T17:54:46Z",
-      "end_utc_exclusive": "2026-11-10T17:54:46Z",
+      "start_utc": "2026-10-11T23:27:45Z",
+      "end_utc_exclusive": "2026-11-10T23:27:45Z",
       "page_views": 700,
       "visits": 270,
       "sample_interval": 11.11111111111111,
