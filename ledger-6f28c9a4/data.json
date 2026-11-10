@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-09T18:52:39Z",
+  "updated_at": "2026-11-10T02:12:16Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-08T18:52:39Z",
-      "end_utc_exclusive": "2026-11-09T18:52:39Z",
-      "page_views": 1,
-      "visits": 1,
+      "start_utc": "2026-11-09T02:12:16Z",
+      "end_utc_exclusive": "2026-11-10T02:12:16Z",
+      "page_views": 2,
+      "visits": 2,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -14,15 +14,20 @@
           "path": "/",
           "page_views": 1,
           "sample_interval": 1
+        },
+        {
+          "path": "/pauper/",
+          "page_views": 1,
+          "sample_interval": 1
         }
       ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-02T18:52:39Z",
-      "end_utc_exclusive": "2026-11-09T18:52:39Z",
-      "page_views": 35,
-      "visits": 24,
+      "start_utc": "2026-11-03T02:12:16Z",
+      "end_utc_exclusive": "2026-11-10T02:12:16Z",
+      "page_views": 36,
+      "visits": 25,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -57,6 +62,11 @@
           "sample_interval": 1
         },
         {
+          "path": "/pauper/",
+          "page_views": 2,
+          "sample_interval": 1
+        },
+        {
           "path": "/paupergenesis2026/",
           "page_views": 2,
           "sample_interval": 1
@@ -70,21 +80,16 @@
           "path": "/ppl/metagame.html",
           "page_views": 1,
           "sample_interval": 1
-        },
-        {
-          "path": "/pauper/",
-          "page_views": 1,
-          "sample_interval": 1
         }
       ]
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-10T18:52:39Z",
-      "end_utc_exclusive": "2026-11-09T18:52:39Z",
-      "page_views": 710,
-      "visits": 280,
-      "sample_interval": 11.09375,
+      "start_utc": "2026-10-11T02:12:16Z",
+      "end_utc_exclusive": "2026-11-10T02:12:16Z",
+      "page_views": 700,
+      "visits": 270,
+      "sample_interval": 11.11111111111111,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -114,7 +119,7 @@
         },
         {
           "path": "/Tronclock/",
-          "page_views": 50,
+          "page_views": 40,
           "sample_interval": 10
         },
         {
