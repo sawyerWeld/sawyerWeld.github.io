@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="344" height="200" viewBox="0 0 344 200" role="img" aria-labelledby="title desc">
+  <title id="title">Top 8 graphic generator</title>
+  <desc id="desc">A miniature tournament poster with eight colored standings panels and a gold first-place highlight.</desc>
+  <rect width="344" height="200" fill="#182231"/>
+  <path d="M260 0h84v200H152z" fill="#22354a"/>
+  <path d="M284 0h12L188 200h-12z" fill="#386f9f" opacity=".4"/>
+  <text x="19" y="53" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="41" font-weight="900" letter-spacing="-1.5">TOP <tspan fill="#e3b951">8</tspan></text>
+  <path d="M258 25h64M281 35h41M304 45h18" stroke="#7796b5" stroke-width="3"/>
+  <g stroke-width="2">
+    <rect x="20" y="70" width="70" height="49" rx="3" fill="#c79834" stroke="#f1d994"/>
+    <rect x="98" y="70" width="70" height="49" rx="3" fill="#386f9f"/>
+    <rect x="176" y="70" width="70" height="49" rx="3" fill="#4f8f5f"/>
+    <rect x="254" y="70" width="70" height="49" rx="3" fill="#b64f4a"/>
+    <rect x="20" y="127" width="70" height="49" rx="3" fill="#725a95"/>
+    <rect x="98" y="127" width="70" height="49" rx="3" fill="#4f8f5f"/>
+    <rect x="176" y="127" width="70" height="49" rx="3" fill="#386f9f"/>
+    <rect x="254" y="127" width="70" height="49" rx="3" fill="#725a95"/>
+  </g>
+  <g fill="#fff" opacity=".16">
+    <path d="M69 71h20v47H39zM147 70h21v49h-51zM225 70h21v49h-51zM303 70h21v49h-51zM69 127h21v49H39zM147 127h21v49h-51zM225 127h21v49h-51zM303 127h21v49h-51z"/>
+  </g>
+  <g fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="800">
+    <text x="28" y="98">1</text><text x="106" y="98">2</text><text x="184" y="98">3</text><text x="262" y="98">4</text>
+    <text x="28" y="155">5</text><text x="106" y="155">6</text><text x="184" y="155">7</text><text x="262" y="155">8</text>
+  </g>
+  <path d="M29 109h32m46 0h32m46 0h32m46 0h32M29 166h32m46 0h32m46 0h32m46 0h32" stroke="#fff" stroke-opacity=".65" stroke-width="3"/>
+</svg>
