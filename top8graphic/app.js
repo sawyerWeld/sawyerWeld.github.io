@@ -86,7 +86,8 @@ function drawArt(p,x,y,w,h) {
   if(e.status==='ready'){
     const im=e.image, scale=Math.max(w/im.naturalWidth,h/im.naturalHeight);
     const dw=im.naturalWidth*scale,dh=im.naturalHeight*scale;
-    ctx.drawImage(im,x-(dw-w)/2,y-(dh-h)*p.crop/100,dw,dh);
+    // Cover leaves overflow on one axis; position that overflow horizontally or vertically.
+    ctx.drawImage(im,x-(dw-w)*p.crop/100,y-(dh-h)*p.crop/100,dw,dh);
   }else{
     fill('#26394b');ctx.fillRect(x,y,w,h);
     text(e.status==='error'?'Art unavailable':'Loading art…',x+w/2,y+h/2,20,'#c0ccda',w-24,500,'center');
@@ -314,7 +315,7 @@ function showPlayers() {
     fields.append(inputField('Name','name',p.name,i,70),inputField('Deck','deck',p.deck,i,70));
     const duo=make('div',{className:'two-col'});duo.append(inputField('Place','rank',p.rank,i,3),inputField('Record','record',p.record,i,15));fields.append(duo,inputField('Handle / team','handle',p.handle,i,60));
     const art=make('button',{className:'art-choice',type:'button'});art.append(make('span',{},p.card.name),make('small',{},'Change art'));art.addEventListener('click',()=>openSearch(i));fields.append(art);
-    const crop=make('label',{},'Crop · top ↔ bottom'),slider=make('input',{type:'range',min:0,max:100,step:1,value:p.crop});slider.dataset.player=i;slider.dataset.key='crop';slider.addEventListener('pointerdown',()=>focusCropSlider(slider));crop.append(slider);fields.append(crop);d.append(fields);$('#players').append(d);
+    const crop=make('label',{},'Art position'),slider=make('input',{type:'range',min:0,max:100,step:1,value:p.crop});slider.dataset.player=i;slider.dataset.key='crop';slider.addEventListener('pointerdown',()=>focusCropSlider(slider));crop.append(slider);fields.append(crop);d.append(fields);$('#players').append(d);
   });
   syncCredits();
 }

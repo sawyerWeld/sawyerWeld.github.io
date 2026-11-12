@@ -19,3 +19,5 @@ Design → Style includes **Smash**, based on the supplied Top 8 reference: larg
 The page footer links “Sawyer Welden” to `/pauper/`, with expandable credits below. Drafts still save locally, without a status label or Reset control.
 
 The former `/top8-draft/` URL has been removed. The localStorage key is unchanged so existing drafts carry over.
+
+Art position shifts artwork along the cropped axis: horizontally in tall slots, vertically in wide slots. Center remains 50; the same position is used in the preview and PNG export.
