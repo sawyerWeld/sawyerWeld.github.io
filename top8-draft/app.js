@@ -16,7 +16,7 @@ function freshState() {
 }
 function validState(s) {
   return s && eventFields.every(k=>typeof s[k]==='string'&&s[k].length<=200) &&
-    ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','old','full'].includes(s.treatment)&&['cards','footer'].includes(s.credits)&&
+    ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','old','full','smash'].includes(s.treatment)&&['cards','footer'].includes(s.credits)&&
     Array.isArray(s.players)&&s.players.length===8&&s.players.every(p=>['name','deck','rank','handle','record'].every(k=>typeof p[k]==='string'&&p[k].length<=100)&&Number.isFinite(p.crop)&&p.crop>=0&&p.crop<=100&&p.card&&typeof p.card.name==='string'&&typeof p.card.artist==='string'&&Array.isArray(p.card.colors)&&validArt(p.card.art));
 }
 function validArt(url) { return typeof url==='string' && (/^assets\/card-[0-7]\.jpg$/.test(url)||/^https:\/\/cards\.scryfall\.io\//.test(url)); }
@@ -104,7 +104,43 @@ function drawOldCard(p,x,y,w,h,hero,frame) {
   }
   ctx.restore();
 }
+function drawSmashCard(p,x,y,w,h,hero=false) {
+  const accent='#d72829', creditH=state.credits==='cards'?20:0;
+  const details=[p.handle,p.record].filter(Boolean).join(' · ');
+  const bandH=hero?(details?146:116):(details?99:76);
+  const slant=hero?34:25, bottom=y+h-creditH;
+  ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
+  drawArt(p,x,y,w,h);
+  const shade=ctx.createLinearGradient(x,y+h*.4,x,bottom);
+  shade.addColorStop(0,'#00000000');shade.addColorStop(1,'#000000d9');
+  fill(shade);ctx.fillRect(x,y,w,h);
+  // The diagonal nameplate and oversized placements echo tournament Top 8 posters.
+  ctx.beginPath();ctx.moveTo(x,bottom-bandH+slant);ctx.lineTo(x+w,bottom-bandH);
+  ctx.lineTo(x+w,bottom);ctx.lineTo(x,bottom);ctx.closePath();fill(accent);ctx.fill();
+  ctx.shadowColor='#000';ctx.shadowBlur=4;ctx.shadowOffsetX=2;ctx.shadowOffsetY=3;
+  text(p.rank,x+16,y+(hero?128:82),hero?122:78,'#fff',w*.42,'italic 900');
+  const nameY=bottom-(hero?(details?111:83):(details?72:48));
+  text(p.name||'Player name',x+w/2,nameY,hero?48:w<345?31:36,'#fff',w-30,900,'center');
+  ctx.shadowBlur=2;ctx.shadowOffsetX=1;ctx.shadowOffsetY=1;
+  text(p.deck||'Deck name',x+w/2,nameY+(hero?35:25),hero?26:21,'#fff',w-32,650,'center');
+  if(details)text(details,x+w/2,nameY+(hero?66:48),hero?22:17,'#fff',w-32,550,'center');
+  ctx.shadowColor='transparent';ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
+  if(creditH){
+    fill('#111114');ctx.fillRect(x,bottom,w,creditH);
+    text(`Art: ${p.card.artist}`,x+w/2,y+h-6,11,'#c4c4ca',w-20,450,'center');
+  }
+  ctx.strokeStyle=accent;ctx.lineWidth=4;ctx.strokeRect(x+2,y+2,w-4,h-4);
+  ctx.restore();
+}
+function drawSmashBackground(W,H,dark,bg) {
+  ctx.save();
+  const cx=W*.7,cy=H*.52,r=H*.66;
+  fill(dark?'#19191f':'#e3e1db');ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
+  fill(bg);ctx.fillRect(cx-r,cy-20,r*2,40);ctx.fillRect(cx-r*.23,cy-r,42,r*2);
+  ctx.restore();
+}
 function drawCard(p,x,y,w,h,hero=false) {
+  if(state.treatment==='smash'){drawSmashCard(p,x,y,w,h,hero);return;}
   if(state.treatment==='old'){
     const frame=getImage(oldFramePath(p.card));
     if(frame.status==='ready'){drawOldCard(p,x,y,w,h,hero,frame.image);return;}
@@ -178,12 +214,15 @@ function render() {
   const W=square?1600:1920,H=square?1600:1080;
   if(canvas.width!==W||canvas.height!==H){canvas.width=W;canvas.height=H;}
   canvas.classList.toggle('square',square);
-  const dark=state.theme==='midnight', bg=dark?'#162330':'#f2f0e9', fg=dark?'#f7f4ed':'#182231', muted=dark?'#a9b9c8':'#65717b', rule=dark?'#415263':'#c5c9c7';
+  const smash=state.treatment==='smash',dark=state.theme==='midnight';
+  const bg=dark?(smash?'#0b0b0e':'#162330'):'#f2f0e9',fg=dark?'#f7f4ed':'#182231';
+  const muted=dark?(smash?'#b6b6bf':'#a9b9c8'):'#65717b',rule=dark?(smash?'#42424a':'#415263'):'#c5c9c7';
   fill(bg);ctx.fillRect(0,0,W,H);
+  if(smash)drawSmashBackground(W,H,dark,bg);
   const margin=64, contentW=W-2*margin;
-  text(state.title||'Event name',margin,108,57,fg,contentW-290,750);
+  text(state.title||'Event name',margin,108,57,fg,contentW-290,smash?'italic 900':750);
   text(metadata(),margin,154,24,muted,contentW-40,450);
-  text(state.heading,W-margin,104,66,fg,275,800,'right');
+  text(state.heading,W-margin,104,66,fg,275,smash?'italic 900':800,'right');
   fill(rule);ctx.fillRect(margin,182,contentW,2);
   const creditWidth=520;
   const creditLines=[
