@@ -1,0 +1,180 @@
+.archetype-page .muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+.archetype-page .back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.archetype-page .archetype-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  margin: 8px 0 24px;
+  padding: 0;
+}
+.archetype-page .archetype-identity {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1 1 280px;
+  min-width: 0;
+}
+.archetype-page .archetype-identity h1 { overflow-wrap: anywhere; }
+.archetype-page .hero-art {
+  display: block;
+  width: 144px;
+  height: 108px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.archetype-page .archetype-overview {
+  flex: 0 0 auto;
+  margin-left: auto;
+  text-align: right;
+}
+.archetype-page .archetype-overview[hidden] { display: none; }
+.archetype-page .headline-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 32px;
+  margin: 0;
+}
+.archetype-page .archetype-overview dd {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 650;
+}
+.archetype-page .archetype-overview small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.archetype-page .matchup-highlights,
+.archetype-page .pilot-sections {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+.archetype-page .matchup-highlights {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 20px;
+}
+.archetype-page h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.archetype-page .matchup-highlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 58px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+.archetype-page .matchup-highlight:first-child {
+  border-top: 0;
+}
+.archetype-page .matchup-rate {
+  text-align: right;
+  font-weight: 600;
+}
+.archetype-page .matchup-rate small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+.archetype-page .favorable { color: #137347; }
+.archetype-page .unfavorable { color: #aa413c; }
+.archetype-page .deck-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.archetype-page .deck-art {
+  width: 40px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.archetype-page .all-matchups summary {
+  display: list-item;
+  cursor: pointer;
+  width: fit-content;
+  padding: 12px 0;
+  min-height: 44px;
+  color: var(--blue);
+}
+.archetype-page .pilot-sections section {
+  min-width: 0;
+  margin: 0;
+}
+.archetype-page .pilots-table { table-layout: fixed; }
+.archetype-page .pilots-table th:first-child { width: 34%; }
+.archetype-page .pilots-table td:first-child { overflow-wrap: anywhere; }
+.archetype-page .matchups-table th:first-child { width: 52%; }
+.archetype-page .matchups-table td { padding-block: 6px; }
+.archetype-page .matchups-table .mirror-label { margin-left: 6px; }
+.archetype-page .appearances-table { table-layout: fixed; }
+.archetype-page .appearances-table th:nth-child(1) { width: 26%; }
+.archetype-page .appearances-table th:nth-child(2) { width: 22%; }
+.archetype-page .appearances-table th:nth-child(3) { width: 34%; }
+.archetype-page .appearances-table td:nth-child(2),
+.archetype-page .appearances-table td:nth-child(3),
+.archetype-page .appearances-table th:nth-child(2),
+.archetype-page .appearances-table th:nth-child(3) { text-align: left; white-space: normal; }
+.archetype-page .appearances-table small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 2px;
+}
+.archetype-page .appearances-table .mobile-deck { display: none; }
+.archetype-page .appearance-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.archetype-page .appearance-pagination button { margin-left: 6px; min-width: 44px; }
+.archetype-page .empty { color: var(--muted); text-align: left; font-size: 13px; }
+.archetype-page .section-head { flex-wrap: wrap; gap: 4px 12px; }
+
+@media (max-width: 700px) {
+  .archetype-page .hero-art { width: 72px; height: 54px; }
+  .archetype-page .archetype-heading { gap: 12px; }
+  .archetype-page .archetype-identity { gap: 14px; }
+  .archetype-page h1 { font-size: 26px; }
+  .archetype-page .headline-metrics { gap: clamp(8px, 3vw, 18px); }
+  .archetype-page .headline-metrics dd { font-size: clamp(19px, 5.6vw, 24px); }
+  .archetype-page .archetype-overview small { font-size: 11px; }
+  .archetype-page .matchup-highlights,
+  .archetype-page .pilot-sections { grid-template-columns: 1fr; gap: 24px; }
+  .archetype-page .matchup-highlights { padding: 14px; gap: 20px; }
+  .archetype-page th,
+  .archetype-page td { padding: 10px; }
+  .archetype-page .matchups-table th:first-child { width: auto; }
+  .archetype-page .matchups-table th:last-child,
+  .archetype-page .matchups-table td:last-child { display: none; }
+  .archetype-page .appearances-table th:nth-child(1) { width: 39%; }
+  .archetype-page .appearances-table th:nth-child(2) { width: 36%; }
+  .archetype-page .appearances-table th:nth-child(3),
+  .archetype-page .appearances-table td:nth-child(3) { display: none; }
+  .archetype-page .appearances-table .mobile-deck { display: block; }
+  .archetype-page .appearances-table th:last-child { white-space: normal; }
+}

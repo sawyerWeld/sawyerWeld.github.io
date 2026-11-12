@@ -1,0 +1,513 @@
+<!doctype html>
+    <html lang="en"><head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="league-data" content="/combined-elo/data.json">
+    <title>Archetype | Piedmont Pauper League</title>
+    <link rel="icon" href="/ppl/favicon.svg" type="image/svg+xml">
+    <style>:root {
+  --font-family: -apple-system, system-ui, sans-serif;
+  --max-width: 70rem;
+  --nav-link-color: #BBB;
+  --nav-link-hover-color: #FFF;
+  --button-color: #00713D;
+  --button-hover-color: #069654;
+  --table-alt-color: #E8FAEA;
+  --img-button-color: #FFF;
+  --img-button-hover-color: #EEE;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0 auto;
+  font-family: var(--font-family);
+}
+html {
+  overflow-y: scroll;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+strong {
+  font-weight: 550;
+}
+
+h1, h2 {
+  font-weight: 550;
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  text-wrap: pretty;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul, ol {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: max-content;
+}
+
+.tableDiv {
+  overflow-x: scroll;
+  padding-bottom: 1rem;
+}
+
+td, th {
+  padding: .3rem .5rem;
+}
+
+td {
+  border: 1px solid #ccc;
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+th {
+  text-align: right;
+  font-weight: 550;
+  color: var(--nav-link-color);
+  background-color: black;
+  border: 1px solid black;
+}
+
+.sort {
+  transition: color 0.2s ease;
+}
+
+.sort:hover {
+  color: var(--nav-link-hover-color);
+  cursor: pointer;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--table-alt-color);
+}
+
+.sort.asc::after {
+  content: "\002B06";
+  padding-left: 3px;
+}
+.sort.desc::after {
+  content: "\002B07";
+  padding-left: 3px
+}
+
+.search {
+  font-size:1.2rem;
+  margin-bottom: 0.5rem;
+  width: 12rem;
+}
+
+.headline {
+  font-size: clamp(1.9rem, 5.2vw, 4rem);
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  line-height: 1.2;
+}
+
+.sub-headline {
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  text-wrap: balance;
+  text-align: center;
+}
+
+header {
+  box-shadow: 0px 1px 1px #999;
+  width: 100%;
+  background-color: black;
+}
+
+footer {
+  box-shadow: 0px -1px 1px #999;
+  width: 100%;
+  padding-top: 1rem;
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  margin-inline: auto;
+  max-width: var(--max-width);
+}
+
+.center-aligned {
+  align-items: center;
+}
+
+.spread-content {
+  justify-content: space-between;
+}
+
+.store-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.media-span {
+  gap: 0.5rem;
+}
+
+.navbar {
+  justify-content: space-between;
+  padding: 0.75rem;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+a.navbar-link {
+  font-size: 1rem;
+  color: var(--nav-link-color);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+a.navbar-link:hover,
+a.navbar-link[aria-current] {
+  text-decoration: none;
+  color: var(--nav-link-hover-color);
+}
+
+a.navbar-home {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+}
+
+a.media-link {
+  padding: 0.4rem 0.4rem;
+  padding-bottom: 0.1rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+a.media-link:hover {
+  background-color: var(--img-button-hover-color);
+}
+
+.navbar-container {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+.navbar-toggle {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .navbar--collapsible {
+    position: relative;
+    z-index: 20;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .navbar--collapsible .navbar-home {
+    font-size: 1.2rem;
+  }
+
+  .navbar--collapsible .navbar-toggle:not([hidden]) {
+    display: inline-flex;
+    flex: 0 0 44px;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+  }
+
+  .navbar-toggle:hover {
+    background: #222;
+  }
+
+  .navbar-toggle:focus-visible,
+  .navbar--collapsible .navbar-link:focus-visible {
+    outline: 2px solid #8ab8ff;
+    outline-offset: 2px;
+  }
+
+  .navbar--collapsible .navbar-container {
+    position: absolute;
+    top: 100%;
+    right: 12px;
+    width: 12rem;
+    max-width: calc(100% - 24px);
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: start;
+    gap: 0;
+    max-height: calc(100dvh - 68px);
+    overflow-y: auto;
+    padding: 6px;
+    border-radius: 6px;
+    background: white;
+    border: 1px solid #d9e1ea;
+    box-shadow: 0 4px 6px #0003;
+  }
+
+  .navbar--collapsible a.navbar-link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #182231;
+  }
+
+  .navbar--collapsible .navbar-link:hover,
+  .navbar--collapsible .navbar-link[aria-current] {
+    background: #edf3f8;
+  }
+
+  .navbar--collapsible .navbar-link:focus-visible {
+    outline-color: #2167ae;
+  }
+
+  .navbar--collapsible .navbar-toggle[aria-expanded="false"] + .navbar-container,
+  .navbar-toggle[aria-expanded="false"] .navbar-close-icon,
+  .navbar-toggle[aria-expanded="true"] .navbar-menu-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-container {
+    justify-content: center;
+  }
+
+  a.navbar-home {
+    font-size: 1.2rem;
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.store-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  text-align: center;
+  background-color: white;
+  border: 2px solid var(--button-color);
+  color: black;
+  font-size: 16px;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.store-card:hover {
+  text-decoration: none;
+  background-color: var(--img-button-hover-color);
+  border: 2px solid var(--button-hover-color);
+}
+
+.store-card img {
+  width: 6rem;
+  height: auto;
+}
+
+.store-card-logo {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.store-card:focus-visible {
+  outline: 2px solid #2167ae;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .store-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.image {
+  width: 50%;
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .dragonImage {
+    width: 75%;
+  }
+}
+
+.button-span {
+  gap: 1.6rem;
+}
+
+.button {
+  font-size: 1.2rem;
+  text-decoration: none;
+  text-align:center;
+  background-color: var(--button-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  text-decoration: none;
+  background-color: var(--button-hover-color);
+}
+</style>
+    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/integration.css">
+    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/base.css">
+    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/data-page.css">
+    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/profiles/trophies.css">
+    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/archetypes.css">
+
+    <script type="module" src="/ppl/assets/d6f0e0b0f21d/js/navigation.js"></script>
+    <script type="module" src="/ppl/assets/d6f0e0b0f21d/stats/profiles/archetypes.js"></script>
+    </head><body class="stats-page">
+    <header><nav class="container navbar flex-row" aria-label="League stats">
+    <a class="navbar-home" href="/ppl/">Piedmont Pauper League</a>
+    <button class="navbar-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu" hidden>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path class="navbar-menu-icon" d="M4 6h16M4 12h16M4 18h16" />
+            <path class="navbar-close-icon" d="m6 6 12 12M6 18 18 6" />
+          </svg>
+        </button>
+    <div class="navbar-container flex-row" id="primary-navigation"><a class="navbar-link" href="/season-standings/">Standings</a><a class="navbar-link" href="/combined-elo/">Elo</a><a class="navbar-link" href="/ppl/player.html">Players</a><a class="navbar-link" href="/ppl/store.html">Stores</a><a class="navbar-link" href="/ppl/metagame.html" aria-current="location">Metagame</a></div></nav></header>
+    <main><div class="container">
+        <div class="league-page archetype-page">
+  <a id="back-to-metagame" class="back-link" href="/ppl/metagame.html">← Metagame</a>
+  <header class="archetype-heading">
+    <div class="archetype-identity">
+      <div id="archetype-art"></div>
+      <h1 id="archetype-name">Archetype</h1>
+    </div>
+    <div id="overview" class="archetype-overview" hidden></div>
+  </header>
+  <p id="status" role="status">Loading archetype…</p>
+  <div id="profile" hidden>
+    <section aria-labelledby="matchups-heading">
+      <div class="section-head">
+        <h2 id="matchups-heading">Matchups</h2>
+      </div>
+      <div class="matchup-highlights">
+        <div><h3 title="Winning matchups with at least 5 played matches; mirrors excluded">Best matchups</h3><div id="best-matchups"></div></div>
+        <div><h3 title="Losing matchups with at least 5 played matches; mirrors excluded">Toughest matchups</h3><div id="worst-matchups"></div></div>
+      </div>
+      <details class="all-matchups">
+        <summary id="all-matchups-label">All matchups</summary>
+        <div class="scroll">
+          <table class="matchups-table">
+            <thead><tr><th scope="col">Opponent archetype</th><th scope="col">MW%</th><th scope="col">W–L–D</th><th scope="col">Matches</th></tr></thead>
+            <tbody id="matchups"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+    <div class="pilot-sections">
+      <section aria-labelledby="best-pilots-heading">
+        <div class="section-head"><h2 id="best-pilots-heading" title="At least 2 events and 5 played matches">Best results</h2></div>
+        <div class="scroll"><table class="pilots-table">
+          <thead><tr><th scope="col">Pilot</th><th scope="col">MW%</th><th scope="col">W–L–D</th><th scope="col">Events</th></tr></thead>
+          <tbody id="best-pilots"></tbody>
+        </table></div>
+      </section>
+      <section aria-labelledby="dedicated-pilots-heading">
+        <div class="section-head"><h2 id="dedicated-pilots-heading">Most dedicated pilots</h2></div>
+        <div class="scroll"><table class="pilots-table">
+          <thead><tr><th scope="col">Pilot</th><th scope="col">Events</th><th scope="col">W–L–D</th><th scope="col">MW%</th></tr></thead>
+          <tbody id="dedicated-pilots"></tbody>
+        </table></div>
+      </section>
+    </div>
+    <section aria-labelledby="appearances-heading">
+      <div class="section-head"><h2 id="appearances-heading">Recent appearances</h2></div>
+      <div class="scroll"><table class="appearances-table">
+        <thead><tr><th scope="col">Date / store</th><th scope="col">Pilot</th><th scope="col">Reported deck</th><th scope="col">Event record</th></tr></thead>
+        <tbody id="appearances"></tbody>
+      </table></div>
+      <div class="appearance-pagination"><span id="appearance-range"></span><div><button id="previous" aria-label="Previous appearances">←</button><button id="next" aria-label="Next appearances">→</button></div></div>
+    </section>
+  </div>
+  <p id="error" role="alert" hidden></p>
+</div>
+
+      </div></main>
+    <!-- Ask Luke if we should remove this analytics script when these pages move to the PPL site. -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token":"ed4770c8a20f4c649e2d4689e0e83033"}'
+    ></script></body></html>
