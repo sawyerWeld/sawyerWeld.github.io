@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Tolarian Terror",
+    "art": "assets/card-0.jpg",
+    "artist": "Vincent Christiaens",
+    "colors": [
+      "U"
+    ],
+    "set": "Dominaria United",
+    "url": "https://scryfall.com/card/dmu/72/tolarian-terror?utm_source=api",
+    "id": "42f01cba-43d4-46ad-b7a5-d7631b0e1347",
+    "oracle": "b9d0f2e1-62c2-44fd-ad38-471daf17bb0a"
+  },
+  {
+    "name": "Lightning Bolt",
+    "art": "assets/card-1.jpg",
+    "artist": "Milivoj \u0106eran",
+    "colors": [
+      "R"
+    ],
+    "set": "Marvel Super Heroes Commander",
+    "url": "https://scryfall.com/card/msc/806/lightning-bolt?utm_source=api",
+    "id": "7673784e-db4b-43a1-8d55-1bb9fc1e284f",
+    "oracle": "4457ed35-7c10-48c8-9776-456485fdf070"
+  },
+  {
+    "name": "Myr Enforcer",
+    "art": "assets/card-2.jpg",
+    "artist": "Jim Murray",
+    "colors": [],
+    "set": "Foundations Jumpstart",
+    "url": "https://scryfall.com/card/j25/756/myr-enforcer?utm_source=api",
+    "id": "78a6ec6a-b59d-4c39-a0fa-7e1d2a8a0df3",
+    "oracle": "2d8e1054-654f-42e8-8c29-12c3cf13a3eb"
+  },
+  {
+    "name": "Kor Skyfisher",
+    "art": "assets/card-3.jpg",
+    "artist": "Dan Murayama Scott",
+    "colors": [
+      "W"
+    ],
+    "set": "Modern Masters 2017",
+    "url": "https://scryfall.com/card/mm3/11/kor-skyfisher?utm_source=api",
+    "id": "d7501662-1216-4e08-bd2b-e0a459057942",
+    "oracle": "054a0193-861e-4644-ab0a-8aa33407abc8"
+  },
+  {
+    "name": "Llanowar Elves",
+    "art": "assets/card-4.jpg",
+    "artist": "Kev Walker",
+    "colors": [
+      "G"
+    ],
+    "set": "Foundations",
+    "url": "https://scryfall.com/card/fdn/227/llanowar-elves?utm_source=api",
+    "id": "6a0b230b-d391-4998-a3f7-7b158a0ec2cd",
+    "oracle": "68954295-54e3-4303-a6bc-fc4547a4e3a3"
+  },
+  {
+    "name": "Refurbished Familiar",
+    "art": "assets/card-5.jpg",
+    "artist": "Steve Ellis",
+    "colors": [
+      "B"
+    ],
+    "set": "Modern Horizons 3",
+    "url": "https://scryfall.com/card/mh3/105/refurbished-familiar?utm_source=api",
+    "id": "b338e078-629c-4cac-bd1d-e1f0a132728d",
+    "oracle": "009e1638-9055-4872-93e1-85841bce4648"
+  },
+  {
+    "name": "Sneaky Snacker",
+    "art": "assets/card-6.jpg",
+    "artist": "Irina Nordsol",
+    "colors": [
+      "B",
+      "U"
+    ],
+    "set": "Modern Horizons 3",
+    "url": "https://scryfall.com/card/mh3/205/sneaky-snacker?utm_source=api",
+    "id": "0e3aedae-e4bb-48e3-9f8b-bea0430df306",
+    "oracle": "f255492e-4e12-48b4-9c19-8a2a2780a1b7"
+  },
+  {
+    "name": "Mulldrifter",
+    "art": "assets/card-7.jpg",
+    "artist": "Eric Fortune",
+    "colors": [
+      "U"
+    ],
+    "set": "Lorwyn Eclipsed Commander",
+    "url": "https://scryfall.com/card/ecc/67/mulldrifter?utm_source=api",
+    "id": "3de308cc-14ac-407e-99e7-568572ecd0e7",
+    "oracle": "24d0f5e7-0d9e-4b76-900e-a7274e80312d"
+  }
+]
