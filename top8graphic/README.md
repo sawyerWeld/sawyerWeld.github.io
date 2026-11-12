@@ -20,6 +20,4 @@ The page footer links “Sawyer Welden” to `/pauper/`, with expandable credits
 
 The former `/top8-draft/` URL has been removed. The localStorage key is unchanged so existing drafts carry over.
 
-Art position shifts artwork along the cropped axis: horizontally in tall slots, vertically in wide slots. Center remains 50; the same position is used in the preview and PNG export.
-
-Per-player Zoom (100–200%) creates more room for Art position when the source image closely matches its slot. Existing drafts retain their composition at 100%; changing artwork resets zoom and position.
+Per-player Zoom (100–200%) enlarges centered artwork in both the preview and PNG export. Previous Art position settings are ignored. Existing drafts without zoom start at 100%; changing artwork resets zoom.
