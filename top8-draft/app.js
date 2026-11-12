@@ -24,8 +24,7 @@ function save() {
   state.edited = true;
   clearTimeout(savingTimer);
   savingTimer = setTimeout(()=>{
-    try { localStorage.setItem(STORAGE,JSON.stringify(state)); $('#save-status').textContent='Saved locally'; }
-    catch { $('#save-status').textContent='Not saved · storage unavailable'; }
+    try { localStorage.setItem(STORAGE,JSON.stringify(state)); } catch {}
   },250);
 }
 function changed() { save(); scheduleRender(); }
@@ -299,7 +298,6 @@ function syncCredits() {
 }
 function syncInputs() {
   eventFields.forEach(k=>$('#'+k).value=state[k]);
-  $('#save-status').textContent=state.edited?'Saved locally':'Example';
   showPlayers();scheduleRender();
 }
 function updatePlayerSummary(i) {
@@ -384,9 +382,6 @@ async function init() {
     $('#download').addEventListener('click',download);
     $('#preview-large').addEventListener('click',()=>{if(!ready)return;try{$('#full-image').src=canvas.toDataURL('image/png');$('#full-dialog').showModal();}catch{$('#notice').textContent='Could not open the full preview. Try refreshing.';}});
     $('#close-full').addEventListener('click',()=>$('#full-dialog').close());
-    $('#reset').addEventListener('click',()=>$('#reset-dialog').showModal());
-    $('#cancel-reset').addEventListener('click',()=>$('#reset-dialog').close());
-    $('#confirm-reset').addEventListener('click',()=>{clearTimeout(savingTimer);state=freshState();try{localStorage.removeItem(STORAGE);}catch{}syncInputs();$('#reset-dialog').close();});
     $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
   }catch(e){$('#notice').textContent=`Could not load the editor. Please refresh. ${e.message}`;}
 }
