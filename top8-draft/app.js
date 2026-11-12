@@ -259,8 +259,6 @@ function render() {
   const frames=state.treatment==='old'?state.players.map(p=>getImage(oldFramePath(p.card))):[];
   const loading=[...entries,...frames].some(e=>e.status==='loading'),failed=entries.some(e=>e.status==='error'),frameFailed=frames.some(e=>e.status==='error');
   $('#download').disabled=loading;
-  $('#preview-large').disabled=loading;
-  $('#dimensions').textContent=`${W} × ${H}`;
   $('#notice').textContent=loading?'Loading artwork and frames…':[failed?'Some artwork could not load. Choose another card or retry with a refresh. The export will include placeholders.':'',frameFailed?'Some old-border frames could not load; standard frames are shown instead. Refresh to retry.':''].filter(Boolean).join(' ');
   ready=!loading;
 }
@@ -380,8 +378,6 @@ async function init() {
     $('#card-dialog').addEventListener('close',()=>{searchVersion++;});
     $('#show-examples').addEventListener('click',()=>{searchVersion++;$('#search-status').textContent='';$('#search-button').disabled=false;showResults(exampleCards);});
     $('#download').addEventListener('click',download);
-    $('#preview-large').addEventListener('click',()=>{if(!ready)return;try{$('#full-image').src=canvas.toDataURL('image/png');$('#full-dialog').showModal();}catch{$('#notice').textContent='Could not open the full preview. Try refreshing.';}});
-    $('#close-full').addEventListener('click',()=>$('#full-dialog').close());
     $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
   }catch(e){$('#notice').textContent=`Could not load the editor. Please refresh. ${e.message}`;}
 }

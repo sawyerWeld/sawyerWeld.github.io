@@ -8,8 +8,8 @@
   <meta name="description" content="Make a Magic: The Gathering Top 8 graphic with card art and tournament standings.">
   <title>Top 8 generator · Sawyer Welden</title>
   <link rel="icon" href="/favicon.png">
-  <link rel="stylesheet" href="style.css?v=4">
-  <script type="module" src="app.js?v=11"></script>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script type="module" src="app.js?v=12"></script>
 </head>
 <body>
   <main>
@@ -37,7 +37,6 @@
         </div>
       </section>
       <section class="preview-panel" aria-label="Graphic preview">
-        <div class="preview-heading"><span id="dimensions">1920 × 1080</span><button class="text-button" id="preview-large" type="button">Full size ↗</button></div>
         <div class="canvas-wrap"><canvas id="poster" width="1920" height="1080" role="img" aria-label="Top eight tournament graphic. Standings are listed below."></canvas></div>
         <p id="notice" role="status"></p>
       </section>
@@ -53,6 +52,5 @@
     <div class="search-controls"><button class="text-button" type="button" id="show-examples">Example cards</button><span id="search-status" role="status"></span></div>
     <div id="card-results"></div>
   </dialog>
-  <dialog id="full-dialog" aria-label="Full graphic preview"><button class="close" type="button" id="close-full" aria-label="Close full preview">×</button><img id="full-image" alt="Full-size Top 8 tournament graphic"></dialog>
 </body>
 </html>
