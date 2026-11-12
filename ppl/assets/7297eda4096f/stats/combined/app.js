@@ -146,7 +146,7 @@ async function refreshData(initial = false) {
       )
     : null;
   try {
-    const { loadStats } = await import("./data-source.mjs?v=d6ea6427d4b5");
+    const { loadStats } = await import("./data-source.mjs?v=42fae5034e5d");
     const result = await loadStats({ refresh: !initial });
     const previousStore = store;
     applyData(result.data);

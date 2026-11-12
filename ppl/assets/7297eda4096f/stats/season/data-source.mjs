@@ -1,4 +1,4 @@
-import { loadLeagueFeed } from '../league-feed.mjs?v=d6ea6427d4b5';
+import { loadLeagueFeed } from '../league-feed.mjs?v=42fae5034e5d';
 
 function isDate(value) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;

@@ -268,5 +268,23 @@ export const deckImages = {
     "card": "Plunder the Trollshaws",
     "artist": "Alexander Mokhov",
     "source": "https://scryfall.com/card/hob/51/plunder-the-trollshaws?utm_source=api"
+  },
+  "Infect": {
+    "url": "https://cards.scryfall.io/art_crop/front/1/c/1c8c9473-97f4-4875-8f06-d3a70d4cbe6d.jpg?1783943100",
+    "card": "Llanowar Augur",
+    "artist": "Tsutomu Kawade",
+    "source": "https://scryfall.com/card/fut/129/llanowar-augur?utm_source=api"
+  },
+  "Familiars": {
+    "url": "https://cards.scryfall.io/art_crop/front/9/6/9621f341-bf85-4b77-bf19-2fb013b4c955.jpg?1783945627",
+    "card": "Sunscape Familiar",
+    "artist": "Brian Despain",
+    "source": "https://scryfall.com/card/pls/17/sunscape-familiar?utm_source=api"
+  },
+  "Camel Squad": {
+    "url": "https://cards.scryfall.io/art_crop/front/9/8/98d548c9-42bc-4155-8211-0aea801c3724.jpg?1783907408",
+    "card": "Salt Road Packbeast",
+    "artist": "Ben Wootten",
+    "source": "https://scryfall.com/card/tdm/23/salt-road-packbeast?utm_source=api"
   }
 };

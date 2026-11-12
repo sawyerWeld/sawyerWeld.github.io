@@ -1,4 +1,4 @@
-import { element as $, escapeHtml as esc, formatDate, loadLeagueData } from './ui.mjs';
+import { element as $, escapeHtml as esc, formatDate, loadLeagueData } from './ui.mjs?v=42fae5034e5d';
 const date = (value) => formatDate(value, true);
 let data;
 function render(id) {

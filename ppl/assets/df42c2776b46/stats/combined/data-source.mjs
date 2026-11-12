@@ -1,4 +1,4 @@
-import { loadLeagueFeed } from '../league-feed.mjs';
+import { loadLeagueFeed } from '../league-feed.mjs?v=42fae5034e5d';
 
 function validateUnpairedLosses(data, names, results) {
   const losses = data.unpairedLosses === undefined ? [] : data.unpairedLosses;
