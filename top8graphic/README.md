@@ -18,4 +18,4 @@ Design → Style includes **Smash**, based on the supplied Top 8 reference: larg
 
 The page footer links “Sawyer Welden” to `/pauper/`, with expandable credits below. Drafts still save locally, without a status label or Reset control.
 
-The former `/top8-draft/` URL redirects to `/top8graphic/`. The localStorage key is unchanged so existing drafts carry over.
+The former `/top8-draft/` URL has been removed. The localStorage key is unchanged so existing drafts carry over.
