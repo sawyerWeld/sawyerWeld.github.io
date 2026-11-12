@@ -41,12 +41,12 @@ const sampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor
 const sampleDecks = ['Mono-blue Terror','Mono-red Burn','Affinity','Boros Synthesizer','Elves','Orzhov Blade','Dimir Faeries','Jeskai Ephemerate'];
 function freshState() {
   return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'paper', treatment:'smash', credits:'footer', creditsVersion:1, edited:false,
-    players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:CUT_RANKS[i], handle:'', record:'', crop:50, card})) };
+    players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:CUT_RANKS[i], handle:'', record:'', crop:50, zoom:100, card})) };
 }
 function validState(s) {
   return s && eventFields.every(k=>typeof s[k]==='string'&&s[k].length<=200) &&
     ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','old','full','smash'].includes(s.treatment)&&['cards','footer'].includes(s.credits)&&
-    Array.isArray(s.players)&&s.players.length===8&&s.players.every(p=>['name','deck','rank','handle','record'].every(k=>typeof p[k]==='string'&&p[k].length<=100)&&Number.isFinite(p.crop)&&p.crop>=0&&p.crop<=100&&p.card&&typeof p.card.name==='string'&&typeof p.card.artist==='string'&&Array.isArray(p.card.colors)&&validArt(p.card.art));
+    Array.isArray(s.players)&&s.players.length===8&&s.players.every(p=>['name','deck','rank','handle','record'].every(k=>typeof p[k]==='string'&&p[k].length<=100)&&Number.isFinite(p.crop)&&p.crop>=0&&p.crop<=100&&(p.zoom===undefined||(Number.isFinite(p.zoom)&&p.zoom>=100&&p.zoom<=200))&&p.card&&typeof p.card.name==='string'&&typeof p.card.artist==='string'&&Array.isArray(p.card.colors)&&validArt(p.card.art));
 }
 function validArt(url) { return typeof url==='string' && (/^assets\/card-[0-7]\.jpg$/.test(url)||/^https:\/\/cards\.scryfall\.io\//.test(url)); }
 function save() {
@@ -84,9 +84,9 @@ function drawArt(p,x,y,w,h) {
   const e=getImage(p.card.art);
   ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
   if(e.status==='ready'){
-    const im=e.image, scale=Math.max(w/im.naturalWidth,h/im.naturalHeight);
+    const im=e.image, scale=Math.max(w/im.naturalWidth,h/im.naturalHeight)*(p.zoom??100)/100;
     const dw=im.naturalWidth*scale,dh=im.naturalHeight*scale;
-    // Cover leaves overflow on one axis; position that overflow horizontally or vertically.
+    // Position within the available overflow; zoom creates room even when art fits closely.
     ctx.drawImage(im,x-(dw-w)*p.crop/100,y-(dh-h)*p.crop/100,dw,dh);
   }else{
     fill('#26394b');ctx.fillRect(x,y,w,h);
@@ -315,6 +315,8 @@ function showPlayers() {
     fields.append(inputField('Name','name',p.name,i,70),inputField('Deck','deck',p.deck,i,70));
     const duo=make('div',{className:'two-col'});duo.append(inputField('Place','rank',p.rank,i,3),inputField('Record','record',p.record,i,15));fields.append(duo,inputField('Handle / team','handle',p.handle,i,60));
     const art=make('button',{className:'art-choice',type:'button'});art.append(make('span',{},p.card.name),make('small',{},'Change art'));art.addEventListener('click',()=>openSearch(i));fields.append(art);
+    const zoom=make('label',{},'Zoom '),zoomValue=make('output',{},`${p.zoom??100}%`),zoomSlider=make('input',{type:'range',min:100,max:200,step:1,value:p.zoom??100});
+    zoomValue.id=`zoom-value-${i}`;zoomSlider.dataset.player=i;zoomSlider.dataset.key='zoom';zoomSlider.addEventListener('pointerdown',()=>focusCropSlider(zoomSlider));zoom.append(zoomValue,zoomSlider);fields.append(zoom);
     const crop=make('label',{},'Art position'),slider=make('input',{type:'range',min:0,max:100,step:1,value:p.crop});slider.dataset.player=i;slider.dataset.key='crop';slider.addEventListener('pointerdown',()=>focusCropSlider(slider));crop.append(slider);fields.append(crop);d.append(fields);$('#players').append(d);
   });
   syncCredits();
@@ -365,8 +367,10 @@ function showResults(cards,printings=false) {
     button.setAttribute('aria-label',`Use ${card.name}, ${card.set}`);
     button.append(make('img',{src:card.art,alt:'',loading:'lazy'}),make('strong',{},card.name),make('small',{},card.set));
     button.addEventListener('click',()=>{
-      const p=state.players[currentPlayer];p.card=card;p.crop=50;updatePlayerSummary(currentPlayer);
+      const p=state.players[currentPlayer];p.card=card;p.crop=50;p.zoom=100;updatePlayerSummary(currentPlayer);
       $(`input[data-player="${currentPlayer}"][data-key="crop"]`).value=50;
+      $(`input[data-player="${currentPlayer}"][data-key="zoom"]`).value=100;
+      $(`#zoom-value-${currentPlayer}`).textContent='100%';
       $('#card-dialog').close();changed();
     });item.append(button);
     if(!printings&&card.oracle){const more=make('button',{type:'button',className:'text-button'},'Other printings');more.addEventListener('click',()=>searchCards(`oracleid:${card.oracle}`,true));item.append(more);}
@@ -406,8 +410,12 @@ async function init() {
     });
     $('#players').addEventListener('input',e=>{
       const {player,key}=e.target.dataset;if(player===undefined)return;
-      state.players[player][key]=key==='crop'?Number(e.target.value):e.target.value;
-      if(key==='crop')focusCropSlider(e.target);
+      const artControl=key==='crop'||key==='zoom';
+      state.players[player][key]=artControl?Number(e.target.value):e.target.value;
+      if(artControl){
+        focusCropSlider(e.target);
+        if(key==='zoom')$(`#zoom-value-${player}`).textContent=`${e.target.value}%`;
+      }
       else updatePlayerSummary(player);
       changed();
     });
