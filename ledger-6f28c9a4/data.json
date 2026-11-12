@@ -1,18 +1,28 @@
 {
-  "updated_at": "2026-11-12T11:25:33Z",
+  "updated_at": "2026-11-12T20:01:31Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-11T11:25:33Z",
-      "end_utc_exclusive": "2026-11-12T11:25:33Z",
-      "page_views": 12,
-      "visits": 10,
+      "start_utc": "2026-11-11T20:01:31Z",
+      "end_utc_exclusive": "2026-11-12T20:01:31Z",
+      "page_views": 60,
+      "visits": 21,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/Tronclock/",
-          "page_views": 4,
+          "path": "/ppl/player.html",
+          "page_views": 18,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/archetype.html",
+          "page_views": 16,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/metagame.html",
+          "page_views": 14,
           "sample_interval": 1
         },
         {
@@ -26,17 +36,32 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "path": "/pauper/",
+          "page_views": 2,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergenesis2026/survivorship/",
           "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/",
+          "path": "/ppl/",
           "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
+          "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/Tronclock/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -44,16 +69,31 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-05T11:25:33Z",
-      "end_utc_exclusive": "2026-11-12T11:25:33Z",
-      "page_views": 45,
-      "visits": 31,
+      "start_utc": "2026-11-05T20:01:31Z",
+      "end_utc_exclusive": "2026-11-12T20:01:31Z",
+      "page_views": 99,
+      "visits": 46,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
+          "path": "/ppl/player.html",
+          "page_views": 20,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/archetype.html",
+          "page_views": 16,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/metagame.html",
+          "page_views": 15,
+          "sample_interval": 1
+        },
+        {
           "path": "/",
-          "page_views": 8,
+          "page_views": 9,
           "sample_interval": 1
         },
         {
@@ -62,12 +102,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
+          "path": "/paupergenesis2026/",
           "page_views": 7,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
+          "path": "/Tronclock/",
           "page_views": 6,
           "sample_interval": 1
         },
@@ -77,17 +117,17 @@
           "sample_interval": 1
         },
         {
+          "path": "/pauper/",
+          "page_views": 4,
+          "sample_interval": 1
+        },
+        {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
           "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/player.html",
+          "path": "/ppl/",
           "page_views": 2,
           "sample_interval": 1
         },
@@ -102,12 +142,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/ppl/metagame.html",
+          "path": "/paupergenesis2026/survivorship/",
           "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/ppl/",
+          "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -115,32 +155,27 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-13T11:25:33Z",
-      "end_utc_exclusive": "2026-11-12T11:25:33Z",
-      "page_views": 620,
-      "visits": 250,
-      "sample_interval": 11.071428571428571,
+      "start_utc": "2026-10-13T20:01:31Z",
+      "end_utc_exclusive": "2026-11-12T20:01:31Z",
+      "page_views": 570,
+      "visits": 230,
+      "sample_interval": 10.555555555555555,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/player.html",
-          "page_views": 180,
-          "sample_interval": 11.25
+          "page_views": 160,
+          "sample_interval": 10.666666666666666
         },
         {
           "path": "/",
-          "page_views": 100,
-          "sample_interval": 11.11111111111111
+          "page_views": 80,
+          "sample_interval": 10
         },
         {
           "path": "/season-standings/",
-          "page_views": 80,
-          "sample_interval": 11.428571428571429
-        },
-        {
-          "path": "/ppl/store.html",
-          "page_views": 70,
-          "sample_interval": 14
+          "page_views": 60,
+          "sample_interval": 12
         },
         {
           "path": "/combined-elo/",
@@ -148,8 +183,18 @@
           "sample_interval": 10
         },
         {
-          "path": "/Tronclock/",
+          "path": "/ppl/metagame.html",
           "page_views": 40,
+          "sample_interval": 10
+        },
+        {
+          "path": "/ppl/store.html",
+          "page_views": 40,
+          "sample_interval": 13.333333333333334
+        },
+        {
+          "path": "/Tronclock/",
+          "page_views": 30,
           "sample_interval": 10
         },
         {
@@ -158,13 +203,13 @@
           "sample_interval": 10
         },
         {
-          "path": "/ppl/metagame.html",
+          "path": "/paupergenesis2026/survivorship/",
           "page_views": 20,
           "sample_interval": 10
         },
         {
-          "path": "/paupergenesis2026/survivorship/",
-          "page_views": 10,
+          "path": "/ppl/archetype.html",
+          "page_views": 20,
           "sample_interval": 10
         },
         {
