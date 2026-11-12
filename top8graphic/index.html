@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f3f6f8">
+  <meta name="description" content="Make a Magic: The Gathering Top 8 graphic with card art and tournament standings.">
+  <title>Top 8 generator · Sawyer Welden</title>
+  <link rel="icon" href="/favicon.png">
+  <link rel="stylesheet" href="style.css?v=5">
+  <script type="module" src="app.js?v=13"></script>
+</head>
+<body>
+  <main>
+    <div class="page-heading"><h1>Top 8 generator</h1><button type="button" id="download" class="primary" disabled>Download PNG <span aria-hidden="true">↓</span></button></div>
+    <div class="workspace">
+      <section class="editor" aria-label="Graphic editor">
+        <div class="tabs" role="tablist" aria-label="Editor sections"><button role="tab" id="event-tab" aria-selected="true" aria-controls="event-panel">Event</button><button role="tab" id="players-tab" aria-selected="false" aria-controls="players-panel" tabindex="-1">Players</button><button role="tab" id="design-tab" aria-selected="false" aria-controls="design-panel" tabindex="-1">Design</button></div>
+        <div id="event-panel" role="tabpanel" aria-labelledby="event-tab" class="editor-panel">
+          <label>Event name<input id="title" maxlength="90" autocomplete="off"></label>
+          <div class="two-col"><label>Format<input id="format" maxlength="30"></label><label>Date<input id="date" type="date"></label></div>
+          <label>Venue<input id="venue" maxlength="70"></label>
+          <div class="two-col"><label>Players<input id="attendance" type="number" min="0" max="99999"></label><label>Top-right text<input id="heading" maxlength="25"></label></div>
+          <label>Footer<input id="footer" maxlength="100"></label>
+
+        </div>
+        <div id="players-panel" role="tabpanel" aria-labelledby="players-tab" class="editor-panel" hidden>
+          <div id="players"></div>
+        </div>
+        <div id="design-panel" role="tabpanel" aria-labelledby="design-tab" class="editor-panel" hidden>
+          <label>Layout<select id="layout"><option value="podium">Podium</option><option value="grid">Grid</option></select></label>
+          <label>Canvas<select id="ratio"><option value="wide">Landscape · 1920 × 1080</option><option value="square">Square · 1600 × 1600</option></select></label>
+          <label>Background<select id="theme"><option value="midnight">Midnight</option><option value="paper" selected>Paper</option></select></label>
+          <label>Style<select id="treatment"><option value="framed">Standard</option><option value="old">Old border</option><option value="full">Full art</option><option value="smash" selected>Smash</option></select></label>
+          <label>Art credits<select id="credits"><option value="footer">Footer</option><option value="cards">On cards</option></select></label>
+        </div>
+      </section>
+      <section class="preview-panel" aria-label="Graphic preview">
+        <div class="canvas-wrap"><canvas id="poster" width="1920" height="1080" role="img" aria-label="Top eight tournament graphic. Standings are listed below."></canvas></div>
+        <p id="notice" role="status"></p>
+      </section>
+    </div>
+    <footer class="site-footer">
+      <p>Made by <a href="/pauper/">Sawyer Welden</a></p>
+      <details class="credits"><summary>Credits</summary><ol id="credit-list"></ol><p>Card art © Wizards of the Coast. Card data and artwork via <a href="https://scryfall.com" target="_blank" rel="noreferrer">Scryfall</a>. Old-border frames from <a href="https://github.com/Investigamer/cardconjurer/tree/2fcddba8966156d484cedf54d8214996748dd5e1/img/frames/seventh/regular" target="_blank" rel="noreferrer">Card Conjurer</a>. Unofficial fan tool.</p></details>
+    </footer>
+  </main>
+  <dialog id="card-dialog" aria-labelledby="card-dialog-title">
+    <div class="dialog-heading"><div><h2 id="card-dialog-title">Card art</h2><p id="card-for"></p></div><button class="close" type="button" id="close-card" aria-label="Close card search">×</button></div>
+    <form id="search-form"><label class="sr-only" for="card-query">Card name or Scryfall query</label><input id="card-query" placeholder="Card name or Scryfall query" autocomplete="off" required maxlength="180"><button class="primary" type="submit" id="search-button">Search</button></form>
+    <div class="search-controls"><button class="text-button" type="button" id="show-examples">Example cards</button><span id="search-status" role="status"></span></div>
+    <div id="card-results"></div>
+  </dialog>
+</body>
+</html>
