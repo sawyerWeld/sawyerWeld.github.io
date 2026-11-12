@@ -11,7 +11,7 @@ const eventFields = ['title','format','date','venue','attendance','heading','foo
 const sampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor Quinn','Jamie Park','Casey Brooks','Riley Stone'];
 const sampleDecks = ['Mono-blue Terror','Mono-red Burn','Affinity','Boros Synthesizer','Elves','Orzhov Blade','Dimir Faeries','Jeskai Ephemerate'];
 function freshState() {
-  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'midnight', treatment:'framed', credits:'cards', edited:false,
+  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'midnight', treatment:'framed', credits:'footer', creditsVersion:1, edited:false,
     players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:CUT_RANKS[i], handle:'', record:'', crop:50, card})) };
 }
 function validState(s) {
@@ -162,15 +162,14 @@ function metadata() {
 }
 function artCreditLines(width) {
   const artists=[...new Set(state.players.map(p=>p.card.artist.trim()).filter(Boolean))];
-  const words=`Art: ${artists.join(' · ')}`.split(/\s+/);
-  ctx.font=`450 20px ${font}`;
-  const lines=[];let line='';
-  for(const word of words){
-    const next=line?`${line} ${word}`:word;
-    if(line&&ctx.measureText(next).width>width){lines.push(line);line=word;}
+  ctx.font=`400 15px ${font}`;
+  const lines=[];let line='Art:';
+  for(const artist of artists){
+    const next=`${line}${line==='Art:'?' ':' · '}${artist}`;
+    if(line!=='Art:'&&ctx.measureText(next).width>width){lines.push(line);line=artist;}
     else line=next;
   }
-  if(line)lines.push(line);
+  if(artists.length)lines.push(line);
   return lines;
 }
 function render() {
@@ -184,11 +183,17 @@ function render() {
   const margin=64, contentW=W-2*margin;
   text(state.title||'Event name',margin,108,57,fg,contentW-290,750);
   text(metadata(),margin,154,24,muted,contentW-40,450);
-  text(state.heading||'Top 8',W-margin,104,66,fg,275,800,'right');
+  text(state.heading,W-margin,104,66,fg,275,800,'right');
   fill(rule);ctx.fillRect(margin,182,contentW,2);
-  const creditLines=state.credits==='footer'?artCreditLines(contentW):[];
-  const creditExtra=creditLines.length?creditLines.length*26+8:0;
-  const top=216,bottom=H-138-creditExtra, height=bottom-top, gap=square?21:22;
+  const creditWidth=520;
+  const creditLines=[
+    'Magic: The Gathering artwork © Wizards of the Coast',
+    ...(state.credits==='footer'?artCreditLines(creditWidth):[]),
+    state.treatment==='old'?'Art via Scryfall · Frames via Card Conjurer':'Card data & art via Scryfall'
+  ];
+  const creditTop=H-41-(creditLines.length-1)*20;
+  const footerY=Math.min(H-102,creditTop-30);
+  const top=216,bottom=footerY-36, height=bottom-top, gap=square?21:22;
   if(state.layout==='podium'&&!square){
     const heroW=440,rightX=margin+heroW+gap,rightW=contentW-heroW-gap;
     drawCard(state.players[0],margin,top,heroW,height,true);
@@ -206,12 +211,9 @@ function render() {
     const w=(contentW-gap*3)/4,h=(height-gap)/2;
     state.players.forEach((p,i)=>drawCard(p,margin+(i%4)*(w+gap),top+Math.floor(i/4)*(h+gap),w,h));
   }
-  const footerY=H-102-creditExtra;
   fill(rule);ctx.fillRect(margin,footerY,contentW,2);
-  creditLines.forEach((line,i)=>text(line,margin,footerY+30+i*26,20,muted,undefined,450));
-  text(state.footer,margin,H-58,24,fg,contentW-460,500);
-  text('Magic: The Gathering artwork © Wizards of the Coast',W-margin,H-64,15,muted,440,400,'right');
-  text(state.treatment==='old'?'Art via Scryfall · Frames via Card Conjurer':'Card data & art via Scryfall',W-margin,H-41,15,muted,440,400,'right');
+  text(state.footer,margin,H-58,24,fg,contentW-creditWidth-32,500);
+  creditLines.forEach((line,i)=>text(line,W-margin,creditTop+i*20,15,muted,undefined,400,'right'));
   const entries=state.players.map(p=>getImage(p.card.art));
   const frames=state.treatment==='old'?state.players.map(p=>getImage(oldFramePath(p.card))):[];
   const loading=[...entries,...frames].some(e=>e.status==='loading'),failed=entries.some(e=>e.status==='error'),frameFailed=frames.some(e=>e.status==='error');
@@ -325,7 +327,7 @@ async function download() {
 async function init() {
   try {
     const r=await fetch('assets/cards.json');if(!r.ok)throw new Error('Example cards could not load.');exampleCards=await r.json();state=freshState();
-    try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(stored&&stored.credits===undefined)stored.credits='cards';if(validState(stored)){state=stored;if(state.footer==='Good games. See you next week.')state.footer='';}}catch{}
+    try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(stored&&stored.creditsVersion!==1){stored.credits='footer';stored.creditsVersion=1;}if(validState(stored)){state=stored;if(state.footer==='Good games. See you next week.')state.footer='';}}catch{}
     syncInputs();
     eventFields.forEach(k=>$('#'+k).addEventListener('input',e=>{state[k]=e.target.value;changed();}));
     $$('.tabs button').forEach((b,i)=>{

@@ -12,4 +12,4 @@ The Design → Frame control includes **Old border**. Its seven locally bundled 
 
 New and reset examples use the Top 8 cut ranks (`1, 2, 3, 3, 5, 5, 5, 5`). Places remain individually editable in Players; the separate placings preset selector was removed. Existing saved placings and player data are preserved. Interface copy follows the concise controls in Mana Counter and the PPL archetype page. The optional poster footer starts empty.
 
-Design → Art credits switches between **On cards** and **Footer**. Footer mode consolidates unique artist names into a wrapping block in the exported image, preserves copyright/source credits, and removes the individual credit strips. Existing saved drafts migrate to On cards without losing player data.
+Design → Art credits switches between **On cards** and **Footer**. Footer is the default and combines unique artist names, Wizards copyright, and source credits in a single compact block at bottom right. Existing drafts migrate once to this default without losing player data; subsequent choices persist. Event → Top-right text edits or clears the poster heading.
