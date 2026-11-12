@@ -37,7 +37,8 @@ let exampleCards, state, currentPlayer = 0, renderQueued = false, searchVersion 
 const COLORS = { W: '#d6cba8', U: '#7299b6', B: '#8e819b', R: '#bb7766', G: '#7d9f82' };
 const CUT_RANKS = ['1','2','3','3','5','5','5','5'];
 const eventFields = ['title','format','date','venue','attendance','heading','footer','layout','ratio','theme','treatment','credits'];
-const sampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor Quinn','Jamie Park','Casey Brooks','Riley Stone'];
+const sampleNames = ['Tony Soprano','Carmela Soprano','Christopher Moltisanti','Paulie Gualtieri','Silvio Dante','Junior Soprano','Adriana La Cerva','Bobby Baccalieri'];
+const previousSampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor Quinn','Jamie Park','Casey Brooks','Riley Stone'];
 const sampleDecks = ['Mono-blue Terror','Mono-red Burn','Affinity','Boros Synthesizer','Elves','Orzhov Blade','Dimir Faeries','Jeskai Ephemerate'];
 function freshState() {
   return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'paper', treatment:'smash', credits:'footer', creditsVersion:1, edited:false,
@@ -401,6 +402,7 @@ async function init() {
   try {
     const r=await fetch('assets/cards.json');if(!r.ok)throw new Error('Example cards could not load.');exampleCards=await r.json();state=freshState();
     try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(stored&&stored.creditsVersion!==1){stored.credits='footer';stored.creditsVersion=1;}if(validState(stored)){state=stored;if(state.footer==='Good games. See you next week.')state.footer='';}}catch{}
+    state.players.forEach((p,i)=>{if(p.name===previousSampleNames[i])p.name=sampleNames[i];});
     syncInputs();
     eventFields.forEach(k=>$('#'+k).addEventListener('input',e=>{state[k]=e.target.value;changed();}));
     $$('.tabs button').forEach((b,i)=>{
