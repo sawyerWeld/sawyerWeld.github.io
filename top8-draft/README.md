@@ -11,3 +11,5 @@ Check changes with `node --check top8-draft/app.js`. Before promoting the draft,
 The Design → Frame control includes **Old border**. Its seven locally bundled frame variants follow card colors, with gold for multicolor and brown for colorless cards. See `assets/old-border/SOURCE.md` for provenance. Frames load on selection; export waits for them, and a failed frame falls back to the standard treatment with a visible warning. Existing saved drafts retain their selected treatment.
 
 New and reset examples use the Top 8 cut ranks (`1, 2, 3, 3, 5, 5, 5, 5`). Places remain individually editable in Players; the separate placings preset selector was removed. Existing saved placings and player data are preserved. Interface copy follows the concise controls in Mana Counter and the PPL archetype page. The optional poster footer starts empty.
+
+Design → Art credits switches between **On cards** and **Footer**. Footer mode consolidates unique artist names into a wrapping block in the exported image, preserves copyright/source credits, and removes the individual credit strips. Existing saved drafts migrate to On cards without losing player data.

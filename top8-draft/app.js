@@ -7,16 +7,16 @@ const images = new Map();
 let exampleCards, state, currentPlayer = 0, renderQueued = false, searchVersion = 0, savingTimer, ready = false;
 const COLORS = { W: '#d6cba8', U: '#7299b6', B: '#8e819b', R: '#bb7766', G: '#7d9f82' };
 const CUT_RANKS = ['1','2','3','3','5','5','5','5'];
-const eventFields = ['title','format','date','venue','attendance','heading','footer','layout','ratio','theme','treatment'];
+const eventFields = ['title','format','date','venue','attendance','heading','footer','layout','ratio','theme','treatment','credits'];
 const sampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor Quinn','Jamie Park','Casey Brooks','Riley Stone'];
 const sampleDecks = ['Mono-blue Terror','Mono-red Burn','Affinity','Boros Synthesizer','Elves','Orzhov Blade','Dimir Faeries','Jeskai Ephemerate'];
 function freshState() {
-  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'midnight', treatment:'framed', edited:false,
+  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'midnight', treatment:'framed', credits:'cards', edited:false,
     players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:CUT_RANKS[i], handle:'', record:'', crop:50, card})) };
 }
 function validState(s) {
   return s && eventFields.every(k=>typeof s[k]==='string'&&s[k].length<=200) &&
-    ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','old','full'].includes(s.treatment)&&
+    ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','old','full'].includes(s.treatment)&&['cards','footer'].includes(s.credits)&&
     Array.isArray(s.players)&&s.players.length===8&&s.players.every(p=>['name','deck','rank','handle','record'].every(k=>typeof p[k]==='string'&&p[k].length<=100)&&Number.isFinite(p.crop)&&p.crop>=0&&p.crop<=100&&p.card&&typeof p.card.name==='string'&&typeof p.card.artist==='string'&&Array.isArray(p.card.colors)&&validArt(p.card.art));
 }
 function validArt(url) { return typeof url==='string' && (/^assets\/card-[0-7]\.jpg$/.test(url)||/^https:\/\/cards\.scryfall\.io\//.test(url)); }
@@ -73,7 +73,7 @@ function oldFramePath(card) {
 function drawOldCard(p,x,y,w,h,hero,frame) {
   // Preserve the original frame's title, art bevel, parchment box, and footer.
   // Stretch each vertical section independently to fit the poster's card slots.
-  const topH=hero?64:49, dividerH=14, infoH=hero?112:88, footerH=32;
+  const topH=hero?64:49, dividerH=14, infoH=hero?112:88, footerH=state.credits==='cards'?32:15;
   const artH=h-topH-dividerH-infoH-footerH;
   const artY=y+topH, infoY=artY+artH+dividerH;
   const sourceCuts=[0,208,1138,1257,1868,2100];
@@ -98,8 +98,10 @@ function drawOldCard(p,x,y,w,h,hero,frame) {
     text(p.name||'Player name',tx,infoY+(hasDetail?37:54),w<345?23:27,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
     if(hasDetail)text([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+65,w<345?16:19,'#35434a',tw,500);
   }
-  ctx.shadowColor='#000';ctx.shadowBlur=2;ctx.shadowOffsetY=1;
-  text(`Art: ${p.card.artist}`,x+w*.5,infoY+infoH+16,w<345?10:11,'#fff9ee',w*.79,500,'center');
+  if(state.credits==='cards'){
+    ctx.shadowColor='#000';ctx.shadowBlur=2;ctx.shadowOffsetY=1;
+    text(`Art: ${p.card.artist}`,x+w*.5,infoY+infoH+16,w<345?10:11,'#fff9ee',w*.79,500,'center');
+  }
   ctx.restore();
 }
 function drawCard(p,x,y,w,h,hero=false) {
@@ -116,7 +118,7 @@ function drawCard(p,x,y,w,h,hero=false) {
   }
   const ax=x+pad, ay=y+pad, aw=w-pad*2;
   ctx.save();ctx.beginPath();ctx.roundRect(ax,ay,aw,h-pad*2,framed?8:16);ctx.clip();
-  const titleH=framed?45:0, creditH=21;
+  const titleH=framed?45:0, creditH=state.credits==='cards'?21:0;
   const infoH=hero?(!framed&&(p.handle||p.record)?147:116):(framed||!p.handle?92:116);
   const artY=ay+titleH, artH=h-pad*2-titleH-infoH-creditH;
   drawArt(p,ax,artY,aw,artH);
@@ -144,8 +146,10 @@ function drawCard(p,x,y,w,h,hero=false) {
     if(p.record)text(p.record,ax+aw-14,infoY+68,17,muted,58,600,'right');
     if(!framed&&p.handle)text(p.handle,ax+14,infoY+96,small?17:19,muted,aw-28,500);
   }
-  fill('#111b22');ctx.fillRect(ax,y+h-pad-creditH,aw,creditH);
-  text(`Art: ${p.card.artist}`,ax+9,y+h-pad-6,small?11:12,'#b6c2cb',aw-18,450);
+  if(creditH){
+    fill('#111b22');ctx.fillRect(ax,y+h-pad-creditH,aw,creditH);
+    text(`Art: ${p.card.artist}`,ax+9,y+h-pad-6,small?11:12,'#b6c2cb',aw-18,450);
+  }
   ctx.restore();
 }
 function metadata() {
@@ -155,6 +159,19 @@ function metadata() {
     if(!Number.isNaN(+d)) date=d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
   }
   return [state.format.trim(),date,state.venue,state.attendance?`${state.attendance} players`:''].filter(Boolean).join('  ·  ');
+}
+function artCreditLines(width) {
+  const artists=[...new Set(state.players.map(p=>p.card.artist.trim()).filter(Boolean))];
+  const words=`Art: ${artists.join(' · ')}`.split(/\s+/);
+  ctx.font=`450 20px ${font}`;
+  const lines=[];let line='';
+  for(const word of words){
+    const next=line?`${line} ${word}`:word;
+    if(line&&ctx.measureText(next).width>width){lines.push(line);line=word;}
+    else line=next;
+  }
+  if(line)lines.push(line);
+  return lines;
 }
 function render() {
   if(!state)return;
@@ -169,7 +186,9 @@ function render() {
   text(metadata(),margin,154,24,muted,contentW-40,450);
   text(state.heading||'Top 8',W-margin,104,66,fg,275,800,'right');
   fill(rule);ctx.fillRect(margin,182,contentW,2);
-  const top=216,bottom=H-138, height=bottom-top, gap=square?21:22;
+  const creditLines=state.credits==='footer'?artCreditLines(contentW):[];
+  const creditExtra=creditLines.length?creditLines.length*26+8:0;
+  const top=216,bottom=H-138-creditExtra, height=bottom-top, gap=square?21:22;
   if(state.layout==='podium'&&!square){
     const heroW=440,rightX=margin+heroW+gap,rightW=contentW-heroW-gap;
     drawCard(state.players[0],margin,top,heroW,height,true);
@@ -187,7 +206,9 @@ function render() {
     const w=(contentW-gap*3)/4,h=(height-gap)/2;
     state.players.forEach((p,i)=>drawCard(p,margin+(i%4)*(w+gap),top+Math.floor(i/4)*(h+gap),w,h));
   }
-  fill(rule);ctx.fillRect(margin,H-102,contentW,2);
+  const footerY=H-102-creditExtra;
+  fill(rule);ctx.fillRect(margin,footerY,contentW,2);
+  creditLines.forEach((line,i)=>text(line,margin,footerY+30+i*26,20,muted,undefined,450));
   text(state.footer,margin,H-58,24,fg,contentW-460,500);
   text('Magic: The Gathering artwork © Wizards of the Coast',W-margin,H-64,15,muted,440,400,'right');
   text(state.treatment==='old'?'Art via Scryfall · Frames via Card Conjurer':'Card data & art via Scryfall',W-margin,H-41,15,muted,440,400,'right');
@@ -304,7 +325,7 @@ async function download() {
 async function init() {
   try {
     const r=await fetch('assets/cards.json');if(!r.ok)throw new Error('Example cards could not load.');exampleCards=await r.json();state=freshState();
-    try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(validState(stored)){state=stored;if(state.footer==='Good games. See you next week.')state.footer='';}}catch{}
+    try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(stored&&stored.credits===undefined)stored.credits='cards';if(validState(stored)){state=stored;if(state.footer==='Good games. See you next week.')state.footer='';}}catch{}
     syncInputs();
     eventFields.forEach(k=>$('#'+k).addEventListener('input',e=>{state[k]=e.target.value;changed();}));
     $$('.tabs button').forEach((b,i)=>{
