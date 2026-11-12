@@ -209,13 +209,7 @@ function make(tag,props={},content) {
 function inputField(label,key,value,index,max=70) {
   const l=make('label',{},label),input=make('input',{value,maxLength:max});input.dataset.key=key;input.dataset.player=index;l.append(input);return l;
 }
-function placingsMode() {
-  if(state.players.every((p,i)=>p.rank===CUT_RANKS[i]))return 'cut';
-  if(state.players.every((p,i)=>p.rank===String(i+1)))return 'ranked';
-  return 'custom';
-}
 function showPlayers() {
-  $('#placings').value=placingsMode();
   $('#players').replaceChildren();
   state.players.forEach((p,i)=>{
     const d=make('details',{className:'player'});d.dataset.index=i;
@@ -244,7 +238,6 @@ function syncInputs() {
   showPlayers();scheduleRender();
 }
 function updatePlayerSummary(i) {
-  $('#placings').value=placingsMode();
   const p=state.players[i],d=$(`.player[data-index="${i}"]`);
   $('.rank-number',d).textContent=p.rank;
   $('.player-title strong',d).textContent=p.name||'Player name';
@@ -319,12 +312,6 @@ async function init() {
       b.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const tabs=$$('.tabs button');const n=e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3;selectTab(tabs[n].id);tabs[n].focus();}});
     });
     $('#players').addEventListener('input',e=>{const {player,key}=e.target.dataset;if(player===undefined)return;state.players[player][key]=key==='crop'?Number(e.target.value):e.target.value;updatePlayerSummary(player);changed();});
-    $('#placings').addEventListener('change',e=>{
-      if(e.target.value==='custom')return;
-      const open=$$('.player').map(p=>p.open);
-      state.players.forEach((p,i)=>p.rank=e.target.value==='cut'?CUT_RANKS[i]:String(i+1));
-      showPlayers();$$('.player').forEach((p,i)=>p.open=open[i]);changed();
-    });
     $('#search-form').addEventListener('submit',e=>{e.preventDefault();const q=$('#card-query').value.trim();if(q)searchCards(q);});
     $('#close-card').addEventListener('click',()=>$('#card-dialog').close());
     $('#card-dialog').addEventListener('close',()=>{searchVersion++;});
