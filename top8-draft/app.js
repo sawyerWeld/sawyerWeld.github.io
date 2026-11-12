@@ -4,6 +4,35 @@ const canvas = $('#poster'), ctx = canvas.getContext('2d');
 const STORAGE = 'sawyer-top8-draft-v1';
 const font = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 const images = new Map();
+const oldFrameLayers = new Map();
+const FRAME_CACHE_LIMIT = 16 * 1024 * 1024;
+let frameCacheBytes = 0;
+function oldFrameLayer(path,frame,w,h,hero,footerH) {
+  const key=[path,w,h,hero,footerH].join('|');
+  if(oldFrameLayers.has(key)){
+    const entry=oldFrameLayers.get(key);
+    oldFrameLayers.delete(key);oldFrameLayers.set(key,entry);
+    return entry.layer;
+  }
+  // Resample the original texture once per size; edits only composite this layer.
+  const layer=document.createElement('canvas');
+  layer.width=Math.ceil(w);layer.height=Math.ceil(h);
+  const layerCtx=layer.getContext('2d');
+  const topH=hero?64:49,infoH=hero?112:88;
+  const sourceCuts=[0,208,1138,1257,1868,2100];
+  const targetCuts=[0,topH,h-infoH-footerH-14,h-infoH-footerH,h-footerH,h];
+  for(let i=0;i<5;i++){
+    layerCtx.drawImage(frame,0,sourceCuts[i],1500,sourceCuts[i+1]-sourceCuts[i],0,targetCuts[i],w,targetCuts[i+1]-targetCuts[i]);
+  }
+  const bytes=layer.width*layer.height*4;
+  while(frameCacheBytes+bytes>FRAME_CACHE_LIMIT&&oldFrameLayers.size){
+    const oldest=oldFrameLayers.keys().next().value,entry=oldFrameLayers.get(oldest);
+    frameCacheBytes-=entry.bytes;oldFrameLayers.delete(oldest);
+    entry.layer.width=entry.layer.height=0;
+  }
+  if(bytes<=FRAME_CACHE_LIMIT){oldFrameLayers.set(key,{layer,bytes});frameCacheBytes+=bytes;}
+  return layer;
+}
 let exampleCards, state, currentPlayer = 0, renderQueued = false, searchVersion = 0, savingTimer, ready = false;
 const COLORS = { W: '#d6cba8', U: '#7299b6', B: '#8e819b', R: '#bb7766', G: '#7d9f82' };
 const CUT_RANKS = ['1','2','3','3','5','5','5','5'];
@@ -75,14 +104,10 @@ function drawOldCard(p,x,y,w,h,hero,frame) {
   const topH=hero?64:49, dividerH=14, infoH=hero?112:88, footerH=state.credits==='cards'?32:15;
   const artH=h-topH-dividerH-infoH-footerH;
   const artY=y+topH, infoY=artY+artH+dividerH;
-  const sourceCuts=[0,208,1138,1257,1868,2100];
-  const targetCuts=[y,artY,artY+artH,infoY,infoY+infoH,y+h];
   ctx.save();ctx.beginPath();ctx.roundRect(x,y,w,h,14);ctx.clip();
   fill('#10191f');ctx.fillRect(x,y,w,h);
   drawArt(p,x+w*.117,artY-1,w*.774,artH+2);
-  for(let i=0;i<5;i++){
-    ctx.drawImage(frame,0,sourceCuts[i],1500,sourceCuts[i+1]-sourceCuts[i],x,targetCuts[i],w,targetCuts[i+1]-targetCuts[i]);
-  }
+  ctx.drawImage(oldFrameLayer(oldFramePath(p.card),frame,w,h,hero,footerH),x,y);
   const pale=p.card.colors.length>1||p.card.colors[0]==='W';
   const titleColor=pale?'#211d17':'#fff9ee';
   ctx.shadowColor=pale?'#ffffff80':'#000000';ctx.shadowBlur=2;ctx.shadowOffsetX=1;ctx.shadowOffsetY=1;
