@@ -154,7 +154,7 @@ function metadata() {
     const d=new Date(`${state.date}T12:00:00`);
     if(!Number.isNaN(+d)) date=d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
   }
-  return [date,state.venue,state.attendance?`${state.attendance} players`:''].filter(Boolean).join('  ·  ');
+  return [state.format.trim(),date,state.venue,state.attendance?`${state.attendance} players`:''].filter(Boolean).join('  ·  ');
 }
 function render() {
   if(!state)return;
@@ -165,12 +165,11 @@ function render() {
   const dark=state.theme==='midnight', bg=dark?'#162330':'#f2f0e9', fg=dark?'#f7f4ed':'#182231', muted=dark?'#a9b9c8':'#65717b', rule=dark?'#415263':'#c5c9c7';
   fill(bg);ctx.fillRect(0,0,W,H);
   const margin=64, contentW=W-2*margin;
-  text(state.format.toUpperCase(),margin,66,21,muted,contentW-300,700);
-  text(state.title||'Event name',margin,133,57,fg,contentW-290,750);
-  text(metadata(),margin,179,24,muted,contentW-40,450);
-  text(state.heading||'Top 8',W-margin,127,66,fg,275,800,'right');
-  fill(rule);ctx.fillRect(margin,207,contentW,2);
-  const top=241,bottom=H-138, height=bottom-top, gap=square?21:22;
+  text(state.title||'Event name',margin,108,57,fg,contentW-290,750);
+  text(metadata(),margin,154,24,muted,contentW-40,450);
+  text(state.heading||'Top 8',W-margin,104,66,fg,275,800,'right');
+  fill(rule);ctx.fillRect(margin,182,contentW,2);
+  const top=216,bottom=H-138, height=bottom-top, gap=square?21:22;
   if(state.layout==='podium'&&!square){
     const heroW=440,rightX=margin+heroW+gap,rightW=contentW-heroW-gap;
     drawCard(state.players[0],margin,top,heroW,height,true);
