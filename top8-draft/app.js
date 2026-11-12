@@ -6,12 +6,13 @@ const font = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-ser
 const images = new Map();
 let exampleCards, state, currentPlayer = 0, renderQueued = false, searchVersion = 0, savingTimer, ready = false;
 const COLORS = { W: '#d6cba8', U: '#7299b6', B: '#8e819b', R: '#bb7766', G: '#7d9f82' };
+const CUT_RANKS = ['1','2','3','3','5','5','5','5'];
 const eventFields = ['title','format','date','venue','attendance','heading','footer','layout','ratio','theme','treatment'];
 const sampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor Quinn','Jamie Park','Casey Brooks','Riley Stone'];
 const sampleDecks = ['Mono-blue Terror','Mono-red Burn','Affinity','Boros Synthesizer','Elves','Orzhov Blade','Dimir Faeries','Jeskai Ephemerate'];
 function freshState() {
-  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'Good games. See you next week.', layout:'podium', ratio:'wide', theme:'midnight', treatment:'framed', edited:false,
-    players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:String(i+1), handle:'', record:'', crop:50, card})) };
+  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'midnight', treatment:'framed', edited:false,
+    players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:CUT_RANKS[i], handle:'', record:'', crop:50, card})) };
 }
 function validState(s) {
   return s && eventFields.every(k=>typeof s[k]==='string'&&s[k].length<=200) &&
@@ -21,11 +22,10 @@ function validState(s) {
 function validArt(url) { return typeof url==='string' && (/^assets\/card-[0-7]\.jpg$/.test(url)||/^https:\/\/cards\.scryfall\.io\//.test(url)); }
 function save() {
   state.edited = true;
-  $('#draft-note').textContent = 'Your draft is saved in this browser.';
   clearTimeout(savingTimer);
   savingTimer = setTimeout(()=>{
-    try { localStorage.setItem(STORAGE,JSON.stringify(state)); $('#save-status').textContent='Saved on this device'; }
-    catch { $('#save-status').textContent='Storage unavailable · export to keep your work'; }
+    try { localStorage.setItem(STORAGE,JSON.stringify(state)); $('#save-status').textContent='Saved locally'; }
+    catch { $('#save-status').textContent='Not saved · storage unavailable'; }
   },250);
 }
 function changed() { save(); scheduleRender(); }
@@ -73,7 +73,7 @@ function oldFramePath(card) {
 function drawOldCard(p,x,y,w,h,hero,frame) {
   // Preserve the original frame's title, art bevel, parchment box, and footer.
   // Stretch each vertical section independently to fit the poster's card slots.
-  const topH=hero?64:49, dividerH=14, infoH=hero?142:88, footerH=32;
+  const topH=hero?64:49, dividerH=14, infoH=hero?112:88, footerH=32;
   const artH=h-topH-dividerH-infoH-footerH;
   const artY=y+topH, infoY=artY+artH+dividerH;
   const sourceCuts=[0,208,1138,1257,1868,2100];
@@ -92,9 +92,8 @@ function drawOldCard(p,x,y,w,h,hero,frame) {
   ctx.shadowColor='transparent';ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
   const tx=x+w*.13, tw=w*.74, hasDetail=Boolean(p.handle||p.record);
   if(hero){
-    text('CHAMPION',tx,infoY+31,14,'#35434a',tw,750);
-    text(p.name||'Player name',tx,infoY+(hasDetail?78:91),39,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
-    text([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+114,21,'#35434a',tw,500);
+    text(p.name||'Player name',tx,infoY+(hasDetail?52:70),39,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
+    text([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+86,21,'#35434a',tw,500);
   }else{
     text(p.name||'Player name',tx,infoY+(hasDetail?37:54),w<345?23:27,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
     if(hasDetail)text([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+65,w<345?16:19,'#35434a',tw,500);
@@ -118,7 +117,7 @@ function drawCard(p,x,y,w,h,hero=false) {
   const ax=x+pad, ay=y+pad, aw=w-pad*2;
   ctx.save();ctx.beginPath();ctx.roundRect(ax,ay,aw,h-pad*2,framed?8:16);ctx.clip();
   const titleH=framed?45:0, creditH=21;
-  const infoH=hero?(framed||!p.handle?145:173):(framed||!p.handle?92:116);
+  const infoH=hero?(!framed&&(p.handle||p.record)?147:116):(framed||!p.handle?92:116);
   const artY=ay+titleH, artH=h-pad*2-titleH-infoH-creditH;
   drawArt(p,ax,artY,aw,artH);
   if(framed){
@@ -134,11 +133,10 @@ function drawCard(p,x,y,w,h,hero=false) {
   const ink=framed?'#182231':'#f4f1e9', muted=framed?'#5c665f':'#b7c6d4';
   fill(color);ctx.fillRect(ax,infoY,aw,3);
   if(hero){
-    text('CHAMPION',ax+20,infoY+29,15,framed?'#586757':'#b5c6d5',aw-40,750);
-    text(p.name||'Player name',ax+20,infoY+(framed&&!p.handle?93:77),42,ink,aw-40,750);
-    text(framed?p.handle:(p.deck||'Deck name'),ax+20,infoY+113,24,muted,aw-40,500);
-    if(!framed&&p.handle)text(p.handle,ax+20,infoY+145,21,muted,aw-40,500);
-    if(p.record)text(p.record,ax+aw-20,infoY+29,18,muted,120,650,'right');
+    const details=[p.handle,p.record].filter(Boolean).join(' · ');
+    text(p.name||'Player name',ax+20,infoY+(framed&&!details?72:56),42,ink,aw-40,750);
+    text(framed?details:(p.deck||'Deck name'),ax+20,infoY+90,24,muted,aw-40,500);
+    if(!framed&&details)text(details,ax+20,infoY+122,21,muted,aw-40,500);
   }else{
     text(p.name||'Player name',ax+14,infoY+(framed&&!p.handle&&!p.record?57:38),sz,ink,aw-28,750);
     const detail=framed?p.handle:(p.deck||'Deck name');
@@ -212,9 +210,13 @@ function make(tag,props={},content) {
 function inputField(label,key,value,index,max=70) {
   const l=make('label',{},label),input=make('input',{value,maxLength:max});input.dataset.key=key;input.dataset.player=index;l.append(input);return l;
 }
+function placingsMode() {
+  if(state.players.every((p,i)=>p.rank===CUT_RANKS[i]))return 'cut';
+  if(state.players.every((p,i)=>p.rank===String(i+1)))return 'ranked';
+  return 'custom';
+}
 function showPlayers() {
-  const tied=state.players.every((p,i)=>p.rank===['1','2','3','3','5','5','5','5'][i]);
-  $('#ties').textContent=tied?'Use places 1–8':'Use tied finishes';
+  $('#placings').value=placingsMode();
   $('#players').replaceChildren();
   state.players.forEach((p,i)=>{
     const d=make('details',{className:'player'});d.dataset.index=i;
@@ -223,10 +225,10 @@ function showPlayers() {
     const title=make('span',{className:'player-title'});title.append(make('strong',{},p.name||'Player name'),make('small',{},p.deck||'Deck name'));
     s.append(title,make('span',{className:'chevron','ariaHidden':'true'},'›'));d.append(s);
     const fields=make('div',{className:'player-fields'});
-    fields.append(inputField('Player name','name',p.name,i,70),inputField('Deck / archetype','deck',p.deck,i,70));
-    const duo=make('div',{className:'two-col'});duo.append(inputField('Place','rank',p.rank,i,3),inputField('Record (optional)','record',p.record,i,15));fields.append(duo,inputField('Handle or team (optional)','handle',p.handle,i,60));
+    fields.append(inputField('Name','name',p.name,i,70),inputField('Deck','deck',p.deck,i,70));
+    const duo=make('div',{className:'two-col'});duo.append(inputField('Place','rank',p.rank,i,3),inputField('Record','record',p.record,i,15));fields.append(duo,inputField('Handle / team','handle',p.handle,i,60));
     const art=make('button',{className:'art-choice',type:'button'});art.append(make('span',{},p.card.name),make('small',{},'Change art'));art.addEventListener('click',()=>openSearch(i));fields.append(art);
-    const crop=make('label',{},'Art position · top ↔ bottom'),slider=make('input',{type:'range',min:0,max:100,step:1,value:p.crop});slider.dataset.player=i;slider.dataset.key='crop';crop.append(slider);fields.append(crop);d.append(fields);$('#players').append(d);
+    const crop=make('label',{},'Crop · top ↔ bottom'),slider=make('input',{type:'range',min:0,max:100,step:1,value:p.crop});slider.dataset.player=i;slider.dataset.key='crop';crop.append(slider);fields.append(crop);d.append(fields);$('#players').append(d);
   });
   syncCredits();
 }
@@ -239,10 +241,11 @@ function syncCredits() {
 }
 function syncInputs() {
   eventFields.forEach(k=>$('#'+k).value=state[k]);
-  $('#draft-note').textContent=state.edited?'Your draft is saved in this browser.':'Example standings loaded. Edit the players to make it yours.';
+  $('#save-status').textContent=state.edited?'Saved locally':'Example';
   showPlayers();scheduleRender();
 }
 function updatePlayerSummary(i) {
+  $('#placings').value=placingsMode();
   const p=state.players[i],d=$(`.player[data-index="${i}"]`);
   $('.rank-number',d).textContent=p.rank;
   $('.player-title strong',d).textContent=p.name||'Player name';
@@ -266,7 +269,7 @@ function normalizeCards(cards) {
 }
 function openSearch(i) {
   currentPlayer=i;searchVersion++;
-  $('#card-for').textContent=`Artwork for ${state.players[i].name||`player ${i+1}`}`;
+  $('#card-for').textContent=state.players[i].name||`Player ${i+1}`;
   $('#card-query').value='';$('#search-status').textContent='';$('#search-button').disabled=false;
   showResults(exampleCards);$('#card-dialog').showModal();$('#card-query').focus();
 }
@@ -309,16 +312,20 @@ async function download() {
 async function init() {
   try {
     const r=await fetch('assets/cards.json');if(!r.ok)throw new Error('Example cards could not load.');exampleCards=await r.json();state=freshState();
-    try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(validState(stored))state=stored;}catch{}
+    try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(validState(stored)){state=stored;if(state.footer==='Good games. See you next week.')state.footer='';}}catch{}
     syncInputs();
     eventFields.forEach(k=>$('#'+k).addEventListener('input',e=>{state[k]=e.target.value;changed();}));
     $$('.tabs button').forEach((b,i)=>{
       b.addEventListener('click',()=>selectTab(b.id));
       b.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const tabs=$$('.tabs button');const n=e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3;selectTab(tabs[n].id);tabs[n].focus();}});
     });
-    $('#edit-players').addEventListener('click',()=>{selectTab('players-tab');$('#players-tab').focus();$('.player').open=true;});
     $('#players').addEventListener('input',e=>{const {player,key}=e.target.dataset;if(player===undefined)return;state.players[player][key]=key==='crop'?Number(e.target.value):e.target.value;updatePlayerSummary(player);changed();});
-    $('#ties').addEventListener('click',()=>{const ranks=['1','2','3','3','5','5','5','5'],isTied=state.players.every((p,i)=>p.rank===ranks[i]);state.players.forEach((p,i)=>p.rank=isTied?String(i+1):ranks[i]);$('#ties').textContent=isTied?'Use tied finishes':'Use places 1–8';showPlayers();changed();});
+    $('#placings').addEventListener('change',e=>{
+      if(e.target.value==='custom')return;
+      const open=$$('.player').map(p=>p.open);
+      state.players.forEach((p,i)=>p.rank=e.target.value==='cut'?CUT_RANKS[i]:String(i+1));
+      showPlayers();$$('.player').forEach((p,i)=>p.open=open[i]);changed();
+    });
     $('#search-form').addEventListener('submit',e=>{e.preventDefault();const q=$('#card-query').value.trim();if(q)searchCards(q);});
     $('#close-card').addEventListener('click',()=>$('#card-dialog').close());
     $('#card-dialog').addEventListener('close',()=>{searchVersion++;});
@@ -328,7 +335,7 @@ async function init() {
     $('#close-full').addEventListener('click',()=>$('#full-dialog').close());
     $('#reset').addEventListener('click',()=>$('#reset-dialog').showModal());
     $('#cancel-reset').addEventListener('click',()=>$('#reset-dialog').close());
-    $('#confirm-reset').addEventListener('click',()=>{clearTimeout(savingTimer);state=freshState();try{localStorage.removeItem(STORAGE);}catch{}syncInputs();$('#ties').textContent='Use tied finishes';$('#reset-dialog').close();});
+    $('#confirm-reset').addEventListener('click',()=>{clearTimeout(savingTimer);state=freshState();try{localStorage.removeItem(STORAGE);}catch{}syncInputs();$('#reset-dialog').close();});
     $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
   }catch(e){$('#notice').textContent=`Could not load the editor. Please refresh. ${e.message}`;}
 }

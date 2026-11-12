@@ -6,59 +6,53 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#f3f6f8">
   <meta name="description" content="Make a Magic: The Gathering Top 8 graphic with card art and tournament standings.">
-  <title>Top 8 studio · Sawyer Welden</title>
+  <title>Top 8 generator · Sawyer Welden</title>
   <link rel="icon" href="/favicon.png">
-  <link rel="stylesheet" href="style.css">
-  <script type="module" src="app.js?v=2"></script>
+  <link rel="stylesheet" href="style.css?v=3">
+  <script type="module" src="app.js?v=3"></script>
 </head>
 <body>
-  <header class="site-header"><a href="/">Sawyer Welden</a><span>Unlisted draft</span></header>
+  <header class="site-header"><a href="/">Sawyer Welden</a><span>Draft</span></header>
   <main>
-    <div class="page-heading"><div><h1>Top 8 studio</h1><p>Your players. Their decks. One graphic.</p></div><button type="button" id="download" class="primary" disabled>Download PNG <span aria-hidden="true">↓</span></button></div>
+    <div class="page-heading"><h1>Top 8 generator</h1><button type="button" id="download" class="primary" disabled>Download PNG <span aria-hidden="true">↓</span></button></div>
     <div class="workspace">
       <section class="editor" aria-label="Graphic editor">
-        <div class="tabs" role="tablist" aria-label="Editor sections"><button role="tab" id="event-tab" aria-selected="true" aria-controls="event-panel">Event</button><button role="tab" id="players-tab" aria-selected="false" aria-controls="players-panel" tabindex="-1">Players <span>8</span></button><button role="tab" id="design-tab" aria-selected="false" aria-controls="design-panel" tabindex="-1">Design</button></div>
+        <div class="tabs" role="tablist" aria-label="Editor sections"><button role="tab" id="event-tab" aria-selected="true" aria-controls="event-panel">Event</button><button role="tab" id="players-tab" aria-selected="false" aria-controls="players-panel" tabindex="-1">Players</button><button role="tab" id="design-tab" aria-selected="false" aria-controls="design-panel" tabindex="-1">Design</button></div>
         <div id="event-panel" role="tabpanel" aria-labelledby="event-tab" class="editor-panel">
-          <h2>Event details</h2>
           <label>Event name<input id="title" maxlength="90" autocomplete="off"></label>
           <div class="two-col"><label>Format<input id="format" maxlength="30"></label><label>Date<input id="date" type="date"></label></div>
-          <label>Venue<input id="venue" maxlength="70" placeholder="Store, city, or tournament series"></label>
-          <div class="two-col"><label>Players<input id="attendance" type="number" min="0" max="99999" placeholder="Optional"></label><label>Heading<input id="heading" maxlength="25"></label></div>
-          <label>Footer<input id="footer" maxlength="100" placeholder="A website, organizer, or short message"></label>
-          <div class="section-rule"></div>
-          <div class="sample-note"><span class="sample-dot"></span><p id="draft-note">Example standings loaded. Edit the players to make it yours.</p></div>
-          <button type="button" class="next-button" id="edit-players">Edit players <span aria-hidden="true">→</span></button>
+          <label>Venue<input id="venue" maxlength="70"></label>
+          <div class="two-col"><label>Players<input id="attendance" type="number" min="0" max="99999"></label><label>Heading<input id="heading" maxlength="25"></label></div>
+          <label>Footer<input id="footer" maxlength="100"></label>
+
         </div>
         <div id="players-panel" role="tabpanel" aria-labelledby="players-tab" class="editor-panel" hidden>
-          <div class="section-heading"><h2>Standings</h2><button type="button" class="text-button" id="ties">Use tied finishes</button></div>
+          <label>Placings<select id="placings"><option value="cut">Top 8 cut</option><option value="ranked">1–8</option><option value="custom" disabled>Custom</option></select></label>
           <div id="players"></div>
         </div>
         <div id="design-panel" role="tabpanel" aria-labelledby="design-tab" class="editor-panel" hidden>
-          <h2>Composition</h2>
-          <label>Layout<select id="layout"><option value="podium">Podium · spotlight the winner</option><option value="grid">Grid · equal card sizes</option></select></label>
+          <label>Layout<select id="layout"><option value="podium">Podium</option><option value="grid">Grid</option></select></label>
           <label>Canvas<select id="ratio"><option value="wide">Landscape · 1920 × 1080</option><option value="square">Square · 1600 × 1600</option></select></label>
           <label>Background<select id="theme"><option value="midnight">Midnight</option><option value="paper">Paper</option></select></label>
-          <label>Card treatment<select id="treatment"><option value="framed">Card frames</option><option value="old">Old border · Seventh Edition</option><option value="full">Full art</option></select></label>
-          <p class="field-note">Frame colors follow the selected card. Adjust each art crop in Players.</p>
+          <label>Frame<select id="treatment"><option value="framed">Standard</option><option value="old">Old border</option><option value="full">Full art</option></select></label>
         </div>
-        <div class="editor-footer"><span id="save-status" role="status">Saved on this device</span><button id="reset" class="text-button" type="button">Reset example</button></div>
+        <div class="editor-footer"><span id="save-status" role="status">Example</span><button id="reset" class="text-button" type="button">Reset</button></div>
       </section>
       <section class="preview-panel" aria-label="Graphic preview">
-        <div class="preview-heading"><h2>Preview</h2><span id="dimensions">1920 × 1080</span></div>
+        <div class="preview-heading"><span id="dimensions">1920 × 1080</span><button class="text-button" id="preview-large" type="button">Full size ↗</button></div>
         <div class="canvas-wrap"><canvas id="poster" width="1920" height="1080" role="img" aria-label="Top eight tournament graphic. Standings are listed below."></canvas></div>
-        <div class="preview-caption"><span>PNG export matches this preview.</span><button class="text-button" id="preview-large" type="button">View full size ↗</button></div>
         <p id="notice" role="status"></p>
-        <details class="credits"><summary>Standings & art credits</summary><ol id="credit-list"></ol><p>Card art © Wizards of the Coast. Card data and artwork via <a href="https://scryfall.com" target="_blank" rel="noreferrer">Scryfall</a>. Old-border frames from <a href="https://github.com/Investigamer/cardconjurer/tree/2fcddba8966156d484cedf54d8214996748dd5e1/img/frames/seventh/regular" target="_blank" rel="noreferrer">Card Conjurer</a>. Unofficial fan tool.</p></details>
+        <details class="credits"><summary>Credits</summary><ol id="credit-list"></ol><p>Card art © Wizards of the Coast. Card data and artwork via <a href="https://scryfall.com" target="_blank" rel="noreferrer">Scryfall</a>. Old-border frames from <a href="https://github.com/Investigamer/cardconjurer/tree/2fcddba8966156d484cedf54d8214996748dd5e1/img/frames/seventh/regular" target="_blank" rel="noreferrer">Card Conjurer</a>. Unofficial fan tool.</p></details>
       </section>
     </div>
   </main>
   <dialog id="card-dialog" aria-labelledby="card-dialog-title">
-    <div class="dialog-heading"><div><h2 id="card-dialog-title">Choose card art</h2><p id="card-for"></p></div><button class="close" type="button" id="close-card" aria-label="Close card search">×</button></div>
+    <div class="dialog-heading"><div><h2 id="card-dialog-title">Card art</h2><p id="card-for"></p></div><button class="close" type="button" id="close-card" aria-label="Close card search">×</button></div>
     <form id="search-form"><label class="sr-only" for="card-query">Card name or Scryfall query</label><input id="card-query" placeholder="Card name or Scryfall query" autocomplete="off" required maxlength="180"><button class="primary" type="submit" id="search-button">Search</button></form>
     <div class="search-controls"><button class="text-button" type="button" id="show-examples">Example cards</button><span id="search-status" role="status"></span></div>
     <div id="card-results"></div>
   </dialog>
   <dialog id="full-dialog" aria-label="Full graphic preview"><button class="close" type="button" id="close-full" aria-label="Close full preview">×</button><img id="full-image" alt="Full-size Top 8 tournament graphic"></dialog>
-  <dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Reset this draft?</h2><p>This replaces your event details and players with the example.</p><div class="dialog-actions"><button type="button" id="cancel-reset">Keep editing</button><button type="button" id="confirm-reset" class="primary">Reset example</button></div></dialog>
+  <dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Reset to example?</h2><div class="dialog-actions"><button type="button" id="cancel-reset">Keep editing</button><button type="button" id="confirm-reset" class="primary">Reset</button></div></dialog>
 </body>
 </html>
