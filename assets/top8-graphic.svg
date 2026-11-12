@@ -1,12 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="344" height="200" viewBox="0 0 344 200" role="img" aria-labelledby="title desc">
   <title id="title">Top 8 graphic generator</title>
-  <desc id="desc">A geometric eight beside eight abstract poster tiles in muted red, blue, gold, and green on pale paper.</desc>
+  <desc id="desc">Eight abstract poster tiles in muted red, blue, gold, green, and purple on pale paper.</desc>
   <rect width="344" height="200" fill="#f8fafb"/>
-  <path d="M144 20v160M20 100h304" stroke="#d7dcdf" fill="none"/>
-  <path d="M82 28a36 36 0 0 0 0 72V80a16 16 0 0 1 0-32z" fill="#b64f4a"/>
-  <path d="M82 28a36 36 0 0 1 0 72V80a16 16 0 0 0 0-32z" fill="#c79834"/>
-  <path d="M82 100a36 36 0 0 0 0 72v-20a16 16 0 0 1 0-32z" fill="#386f9f"/>
-  <path d="M82 100a36 36 0 0 1 0 72v-20a16 16 0 0 0 0-32z" fill="#171817"/>
+  <g transform="translate(-133 -25) scale(1.25)">
   <g fill="#fff" stroke="#d7dcdf" stroke-width="1.5">
     <path d="M166 38h30v49h-30zM208 38h30v49h-30zM250 38h30v49h-30zM292 38h30v49h-30zM166 113h30v49h-30zM208 113h30v49h-30zM250 113h30v49h-30zM292 113h30v49h-30z"/>
   </g>
@@ -19,4 +15,5 @@
   <circle cx="265" cy="128" r="15" fill="#4f8f5f"/>
   <path d="M292 143l30-30v30z" fill="#b64f4a"/>
   <path d="M172 77h18m24 0h18m24 0h18m24 0h18M172 152h18m24 0h18m24 0h18m24 0h18" stroke="#a0a6aa" stroke-width="3"/>
+  </g>
 </svg>
