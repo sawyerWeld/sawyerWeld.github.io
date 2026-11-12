@@ -359,7 +359,7 @@ function openSearch(i) {
   currentPlayer=i;searchVersion++;
   $('#card-for').textContent=state.players[i].name||`Player ${i+1}`;
   $('#card-query').value='';$('#search-status').textContent='';$('#search-button').disabled=false;
-  showResults(exampleCards);$('#card-dialog').showModal();$('#card-query').focus();
+  $('#card-results').replaceChildren();$('#search-button').disabled=false;$('#card-dialog').showModal();$('#card-query').focus();
 }
 function showResults(cards,printings=false) {
   $('#card-results').replaceChildren();
@@ -423,7 +423,6 @@ async function init() {
     $('#search-form').addEventListener('submit',e=>{e.preventDefault();const q=$('#card-query').value.trim();if(q)searchCards(q);});
     $('#close-card').addEventListener('click',()=>$('#card-dialog').close());
     $('#card-dialog').addEventListener('close',()=>{searchVersion++;});
-    $('#show-examples').addEventListener('click',()=>{searchVersion++;$('#search-status').textContent='';$('#search-button').disabled=false;showResults(exampleCards);});
     $('#download').addEventListener('click',download);
     $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
   }catch(e){$('#notice').textContent=`Could not load the editor. Please refresh. ${e.message}`;}
