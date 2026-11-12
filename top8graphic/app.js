@@ -296,6 +296,12 @@ function make(tag,props={},content) {
 function inputField(label,key,value,index,max=70) {
   const l=make('label',{},label),input=make('input',{value,maxLength:max});input.dataset.key=key;input.dataset.player=index;l.append(input);return l;
 }
+function focusCropSlider(slider) {
+  if(document.activeElement===slider)return;
+  // Touching a range must release the previous text field and its mobile keyboard.
+  document.activeElement?.blur();
+  slider.focus({preventScroll:true});
+}
 function showPlayers() {
   $('#players').replaceChildren();
   state.players.forEach((p,i)=>{
@@ -308,7 +314,7 @@ function showPlayers() {
     fields.append(inputField('Name','name',p.name,i,70),inputField('Deck','deck',p.deck,i,70));
     const duo=make('div',{className:'two-col'});duo.append(inputField('Place','rank',p.rank,i,3),inputField('Record','record',p.record,i,15));fields.append(duo,inputField('Handle / team','handle',p.handle,i,60));
     const art=make('button',{className:'art-choice',type:'button'});art.append(make('span',{},p.card.name),make('small',{},'Change art'));art.addEventListener('click',()=>openSearch(i));fields.append(art);
-    const crop=make('label',{},'Crop · top ↔ bottom'),slider=make('input',{type:'range',min:0,max:100,step:1,value:p.crop});slider.dataset.player=i;slider.dataset.key='crop';crop.append(slider);fields.append(crop);d.append(fields);$('#players').append(d);
+    const crop=make('label',{},'Crop · top ↔ bottom'),slider=make('input',{type:'range',min:0,max:100,step:1,value:p.crop});slider.dataset.player=i;slider.dataset.key='crop';slider.addEventListener('pointerdown',()=>focusCropSlider(slider));crop.append(slider);fields.append(crop);d.append(fields);$('#players').append(d);
   });
   syncCredits();
 }
@@ -397,7 +403,13 @@ async function init() {
       b.addEventListener('click',()=>selectTab(b.id));
       b.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const tabs=$$('.tabs button');const n=e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3;selectTab(tabs[n].id);tabs[n].focus();}});
     });
-    $('#players').addEventListener('input',e=>{const {player,key}=e.target.dataset;if(player===undefined)return;state.players[player][key]=key==='crop'?Number(e.target.value):e.target.value;updatePlayerSummary(player);changed();});
+    $('#players').addEventListener('input',e=>{
+      const {player,key}=e.target.dataset;if(player===undefined)return;
+      state.players[player][key]=key==='crop'?Number(e.target.value):e.target.value;
+      if(key==='crop')focusCropSlider(e.target);
+      else updatePlayerSummary(player);
+      changed();
+    });
     $('#search-form').addEventListener('submit',e=>{e.preventDefault();const q=$('#card-query').value.trim();if(q)searchCards(q);});
     $('#close-card').addEventListener('click',()=>$('#card-dialog').close());
     $('#card-dialog').addEventListener('close',()=>{searchVersion++;});
