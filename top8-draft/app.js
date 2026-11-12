@@ -15,7 +15,7 @@ function freshState() {
 }
 function validState(s) {
   return s && eventFields.every(k=>typeof s[k]==='string'&&s[k].length<=200) &&
-    ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','full'].includes(s.treatment)&&
+    ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','old','full'].includes(s.treatment)&&
     Array.isArray(s.players)&&s.players.length===8&&s.players.every(p=>['name','deck','rank','handle','record'].every(k=>typeof p[k]==='string'&&p[k].length<=100)&&Number.isFinite(p.crop)&&p.crop>=0&&p.crop<=100&&p.card&&typeof p.card.name==='string'&&typeof p.card.artist==='string'&&Array.isArray(p.card.colors)&&validArt(p.card.art));
 }
 function validArt(url) { return typeof url==='string' && (/^assets\/card-[0-7]\.jpg$/.test(url)||/^https:\/\/cards\.scryfall\.io\//.test(url)); }
@@ -44,11 +44,11 @@ function getImage(url) {
 }
 function fill(color) { ctx.fillStyle=color; }
 function box(x,y,w,h,r,color,stroke) { ctx.beginPath(); ctx.roundRect(x,y,w,h,r); if(color){fill(color);ctx.fill();} if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke();} }
-function text(str,x,y,size,color,maxWidth,weight=500,align='left') {
+function text(str,x,y,size,color,maxWidth,weight=500,align='left',family=font) {
   str=String(str||'');ctx.textAlign=align;ctx.textBaseline='alphabetic';fill(color);
-  let n=size;ctx.font=`${weight} ${n}px ${font}`;
+  let n=size;ctx.font=`${weight} ${n}px ${family}`;
   const minimum = size*.65;
-  while(maxWidth&&ctx.measureText(str).width>maxWidth&&n>minimum){n--;ctx.font=`${weight} ${n}px ${font}`;}
+  while(maxWidth&&ctx.measureText(str).width>maxWidth&&n>minimum){n--;ctx.font=`${weight} ${n}px ${family}`;}
   if(maxWidth&&ctx.measureText(str).width>maxWidth){while(str.length&&ctx.measureText(str+'…').width>maxWidth)str=str.slice(0,-1);str+='…';}
   ctx.fillText(str,x,y);ctx.textAlign='left';
 }
@@ -66,8 +66,49 @@ function drawArt(p,x,y,w,h) {
   ctx.restore();
 }
 function frameColor(card) { return card.colors.length>1?'#b39a66':COLORS[card.colors[0]]||'#9ba5b0'; }
+function oldFramePath(card) {
+  const key=card.colors.length>1?'m':({W:'w',U:'u',B:'b',R:'r',G:'g'}[card.colors[0]]||'a');
+  return `assets/old-border/${key}.webp`;
+}
+function drawOldCard(p,x,y,w,h,hero,frame) {
+  // Preserve the original frame's title, art bevel, parchment box, and footer.
+  // Stretch each vertical section independently to fit the poster's card slots.
+  const topH=hero?64:49, dividerH=14, infoH=hero?142:88, footerH=32;
+  const artH=h-topH-dividerH-infoH-footerH;
+  const artY=y+topH, infoY=artY+artH+dividerH;
+  const sourceCuts=[0,208,1138,1257,1868,2100];
+  const targetCuts=[y,artY,artY+artH,infoY,infoY+infoH,y+h];
+  ctx.save();ctx.beginPath();ctx.roundRect(x,y,w,h,14);ctx.clip();
+  fill('#10191f');ctx.fillRect(x,y,w,h);
+  drawArt(p,x+w*.117,artY-1,w*.774,artH+2);
+  for(let i=0;i<5;i++){
+    ctx.drawImage(frame,0,sourceCuts[i],1500,sourceCuts[i+1]-sourceCuts[i],x,targetCuts[i],w,targetCuts[i+1]-targetCuts[i]);
+  }
+  const pale=p.card.colors.length>1||p.card.colors[0]==='W';
+  const titleColor=pale?'#211d17':'#fff9ee';
+  ctx.shadowColor=pale?'#ffffff80':'#000000';ctx.shadowBlur=2;ctx.shadowOffsetX=1;ctx.shadowOffsetY=1;
+  text(p.deck||'Deck name',x+w*.112,y+topH*.81,hero?29:23,titleColor,w*.64,700,'left','Georgia, "Times New Roman", serif');
+  text(p.rank,x+w*.885,y+topH*.81,hero?30:25,titleColor,w*.1,700,'right','Georgia, "Times New Roman", serif');
+  ctx.shadowColor='transparent';ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
+  const tx=x+w*.13, tw=w*.74, hasDetail=Boolean(p.handle||p.record);
+  if(hero){
+    text('CHAMPION',tx,infoY+31,14,'#35434a',tw,750);
+    text(p.name||'Player name',tx,infoY+(hasDetail?78:91),39,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
+    text([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+114,21,'#35434a',tw,500);
+  }else{
+    text(p.name||'Player name',tx,infoY+(hasDetail?37:54),w<345?23:27,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
+    if(hasDetail)text([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+65,w<345?16:19,'#35434a',tw,500);
+  }
+  ctx.shadowColor='#000';ctx.shadowBlur=2;ctx.shadowOffsetY=1;
+  text(`Art: ${p.card.artist}`,x+w*.5,infoY+infoH+16,w<345?10:11,'#fff9ee',w*.79,500,'center');
+  ctx.restore();
+}
 function drawCard(p,x,y,w,h,hero=false) {
-  const color=frameColor(p.card), framed=state.treatment==='framed';
+  if(state.treatment==='old'){
+    const frame=getImage(oldFramePath(p.card));
+    if(frame.status==='ready'){drawOldCard(p,x,y,w,h,hero,frame.image);return;}
+  }
+  const color=frameColor(p.card), framed=state.treatment!=='full';
   const small=w<345, sz=small?24:29, pad=framed?12:0;
   box(x,y,w,h,18,'#10191f');
   if(framed){
@@ -152,13 +193,14 @@ function render() {
   fill(rule);ctx.fillRect(margin,H-102,contentW,2);
   text(state.footer,margin,H-58,24,fg,contentW-460,500);
   text('Magic: The Gathering artwork © Wizards of the Coast',W-margin,H-64,15,muted,440,400,'right');
-  text('Card data & art via Scryfall',W-margin,H-41,15,muted,440,400,'right');
+  text(state.treatment==='old'?'Art via Scryfall · Frames via Card Conjurer':'Card data & art via Scryfall',W-margin,H-41,15,muted,440,400,'right');
   const entries=state.players.map(p=>getImage(p.card.art));
-  const loading=entries.some(e=>e.status==='loading'),failed=entries.some(e=>e.status==='error');
+  const frames=state.treatment==='old'?state.players.map(p=>getImage(oldFramePath(p.card))):[];
+  const loading=[...entries,...frames].some(e=>e.status==='loading'),failed=entries.some(e=>e.status==='error'),frameFailed=frames.some(e=>e.status==='error');
   $('#download').disabled=loading;
   $('#preview-large').disabled=loading;
   $('#dimensions').textContent=`${W} × ${H}`;
-  $('#notice').textContent=loading?'Loading card artwork…':failed?'Some artwork could not load. Choose another card or retry with a refresh. The export will include placeholders.':'';
+  $('#notice').textContent=loading?'Loading artwork and frames…':[failed?'Some artwork could not load. Choose another card or retry with a refresh. The export will include placeholders.':'',frameFailed?'Some old-border frames could not load; standard frames are shown instead. Refresh to retry.':''].filter(Boolean).join(' ');
   ready=!loading;
 }
 function selectTab(id) {
