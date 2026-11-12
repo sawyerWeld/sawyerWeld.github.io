@@ -428,14 +428,14 @@ section {
   background-color: var(--button-hover-color);
 }
 </style>
-    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/integration.css">
-    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/base.css">
-    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/data-page.css">
-    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/profiles/trophies.css">
-    <link rel="stylesheet" href="/ppl/assets/d6f0e0b0f21d/stats/metagame.css">
+    <link rel="stylesheet" href="/ppl/assets/98522886e7a3/stats/integration.css">
+    <link rel="stylesheet" href="/ppl/assets/98522886e7a3/stats/base.css">
+    <link rel="stylesheet" href="/ppl/assets/98522886e7a3/stats/data-page.css">
+    <link rel="stylesheet" href="/ppl/assets/98522886e7a3/stats/profiles/trophies.css">
+    <link rel="stylesheet" href="/ppl/assets/98522886e7a3/stats/metagame.css">
 
-    <script type="module" src="/ppl/assets/d6f0e0b0f21d/js/navigation.js"></script>
-    <script type="module" src="/ppl/assets/d6f0e0b0f21d/stats/profiles/metagame.js"></script>
+    <script type="module" src="/ppl/assets/98522886e7a3/js/navigation.js"></script>
+    <script type="module" src="/ppl/assets/98522886e7a3/stats/profiles/metagame.js"></script>
     </head><body class="stats-page">
     <header><nav class="container navbar flex-row" aria-label="League stats">
     <a class="navbar-home" href="/ppl/">Piedmont Pauper League</a>
@@ -447,22 +447,29 @@ section {
         </button>
     <div class="navbar-container flex-row" id="primary-navigation"><a class="navbar-link" href="/season-standings/">Standings</a><a class="navbar-link" href="/combined-elo/">Elo</a><a class="navbar-link" href="/ppl/player.html">Players</a><a class="navbar-link" href="/ppl/store.html">Stores</a><a class="navbar-link" href="/ppl/metagame.html" aria-current="page">Metagame</a></div></nav></header>
     <main><div class="container">
-        <div class="league-page">
+        <div class="league-page metagame-page">
       <h1 class="sr-only">Overall metagame</h1>
-      <form id="filters">
-        <label
-          >Store<select id="store">
+      <details id="filter-panel" class="filter-panel" open>
+        <summary id="filter-toggle">
+          <span class="filter-title">Filters</span>
+          <span id="filter-summary">All stores · All dates</span>
+        </summary>
+        <form id="filters">
+          <label>Store<select id="store">
             <option value="all">All stores</option>
-          </select></label
-        ><label>From<input id="from" type="date" /></label
-        ><label>Through<input id="to" type="date" /></label
-        ><label
-          >Events<select id="kind">
+          </select></label>
+          <label>Events<select id="kind">
             <option value="all">All events</option>
             <option value="fnm">FNM only</option>
-          </select></label
-        ><button type="reset">Reset</button>
-      </form>
+          </select></label>
+          <label class="filter-date">From<input id="from" type="date" /></label>
+          <label class="filter-date">Through<input id="to" type="date" /></label>
+          <div class="filter-actions">
+            <button type="reset">Reset</button>
+            <button id="filters-done" type="button">Done</button>
+          </div>
+        </form>
+      </details>
       <p id="date-error" role="alert" hidden>Choose an end date on or after the start date.</p>
       <section>
         <div class="section-head">
