@@ -3,3 +3,5 @@
 #notice:empty{display:none}.credits{margin-top:14px}.editor-panel>label:last-child{margin-bottom:0}@media(max-width:760px){.text-button{min-height:44px}}
 
 .site-footer{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:12px}.site-footer>p{margin:0}.site-footer .credits{max-width:760px;margin:8px auto 0;padding-top:0;border-top:0}.site-footer .credits summary{margin:auto;min-height:44px;align-content:center}.site-footer .credits ol,.site-footer .credits p{text-align:left}
+
+#text-size{padding:0;min-height:44px;accent-color:var(--blue)}

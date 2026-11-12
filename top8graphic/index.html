@@ -8,8 +8,8 @@
   <meta name="description" content="Make a Magic: The Gathering Top 8 graphic with card art and tournament standings.">
   <title>Top 8 generator · Sawyer Welden</title>
   <link rel="icon" href="/favicon.png">
-  <link rel="stylesheet" href="style.css?v=5">
-  <script type="module" src="app.js?v=19"></script>
+  <link rel="stylesheet" href="style.css?v=6">
+  <script type="module" src="app.js?v=20"></script>
 </head>
 <body>
   <main>
@@ -33,6 +33,7 @@
           <label>Canvas<select id="ratio"><option value="wide">Landscape · 1920 × 1080</option><option value="square">Square · 1600 × 1600</option></select></label>
           <label>Background<select id="theme"><option value="midnight">Midnight</option><option value="paper" selected>Paper</option></select></label>
           <label>Style<select id="treatment"><option value="framed">Standard</option><option value="old">Old border</option><option value="full">Full art</option><option value="smash" selected>Smash</option></select></label>
+          <label>Text size <output id="text-size-value" for="text-size">100%</output><input id="text-size" type="range" min="80" max="150" step="5" value="100"></label>
           <label>Art credits<select id="credits"><option value="footer">Footer</option><option value="cards">On cards</option></select></label>
         </div>
       </section>

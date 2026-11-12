@@ -8,7 +8,7 @@ const oldFrameLayers = new Map();
 const FRAME_CACHE_LIMIT = 16 * 1024 * 1024;
 let frameCacheBytes = 0;
 function oldFrameLayer(path,frame,w,h,hero,footerH) {
-  const key=[path,w,h,hero,footerH].join('|');
+  const scale=textScale(),key=[path,w,h,hero,footerH,scale].join('|');
   if(oldFrameLayers.has(key)){
     const entry=oldFrameLayers.get(key);
     oldFrameLayers.delete(key);oldFrameLayers.set(key,entry);
@@ -18,7 +18,7 @@ function oldFrameLayer(path,frame,w,h,hero,footerH) {
   const layer=document.createElement('canvas');
   layer.width=Math.ceil(w);layer.height=Math.ceil(h);
   const layerCtx=layer.getContext('2d');
-  const topH=hero?64:49,infoH=hero?112:88;
+  const topH=(hero?64:49)*scale,infoH=(hero?112:88)*scale;
   const sourceCuts=[0,208,1138,1257,1868,2100];
   const targetCuts=[0,topH,h-infoH-footerH-14,h-infoH-footerH,h-footerH,h];
   for(let i=0;i<5;i++){
@@ -41,11 +41,11 @@ const sampleNames = ['Tony Soprano','Carmela Soprano','Christopher Moltisanti','
 const previousSampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor Quinn','Jamie Park','Casey Brooks','Riley Stone'];
 const sampleDecks = ['Mono-blue Terror','Mono-red Burn','Affinity','Boros Synthesizer','Elves','Orzhov Blade','Dimir Faeries','Jeskai Ephemerate'];
 function freshState() {
-  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'paper', treatment:'smash', credits:'footer', creditsVersion:1, edited:false,
+  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'paper', treatment:'smash', credits:'footer', creditsVersion:1, textSize:100, edited:false,
     players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:CUT_RANKS[i], handle:'', record:'', zoom:100, card})) };
 }
 function validState(s) {
-  return s && eventFields.every(k=>typeof s[k]==='string'&&s[k].length<=200) &&
+  return s && (s.textSize===undefined||(Number.isFinite(s.textSize)&&s.textSize>=80&&s.textSize<=150)) && eventFields.every(k=>typeof s[k]==='string'&&s[k].length<=200) &&
     ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','old','full','smash'].includes(s.treatment)&&['cards','footer'].includes(s.credits)&&
     Array.isArray(s.players)&&s.players.length===8&&s.players.every(p=>['name','deck','rank','handle','record'].every(k=>typeof p[k]==='string'&&p[k].length<=100)&&(p.zoom===undefined||(Number.isFinite(p.zoom)&&p.zoom>=100&&p.zoom<=200))&&p.card&&typeof p.card.name==='string'&&typeof p.card.artist==='string'&&Array.isArray(p.card.colors)&&validArt(p.card.art));
 }
@@ -73,13 +73,16 @@ function getImage(url) {
 }
 function fill(color) { ctx.fillStyle=color; }
 function box(x,y,w,h,r,color,stroke) { ctx.beginPath(); ctx.roundRect(x,y,w,h,r); if(color){fill(color);ctx.fill();} if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke();} }
-function text(str,x,y,size,color,maxWidth,weight=500,align='left',family=font) {
+function text(str,x,y,size,color,maxWidth,weight=500,align='left',family=font,minimum=size*.65) {
   str=String(str||'');ctx.textAlign=align;ctx.textBaseline='alphabetic';fill(color);
   let n=size;ctx.font=`${weight} ${n}px ${family}`;
-  const minimum = size*.65;
   while(maxWidth&&ctx.measureText(str).width>maxWidth&&n>minimum){n--;ctx.font=`${weight} ${n}px ${family}`;}
   if(maxWidth&&ctx.measureText(str).width>maxWidth){while(str.length&&ctx.measureText(str+'…').width>maxWidth)str=str.slice(0,-1);str+='…';}
   ctx.fillText(str,x,y);ctx.textAlign='left';
+}
+function textScale() { return (state.textSize??100)/100; }
+function cardText(str,x,y,size,color,maxWidth,weight=500,align='left',family=font) {
+  text(str,x,y,size*textScale(),color,maxWidth,weight,align,family,size*.65);
 }
 function drawArt(p,x,y,w,h) {
   const e=getImage(p.card.art);
@@ -103,7 +106,7 @@ function oldFramePath(card) {
 function drawOldCard(p,x,y,w,h,hero,frame) {
   // Preserve the original frame's title, art bevel, parchment box, and footer.
   // Stretch each vertical section independently to fit the poster's card slots.
-  const topH=hero?64:49, dividerH=14, infoH=hero?112:88, footerH=state.credits==='cards'?32:15;
+  const scale=textScale(),topH=(hero?64:49)*scale, dividerH=14, infoH=(hero?112:88)*scale, footerH=state.credits==='cards'?32:15;
   const artH=h-topH-dividerH-infoH-footerH;
   const artY=y+topH, infoY=artY+artH+dividerH;
   ctx.save();ctx.beginPath();ctx.roundRect(x,y,w,h,14);ctx.clip();
@@ -113,16 +116,16 @@ function drawOldCard(p,x,y,w,h,hero,frame) {
   const pale=p.card.colors.length>1||p.card.colors[0]==='W';
   const titleColor=pale?'#211d17':'#fff9ee';
   ctx.shadowColor=pale?'#ffffff80':'#000000';ctx.shadowBlur=2;ctx.shadowOffsetX=1;ctx.shadowOffsetY=1;
-  text(p.deck||'Deck name',x+w*.112,y+topH*.81,hero?29:23,titleColor,w*.64,700,'left','Georgia, "Times New Roman", serif');
-  text(p.rank,x+w*.885,y+topH*.81,hero?30:25,titleColor,w*.1,700,'right','Georgia, "Times New Roman", serif');
+  cardText(p.deck||'Deck name',x+w*.112,y+topH*.81,hero?29:23,titleColor,w*.64,700,'left','Georgia, "Times New Roman", serif');
+  cardText(p.rank,x+w*.885,y+topH*.81,hero?30:25,titleColor,w*.1,700,'right','Georgia, "Times New Roman", serif');
   ctx.shadowColor='transparent';ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
   const tx=x+w*.13, tw=w*.74, hasDetail=Boolean(p.handle||p.record);
   if(hero){
-    text(p.name||'Player name',tx,infoY+(hasDetail?52:70),39,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
-    text([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+86,21,'#35434a',tw,500);
+    cardText(p.name||'Player name',tx,infoY+(hasDetail?52:70)*scale,39,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
+    cardText([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+86*scale,21,'#35434a',tw,500);
   }else{
-    text(p.name||'Player name',tx,infoY+(hasDetail?37:54),w<345?23:27,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
-    if(hasDetail)text([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+65,w<345?16:19,'#35434a',tw,500);
+    cardText(p.name||'Player name',tx,infoY+(hasDetail?37:54)*scale,w<345?23:27,'#182231',tw,700,'left','Georgia, "Times New Roman", serif');
+    if(hasDetail)cardText([p.handle,p.record].filter(Boolean).join(' · '),tx,infoY+65*scale,w<345?16:19,'#35434a',tw,500);
   }
   if(state.credits==='cards'){
     ctx.shadowColor='#000';ctx.shadowBlur=2;ctx.shadowOffsetY=1;
@@ -131,9 +134,9 @@ function drawOldCard(p,x,y,w,h,hero,frame) {
   ctx.restore();
 }
 function drawSmashCard(p,x,y,w,h,hero=false) {
-  const accent='#d72829', creditH=state.credits==='cards'?20:0;
+  const scale=textScale(),accent='#d72829', creditH=state.credits==='cards'?20:0;
   const details=[p.handle,p.record].filter(Boolean).join(' · ');
-  const bandH=hero?(details?146:116):(details?99:76);
+  const bandH=(hero?(details?146:116):(details?99:76))*scale;
   const slant=hero?34:25, bottom=y+h-creditH;
   ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
   drawArt(p,x,y,w,h);
@@ -144,12 +147,12 @@ function drawSmashCard(p,x,y,w,h,hero=false) {
   ctx.beginPath();ctx.moveTo(x,bottom-bandH+slant);ctx.lineTo(x+w,bottom-bandH);
   ctx.lineTo(x+w,bottom);ctx.lineTo(x,bottom);ctx.closePath();fill(accent);ctx.fill();
   ctx.shadowColor='#000';ctx.shadowBlur=4;ctx.shadowOffsetX=2;ctx.shadowOffsetY=3;
-  text(p.rank,x+16,y+(hero?128:82),hero?122:78,'#fff',w*.42,'italic 900');
-  const nameY=bottom-(hero?(details?111:83):(details?72:48));
-  text(p.name||'Player name',x+w/2,nameY,hero?48:w<345?31:36,'#fff',w-30,900,'center');
+  cardText(p.rank,x+16,y+(hero?128:82)*scale,hero?122:78,'#fff',w*.42,'italic 900');
+  const nameY=bottom-(hero?(details?111:83):(details?72:48))*scale;
+  cardText(p.name||'Player name',x+w/2,nameY,hero?48:w<345?31:36,'#fff',w-30,900,'center');
   ctx.shadowBlur=2;ctx.shadowOffsetX=1;ctx.shadowOffsetY=1;
-  text(p.deck||'Deck name',x+w/2,nameY+(hero?35:25),hero?26:21,'#fff',w-32,650,'center');
-  if(details)text(details,x+w/2,nameY+(hero?66:48),hero?22:17,'#fff',w-32,550,'center');
+  cardText(p.deck||'Deck name',x+w/2,nameY+(hero?35:25)*scale,hero?26:21,'#fff',w-32,650,'center');
+  if(details)cardText(details,x+w/2,nameY+(hero?66:48)*scale,hero?22:17,'#fff',w-32,550,'center');
   ctx.shadowColor='transparent';ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
   if(creditH){
     fill('#111114');ctx.fillRect(x,bottom,w,creditH);
@@ -174,7 +177,7 @@ function drawCard(p,x,y,w,h,hero=false) {
     const frame=getImage(oldFramePath(p.card));
     if(frame.status==='ready'){drawOldCard(p,x,y,w,h,hero,frame.image);return;}
   }
-  const color=frameColor(p.card), framed=state.treatment!=='full';
+  const scale=textScale(),color=frameColor(p.card), framed=state.treatment!=='full';
   const small=w<345, sz=small?24:29, pad=framed?12:0;
   box(x,y,w,h,18,'#10191f');
   if(framed){
@@ -183,17 +186,17 @@ function drawCard(p,x,y,w,h,hero=false) {
   }
   const ax=x+pad, ay=y+pad, aw=w-pad*2;
   ctx.save();ctx.beginPath();ctx.roundRect(ax,ay,aw,h-pad*2,framed?8:16);ctx.clip();
-  const titleH=framed?45:0, creditH=state.credits==='cards'?21:0;
-  const infoH=hero?(!framed&&(p.handle||p.record)?147:116):(framed||!p.handle?92:116);
+  const titleH=framed?45*scale:0, creditH=state.credits==='cards'?21:0;
+  const infoH=(hero?(!framed&&(p.handle||p.record)?147:116):(framed||!p.handle?92:116))*scale;
   const artY=ay+titleH, artH=h-pad*2-titleH-infoH-creditH;
   drawArt(p,ax,artY,aw,artH);
   if(framed){
     fill(color);ctx.fillRect(ax,ay,aw,titleH);
-    text(p.deck||'Deck name',ax+14,ay+30,small?22:26,'#15222a',aw-68,700);
-    text(p.rank,ax+aw-14,ay+32,29,'#15222a',42,800,'right');
+    cardText(p.deck||'Deck name',ax+14,ay+30*scale,small?22:26,'#15222a',aw-26-42*scale,700);
+    cardText(p.rank,ax+aw-14,ay+32*scale,29,'#15222a',42*scale,800,'right');
   }else{
-    box(ax+13,ay+13,hero?70:49,hero?70:49,6,'#15222aeb');
-    text(p.rank,ax+(hero?48:37.5),ay+(hero?65:50),hero?49:32,'#fff',hero?58:40,800,'center');
+    box(ax+13,ay+13,(hero?70:49)*scale,(hero?70:49)*scale,6,'#15222aeb');
+    cardText(p.rank,ax+13+(hero?35:24.5)*scale,ay+13+(hero?52:37)*scale,hero?49:32,'#fff',(hero?58:40)*scale,800,'center');
   }
   const infoY=artY+artH;
   fill(framed?'#f0ecdf':'#162330');ctx.fillRect(ax,infoY,aw,infoH);
@@ -201,15 +204,15 @@ function drawCard(p,x,y,w,h,hero=false) {
   fill(color);ctx.fillRect(ax,infoY,aw,3);
   if(hero){
     const details=[p.handle,p.record].filter(Boolean).join(' · ');
-    text(p.name||'Player name',ax+20,infoY+(framed&&!details?72:56),42,ink,aw-40,750);
-    text(framed?details:(p.deck||'Deck name'),ax+20,infoY+90,24,muted,aw-40,500);
-    if(!framed&&details)text(details,ax+20,infoY+122,21,muted,aw-40,500);
+    cardText(p.name||'Player name',ax+20,infoY+(framed&&!details?72:56)*scale,42,ink,aw-40,750);
+    cardText(framed?details:(p.deck||'Deck name'),ax+20,infoY+90*scale,24,muted,aw-40,500);
+    if(!framed&&details)cardText(details,ax+20,infoY+122*scale,21,muted,aw-40,500);
   }else{
-    text(p.name||'Player name',ax+14,infoY+(framed&&!p.handle&&!p.record?57:38),sz,ink,aw-28,750);
+    cardText(p.name||'Player name',ax+14,infoY+(framed&&!p.handle&&!p.record?57:38)*scale,sz,ink,aw-28,750);
     const detail=framed?p.handle:(p.deck||'Deck name');
-    text(detail,ax+14,infoY+68,small?18:21,muted,aw-28-(p.record?60:0),500);
-    if(p.record)text(p.record,ax+aw-14,infoY+68,17,muted,58,600,'right');
-    if(!framed&&p.handle)text(p.handle,ax+14,infoY+96,small?17:19,muted,aw-28,500);
+    cardText(detail,ax+14,infoY+68*scale,small?18:21,muted,aw-28-(p.record?60*scale:0),500);
+    if(p.record)cardText(p.record,ax+aw-14,infoY+68*scale,17,muted,58*scale,600,'right');
+    if(!framed&&p.handle)cardText(p.handle,ax+14,infoY+96*scale,small?17:19,muted,aw-28,500);
   }
   if(creditH){
     fill('#111b22');ctx.fillRect(ax,y+h-pad-creditH,aw,creditH);
@@ -298,7 +301,7 @@ function make(tag,props={},content) {
 function inputField(label,key,value,index,max=70) {
   const l=make('label',{},label),input=make('input',{value,maxLength:max});input.dataset.key=key;input.dataset.player=index;l.append(input);return l;
 }
-function focusZoomSlider(slider) {
+function focusRangeSlider(slider) {
   if(document.activeElement===slider)return;
   // Touching a range must release the previous text field and its mobile keyboard.
   document.activeElement?.blur();
@@ -317,7 +320,7 @@ function showPlayers() {
     const duo=make('div',{className:'two-col'});duo.append(inputField('Place','rank',p.rank,i,3),inputField('Record','record',p.record,i,15));fields.append(duo,inputField('Handle / team','handle',p.handle,i,60));
     const art=make('button',{className:'art-choice',type:'button'});art.append(make('span',{},p.card.name),make('small',{},'Change art'));art.addEventListener('click',()=>openSearch(i));fields.append(art);
     const zoom=make('label',{},'Zoom '),zoomValue=make('output',{},`${p.zoom??100}%`),zoomSlider=make('input',{type:'range',min:100,max:200,step:1,value:p.zoom??100});
-    zoomValue.id=`zoom-value-${i}`;zoomSlider.dataset.player=i;zoomSlider.dataset.key='zoom';zoomSlider.addEventListener('pointerdown',()=>focusZoomSlider(zoomSlider));zoom.append(zoomValue,zoomSlider);fields.append(zoom);
+    zoomValue.id=`zoom-value-${i}`;zoomSlider.dataset.player=i;zoomSlider.dataset.key='zoom';zoomSlider.addEventListener('pointerdown',()=>focusRangeSlider(zoomSlider));zoom.append(zoomValue,zoomSlider);fields.append(zoom);
     d.append(fields);$('#players').append(d);
   });
   syncCredits();
@@ -331,6 +334,7 @@ function syncCredits() {
 }
 function syncInputs() {
   eventFields.forEach(k=>$('#'+k).value=state[k]);
+  $('#text-size').value=state.textSize??100;$('#text-size-value').textContent=`${state.textSize??100}%`;
   showPlayers();scheduleRender();
 }
 function updatePlayerSummary(i) {
@@ -404,6 +408,8 @@ async function init() {
     try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(stored&&stored.creditsVersion!==1){stored.credits='footer';stored.creditsVersion=1;}if(validState(stored)){state=stored;if(state.footer==='Good games. See you next week.')state.footer='';}}catch{}
     state.players.forEach((p,i)=>{if(p.name===previousSampleNames[i])p.name=sampleNames[i];});
     syncInputs();
+    $('#text-size').addEventListener('pointerdown',e=>focusRangeSlider(e.target));
+    $('#text-size').addEventListener('input',e=>{state.textSize=Number(e.target.value);$('#text-size-value').textContent=`${state.textSize}%`;focusRangeSlider(e.target);changed();});
     eventFields.forEach(k=>$('#'+k).addEventListener('input',e=>{state[k]=e.target.value;changed();}));
     $$('.tabs button').forEach((b,i)=>{
       b.addEventListener('click',()=>selectTab(b.id));
@@ -414,7 +420,7 @@ async function init() {
       const artControl=key==='zoom';
       state.players[player][key]=artControl?Number(e.target.value):e.target.value;
       if(artControl){
-        focusZoomSlider(e.target);
+        focusRangeSlider(e.target);
         $(`#zoom-value-${player}`).textContent=`${e.target.value}%`;
       }
       else updatePlayerSummary(player);

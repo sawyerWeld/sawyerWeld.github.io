@@ -21,3 +21,5 @@ The page footer links “Sawyer Welden” to `/pauper/`, with expandable credits
 The former `/top8-draft/` URL has been removed. The localStorage key is unchanged so existing drafts carry over.
 
 Per-player Zoom (100–200%) enlarges centered artwork in both the preview and PNG export. Previous Art position settings are ignored. Existing drafts without zoom start at 100%; changing artwork resets zoom.
+
+Design → Text size (80–150%) scales all players’ names, decks, ranks, and details. Nameplates grow with the text across every style; artist credits and the event header keep their sizes. Existing drafts start at 100%. The setting persists and applies to PNG exports. Old-border layer cache keys include text size.
