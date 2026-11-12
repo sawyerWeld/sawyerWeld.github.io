@@ -11,7 +11,7 @@ const eventFields = ['title','format','date','venue','attendance','heading','foo
 const sampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor Quinn','Jamie Park','Casey Brooks','Riley Stone'];
 const sampleDecks = ['Mono-blue Terror','Mono-red Burn','Affinity','Boros Synthesizer','Elves','Orzhov Blade','Dimir Faeries','Jeskai Ephemerate'];
 function freshState() {
-  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'midnight', treatment:'framed', credits:'footer', creditsVersion:1, edited:false,
+  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'paper', treatment:'smash', credits:'footer', creditsVersion:1, edited:false,
     players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:CUT_RANKS[i], handle:'', record:'', crop:50, card})) };
 }
 function validState(s) {
