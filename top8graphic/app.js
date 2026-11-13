@@ -274,9 +274,9 @@ function render() {
   }else if(state.layout==='podium'&&square){
     const w=(contentW-gap*3)/4,h=(height-gap*2)/3;
     drawCard(state.players[0],margin,top,w*2+gap,h*2+gap,true);
-    drawCard(state.players[1],margin+2*(w+gap),top,w,h);
-    drawCard(state.players[2],margin+3*(w+gap),top,w,h);
-    drawCard(state.players[3],margin+2*(w+gap),top+h+gap,w*2+gap,h);
+    drawCard(state.players[1],margin+2*(w+gap),top,w*2+gap,h);
+    drawCard(state.players[2],margin+2*(w+gap),top+h+gap,w,h);
+    drawCard(state.players[3],margin+3*(w+gap),top+h+gap,w,h);
     for(let i=4;i<8;i++)drawCard(state.players[i],margin+(i-4)*(w+gap),top+2*(h+gap),w,h);
   }else{
     const w=(contentW-gap*3)/4,h=(height-gap)/2;
