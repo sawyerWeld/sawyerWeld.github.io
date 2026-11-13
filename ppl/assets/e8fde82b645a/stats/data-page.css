@@ -1,0 +1,121 @@
+/* Shared controls and tables for metagame and archetype pages. */
+:where(.league-page) h1 {
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -0.6px;
+}
+:where(.league-page) h2 {
+  font-size: 17px;
+  margin: 0 0 14px;
+}
+:where(.league-page) select,
+:where(.league-page) input,
+:where(.league-page) button {
+  font: inherit;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: white;
+  padding: 8px 12px;
+}
+:where(.league-page) select {
+  min-width: 0;
+}
+:where(.league-page) input,
+:where(.league-page) button {
+  color: var(--ink);
+}
+:where(.league-page) button {
+  cursor: pointer;
+}
+:where(.league-page) button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+:where(.league-page) a {
+  text-decoration: none;
+}
+:where(.league-page) a:hover {
+  text-decoration: underline;
+}
+:where(.league-page) select:focus-visible,
+:where(.league-page) a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+:where(.league-page) button:focus-visible,
+:where(.league-page) input:focus-visible,
+:where(.league-page) .scroll:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+:where(.league-page) button:focus:not(:focus-visible),
+:where(.league-page) select:focus:not(:focus-visible),
+:where(.league-page) a:focus:not(:focus-visible) {
+  outline: none;
+}
+:where(.league-page) #error {
+  color: #a13232;
+}
+:where(.league-page) #filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin-top: 0;
+}
+:where(.league-page) #filters label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+:where(.league-page) section {
+  margin: 28px 0;
+}
+:where(.league-page) .section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+:where(.league-page) .section-head h2 {
+  margin: 0;
+}
+:where(.league-page) .section-head select {
+  font-size: 12px;
+}
+:where(.league-page) .scroll {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: white;
+}
+:where(.league-page) table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+:where(.league-page) th,
+:where(.league-page) td {
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+}
+:where(.league-page) th {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  background: #f8fafc;
+  border-top: 0;
+  white-space: nowrap;
+}
+:where(.league-page) td:last-child,
+:where(.league-page) th:last-child {
+  text-align: right;
+}
+:where(.league-page) td:not(:first-child),
+:where(.league-page) th:not(:first-child) {
+  text-align: right;
+  white-space: nowrap;
+}
