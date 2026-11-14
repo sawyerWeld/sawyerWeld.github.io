@@ -1,42 +1,32 @@
 {
-  "updated_at": "2026-11-14T17:11:04Z",
+  "updated_at": "2026-11-14T21:32:32Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-13T17:11:04Z",
-      "end_utc_exclusive": "2026-11-14T17:11:04Z",
-      "page_views": 37,
-      "visits": 20,
+      "start_utc": "2026-11-13T21:32:32Z",
+      "end_utc_exclusive": "2026-11-14T21:32:32Z",
+      "page_views": 5,
+      "visits": 4,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
-        {
-          "path": "/ppl/archetype.html",
-          "page_views": 18,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/metagame.html",
-          "page_views": 11,
-          "sample_interval": 1
-        },
-        {
-          "path": "/",
-          "page_views": 3,
-          "sample_interval": 1
-        },
-        {
-          "path": "/pauper/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
         {
           "path": "/ppl/",
           "page_views": 1,
           "sample_interval": 1
         },
         {
+          "path": "/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
           "path": "/Tronclock/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/pauper/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -49,8 +39,8 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-07T17:11:04Z",
-      "end_utc_exclusive": "2026-11-14T17:11:04Z",
+      "start_utc": "2026-11-07T21:32:32Z",
+      "end_utc_exclusive": "2026-11-14T21:32:32Z",
       "page_views": 158,
       "visits": 76,
       "sample_interval": 1,
@@ -140,32 +130,87 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-15T17:11:04Z",
-      "end_utc_exclusive": "2026-11-14T17:11:04Z",
-      "page_views": 590,
-      "visits": 220,
-      "sample_interval": 10.535714285714286,
+      "start_utc": "2026-10-15T21:32:32Z",
+      "end_utc_exclusive": "2026-11-14T21:32:32Z",
+      "page_views": 470,
+      "visits": 190,
+      "sample_interval": 10.217391304347826,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "path": "/ppl/player.html",
           "page_views": 100,
-          "sample_interval": 100
+          "sample_interval": 11.11111111111111
+        },
+        {
+          "path": "/",
+          "page_views": 80,
+          "sample_interval": 10
         },
         {
           "path": "/ppl/metagame.html",
-          "page_views": 100,
-          "sample_interval": 100
+          "page_views": 50,
+          "sample_interval": 10
         },
         {
-          "path": "/ppl/",
-          "page_views": 100,
-          "sample_interval": 100
+          "path": "/ppl/archetype.html",
+          "page_views": 30,
+          "sample_interval": 10
+        },
+        {
+          "path": "/season-standings/",
+          "page_views": 30,
+          "sample_interval": 10
         },
         {
           "path": "/combined-elo/",
-          "page_views": 100,
-          "sample_interval": 100
+          "page_views": 30,
+          "sample_interval": 10
+        },
+        {
+          "path": "/Tronclock/",
+          "page_views": 30,
+          "sample_interval": 10
+        },
+        {
+          "path": "/card-foil/",
+          "page_views": 30,
+          "sample_interval": 10
+        },
+        {
+          "path": "/paupergenesis2026/survivorship/",
+          "page_views": 20,
+          "sample_interval": 10
+        },
+        {
+          "path": "/ppl/store.html",
+          "page_views": 20,
+          "sample_interval": 10
+        },
+        {
+          "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 10,
+          "sample_interval": 10
+        },
+        {
+          "path": "/mana-counter/",
+          "page_views": 10,
+          "sample_interval": 10
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 10,
+          "sample_interval": 10
+        },
+        {
+          "path": "/pauper/",
+          "page_views": 10,
+          "sample_interval": 10
+        },
+        {
+          "path": "/paupergeddon2026/",
+          "page_views": 10,
+          "sample_interval": 10
         }
       ]
     }
