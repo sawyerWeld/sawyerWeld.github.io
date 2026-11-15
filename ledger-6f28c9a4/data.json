@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-11-15T09:32:57Z",
+  "updated_at": "2026-11-15T17:14:17Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-14T09:32:57Z",
-      "end_utc_exclusive": "2026-11-15T09:32:57Z",
-      "page_views": 0,
-      "visits": 0,
-      "sample_interval": null,
+      "start_utc": "2026-11-14T17:14:17Z",
+      "end_utc_exclusive": "2026-11-15T17:14:17Z",
+      "page_views": 1,
+      "visits": 1,
+      "sample_interval": 1,
       "pages_may_be_truncated": false,
-      "pages": []
+      "pages": [
+        {
+          "path": "/pauper/",
+          "page_views": 1,
+          "sample_interval": 1
+        }
+      ]
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-08T09:32:57Z",
-      "end_utc_exclusive": "2026-11-15T09:32:57Z",
+      "start_utc": "2026-11-08T17:14:17Z",
+      "end_utc_exclusive": "2026-11-15T17:14:17Z",
       "page_views": 145,
       "visits": 73,
       "sample_interval": 1,
@@ -37,7 +43,7 @@
         },
         {
           "path": "/pauper/",
-          "page_views": 14,
+          "page_views": 15,
           "sample_interval": 1
         },
         {
@@ -46,12 +52,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/card-foil/",
-          "page_views": 9,
+          "path": "/",
+          "page_views": 8,
           "sample_interval": 1
         },
         {
-          "path": "/",
+          "path": "/card-foil/",
           "page_views": 8,
           "sample_interval": 1
         },
@@ -99,11 +105,11 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-16T09:32:57Z",
-      "end_utc_exclusive": "2026-11-15T09:32:57Z",
-      "page_views": 470,
-      "visits": 190,
-      "sample_interval": 10.217391304347826,
+      "start_utc": "2026-10-16T17:14:17Z",
+      "end_utc_exclusive": "2026-11-15T17:14:17Z",
+      "page_views": 460,
+      "visits": 180,
+      "sample_interval": 10.222222222222221,
       "pages_may_be_truncated": false,
       "pages": [
         {
@@ -137,17 +143,17 @@
           "sample_interval": 10
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 30,
-          "sample_interval": 10
-        },
-        {
           "path": "/card-foil/",
           "page_views": 30,
           "sample_interval": 10
         },
         {
           "path": "/paupergenesis2026/survivorship/",
+          "page_views": 20,
+          "sample_interval": 10
+        },
+        {
+          "path": "/Tronclock/",
           "page_views": 20,
           "sample_interval": 10
         },
