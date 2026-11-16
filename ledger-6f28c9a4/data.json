@@ -1,28 +1,22 @@
 {
-  "updated_at": "2026-11-16T09:51:02Z",
+  "updated_at": "2026-11-16T20:31:52Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-15T09:51:02Z",
-      "end_utc_exclusive": "2026-11-16T09:51:02Z",
-      "page_views": 1,
-      "visits": 1,
-      "sample_interval": 1,
+      "start_utc": "2026-11-15T20:31:52Z",
+      "end_utc_exclusive": "2026-11-16T20:31:52Z",
+      "page_views": 0,
+      "visits": 0,
+      "sample_interval": null,
       "pages_may_be_truncated": false,
-      "pages": [
-        {
-          "path": "/pauper/",
-          "page_views": 1,
-          "sample_interval": 1
-        }
-      ]
+      "pages": []
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-09T09:51:02Z",
-      "end_utc_exclusive": "2026-11-16T09:51:02Z",
-      "page_views": 143,
-      "visits": 71,
+      "start_utc": "2026-11-09T20:31:52Z",
+      "end_utc_exclusive": "2026-11-16T20:31:52Z",
+      "page_views": 142,
+      "visits": 70,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -43,7 +37,7 @@
         },
         {
           "path": "/pauper/",
-          "page_views": 15,
+          "page_views": 14,
           "sample_interval": 1
         },
         {
@@ -105,9 +99,9 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-17T09:51:02Z",
-      "end_utc_exclusive": "2026-11-16T09:51:02Z",
-      "page_views": 390,
+      "start_utc": "2026-10-17T20:31:52Z",
+      "end_utc_exclusive": "2026-11-16T20:31:52Z",
+      "page_views": 370,
       "visits": 180,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
@@ -124,16 +118,11 @@
         },
         {
           "path": "/ppl/player.html",
-          "page_views": 50,
+          "page_views": 40,
           "sample_interval": 10
         },
         {
           "path": "/ppl/archetype.html",
-          "page_views": 30,
-          "sample_interval": 10
-        },
-        {
-          "path": "/season-standings/",
           "page_views": 30,
           "sample_interval": 10
         },
@@ -144,6 +133,11 @@
         },
         {
           "path": "/paupergenesis2026/survivorship/",
+          "page_views": 20,
+          "sample_interval": 10
+        },
+        {
+          "path": "/season-standings/",
           "page_views": 20,
           "sample_interval": 10
         },
