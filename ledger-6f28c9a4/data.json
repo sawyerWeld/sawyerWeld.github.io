@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-11-15T21:51:48Z",
+  "updated_at": "2026-11-16T02:12:43Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-14T21:51:48Z",
-      "end_utc_exclusive": "2026-11-15T21:51:48Z",
+      "start_utc": "2026-11-15T02:12:43Z",
+      "end_utc_exclusive": "2026-11-16T02:12:43Z",
       "page_views": 1,
       "visits": 1,
       "sample_interval": 1,
@@ -19,8 +19,8 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-08T21:51:48Z",
-      "end_utc_exclusive": "2026-11-15T21:51:48Z",
+      "start_utc": "2026-11-09T02:12:43Z",
+      "end_utc_exclusive": "2026-11-16T02:12:43Z",
       "page_views": 144,
       "visits": 72,
       "sample_interval": 1,
@@ -105,18 +105,13 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-16T21:51:48Z",
-      "end_utc_exclusive": "2026-11-15T21:51:48Z",
-      "page_views": 460,
+      "start_utc": "2026-10-17T02:12:43Z",
+      "end_utc_exclusive": "2026-11-16T02:12:43Z",
+      "page_views": 390,
       "visits": 180,
-      "sample_interval": 10.222222222222221,
+      "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
-        {
-          "path": "/ppl/player.html",
-          "page_views": 100,
-          "sample_interval": 11.11111111111111
-        },
         {
           "path": "/",
           "page_views": 80,
@@ -128,17 +123,17 @@
           "sample_interval": 10
         },
         {
+          "path": "/ppl/player.html",
+          "page_views": 50,
+          "sample_interval": 10
+        },
+        {
           "path": "/ppl/archetype.html",
           "page_views": 30,
           "sample_interval": 10
         },
         {
           "path": "/season-standings/",
-          "page_views": 30,
-          "sample_interval": 10
-        },
-        {
-          "path": "/combined-elo/",
           "page_views": 30,
           "sample_interval": 10
         },
@@ -174,6 +169,11 @@
         },
         {
           "path": "/ppl/",
+          "page_views": 10,
+          "sample_interval": 10
+        },
+        {
+          "path": "/combined-elo/",
           "page_views": 10,
           "sample_interval": 10
         },
