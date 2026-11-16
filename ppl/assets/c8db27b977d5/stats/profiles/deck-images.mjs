@@ -286,5 +286,17 @@ export const deckImages = {
     "card": "Salt Road Packbeast",
     "artist": "Ben Wootten",
     "source": "https://scryfall.com/card/tdm/23/salt-road-packbeast?utm_source=api"
+  },
+  "Unknown": {
+    "url": "https://cards.scryfall.io/art_crop/front/c/3/c36f01a5-82bf-4fc6-9396-4410067c351b.jpg",
+    "card": "Totally Lost",
+    "artist": "David Palumbo",
+    "source": "https://scryfall.com/card/rvr/64/totally-lost"
+  },
+  "Boros Tribe": {
+    "url": "https://cards.scryfall.io/art_crop/front/1/d/1d23e47a-21d5-4d7e-8aa0-3b3064da5967.jpg?1783945271",
+    "card": "Tireless Tribe",
+    "artist": "Carl Critchlow",
+    "source": "https://scryfall.com/card/ody/56/tireless-tribe?utm_source=api"
   }
 };

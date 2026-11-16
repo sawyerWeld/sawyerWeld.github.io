@@ -1,5 +1,5 @@
 import { renderTrophy } from '../profiles/trophies.mjs';
-import { loadSeason } from './data-source.mjs?v=42fae5034e5d';
+import { loadSeason } from './data-source.mjs?v=79e6133f98cc';
 import { renderEventList } from './event-list.mjs';
 const $ = (id) => document.getElementById(id);
 const esc = (s) =>
