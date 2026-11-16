@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-11-16T02:12:43Z",
+  "updated_at": "2026-11-16T09:51:02Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-15T02:12:43Z",
-      "end_utc_exclusive": "2026-11-16T02:12:43Z",
+      "start_utc": "2026-11-15T09:51:02Z",
+      "end_utc_exclusive": "2026-11-16T09:51:02Z",
       "page_views": 1,
       "visits": 1,
       "sample_interval": 1,
@@ -19,10 +19,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-09T02:12:43Z",
-      "end_utc_exclusive": "2026-11-16T02:12:43Z",
-      "page_views": 144,
-      "visits": 72,
+      "start_utc": "2026-11-09T09:51:02Z",
+      "end_utc_exclusive": "2026-11-16T09:51:02Z",
+      "page_views": 143,
+      "visits": 71,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -47,11 +47,6 @@
           "sample_interval": 1
         },
         {
-          "path": "/",
-          "page_views": 8,
-          "sample_interval": 1
-        },
-        {
           "path": "/Tronclock/",
           "page_views": 8,
           "sample_interval": 1
@@ -59,6 +54,11 @@
         {
           "path": "/card-foil/",
           "page_views": 8,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
+          "page_views": 7,
           "sample_interval": 1
         },
         {
@@ -105,8 +105,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-17T02:12:43Z",
-      "end_utc_exclusive": "2026-11-16T02:12:43Z",
+      "start_utc": "2026-10-17T09:51:02Z",
+      "end_utc_exclusive": "2026-11-16T09:51:02Z",
       "page_views": 390,
       "visits": 180,
       "sample_interval": 10,
