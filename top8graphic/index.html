@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#f3f6f8">
-  <meta name="description" content="Make a Magic: The Gathering Top 8 graphic with card art and tournament standings.">
+  <meta name="description" content="Make a Magic: The Gathering Top 2–16 graphic with card art and tournament standings.">
   <title>Top 8 generator · Sawyer Welden</title>
   <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="style.css?v=6">
-  <script type="module" src="app.js?v=21"></script>
+  <script type="module" src="app.js?v=22"></script>
 </head>
 <body>
   <main>
-    <div class="page-heading"><h1>Top 8 generator</h1><button type="button" id="download" class="primary" disabled>Download PNG <span aria-hidden="true">↓</span></button></div>
+    <div class="page-heading"><h1 id="page-title">Top 8 generator</h1><button type="button" id="download" class="primary" disabled>Download PNG <span aria-hidden="true">↓</span></button></div>
     <div class="workspace">
       <section class="editor" aria-label="Graphic editor">
         <div class="tabs" role="tablist" aria-label="Editor sections"><button role="tab" id="event-tab" aria-selected="true" aria-controls="event-panel">Event</button><button role="tab" id="players-tab" aria-selected="false" aria-controls="players-panel" tabindex="-1">Players</button><button role="tab" id="design-tab" aria-selected="false" aria-controls="design-panel" tabindex="-1">Design</button></div>
@@ -21,11 +21,12 @@
           <label>Event name<input id="title" maxlength="90" autocomplete="off"></label>
           <div class="two-col"><label>Format<input id="format" maxlength="30"></label><label>Date<input id="date" type="date"></label></div>
           <label>Venue<input id="venue" maxlength="70"></label>
-          <div class="two-col"><label>Players<input id="attendance" type="number" min="0" max="99999"></label><label>Top-right text<input id="heading" maxlength="25"></label></div>
+          <div class="two-col"><label>Attendance<input id="attendance" type="number" min="0" max="99999"></label><label>Top-right text<input id="heading" maxlength="25"></label></div>
           <label>Footer<input id="footer" maxlength="100"></label>
 
         </div>
         <div id="players-panel" role="tabpanel" aria-labelledby="players-tab" class="editor-panel" hidden>
+          <label>Show top<select id="player-count"><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8" selected>8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option></select></label>
           <div id="players"></div>
         </div>
         <div id="design-panel" role="tabpanel" aria-labelledby="design-tab" class="editor-panel" hidden>

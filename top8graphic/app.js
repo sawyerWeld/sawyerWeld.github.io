@@ -35,19 +35,40 @@ function oldFrameLayer(path,frame,w,h,hero,footerH) {
 }
 let exampleCards, state, currentPlayer = 0, renderQueued = false, searchVersion = 0, savingTimer, ready = false;
 const COLORS = { W: '#d6cba8', U: '#7299b6', B: '#8e819b', R: '#bb7766', G: '#7d9f82' };
-const CUT_RANKS = ['1','2','3','3','5','5','5','5'];
+const MIN_PLAYERS=2,MAX_PLAYERS=16;
+let cardFit=1;
 const eventFields = ['title','format','date','venue','attendance','heading','footer','layout','ratio','theme','treatment','credits'];
-const sampleNames = ['Tony Soprano','Carmela Soprano','Christopher Moltisanti','Paulie Gualtieri','Silvio Dante','Junior Soprano','Adriana La Cerva','Bobby Baccalieri'];
+const sampleNames = ['Tony Soprano','Carmela Soprano','Christopher Moltisanti','Paulie Gualtieri','Silvio Dante','Junior Soprano','Adriana La Cerva','Bobby Baccalieri','Meadow Soprano','A.J. Soprano','Livia Soprano','Janice Soprano','Furio Giunta','Rosalie Aprile','Artie Bucco','Johnny Sack'];
 const previousSampleNames = ['Alex Rivera','Sam Chen','Jordan Lee','Morgan Reed','Taylor Quinn','Jamie Park','Casey Brooks','Riley Stone'];
 const sampleDecks = ['Mono-blue Terror','Mono-red Burn','Affinity','Boros Synthesizer','Elves','Orzhov Blade','Dimir Faeries','Jeskai Ephemerate'];
+function samplePlayer(i) {
+  const card=exampleCards[i%exampleCards.length];
+  return {name:sampleNames[i],deck:sampleDecks[i%sampleDecks.length],rank:String(i<2?i+1:2**Math.floor(Math.log2(i))+1),handle:'',record:'',zoom:100,card};
+}
+function activePlayers() { return state.players.slice(0,state.playerCount??state.players.length); }
+function setPlayerCount(count) {
+  if(!Number.isInteger(count)||count<MIN_PLAYERS||count>MAX_PLAYERS)return;
+  const previous=activePlayers().length;
+  while(state.players.length<count)state.players.push(samplePlayer(state.players.length));
+  state.playerCount=count;
+  if(state.heading===`Top ${previous}`){state.heading=`Top ${count}`;$('#heading').value=state.heading;}
+  syncCount();showPlayers();changed();
+}
+function syncCount() {
+  const count=activePlayers().length;
+  $('#player-count').value=count;
+  $('#page-title').textContent=`Top ${count} generator`;
+  document.title=`Top ${count} generator · Sawyer Welden`;
+  canvas.setAttribute('aria-label',`Top ${count} tournament graphic. Standings are listed below.`);
+}
 function freshState() {
-  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'paper', treatment:'smash', credits:'footer', creditsVersion:1, textSize:100, edited:false,
-    players: exampleCards.map((card,i) => ({name:sampleNames[i], deck:sampleDecks[i], rank:CUT_RANKS[i], handle:'', record:'', zoom:100, card})) };
+  return { title:'Friday Night Magic', format:'Pauper', date:'2026-11-13', venue:'Your local game store', attendance:'32', heading:'Top 8', footer:'', layout:'podium', ratio:'wide', theme:'paper', treatment:'smash', credits:'footer', creditsVersion:1, textSize:100, playerCount:8, edited:false,
+    players:Array.from({length:8},(_,i)=>samplePlayer(i)) };
 }
 function validState(s) {
   return s && (s.textSize===undefined||(Number.isFinite(s.textSize)&&s.textSize>=80&&s.textSize<=150)) && eventFields.every(k=>typeof s[k]==='string'&&s[k].length<=200) &&
     ['podium','grid'].includes(s.layout)&&['wide','square'].includes(s.ratio)&&['midnight','paper'].includes(s.theme)&&['framed','old','full','smash'].includes(s.treatment)&&['cards','footer'].includes(s.credits)&&
-    Array.isArray(s.players)&&s.players.length===8&&s.players.every(p=>['name','deck','rank','handle','record'].every(k=>typeof p[k]==='string'&&p[k].length<=100)&&(p.zoom===undefined||(Number.isFinite(p.zoom)&&p.zoom>=100&&p.zoom<=200))&&p.card&&typeof p.card.name==='string'&&typeof p.card.artist==='string'&&Array.isArray(p.card.colors)&&validArt(p.card.art));
+    Array.isArray(s.players)&&s.players.length>=MIN_PLAYERS&&s.players.length<=MAX_PLAYERS&&(s.playerCount===undefined||(Number.isInteger(s.playerCount)&&s.playerCount>=MIN_PLAYERS&&s.playerCount<=s.players.length))&&s.players.every(p=>['name','deck','rank','handle','record'].every(k=>typeof p[k]==='string'&&p[k].length<=100)&&(p.zoom===undefined||(Number.isFinite(p.zoom)&&p.zoom>=100&&p.zoom<=200))&&p.card&&typeof p.card.name==='string'&&typeof p.card.artist==='string'&&Array.isArray(p.card.colors)&&validArt(p.card.art));
 }
 function validArt(url) { return typeof url==='string' && (/^assets\/card-[0-7]\.jpg$/.test(url)||/^https:\/\/cards\.scryfall\.io\//.test(url)); }
 function save() {
@@ -80,9 +101,9 @@ function text(str,x,y,size,color,maxWidth,weight=500,align='left',family=font,mi
   if(maxWidth&&ctx.measureText(str).width>maxWidth){while(str.length&&ctx.measureText(str+'…').width>maxWidth)str=str.slice(0,-1);str+='…';}
   ctx.fillText(str,x,y);ctx.textAlign='left';
 }
-function textScale() { return (state.textSize??100)/100; }
+function textScale() { return (state.textSize??100)/100*cardFit; }
 function cardText(str,x,y,size,color,maxWidth,weight=500,align='left',family=font) {
-  text(str,x,y,size*textScale(),color,maxWidth,weight,align,family,size*.65);
+  text(str,x,y,size*textScale(),color,maxWidth,weight,align,family,size*.65*cardFit);
 }
 function drawArt(p,x,y,w,h) {
   const e=getImage(p.card.art);
@@ -172,6 +193,12 @@ function drawSmashBackground(W,H,dark) {
   ctx.restore();
 }
 function drawCard(p,x,y,w,h,hero=false) {
+  const previous=cardFit;
+  cardFit=Math.min(1,w/310,h/320);
+  try { drawCardContents(p,x,y,w,h,hero); }
+  finally { cardFit=previous; }
+}
+function drawCardContents(p,x,y,w,h,hero=false) {
   if(state.treatment==='smash'){drawSmashCard(p,x,y,w,h,hero);return;}
   if(state.treatment==='old'){
     const frame=getImage(oldFramePath(p.card));
@@ -229,7 +256,7 @@ function metadata() {
   return [state.format.trim(),date,state.venue,state.attendance?`${state.attendance} players`:''].filter(Boolean).join('  ·  ');
 }
 function artCreditLines(width) {
-  const artists=[...new Set(state.players.map(p=>p.card.artist.trim()).filter(Boolean))];
+  const artists=[...new Set(activePlayers().map(p=>p.card.artist.trim()).filter(Boolean))];
   ctx.font=`400 15px ${font}`;
   const lines=[];let line='Art:';
   for(const artist of artists){
@@ -239,6 +266,56 @@ function artCreditLines(width) {
   }
   if(artists.length)lines.push(line);
   return lines;
+}
+function placement(player) {
+  const value=Number(player.rank);
+  return Number.isFinite(value)&&value>0?value:Infinity;
+}
+// Rectangles are returned in placement order. Podium area never increases down the list.
+function layoutCards(count,layout,square,x,y,w,h,gap) {
+  const rect=(x,y,w,h)=>({x,y,w,h});
+  if(layout==='grid'){
+    let best;
+    for(let rows=1;rows<=4;rows++){
+      if(count===8&&rows!==2)continue;
+      const cols=Math.ceil(count/rows),cw=(w-gap*(cols-1))/cols,ch=(h-gap*(rows-1))/rows;
+      const score=Math.abs(Math.log(cw/ch/1.05))+(rows*cols-count)/count*.7;
+      if(!best||score<best.score)best={rows,cols,cw,ch,score};
+    }
+    const {cols,cw,ch}=best;
+    return Array.from({length:count},(_,i)=>{
+      const row=Math.floor(i/cols),inRow=Math.min(cols,count-row*cols);
+      return rect(x+(w-(inRow*cw+(inRow-1)*gap))/2+(i%cols)*(cw+gap),y+row*(ch+gap),cw,ch);
+    });
+  }
+  if(count===2){
+    if(square){const first=(h-gap)*.6;return [rect(x,y,w,first),rect(x,y+first+gap,w,h-first-gap)];}
+    const first=(w-gap)*.6;return [rect(x,y,first,h),rect(x+first+gap,y,w-first-gap,h)];
+  }
+  if(count===3){
+    const first=(w-gap)*.55,right=w-first-gap,second=(h-gap)*.55;
+    return [rect(x,y,first,h),rect(x+first+gap,y,right,second),rect(x+first+gap,y+second+gap,right,h-second-gap)];
+  }
+  if(square){
+    const cols=4,rows=2+Math.ceil((count-4)/cols),cw=(w-3*gap)/4,ch=(h-(rows-1)*gap)/rows;
+    const right=x+2*(cw+gap);
+    const slots=[rect(x,y,2*cw+gap,2*ch+gap),rect(right,y,2*cw+gap,ch),rect(right,y+ch+gap,cw,ch),rect(right+cw+gap,y+ch+gap,cw,ch)];
+    for(let i=4;i<count;i++){
+      const row=Math.floor((i-4)/cols),inRow=Math.min(cols,count-4-row*cols);
+      slots.push(rect(x+(w-(inRow*cw+(inRow-1)*gap))/2+((i-4)%cols)*(cw+gap),y+(row+2)*(ch+gap),cw,ch));
+    }
+    return slots;
+  }
+  const heroW=count===4?w*.4:440,rightX=x+heroW+gap,rightW=w-heroW-gap;
+  const remaining=count-1,rows=count<=4?1:count<=9?2:3;
+  const rowH=(h-(rows-1)*gap)/rows,base=Math.floor(remaining/rows),extra=remaining%rows;
+  const slots=[rect(x,y,heroW,h)];
+  // Shorter rows come first, so a later placement cannot acquire a larger tile.
+  for(let row=0;row<rows;row++){
+    const cols=base+(row>=rows-extra?1:0),cw=(rightW-(cols-1)*gap)/cols;
+    for(let col=0;col<cols;col++)slots.push(rect(rightX+col*(cw+gap),y+row*(rowH+gap),cw,rowH));
+  }
+  return slots;
 }
 function render() {
   if(!state)return;
@@ -265,28 +342,16 @@ function render() {
   const creditTop=H-41-(creditLines.length-1)*20;
   const footerY=Math.min(H-102,creditTop-30);
   const top=216,bottom=footerY-36, height=bottom-top, gap=square?21:22;
-  if(state.layout==='podium'&&!square){
-    const heroW=440,rightX=margin+heroW+gap,rightW=contentW-heroW-gap;
-    drawCard(state.players[0],margin,top,heroW,height,true);
-    const rowH=(height-gap)/2, topW=(rightW-gap*2)/3, bottomW=(rightW-gap*3)/4;
-    for(let i=1;i<4;i++)drawCard(state.players[i],rightX+(i-1)*(topW+gap),top,topW,rowH);
-    for(let i=4;i<8;i++)drawCard(state.players[i],rightX+(i-4)*(bottomW+gap),top+rowH+gap,bottomW,rowH);
-  }else if(state.layout==='podium'&&square){
-    const w=(contentW-gap*3)/4,h=(height-gap*2)/3;
-    drawCard(state.players[0],margin,top,w*2+gap,h*2+gap,true);
-    drawCard(state.players[1],margin+2*(w+gap),top,w*2+gap,h);
-    drawCard(state.players[2],margin+2*(w+gap),top+h+gap,w,h);
-    drawCard(state.players[3],margin+3*(w+gap),top+h+gap,w,h);
-    for(let i=4;i<8;i++)drawCard(state.players[i],margin+(i-4)*(w+gap),top+2*(h+gap),w,h);
-  }else{
-    const w=(contentW-gap*3)/4,h=(height-gap)/2;
-    state.players.forEach((p,i)=>drawCard(p,margin+(i%4)*(w+gap),top+Math.floor(i/4)*(h+gap),w,h));
-  }
+  const players=activePlayers();
+  // Edited placings determine podium prominence; stable ties retain editor order.
+  const ordered=state.layout==='podium'?[...players].sort((a,b)=>placement(a)-placement(b)):players;
+  const slots=layoutCards(players.length,state.layout,square,margin,top,contentW,height,gap);
+  ordered.forEach((p,i)=>{const r=slots[i];drawCard(p,r.x,r.y,r.w,r.h,state.layout==='podium'&&i===0);});
   fill(rule);ctx.fillRect(margin,footerY,contentW,2);
   text(state.footer,margin,H-58,24,fg,contentW-creditWidth-32,500);
   creditLines.forEach((line,i)=>text(line,W-margin,creditTop+i*20,15,muted,undefined,400,'right'));
-  const entries=state.players.map(p=>getImage(p.card.art));
-  const frames=state.treatment==='old'?state.players.map(p=>getImage(oldFramePath(p.card))):[];
+  const entries=players.map(p=>getImage(p.card.art));
+  const frames=state.treatment==='old'?players.map(p=>getImage(oldFramePath(p.card))):[];
   const loading=[...entries,...frames].some(e=>e.status==='loading'),failed=entries.some(e=>e.status==='error'),frameFailed=frames.some(e=>e.status==='error');
   $('#download').disabled=loading;
   $('#notice').textContent=loading?'Loading artwork and frames…':[failed?'Some artwork could not load. Choose another card or retry with a refresh. The export will include placeholders.':'',frameFailed?'Some old-border frames could not load; standard frames are shown instead. Refresh to retry.':''].filter(Boolean).join(' ');
@@ -309,7 +374,7 @@ function focusRangeSlider(slider) {
 }
 function showPlayers() {
   $('#players').replaceChildren();
-  state.players.forEach((p,i)=>{
+  activePlayers().forEach((p,i)=>{
     const d=make('details',{className:'player'});d.dataset.index=i;
     const s=make('summary');
     s.append(make('span',{className:'rank-number'},p.rank),make('img',{className:'player-thumb',src:p.card.art,alt:''}));
@@ -327,7 +392,7 @@ function showPlayers() {
 }
 function syncCredits() {
   $('#credit-list').replaceChildren();
-  state.players.forEach(p=>{
+  activePlayers().forEach(p=>{
     const li=make('li');li.value=Number.parseInt(p.rank)||1;
     li.append(make('strong',{},`${p.name||'Player'} · ${p.deck||'Deck'}`),make('br'),document.createTextNode(`${p.card.name} — ${p.card.artist}`));$('#credit-list').append(li);
   });
@@ -335,7 +400,7 @@ function syncCredits() {
 function syncInputs() {
   eventFields.forEach(k=>$('#'+k).value=state[k]);
   $('#text-size').value=state.textSize??100;$('#text-size-value').textContent=`${state.textSize??100}%`;
-  showPlayers();scheduleRender();
+  syncCount();showPlayers();scheduleRender();
 }
 function updatePlayerSummary(i) {
   const p=state.players[i],d=$(`.player[data-index="${i}"]`);
@@ -398,7 +463,7 @@ async function download() {
   try{
     render();
     const blob=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('Could not create the PNG.')),'image/png'));
-    const url=URL.createObjectURL(blob),a=make('a',{href:url,download:`${(state.title||'tournament').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'tournament'}-top-8.png`});document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
+    const url=URL.createObjectURL(blob),a=make('a',{href:url,download:`${(state.title||'tournament').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'tournament'}-top-${activePlayers().length}.png`});document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
   }catch{ $('#notice').textContent='The image could not be exported. Try reloading or changing the selected artwork.'; }
   finally{$('#download').disabled=false;}
 }
@@ -408,6 +473,7 @@ async function init() {
     try{const stored=JSON.parse(localStorage.getItem(STORAGE));if(stored&&stored.creditsVersion!==1){stored.credits='footer';stored.creditsVersion=1;}if(validState(stored)){state=stored;if(state.footer==='Good games. See you next week.')state.footer='';}}catch{}
     state.players.forEach((p,i)=>{if(p.name===previousSampleNames[i])p.name=sampleNames[i];});
     syncInputs();
+    $('#player-count').addEventListener('change',e=>setPlayerCount(Number(e.target.value)));
     $('#text-size').addEventListener('pointerdown',e=>focusRangeSlider(e.target));
     $('#text-size').addEventListener('input',e=>{state.textSize=Number(e.target.value);$('#text-size-value').textContent=`${state.textSize}%`;focusRangeSlider(e.target);changed();});
     eventFields.forEach(k=>$('#'+k).addEventListener('input',e=>{state[k]=e.target.value;changed();}));

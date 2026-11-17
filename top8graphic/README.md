@@ -2,7 +2,7 @@
 
 Unlisted draft at `/top8graphic/`. Do not add it to the homepage or tools listing until Sawyer approves the polished version. The HTML includes `noindex, nofollow`; the URL is publicly accessible, not access-controlled.
 
-Buildless HTML, CSS, and JavaScript. Serve this repository with a static HTTP server. `app.js` renders both the live preview and the exported PNG on the same canvas. The eight sample players are fictional. Example artwork is cached in `assets/`; `cards.json` keeps its card and artist metadata. Live search and alternate art use Scryfall's public API and CORS-enabled images. Artist and copyright credits are rendered into the PNG.
+Buildless HTML, CSS, and JavaScript. Serve this repository with a static HTTP server. `app.js` renders both the live preview and the exported PNG on the same canvas. Sample players use fictional Sopranos character names. Example artwork is cached in `assets/`; `cards.json` keeps its card and artist metadata. Live search and alternate art use Scryfall's public API and CORS-enabled images. Artist and copyright credits are rendered into the PNG.
 
 Drafts stay in localStorage under `sawyer-top8-draft-v1`. Nothing is submitted to a server except card searches and artwork requests. New artwork is loaded with anonymous CORS before drawing so PNG exports remain usable. Failed artwork produces a labeled placeholder and a warning.
 
@@ -23,3 +23,9 @@ The former `/top8-draft/` URL has been removed. The localStorage key is unchange
 Per-player Zoom (100–200%) enlarges centered artwork in both the preview and PNG export. Previous Art position settings are ignored. Existing drafts without zoom start at 100%; changing artwork resets zoom.
 
 Design → Text size (80–150%) scales all players’ names, decks, ranks, and details. Nameplates grow with the text across every style; artist credits and the event header keep their sizes. Existing drafts start at 100%. The setting persists and applies to PNG exports. Old-border layer cache keys include text size.
+
+Players → Show top supports 2–16 entries, defaulting to 8. Reducing the count hides extra roster entries without deleting their names, artwork, zoom, or other edits. Existing eight-player drafts load unchanged. The standard Top N heading follows the count; custom and blank headings stay as entered. Titles, accessible preview labels, credits, and PNG filenames reflect the visible count. Attendance is independent.
+
+Podium layouts sort visible players by their numeric placing (stable for ties), keep first place strictly largest, and never give a lower placing more tile area. Square layouts keep second place in the wide tile above the two thirds. Grid tiles remain equal size; incomplete rows are centered. Denser cards adapt text sizing so all styles remain usable up to 16 players. Top 8 keeps its existing layout.
+
+Run `node --test top8graphic/tests/layout.test.cjs` for every count, layout, and canvas shape: bounds, overlap, equal grid sizes, podium area ordering, and the Top 8 square second-place regression. The update was also checked with the local jsdom/Canvas harness for state migration, retained edits, customized headings, rank sorting, visible-only credits, 480 rendered combinations at maximum text size, and PNG export. Firefox browser QA was unavailable because its automation listener was not running.
