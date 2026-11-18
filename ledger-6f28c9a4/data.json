@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-11-17T22:27:23Z",
+  "updated_at": "2026-11-18T04:28:47Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-16T22:27:23Z",
-      "end_utc_exclusive": "2026-11-17T22:27:23Z",
-      "page_views": 3,
-      "visits": 3,
+      "start_utc": "2026-11-17T04:28:47Z",
+      "end_utc_exclusive": "2026-11-18T04:28:47Z",
+      "page_views": 2,
+      "visits": 2,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/Tronclock/",
-          "page_views": 2,
+          "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
+          "path": "/paupergenesis2026/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -24,10 +24,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-10T22:27:23Z",
-      "end_utc_exclusive": "2026-11-17T22:27:23Z",
-      "page_views": 140,
-      "visits": 68,
+      "start_utc": "2026-11-11T04:28:47Z",
+      "end_utc_exclusive": "2026-11-18T04:28:47Z",
+      "page_views": 141,
+      "visits": 69,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -67,12 +67,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/mana-counter/",
-          "page_views": 4,
+          "path": "/paupergenesis2026/",
+          "page_views": 5,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
+          "path": "/mana-counter/",
           "page_views": 4,
           "sample_interval": 1
         },
@@ -110,9 +110,9 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-18T22:27:23Z",
-      "end_utc_exclusive": "2026-11-17T22:27:23Z",
-      "page_views": 320,
+      "start_utc": "2026-10-19T04:28:47Z",
+      "end_utc_exclusive": "2026-11-18T04:28:47Z",
+      "page_views": 300,
       "visits": 170,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
@@ -148,11 +148,6 @@
           "sample_interval": 10
         },
         {
-          "path": "/ppl/player.html",
-          "page_views": 20,
-          "sample_interval": 10
-        },
-        {
           "path": "/ppl/store.html",
           "page_views": 20,
           "sample_interval": 10
@@ -173,17 +168,17 @@
           "sample_interval": 10
         },
         {
-          "path": "/ppl/",
-          "page_views": 10,
-          "sample_interval": 10
-        },
-        {
           "path": "/combined-elo/",
           "page_views": 10,
           "sample_interval": 10
         },
         {
           "path": "/pauper/",
+          "page_views": 10,
+          "sample_interval": 10
+        },
+        {
+          "path": "/ppl/player.html",
           "page_views": 10,
           "sample_interval": 10
         }
