@@ -1,15 +1,20 @@
 {
-  "updated_at": "2026-11-19T13:21:48Z",
+  "updated_at": "2026-11-19T21:40:14Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-18T13:21:48Z",
-      "end_utc_exclusive": "2026-11-19T13:21:48Z",
-      "page_views": 7,
-      "visits": 4,
+      "start_utc": "2026-11-18T21:40:14Z",
+      "end_utc_exclusive": "2026-11-19T21:40:14Z",
+      "page_views": 9,
+      "visits": 6,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
+        {
+          "path": "/",
+          "page_views": 2,
+          "sample_interval": 1
+        },
         {
           "path": "/paupergenesis2026/survivorship/",
           "page_views": 1,
@@ -21,17 +26,17 @@
           "sample_interval": 1
         },
         {
-          "path": "/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
           "path": "/Tronclock/",
           "page_views": 1,
           "sample_interval": 1
         },
         {
           "path": "/paupergeddon2026/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -49,40 +54,35 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-12T13:21:48Z",
-      "end_utc_exclusive": "2026-11-19T13:21:48Z",
-      "page_views": 135,
-      "visits": 64,
+      "start_utc": "2026-11-12T21:40:14Z",
+      "end_utc_exclusive": "2026-11-19T21:40:14Z",
+      "page_views": 76,
+      "visits": 46,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/ppl/archetype.html",
-          "page_views": 35,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/metagame.html",
-          "page_views": 30,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/player.html",
           "page_views": 19,
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
-          "page_views": 15,
-          "sample_interval": 1
-        },
-        {
-          "path": "/",
-          "page_views": 8,
+          "path": "/ppl/metagame.html",
+          "page_views": 16,
           "sample_interval": 1
         },
         {
           "path": "/Tronclock/",
+          "page_views": 8,
+          "sample_interval": 1
+        },
+        {
+          "path": "/",
+          "page_views": 7,
+          "sample_interval": 1
+        },
+        {
+          "path": "/pauper/",
           "page_views": 7,
           "sample_interval": 1
         },
@@ -98,21 +98,26 @@
         },
         {
           "path": "/paupergenesis2026/",
-          "page_views": 4,
+          "page_views": 3,
           "sample_interval": 1
         },
         {
           "path": "/paupergenesis2026/survivorship/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/ppl/",
-          "page_views": 2,
+          "page_views": 1,
           "sample_interval": 1
         },
         {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/ppl/player.html",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -140,9 +145,9 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-20T13:21:48Z",
-      "end_utc_exclusive": "2026-11-19T13:21:48Z",
-      "page_views": 290,
+      "start_utc": "2026-10-20T21:40:14Z",
+      "end_utc_exclusive": "2026-11-19T21:40:14Z",
+      "page_views": 280,
       "visits": 170,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
@@ -180,11 +185,6 @@
         {
           "path": "/ppl/store.html",
           "page_views": 20,
-          "sample_interval": 10
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 10,
           "sample_interval": 10
         },
         {
