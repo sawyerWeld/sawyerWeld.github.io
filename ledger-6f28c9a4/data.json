@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-11-18T22:02:37Z",
+  "updated_at": "2026-11-19T03:36:24Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-17T22:02:37Z",
-      "end_utc_exclusive": "2026-11-18T22:02:37Z",
-      "page_views": 4,
-      "visits": 4,
+      "start_utc": "2026-11-18T03:36:24Z",
+      "end_utc_exclusive": "2026-11-19T03:36:24Z",
+      "page_views": 3,
+      "visits": 3,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/paupergenesis2026/",
-          "page_views": 2,
+          "path": "/Tronclock/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/Tronclock/",
+          "path": "/paupergenesis2026/",
           "page_views": 1,
           "sample_interval": 1
         },
@@ -29,10 +29,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-11T22:02:37Z",
-      "end_utc_exclusive": "2026-11-18T22:02:37Z",
-      "page_views": 132,
-      "visits": 64,
+      "start_utc": "2026-11-12T03:36:24Z",
+      "end_utc_exclusive": "2026-11-19T03:36:24Z",
+      "page_views": 130,
+      "visits": 62,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -72,13 +72,13 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
-          "page_views": 5,
+          "path": "/mana-counter/",
+          "page_views": 4,
           "sample_interval": 1
         },
         {
-          "path": "/mana-counter/",
-          "page_views": 4,
+          "path": "/paupergenesis2026/",
+          "page_views": 3,
           "sample_interval": 1
         },
         {
@@ -105,8 +105,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-19T22:02:37Z",
-      "end_utc_exclusive": "2026-11-18T22:02:37Z",
+      "start_utc": "2026-10-20T03:36:24Z",
+      "end_utc_exclusive": "2026-11-19T03:36:24Z",
       "page_views": 290,
       "visits": 170,
       "sample_interval": 10,
