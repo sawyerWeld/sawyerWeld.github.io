@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-11-19T21:40:14Z",
+  "updated_at": "2026-11-20T03:26:07Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-18T21:40:14Z",
-      "end_utc_exclusive": "2026-11-19T21:40:14Z",
+      "start_utc": "2026-11-19T03:26:07Z",
+      "end_utc_exclusive": "2026-11-20T03:26:07Z",
       "page_views": 9,
       "visits": 6,
       "sample_interval": 1,
@@ -54,8 +54,8 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-12T21:40:14Z",
-      "end_utc_exclusive": "2026-11-19T21:40:14Z",
+      "start_utc": "2026-11-13T03:26:07Z",
+      "end_utc_exclusive": "2026-11-20T03:26:07Z",
       "page_views": 76,
       "visits": 46,
       "sample_interval": 1,
@@ -145,10 +145,10 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-20T21:40:14Z",
-      "end_utc_exclusive": "2026-11-19T21:40:14Z",
-      "page_views": 280,
-      "visits": 170,
+      "start_utc": "2026-10-21T03:26:07Z",
+      "end_utc_exclusive": "2026-11-20T03:26:07Z",
+      "page_views": 270,
+      "visits": 160,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
@@ -178,11 +178,6 @@
           "sample_interval": 10
         },
         {
-          "path": "/Tronclock/",
-          "page_views": 20,
-          "sample_interval": 10
-        },
-        {
           "path": "/ppl/store.html",
           "page_views": 20,
           "sample_interval": 10
@@ -194,6 +189,11 @@
         },
         {
           "path": "/combined-elo/",
+          "page_views": 10,
+          "sample_interval": 10
+        },
+        {
+          "path": "/Tronclock/",
           "page_views": 10,
           "sample_interval": 10
         },
