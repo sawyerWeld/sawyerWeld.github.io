@@ -231,7 +231,7 @@ async function refreshData(initial=false){
   const button=$('refresh-data');button.disabled=true;button.textContent='Refreshing…';
   const preset=data?[5,10,15].find(n=>selected.size===n&&visiblePlayers().slice(0,n).every(p=>selected.has(p.player))):null;
   try{
-    const {loadStats}=await import('./data-source.mjs?v=6f9ad3576e13');
+    const {loadStats}=await import('./data-source.mjs?v=6944d7e12ce5');
     const result=await loadStats();
     applyData(result.data);
     if(!initial){
