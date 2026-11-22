@@ -1,28 +1,22 @@
 {
-  "updated_at": "2026-11-22T15:25:29Z",
+  "updated_at": "2026-11-22T21:52:11Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-21T15:25:29Z",
-      "end_utc_exclusive": "2026-11-22T15:25:29Z",
-      "page_views": 1,
-      "visits": 1,
-      "sample_interval": 1,
+      "start_utc": "2026-11-21T21:52:11Z",
+      "end_utc_exclusive": "2026-11-22T21:52:11Z",
+      "page_views": 0,
+      "visits": 0,
+      "sample_interval": null,
       "pages_may_be_truncated": false,
-      "pages": [
-        {
-          "path": "/paupergenesis2026/",
-          "page_views": 1,
-          "sample_interval": 1
-        }
-      ]
+      "pages": []
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-15T15:25:29Z",
-      "end_utc_exclusive": "2026-11-22T15:25:29Z",
-      "page_views": 29,
-      "visits": 24,
+      "start_utc": "2026-11-15T21:52:11Z",
+      "end_utc_exclusive": "2026-11-22T21:52:11Z",
+      "page_views": 28,
+      "visits": 23,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -47,11 +41,6 @@
           "sample_interval": 1
         },
         {
-          "path": "/pauper/",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
           "path": "/paupergeddon2026/",
           "page_views": 2,
           "sample_interval": 1
@@ -72,6 +61,11 @@
           "sample_interval": 1
         },
         {
+          "path": "/pauper/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
           "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
@@ -80,10 +74,10 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-23T15:25:29Z",
-      "end_utc_exclusive": "2026-11-22T15:25:29Z",
-      "page_views": 250,
-      "visits": 140,
+      "start_utc": "2026-10-23T21:52:11Z",
+      "end_utc_exclusive": "2026-11-22T21:52:11Z",
+      "page_views": 240,
+      "visits": 130,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
@@ -108,11 +102,6 @@
           "sample_interval": 10
         },
         {
-          "path": "/card-foil/",
-          "page_views": 20,
-          "sample_interval": 10
-        },
-        {
           "path": "/ppl/store.html",
           "page_views": 20,
           "sample_interval": 10
@@ -129,6 +118,11 @@
         },
         {
           "path": "/Tronclock/",
+          "page_views": 10,
+          "sample_interval": 10
+        },
+        {
+          "path": "/card-foil/",
           "page_views": 10,
           "sample_interval": 10
         },
