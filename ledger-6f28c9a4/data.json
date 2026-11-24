@@ -1,22 +1,27 @@
 {
-  "updated_at": "2026-11-24T11:02:08Z",
+  "updated_at": "2026-11-24T21:19:04Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-23T11:02:08Z",
-      "end_utc_exclusive": "2026-11-24T11:02:08Z",
-      "page_views": 2,
-      "visits": 2,
+      "start_utc": "2026-11-23T21:19:04Z",
+      "end_utc_exclusive": "2026-11-24T21:19:04Z",
+      "page_views": 4,
+      "visits": 4,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/",
-          "page_views": 1,
+          "page_views": 2,
           "sample_interval": 1
         },
         {
           "path": "/card-foil/",
+          "page_views": 1,
+          "sample_interval": 1
+        },
+        {
+          "path": "/paupergenesis2026/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -24,21 +29,21 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-17T11:02:08Z",
-      "end_utc_exclusive": "2026-11-24T11:02:08Z",
-      "page_views": 27,
-      "visits": 22,
+      "start_utc": "2026-11-17T21:19:04Z",
+      "end_utc_exclusive": "2026-11-24T21:19:04Z",
+      "page_views": 29,
+      "visits": 24,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/paupergenesis2026/",
-          "page_views": 8,
+          "page_views": 9,
           "sample_interval": 1
         },
         {
           "path": "/",
-          "page_views": 5,
+          "page_views": 6,
           "sample_interval": 1
         },
         {
@@ -85,16 +90,16 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-25T11:02:08Z",
-      "end_utc_exclusive": "2026-11-24T11:02:08Z",
-      "page_views": 220,
-      "visits": 130,
+      "start_utc": "2026-10-25T21:19:04Z",
+      "end_utc_exclusive": "2026-11-24T21:19:04Z",
+      "page_views": 230,
+      "visits": 140,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/",
-          "page_views": 60,
+          "page_views": 70,
           "sample_interval": 10
         },
         {
