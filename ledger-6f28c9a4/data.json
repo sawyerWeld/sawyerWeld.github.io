@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-11-25T23:40:10Z",
+  "updated_at": "2026-11-26T08:30:08Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-24T23:40:10Z",
-      "end_utc_exclusive": "2026-11-25T23:40:10Z",
+      "start_utc": "2026-11-25T08:30:08Z",
+      "end_utc_exclusive": "2026-11-26T08:30:08Z",
       "page_views": 3,
       "visits": 3,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/card-foil/",
+          "path": "/paupergenesis2026/",
           "page_views": 2,
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/",
+          "path": "/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -24,10 +24,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-18T23:40:10Z",
-      "end_utc_exclusive": "2026-11-25T23:40:10Z",
+      "start_utc": "2026-11-19T08:30:08Z",
+      "end_utc_exclusive": "2026-11-26T08:30:08Z",
       "page_views": 29,
-      "visits": 24,
+      "visits": 25,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -38,7 +38,7 @@
         },
         {
           "path": "/",
-          "page_views": 6,
+          "page_views": 7,
           "sample_interval": 1
         },
         {
@@ -67,11 +67,6 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergenesis2026/survivorship/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
           "path": "/commongroundcup4/",
           "page_views": 1,
           "sample_interval": 1
@@ -85,10 +80,10 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-26T23:40:10Z",
-      "end_utc_exclusive": "2026-11-25T23:40:10Z",
-      "page_views": 230,
-      "visits": 150,
+      "start_utc": "2026-10-27T08:30:08Z",
+      "end_utc_exclusive": "2026-11-26T08:30:08Z",
+      "page_views": 240,
+      "visits": 160,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
@@ -118,6 +113,11 @@
           "sample_interval": 10
         },
         {
+          "path": "/paupergenesis2026/",
+          "page_views": 20,
+          "sample_interval": 10
+        },
+        {
           "path": "/mana-counter/",
           "page_views": 10,
           "sample_interval": 10
@@ -129,11 +129,6 @@
         },
         {
           "path": "/pauper/",
-          "page_views": 10,
-          "sample_interval": 10
-        },
-        {
-          "path": "/paupergenesis2026/",
           "page_views": 10,
           "sample_interval": 10
         },
