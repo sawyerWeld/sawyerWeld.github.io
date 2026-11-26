@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-11-26T08:30:08Z",
+  "updated_at": "2026-11-26T19:05:23Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-25T08:30:08Z",
-      "end_utc_exclusive": "2026-11-26T08:30:08Z",
+      "start_utc": "2026-11-25T19:05:23Z",
+      "end_utc_exclusive": "2026-11-26T19:05:23Z",
       "page_views": 3,
       "visits": 3,
       "sample_interval": 1,
@@ -24,10 +24,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-19T08:30:08Z",
-      "end_utc_exclusive": "2026-11-26T08:30:08Z",
-      "page_views": 29,
-      "visits": 25,
+      "start_utc": "2026-11-19T19:05:23Z",
+      "end_utc_exclusive": "2026-11-26T19:05:23Z",
+      "page_views": 23,
+      "visits": 21,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -38,7 +38,7 @@
         },
         {
           "path": "/",
-          "page_views": 7,
+          "page_views": 5,
           "sample_interval": 1
         },
         {
@@ -48,22 +48,22 @@
         },
         {
           "path": "/paupergeddon2026/paupergeddon-explorer.html",
-          "page_views": 3,
+          "page_views": 2,
           "sample_interval": 1
         },
         {
           "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 2,
+          "page_views": 1,
           "sample_interval": 1
         },
         {
           "path": "/Tronclock/",
-          "page_views": 2,
+          "page_views": 1,
           "sample_interval": 1
         },
         {
           "path": "/paupergeddon2026/",
-          "page_views": 2,
+          "page_views": 1,
           "sample_interval": 1
         },
         {
@@ -80,16 +80,16 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-27T08:30:08Z",
-      "end_utc_exclusive": "2026-11-26T08:30:08Z",
-      "page_views": 240,
-      "visits": 160,
+      "start_utc": "2026-10-27T19:05:23Z",
+      "end_utc_exclusive": "2026-11-26T19:05:23Z",
+      "page_views": 230,
+      "visits": 150,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
         {
           "path": "/",
-          "page_views": 70,
+          "page_views": 60,
           "sample_interval": 10
         },
         {
