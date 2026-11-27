@@ -255,17 +255,9 @@ function metadata() {
   }
   return [state.format.trim(),date,state.venue,state.attendance?`${state.attendance} players`:''].filter(Boolean).join('  ·  ');
 }
-function artCreditLines(width) {
+function artCreditLine() {
   const artists=[...new Set(activePlayers().map(p=>p.card.artist.trim()).filter(Boolean))];
-  ctx.font=`400 15px ${font}`;
-  const lines=[];let line='Art:';
-  for(const artist of artists){
-    const next=`${line}${line==='Art:'?' ':' · '}${artist}`;
-    if(line!=='Art:'&&ctx.measureText(next).width>width){lines.push(line);line=artist;}
-    else line=next;
-  }
-  if(artists.length)lines.push(line);
-  return lines;
+  return artists.length?`Art: ${artists.join(' · ')}`:'';
 }
 function placement(player) {
   const value=Number(player.rank);
@@ -333,14 +325,18 @@ function render() {
   text(metadata(),margin,154,24,muted,contentW-40,450);
   text(state.heading,W-margin,104,66,fg,275,smash?'italic 900':800,'right');
   fill(rule);ctx.fillRect(margin,182,contentW,2);
-  const creditWidth=520;
   const creditLines=[
-    'Magic: The Gathering artwork © Wizards of the Coast',
-    ...(state.credits==='footer'?artCreditLines(creditWidth):[]),
-    state.treatment==='old'?'Art via Scryfall · Frames via Card Conjurer':'Card data & art via Scryfall'
+    ...(state.credits==='footer'?[artCreditLine()].filter(Boolean):[]),
+    `Magic: The Gathering artwork © Wizards of the Coast · Scryfall${state.treatment==='old'?' · Frames: Card Conjurer':''}`,
+    'sawyerwelden.com/top8graphic'
   ];
+  ctx.font=`400 15px ${font}`;
+  const creditWidth=Math.min(contentW,Math.max(820,...creditLines.map(line=>ctx.measureText(line).width)));
+  const footerWidth=contentW-creditWidth-32;
+  ctx.font=`500 24px ${font}`;
+  const footerOwnRow=Boolean(state.footer)&&ctx.measureText(state.footer).width>footerWidth;
   const creditTop=H-41-(creditLines.length-1)*20;
-  const footerY=Math.min(H-102,creditTop-30);
+  const footerY=Math.min(H-102,creditTop-(footerOwnRow?64:30));
   const top=216,bottom=footerY-36, height=bottom-top, gap=square?21:22;
   const players=activePlayers();
   // Edited placings determine podium prominence; stable ties retain editor order.
@@ -348,8 +344,13 @@ function render() {
   const slots=layoutCards(players.length,state.layout,square,margin,top,contentW,height,gap);
   ordered.forEach((p,i)=>{const r=slots[i];drawCard(p,r.x,r.y,r.w,r.h,state.layout==='podium'&&i===0);});
   fill(rule);ctx.fillRect(margin,footerY,contentW,2);
-  text(state.footer,margin,H-58,24,fg,contentW-creditWidth-32,500);
-  creditLines.forEach((line,i)=>text(line,W-margin,creditTop+i*20,15,muted,undefined,400,'right'));
+  text(state.footer,margin,footerOwnRow?creditTop-30:H-58,24,fg,footerOwnRow?contentW:footerWidth,500);
+  creditLines.forEach((line,i)=>{
+    ctx.font=`400 15px ${font}`;
+    // Keep every artist on one line without truncating any names.
+    const size=Math.min(15,15*creditWidth/Math.max(1,ctx.measureText(line).width));
+    text(line,W-margin,creditTop+i*20,size,muted,undefined,400,'right');
+  });
   const entries=players.map(p=>getImage(p.card.art));
   const frames=state.treatment==='old'?players.map(p=>getImage(oldFramePath(p.card))):[];
   const loading=[...entries,...frames].some(e=>e.status==='loading'),failed=entries.some(e=>e.status==='error'),frameFailed=frames.some(e=>e.status==='error');
