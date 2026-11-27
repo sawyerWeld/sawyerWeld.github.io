@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-11-26T19:05:23Z",
+  "updated_at": "2026-11-27T02:15:51Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-25T19:05:23Z",
-      "end_utc_exclusive": "2026-11-26T19:05:23Z",
-      "page_views": 3,
-      "visits": 3,
+      "start_utc": "2026-11-26T02:15:51Z",
+      "end_utc_exclusive": "2026-11-27T02:15:51Z",
+      "page_views": 2,
+      "visits": 2,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/paupergenesis2026/",
-          "page_views": 2,
+          "path": "/",
+          "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/",
+          "path": "/paupergenesis2026/",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -24,10 +24,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-19T19:05:23Z",
-      "end_utc_exclusive": "2026-11-26T19:05:23Z",
-      "page_views": 23,
-      "visits": 21,
+      "start_utc": "2026-11-20T02:15:51Z",
+      "end_utc_exclusive": "2026-11-27T02:15:51Z",
+      "page_views": 22,
+      "visits": 20,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -67,11 +67,6 @@
           "sample_interval": 1
         },
         {
-          "path": "/commongroundcup4/",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
           "path": "/paupergeddonsummer2026/",
           "page_views": 1,
           "sample_interval": 1
@@ -80,8 +75,8 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-27T19:05:23Z",
-      "end_utc_exclusive": "2026-11-26T19:05:23Z",
+      "start_utc": "2026-10-28T02:15:51Z",
+      "end_utc_exclusive": "2026-11-27T02:15:51Z",
       "page_views": 230,
       "visits": 150,
       "sample_interval": 10,
