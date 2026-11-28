@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-11-28T02:44:41Z",
+  "updated_at": "2026-11-28T11:55:17Z",
   "periods": {
     "1": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-27T02:44:41Z",
-      "end_utc_exclusive": "2026-11-28T02:44:41Z",
+      "start_utc": "2026-11-27T11:55:17Z",
+      "end_utc_exclusive": "2026-11-28T11:55:17Z",
       "page_views": 2,
       "visits": 2,
       "sample_interval": 1,
@@ -24,10 +24,10 @@
     },
     "7": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-11-21T02:44:41Z",
-      "end_utc_exclusive": "2026-11-28T02:44:41Z",
-      "page_views": 16,
-      "visits": 14,
+      "start_utc": "2026-11-21T11:55:17Z",
+      "end_utc_exclusive": "2026-11-28T11:55:17Z",
+      "page_views": 13,
+      "visits": 13,
       "sample_interval": 1,
       "pages_may_be_truncated": false,
       "pages": [
@@ -47,22 +47,12 @@
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/paupergeddon-explorer.html",
-          "page_views": 2,
-          "sample_interval": 1
-        },
-        {
-          "path": "/paupergeddon2026/paupergeddon-slope.html",
-          "page_views": 1,
-          "sample_interval": 1
-        },
-        {
           "path": "/Tronclock/",
           "page_views": 1,
           "sample_interval": 1
         },
         {
-          "path": "/paupergeddon2026/",
+          "path": "/paupergeddon2026/paupergeddon-explorer.html",
           "page_views": 1,
           "sample_interval": 1
         }
@@ -70,20 +60,20 @@
     },
     "30": {
       "host": "sawyerwelden.com",
-      "start_utc": "2026-10-29T02:44:41Z",
-      "end_utc_exclusive": "2026-11-28T02:44:41Z",
-      "page_views": 220,
-      "visits": 140,
+      "start_utc": "2026-10-29T11:55:17Z",
+      "end_utc_exclusive": "2026-11-28T11:55:17Z",
+      "page_views": 210,
+      "visits": 130,
       "sample_interval": 10,
       "pages_may_be_truncated": false,
       "pages": [
         {
-          "path": "/",
-          "page_views": 50,
+          "path": "/ppl/metagame.html",
+          "page_views": 40,
           "sample_interval": 10
         },
         {
-          "path": "/ppl/metagame.html",
+          "path": "/",
           "page_views": 40,
           "sample_interval": 10
         },
